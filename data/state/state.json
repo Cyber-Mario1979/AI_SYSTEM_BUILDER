@@ -1,0 +1,12 @@
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "title": "First real task",
+      "status": "planned"
+    }
+  ]
+}
