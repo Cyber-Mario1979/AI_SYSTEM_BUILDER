@@ -5,7 +5,13 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from asbp.state_model import StateModel, TaskModel
-from asbp.task_logic import generate_next_task_id
+from asbp.task_logic import (
+    delete_task_by_id,
+    filter_tasks_by_status,
+    find_task_by_id,
+    generate_next_task_id,
+    update_task_status,
+)
 
 VERSION = "0.1.0"
 
@@ -118,7 +124,6 @@ def handle_task_add(args):
 
     print(f"Task added: {new_task.task_id} - {new_task.title}")
 
-
 def handle_task_list(args):
     state = load_state_or_none()
     if state is None:
@@ -127,7 +132,7 @@ def handle_task_list(args):
     tasks_to_show = state.tasks
 
     if args.status is not None:
-        tasks_to_show = [task for task in state.tasks if task.status == args.status]
+        tasks_to_show = filter_tasks_by_status(state.tasks, args.status)
 
     if not tasks_to_show:
         print("No tasks found.")
@@ -142,27 +147,27 @@ def handle_task_update_status(args):
     if state is None:
         return
 
-    for task in state.tasks:
-        if task.task_id == args.task_id:
-            task.status = args.status
-            save_validated_state(state)
-            print(f"Task status updated: {task.task_id} -> {task.status}")
-            return
+    updated_task = update_task_status(state.tasks, args.task_id, args.status)
 
-    print(f"Task not found: {args.task_id}")   
+    if updated_task is None:
+        print(f"Task not found: {args.task_id}")
+        return
+
+    save_validated_state(state)
+    print(f"Task status updated: {updated_task.task_id} -> {updated_task.status}")
      
 def handle_task_delete(args):
     state = load_state_or_none()
     if state is None:
         return
 
-    original_count = len(state.tasks)
-    state.tasks = [task for task in state.tasks if task.task_id != args.task_id]
+    updated_tasks, deleted_flag = delete_task_by_id(state.tasks, args.task_id)
 
-    if len(state.tasks) == original_count:
+    if not deleted_flag:
         print(f"Task not found: {args.task_id}")
         return
 
+    state.tasks = updated_tasks
     save_validated_state(state)
     print(f"Task deleted: {args.task_id}")
 
@@ -171,13 +176,14 @@ def handle_task_show(args):
     if state is None:
         return
 
-    for task in state.tasks:
-        if task.task_id == args.task_id:
-            print(json.dumps(task.model_dump(), indent=2))
-            return
+    task = find_task_by_id(state.tasks, args.task_id)
 
-    print(f"Task not found: {args.task_id}")
+    if task is None:
+        print(f"Task not found: {args.task_id}")
+        return
 
+    print(json.dumps(task.model_dump(), indent=2))
+    
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")

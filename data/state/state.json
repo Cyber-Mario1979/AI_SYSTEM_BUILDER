@@ -6,11 +6,6 @@
     {
       "task_id": "TASK-001",
       "title": "Task A",
-      "status": "planned"
-    },
-    {
-      "task_id": "TASK-002",
-      "title": "Task B",
       "status": "completed"
     },
     {
