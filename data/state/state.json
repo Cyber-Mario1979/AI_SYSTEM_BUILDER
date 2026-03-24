@@ -2,5 +2,31 @@
   "project": "AI_SYSTEM_BUILDER",
   "version": "0.8.0",
   "status": "in_flight",
-  "tasks": []
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "title": "Task A",
+      "status": "planned"
+    },
+    {
+      "task_id": "TASK-002",
+      "title": "Task B",
+      "status": "completed"
+    },
+    {
+      "task_id": "TASK-003",
+      "title": "Task C",
+      "status": "completed"
+    },
+    {
+      "task_id": "TASK-004",
+      "title": "Task D",
+      "status": "planned"
+    },
+    {
+      "task_id": "TASK-005",
+      "title": "Task E",
+      "status": "planned"
+    }
+  ]
 }

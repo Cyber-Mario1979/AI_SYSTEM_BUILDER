@@ -348,4 +348,78 @@ def test_task_delete_handles_missing_state_file(restore_state_file):
 
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
-    
+
+def test_task_list_filters_tasks_by_status(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "title": "Second real task",
+                        "status": "completed",
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "title": "Third real task",
+                        "status": "planned",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--status", "planned")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Tasks:" in output
+    assert "- TASK-001 | planned | First real task" in output
+    assert "- TASK-003 | planned | Third real task" in output
+    assert "- TASK-002 | completed | Second real task" not in output
+
+
+def test_task_list_filters_to_no_results(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--status", "completed")
+
+    assert result.returncode == 0
+    assert "No tasks found." in result.stdout
+
+
+def test_task_list_rejects_invalid_status_filter_at_parser_level():
+    result = run_cli("task", "list", "--status", "wrong_value")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output

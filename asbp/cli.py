@@ -124,14 +124,18 @@ def handle_task_list(args):
     if state is None:
         return
 
-    if not state.tasks:
+    tasks_to_show = state.tasks
+
+    if args.status is not None:
+        tasks_to_show = [task for task in state.tasks if task.status == args.status]
+
+    if not tasks_to_show:
         print("No tasks found.")
         return
 
     print("Tasks:")
-    for task in state.tasks:
+    for task in tasks_to_show:
         print(f"- {task.task_id} | {task.status} | {task.title}")
-
 
 def handle_task_update_status(args):
     state = load_state_or_none()
@@ -198,6 +202,11 @@ def build_parser():
     task_add_parser.set_defaults(func=handle_task_add)
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
+    task_list_parser.add_argument(
+    "--status",
+    choices=["planned", "in_progress", "completed", "over_due"],
+    help="Filter tasks by status",
+)
     task_list_parser.set_defaults(func=handle_task_list)
     
     task_update_status_parser = task_subparsers.add_parser("update-status", help="Update task status")
