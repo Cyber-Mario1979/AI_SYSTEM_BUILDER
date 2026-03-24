@@ -1,4 +1,4 @@
-# Progress_Tracker_2026-03-24
+# Progress_Tracker_2026-03-25
 
 ## Project
 
@@ -54,8 +54,6 @@ Completed in Milestone 2 so far:
   - `asbp/task_logic.py`
 - Deterministic helper implemented:
   - `generate_next_task_id(tasks)`
-- Helper-level tests added and passed:
-  - `tests/test_task_logic.py`
 - Task CLI operations implemented and verified:
   - `task add`
   - `task list`
@@ -64,19 +62,35 @@ Completed in Milestone 2 so far:
   - `task show`
 - Status-filtered task listing implemented and verified:
   - `task list --status <value>`
-- Manual verification completed for:
-  - `task list`
-  - `task update-status`
-  - `task delete`
-  - `task list --status <value>`
-  - `task show <task_id>`
-- Multiple checkpoint commits completed during Milestone 2 implementation
-- Refactor checkpoint intentionally declared after feature slice completion
+- Refactor Step 1 completed:
+  - expanded `asbp/task_logic.py`
+  - added reusable task-domain functions:
+    - `find_task_by_id(...)`
+    - `filter_tasks_by_status(...)`
+    - `update_task_status(...)`
+    - `delete_task_by_id(...)`
+  - introduced explicit `TaskStatus` typing for task-domain helpers
+- Refactor Step 2 completed:
+  - added direct helper-level tests in `tests/test_task_logic.py`
+  - validated through full-suite pass and narrower helper checks
+- Refactor Step 3 completed:
+  - rewired `asbp/cli.py` task handlers to call extracted functions from `asbp/task_logic.py`
+  - preserved CLI behavior and user-facing output
+- Refactor checkpoint committed locally after validation
 
 ## Current verified test status
 
 - Full suite passed:
-  - `30 passed`
+  - `39 passed`
+
+## Current verified runtime behavior
+
+- `python -m asbp task show TASK-001` returns the correct task JSON
+- `python -m asbp task list` works
+- `python -m asbp task list --status planned` works
+- `python -m asbp task update-status TASK-001 completed` works
+- `python -m asbp task delete TASK-002` works
+- Follow-up CLI verification confirmed expected persisted state changes after update and delete
 
 ## Current verified state of the system
 
@@ -89,15 +103,30 @@ Completed in Milestone 2 so far:
 - Tasks can be deleted by identity.
 - New task IDs are generated sequentially:
   - `TASK-001`, `TASK-002`, etc.
-- CLI behavior is stable and verified before refactor.
+- Task-domain logic is now separated more cleanly from CLI handler logic.
+- The task-engine feature slice is implemented, refactored, tested, and checkpoint-committed.
+
+## Latest completed step
+
+Milestone 2 task-engine refactor checkpoint:
+
+- extracted repeated task-domain logic into `asbp/task_logic.py`
+- added direct helper tests
+- rewired CLI handlers to call extracted helpers
+- validated with `python -m pytest -q`
+- manually verified real CLI behavior
+- committed the refactor checkpoint locally
 
 ## Exact next unfinished step
 
-Refactor Step 1: expand `asbp/task_logic.py` by moving repeated task-domain logic out of `cli.py`
+Milestone 2 planning checkpoint:
 
-## Refactor mode rule
+- lock the next post-refactor build slice before coding
+- keep the work inside Milestone 2
+- choose the next deterministic engine target from the roadmap instead of jumping ahead
 
-- No new user-facing features during the refactor checkpoint
-- No behavior changes
-- No output changes
-- Keep CLI tests green while introducing direct task-logic tests for extracted functions
+## Refactor mode status
+
+- Refactor checkpoint completed
+- No open refactor step remains from the task-logic extraction plan
+- Resume normal milestone sequencing from the next locked Milestone 2 build slice

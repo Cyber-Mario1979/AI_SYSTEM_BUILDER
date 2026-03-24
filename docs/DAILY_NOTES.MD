@@ -1,8 +1,8 @@
-# DAILY_NOTES_2026-03-24
+# DAILY_NOTES_2026-03-25
 
 ## Session
 
-SESSION_005
+SESSION_006
 
 ## Focus
 
@@ -11,67 +11,68 @@ Milestone 2 — Mini Deterministic Engine
 
 ## Work completed
 
-- Resumed from migrated continuity state without restarting from zero.
-- Reconfirmed roadmap, tracker, milestone, latest completed step, and exact next step.
-- Implemented and verified the following task CLI operations in sequence:
-  - `task list`
-  - `task update-status`
-  - `task delete`
-  - `task list --status <value>`
-  - `task show <task_id>`
-- Added and passed automated CLI tests for each new task operation.
-- Preserved milestone sequence discipline by committing working checkpoints before continuing.
-- Performed manual runtime verification for:
-  - `task list`
-  - `task update-status`
-  - `task delete`
-  - `task list --status completed`
-  - `task list --status planned`
-  - `task show TASK-002`
-- Paused for a clean architecture walkthrough before continuing implementation.
-- Clarified architecture mentally as:
-  - parser layer
-  - routing layer
-  - handler layer
-  - model layer
-  - logic layer
-  - persistence layer
-  - test layer
-- Identified a valid refactor signal:
-  - task-domain logic is starting to accumulate inside `cli.py`
-  - `task_logic.py` should expand beyond `generate_next_task_id(...)`
-- Agreed to stop new feature work after `task show <task_id>` and enter a controlled refactor phase.
-- Produced a refactor plan before coding the refactor.
+- Resumed directly from the locked refactor checkpoint without restarting from zero.
+- Reconfirmed phase, milestone, latest completed step, and exact next unfinished step before coding.
+- Completed Refactor Step 1 in the local repo workflow:
+  - expanded `asbp/task_logic.py`
+  - added reusable task-domain functions:
+    - `find_task_by_id(...)`
+    - `filter_tasks_by_status(...)`
+    - `update_task_status(...)`
+    - `delete_task_by_id(...)`
+- Corrected the helper typing issue by introducing explicit `TaskStatus` typing aligned with `TaskModel.status`.
+- Completed Refactor Step 2:
+  - added direct helper-level tests in `tests/test_task_logic.py`
+  - validated helper behavior through full-suite testing plus narrower verification
+- Completed Refactor Step 3:
+  - rewired task handlers in `asbp/cli.py` to call extracted task-domain helpers from `asbp/task_logic.py`
+  - kept CLI parsing, load/save, and user-facing output in `cli.py`
+- Completed local validation flow in the agreed order:
+  - `python -m pytest -q`
+  - narrower/manual verification commands for the exact changed behavior
+- Performed real CLI verification for:
+  - `python -m asbp task show TASK-001`
+  - `python -m asbp task list`
+  - `python -m asbp task list --status planned`
+  - `python -m asbp task update-status TASK-001 completed`
+  - `python -m asbp task delete TASK-002`
+  - follow-up verification commands to confirm the persisted results
+- Created and committed a local git checkpoint after validation.
+- Preserved the workflow rule that code completion is only accepted after local run-and-confirm.
 
 ## Validation
 
-- `python -m pytest -q` passed repeatedly during the session.
-- Final verified full-suite result:
-  - `30 passed`
+- `python -m pytest -q` passed locally.
+- Final verified full-suite result for this checkpoint:
+  - `39 passed`
+- Narrow/manual product verification was also completed successfully.
 
 ## Current runtime behavior verified
 
-- `python -m asbp task list` works.
-- `python -m asbp task update-status TASK-001 in_progress` works.
-- `python -m asbp task delete TASK-001` works.
-- `python -m asbp task list --status completed` works.
-- `python -m asbp task list --status planned` works.
-- `python -m asbp task show TASK-002` returns the correct task as JSON.
+- `task show` still returns correct task JSON.
+- `task list` still prints the expected task summary lines.
+- `task list --status planned` still filters correctly.
+- `task update-status` persists the new status correctly.
+- `task delete` removes the requested task correctly.
+- The CLI behavior remained stable after rewiring handlers to extracted logic functions.
 
-## Key architectural clarifications
+## Architectural clarification captured this session
 
-- `cli.py` currently owns parsing, routing, handlers, state load/save, and user-facing output.
-- `task_logic.py` currently exists but is underused relative to the now-visible task-domain pattern.
-- The correct next cleanup is extraction, not redesign.
-- The refactor should move repeated task-domain logic from handlers into reusable logic functions while preserving behavior.
+- `cli.py` now more clearly owns:
+  - parsing
+  - routing
+  - state load/save
+  - user-facing output
+- `task_logic.py` now more clearly owns:
+  - deterministic task-domain operations
+  - reusable helper behavior independent of CLI printing
+- The task-engine refactor checkpoint is now complete and locally committed.
 
-## Proposed extracted task-domain functions
+## Git checkpoint
 
-- `generate_next_task_id(tasks)`
-- `find_task_by_id(tasks, task_id)`
-- `filter_tasks_by_status(tasks, status)`
-- `update_task_status(tasks, task_id, new_status)`
-- `delete_task_by_id(tasks, task_id)`
+- Local commit created for the task-logic extraction/refactor checkpoint.
+- Working tree returned to clean state after commit.
+- Push intentionally deferred to end-of-session workflow.
 
 ## Blocked
 
@@ -79,18 +80,16 @@ Milestone 2 — Mini Deterministic Engine
 
 ## Exact next step
 
-Refactor Step 1:
+Milestone 2 planning checkpoint:
 
-- expand `asbp/task_logic.py`
-- add the new reusable task-domain functions first
-- do not change user-facing behavior yet
+- lock the next post-refactor build slice before new implementation begins
+- stay inside Milestone 2
+- do not jump to a new workflow or future phase prematurely
 
 ## Resume note
 
-When resuming, stay in refactor mode:
+When resuming:
 
-- no new features
-- no behavior changes
-- extract logic first
-- add direct `task_logic` tests
-- then rewire CLI handlers to call the extracted functions
+- do not reopen the completed task-logic refactor plan
+- start from the Milestone 2 post-refactor planning checkpoint
+- confirm the next deterministic engine slice before writing more code
