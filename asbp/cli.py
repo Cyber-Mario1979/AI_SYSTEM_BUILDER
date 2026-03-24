@@ -99,6 +99,7 @@ def handle_state_set_status(args):
 
     print(f"State status updated to: {args.value}")
 
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
@@ -115,8 +116,23 @@ def handle_task_add(args):
     state.tasks.append(new_task)
     save_validated_state(state)
 
-    print(f"Task added: {new_task.task_id} - {new_task.title}")    
-    
+    print(f"Task added: {new_task.task_id} - {new_task.title}")
+
+
+def handle_task_list(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    if not state.tasks:
+        print("No tasks found.")
+        return
+
+    print("Tasks:")
+    for task in state.tasks:
+        print(f"- {task.task_id} | {task.status} | {task.title}")
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
@@ -151,6 +167,9 @@ def build_parser():
     task_add_parser.add_argument("title", help="Task title")
     task_add_parser.set_defaults(func=handle_task_add)
 
+    task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
+    task_list_parser.set_defaults(func=handle_task_list)
+
     return parser
 
 
@@ -162,10 +181,16 @@ def main():
         parser.parse_args(["state", "-h"])
         return
 
+    if args.command == "task" and args.task_command is None:
+        parser.parse_args(["task", "-h"])
+        return
+
     if hasattr(args, "func"):
         args.func(args)
     else:
         parser.print_help()
 
+
 if __name__ == "__main__":
     main()
+    

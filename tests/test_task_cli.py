@@ -104,3 +104,70 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "status": "planned",
         },
     ]
+
+
+def test_task_list_shows_no_tasks_message_for_empty_task_list(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    assert "No tasks found." in result.stdout
+
+
+def test_task_list_shows_all_tasks_in_readable_format(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "title": "Second real task",
+                        "status": "completed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Tasks:" in output
+    assert "- TASK-001 | planned | First real task" in output
+    assert "- TASK-002 | completed | Second real task" in output
+
+
+def test_task_list_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    
