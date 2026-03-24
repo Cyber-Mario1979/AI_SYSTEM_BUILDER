@@ -6,7 +6,7 @@
     {
       "task_id": "TASK-001",
       "title": "First real task",
-      "status": "planned"
+      "status": "in_progress"
     }
   ]
 }

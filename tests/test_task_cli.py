@@ -170,4 +170,95 @@ def test_task_list_handles_missing_state_file(restore_state_file):
 
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
+def test_task_update_status_updates_only_target_task(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "title": "Second real task",
+                        "status": "planned",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "update-status", "TASK-001", "in_progress")
+
+    assert result.returncode == 0
+    assert "Task status updated: TASK-001 -> in_progress" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+
+    assert saved_state["tasks"] == [
+        {
+            "task_id": "TASK-001",
+            "title": "First real task",
+            "status": "in_progress",
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Second real task",
+            "status": "planned",
+        },
+    ]
+
+
+def test_task_update_status_handles_unknown_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "update-status", "TASK-999", "completed")
+
+    assert result.returncode == 0
+    assert "Task not found: TASK-999" in result.stdout
+
+
+def test_task_update_status_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "update-status", "TASK-001", "completed")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+
+
+def test_task_update_status_rejects_invalid_status_at_parser_level():
+    result = run_cli("task", "update-status", "TASK-001", "wrong_value")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output
+
     

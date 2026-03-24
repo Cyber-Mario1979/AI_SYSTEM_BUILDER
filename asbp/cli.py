@@ -133,6 +133,21 @@ def handle_task_list(args):
         print(f"- {task.task_id} | {task.status} | {task.title}")
 
 
+def handle_task_update_status(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    for task in state.tasks:
+        if task.task_id == args.task_id:
+            task.status = args.status
+            save_validated_state(state)
+            print(f"Task status updated: {task.task_id} -> {task.status}")
+            return
+
+    print(f"Task not found: {args.task_id}")        
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
@@ -169,9 +184,17 @@ def build_parser():
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
     task_list_parser.set_defaults(func=handle_task_list)
+    
+    task_update_status_parser = task_subparsers.add_parser("update-status", help="Update task status")
+    task_update_status_parser.add_argument("task_id", help="Task ID to update")
+    task_update_status_parser.add_argument(
+    "status",
+    choices=["planned", "in_progress", "completed", "over_due"],
+    help="New task status",
+)
+    task_update_status_parser.set_defaults(func=handle_task_update_status)
 
     return parser
-
 
 def main():
     parser = build_parser()
@@ -193,4 +216,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
+
