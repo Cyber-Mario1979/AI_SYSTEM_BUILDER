@@ -145,7 +145,22 @@ def handle_task_update_status(args):
             print(f"Task status updated: {task.task_id} -> {task.status}")
             return
 
-    print(f"Task not found: {args.task_id}")        
+    print(f"Task not found: {args.task_id}")   
+     
+def handle_task_delete(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    original_count = len(state.tasks)
+    state.tasks = [task for task in state.tasks if task.task_id != args.task_id]
+
+    if len(state.tasks) == original_count:
+        print(f"Task not found: {args.task_id}")
+        return
+
+    save_validated_state(state)
+    print(f"Task deleted: {args.task_id}")
 
 
 def build_parser():
@@ -193,6 +208,10 @@ def build_parser():
     help="New task status",
 )
     task_update_status_parser.set_defaults(func=handle_task_update_status)
+
+    task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
+    task_delete_parser.add_argument("task_id", help="Task ID to delete")
+    task_delete_parser.set_defaults(func=handle_task_delete)
 
     return parser
 
