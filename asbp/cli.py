@@ -166,6 +166,17 @@ def handle_task_delete(args):
     save_validated_state(state)
     print(f"Task deleted: {args.task_id}")
 
+def handle_task_show(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    for task in state.tasks:
+        if task.task_id == args.task_id:
+            print(json.dumps(task.model_dump(), indent=2))
+            return
+
+    print(f"Task not found: {args.task_id}")
 
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
@@ -208,7 +219,11 @@ def build_parser():
     help="Filter tasks by status",
 )
     task_list_parser.set_defaults(func=handle_task_list)
-    
+
+    task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
+    task_show_parser.add_argument("task_id", help="Task ID to show")
+    task_show_parser.set_defaults(func=handle_task_show)   
+
     task_update_status_parser = task_subparsers.add_parser("update-status", help="Update task status")
     task_update_status_parser.add_argument("task_id", help="Task ID to update")
     task_update_status_parser.add_argument(

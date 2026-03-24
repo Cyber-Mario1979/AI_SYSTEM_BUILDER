@@ -423,3 +423,77 @@ def test_task_list_rejects_invalid_status_filter_at_parser_level():
     assert result.returncode != 0
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
+
+def test_task_show_displays_matching_task_as_json(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "title": "Second real task",
+                        "status": "completed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-002")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"task_id": "TASK-002"' in output
+    assert '"title": "Second real task"' in output
+    assert '"status": "completed"' in output
+    assert '"task_id": "TASK-001"' not in output
+
+
+def test_task_show_handles_unknown_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "title": "First real task",
+                        "status": "planned",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-999")
+
+    assert result.returncode == 0
+    assert "Task not found: TASK-999" in result.stdout
+
+
+def test_task_show_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "show", "TASK-001")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+
+    
