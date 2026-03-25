@@ -131,10 +131,10 @@ def handle_task_list(args):
     if state is None:
         return
 
-    tasks_to_show = state.tasks
+    tasks_to_show = sorted(state.tasks, key=lambda task: task.order)
 
     if args.status is not None:
-        tasks_to_show = filter_tasks_by_status(state.tasks, args.status)
+        tasks_to_show = filter_tasks_by_status(tasks_to_show, args.status)
 
     if not tasks_to_show:
         print("No tasks found.")
@@ -143,7 +143,7 @@ def handle_task_list(args):
     print("Tasks:")
     for task in tasks_to_show:
         print(f"- {task.task_id} | {task.status} | {task.title}")
-
+        
 def handle_task_update_status(args):
     state = load_state_or_none()
     if state is None:
