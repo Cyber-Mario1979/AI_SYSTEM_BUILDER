@@ -22,6 +22,18 @@ def generate_next_task_id(tasks: list[TaskModel]) -> str:
 
     return f"TASK-{max_number + 1:03d}"
 
+def generate_next_task_order(tasks: list[TaskModel]) -> int:
+    if not tasks:
+        return 1
+
+    max_order = 0
+
+    for task in tasks:
+        if task.order > max_order:
+            max_order = task.order
+
+    return max_order + 1
+
 
 def find_task_by_id(tasks: list[TaskModel], task_id: str) -> TaskModel | None:
     for task in tasks:

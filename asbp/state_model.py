@@ -7,6 +7,7 @@ class TaskModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     task_id: str
+    order: int = Field(ge=1)
     title: str = Field(min_length=1)
     status: Literal["planned", "in_progress", "completed", "over_due"]
 
@@ -18,4 +19,3 @@ class StateModel(BaseModel):
     version: str
     status: Literal["not_started", "in_flight", "completed"]
     tasks: list[TaskModel] = Field(default_factory=list)
-    

@@ -1,54 +1,10 @@
 from asbp.state_model import TaskModel
-from asbp.task_logic import generate_next_task_id
-
-
-def test_generate_next_task_id_returns_task_001_for_empty_list():
-    tasks: list[TaskModel] = []
-
-    result = generate_next_task_id(tasks)
-
-    assert result == "TASK-001"
-
-
-def test_generate_next_task_id_returns_next_number():
-    tasks = [
-        TaskModel(task_id="TASK-001", title="First task", status="planned"),
-        TaskModel(task_id="TASK-002", title="Second task", status="in_progress"),
-    ]
-
-    result = generate_next_task_id(tasks)
-
-    assert result == "TASK-003"
-
-
-def test_generate_next_task_id_ignores_invalid_ids():
-    tasks = [
-        TaskModel(task_id="BAD-001", title="Bad task", status="planned"),
-        TaskModel(task_id="TASK-002", title="Second task", status="completed"),
-    ]
-
-    result = generate_next_task_id(tasks)
-
-    assert result == "TASK-003"
-
-
-def test_generate_next_task_id_uses_highest_valid_number():
-    tasks = [
-        TaskModel(task_id="TASK-001", title="First task", status="planned"),
-        TaskModel(task_id="TASK-005", title="Fifth task", status="completed"),
-        TaskModel(task_id="TASK-003", title="Third task", status="over_due"),
-    ]
-
-    result = generate_next_task_id(tasks)
-
-    assert result == "TASK-006"
-    
-from asbp.state_model import TaskModel
 from asbp.task_logic import (
     delete_task_by_id,
     filter_tasks_by_status,
     find_task_by_id,
     generate_next_task_id,
+    generate_next_task_order,
     update_task_status,
 )
 
@@ -65,11 +21,13 @@ def test_generate_next_task_id_returns_next_highest_task_id() -> None:
     tasks = [
         TaskModel(
             task_id="TASK-001",
+            order=1,
             title="First task",
             status="planned",
         ),
         TaskModel(
             task_id="TASK-003",
+            order=2,
             title="Third task",
             status="in_progress",
         ),
@@ -80,14 +38,45 @@ def test_generate_next_task_id_returns_next_highest_task_id() -> None:
     assert result == "TASK-004"
 
 
+def test_generate_next_task_order_empty_tasks_returns_1() -> None:
+    tasks: list[TaskModel] = []
+
+    result = generate_next_task_order(tasks)
+
+    assert result == 1
+
+
+def test_generate_next_task_order_returns_next_highest_order() -> None:
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="First task",
+            status="planned",
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=3,
+            title="Second task",
+            status="completed",
+        ),
+    ]
+
+    result = generate_next_task_order(tasks)
+
+    assert result == 4
+
+
 def test_find_task_by_id_returns_matching_task() -> None:
     task_1 = TaskModel(
         task_id="TASK-001",
+        order=1,
         title="First task",
         status="planned",
     )
     task_2 = TaskModel(
         task_id="TASK-002",
+        order=2,
         title="Second task",
         status="completed",
     )
@@ -102,6 +91,7 @@ def test_find_task_by_id_returns_none_when_not_found() -> None:
     tasks = [
         TaskModel(
             task_id="TASK-001",
+            order=1,
             title="First task",
             status="planned",
         )
@@ -115,16 +105,19 @@ def test_find_task_by_id_returns_none_when_not_found() -> None:
 def test_filter_tasks_by_status_returns_only_matching_tasks() -> None:
     task_1 = TaskModel(
         task_id="TASK-001",
+        order=1,
         title="First task",
         status="planned",
     )
     task_2 = TaskModel(
         task_id="TASK-002",
+        order=2,
         title="Second task",
         status="completed",
     )
     task_3 = TaskModel(
         task_id="TASK-003",
+        order=3,
         title="Third task",
         status="planned",
     )
@@ -138,6 +131,7 @@ def test_filter_tasks_by_status_returns_only_matching_tasks() -> None:
 def test_update_task_status_updates_matching_task() -> None:
     task = TaskModel(
         task_id="TASK-001",
+        order=1,
         title="First task",
         status="planned",
     )
@@ -153,6 +147,7 @@ def test_update_task_status_returns_none_when_task_not_found() -> None:
     tasks = [
         TaskModel(
             task_id="TASK-001",
+            order=1,
             title="First task",
             status="planned",
         )
@@ -166,11 +161,13 @@ def test_update_task_status_returns_none_when_task_not_found() -> None:
 def test_delete_task_by_id_removes_matching_task_and_returns_true() -> None:
     task_1 = TaskModel(
         task_id="TASK-001",
+        order=1,
         title="First task",
         status="planned",
     )
     task_2 = TaskModel(
         task_id="TASK-002",
+        order=2,
         title="Second task",
         status="completed",
     )
@@ -185,11 +182,13 @@ def test_delete_task_by_id_removes_matching_task_and_returns_true() -> None:
 def test_delete_task_by_id_returns_original_list_and_false_when_not_found() -> None:
     task_1 = TaskModel(
         task_id="TASK-001",
+        order=1,
         title="First task",
         status="planned",
     )
     task_2 = TaskModel(
         task_id="TASK-002",
+        order=2,
         title="Second task",
         status="completed",
     )

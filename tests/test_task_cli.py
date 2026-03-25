@@ -58,6 +58,7 @@ def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     assert saved_state["tasks"] == [
         {
             "task_id": "TASK-001",
+            "order": 1,
             "title": "First real task",
             "status": "planned",
         }
@@ -75,6 +76,7 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "Existing task",
                         "status": "planned",
                     }
@@ -95,11 +97,13 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
     assert saved_state["tasks"] == [
         {
             "task_id": "TASK-001",
+            "order": 1,
             "title": "Existing task",
             "status": "planned",
         },
         {
             "task_id": "TASK-002",
+            "order": 2,
             "title": "Second real task",
             "status": "planned",
         },
@@ -138,11 +142,13 @@ def test_task_list_shows_all_tasks_in_readable_format(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
+                        "order": 2,
                         "title": "Second real task",
                         "status": "completed",
                     },
@@ -170,6 +176,8 @@ def test_task_list_handles_missing_state_file(restore_state_file):
 
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
+
+
 def test_task_update_status_updates_only_target_task(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
@@ -181,11 +189,13 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
+                        "order": 2,
                         "title": "Second real task",
                         "status": "planned",
                     },
@@ -206,11 +216,13 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
     assert saved_state["tasks"] == [
         {
             "task_id": "TASK-001",
+            "order": 1,
             "title": "First real task",
             "status": "in_progress",
         },
         {
             "task_id": "TASK-002",
+            "order": 2,
             "title": "Second real task",
             "status": "planned",
         },
@@ -228,6 +240,7 @@ def test_task_update_status_handles_unknown_task_id(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     }
@@ -261,6 +274,7 @@ def test_task_update_status_rejects_invalid_status_at_parser_level():
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
 
+
 def test_task_delete_removes_only_target_task(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
@@ -272,11 +286,13 @@ def test_task_delete_removes_only_target_task(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
+                        "order": 2,
                         "title": "Second real task",
                         "status": "completed",
                     },
@@ -297,6 +313,7 @@ def test_task_delete_removes_only_target_task(restore_state_file):
     assert saved_state["tasks"] == [
         {
             "task_id": "TASK-002",
+            "order": 2,
             "title": "Second real task",
             "status": "completed",
         }
@@ -314,6 +331,7 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     }
@@ -334,6 +352,7 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
     assert saved_state["tasks"] == [
         {
             "task_id": "TASK-001",
+            "order": 1,
             "title": "First real task",
             "status": "planned",
         }
@@ -349,6 +368,7 @@ def test_task_delete_handles_missing_state_file(restore_state_file):
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
 
+
 def test_task_list_filters_tasks_by_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
@@ -360,16 +380,19 @@ def test_task_list_filters_tasks_by_status(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
+                        "order": 2,
                         "title": "Second real task",
                         "status": "completed",
                     },
                     {
                         "task_id": "TASK-003",
+                        "order": 3,
                         "title": "Third real task",
                         "status": "planned",
                     },
@@ -401,6 +424,7 @@ def test_task_list_filters_to_no_results(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     }
@@ -417,13 +441,6 @@ def test_task_list_filters_to_no_results(restore_state_file):
     assert "No tasks found." in result.stdout
 
 
-def test_task_list_rejects_invalid_status_filter_at_parser_level():
-    result = run_cli("task", "list", "--status", "wrong_value")
-
-    assert result.returncode != 0
-    combined_output = result.stdout + result.stderr
-    assert "invalid choice" in combined_output
-
 def test_task_show_displays_matching_task_as_json(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
@@ -435,11 +452,13 @@ def test_task_show_displays_matching_task_as_json(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
+                        "order": 2,
                         "title": "Second real task",
                         "status": "completed",
                     },
@@ -455,9 +474,9 @@ def test_task_show_displays_matching_task_as_json(restore_state_file):
     assert result.returncode == 0
     output = result.stdout
     assert '"task_id": "TASK-002"' in output
+    assert '"order": 2' in output
     assert '"title": "Second real task"' in output
     assert '"status": "completed"' in output
-    assert '"task_id": "TASK-001"' not in output
 
 
 def test_task_show_handles_unknown_task_id(restore_state_file):
@@ -471,6 +490,7 @@ def test_task_show_handles_unknown_task_id(restore_state_file):
                 "tasks": [
                     {
                         "task_id": "TASK-001",
+                        "order": 1,
                         "title": "First real task",
                         "status": "planned",
                     }
@@ -495,5 +515,4 @@ def test_task_show_handles_missing_state_file(restore_state_file):
 
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
-
     

@@ -10,6 +10,7 @@ from asbp.task_logic import (
     filter_tasks_by_status,
     find_task_by_id,
     generate_next_task_id,
+    generate_next_task_order,
     update_task_status,
 )
 
@@ -115,6 +116,7 @@ def handle_task_add(args):
 
     new_task = TaskModel(
         task_id=next_task_id,
+        order=generate_next_task_order(state.tasks),
         title=args.title,
         status="planned",
     )
@@ -265,5 +267,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 

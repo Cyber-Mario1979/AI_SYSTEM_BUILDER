@@ -5,22 +5,32 @@
   "tasks": [
     {
       "task_id": "TASK-001",
+      "order": 1,
       "title": "Task A",
       "status": "completed"
     },
     {
       "task_id": "TASK-003",
+      "order": 2,
       "title": "Task C",
       "status": "completed"
     },
     {
       "task_id": "TASK-004",
+      "order": 3,
       "title": "Task D",
       "status": "planned"
     },
     {
       "task_id": "TASK-005",
+      "order": 4,
       "title": "Task E",
+      "status": "planned"
+    },
+    {
+      "task_id": "TASK-006",
+      "order": 5,
+      "title": "Ordering verification task",
       "status": "planned"
     }
   ]
