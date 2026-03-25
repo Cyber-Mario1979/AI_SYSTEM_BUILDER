@@ -10,6 +10,7 @@ class TaskModel(BaseModel):
     order: int = Field(ge=1)
     title: str = Field(min_length=1)
     status: Literal["planned", "in_progress", "completed", "over_due"]
+    dependencies: list[str] = Field(default_factory=list)
 
 
 class StateModel(BaseModel):

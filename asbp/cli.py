@@ -1,7 +1,6 @@
 import argparse
 import json
 from pathlib import Path
-
 from pydantic import ValidationError
 
 from asbp.state_model import StateModel, TaskModel
@@ -18,21 +17,22 @@ VERSION = "0.1.0"
 
 
 def get_state_file_path() -> Path:
-    return Path("data/state/state.json")
+    return Path(__file__).resolve().parents[1] / "data" / "state" / "state.json"
 
 
-def load_raw_state() -> dict:
-    state_file = get_state_file_path()
+def load_raw_state(state_file_path: Path) -> dict:
+    with state_file_path.open("r", encoding="utf-8") as f:
+        raw = json.load(f)
 
-    if not state_file.exists():
-        raise FileNotFoundError(f"State file not found: {state_file}")
+    for task in raw.get("tasks", []):
+        if "dependencies" not in task:
+            task["dependencies"] = []
 
-    with state_file.open("r", encoding="utf-8") as f:
-        return json.load(f)
+    return raw
 
 
-def load_validated_state() -> StateModel:
-    raw_state = load_raw_state()
+def load_validated_state(state_file_path: Path) -> StateModel:
+    raw_state = load_raw_state(state_file_path)
     return StateModel(**raw_state)
 
 
@@ -42,6 +42,7 @@ def save_validated_state(state: StateModel) -> None:
 
     with state_file.open("w", encoding="utf-8") as f:
         json.dump(state.model_dump(), f, indent=2)
+        f.write("\n")
 
 
 def handle_state_init(args):
@@ -59,10 +60,12 @@ def handle_state_init(args):
 
 
 def load_state_or_none() -> StateModel | None:
+    state_file = get_state_file_path()
+
     try:
-        return load_validated_state()
-    except FileNotFoundError as e:
-        print(e)
+        return load_validated_state(state_file)
+    except FileNotFoundError:
+        print(f"State file not found: {state_file}")
         return None
     except ValidationError as e:
         print("State validation failed:")
@@ -71,7 +74,6 @@ def load_state_or_none() -> StateModel | None:
     except json.JSONDecodeError as e:
         print(f"Invalid JSON in state file: {e}")
         return None
-
 
 def handle_state_show(args):
     state = load_state_or_none()

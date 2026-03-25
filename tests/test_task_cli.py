@@ -61,6 +61,7 @@ def test_task_add_creates_first_task_with_planned_status(restore_state_file):
             "order": 1,
             "title": "First real task",
             "status": "planned",
+            "dependencies": [],
         }
     ]
 
@@ -100,12 +101,14 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "order": 1,
             "title": "Existing task",
             "status": "planned",
+            "dependencies": [],
         },
         {
             "task_id": "TASK-002",
             "order": 2,
             "title": "Second real task",
             "status": "planned",
+            "dependencies": [],
         },
     ]
 
@@ -219,17 +222,19 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "order": 1,
             "title": "First real task",
             "status": "in_progress",
+            "dependencies": [],
         },
         {
             "task_id": "TASK-002",
             "order": 2,
             "title": "Second real task",
             "status": "planned",
+            "dependencies": [],
         },
     ]
 
 
-def test_task_update_status_handles_unknown_task_id(restore_state_file):
+def test_task_delete_handles_unknown_task_id(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
         json.dumps(
@@ -251,11 +256,21 @@ def test_task_update_status_handles_unknown_task_id(restore_state_file):
         encoding="utf-8",
     )
 
-    result = run_cli("task", "update-status", "TASK-999", "completed")
+    result = run_cli("task", "delete", "TASK-999")
 
     assert result.returncode == 0
     assert "Task not found: TASK-999" in result.stdout
 
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+
+    assert saved_state["tasks"] == [
+        {
+            "task_id": "TASK-001",
+            "order": 1,
+            "title": "First real task",
+            "status": "planned",
+        }
+    ]
 
 def test_task_update_status_handles_missing_state_file(restore_state_file):
     if STATE_FILE.exists():
@@ -316,48 +331,9 @@ def test_task_delete_removes_only_target_task(restore_state_file):
             "order": 2,
             "title": "Second real task",
             "status": "completed",
+            "dependencies": [],
         }
     ]
-
-
-def test_task_delete_handles_unknown_task_id(restore_state_file):
-    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    STATE_FILE.write_text(
-        json.dumps(
-            {
-                "project": "AI_SYSTEM_BUILDER",
-                "version": "0.8.0",
-                "status": "in_flight",
-                "tasks": [
-                    {
-                        "task_id": "TASK-001",
-                        "order": 1,
-                        "title": "First real task",
-                        "status": "planned",
-                    }
-                ],
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
-
-    result = run_cli("task", "delete", "TASK-999")
-
-    assert result.returncode == 0
-    assert "Task not found: TASK-999" in result.stdout
-
-    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-
-    assert saved_state["tasks"] == [
-        {
-            "task_id": "TASK-001",
-            "order": 1,
-            "title": "First real task",
-            "status": "planned",
-        }
-    ]
-
 
 def test_task_delete_handles_missing_state_file(restore_state_file):
     if STATE_FILE.exists():
@@ -477,6 +453,7 @@ def test_task_show_displays_matching_task_as_json(restore_state_file):
     assert '"order": 2' in output
     assert '"title": "Second real task"' in output
     assert '"status": "completed"' in output
+    assert '"dependencies": []' in output
 
 
 def test_task_show_handles_unknown_task_id(restore_state_file):
