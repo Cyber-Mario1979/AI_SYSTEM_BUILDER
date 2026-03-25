@@ -6,6 +6,7 @@ from asbp.task_logic import (
     generate_next_task_id,
     generate_next_task_order,
     update_task_status,
+    validate_task_dependencies,
 )
 
 
@@ -214,3 +215,66 @@ def test_delete_task_by_id_returns_original_list_and_false_when_not_found() -> N
 
     assert updated_tasks == tasks
     assert deleted_flag is False
+
+def test_validate_task_dependencies_returns_no_errors_for_valid_dependencies() -> None:
+    tasks = [
+        TaskModel(task_id="TASK-001", order=1, title="A", status="planned", dependencies=[]),
+        TaskModel(task_id="TASK-002", order=2, title="B", status="planned", dependencies=[]),
+        TaskModel(task_id="TASK-003", order=3, title="C", status="planned", dependencies=[]),
+    ]
+
+    result = validate_task_dependencies(tasks, "TASK-003", ["TASK-001", "TASK-002"])
+
+    assert result == []
+
+
+def test_validate_task_dependencies_rejects_self_dependency() -> None:
+    tasks = [
+        TaskModel(task_id="TASK-001", order=1, title="A", status="planned", dependencies=[])
+    ]
+
+    result = validate_task_dependencies(tasks, "TASK-001", ["TASK-001"])
+
+    assert result == ["Task cannot depend on itself: TASK-001"]
+
+
+def test_validate_task_dependencies_rejects_duplicate_dependencies() -> None:
+    tasks = [
+        TaskModel(task_id="TASK-001", order=1, title="A", status="planned", dependencies=[]),
+        TaskModel(task_id="TASK-002", order=2, title="B", status="planned", dependencies=[]),
+    ]
+
+    result = validate_task_dependencies(tasks, "TASK-002", ["TASK-001", "TASK-001"])
+
+    assert result == ["Duplicate dependency is not allowed: TASK-001"]
+
+
+def test_validate_task_dependencies_rejects_missing_dependency_task_ids() -> None:
+    tasks = [
+        TaskModel(task_id="TASK-001", order=1, title="A", status="planned", dependencies=[])
+    ]
+
+    result = validate_task_dependencies(tasks, "TASK-001", ["TASK-999"])
+
+    assert result == ["Dependency task not found: TASK-999"]
+
+
+def test_validate_task_dependencies_returns_multiple_errors_deterministically() -> None:
+    tasks = [
+        TaskModel(task_id="TASK-001", order=1, title="A", status="planned", dependencies=[]),
+        TaskModel(task_id="TASK-002", order=2, title="B", status="planned", dependencies=[]),
+    ]
+
+    result = validate_task_dependencies(
+        tasks,
+        "TASK-002",
+        ["TASK-002", "TASK-001", "TASK-001", "TASK-999"],
+    )
+
+    assert result == [
+        "Task cannot depend on itself: TASK-002",
+        "Duplicate dependency is not allowed: TASK-001",
+        "Dependency task not found: TASK-999",
+    ]
+
+    

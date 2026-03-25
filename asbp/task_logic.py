@@ -66,3 +66,32 @@ def delete_task_by_id(
     updated_tasks = [task for task in tasks if task.task_id != task_id]
     deleted_flag = len(updated_tasks) != len(tasks)
     return updated_tasks, deleted_flag
+
+def validate_task_dependencies(
+    tasks: list[TaskModel],
+    task_id: str,
+    dependency_ids: list[str],
+) -> list[str]:
+    errors: list[str] = []
+
+    existing_task_ids = {task.task_id for task in tasks}
+
+    if task_id in dependency_ids:
+        errors.append(f"Task cannot depend on itself: {task_id}")
+
+    seen: set[str] = set()
+    duplicate_ids: set[str] = set()
+
+    for dependency_id in dependency_ids:
+        if dependency_id in seen:
+            duplicate_ids.add(dependency_id)
+        seen.add(dependency_id)
+
+    for duplicate_id in sorted(duplicate_ids):
+        errors.append(f"Duplicate dependency is not allowed: {duplicate_id}")
+
+    for dependency_id in dependency_ids:
+        if dependency_id not in existing_task_ids:
+            errors.append(f"Dependency task not found: {dependency_id}")
+
+    return errors

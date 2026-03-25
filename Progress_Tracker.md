@@ -130,3 +130,20 @@ Milestone 2 planning checkpoint:
 - Refactor checkpoint completed
 - No open refactor step remains from the task-logic extraction plan
 - Resume normal milestone sequencing from the next locked Milestone 2 build slice
+
+# Progress Tracker Update
+
+## Phase 1 --- Foundations
+
+## Milestone 2 --- Mini Deterministic Engine
+
+### Completed
+
+- Task CRUD
+- Task Ordering
+- Dependency Data Support
+- Dependency Validation Helpers (Step 2)
+
+### Next
+
+- Dependency Enforcement (Step 3)
