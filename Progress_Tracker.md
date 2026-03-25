@@ -69,7 +69,6 @@ Completed in Milestone 2 so far:
     - `filter_tasks_by_status(...)`
     - `update_task_status(...)`
     - `delete_task_by_id(...)`
-  - introduced explicit `TaskStatus` typing for task-domain helpers
 - Refactor Step 2 completed:
   - added direct helper-level tests in `tests/test_task_logic.py`
   - validated through full-suite pass and narrower helper checks
@@ -77,73 +76,67 @@ Completed in Milestone 2 so far:
   - rewired `asbp/cli.py` task handlers to call extracted functions from `asbp/task_logic.py`
   - preserved CLI behavior and user-facing output
 - Refactor checkpoint committed locally after validation
+- Task sequencing / ordering completed, validated locally, and committed locally
+- Dependency Handling — Step 1 completed:
+  - added `dependencies` field to `TaskModel`
+  - preserved backward compatibility for older task records during state loading
+  - updated CLI/test expectations for normalized dependency data
+- Dependency Handling — Step 2 completed:
+  - added `validate_task_dependencies(...)`
+  - implemented self-dependency rejection
+  - implemented duplicate dependency rejection
+  - implemented missing dependency ID rejection
+  - added direct helper-level tests for dependency validation
 
 ## Current verified test status
 
 - Full suite passed:
-  - `39 passed`
+  - `40 passed`
 
 ## Current verified runtime behavior
 
-- `python -m asbp task show TASK-001` returns the correct task JSON
+- `python -m asbp task show TASK-001` returns task JSON including `dependencies`
 - `python -m asbp task list` works
 - `python -m asbp task list --status planned` works
 - `python -m asbp task update-status TASK-001 completed` works
 - `python -m asbp task delete TASK-002` works
-- Follow-up CLI verification confirmed expected persisted state changes after update and delete
 
 ## Current verified state of the system
 
-- Project state is persisted and validated.
-- Tasks can be added deterministically.
-- Tasks can be listed in full.
-- Tasks can be filtered by status.
-- Tasks can be shown by identity.
-- Tasks can have status updated deterministically.
-- Tasks can be deleted by identity.
-- New task IDs are generated sequentially:
-  - `TASK-001`, `TASK-002`, etc.
-- Task-domain logic is now separated more cleanly from CLI handler logic.
-- The task-engine feature slice is implemented, refactored, tested, and checkpoint-committed.
+- Project state is persisted and validated
+- Tasks can be added deterministically
+- Tasks can be listed in full
+- Tasks can be filtered by status
+- Tasks can be shown by identity
+- Tasks can have status updated deterministically
+- Tasks can be deleted by identity
+- Task ordering is explicit and deterministic
+- Tasks now support dependency data
+- Dependency validation exists as reusable helper logic
+- Invalid dependency detection is implemented for:
+  - self-dependency
+  - duplicate dependency IDs
+  - missing dependency IDs
 
 ## Latest completed step
 
-Milestone 2 task-engine refactor checkpoint:
+Dependency Handling — Step 2 (Validation Helpers)
 
-- extracted repeated task-domain logic into `asbp/task_logic.py`
-- added direct helper tests
-- rewired CLI handlers to call extracted helpers
-- validated with `python -m pytest -q`
-- manually verified real CLI behavior
-- committed the refactor checkpoint locally
+Completed:
+
+- dependency data support already in place
+- dependency validation helper added
+- dependency validation tests added
+- validated locally with `python -m pytest -q`
 
 ## Exact next unfinished step
 
-Milestone 2 planning checkpoint:
+Dependency Handling — Step 3 (Enforcement)
 
-- lock the next post-refactor build slice before coding
-- keep the work inside Milestone 2
-- choose the next deterministic engine target from the roadmap instead of jumping ahead
+Next objective:
 
-## Refactor mode status
-
-- Refactor checkpoint completed
-- No open refactor step remains from the task-logic extraction plan
-- Resume normal milestone sequencing from the next locked Milestone 2 build slice
-
-# Progress Tracker Update
-
-## Phase 1 --- Foundations
-
-## Milestone 2 --- Mini Deterministic Engine
-
-### Completed
-
-- Task CRUD
-- Task Ordering
-- Dependency Data Support
-- Dependency Validation Helpers (Step 2)
-
-### Next
-
-- Dependency Enforcement (Step 3)
+- wire dependency validation into the real mutation/update path
+- reject invalid dependency writes
+- prevent saving invalid dependency state
+- keep patch surface minimal
+- no unrelated refactors

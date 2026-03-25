@@ -2,7 +2,7 @@
 
 ## Session
 
-SESSION_006
+SESSION_007
 
 ## Focus
 
@@ -11,68 +11,50 @@ Milestone 2 — Mini Deterministic Engine
 
 ## Work completed
 
-- Resumed directly from the locked refactor checkpoint without restarting from zero.
-- Reconfirmed phase, milestone, latest completed step, and exact next unfinished step before coding.
-- Completed Refactor Step 1 in the local repo workflow:
-  - expanded `asbp/task_logic.py`
-  - added reusable task-domain functions:
-    - `find_task_by_id(...)`
-    - `filter_tasks_by_status(...)`
-    - `update_task_status(...)`
-    - `delete_task_by_id(...)`
-- Corrected the helper typing issue by introducing explicit `TaskStatus` typing aligned with `TaskModel.status`.
-- Completed Refactor Step 2:
-  - added direct helper-level tests in `tests/test_task_logic.py`
-  - validated helper behavior through full-suite testing plus narrower verification
-- Completed Refactor Step 3:
-  - rewired task handlers in `asbp/cli.py` to call extracted task-domain helpers from `asbp/task_logic.py`
-  - kept CLI parsing, load/save, and user-facing output in `cli.py`
-- Completed local validation flow in the agreed order:
-  - `python -m pytest -q`
-  - narrower/manual verification commands for the exact changed behavior
-- Performed real CLI verification for:
-  - `python -m asbp task show TASK-001`
-  - `python -m asbp task list`
-  - `python -m asbp task list --status planned`
-  - `python -m asbp task update-status TASK-001 completed`
-  - `python -m asbp task delete TASK-002`
-  - follow-up verification commands to confirm the persisted results
-- Created and committed a local git checkpoint after validation.
-- Preserved the workflow rule that code completion is only accepted after local run-and-confirm.
+- Resumed from the Milestone 2 dependency handling slice without restarting from zero
+- Confirmed the current phase, milestone, latest completed step, and exact next unfinished step before continuing
+- Completed Dependency Handling — Step 1:
+  - added `dependencies` to `TaskModel`
+  - preserved backward compatibility for older task records during state loading
+  - stabilized CLI and tests around normalized dependency data
+- Completed Dependency Handling — Step 2:
+  - added `validate_task_dependencies(...)` to `asbp/task_logic.py`
+  - implemented validation for:
+    - self-dependency rejection
+    - duplicate dependency rejection
+    - missing dependency ID rejection
+- Added direct helper-level tests for dependency validation in `tests/test_task_logic.py`
+- Preserved the workflow rule of minimal local patches instead of unnecessary full-file rewrites
+- Preserved the workflow rule that completion is accepted only after local run-and-confirm
 
 ## Validation
 
-- `python -m pytest -q` passed locally.
+- `python -m pytest -q` passed locally
 - Final verified full-suite result for this checkpoint:
-  - `39 passed`
-- Narrow/manual product verification was also completed successfully.
+  - `40 passed`
+- Narrow/manual verification also confirmed dependency data is present in runtime output:
+  - `python -m asbp task show TASK-001`
 
-## Current runtime behavior verified
+## Current runtime / logic behavior verified
 
-- `task show` still returns correct task JSON.
-- `task list` still prints the expected task summary lines.
-- `task list --status planned` still filters correctly.
-- `task update-status` persists the new status correctly.
-- `task delete` removes the requested task correctly.
-- The CLI behavior remained stable after rewiring handlers to extracted logic functions.
+- `TaskModel` now carries `dependencies`
+- older persisted task records still load safely through compatibility handling
+- `task show` outputs dependency data correctly
+- dependency validation helper returns deterministic error lists
+- current CLI behavior remains stable after dependency support additions
 
 ## Architectural clarification captured this session
 
-- `cli.py` now more clearly owns:
-  - parsing
-  - routing
-  - state load/save
-  - user-facing output
-- `task_logic.py` now more clearly owns:
-  - deterministic task-domain operations
-  - reusable helper behavior independent of CLI printing
-- The task-engine refactor checkpoint is now complete and locally committed.
+- `state_model.py` now owns the dependency field as part of the canonical task schema
+- `cli.py` still owns parsing, routing, and state load/save behavior
+- `task_logic.py` now additionally owns reusable dependency validation logic
+- validation now exists before enforcement, which keeps the next step narrow and controlled
 
-## Git checkpoint
+## Git / continuity checkpoint
 
-- Local commit created for the task-logic extraction/refactor checkpoint.
-- Working tree returned to clean state after commit.
-- Push intentionally deferred to end-of-session workflow.
+- Code and tests reached a clean Step 2 checkpoint
+- Ready to commit/push this checkpoint
+- Ready to update continuity artifacts before moving to a new chat
 
 ## Blocked
 
@@ -80,30 +62,9 @@ Milestone 2 — Mini Deterministic Engine
 
 ## Exact next step
 
-Milestone 2 planning checkpoint:
+Dependency Handling — Step 3 (Enforcement)
 
-- lock the next post-refactor build slice before new implementation begins
-- stay inside Milestone 2
-- do not jump to a new workflow or future phase prematurely
-
-## Resume note
-
-When resuming:
-
-- do not reopen the completed task-logic refactor plan
-- start from the Milestone 2 post-refactor planning checkpoint
-- confirm the next deterministic engine slice before writing more code
-
-# DAILY NOTES
-
-## SESSION
-
-SESSION_007
-
-- Completed dependency validation helpers
-- Implemented:
-  - self-dependency rejection
-  - duplicate dependency detection
-  - missing dependency detection
-- All tests passing
-- Ready for Step 3 (enforcement)
+- wire dependency validation into the mutation/update path
+- reject invalid dependency writes
+- prevent invalid dependency state from being saved
+- keep the patch minimal and isolated
