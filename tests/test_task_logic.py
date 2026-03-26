@@ -1,121 +1,11 @@
-from typing import Literal
-import re
+import pytest
 
 from asbp.state_model import TaskModel
-
-
-TaskStatus = Literal["planned", "in_progress", "completed", "over_due"]
-
-
-def generate_next_task_id(tasks: list[TaskModel]) -> str:
-    if not tasks:
-        return "TASK-001"
-
-    max_number = 0
-
-    for task in tasks:
-        match = re.fullmatch(r"TASK-(\d{3})", task.task_id)
-        if match:
-            number = int(match.group(1))
-            if number > max_number:
-                max_number = number
-
-    return f"TASK-{max_number + 1:03d}"
-
-
-def generate_next_task_order(tasks: list[TaskModel]) -> int:
-    if not tasks:
-        return 1
-
-    max_order = 0
-
-    for task in tasks:
-        if task.order > max_order:
-            max_order = task.order
-
-    return max_order + 1
-
-
-def find_task_by_id(tasks: list[TaskModel], task_id: str) -> TaskModel | None:
-    for task in tasks:
-        if task.task_id == task_id:
-            return task
-
-    return None
-
-
-def filter_tasks_by_status(
-    tasks: list[TaskModel], status: TaskStatus
-) -> list[TaskModel]:
-    return [task for task in tasks if task.status == status]
-
-
-def update_task_status(
-    tasks: list[TaskModel], task_id: str, new_status: TaskStatus
-) -> TaskModel | None:
-    task = find_task_by_id(tasks, task_id)
-    if task is None:
-        return None
-
-    task.status = new_status
-    return task
-
-
-def delete_task_by_id(
-    tasks: list[TaskModel], task_id: str
-) -> tuple[list[TaskModel], bool]:
-    updated_tasks = [task for task in tasks if task.task_id != task_id]
-    deleted_flag = len(updated_tasks) != len(tasks)
-    return updated_tasks, deleted_flag
-
-
-def validate_task_dependencies(
-    tasks: list[TaskModel],
-    task_id: str,
-    dependency_ids: list[str],
-) -> list[str]:
-    errors: list[str] = []
-
-    existing_task_ids = {task.task_id for task in tasks}
-
-    if task_id in dependency_ids:
-        errors.append(f"Task cannot depend on itself: {task_id}")
-
-    seen: set[str] = set()
-    duplicate_ids: set[str] = set()
-
-    for dependency_id in dependency_ids:
-        if dependency_id in seen:
-            duplicate_ids.add(dependency_id)
-        seen.add(dependency_id)
-
-    for duplicate_id in sorted(duplicate_ids):
-        errors.append(f"Duplicate dependency is not allowed: {duplicate_id}")
-
-    for dependency_id in dependency_ids:
-        if dependency_id not in existing_task_ids:
-            errors.append(f"Dependency task not found: {dependency_id}")
-
-    return errors
-
-
-def set_task_dependencies(
-    tasks: list[TaskModel],
-    task_id: str,
-    dependency_ids: list[str],
-) -> tuple[TaskModel | None, list[str]]:
-    task = find_task_by_id(tasks, task_id)
-    if task is None:
-        return None, [f"Task not found: {task_id}"]
-
-    errors = validate_task_dependencies(tasks, task_id, dependency_ids)
-    if errors:
-        return None, errors
-
-    task.dependencies = dependency_ids
-    return task, []
-from asbp.task_logic import filter_tasks
-
+from asbp.task_logic import (
+    filter_tasks,
+    update_task_status,
+    validate_task_status_transition,
+)
 
 def test_filter_tasks_by_status_only():
     tasks = [
@@ -203,3 +93,80 @@ def test_filter_tasks_does_not_mutate_input():
     _ = filter_tasks(tasks, status="planned", has_dependencies=False)
 
     assert tasks == original
+
+def test_validate_task_status_transition_allows_planned_to_in_progress():
+    validate_task_status_transition("planned", "in_progress")
+
+
+def test_validate_task_status_transition_allows_in_progress_to_completed():
+    validate_task_status_transition("in_progress", "completed")
+
+
+def test_validate_task_status_transition_rejects_planned_to_completed():
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        validate_task_status_transition("planned", "completed")
+
+
+def test_validate_task_status_transition_rejects_in_progress_to_planned():
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        validate_task_status_transition("in_progress", "planned")
+
+
+def test_validate_task_status_transition_rejects_completed_to_in_progress():
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        validate_task_status_transition("completed", "in_progress")
+
+
+def test_validate_task_status_transition_rejects_same_status():
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        validate_task_status_transition("planned", "planned")    
+
+
+def test_update_task_status_allows_valid_transition():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+    ]
+
+    update_task_status(tasks, "TASK-001", "in_progress")
+
+    assert tasks[0].status == "in_progress"
+
+
+def test_update_task_status_rejects_invalid_transition():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+    ]
+
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        update_task_status(tasks, "TASK-001", "completed")
+
+
+def test_update_task_status_does_not_mutate_on_invalid_transition():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="in_progress",
+            dependencies=[],
+            order=1,
+        ),
+    ]
+
+    with pytest.raises(ValueError, match="Invalid status transition"):
+        update_task_status(tasks, "TASK-001", "planned")
+
+    assert tasks[0].status == "in_progress"
+
+    

@@ -24,7 +24,7 @@
       "task_id": "TASK-004",
       "order": 3,
       "title": "Task D",
-      "status": "planned",
+      "status": "completed",
       "dependencies": []
     },
     {

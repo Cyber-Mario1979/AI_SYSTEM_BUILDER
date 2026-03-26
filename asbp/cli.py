@@ -161,17 +161,18 @@ def handle_task_list(args):
         
 def handle_task_update_status(args):
     state = load_state_or_none()
+
     if state is None:
+        print("No state file found. Run 'state init' first.")
         return
 
-    updated_task = update_task_status(state.tasks, args.task_id, args.status)
+    try:
+        update_task_status(state.tasks, args.task_id, args.status)
+        save_validated_state(state)
+        print(f"Task status updated: {args.task_id} -> {args.status}")
+    except ValueError as e:
+        print(str(e))
 
-    if updated_task is None:
-        print(f"Task not found: {args.task_id}")
-        return
-
-    save_validated_state(state)
-    print(f"Task status updated: {updated_task.task_id} -> {updated_task.status}")
      
 def handle_task_delete(args):
     state = load_state_or_none()

@@ -40,8 +40,8 @@ def find_task_by_id(tasks: list[TaskModel], task_id: str) -> TaskModel | None:
     for task in tasks:
         if task.task_id == task_id:
             return task
-
     return None
+
 
 
 def filter_tasks_by_status(
@@ -50,17 +50,16 @@ def filter_tasks_by_status(
     return [task for task in tasks if task.status == status]
 
 
-def update_task_status(
-    tasks: list[TaskModel], task_id: str, new_status: TaskStatus
-) -> TaskModel | None:
+def update_task_status(tasks: list[TaskModel], task_id: str, new_status: TaskStatus) -> None:
     task = find_task_by_id(tasks, task_id)
+
     if task is None:
-        return None
+        raise ValueError(f"Task not found: {task_id}")
 
+    current_status = task.status
+    validate_task_status_transition(current_status, new_status)
     task.status = new_status
-    return task
-
-
+    
 def delete_task_by_id(
     tasks: list[TaskModel], task_id: str
 ) -> tuple[list[TaskModel], bool]:
@@ -144,3 +143,23 @@ def filter_tasks(tasks, *, status=None, has_dependencies=None):
         ]
 
     return filtered
+
+def validate_task_status_transition(current_status, new_status):
+    allowed_transitions = {
+        "planned": {"in_progress"},
+        "in_progress": {"completed"},
+        "completed": set(),
+        "over_due": set(),
+    }
+
+    if current_status == new_status:
+        raise ValueError(
+            f"Invalid status transition: {current_status} -> {new_status}"
+        )
+
+    if new_status not in allowed_transitions.get(current_status, set()):
+        raise ValueError(
+            f"Invalid status transition: {current_status} -> {new_status}"
+        )
+    
+    
