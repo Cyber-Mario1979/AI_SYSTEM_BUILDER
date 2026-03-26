@@ -68,6 +68,22 @@ def delete_task_by_id(
     deleted_flag = len(updated_tasks) != len(tasks)
     return updated_tasks, deleted_flag
 
+def set_task_dependencies(
+    tasks: list[TaskModel],
+    task_id: str,
+    dependency_ids: list[str],
+) -> tuple[TaskModel | None, list[str]]:
+    task = find_task_by_id(tasks, task_id)
+    if task is None:
+        return None, [f"Task not found: {task_id}"]
+
+    errors = validate_task_dependencies(tasks, task_id, dependency_ids)
+    if errors:
+        return None, errors
+
+    task.dependencies = dependency_ids
+    return task, []
+
 
 def validate_task_dependencies(
     tasks: list[TaskModel],
@@ -99,18 +115,32 @@ def validate_task_dependencies(
     return errors
 
 
-def set_task_dependencies(
-    tasks: list[TaskModel],
-    task_id: str,
-    dependency_ids: list[str],
-) -> tuple[TaskModel | None, list[str]]:
-    task = find_task_by_id(tasks, task_id)
-    if task is None:
-        return None, [f"Task not found: {task_id}"]
 
-    errors = validate_task_dependencies(tasks, task_id, dependency_ids)
-    if errors:
-        return None, errors
+def filter_tasks(tasks, *, status=None, has_dependencies=None):
+    """
+    Return a filtered task list without mutating the original input.
 
-    task.dependencies = dependency_ids
-    return task, []
+    Filtering rules:
+    - status: exact match on task["status"]
+    - has_dependencies=True: keep only tasks with one or more dependencies
+    - has_dependencies=False: keep only tasks with zero dependencies
+    - if both filters are provided, apply AND logic
+    - preserve original task order
+    """
+    filtered = list(tasks)
+
+    if status is not None:
+        filtered = [task for task in filtered if task["status"] == status]
+
+    if has_dependencies is True:
+        filtered = [
+            task for task in filtered
+            if len(task.get("dependencies", [])) > 0
+        ]
+    elif has_dependencies is False:
+        filtered = [
+            task for task in filtered
+            if len(task.get("dependencies", [])) == 0
+        ]
+
+    return filtered

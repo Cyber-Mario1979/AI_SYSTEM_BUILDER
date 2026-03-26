@@ -6,6 +6,7 @@ from pydantic import ValidationError
 from asbp.state_model import StateModel, TaskModel
 from asbp.task_logic import (
     delete_task_by_id,
+    filter_tasks,
     filter_tasks_by_status,
     find_task_by_id,
     generate_next_task_id,
@@ -131,21 +132,32 @@ def handle_task_add(args):
 
 def handle_task_list(args):
     state = load_state_or_none()
+
     if state is None:
+        print("No state file found. Run 'state init' first.")
         return
 
-    tasks_to_show = sorted(state.tasks, key=lambda task: task.order)
+    tasks = [task.model_dump() for task in state.tasks]
 
-    if args.status is not None:
-        tasks_to_show = filter_tasks_by_status(tasks_to_show, args.status)
+    has_dependencies = None
+    if args.has_dependencies == "true":
+        has_dependencies = True
+    elif args.has_dependencies == "false":
+        has_dependencies = False
 
-    if not tasks_to_show:
+    tasks = filter_tasks(
+        tasks,
+        status=args.status,
+        has_dependencies=has_dependencies,
+    )
+
+    if not tasks:
         print("No tasks found.")
         return
 
     print("Tasks:")
-    for task in tasks_to_show:
-        print(f"- {task.task_id} | {task.status} | {task.title}")
+    for task in tasks:
+        print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
         
 def handle_task_update_status(args):
     state = load_state_or_none()
@@ -252,10 +264,15 @@ def build_parser():
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
     task_list_parser.add_argument(
-    "--status",
-    choices=["planned", "in_progress", "completed", "over_due"],
-    help="Filter tasks by status",
-)
+        "--status",
+        choices=["planned", "in_progress", "completed", "over_due"],
+        help="Filter tasks by status",
+    )
+    task_list_parser.add_argument(
+        "--has-dependencies",
+        choices=["true", "false"],
+        help="Filter tasks by whether dependencies exist",
+    )
     task_list_parser.set_defaults(func=handle_task_list)
 
     task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
