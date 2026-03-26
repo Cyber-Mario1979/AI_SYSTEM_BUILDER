@@ -10,6 +10,7 @@ from asbp.task_logic import (
     find_task_by_id,
     generate_next_task_id,
     generate_next_task_order,
+    set_task_dependencies,
     update_task_status,
 )
 
@@ -187,7 +188,34 @@ def handle_task_show(args):
         return
 
     print(json.dumps(task.model_dump(), indent=2))
-    
+
+def handle_task_set_dependencies(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    updated_task, errors = set_task_dependencies(
+        state.tasks,
+        args.task_id,
+        args.dependencies,
+    )
+
+    if errors:
+        print("Dependency validation failed:")
+        for error in errors:
+            print(f"- {error}")
+        return
+
+    if updated_task is None:
+        print("Dependency validation failed:")
+        print("- Task update failed unexpectedly.")
+        return
+
+    save_validated_state(state)
+    print(
+        f"Task dependencies updated: "
+        f"{updated_task.task_id} -> {updated_task.dependencies}"
+    )
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
@@ -242,6 +270,19 @@ def build_parser():
     help="New task status",
 )
     task_update_status_parser.set_defaults(func=handle_task_update_status)
+    task_set_dependencies_parser = task_subparsers.add_parser(
+        "set-dependencies",
+        help="Set task dependencies",
+    )
+    task_set_dependencies_parser.add_argument("task_id", help="Task ID to update")
+    task_set_dependencies_parser.add_argument(
+        "dependencies",
+        nargs="*",
+        help="Dependency task IDs",
+    )
+    task_set_dependencies_parser.set_defaults(func=handle_task_set_dependencies)
+
+
 
     task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
     task_delete_parser.add_argument("task_id", help="Task ID to delete")

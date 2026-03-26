@@ -7,31 +7,39 @@
       "task_id": "TASK-001",
       "order": 1,
       "title": "Task A",
-      "status": "completed"
+      "status": "completed",
+      "dependencies": []
     },
     {
       "task_id": "TASK-003",
       "order": 2,
       "title": "Task C",
-      "status": "completed"
+      "status": "completed",
+      "dependencies": [
+        "TASK-001",
+        "TASK-004"
+      ]
     },
     {
       "task_id": "TASK-004",
       "order": 3,
       "title": "Task D",
-      "status": "planned"
+      "status": "planned",
+      "dependencies": []
     },
     {
       "task_id": "TASK-005",
       "order": 4,
       "title": "Task E",
-      "status": "planned"
+      "status": "planned",
+      "dependencies": []
     },
     {
       "task_id": "TASK-006",
       "order": 5,
       "title": "Ordering verification task",
-      "status": "planned"
+      "status": "planned",
+      "dependencies": []
     }
   ]
 }

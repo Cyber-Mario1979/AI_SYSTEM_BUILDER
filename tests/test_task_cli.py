@@ -492,4 +492,142 @@ def test_task_show_handles_missing_state_file(restore_state_file):
 
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
-    
+
+def test_task_set_dependencies_updates_dependencies_when_valid(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Third real task",
+                        "status": "planned",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "TASK-003",
+        "TASK-001",
+        "TASK-002",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "Task dependencies updated: TASK-003 -> ['TASK-001', 'TASK-002']"
+        in result.stdout
+    )
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][2]["dependencies"] == ["TASK-001", "TASK-002"]
+
+
+def test_task_set_dependencies_rejects_invalid_dependencies_without_saving(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "status": "planned",
+                        "dependencies": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "TASK-002",
+        "TASK-002",
+        "TASK-999",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Dependency validation failed:" in output
+    assert "- Task cannot depend on itself: TASK-002" in output
+    assert "- Dependency task not found: TASK-999" in output
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][1]["dependencies"] == ["TASK-001"]
+
+
+def test_task_set_dependencies_handles_unknown_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-dependencies", "TASK-999", "TASK-001")
+
+    assert result.returncode == 0
+    assert "Dependency validation failed:" in result.stdout
+    assert "- Task not found: TASK-999" in result.stdout
+
+
+def test_task_set_dependencies_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "set-dependencies", "TASK-001", "TASK-002")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout    

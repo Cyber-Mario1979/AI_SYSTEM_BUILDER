@@ -1,5 +1,5 @@
-import re
 from typing import Literal
+import re
 
 from asbp.state_model import TaskModel
 
@@ -21,6 +21,7 @@ def generate_next_task_id(tasks: list[TaskModel]) -> str:
                 max_number = number
 
     return f"TASK-{max_number + 1:03d}"
+
 
 def generate_next_task_order(tasks: list[TaskModel]) -> int:
     if not tasks:
@@ -67,6 +68,7 @@ def delete_task_by_id(
     deleted_flag = len(updated_tasks) != len(tasks)
     return updated_tasks, deleted_flag
 
+
 def validate_task_dependencies(
     tasks: list[TaskModel],
     task_id: str,
@@ -95,3 +97,20 @@ def validate_task_dependencies(
             errors.append(f"Dependency task not found: {dependency_id}")
 
     return errors
+
+
+def set_task_dependencies(
+    tasks: list[TaskModel],
+    task_id: str,
+    dependency_ids: list[str],
+) -> tuple[TaskModel | None, list[str]]:
+    task = find_task_by_id(tasks, task_id)
+    if task is None:
+        return None, [f"Task not found: {task_id}"]
+
+    errors = validate_task_dependencies(tasks, task_id, dependency_ids)
+    if errors:
+        return None, errors
+
+    task.dependencies = dependency_ids
+    return task, []
