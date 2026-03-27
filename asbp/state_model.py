@@ -9,6 +9,9 @@ class TaskModel(BaseModel):
     task_id: str
     order: int = Field(ge=1)
     title: str = Field(min_length=1)
+    description: str | None = None
+    owner: str | None = None
+    duration: int | None = Field(default=None, ge=1)
     status: Literal["planned", "in_progress", "completed", "over_due"]
     dependencies: list[str] = Field(default_factory=list)
 

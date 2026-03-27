@@ -4,7 +4,13 @@ import sys
 from pathlib import Path
 
 import pytest
-
+from asbp.cli import (
+    handle_task_add,
+    load_state_or_none,
+    load_validated_state,
+    save_validated_state,
+)
+from asbp.state_model import StateModel
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 STATE_FILE = REPO_ROOT / "data" / "state" / "state.json"
@@ -61,6 +67,9 @@ def test_task_add_creates_first_task_with_planned_status(restore_state_file):
             "order": 1,
             "title": "First real task",
             "status": "planned",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "dependencies": [],
         }
     ]
@@ -80,6 +89,8 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
                         "order": 1,
                         "title": "Existing task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     }
                 ],
             },
@@ -101,6 +112,9 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "order": 1,
             "title": "Existing task",
             "status": "planned",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "dependencies": [],
         },
         {
@@ -108,6 +122,9 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "order": 2,
             "title": "Second real task",
             "status": "planned",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "dependencies": [],
         },
     ]
@@ -147,12 +164,14 @@ def test_task_list_shows_all_tasks_in_readable_format(restore_state_file):
                         "task_id": "TASK-001",
                         "order": 1,
                         "title": "First real task",
+                        "description": None,
                         "status": "planned",
                     },
                     {
                         "task_id": "TASK-002",
                         "order": 2,
                         "title": "Second real task",
+                        "description": None,
                         "status": "completed",
                     },
                 ],
@@ -194,13 +213,17 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
                         "task_id": "TASK-001",
                         "order": 1,
                         "title": "First real task",
+                        "description": None,
                         "status": "planned",
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-002",
                         "order": 2,
                         "title": "Second real task",
+                        "description": None,
                         "status": "planned",
+                        "dependencies": [],
                     },
                 ],
             },
@@ -221,6 +244,9 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "task_id": "TASK-001",
             "order": 1,
             "title": "First real task",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "status": "in_progress",
             "dependencies": [],
         },
@@ -228,6 +254,9 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "task_id": "TASK-002",
             "order": 2,
             "title": "Second real task",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "status": "planned",
             "dependencies": [],
         },
@@ -248,6 +277,10 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "dependencies": [],
                     }
                 ],
             },
@@ -269,6 +302,10 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
             "order": 1,
             "title": "First real task",
             "status": "planned",
+            "description": None,
+            "owner": None,
+            "duration": None,
+            "dependencies": [],
         }
     ]
 
@@ -304,12 +341,16 @@ def test_task_delete_removes_only_target_task(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-002",
                         "order": 2,
                         "title": "Second real task",
+                        "description": None,
                         "status": "completed",
+                        "dependencies": [],
                     },
                 ],
             },
@@ -330,10 +371,14 @@ def test_task_delete_removes_only_target_task(restore_state_file):
             "task_id": "TASK-002",
             "order": 2,
             "title": "Second real task",
+            "description": None,
+            "owner": None,
+            "duration": None,
             "status": "completed",
             "dependencies": [],
         }
     ]
+
 
 def test_task_delete_handles_missing_state_file(restore_state_file):
     if STATE_FILE.exists():
@@ -359,6 +404,8 @@ def test_task_list_filters_tasks_by_status(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-002",
@@ -403,6 +450,8 @@ def test_task_list_filters_to_no_results(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     }
                 ],
             },
@@ -431,12 +480,16 @@ def test_task_show_displays_matching_task_as_json(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-002",
                         "order": 2,
                         "title": "Second real task",
                         "status": "completed",
+                        "description": None,
+                        "dependencies": [],
                     },
                 ],
             },
@@ -470,6 +523,8 @@ def test_task_show_handles_unknown_task_id(restore_state_file):
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     }
                 ],
             },
@@ -493,6 +548,7 @@ def test_task_show_handles_missing_state_file(restore_state_file):
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
 
+
 def test_task_set_dependencies_updates_dependencies_when_valid(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
@@ -507,18 +563,24 @@ def test_task_set_dependencies_updates_dependencies_when_valid(restore_state_fil
                         "order": 1,
                         "title": "First real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-002",
                         "order": 2,
                         "title": "Second real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                     {
                         "task_id": "TASK-003",
                         "order": 3,
                         "title": "Third real task",
                         "status": "planned",
+                        "description": None,
+                        "dependencies": [],
                     },
                 ],
             },
@@ -560,6 +622,7 @@ def test_task_set_dependencies_rejects_invalid_dependencies_without_saving(
                         "task_id": "TASK-001",
                         "order": 1,
                         "title": "First real task",
+                        "description": None,
                         "status": "planned",
                     },
                     {
@@ -567,6 +630,7 @@ def test_task_set_dependencies_rejects_invalid_dependencies_without_saving(
                         "order": 2,
                         "title": "Second real task",
                         "status": "planned",
+                        "description": None,
                         "dependencies": ["TASK-001"],
                     },
                 ],
@@ -607,7 +671,11 @@ def test_task_set_dependencies_handles_unknown_task_id(restore_state_file):
                         "task_id": "TASK-001",
                         "order": 1,
                         "title": "First real task",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
                         "status": "planned",
+                        "dependencies": [],
                     }
                 ],
             },
@@ -630,4 +698,95 @@ def test_task_set_dependencies_handles_missing_state_file(restore_state_file):
     result = run_cli("task", "set-dependencies", "TASK-001", "TASK-002")
 
     assert result.returncode == 0
-    assert "State file not found:" in result.stdout    
+    assert "State file not found:" in result.stdout
+
+
+def test_task_add_accepts_optional_description(restore_state_file):
+    save_validated_state(
+        StateModel(
+            project="Test Project",
+            version="1.0",
+            status="not_started",
+            tasks=[],
+        )
+    )
+
+    class Args:
+        title = "My task"
+        description = "First enriched task"
+        owner = None
+        duration = None
+
+    handle_task_add(Args())
+
+    state = load_state_or_none()
+
+    assert state is not None
+    assert len(state.tasks) == 1
+    assert state.tasks[0].title == "My task"
+    assert state.tasks[0].description == "First enriched task"
+    assert state.tasks[0].owner is None
+    assert state.tasks[0].duration is None
+    assert state.tasks[0].status == "planned"
+
+
+def test_task_add_accepts_optional_duration(restore_state_file):
+    save_validated_state(
+        StateModel(
+            project="Test Project",
+            version="1.0",
+            status="not_started",
+            tasks=[],
+        )
+    )
+
+    class Args:
+        title = "My task"
+        description = None
+        owner = None
+        duration = 5
+
+    handle_task_add(Args())
+
+    state = load_state_or_none()
+
+    assert state is not None
+    assert len(state.tasks) == 1
+    assert state.tasks[0].title == "My task"
+    assert state.tasks[0].description is None
+    assert state.tasks[0].owner is None
+    assert state.tasks[0].duration == 5
+    assert state.tasks[0].status == "planned"
+
+
+def test_load_validated_state_accepts_legacy_task_without_duration(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "order": 1,
+      "title": "Legacy task",
+      "description": null,
+      "owner": null,
+      "status": "planned",
+      "dependencies": []
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    state = load_validated_state(state_file)
+
+    assert len(state.tasks) == 1
+    assert state.tasks[0].title == "Legacy task"
+    assert state.tasks[0].description is None
+    assert state.tasks[0].owner is None
+    assert state.tasks[0].duration is None

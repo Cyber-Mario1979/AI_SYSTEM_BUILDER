@@ -35,6 +35,10 @@ def load_raw_state(state_file_path: Path) -> dict:
 
 def load_validated_state(state_file_path: Path) -> StateModel:
     raw_state = load_raw_state(state_file_path)
+    for task in raw_state.get("tasks", []):
+        task.setdefault("description", None)
+        task.setdefault("owner", None)
+        task.setdefault("duration", None)
     return StateModel(**raw_state)
 
 
@@ -122,6 +126,9 @@ def handle_task_add(args):
         task_id=next_task_id,
         order=generate_next_task_order(state.tasks),
         title=args.title,
+        description=args.description,
+        owner=args.owner,
+        duration=args.duration,
         status="planned",
     )
 
@@ -261,6 +268,9 @@ def build_parser():
 
     task_add_parser = task_subparsers.add_parser("add", help="Add a new task")
     task_add_parser.add_argument("title", help="Task title")
+    task_add_parser.add_argument("--description", default=None, help="Optional task description")
+    task_add_parser.add_argument("--owner", default=None, help="Optional task owner")
+    task_add_parser.add_argument("--duration", type=int, default=None, help="Optional task duration in days")
     task_add_parser.set_defaults(func=handle_task_add)
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
