@@ -70,6 +70,8 @@ def test_task_add_creates_first_task_with_planned_status(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "dependencies": [],
         }
     ]
@@ -115,6 +117,8 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "dependencies": [],
         },
         {
@@ -125,6 +129,8 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "dependencies": [],
         },
     ]
@@ -247,6 +253,8 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "status": "in_progress",
             "dependencies": [],
         },
@@ -257,6 +265,8 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "status": "planned",
             "dependencies": [],
         },
@@ -280,6 +290,8 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
                         "description": None,
                         "owner": None,
                         "duration": None,
+                        "start_date": None,
+                        "end_date": None,
                         "dependencies": [],
                     }
                 ],
@@ -305,9 +317,12 @@ def test_task_delete_handles_unknown_task_id(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "dependencies": [],
         }
     ]
+
 
 def test_task_update_status_handles_missing_state_file(restore_state_file):
     if STATE_FILE.exists():
@@ -374,6 +389,8 @@ def test_task_delete_removes_only_target_task(restore_state_file):
             "description": None,
             "owner": None,
             "duration": None,
+            "start_date": None,
+            "end_date": None,
             "status": "completed",
             "dependencies": [],
         }
@@ -674,6 +691,8 @@ def test_task_set_dependencies_handles_unknown_task_id(restore_state_file):
                         "description": None,
                         "owner": None,
                         "duration": None,
+                        "start_date": None,
+                        "end_date": None,
                         "status": "planned",
                         "dependencies": [],
                     }
@@ -716,6 +735,8 @@ def test_task_add_accepts_optional_description(restore_state_file):
         description = "First enriched task"
         owner = None
         duration = None
+        start_date = None
+        end_date = None
 
     handle_task_add(Args())
 
@@ -727,6 +748,8 @@ def test_task_add_accepts_optional_description(restore_state_file):
     assert state.tasks[0].description == "First enriched task"
     assert state.tasks[0].owner is None
     assert state.tasks[0].duration is None
+    assert state.tasks[0].start_date is None
+    assert state.tasks[0].end_date is None
     assert state.tasks[0].status == "planned"
 
 
@@ -745,6 +768,8 @@ def test_task_add_accepts_optional_duration(restore_state_file):
         description = None
         owner = None
         duration = 5
+        start_date = None
+        end_date = None
 
     handle_task_add(Args())
 
@@ -756,6 +781,74 @@ def test_task_add_accepts_optional_duration(restore_state_file):
     assert state.tasks[0].description is None
     assert state.tasks[0].owner is None
     assert state.tasks[0].duration == 5
+    assert state.tasks[0].start_date is None
+    assert state.tasks[0].end_date is None
+    assert state.tasks[0].status == "planned"
+
+
+def test_task_add_accepts_optional_start_date(restore_state_file):
+    save_validated_state(
+        StateModel(
+            project="Test Project",
+            version="1.0",
+            status="not_started",
+            tasks=[],
+        )
+    )
+
+    class Args:
+        title = "My task"
+        description = None
+        owner = None
+        duration = None
+        start_date = "2026-03-27"
+        end_date = None
+
+    handle_task_add(Args())
+
+    state = load_state_or_none()
+
+    assert state is not None
+    assert len(state.tasks) == 1
+    assert state.tasks[0].title == "My task"
+    assert state.tasks[0].description is None
+    assert state.tasks[0].owner is None
+    assert state.tasks[0].duration is None
+    assert state.tasks[0].start_date == "2026-03-27"
+    assert state.tasks[0].end_date is None
+    assert state.tasks[0].status == "planned"
+
+
+def test_task_add_accepts_optional_end_date(restore_state_file):
+    save_validated_state(
+        StateModel(
+            project="Test Project",
+            version="1.0",
+            status="not_started",
+            tasks=[],
+        )
+    )
+
+    class Args:
+        title = "My task"
+        description = None
+        owner = None
+        duration = None
+        start_date = None
+        end_date = "2026-03-30"
+
+    handle_task_add(Args())
+
+    state = load_state_or_none()
+
+    assert state is not None
+    assert len(state.tasks) == 1
+    assert state.tasks[0].title == "My task"
+    assert state.tasks[0].description is None
+    assert state.tasks[0].owner is None
+    assert state.tasks[0].duration is None
+    assert state.tasks[0].start_date is None
+    assert state.tasks[0].end_date == "2026-03-30"
     assert state.tasks[0].status == "planned"
 
 
@@ -790,3 +883,7 @@ def test_load_validated_state_accepts_legacy_task_without_duration(tmp_path):
     assert state.tasks[0].description is None
     assert state.tasks[0].owner is None
     assert state.tasks[0].duration is None
+    assert state.tasks[0].start_date is None
+    assert state.tasks[0].end_date is None
+
+    

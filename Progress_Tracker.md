@@ -6,11 +6,11 @@ AI_SYSTEM_BUILDER
 
 ## Current Phase
 
-Phase 1 — Foundations
+Phase 2 — Deterministic System Modeling
 
 ## Current Milestone
 
-Milestone 2 — Mini Deterministic Engine
+Milestone 3 — Task Entity Enrichment
 
 ## Milestone 1 — State CLI Tool v1
 
@@ -18,181 +18,187 @@ Status: Completed
 
 Completed:
 
-- Package-based CLI via `python -m asbp`
-- `state init`
-- `state show`
-- `state set-version`
-- `state set-status`
-- Safe missing-file handling
-- Invalid JSON handling
-- Validation error handling
-- Shared helpers:
-  - `load_state_or_none()`
-  - `update_state_field(...)`
-- Strict schema validation with Pydantic
-- Milestone 1 tests passed
+- package-based CLI was previously verified through the project tracker history
+- state file operations exist in the current code snapshot:
+  - `state init`
+  - `state show`
+  - `state set-version`
+  - `state set-status`
+- state loading handles:
+  - missing file
+  - invalid JSON
+  - validation errors
+- strict schema validation exists through Pydantic models
+- state CLI tests are present in the current snapshot
 
 ## Milestone 2 — Mini Deterministic Engine
 
-Status: In Progress
-
-Completed in Milestone 2 so far:
-
-- Milestone 2 planning note created
-- `TaskModel` added
-- `StateModel` extended with `tasks`
-- Project status vocabulary redesigned:
-  - `not_started`
-  - `in_flight`
-  - `completed`
-- Task status vocabulary defined:
-  - `planned`
-  - `in_progress`
-  - `completed`
-  - `over_due`
-- Deterministic helper module created:
-  - `asbp/task_logic.py`
-- Deterministic helper implemented:
-  - `generate_next_task_id(tasks)`
-- Task CLI operations implemented and verified:
-  - `task add`
-  - `task list`
-  - `task update-status`
-  - `task delete`
-  - `task show`
-- Status-filtered task listing implemented and verified:
-  - `task list --status <value>`
-- Refactor Step 1 completed:
-  - expanded `asbp/task_logic.py`
-  - added reusable task-domain functions:
-    - `find_task_by_id(...)`
-    - `filter_tasks_by_status(...)`
-    - `update_task_status(...)`
-    - `delete_task_by_id(...)`
-- Refactor Step 2 completed:
-  - added direct helper-level tests in `tests/test_task_logic.py`
-  - validated through full-suite pass and narrower helper checks
-- Refactor Step 3 completed:
-  - rewired `asbp/cli.py` task handlers to call extracted functions from `asbp/task_logic.py`
-  - preserved CLI behavior and user-facing output
-- Refactor checkpoint committed locally after validation
-- Task sequencing / ordering completed, validated locally, and committed locally
-- Dependency Handling — Step 1 completed:
-  - added `dependencies` field to `TaskModel`
-  - preserved backward compatibility for older task records during state loading
-  - updated CLI/test expectations for normalized dependency data
-- Dependency Handling — Step 2 completed:
-  - added `validate_task_dependencies(...)`
-  - implemented self-dependency rejection
-  - implemented duplicate dependency rejection
-  - implemented missing dependency ID rejection
-  - added direct helper-level tests for dependency validation
-- Dependency Handling — Step 3 completed:
-  - added `set_task_dependencies(...)` to `asbp/task_logic.py`
-  - wired dependency validation into the real mutation/update path
-  - added CLI mutation path for dependency updates:
-    - `python -m asbp task set-dependencies <TASK_ID> [DEPENDENCY_IDS...]`
-  - rejected invalid dependency writes before save
-  - preserved last valid dependency state after invalid write attempts
-  - kept patch surface minimal without unrelated refactors
-- Advanced Filtering / Querying — Step 1 completed:
-  - added read-only helper `filter_tasks(...)`
-  - supports deterministic multi-condition filtering by:
-    - `status`
-    - `has_dependencies`
-  - preserves original task order
-  - added direct helper-level tests for advanced filtering behavior
-- Advanced Filtering / Querying — Step 2 completed:
-  - extended `task list` CLI surface with:
-    - `--has-dependencies true`
-    - `--has-dependencies false`
-  - wired CLI filtering through `filter_tasks(...)`
-  - preserved existing `--status` filtering behavior
-  - validated helper behavior, CLI behavior, and full-suite compatibility
-- State Transition Rules — Step 1 completed:
-  - added `validate_task_status_transition(...)`
-  - defined allowed task transitions:
-    - `planned -> in_progress`
-    - `in_progress -> completed`
-  - rejected:
-    - same-status transitions
-    - reverse transitions
-    - skipped transitions
-    - transitions out of `completed`
-    - transitions out of `over_due`
-  - added direct helper-level tests for transition validation
-- State Transition Rules — Step 2 completed:
-  - enforced `validate_task_status_transition(...)` inside `update_task_status(...)`
-  - kept CLI command surface unchanged:
-    - `python -m asbp task update-status <TASK_ID> <STATUS>`
-  - updated test coverage to validate enforcement on real `TaskModel` objects
-  - validated helper enforcement, CLI mutation behavior, and persisted runtime behavior
-  - committed and pushed after validation
-
-## Current verified test status
-
-- Full suite passed:
-  - `44 passed`
-
-## Current verified runtime behavior
-
-- `python -m asbp task show TASK-003` returns task JSON including `dependencies`
-- valid dependency write succeeds through CLI mutation path
-- invalid dependency write is rejected and does not save
-- prior valid dependency state remains unchanged after failed invalid write
-- `python -m asbp task list --status completed` returns only completed tasks
-- `python -m asbp task list --has-dependencies true` returns only tasks with one or more dependencies
-- `python -m asbp task list --has-dependencies false` returns only tasks with zero dependencies
-- combined filtering works through:
-  - `python -m asbp task list --status planned --has-dependencies true`
-- `python -m asbp task update-status TASK-004 in_progress` succeeds
-- `python -m asbp task update-status TASK-004 planned` is rejected with:
-  - `Invalid status transition: in_progress -> planned`
-- rejected invalid transition does not persist
-- `python -m asbp task update-status TASK-004 completed` succeeds after `in_progress`
-- `python -m asbp task show TASK-004` confirms the final persisted status after each runtime check
-- note:
-  - `TASK-002` had already been deleted in prior delete-feature testing
-  - manual dependency validation previously used `TASK-004` as the second valid dependency target
-
-## Current verified state of the system
-
-- Project state is persisted and validated
-- Tasks can be added deterministically
-- Tasks can be listed in full
-- Tasks can be filtered by status
-- Tasks can be filtered by dependency presence
-- Tasks can be filtered by combined deterministic query conditions
-- Tasks can be shown by identity
-- Tasks can have status updated deterministically
-- Tasks can have status transitions validated before save
-- Invalid task status transitions are blocked before state save
-- Tasks can be deleted by identity
-- Task ordering is explicit and deterministic
-- Tasks support dependency data
-- Dependency validation exists as reusable helper logic
-- Dependency enforcement now exists in the real mutation/update path
-- Invalid dependency writes are blocked before state save
-
-## Latest completed step
-
-State Transition Rules — Step 2 (Enforcement)
+Status: Completed
 
 Completed:
 
-- transition validation wired into the real task status mutation path
-- invalid status transitions rejected
-- invalid task status state prevented from being saved
-- helper and CLI behavior validated locally
-- narrower/manual verification completed successfully
-- committed and pushed after validation
+- `TaskModel` exists and currently includes:
+  - `task_id`
+  - `order`
+  - `title`
+  - `status`
+  - `dependencies`
+- `StateModel` includes `tasks`
+- deterministic task ID generation exists
+- deterministic task ordering exists
+- reusable task helper logic exists, including:
+  - `find_task_by_id(...)`
+  - `filter_tasks_by_status(...)`
+  - `filter_tasks(...)`
+  - `update_task_status(...)`
+  - `delete_task_by_id(...)`
+  - `set_task_dependencies(...)`
+  - `validate_task_dependencies(...)`
+  - `validate_task_status_transition(...)`
+  - `validate_task_completion_readiness(...)`
+- task CLI operations exist in the current snapshot:
+  - `task add`
+  - `task list`
+  - `task show`
+  - `task update-status`
+  - `task set-dependencies`
+  - `task delete`
+- deterministic filtering exists through:
+  - `--status`
+  - `--has-dependencies true|false`
+- dependency validation and dependency write protection exist
+- dependency-aware completion gating exists for `-> completed`
+- helper-level tests and CLI tests for Milestone 2 behavior are present in the current snapshot
+- Milestone 2 remains aligned with the previously verified closeout state
+
+## Milestone 3 — Task Entity Enrichment
+
+Status: In progress
+
+Reality snapshot:
+
+- pre-existing overlap:
+  - `title` already exists on `TaskModel`
+- implemented in the current verified live repo:
+  - `description`
+  - `owner`
+  - `duration`
+  - `start_date`
+  - `end_date`
+- backward compatibility currently exists for older task records missing:
+  - `dependencies`
+  - `description`
+  - `owner`
+  - `duration`
+  - `start_date`
+  - `end_date`
+- `task add` now accepts optional:
+  - `description`
+  - `owner`
+  - `duration`
+  - `start_date`
+  - `end_date`
+- Milestone 3 now includes all five narrow enrichment slices
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `57 passed in 5.63s`
+- previous green result recorded after the `start_date` slice:
+  - `56 passed in 5.32s`
+- previous green result recorded after the duration slice:
+  - `55 passed in 4.39s`
+- previous green baseline recorded before the duration slice:
+  - `52 passed`
+- note:
+  - the current live repo now verifies cleanly after the `end_date` slice
+
+## Current snapshot evidence reviewed in this session
+
+- uploaded code files reviewed:
+  - `cli.py`
+  - `state_model.py`
+  - `task_logic.py`
+- uploaded state snapshot reviewed:
+  - `state.json`
+- uploaded test files reviewed:
+  - `test_state_cli.py`
+  - `test_task_cli.py`
+  - `test_task_logic.py`
+- terminal and screenshot evidence reviewed in this session:
+  - duration implementation in `state_model.py`
+  - duration wiring in `cli.py`
+  - direct-call add test fixes for local `Args` fixtures
+  - exact persisted-task assertion updates for `duration: None`
+  - green full-suite validation after the duration patch
+  - local git commit and push after successful validation
+  - start_date implementation in `state_model.py`
+  - start_date backward-compatibility normalization in `cli.py`
+  - start_date wiring in `task add`
+  - targeted test-fix pass and green full-suite validation after the `start_date` patch
+  - end_date implementation in `state_model.py`
+  - end_date backward-compatibility normalization in `cli.py`
+  - end_date wiring in `task add`
+  - `tests/test_task_cli.py` updates for persisted-state expectations and direct-call add coverage
+  - targeted local check for the `start_date` test after file replacement
+  - green full-suite validation after the `end_date` patch
+
+## Current verified code snapshot
+
+- state persistence and validation logic are present
+- task creation is deterministic by ID and order
+- task listing supports deterministic filtering
+- task show returns structured task JSON
+- task deletion is targeted by identity
+- dependency writes are validated before save
+- invalid dependency writes are rejected without overwriting prior valid state
+- status transitions are validated before save
+- blocked completion does not mutate task status when dependencies are incomplete
+- older task records are normalized for missing `dependencies` during raw state loading
+- `TaskModel` now includes optional `description`
+- older task records are normalized for missing `description` during validated state loading
+- `task add` now supports optional `--description`
+- `TaskModel` now includes optional `owner`
+- older task records are normalized for missing `owner` during validated state loading
+- `task add` now supports optional `--owner`
+- `TaskModel` now includes optional `duration`
+- older task records are normalized for missing `duration` during validated state loading
+- `task add` now supports optional `--duration`
+- `TaskModel` now includes optional `start_date`
+- older task records are normalized for missing `start_date` during validated state loading
+- `task add` now supports optional `--start-date`
+- `TaskModel` now includes optional `end_date`
+- older task records are normalized for missing `end_date` during validated state loading
+- `task add` now supports optional `--end-date`
+- current local validation confirms the `description`, `owner`, `duration`, `start_date`, and `end_date` enrichment slices without reopening Milestone 2 behavior
+
+## Latest completed step
+
+Milestone 3 slice 5 — end_date enrichment patch
+
+Completed:
+
+- added optional `end_date` to `TaskModel`
+- preserved backward compatibility for older task records missing `end_date`
+- wired optional `--end-date` into `task add`
+- updated persisted-task expectations and direct-call add coverage for `end_date`
+- verified current live repo at:
+  - `57 passed in 5.63s`
 
 ## Exact next unfinished step
 
-Milestone 2 planning checkpoint after State Transition Rules — Step 2
+Milestone 3 closeout checkpoint
 
 Next objective:
 
-- confirm the next exact unfinished Milestone 2 slice from the local roadmap/tracker
-- do not reopen Advanced Filtering / Querying or State Transition Rules Steps 1–2
-- continue only from the next agreed post-Step-2 item
+- confirm Milestone 3 is complete as the Task Entity Enrichment milestone
+- verify the full enrichment surface now includes:
+  - `description`
+  - `owner`
+  - `duration`
+  - `start_date`
+  - `end_date`
+- confirm backward compatibility coverage for older task records missing enriched fields
+- confirm the latest validated baseline remains:
+  - `57 passed in 5.63s`
+- do not reopen completed Milestone 2 work unless a real defect is found

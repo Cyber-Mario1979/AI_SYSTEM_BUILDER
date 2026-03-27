@@ -39,6 +39,8 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("description", None)
         task.setdefault("owner", None)
         task.setdefault("duration", None)
+        task.setdefault("start_date", None)
+        task.setdefault("end_date", None)
     return StateModel(**raw_state)
 
 
@@ -129,8 +131,10 @@ def handle_task_add(args):
         description=args.description,
         owner=args.owner,
         duration=args.duration,
+        start_date=args.start_date,
+        end_date=args.end_date,
         status="planned",
-    )
+)
 
     state.tasks.append(new_task)
     save_validated_state(state)
@@ -271,6 +275,8 @@ def build_parser():
     task_add_parser.add_argument("--description", default=None, help="Optional task description")
     task_add_parser.add_argument("--owner", default=None, help="Optional task owner")
     task_add_parser.add_argument("--duration", type=int, default=None, help="Optional task duration in days")
+    task_add_parser.add_argument("--start-date", default=None, help="Optional task start date")
+    task_add_parser.add_argument("--end-date", default=None, help="Optional task end date")
     task_add_parser.set_defaults(func=handle_task_add)
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
