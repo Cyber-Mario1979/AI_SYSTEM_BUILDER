@@ -58,6 +58,12 @@ def update_task_status(tasks: list[TaskModel], task_id: str, new_status: TaskSta
 
     current_status = task.status
     validate_task_status_transition(current_status, new_status)
+
+    if new_status == "completed":
+        readiness_errors = validate_task_completion_readiness(tasks, task_id)
+        if readiness_errors:
+            raise ValueError(readiness_errors[0])
+
     task.status = new_status
     
 def delete_task_by_id(
@@ -162,4 +168,30 @@ def validate_task_status_transition(current_status, new_status):
             f"Invalid status transition: {current_status} -> {new_status}"
         )
     
-    
+def validate_task_completion_readiness(
+    tasks: list[TaskModel],
+    task_id: str,
+) -> list[str]:
+    task = find_task_by_id(tasks, task_id)
+    if task is None:
+        return [f"Task not found: {task_id}"]
+
+    errors: list[str] = []
+
+    if not task.dependencies:
+        return errors
+
+    for dependency_id in task.dependencies:
+        dependency_task = find_task_by_id(tasks, dependency_id)
+
+        if dependency_task is None:
+            errors.append(f"Dependency task not found: {dependency_id}")
+            continue
+
+        if dependency_task.status != "completed":
+            errors.append(
+                f"Task cannot be completed until dependency is completed: {dependency_id}"
+            )
+
+    return errors    
+

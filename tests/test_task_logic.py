@@ -5,6 +5,7 @@ from asbp.task_logic import (
     filter_tasks,
     update_task_status,
     validate_task_status_transition,
+    validate_task_completion_readiness,
 )
 
 def test_filter_tasks_by_status_only():
@@ -169,4 +170,188 @@ def test_update_task_status_does_not_mutate_on_invalid_transition():
 
     assert tasks[0].status == "in_progress"
 
-    
+def test_validate_task_completion_readiness_returns_no_errors_when_no_dependencies():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="in_progress",
+            dependencies=[],
+            order=1,
+        ),
+    ]
+
+    result = validate_task_completion_readiness(tasks, "TASK-001")
+
+    assert result == []
+
+
+def test_validate_task_completion_readiness_returns_no_errors_when_all_dependencies_completed():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="completed",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=["TASK-001"],
+            order=2,
+        ),
+    ]
+
+    result = validate_task_completion_readiness(tasks, "TASK-002")
+
+    assert result == []
+
+
+def test_validate_task_completion_readiness_returns_error_for_one_incomplete_dependency():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=["TASK-001"],
+            order=2,
+        ),
+    ]
+
+    result = validate_task_completion_readiness(tasks, "TASK-002")
+
+    assert result == [
+        "Task cannot be completed until dependency is completed: TASK-001"
+    ]
+
+
+def test_validate_task_completion_readiness_returns_deterministic_errors_for_multiple_incomplete_dependencies():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=[],
+            order=2,
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            title="Task 3",
+            status="planned",
+            dependencies=["TASK-001", "TASK-002"],
+            order=3,
+        ),
+    ]
+
+    result = validate_task_completion_readiness(tasks, "TASK-003")
+
+    assert result == [
+        "Task cannot be completed until dependency is completed: TASK-001",
+        "Task cannot be completed until dependency is completed: TASK-002",
+    ]
+
+
+def test_validate_task_completion_readiness_returns_error_for_missing_dependency():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="in_progress",
+            dependencies=["TASK-999"],
+            order=1,
+        ),
+    ]
+
+    result = validate_task_completion_readiness(tasks, "TASK-001")
+
+    assert result == ["Dependency task not found: TASK-999"]
+
+def test_update_task_status_allows_completion_when_dependencies_completed():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="completed",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=["TASK-001"],
+            order=2,
+        ),
+    ]
+
+    update_task_status(tasks, "TASK-002", "completed")
+
+    assert tasks[1].status == "completed"
+
+
+def test_update_task_status_rejects_completion_when_dependency_incomplete():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=["TASK-001"],
+            order=2,
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Task cannot be completed until dependency is completed: TASK-001",
+    ):
+        update_task_status(tasks, "TASK-002", "completed")
+
+
+def test_update_task_status_does_not_mutate_on_blocked_completion():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            title="Task 1",
+            status="planned",
+            dependencies=[],
+            order=1,
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            title="Task 2",
+            status="in_progress",
+            dependencies=["TASK-001"],
+            order=2,
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Task cannot be completed until dependency is completed: TASK-001",
+    ):
+        update_task_status(tasks, "TASK-002", "completed")
+
+    assert tasks[1].status == "in_progress"        

@@ -42,6 +42,38 @@
       "dependencies": [
         "TASK-005"
       ]
+    },
+    {
+      "task_id": "TASK-007",
+      "order": 6,
+      "title": "Dependency task for completion gating",
+      "status": "completed",
+      "dependencies": [
+        "TASK-008"
+      ]
+    },
+    {
+      "task_id": "TASK-008",
+      "order": 7,
+      "title": "Blocked completion task",
+      "status": "completed",
+      "dependencies": []
+    },
+    {
+      "task_id": "TASK-009",
+      "order": 8,
+      "title": "Predecessor",
+      "status": "completed",
+      "dependencies": []
+    },
+    {
+      "task_id": "TASK-010",
+      "order": 9,
+      "title": "Successor",
+      "status": "completed",
+      "dependencies": [
+        "TASK-009"
+      ]
     }
   ]
 }
