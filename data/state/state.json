@@ -31,15 +31,17 @@
       "task_id": "TASK-005",
       "order": 4,
       "title": "Task E",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": []
     },
     {
       "task_id": "TASK-006",
       "order": 5,
       "title": "Ordering verification task",
-      "status": "planned",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [
+        "TASK-005"
+      ]
     }
   ]
 }
