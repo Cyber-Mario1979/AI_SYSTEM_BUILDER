@@ -193,5 +193,52 @@ def validate_task_completion_readiness(
                 f"Task cannot be completed until dependency is completed: {dependency_id}"
             )
 
-    return errors    
+    return errors 
+   
+_TASK_KEY_INVALID_CHARS_RE = re.compile(r"[^a-z0-9-]")
+_TASK_KEY_REPEAT_HYPHENS_RE = re.compile(r"-+")
 
+
+def normalize_task_key(value: str | None) -> str | None:
+    if value is None:
+        return None
+
+    normalized = value.strip().lower()
+    normalized = normalized.replace("_", "-")
+    normalized = normalized.replace(" ", "-")
+    normalized = _TASK_KEY_INVALID_CHARS_RE.sub("", normalized)
+    normalized = _TASK_KEY_REPEAT_HYPHENS_RE.sub("-", normalized)
+
+    if not normalized:
+        return None
+
+    if normalized.startswith("-") or normalized.endswith("-"):
+        return None
+
+    return normalized
+
+
+def find_task_by_reference(tasks, reference):
+    task = find_task_by_id(tasks, reference)
+    if task is not None:
+        return task
+
+    normalized_reference = normalize_task_key(reference)
+    if normalized_reference is None:
+        return None
+
+    matches = []
+    for task in tasks:
+        task_key = normalize_task_key(getattr(task, "task_key", None))
+        if task_key == normalized_reference:
+            matches.append(task)
+
+    if not matches:
+        return None
+
+    if len(matches) > 1:
+        raise ValueError(
+            f"Duplicate task_key detected for reference: {normalized_reference}"
+        )
+
+    return matches[0]

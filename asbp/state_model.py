@@ -14,6 +14,7 @@ class TaskModel(BaseModel):
     duration: int | None = Field(default=None, ge=1)
     start_date: str | None = Field(default=None, min_length=1)
     end_date: str | None = Field(default=None, min_length=1)
+    task_key: str | None = None
     status: Literal["planned", "in_progress", "completed", "over_due"]
     dependencies: list[str] = Field(default_factory=list)
 

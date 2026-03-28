@@ -9,6 +9,7 @@ from asbp.task_logic import (
     filter_tasks,
     filter_tasks_by_status,
     find_task_by_id,
+    find_task_by_reference,
     generate_next_task_id,
     generate_next_task_order,
     set_task_dependencies,
@@ -41,6 +42,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("duration", None)
         task.setdefault("start_date", None)
         task.setdefault("end_date", None)
+        task.setdefault("task_key", None)
     return StateModel(**raw_state)
 
 
@@ -205,14 +207,18 @@ def handle_task_show(args):
     if state is None:
         return
 
-    task = find_task_by_id(state.tasks, args.task_id)
+    try:
+        task = find_task_by_reference(state.tasks, args.task_id)
+    except ValueError as e:
+        print(str(e))
+        return
 
     if task is None:
         print(f"Task not found: {args.task_id}")
         return
 
     print(json.dumps(task.model_dump(), indent=2))
-
+    
 def handle_task_set_dependencies(args):
     state = load_state_or_none()
     if state is None:

@@ -6,6 +6,8 @@ from asbp.task_logic import (
     update_task_status,
     validate_task_status_transition,
     validate_task_completion_readiness,
+    find_task_by_reference,
+    normalize_task_key,
 )
 
 def test_filter_tasks_by_status_only():
@@ -355,3 +357,47 @@ def test_update_task_status_does_not_mutate_on_blocked_completion():
         update_task_status(tasks, "TASK-002", "completed")
 
     assert tasks[1].status == "in_progress"        
+
+def test_normalize_task_key_returns_kebab_case():
+    assert normalize_task_key(" Prepare_FAT Protocol ") == "prepare-fat-protocol"
+
+
+def test_find_task_by_reference_falls_back_to_task_key():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT protocol",
+            task_key="prepare-fat-protocol",
+            status="planned",
+            dependencies=[],
+        )
+    ]
+
+    task = find_task_by_reference(tasks, "Prepare_FAT Protocol")
+    assert task is not None
+    assert task.task_id == "TASK-001"
+
+
+def test_find_task_by_reference_raises_on_duplicate_task_key():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="prepare-fat-protocol",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Task B",
+            task_key="prepare-fat-protocol",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    with pytest.raises(ValueError, match="Duplicate task_key detected"):
+        find_task_by_reference(tasks, "prepare-fat-protocol")

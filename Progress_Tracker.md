@@ -107,11 +107,43 @@ Reality snapshot:
 
 ## Milestone 4 — Indexing Layer
 
-Status: Not started
+Status: In progress
+
+Reality snapshot:
+
+- the Milestone 4 planning checkpoint was completed in this session
+- the first narrow slice is locked as:
+  - deterministic secondary task lookup surface
+- the purpose of the second indexing surface is locked as:
+  - reference and look up tasks without relying only on raw `task_id`
+- the identity / lookup separation is locked as:
+  - `task_id` = storage identity
+  - secondary lookup surface = deterministic access / reference layer
+- Milestone 4 slice 1 is now implemented in the current verified live repo as:
+  - `task_key` model support
+  - backward-compatible `task_key` normalization surface during validated state loading
+  - deterministic task reference resolution helper
+  - `task show` read-path fallback from exact `task_id` to normalized `task_key`
+- Milestone 4 slice 1 was manually verified in this session through:
+  - local full-suite pass
+  - manual task lookup by `task_id`
+  - manual task lookup by `task_key`
+  - cleanup of temporary manual verification state edit
+- Milestone 4 remains in progress after slice 1:
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
 - fresh local full-suite result verified in this session:
+  - `60 passed in 4.59s`
+- manual Milestone 4 slice 1 verification completed in this session:
+  - `task show TASK-001` resolved successfully by `task_id`
+  - `task show prepare-fat-protocol` resolved successfully by `task_key`
+  - temporary manual verification state edit was cleaned up
+  - `task show prepare-fat-protocol` returned not found after cleanup
+  - `data/state/state.json` was removed from `git status` before commit flow
+- previous fresh local full-suite result verified in this session:
   - `57 passed in 5.63s`
 - manual Milestone 3 closeout verification completed in this session:
   - fresh-state UAT passed
@@ -125,7 +157,7 @@ Status: Not started
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current live repo now verifies cleanly after the `end_date` slice
+  - the current live repo now verifies cleanly after the `task_key` read-path slice
 
 ## Current snapshot evidence reviewed in this session
 
@@ -165,6 +197,21 @@ Status: Not started
   - legacy raw JSON inspection confirming old-style file remained unchanged on read-only commands
   - original live state restored from backup after UAT
   - clean `git status` verification after UAT restore
+  - Milestone 4 planning checkpoint lock
+  - first narrow Milestone 4 slice lock as deterministic secondary task lookup surface
+  - `task_key` field addition in `TaskModel`
+  - `task_key` backward-compatibility normalization in validated state loading
+  - `normalize_task_key(...)` helper addition
+  - `find_task_by_reference(...)` helper addition
+  - `task show` fallback wiring from exact `task_id` to normalized `task_key`
+  - `tests/test_task_logic.py` updates for `task_key` normalization and duplicate-key read-path coverage
+  - `tests/test_task_cli.py` updates for persisted state expectations after `task_key` model expansion
+  - green full-suite validation after the `task_key` slice patch
+  - manual temporary `task_key` insertion into live state for read-path verification
+  - manual `task show` pass by `task_id`
+  - manual `task show` pass by `task_key`
+  - cleanup verification showing `task show` by removed `task_key` returns not found
+  - cleanup verification showing `data/state/state.json` removed from `git status`
 
 ## Current verified code snapshot
 
@@ -193,47 +240,52 @@ Status: Not started
 - `TaskModel` now includes optional `end_date`
 - older task records are normalized for missing `end_date` during validated state loading
 - `task add` now supports optional `--end-date`
+- `TaskModel` now includes optional `task_key`
+- older task records are normalized for missing `task_key` during validated state loading
+- `normalize_task_key(...)` exists for deterministic secondary lookup normalization
+- `find_task_by_reference(...)` exists for deterministic task lookup by exact `task_id` then normalized `task_key`
+- duplicate normalized `task_key` lookup fails clearly rather than guessing
+- `task show` now resolves by exact `task_id` first, then by normalized `task_key`
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
 - manual closeout UAT confirms safe load behavior for legacy task records missing enriched fields
-- current local validation confirms the `description`, `owner`, `duration`, `start_date`, and `end_date` enrichment slices without reopening Milestone 2 behavior
+- manual Milestone 4 slice 1 verification confirms deterministic task lookup by both `task_id` and `task_key`
+- current local validation confirms the `description`, `owner`, `duration`, `start_date`, `end_date`, and `task_key` surfaces without reopening Milestone 2 behavior
 
 ## Latest completed step
 
-Milestone 3 closeout checkpoint
+Milestone 4 slice 1 implementation checkpoint
 
 Completed:
 
-- confirmed Milestone 3 is complete as the Task Entity Enrichment milestone
-- verified the full enrichment surface now includes:
-  - `description`
-  - `owner`
-  - `duration`
-  - `start_date`
-  - `end_date`
-- confirmed backward compatibility coverage for older task records missing enriched fields
-- manually verified fresh-state UAT:
-  - `state init` produced a clean state
-  - enriched `task add` / `task list` / `task show` passed
-  - persisted JSON verification passed for enriched task fields
-- manually verified legacy backward-compatibility UAT:
-  - `state show` passed
-  - `task list` passed
-  - `task show` passed
-  - missing enriched fields normalized safely during load
-- restored the original live state successfully after UAT
-- verified a clean git working tree after UAT restore
-- latest validated baseline remains:
-  - `57 passed in 5.63s`
+- added optional `task_key` to `TaskModel`
+- added backward compatibility for older task records missing `task_key`
+- added deterministic `task_key` normalization helper
+- added deterministic task reference helper with lookup order:
+  - exact `task_id`
+  - exact normalized `task_key`
+  - else not found
+- updated `task show` to resolve through deterministic task reference lookup
+- added logic-level tests for:
+  - `task_key` normalization
+  - `task_key` fallback lookup
+  - duplicate `task_key` read-path failure
+- updated CLI/state persistence tests to match the expanded persisted task shape
+- validated the full local suite:
+  - `60 passed in 4.59s`
+- manually verified:
+  - task lookup by `task_id`
+  - task lookup by `task_key`
+  - cleanup of temporary manual verification state data
 
 ## Exact next unfinished step
 
-Milestone 4 planning checkpoint
+Milestone 4 slice 2 planning checkpoint
 
 Next objective:
 
-- lock the first narrow Milestone 4 slice inside the Indexing Layer milestone
-- define the deterministic purpose of the second indexing surface beyond raw task IDs
-- stay inside Phase 2 and do not jump into Milestone 5
-- no code changes until the Milestone 4 planning checkpoint is completed
+- lock the next narrow Milestone 4 slice after `task_key` read-path foundation
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- make no new code changes until the slice 2 planning checkpoint is completed

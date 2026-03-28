@@ -72,6 +72,7 @@ def test_task_add_creates_first_task_with_planned_status(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "dependencies": [],
         }
     ]
@@ -119,6 +120,7 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "dependencies": [],
         },
         {
@@ -131,6 +133,7 @@ def test_task_add_uses_next_deterministic_task_id(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "dependencies": [],
         },
     ]
@@ -255,6 +258,7 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "status": "in_progress",
             "dependencies": [],
         },
@@ -267,6 +271,7 @@ def test_task_update_status_updates_only_target_task(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "status": "planned",
             "dependencies": [],
         },
@@ -391,6 +396,7 @@ def test_task_delete_removes_only_target_task(restore_state_file):
             "duration": None,
             "start_date": None,
             "end_date": None,
+            "task_key": None,
             "status": "completed",
             "dependencies": [],
         }
