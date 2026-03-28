@@ -10,7 +10,7 @@ Phase 2 — Deterministic System Modeling
 
 ## Current Milestone
 
-Milestone 3 — Task Entity Enrichment
+Milestone 4 — Indexing Layer
 
 ## Milestone 1 — State CLI Tool v1
 
@@ -73,7 +73,7 @@ Completed:
 
 ## Milestone 3 — Task Entity Enrichment
 
-Status: In progress
+Status: Completed
 
 Reality snapshot:
 
@@ -99,11 +99,25 @@ Reality snapshot:
   - `start_date`
   - `end_date`
 - Milestone 3 now includes all five narrow enrichment slices
+- Milestone 3 closeout was manually verified in this session through:
+  - fresh-state UAT pass
+  - legacy backward-compatibility UAT pass
+  - original live state restore verification
+  - clean git working tree verification after UAT restore
+
+## Milestone 4 — Indexing Layer
+
+Status: Not started
 
 ## Current verified validation status
 
 - fresh local full-suite result verified in this session:
   - `57 passed in 5.63s`
+- manual Milestone 3 closeout verification completed in this session:
+  - fresh-state UAT passed
+  - legacy backward-compatibility UAT passed
+  - original live state restored successfully
+  - git working tree clean after restore
 - previous green result recorded after the `start_date` slice:
   - `56 passed in 5.32s`
 - previous green result recorded after the duration slice:
@@ -142,6 +156,15 @@ Reality snapshot:
   - `tests/test_task_cli.py` updates for persisted-state expectations and direct-call add coverage
   - targeted local check for the `start_date` test after file replacement
   - green full-suite validation after the `end_date` patch
+  - manual fresh-state UAT backup creation using the live fixed state path
+  - manual fresh-state `state init` / `state show` / `task list` pass
+  - manual enriched-task `task add` / `task list` / `task show` pass
+  - manual persisted JSON verification for enriched task fields
+  - observed live CLI task ID pattern as `TASK-001` during manual UAT
+  - manual legacy-state `state show` / `task list` / `task show` pass
+  - legacy raw JSON inspection confirming old-style file remained unchanged on read-only commands
+  - original live state restored from backup after UAT
+  - clean `git status` verification after UAT restore
 
 ## Current verified code snapshot
 
@@ -170,35 +193,47 @@ Reality snapshot:
 - `TaskModel` now includes optional `end_date`
 - older task records are normalized for missing `end_date` during validated state loading
 - `task add` now supports optional `--end-date`
+- current live CLI uses a fixed state path at `data/state/state.json`
+- current live repo generates task IDs in `TASK-###` format during CLI task creation
+- manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
+- manual closeout UAT confirms safe load behavior for legacy task records missing enriched fields
 - current local validation confirms the `description`, `owner`, `duration`, `start_date`, and `end_date` enrichment slices without reopening Milestone 2 behavior
 
 ## Latest completed step
 
-Milestone 3 slice 5 — end_date enrichment patch
+Milestone 3 closeout checkpoint
 
 Completed:
 
-- added optional `end_date` to `TaskModel`
-- preserved backward compatibility for older task records missing `end_date`
-- wired optional `--end-date` into `task add`
-- updated persisted-task expectations and direct-call add coverage for `end_date`
-- verified current live repo at:
-  - `57 passed in 5.63s`
-
-## Exact next unfinished step
-
-Milestone 3 closeout checkpoint
-
-Next objective:
-
-- confirm Milestone 3 is complete as the Task Entity Enrichment milestone
-- verify the full enrichment surface now includes:
+- confirmed Milestone 3 is complete as the Task Entity Enrichment milestone
+- verified the full enrichment surface now includes:
   - `description`
   - `owner`
   - `duration`
   - `start_date`
   - `end_date`
-- confirm backward compatibility coverage for older task records missing enriched fields
-- confirm the latest validated baseline remains:
+- confirmed backward compatibility coverage for older task records missing enriched fields
+- manually verified fresh-state UAT:
+  - `state init` produced a clean state
+  - enriched `task add` / `task list` / `task show` passed
+  - persisted JSON verification passed for enriched task fields
+- manually verified legacy backward-compatibility UAT:
+  - `state show` passed
+  - `task list` passed
+  - `task show` passed
+  - missing enriched fields normalized safely during load
+- restored the original live state successfully after UAT
+- verified a clean git working tree after UAT restore
+- latest validated baseline remains:
   - `57 passed in 5.63s`
-- do not reopen completed Milestone 2 work unless a real defect is found
+
+## Exact next unfinished step
+
+Milestone 4 planning checkpoint
+
+Next objective:
+
+- lock the first narrow Milestone 4 slice inside the Indexing Layer milestone
+- define the deterministic purpose of the second indexing surface beyond raw task IDs
+- stay inside Phase 2 and do not jump into Milestone 5
+- no code changes until the Milestone 4 planning checkpoint is completed
