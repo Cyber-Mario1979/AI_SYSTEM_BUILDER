@@ -858,6 +858,95 @@ def test_task_add_accepts_optional_end_date(restore_state_file):
     assert state.tasks[0].status == "planned"
 
 
+def test_task_add_persists_normalized_task_key_when_provided(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "add",
+        "Prepare FAT protocol",
+        "--task-key",
+        " Prepare_FAT Protocol ",
+    )
+
+    assert result.returncode == 0
+    assert "Task added: TASK-001 - Prepare FAT protocol" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+
+    assert saved_state["tasks"] == [
+        {
+            "task_id": "TASK-001",
+            "order": 1,
+            "title": "Prepare FAT protocol",
+            "status": "planned",
+            "description": None,
+            "owner": None,
+            "duration": None,
+            "start_date": None,
+            "end_date": None,
+            "task_key": "prepare-fat-protocol",
+            "dependencies": [],
+        }
+    ]
+
+
+def test_task_add_rejects_duplicate_normalized_task_key_without_saving(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Existing task",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat-protocol",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "add",
+        "Second task",
+        "--task-key",
+        "Prepare FAT Protocol",
+    )
+
+    assert result.returncode == 0
+    assert "Duplicate task_key is not allowed: prepare-fat-protocol" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert len(saved_state["tasks"]) == 1
+
+
 def test_load_validated_state_accepts_legacy_task_without_duration(tmp_path):
     state_file = tmp_path / "state.json"
     state_file.write_text(

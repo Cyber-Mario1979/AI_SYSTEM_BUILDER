@@ -8,6 +8,7 @@ from asbp.task_logic import (
     validate_task_completion_readiness,
     find_task_by_reference,
     normalize_task_key,
+    prepare_task_key_for_write,
 )
 
 def test_filter_tasks_by_status_only():
@@ -401,3 +402,23 @@ def test_find_task_by_reference_raises_on_duplicate_task_key():
 
     with pytest.raises(ValueError, match="Duplicate task_key detected"):
         find_task_by_reference(tasks, "prepare-fat-protocol")
+
+
+def test_prepare_task_key_for_write_returns_normalized_task_key():
+    assert prepare_task_key_for_write([], " Prepare_FAT Protocol ") == "prepare-fat-protocol"
+
+
+def test_prepare_task_key_for_write_rejects_duplicate_normalized_task_key():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="prepare-fat-protocol",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    with pytest.raises(ValueError, match="Duplicate task_key is not allowed"):
+        prepare_task_key_for_write(tasks, "Prepare FAT Protocol")

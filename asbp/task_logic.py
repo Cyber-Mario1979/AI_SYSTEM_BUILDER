@@ -242,3 +242,21 @@ def find_task_by_reference(tasks, reference):
         )
 
     return matches[0]
+
+
+def prepare_task_key_for_write(tasks: list[TaskModel], task_key: str | None) -> str | None:
+    if task_key is None:
+        return None
+
+    normalized_task_key = normalize_task_key(task_key)
+    if normalized_task_key is None:
+        raise ValueError(f"Invalid task_key: {task_key}")
+
+    for task in tasks:
+        existing_task_key = normalize_task_key(getattr(task, "task_key", None))
+        if existing_task_key == normalized_task_key:
+            raise ValueError(
+                f"Duplicate task_key is not allowed: {normalized_task_key}"
+            )
+
+    return normalized_task_key

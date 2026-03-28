@@ -129,13 +129,36 @@ Reality snapshot:
   - manual task lookup by `task_id`
   - manual task lookup by `task_key`
   - cleanup of temporary manual verification state edit
-- Milestone 4 remains in progress after slice 1:
+- Milestone 4 slice 2 is now implemented in the current verified live repo as:
+  - deterministic `task_key` write-path support on task creation
+  - normalized `task_key` persistence during `task add`
+  - duplicate normalized `task_key` rejection before save
+  - CLI support for optional `--task-key`
+- Milestone 4 slice 2 was manually verified in this session through:
+  - manual task add with `--task-key`
+  - manual task show by exact `task_id`
+  - manual task show by normalized `task_key`
+  - manual duplicate normalized `task_key` rejection
+  - cleanup of temporary patch/script artifacts
+  - restore of `data/state/state.json` after manual verification
+- Milestone 4 remains in progress after slice 2:
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
 - fresh local full-suite result verified in this session:
+  - `64 passed in 4.92s`
+- manual Milestone 4 slice 2 verification completed in this session:
+  - `task add "Prepare FAT protocol" --task-key " Prepare_FAT Protocol "` succeeded
+  - persisted `task_key` normalized to `prepare-fat-protocol`
+  - `task show TASK-011` resolved successfully by `task_id`
+  - `task show prepare-fat-protocol` resolved successfully by normalized `task_key`
+  - duplicate normalized `task_key` add attempt was rejected with:
+    - `Duplicate task_key is not allowed: prepare-fat-protocol`
+  - temporary patch/script artifacts were removed after verification
+  - `data/state/state.json` was restored before post-verification `git status`
+- previous fresh local full-suite result verified in this session:
   - `60 passed in 4.59s`
 - manual Milestone 4 slice 1 verification completed in this session:
   - `task show TASK-001` resolved successfully by `task_id`
@@ -157,7 +180,7 @@ Reality snapshot:
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current live repo now verifies cleanly after the `task_key` read-path slice
+  - the current live repo now verifies cleanly after the `task_key` write-path slice
 
 ## Current snapshot evidence reviewed in this session
 
@@ -212,6 +235,27 @@ Reality snapshot:
   - manual `task show` pass by `task_key`
   - cleanup verification showing `task show` by removed `task_key` returns not found
   - cleanup verification showing `data/state/state.json` removed from `git status`
+  - live repo fetch confirmation for:
+    - `asbp/cli.py`
+    - `asbp/state_model.py`
+    - `asbp/task_logic.py`
+    - `tests/test_state_cli.py`
+    - `tests/test_task_cli.py`
+    - `tests/test_task_logic.py`
+  - narrow slice 2 lock as deterministic `task_key` write-path support
+  - scripted local patch application for:
+    - `asbp/cli.py`
+    - `asbp/task_logic.py`
+    - `tests/test_task_logic.py`
+    - `tests/test_task_cli.py`
+  - green full-suite validation after the slice 2 patch
+  - manual `task add` pass with `--task-key`
+  - manual `task show` pass by exact `task_id` after write-path patch
+  - manual `task show` pass by normalized `task_key` after write-path patch
+  - manual duplicate normalized `task_key` rejection pass
+  - cleanup verification showing `apply_m4_slice2.py` removed
+  - cleanup verification showing `m4_slice2.patch` removed
+  - cleanup verification showing only intended implementation/test files remain modified in `git status`
 
 ## Current verified code snapshot
 
@@ -246,46 +290,55 @@ Reality snapshot:
 - `find_task_by_reference(...)` exists for deterministic task lookup by exact `task_id` then normalized `task_key`
 - duplicate normalized `task_key` lookup fails clearly rather than guessing
 - `task show` now resolves by exact `task_id` first, then by normalized `task_key`
+- `prepare_task_key_for_write(...)` exists for deterministic normalized `task_key` write-path validation
+- `task add` now supports optional `--task-key`
+- `task add` now persists normalized `task_key` values
+- duplicate normalized `task_key` writes are rejected before save
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
 - manual closeout UAT confirms safe load behavior for legacy task records missing enriched fields
 - manual Milestone 4 slice 1 verification confirms deterministic task lookup by both `task_id` and `task_key`
+- manual Milestone 4 slice 2 verification confirms deterministic `task_key` write-path behavior without reopening Milestone 2 behavior
 - current local validation confirms the `description`, `owner`, `duration`, `start_date`, `end_date`, and `task_key` surfaces without reopening Milestone 2 behavior
 
 ## Latest completed step
 
-Milestone 4 slice 1 implementation checkpoint
+Milestone 4 slice 2 implementation checkpoint
 
 Completed:
 
-- added optional `task_key` to `TaskModel`
-- added backward compatibility for older task records missing `task_key`
-- added deterministic `task_key` normalization helper
-- added deterministic task reference helper with lookup order:
-  - exact `task_id`
-  - exact normalized `task_key`
-  - else not found
-- updated `task show` to resolve through deterministic task reference lookup
+- added deterministic `task_key` write-path helper:
+  - `prepare_task_key_for_write(...)`
+- updated `task add` to:
+  - accept optional `--task-key`
+  - normalize `task_key` before save
+  - persist normalized `task_key`
+  - reject duplicate normalized `task_key` before save
 - added logic-level tests for:
-  - `task_key` normalization
-  - `task_key` fallback lookup
-  - duplicate `task_key` read-path failure
-- updated CLI/state persistence tests to match the expanded persisted task shape
+  - normalized `task_key` write-path success
+  - duplicate normalized `task_key` write-path failure
+- added CLI-level tests for:
+  - persisted normalized `task_key` on `task add`
+  - duplicate normalized `task_key` rejection without save
 - validated the full local suite:
-  - `60 passed in 4.59s`
+  - `64 passed in 4.92s`
 - manually verified:
-  - task lookup by `task_id`
-  - task lookup by `task_key`
-  - cleanup of temporary manual verification state data
+  - task add with `--task-key`
+  - task show by `task_id`
+  - task show by normalized `task_key`
+  - duplicate normalized `task_key` rejection
+  - cleanup of temporary patch/script artifacts
+  - restore of `data/state/state.json`
+  - isolation of intended implementation/test file changes in `git status`
 
 ## Exact next unfinished step
 
-Milestone 4 slice 2 planning checkpoint
+Milestone 4 slice 3 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Milestone 4 slice after `task_key` read-path foundation
+- lock the next narrow Milestone 4 slice after `task_key` write-path support
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- make no new code changes until the slice 2 planning checkpoint is completed
+- make no new code changes until the slice 3 planning checkpoint is completed

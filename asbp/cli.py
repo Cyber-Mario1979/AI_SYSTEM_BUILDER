@@ -12,6 +12,7 @@ from asbp.task_logic import (
     find_task_by_reference,
     generate_next_task_id,
     generate_next_task_order,
+    prepare_task_key_for_write,
     set_task_dependencies,
     update_task_status,
 )
@@ -124,6 +125,15 @@ def handle_task_add(args):
     if state is None:
         return
 
+    try:
+        task_key = prepare_task_key_for_write(
+            state.tasks,
+            getattr(args, "task_key", None),
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
     next_task_id = generate_next_task_id(state.tasks)
 
     new_task = TaskModel(
@@ -135,6 +145,7 @@ def handle_task_add(args):
         duration=args.duration,
         start_date=args.start_date,
         end_date=args.end_date,
+        task_key=task_key,
         status="planned",
 )
 
@@ -283,6 +294,7 @@ def build_parser():
     task_add_parser.add_argument("--duration", type=int, default=None, help="Optional task duration in days")
     task_add_parser.add_argument("--start-date", default=None, help="Optional task start date")
     task_add_parser.add_argument("--end-date", default=None, help="Optional task end date")
+    task_add_parser.add_argument("--task-key", default=None, help="Optional deterministic task key")
     task_add_parser.set_defaults(func=handle_task_add)
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
