@@ -27,10 +27,7 @@
       "end_date": null,
       "task_key": null,
       "status": "completed",
-      "dependencies": [
-        "TASK-001",
-        "TASK-004"
-      ]
+      "dependencies": ["TASK-001", "TASK-004"]
     },
     {
       "task_id": "TASK-004",
@@ -69,9 +66,7 @@
       "end_date": null,
       "task_key": null,
       "status": "completed",
-      "dependencies": [
-        "TASK-005"
-      ]
+      "dependencies": ["TASK-005"]
     },
     {
       "task_id": "TASK-007",
@@ -84,9 +79,7 @@
       "end_date": null,
       "task_key": null,
       "status": "completed",
-      "dependencies": [
-        "TASK-008"
-      ]
+      "dependencies": ["TASK-008"]
     },
     {
       "task_id": "TASK-008",
@@ -125,9 +118,7 @@
       "end_date": null,
       "task_key": null,
       "status": "completed",
-      "dependencies": [
-        "TASK-009"
-      ]
+      "dependencies": ["TASK-009"]
     },
     {
       "task_id": "TASK-011",
@@ -153,9 +144,7 @@
       "end_date": null,
       "task_key": null,
       "status": "planned",
-      "dependencies": [
-        "TASK-011"
-      ]
+      "dependencies": ["TASK-011"]
     },
     {
       "task_id": "TASK-013",
