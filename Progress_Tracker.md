@@ -276,13 +276,57 @@ Reality snapshot:
   - clean git working tree verification after restore for intended implementation files
   - local commit and push after slice 6 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 6 implementation:
-  - slice 7 planning is still pending
+- the Milestone 4 slice 7 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic persisted `task_key` validation on state load
+- the slice 7 scope boundary is locked as:
+  - apply validation to persisted `task_key` values during validated state loading only
+  - validate that normalized persisted `task_key` values:
+    - do not collide with the reserved task ID namespace
+    - do not create duplicate normalized secondary references across tasks
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve exact `task_id` priority over `task_key`
+  - fail clearly and deterministically on invalid persisted indexing state
+  - do not introduce any new indexing surfaces in this slice
+  - do not add edit/update commands for `task_key` in this slice
+- Milestone 4 slice 7 is now implemented in the current verified live repo as:
+  - deterministic persisted `task_key` validation on state load
+  - `validate_persisted_task_keys(...)` now enforces persisted `task_key` validation during validated state loading
+  - persisted normalized `task_key` values matching `task-###` are rejected during load
+  - duplicate normalized persisted `task_key` values are rejected during load
+  - existing write-path validation and existing command-level lookup rules remain preserved
+- Milestone 4 slice 7 was manually verified in this session through:
+  - temporary manual verification state creation for reserved persisted namespace rejection
+  - manual `python -m asbp task list` pass confirming persisted reserved namespace rejection with:
+    - `Reserved task_key namespace is not allowed: task-001`
+  - temporary manual verification state creation for duplicate normalized persisted `task_key` rejection
+  - manual `python -m asbp task list` pass confirming duplicate normalized persisted `task_key` rejection with:
+    - `Duplicate task_key is not allowed: prepare-fat`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore for intended implementation files
+  - local commit and push after slice 7 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 7 implementation:
+  - slice 8 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `80 passed in 7.79s`
+- manual Milestone 4 slice 7 verification completed in this session:
+  - `python -m asbp task list` against persisted reserved namespace state preserved:
+    - `State validation failed:`
+    - `Reserved task_key namespace is not allowed: task-001`
+  - `python -m asbp task list` against duplicate normalized persisted `task_key` state preserved:
+    - `Duplicate task_key is not allowed: prepare-fat`
+  - `data/state/state.json` was restored with `git restore`
+  - local commit completed with:
+    - `validate persisted task_key state on load`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `76 passed in 6.57s`
 - targeted local reserved-namespace CLI tests verified in this session:
@@ -582,6 +626,23 @@ Reality snapshot:
   - local slice 6 push to `origin/main`
   - post-push clean `git status` verification
   - live repo re-fetch confirmation after push showing slice 6 patch present in `asbp/task_logic.py`
+  - Milestone 4 slice 7 planning checkpoint lock
+  - narrow slice 7 lock as deterministic persisted `task_key` validation on state load
+  - slice 7 scope lock for persisted `task_key` validation during validated state loading only
+  - repo-aligned local `task_logic.py` patching for `validate_persisted_task_keys(...)`
+  - repo-aligned local `cli.py` patching for post-model persisted `task_key` validation during `load_validated_state(...)`
+  - repo-aligned `tests/test_task_logic.py` updates for persisted `task_key` load-validation coverage
+  - repo-aligned `tests/test_task_cli.py` updates for persisted-state load-failure coverage and slice-7-adjusted CLI expectations
+  - green full-suite validation after the slice 7 local patch:
+    - `80 passed in 7.79s`
+  - temporary manual verification state creation for reserved persisted namespace rejection
+  - manual `python -m asbp task list` reserved-namespace rejection pass
+  - temporary manual verification state creation for duplicate normalized persisted `task_key` rejection
+  - manual `python -m asbp task list` duplicate persisted-key rejection pass
+  - manual `git restore data/state/state.json` pass after slice 7 verification
+  - local slice 7 commit creation
+  - local slice 7 push to `origin/main`
+  - post-push clean `git status` verification
 
 ## Current verified code snapshot
 
@@ -646,39 +707,41 @@ Reality snapshot:
 - manual Milestone 4 slice 4 verification confirms persisted dependency storage remains `task_id`-only after reference resolution
 - manual Milestone 4 slice 5 verification confirms deterministic no-mutation behavior for ambiguous secondary task references across current task command surfaces
 - manual Milestone 4 slice 6 verification confirms deterministic reserved task ID namespace rejection in the `task_key` write path without reopening read-path behavior
+- `validate_persisted_task_keys(...)` now exists for deterministic persisted `task_key` validation during validated state loading
+- `load_validated_state(...)` now calls persisted `task_key` validation after model construction
+- `load_state_or_none()` now surfaces persisted `task_key` load-validation failures through the existing state validation failure path
+- persisted normalized `task_key` values matching `task-###` are rejected during load
+- duplicate normalized persisted `task_key` values are rejected during load before CLI command execution
+- manual Milestone 4 slice 7 verification confirms invalid persisted `task_key` indexing state now fails at state load rather than reaching command-level ambiguity handling
 
 ## Latest completed step
 
-Milestone 4 slice 6 implementation checkpoint
+Milestone 4 slice 7 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 6 deterministic task ID namespace separation in `task_key` write validation
-- verified reserved task ID namespace rejection now exists in `prepare_task_key_for_write(...)`
-- verified normalized `task_key` values matching `task-###` are rejected before save
-- verified valid normalized non-reserved `task_key` values still save correctly
-- added repo-aligned CLI tests for:
-  - reserved task ID namespace rejection on `TASK-001`
-  - reserved task ID namespace rejection on ` task_001 `
-  - reserved task ID namespace rejection on `Task 001`
-- validated the full local suite after slice 6 implementation:
-  - `76 passed in 6.57s`
-- validated targeted reserved-namespace CLI tests after slice 6 implementation:
-  - `3 passed, 36 deselected in 0.54s`
-- manually verified reserved namespace rejection using a temporary empty-state verification payload
-- manually verified normal key add behavior remained valid
+- verified the pushed live repo contains slice 7 deterministic persisted `task_key` validation on state load
+- verified `validate_persisted_task_keys(...)` now exists and is called during `load_validated_state(...)`
+- verified persisted normalized `task_key` values matching `task-###` are rejected during load
+- verified duplicate normalized persisted `task_key` values are rejected during load
+- updated repo-aligned helper and CLI tests for slice 7 persisted-state validation coverage
+- adjusted duplicate persisted-state CLI tests to fail at load time instead of command-level ambiguity handling
+- validated the full local suite after slice 7 implementation:
+  - `80 passed in 7.79s`
+- manually verified reserved persisted namespace rejection using a temporary verification state payload
+- manually verified duplicate normalized persisted `task_key` rejection using a temporary verification state payload
 - restored `data/state/state.json` after manual verification
 - verified clean git working tree after restore
-- committed and pushed the slice 6 implementation to `origin/main`
+- committed and pushed the slice 7 implementation to `origin/main`
 - verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 7 planning checkpoint
+Milestone 4 slice 8 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 6 task ID namespace separation
+- lock the next narrow Indexing Layer slice after slice 7 persisted `task_key` validation on state load
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 7 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 8 scope or implementation until the planning checkpoint is recorded
