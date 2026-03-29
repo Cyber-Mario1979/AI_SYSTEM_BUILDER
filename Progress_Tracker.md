@@ -202,8 +202,10 @@ Reality snapshot:
     - `task set-dependencies "review-fat-package" "review-fat-package"`
   - manual persisted-storage verification through:
     - `task show TASK-003`
-    - stored dependencies remained: - `TASK-001` - `TASK-002`
-      the Milestone 4 slice 5 planning checkpoint was completed in this session
+    - stored dependencies remained:
+      - `TASK-001`
+      - `TASK-002`
+- the Milestone 4 slice 5 planning checkpoint was completed in this session
 - the next narrow slice is locked as:
   - deterministic ambiguous-reference handling across task reference surfaces
 - the slice 5 scope boundary is locked as:
@@ -245,13 +247,64 @@ Reality snapshot:
   - clean git working tree verification after restore
   - local commit and push after slice 5 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 5 implementation:
-  - slice 6 planning is still pending
+- the Milestone 4 slice 6 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic task ID namespace separation from `task_key` write path
+- the slice 6 scope boundary is locked as:
+  - apply reserved task ID namespace separation on `task_key` write validation only
+  - preserve exact `task_id` priority as the primary identity surface
+  - preserve normalized `task_key` as the secondary reference surface only
+  - reject normalized `task_key` values that fall into the reserved task ID namespace
+  - preserve existing read behavior and avoid legacy migration in this slice
+  - do not add new indexing surfaces in this slice
+- Milestone 4 slice 6 is now implemented in the current verified live repo as:
+  - deterministic task ID namespace separation from `task_key` write path
+  - reserved task ID namespace rejection in `prepare_task_key_for_write(...)`
+  - normalized `task_key` values matching `task-###` are rejected before save
+  - existing duplicate normalized `task_key` rejection remains preserved
+  - existing exact `task_id` priority and normalized `task_key` lookup order remain unchanged
+- Milestone 4 slice 6 was manually verified in this session through:
+  - temporary manual verification state creation with:
+    - empty `tasks` list
+  - manual `task add "Reserved key task" --task-key "TASK-001"` rejection pass
+  - manual `task add "Reserved key task" --task-key " task_001 "` rejection pass
+  - manual `task add "Reserved key task" --task-key "Task 001"` rejection pass
+  - manual `task add "Normal key task" --task-key "prepare-fat"` success pass
+  - manual `task show TASK-001` verification confirming only the normal key task was saved with:
+    - `task_key = "prepare-fat"`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore for intended implementation files
+  - local commit and push after slice 6 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 6 implementation:
+  - slice 7 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `76 passed in 6.57s`
+- targeted local reserved-namespace CLI tests verified in this session:
+  - `3 passed, 36 deselected in 0.54s`
+- manual Milestone 4 slice 6 verification completed in this session:
+  - `task add "Reserved key task" --task-key "TASK-001"` preserved:
+    - `Reserved task_key namespace is not allowed: task-001`
+  - `task add "Reserved key task" --task-key " task_001 "` preserved:
+    - `Reserved task_key namespace is not allowed: task-001`
+  - `task add "Reserved key task" --task-key "Task 001"` preserved:
+    - `Reserved task_key namespace is not allowed: task-001`
+  - `task add "Normal key task" --task-key "prepare-fat"` succeeded with:
+    - `Task added: TASK-001 - Normal key task`
+  - `task show TASK-001` confirmed persisted task as:
+    - title = `Normal key task`
+    - `task_key = "prepare-fat"`
+  - `data/state/state.json` was restored with `git restore`
+  - `git status` was clean for the intended implementation files before commit
+  - local commit completed with:
+    - `added reserving name space for task-id , task keys with task-### rejected case insensitive`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `73 passed in 6.24s`
 - targeted local ambiguity CLI tests verified in this session:
@@ -356,10 +409,10 @@ Reality snapshot:
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current local repo verifies cleanly at the test-suite level after the slice 5 implementation and targeted validation
-  - manual slice 5 verification used a temporary verification state payload
-  - `data/state/state.json` was restored after the temporary slice 5 manual verification
-  - the live repo was pushed after slice 5 verification and the working tree was clean after push
+  - the current local repo verifies cleanly at the test-suite level after the slice 6 implementation and targeted validation
+  - manual slice 6 verification used a temporary verification state payload
+  - `data/state/state.json` was restored after the temporary slice 6 manual verification
+  - the live repo was pushed after slice 6 verification and the working tree was clean after push
 
 ## Current snapshot evidence reviewed in this session
 
@@ -504,6 +557,31 @@ Reality snapshot:
   - local slice 5 push to `origin/main`
   - post-push clean `git status` verification
   - live repo re-fetch confirmation after push showing slice 5 patch present in `asbp/cli.py`
+  - Milestone 4 slice 6 planning checkpoint lock
+  - narrow slice 6 lock as deterministic task ID namespace separation from `task_key` write path
+  - slice 6 scope lock for:
+    - `task add --task-key`
+    - `prepare_task_key_for_write(...)`
+  - repo-aligned local `task_logic.py` patching for reserved task ID namespace rejection
+  - repo-aligned `tests/test_task_cli.py` updates for reserved task ID namespace rejection coverage
+  - green full-suite validation after the slice 6 local patch:
+    - `76 passed in 6.57s`
+  - targeted local reserved-namespace CLI test pass:
+    - `3 passed, 36 deselected in 0.54s`
+  - temporary manual verification state creation for slice 6 CLI verification
+  - manual reserved-namespace rejection pass for:
+    - `TASK-001`
+    - ` task_001 `
+    - `Task 001`
+  - manual normal-key add pass for:
+    - `prepare-fat`
+  - manual `task show TASK-001` verification pass after the slice 6 add
+  - manual `git restore data/state/state.json` pass after slice 6 verification
+  - clean `git status` verification after restore
+  - local slice 6 commit creation
+  - local slice 6 push to `origin/main`
+  - post-push clean `git status` verification
+  - live repo re-fetch confirmation after push showing slice 6 patch present in `asbp/task_logic.py`
 
 ## Current verified code snapshot
 
@@ -554,6 +632,8 @@ Reality snapshot:
 - `task set-dependencies` fails clearly on ambiguous target references without mutation
 - `task set-dependencies` fails clearly on ambiguous dependency references without mutation
 - duplicate-reference handling preserves deterministic no-guess behavior across current task reference surfaces
+- reserved task ID namespace rejection now exists in `prepare_task_key_for_write(...)`
+- normalized `task_key` values matching `task-###` are rejected before save
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
@@ -565,42 +645,40 @@ Reality snapshot:
 - manual Milestone 4 slice 4 verification confirms deterministic dependency-input resolution by both `task_id` and normalized `task_key`
 - manual Milestone 4 slice 4 verification confirms persisted dependency storage remains `task_id`-only after reference resolution
 - manual Milestone 4 slice 5 verification confirms deterministic no-mutation behavior for ambiguous secondary task references across current task command surfaces
+- manual Milestone 4 slice 6 verification confirms deterministic reserved task ID namespace rejection in the `task_key` write path without reopening read-path behavior
 
 ## Latest completed step
 
-Milestone 4 slice 5 implementation checkpoint
+Milestone 4 slice 6 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 5 deterministic ambiguous-reference handling across current task command surfaces
-- verified `task show` preserves clear duplicate-reference failure on ambiguous normalized `task_key`
-- verified `task update-status` rejects ambiguous normalized `task_key` references without mutation
-- verified `task delete` rejects ambiguous normalized `task_key` references without mutation
-- verified `task set-dependencies` rejects ambiguous target references without mutation
-- verified `task set-dependencies` rejects ambiguous dependency references without mutation
+- verified the pushed live repo contains slice 6 deterministic task ID namespace separation in `task_key` write validation
+- verified reserved task ID namespace rejection now exists in `prepare_task_key_for_write(...)`
+- verified normalized `task_key` values matching `task-###` are rejected before save
+- verified valid normalized non-reserved `task_key` values still save correctly
 - added repo-aligned CLI tests for:
-  - ambiguous task reference handling in `task show`
-  - ambiguous task reference handling in `task update-status`
-  - ambiguous task reference handling in `task delete`
-  - ambiguous target reference handling in `task set-dependencies`
-  - ambiguous dependency reference handling in `task set-dependencies`
-- validated the full local suite after slice 5 implementation:
-  - `73 passed in 6.24s`
-- validated targeted ambiguity CLI tests after slice 5 implementation:
-  - `5 passed, 31 deselected in 0.84s`
-- manually verified no-mutation behavior using a temporary duplicate-`task_key` verification state
+  - reserved task ID namespace rejection on `TASK-001`
+  - reserved task ID namespace rejection on ` task_001 `
+  - reserved task ID namespace rejection on `Task 001`
+- validated the full local suite after slice 6 implementation:
+  - `76 passed in 6.57s`
+- validated targeted reserved-namespace CLI tests after slice 6 implementation:
+  - `3 passed, 36 deselected in 0.54s`
+- manually verified reserved namespace rejection using a temporary empty-state verification payload
+- manually verified normal key add behavior remained valid
 - restored `data/state/state.json` after manual verification
 - verified clean git working tree after restore
-- committed and pushed the slice 5 implementation to `origin/main`
+- committed and pushed the slice 6 implementation to `origin/main`
 - verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 6 planning checkpoint
+Milestone 4 slice 7 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 5 ambiguous-reference handling
+- lock the next narrow Indexing Layer slice after slice 6 task ID namespace separation
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 6 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 7 scope or implementation until the planning checkpoint is recorded
