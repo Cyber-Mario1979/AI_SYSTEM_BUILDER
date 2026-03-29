@@ -981,4 +981,296 @@ def test_load_validated_state_accepts_legacy_task_without_duration(tmp_path):
     assert state.tasks[0].start_date is None
     assert state.tasks[0].end_date is None
 
-    
+def test_task_set_dependencies_resolves_dependency_inputs_by_task_key(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "review-fat-package",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "TASK-003",
+        " prepare-fat ",
+        "execute-fat",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "Task dependencies updated: TASK-003 -> ['TASK-001', 'TASK-002']"
+        in result.stdout
+    )
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
+    assert target_task["dependencies"] == ["TASK-001", "TASK-002"]
+
+
+def test_task_set_dependencies_allows_mixed_task_id_and_task_key_inputs(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "review-fat-package",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "review-fat-package",
+        "TASK-001",
+        " execute-fat ",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "Task dependencies updated: TASK-003 -> ['TASK-001', 'TASK-002']"
+        in result.stdout
+    )
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
+    assert target_task["dependencies"] == ["TASK-001", "TASK-002"]
+
+
+def test_task_set_dependencies_preserves_unknown_dependency_contract_for_task_key_input(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "review-fat-package",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "TASK-003",
+        "prepare-fat",
+        "missing-key",
+    )
+
+    assert result.returncode == 0
+    assert "Dependency validation failed:" in result.stdout
+    assert "- Dependency task not found: missing-key" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
+    assert target_task["dependencies"] == []
+
+
+def test_task_set_dependencies_preserves_self_dependency_validation_through_task_key_resolution(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "review-fat-package",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-dependencies",
+        "review-fat-package",
+        "review-fat-package",
+    )
+
+    assert result.returncode == 0
+    assert "Dependency validation failed:" in result.stdout
+    assert "- Task cannot depend on itself: TASK-003" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
+    assert target_task["dependencies"] == []

@@ -245,20 +245,37 @@ def handle_task_set_dependencies(args):
         print(f"- Task not found: {args.task_id}")
         return
 
+    resolved_dependency_ids = []
+    dependency_resolution_errors = []
+
+    for dependency_ref in args.dependencies:
+        dependency_task = find_task_by_reference(state.tasks, dependency_ref)
+        if dependency_task is None:
+            dependency_resolution_errors.append(
+                f"Dependency task not found: {dependency_ref}"
+            )
+            continue
+
+        resolved_dependency_ids.append(dependency_task.task_id)
+
     _updated_task, validation_errors = set_task_dependencies(
         state.tasks,
         target_task.task_id,
-        args.dependencies,
+        resolved_dependency_ids,
     )
 
-    if validation_errors:
+    all_errors = dependency_resolution_errors + validation_errors
+
+    if all_errors:
         print("Dependency validation failed:")
-        for error in validation_errors:
+        for error in all_errors:
             print(f"- {error}")
         return
 
     save_validated_state(state)
-    print(f"Task dependencies updated: {target_task.task_id} -> {args.dependencies}")
+    print(
+        f"Task dependencies updated: {target_task.task_id} -> {resolved_dependency_ids}"
+    )
 
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
