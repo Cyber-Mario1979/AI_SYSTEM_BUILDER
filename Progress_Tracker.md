@@ -202,16 +202,83 @@ Reality snapshot:
     - `task set-dependencies "review-fat-package" "review-fat-package"`
   - manual persisted-storage verification through:
     - `task show TASK-003`
-    - stored dependencies remained:
-      - `TASK-001`
-      - `TASK-002`
-- Milestone 4 remains in progress after slice 4 implementation:
-  - slice 5 planning is still pending
+    - stored dependencies remained: - `TASK-001` - `TASK-002`
+      the Milestone 4 slice 5 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic ambiguous-reference handling across task reference surfaces
+- the slice 5 scope boundary is locked as:
+  - apply ambiguity handling across existing task reference surfaces only:
+    - `task show`
+    - `task update-status`
+    - `task delete`
+    - `task set-dependencies` target reference
+    - `task set-dependencies` dependency input references
+  - preserve exact `task_id` priority as the primary identity surface
+  - preserve normalized `task_key` as the secondary reference surface only
+  - fail clearly and deterministically when normalized `task_key` resolution is ambiguous
+  - preserve no-mutation behavior on ambiguous reference failure
+  - do not add new indexing surfaces in this slice
+- Milestone 4 slice 5 is now implemented in the current verified live repo as:
+  - deterministic ambiguous-reference handling across existing task reference surfaces
+  - `task show` preserves clear failure on duplicate normalized `task_key` reference
+  - `task update-status` now fails clearly on ambiguous normalized `task_key` reference without mutation
+  - `task delete` now fails clearly on ambiguous normalized `task_key` reference without mutation
+  - `task set-dependencies` now fails clearly on ambiguous target references without mutation
+  - `task set-dependencies` now fails clearly on ambiguous dependency references without mutation
+  - duplicate-reference failure content remains deterministic through:
+    - `Duplicate task_key detected for reference: <normalized_reference>`
+- Milestone 4 slice 5 was manually verified in this session through:
+  - temporary manual verification state creation with duplicate normalized `task_key` values:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `Prepare FAT`
+    - `TASK-003` / `review-fat-package`
+  - manual `task show prepare-fat` ambiguity pass
+  - manual `task update-status prepare-fat in_progress` ambiguity pass without mutation
+  - manual `task delete prepare-fat` ambiguity pass without mutation
+  - manual `task set-dependencies prepare-fat TASK-003` ambiguity pass without mutation
+  - manual `task set-dependencies TASK-003 prepare-fat` ambiguity pass without mutation
+  - manual `task show TASK-001` state-preservation pass
+  - manual `task show TASK-002` state-preservation pass
+  - manual `task show TASK-003` state-preservation pass confirming dependencies remained:
+    - `TASK-002`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore
+  - local commit and push after slice 5 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 5 implementation:
+  - slice 6 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `73 passed in 6.24s`
+- targeted local ambiguity CLI tests verified in this session:
+  - `5 passed, 31 deselected in 0.84s`
+- manual Milestone 4 slice 5 verification completed in this session:
+  - `task show prepare-fat` preserved:
+    - `Duplicate task_key detected for reference: prepare-fat`
+  - `task update-status prepare-fat in_progress` preserved:
+    - `Duplicate task_key detected for reference: prepare-fat`
+  - `task delete prepare-fat` preserved:
+    - `Duplicate task_key detected for reference: prepare-fat`
+  - `task set-dependencies prepare-fat TASK-003` preserved:
+    - `Dependency validation failed:`
+    - `- Duplicate task_key detected for reference: prepare-fat`
+  - `task set-dependencies TASK-003 prepare-fat` preserved:
+    - `Dependency validation failed:`
+    - `- Duplicate task_key detected for reference: prepare-fat`
+  - `task show TASK-001` confirmed no mutation
+  - `task show TASK-002` confirmed no mutation
+  - `task show TASK-003` confirmed no mutation and preserved dependencies:
+    - `TASK-002`
+  - `data/state/state.json` was restored with `git restore`
+  - `git status` was clean for the intended implementation files before commit
+  - local commit completed with:
+    - `implement deterministic ambiguous-reference handling for task commands`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `68 passed in 5.82s`
 - targeted local dependency CLI tests verified in this session:
@@ -289,9 +356,10 @@ Reality snapshot:
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current local repo verifies cleanly at the test-suite level after the slice 4 implementation and targeted validation
-  - manual slice 4 verification used a temporary verification state payload
-  - restore of `data/state/state.json` after the temporary slice 4 manual verification has not been re-verified in this tracker update
+  - the current local repo verifies cleanly at the test-suite level after the slice 5 implementation and targeted validation
+  - manual slice 5 verification used a temporary verification state payload
+  - `data/state/state.json` was restored after the temporary slice 5 manual verification
+  - the live repo was pushed after slice 5 verification and the working tree was clean after push
 
 ## Current snapshot evidence reviewed in this session
 
@@ -407,6 +475,35 @@ Reality snapshot:
   - manual unknown dependency contract pass through task_key dependency input
   - manual self-dependency validation pass through task_key dependency input
   - manual `task show TASK-003` persisted-storage verification pass after slice 4 manual verification
+  - Milestone 4 slice 5 planning checkpoint lock
+  - narrow slice 5 lock as deterministic ambiguous-reference handling across task reference surfaces
+  - slice 5 scope lock for:
+    - `task show`
+    - `task update-status`
+    - `task delete`
+    - `task set-dependencies` target reference
+    - `task set-dependencies` dependency input references
+  - repo-aligned local `cli.py` patching for slice 5 ambiguity handling and no-mutation preservation
+  - repo-aligned `tests/test_task_cli.py` updates for slice 5 ambiguity coverage
+  - green full-suite validation after the slice 5 local patch:
+    - `73 passed in 6.24s`
+  - targeted local ambiguity CLI test pass:
+    - `5 passed, 31 deselected in 0.84s`
+  - temporary manual verification state creation for slice 5 CLI verification
+  - manual `task show` ambiguity pass
+  - manual `task update-status` ambiguity pass without mutation
+  - manual `task delete` ambiguity pass without mutation
+  - manual ambiguous-target `task set-dependencies` pass without mutation
+  - manual ambiguous-dependency `task set-dependencies` pass without mutation
+  - manual `task show TASK-001` state-preservation verification pass
+  - manual `task show TASK-002` state-preservation verification pass
+  - manual `task show TASK-003` state-preservation verification pass
+  - manual `git restore data/state/state.json` pass after slice 5 verification
+  - clean `git status` verification after restore
+  - local slice 5 commit creation
+  - local slice 5 push to `origin/main`
+  - post-push clean `git status` verification
+  - live repo re-fetch confirmation after push showing slice 5 patch present in `asbp/cli.py`
 
 ## Current verified code snapshot
 
@@ -451,6 +548,12 @@ Reality snapshot:
 - `task set-dependencies` now resolves dependency inputs by exact `task_id` first, then normalized `task_key`
 - resolved dependency inputs are persisted as `task_id` only
 - dependency validation output contract remains preserved in the live slice 4 implementation
+- `task show` fails clearly on ambiguous normalized `task_key` references
+- `task update-status` fails clearly on ambiguous normalized `task_key` references without mutation
+- `task delete` fails clearly on ambiguous normalized `task_key` references without mutation
+- `task set-dependencies` fails clearly on ambiguous target references without mutation
+- `task set-dependencies` fails clearly on ambiguous dependency references without mutation
+- duplicate-reference handling preserves deterministic no-guess behavior across current task reference surfaces
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
@@ -461,41 +564,43 @@ Reality snapshot:
 - manual Milestone 4 slice 3 verification confirms deterministic mutation-command target resolution by both `task_id` and normalized `task_key`
 - manual Milestone 4 slice 4 verification confirms deterministic dependency-input resolution by both `task_id` and normalized `task_key`
 - manual Milestone 4 slice 4 verification confirms persisted dependency storage remains `task_id`-only after reference resolution
+- manual Milestone 4 slice 5 verification confirms deterministic no-mutation behavior for ambiguous secondary task references across current task command surfaces
 
 ## Latest completed step
 
-Milestone 4 slice 4 implementation checkpoint
+Milestone 4 slice 5 implementation checkpoint
 
 Completed:
 
-- verified the local repo contains slice 4 dependency-reference resolution expansion in `task set-dependencies`
-- verified dependency inputs now resolve by:
-  - exact `task_id`
-  - normalized `task_key`
-- verified resolved dependency references persist as:
-  - `task_id` only
+- verified the pushed live repo contains slice 5 deterministic ambiguous-reference handling across current task command surfaces
+- verified `task show` preserves clear duplicate-reference failure on ambiguous normalized `task_key`
+- verified `task update-status` rejects ambiguous normalized `task_key` references without mutation
+- verified `task delete` rejects ambiguous normalized `task_key` references without mutation
+- verified `task set-dependencies` rejects ambiguous target references without mutation
+- verified `task set-dependencies` rejects ambiguous dependency references without mutation
 - added repo-aligned CLI tests for:
-  - dependency input resolution by `task_key`
-  - mixed `task_id` / `task_key` dependency inputs
-  - unknown dependency contract preservation
-  - self-dependency validation through `task_key` resolution
-- validated the full local suite after slice 4 implementation:
-  - `68 passed in 5.82s`
-- validated targeted dependency CLI tests after slice 4 implementation:
-  - `8 passed, 23 deselected in 1.32s`
-- manually verified persisted dependency storage through:
-  - `task show TASK-003`
-- manually verified CLI contract preservation for:
-  - unknown dependency through dependency-reference resolution
-  - self-dependency through dependency-reference resolution
+  - ambiguous task reference handling in `task show`
+  - ambiguous task reference handling in `task update-status`
+  - ambiguous task reference handling in `task delete`
+  - ambiguous target reference handling in `task set-dependencies`
+  - ambiguous dependency reference handling in `task set-dependencies`
+- validated the full local suite after slice 5 implementation:
+  - `73 passed in 6.24s`
+- validated targeted ambiguity CLI tests after slice 5 implementation:
+  - `5 passed, 31 deselected in 0.84s`
+- manually verified no-mutation behavior using a temporary duplicate-`task_key` verification state
+- restored `data/state/state.json` after manual verification
+- verified clean git working tree after restore
+- committed and pushed the slice 5 implementation to `origin/main`
+- verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 5 planning checkpoint
+Milestone 4 slice 6 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 4 dependency-reference resolution expansion
+- lock the next narrow Indexing Layer slice after slice 5 ambiguous-reference handling
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 5 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 6 scope or implementation until the planning checkpoint is recorded
