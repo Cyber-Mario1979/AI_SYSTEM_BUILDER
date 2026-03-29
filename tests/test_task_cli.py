@@ -945,7 +945,46 @@ def test_task_add_rejects_duplicate_normalized_task_key_without_saving(restore_s
 
     saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     assert len(saved_state["tasks"]) == 1
+@pytest.mark.parametrize(
+    "raw_task_key",
+    [
+        "TASK-001",
+        " task_001 ",
+        "Task 001",
+    ],
+)
 
+def test_task_add_rejects_reserved_task_id_namespace_task_key_without_saving(
+    restore_state_file,
+    raw_task_key,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "add",
+        "Reserved key task",
+        "--task-key",
+        raw_task_key,
+    )
+
+    assert result.returncode == 0
+    assert "Reserved task_key namespace is not allowed: task-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"] == []
 
 def test_load_validated_state_accepts_legacy_task_without_duration(tmp_path):
     state_file = tmp_path / "state.json"
@@ -1490,6 +1529,7 @@ def test_task_set_dependencies_rejects_ambiguous_target_reference_without_saving
     )
 
     result = run_cli("task", "set-dependencies", "prepare-fat", "TASK-003")
+    
 
     assert result.returncode == 0
     assert "Dependency validation failed:" in result.stdout

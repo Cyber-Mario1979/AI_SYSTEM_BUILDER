@@ -6,6 +6,10 @@ from asbp.state_model import TaskModel
 
 TaskStatus = Literal["planned", "in_progress", "completed", "over_due"]
 
+_TASK_KEY_INVALID_CHARS_RE = re.compile(r"[^a-z0-9-]")
+_TASK_KEY_REPEAT_HYPHENS_RE = re.compile(r"-+")
+_TASK_KEY_RESERVED_TASK_ID_NAMESPACE_RE = re.compile(r"task-\d{3}")
+
 
 def generate_next_task_id(tasks: list[TaskModel]) -> str:
     if not tasks:
@@ -195,10 +199,6 @@ def validate_task_completion_readiness(
 
     return errors 
    
-_TASK_KEY_INVALID_CHARS_RE = re.compile(r"[^a-z0-9-]")
-_TASK_KEY_REPEAT_HYPHENS_RE = re.compile(r"-+")
-
-
 def normalize_task_key(value: str | None) -> str | None:
     if value is None:
         return None
@@ -251,6 +251,11 @@ def prepare_task_key_for_write(tasks: list[TaskModel], task_key: str | None) -> 
     normalized_task_key = normalize_task_key(task_key)
     if normalized_task_key is None:
         raise ValueError(f"Invalid task_key: {task_key}")
+
+    if _TASK_KEY_RESERVED_TASK_ID_NAMESPACE_RE.fullmatch(normalized_task_key):
+        raise ValueError(
+        f"Reserved task_key namespace is not allowed: {normalized_task_key}"
+    )
 
     for task in tasks:
         existing_task_key = normalize_task_key(getattr(task, "task_key", None))
