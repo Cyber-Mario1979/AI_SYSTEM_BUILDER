@@ -15,6 +15,7 @@ from asbp.task_logic import (
     prepare_task_key_for_write,
     set_task_dependencies,
     update_task_status,
+    validate_persisted_task_keys,
 )
 
 VERSION = "0.1.0"
@@ -44,7 +45,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("start_date", None)
         task.setdefault("end_date", None)
         task.setdefault("task_key", None)
-    return StateModel(**raw_state)
+
+    state = StateModel(**raw_state)
+    validate_persisted_task_keys(state.tasks)
+    return state
 
 
 def save_validated_state(state: StateModel) -> None:
@@ -85,6 +89,11 @@ def load_state_or_none() -> StateModel | None:
     except json.JSONDecodeError as e:
         print(f"Invalid JSON in state file: {e}")
         return None
+    except ValueError as e:
+        print("State validation failed:")
+        print(e)
+        return None
+
 
 def handle_state_show(args):
     state = load_state_or_none()

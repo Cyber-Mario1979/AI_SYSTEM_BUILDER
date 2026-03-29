@@ -265,3 +265,22 @@ def prepare_task_key_for_write(tasks: list[TaskModel], task_key: str | None) -> 
             )
 
     return normalized_task_key
+def validate_persisted_task_keys(tasks: list[TaskModel]) -> None:
+    seen_task_keys: set[str] = set()
+
+    for task in tasks:
+        normalized_task_key = normalize_task_key(getattr(task, "task_key", None))
+        if normalized_task_key is None:
+            continue
+
+        if _TASK_KEY_RESERVED_TASK_ID_NAMESPACE_RE.fullmatch(normalized_task_key):
+            raise ValueError(
+                f"Reserved task_key namespace is not allowed: {normalized_task_key}"
+            )
+
+        if normalized_task_key in seen_task_keys:
+            raise ValueError(
+                f"Duplicate task_key is not allowed: {normalized_task_key}"
+            )
+
+        seen_task_keys.add(normalized_task_key)

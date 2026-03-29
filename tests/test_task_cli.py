@@ -1359,7 +1359,9 @@ def test_task_show_rejects_ambiguous_task_key_reference(restore_state_file):
     result = run_cli("task", "show", "prepare-fat")
 
     assert result.returncode == 0
-    assert "Duplicate task_key detected for reference: prepare-fat" in result.stdout
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
+
 
 
 def test_task_update_status_rejects_ambiguous_task_key_reference_without_saving(
@@ -1409,11 +1411,9 @@ def test_task_update_status_rejects_ambiguous_task_key_reference_without_saving(
     result = run_cli("task", "update-status", "prepare-fat", "in_progress")
 
     assert result.returncode == 0
-    assert "Duplicate task_key detected for reference: prepare-fat" in result.stdout
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
 
-    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    assert saved_state["tasks"][0]["status"] == "planned"
-    assert saved_state["tasks"][1]["status"] == "planned"
 
 
 def test_task_delete_rejects_ambiguous_task_key_reference_without_saving(
@@ -1463,12 +1463,9 @@ def test_task_delete_rejects_ambiguous_task_key_reference_without_saving(
     result = run_cli("task", "delete", "prepare-fat")
 
     assert result.returncode == 0
-    assert "Duplicate task_key detected for reference: prepare-fat" in result.stdout
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
 
-    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    assert len(saved_state["tasks"]) == 2
-    assert saved_state["tasks"][0]["task_id"] == "TASK-001"
-    assert saved_state["tasks"][1]["task_id"] == "TASK-002"
 
 
 def test_task_set_dependencies_rejects_ambiguous_target_reference_without_saving(
@@ -1529,15 +1526,11 @@ def test_task_set_dependencies_rejects_ambiguous_target_reference_without_saving
     )
 
     result = run_cli("task", "set-dependencies", "prepare-fat", "TASK-003")
-    
 
     assert result.returncode == 0
-    assert "Dependency validation failed:" in result.stdout
-    assert "- Duplicate task_key detected for reference: prepare-fat" in result.stdout
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
 
-    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
-    assert target_task["dependencies"] == ["TASK-001"]
 
 
 def test_task_set_dependencies_rejects_ambiguous_dependency_reference_without_saving(
@@ -1600,9 +1593,77 @@ def test_task_set_dependencies_rejects_ambiguous_dependency_reference_without_sa
     result = run_cli("task", "set-dependencies", "TASK-003", "prepare-fat")
 
     assert result.returncode == 0
-    assert "Dependency validation failed:" in result.stdout
-    assert "- Duplicate task_key detected for reference: prepare-fat" in result.stdout
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
 
-    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    target_task = next(task for task in saved_state["tasks"] if task["task_id"] == "TASK-003")
-    assert target_task["dependencies"] == ["TASK-002"]
+
+
+def test_load_validated_state_rejects_reserved_persisted_task_key_namespace(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "order": 1,
+      "title": "Reserved key task",
+      "status": "planned",
+      "task_key": "Task 001",
+      "dependencies": []
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Reserved task_key namespace is not allowed: task-001",
+    ):
+        load_validated_state(state_file)
+
+
+def test_task_list_rejects_duplicate_normalized_persisted_task_key_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT A",
+                        "status": "planned",
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Prepare FAT B",
+                        "status": "planned",
+                        "task_key": "Prepare FAT",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    assert "State validation failed:" in result.stdout
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout

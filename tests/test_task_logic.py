@@ -9,6 +9,7 @@ from asbp.task_logic import (
     find_task_by_reference,
     normalize_task_key,
     prepare_task_key_for_write,
+    validate_persisted_task_keys,
 )
 
 def test_filter_tasks_by_status_only():
@@ -379,6 +380,50 @@ def test_find_task_by_reference_falls_back_to_task_key():
     assert task is not None
     assert task.task_id == "TASK-001"
 
+def test_validate_persisted_task_keys_rejects_reserved_task_id_namespace():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="task_001",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Reserved task_key namespace is not allowed: task-001",
+    ):
+        validate_persisted_task_keys(tasks)
+
+
+def test_validate_persisted_task_keys_rejects_duplicate_normalized_task_key():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Task B",
+            task_key="Prepare FAT",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate task_key is not allowed: prepare-fat",
+    ):
+        validate_persisted_task_keys(tasks)
 
 def test_find_task_by_reference_raises_on_duplicate_task_key():
     tasks = [
