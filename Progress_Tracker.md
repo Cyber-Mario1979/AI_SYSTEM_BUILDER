@@ -173,14 +173,62 @@ Reality snapshot:
   - manual dependency-validation contract pass through normalized `task_key` target
   - restore of `data/state/state.json` after manual verification
   - clean git working tree verification after restore
-- Milestone 4 remains in progress after slice 3 implementation:
-  - slice 4 planning is still pending
+- the Milestone 4 slice 4 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependency reference resolution expansion
+- the slice 4 scope boundary is locked as:
+  - expand dependency input resolution in:
+    - `task set-dependencies`
+  - resolve each dependency input by exact `task_id` first, then normalized `task_key`
+  - preserve `task_id` as storage identity for persisted dependencies
+  - preserve existing CLI contract / output behavior
+  - do not add new indexing surfaces in this slice
+- Milestone 4 slice 4 is now implemented in the current verified local repo as:
+  - deterministic dependency reference resolution expansion in `task set-dependencies`
+  - dependency inputs resolve by exact `task_id` first, then normalized `task_key`
+  - resolved dependency references persist as `task_id` only
+  - dependency validation output contract is preserved:
+    - `Dependency validation failed:`
+    - `- <error>`
+- Milestone 4 slice 4 was manually verified in this session through:
+  - temporary manual verification state creation with:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `execute-fat`
+    - `TASK-003` / `review-fat-package`
+  - manual `task set-dependencies "review-fat-package" TASK-001 " execute-fat "` success pass
+  - manual unknown dependency contract pass through:
+    - `task set-dependencies TASK-003 "prepare-fat" "missing-key"`
+  - manual self-dependency validation contract pass through:
+    - `task set-dependencies "review-fat-package" "review-fat-package"`
+  - manual persisted-storage verification through:
+    - `task show TASK-003`
+    - stored dependencies remained:
+      - `TASK-001`
+      - `TASK-002`
+- Milestone 4 remains in progress after slice 4 implementation:
+  - slice 5 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
 - fresh local full-suite result verified in this session:
+  - `68 passed in 5.82s`
+- targeted local dependency CLI tests verified in this session:
+  - `8 passed, 23 deselected in 1.32s`
+- manual Milestone 4 slice 4 verification completed in this session:
+  - `task set-dependencies "review-fat-package" TASK-001 " execute-fat "` succeeded with:
+    - `Task dependencies updated: TASK-003 -> ['TASK-001', 'TASK-002']`
+  - `task set-dependencies TASK-003 "prepare-fat" "missing-key"` preserved:
+    - `Dependency validation failed:`
+    - `- Dependency task not found: missing-key`
+  - `task set-dependencies "review-fat-package" "review-fat-package"` preserved:
+    - `Dependency validation failed:`
+    - `- Task cannot depend on itself: TASK-003`
+  - `task show TASK-003` confirmed persisted dependencies as:
+    - `TASK-001`
+    - `TASK-002`
+- previous fresh local full-suite result verified in this session:
   - `64 passed in 4.90s`
 - manual Milestone 4 slice 3 verification completed in this session:
   - `task update-status TASK-001 in_progress` succeeded
@@ -241,8 +289,9 @@ Reality snapshot:
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current live repo verifies cleanly at the test-suite level after the slice 3 manual verification
-  - Milestone 4 slice 3 implementation checkpoint is now fully verified
+  - the current local repo verifies cleanly at the test-suite level after the slice 4 implementation and targeted validation
+  - manual slice 4 verification used a temporary verification state payload
+  - restore of `data/state/state.json` after the temporary slice 4 manual verification has not been re-verified in this tracker update
 
 ## Current snapshot evidence reviewed in this session
 
@@ -343,6 +392,21 @@ Reality snapshot:
   - clean `git status` verification after restore
   - green full-suite validation after slice 3 manual verification:
     - `64 passed in 4.90s`
+  - Milestone 4 slice 4 planning checkpoint lock
+  - narrow slice 4 lock as deterministic dependency reference resolution expansion
+  - slice 4 scope lock for:
+    - `task set-dependencies` dependency inputs
+  - repo-aligned local `cli.py` patching for slice 4 dependency input resolution and CLI contract preservation
+  - repo-aligned `tests/test_task_cli.py` updates for slice 4 dependency input coverage
+  - green full-suite validation after the slice 4 local patch:
+    - `68 passed in 5.82s`
+  - targeted local dependency CLI test pass:
+    - `8 passed, 23 deselected in 1.32s`
+  - temporary manual verification state creation for slice 4 CLI verification
+  - manual `task set-dependencies` mixed reference success pass
+  - manual unknown dependency contract pass through task_key dependency input
+  - manual self-dependency validation pass through task_key dependency input
+  - manual `task show TASK-003` persisted-storage verification pass after slice 4 manual verification
 
 ## Current verified code snapshot
 
@@ -384,7 +448,9 @@ Reality snapshot:
 - `task update-status` now resolves the target task by exact `task_id` first, then normalized `task_key`
 - `task delete` now resolves the target task by exact `task_id` first, then normalized `task_key`
 - `task set-dependencies` now resolves the target task by exact `task_id` first, then normalized `task_key`
-- dependency validation output contract remains preserved in the live slice 3 implementation
+- `task set-dependencies` now resolves dependency inputs by exact `task_id` first, then normalized `task_key`
+- resolved dependency inputs are persisted as `task_id` only
+- dependency validation output contract remains preserved in the live slice 4 implementation
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
@@ -393,39 +459,43 @@ Reality snapshot:
 - manual Milestone 4 slice 2 verification confirms deterministic `task_key` write-path behavior without reopening Milestone 2 behavior
 - current local validation confirms the `description`, `owner`, `duration`, `start_date`, `end_date`, and `task_key` surfaces without reopening Milestone 2 behavior
 - manual Milestone 4 slice 3 verification confirms deterministic mutation-command target resolution by both `task_id` and normalized `task_key`
-- clean restore verification confirms temporary slice 3 validation state was removed after UAT
+- manual Milestone 4 slice 4 verification confirms deterministic dependency-input resolution by both `task_id` and normalized `task_key`
+- manual Milestone 4 slice 4 verification confirms persisted dependency storage remains `task_id`-only after reference resolution
 
 ## Latest completed step
 
-Milestone 4 slice 3 implementation checkpoint
+Milestone 4 slice 4 implementation checkpoint
 
 Completed:
 
-- verified the live repo contains slice 3 mutation-command target resolution expansion across existing task mutation commands
-- manually verified `task update-status` by:
+- verified the local repo contains slice 4 dependency-reference resolution expansion in `task set-dependencies`
+- verified dependency inputs now resolve by:
   - exact `task_id`
   - normalized `task_key`
-- manually verified `task delete` by:
-  - exact `task_id`
-  - normalized `task_key`
-- manually verified `task set-dependencies` by:
-  - exact `task_id`
-  - normalized `task_key`
-- verified CLI contract preservation for:
-  - unknown target dependency validation
-  - dependency validation errors through normalized `task_key` target resolution
-- restored `data/state/state.json` after manual verification
-- verified clean git working tree after restore
-- validated the full local suite after slice 3 manual verification:
-  - `64 passed in 4.90s`
+- verified resolved dependency references persist as:
+  - `task_id` only
+- added repo-aligned CLI tests for:
+  - dependency input resolution by `task_key`
+  - mixed `task_id` / `task_key` dependency inputs
+  - unknown dependency contract preservation
+  - self-dependency validation through `task_key` resolution
+- validated the full local suite after slice 4 implementation:
+  - `68 passed in 5.82s`
+- validated targeted dependency CLI tests after slice 4 implementation:
+  - `8 passed, 23 deselected in 1.32s`
+- manually verified persisted dependency storage through:
+  - `task show TASK-003`
+- manually verified CLI contract preservation for:
+  - unknown dependency through dependency-reference resolution
+  - self-dependency through dependency-reference resolution
 
 ## Exact next unfinished step
 
-Milestone 4 slice 4 planning checkpoint
+Milestone 4 slice 5 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 3 mutation-command target resolution expansion
+- lock the next narrow Indexing Layer slice after slice 4 dependency-reference resolution expansion
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 4 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 5 scope or implementation until the planning checkpoint is recorded
