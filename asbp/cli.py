@@ -188,7 +188,12 @@ def handle_task_update_status(args):
     if state is None:
         return
 
-    target_task = find_task_by_reference(state.tasks, args.task_id)
+    try:
+        target_task = find_task_by_reference(state.tasks, args.task_id)
+    except ValueError as e:
+        print(str(e))
+        return
+
     if target_task is None:
         print(f"Task not found: {args.task_id}")
         return
@@ -196,13 +201,19 @@ def handle_task_update_status(args):
     update_task_status(state.tasks, target_task.task_id, args.status)
     save_validated_state(state)
     print(f"Task status updated: {target_task.task_id} -> {args.status}")
-     
+
+
 def handle_task_delete(args):
     state = load_state_or_none()
     if state is None:
         return
 
-    target_task = find_task_by_reference(state.tasks, args.task_id)
+    try:
+        target_task = find_task_by_reference(state.tasks, args.task_id)
+    except ValueError as e:
+        print(str(e))
+        return
+
     if target_task is None:
         print(f"Task not found: {args.task_id}")
         return
@@ -239,7 +250,13 @@ def handle_task_set_dependencies(args):
     if state is None:
         return
 
-    target_task = find_task_by_reference(state.tasks, args.task_id)
+    try:
+        target_task = find_task_by_reference(state.tasks, args.task_id)
+    except ValueError as e:
+        print("Dependency validation failed:")
+        print(f"- {str(e)}")
+        return
+
     if target_task is None:
         print("Dependency validation failed:")
         print(f"- Task not found: {args.task_id}")
@@ -249,7 +266,12 @@ def handle_task_set_dependencies(args):
     dependency_resolution_errors = []
 
     for dependency_ref in args.dependencies:
-        dependency_task = find_task_by_reference(state.tasks, dependency_ref)
+        try:
+            dependency_task = find_task_by_reference(state.tasks, dependency_ref)
+        except ValueError as e:
+            dependency_resolution_errors.append(str(e))
+            continue
+
         if dependency_task is None:
             dependency_resolution_errors.append(
                 f"Dependency task not found: {dependency_ref}"
