@@ -141,13 +141,44 @@ Reality snapshot:
   - manual duplicate normalized `task_key` rejection
   - cleanup of temporary patch/script artifacts
   - restore of `data/state/state.json` after manual verification
-- Milestone 4 remains in progress after slice 2:
+- the Milestone 4 slice 3 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic task reference resolution expansion across existing task mutation commands
+- the slice 3 scope boundary is locked as:
+  - expand target-task resolution in:
+    - `task update-status`
+    - `task delete`
+    - `task set-dependencies`
+  - resolve by exact `task_id` first, then normalized `task_key`
+  - preserve `task_id` as storage identity
+  - preserve existing CLI contract / output behavior
+  - keep dependency payload inputs `task_id`-based in this slice
+- current local slice 3 implementation evidence now shows:
+  - `task update-status` target resolution uses `find_task_by_reference(...)`
+  - `task delete` target resolution uses `find_task_by_reference(...)`
+  - `task set-dependencies` target resolution uses `find_task_by_reference(...)`
+  - dependency validation output contract is preserved in the local patch:
+    - `Dependency validation failed:`
+    - `- <error>`
+- Milestone 4 remains in progress after slice 3 planning:
+  - slice 3 manual CLI verification is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
 - fresh local full-suite result verified in this session:
+  - `64 passed in 4.84s`
+- current local slice 3 code/test evidence reviewed in this session:
+  - full suite passes with the slice 3 patch present in the local editor
+  - `handle_task_update_status(...)` resolves the target task through `find_task_by_reference(...)`
+  - `handle_task_delete(...)` resolves the target task through `find_task_by_reference(...)`
+  - `handle_task_set_dependencies(...)` resolves the target task through `find_task_by_reference(...)`
+  - dependency validation output remains two-line in the local patch:
+    - `Dependency validation failed:`
+    - `- <error>`
+  - manual slice 3 CLI verification is not yet recorded in this session
+- previous fresh local full-suite result verified in this session:
   - `64 passed in 4.92s`
 - manual Milestone 4 slice 2 verification completed in this session:
   - `task add "Prepare FAT protocol" --task-key " Prepare_FAT Protocol "` succeeded
@@ -180,7 +211,8 @@ Reality snapshot:
 - previous green baseline recorded before the duration slice:
   - `52 passed`
 - note:
-  - the current live repo now verifies cleanly after the `task_key` write-path slice
+  - the current live repo verifies cleanly at the test-suite level after the slice 3 local patch
+  - slice 3 manual CLI verification is still pending before the implementation checkpoint can be claimed complete
 
 ## Current snapshot evidence reviewed in this session
 
@@ -256,6 +288,16 @@ Reality snapshot:
   - cleanup verification showing `apply_m4_slice2.py` removed
   - cleanup verification showing `m4_slice2.patch` removed
   - cleanup verification showing only intended implementation/test files remain modified in `git status`
+  - Milestone 4 slice 3 planning checkpoint lock
+  - narrow slice 3 lock as deterministic task reference resolution expansion across existing task mutation commands
+  - slice 3 scope lock for:
+    - `task update-status`
+    - `task delete`
+    - `task set-dependencies`
+  - iterative local `cli.py` patching for slice 3 target resolution and CLI contract preservation
+  - screenshot review confirming final local `handle_task_set_dependencies(...)` no longer reassigns the returned task payload back into `state.tasks`
+  - green full-suite validation after the slice 3 local patch:
+    - `64 passed in 4.84s`
 
 ## Current verified code snapshot
 
@@ -294,6 +336,11 @@ Reality snapshot:
 - `task add` now supports optional `--task-key`
 - `task add` now persists normalized `task_key` values
 - duplicate normalized `task_key` writes are rejected before save
+- current local slice 3 code evidence now shows:
+  - `task update-status` resolves the target task by exact `task_id` first, then normalized `task_key`
+  - `task delete` resolves the target task by exact `task_id` first, then normalized `task_key`
+  - `task set-dependencies` resolves the target task by exact `task_id` first, then normalized `task_key`
+  - dependency validation output contract remains preserved in the local patch
 - current live CLI uses a fixed state path at `data/state/state.json`
 - current live repo generates task IDs in `TASK-###` format during CLI task creation
 - manual closeout UAT confirms enriched task fields persist correctly from a fresh initialized state
@@ -301,44 +348,48 @@ Reality snapshot:
 - manual Milestone 4 slice 1 verification confirms deterministic task lookup by both `task_id` and `task_key`
 - manual Milestone 4 slice 2 verification confirms deterministic `task_key` write-path behavior without reopening Milestone 2 behavior
 - current local validation confirms the `description`, `owner`, `duration`, `start_date`, `end_date`, and `task_key` surfaces without reopening Milestone 2 behavior
+- current local test evidence confirms the slice 3 target-resolution expansion without reopening Milestone 2 behavior
+- manual slice 3 CLI verification is still pending
 
 ## Latest completed step
 
-Milestone 4 slice 2 implementation checkpoint
+Milestone 4 slice 3 planning checkpoint
 
 Completed:
 
-- added deterministic `task_key` write-path helper:
-  - `prepare_task_key_for_write(...)`
-- updated `task add` to:
-  - accept optional `--task-key`
-  - normalize `task_key` before save
-  - persist normalized `task_key`
-  - reject duplicate normalized `task_key` before save
-- added logic-level tests for:
-  - normalized `task_key` write-path success
-  - duplicate normalized `task_key` write-path failure
-- added CLI-level tests for:
-  - persisted normalized `task_key` on `task add`
-  - duplicate normalized `task_key` rejection without save
-- validated the full local suite:
-  - `64 passed in 4.92s`
-- manually verified:
-  - task add with `--task-key`
-  - task show by `task_id`
-  - task show by normalized `task_key`
-  - duplicate normalized `task_key` rejection
-  - cleanup of temporary patch/script artifacts
-  - restore of `data/state/state.json`
-  - isolation of intended implementation/test file changes in `git status`
+- locked the next narrow slice after `task_key` write-path support as:
+  - deterministic task reference resolution expansion across existing task mutation commands
+- locked slice 3 scope to:
+  - `task update-status`
+  - `task delete`
+  - `task set-dependencies`
+- locked deterministic resolution order as:
+  - exact `task_id`
+  - normalized `task_key`
+  - otherwise deterministic failure
+- preserved boundary rules for slice 3:
+  - `task_id` remains storage identity
+  - existing CLI contract / output behavior remains intact
+  - dependency payload inputs remain `task_id`-based in this slice
+- local slice 3 implementation patch now exists in current session evidence
+- validated the full local suite after the slice 3 patch:
+  - `64 passed in 4.84s`
+- note:
+  - manual slice 3 CLI verification is still pending before the implementation checkpoint can be claimed complete
 
 ## Exact next unfinished step
 
-Milestone 4 slice 3 planning checkpoint
+Milestone 4 slice 3 implementation checkpoint
 
 Next objective:
 
-- lock the next narrow Milestone 4 slice after `task_key` write-path support
-- stay inside the Indexing Layer milestone
+- manually verify slice 3 mutation-command target resolution by:
+  - exact `task_id`
+  - normalized `task_key` where applicable
+- verify CLI contract preservation for:
+  - `task update-status`
+  - `task delete`
+  - `task set-dependencies`
+- keep the slice inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- make no new code changes until the slice 3 planning checkpoint is completed
+- do not claim the slice 3 implementation checkpoint complete until manual verification is recorded

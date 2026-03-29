@@ -182,28 +182,32 @@ def handle_task_list(args):
     print("Tasks:")
     for task in tasks:
         print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
-        
+
 def handle_task_update_status(args):
     state = load_state_or_none()
-
     if state is None:
-        print("No state file found. Run 'state init' first.")
         return
 
-    try:
-        update_task_status(state.tasks, args.task_id, args.status)
-        save_validated_state(state)
-        print(f"Task status updated: {args.task_id} -> {args.status}")
-    except ValueError as e:
-        print(str(e))
+    target_task = find_task_by_reference(state.tasks, args.task_id)
+    if target_task is None:
+        print(f"Task not found: {args.task_id}")
+        return
 
+    update_task_status(state.tasks, target_task.task_id, args.status)
+    save_validated_state(state)
+    print(f"Task status updated: {target_task.task_id} -> {args.status}")
      
 def handle_task_delete(args):
     state = load_state_or_none()
     if state is None:
         return
 
-    updated_tasks, deleted_flag = delete_task_by_id(state.tasks, args.task_id)
+    target_task = find_task_by_reference(state.tasks, args.task_id)
+    if target_task is None:
+        print(f"Task not found: {args.task_id}")
+        return
+
+    updated_tasks, deleted_flag = delete_task_by_id(state.tasks, target_task.task_id)
 
     if not deleted_flag:
         print(f"Task not found: {args.task_id}")
@@ -211,7 +215,7 @@ def handle_task_delete(args):
 
     state.tasks = updated_tasks
     save_validated_state(state)
-    print(f"Task deleted: {args.task_id}")
+    print(f"Task deleted: {target_task.task_id}")
 
 def handle_task_show(args):
     state = load_state_or_none()
@@ -235,28 +239,27 @@ def handle_task_set_dependencies(args):
     if state is None:
         return
 
-    updated_task, errors = set_task_dependencies(
+    target_task = find_task_by_reference(state.tasks, args.task_id)
+    if target_task is None:
+        print("Dependency validation failed:")
+        print(f"- Task not found: {args.task_id}")
+        return
+
+    _updated_task, validation_errors = set_task_dependencies(
         state.tasks,
-        args.task_id,
+        target_task.task_id,
         args.dependencies,
     )
 
-    if errors:
+    if validation_errors:
         print("Dependency validation failed:")
-        for error in errors:
+        for error in validation_errors:
             print(f"- {error}")
         return
 
-    if updated_task is None:
-        print("Dependency validation failed:")
-        print("- Task update failed unexpectedly.")
-        return
-
     save_validated_state(state)
-    print(
-        f"Task dependencies updated: "
-        f"{updated_task.task_id} -> {updated_task.dependencies}"
-    )
+    print(f"Task dependencies updated: {target_task.task_id} -> {args.dependencies}")
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
