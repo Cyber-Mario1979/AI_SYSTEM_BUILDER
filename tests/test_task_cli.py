@@ -1167,6 +1167,171 @@ def test_task_set_key_rejects_reserved_task_id_namespace_without_saving(
     assert saved_state["tasks"][0]["task_key"] is None
 
 
+def test_task_clear_key_clears_persisted_task_key_by_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "clear-key", "TASK-001")
+
+    assert result.returncode == 0
+    assert "Task key cleared: TASK-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] is None
+
+
+def test_task_clear_key_resolves_target_by_existing_task_key(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "clear-key", " Prepare FAT ")
+
+    assert result.returncode == 0
+    assert "Task key cleared: TASK-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] is None
+
+
+def test_task_clear_key_removes_secondary_lookup_resolution(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    clear_result = run_cli("task", "clear-key", "TASK-001")
+
+    assert clear_result.returncode == 0
+    assert "Task key cleared: TASK-001" in clear_result.stdout
+
+    show_result = run_cli("task", "show", "prepare-fat")
+
+    assert show_result.returncode == 0
+    assert "Task not found: prepare-fat" in show_result.stdout
+
+
+def test_task_clear_key_handles_unknown_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "clear-key", "TASK-999")
+
+    assert result.returncode == 0
+    assert "Task not found: TASK-999" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] == "prepare-fat"
+
+
+def test_task_clear_key_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "clear-key", "TASK-001")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+
+
+
 @pytest.mark.parametrize(
     "raw_task_key",
     [
