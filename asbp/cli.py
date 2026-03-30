@@ -253,6 +253,36 @@ def handle_task_show(args):
         return
 
     print(json.dumps(task.model_dump(), indent=2))
+
+
+def handle_task_set_key(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    try:
+        target_task = find_task_by_reference(state.tasks, args.task_id)
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if target_task is None:
+        print(f"Task not found: {args.task_id}")
+        return
+
+    try:
+        normalized_task_key = prepare_task_key_for_write(
+            state.tasks,
+            args.task_key,
+            current_task_id=target_task.task_id,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    target_task.task_key = normalized_task_key
+    save_validated_state(state)
+    print(f"Task key updated: {target_task.task_id} -> {normalized_task_key}")
     
 def handle_task_set_dependencies(args):
     state = load_state_or_none()
@@ -364,6 +394,14 @@ def build_parser():
     task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
     task_show_parser.add_argument("task_id", help="Task ID to show")
     task_show_parser.set_defaults(func=handle_task_show)   
+
+    task_set_key_parser = task_subparsers.add_parser(
+        "set-key",
+        help="Set task key",
+    )
+    task_set_key_parser.add_argument("task_id", help="Task ID to update")
+    task_set_key_parser.add_argument("task_key", help="New deterministic task key")
+    task_set_key_parser.set_defaults(func=handle_task_set_key)
 
     task_update_status_parser = task_subparsers.add_parser("update-status", help="Update task status")
     task_update_status_parser.add_argument("task_id", help="Task ID to update")

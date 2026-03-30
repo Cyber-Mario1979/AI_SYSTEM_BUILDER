@@ -244,7 +244,12 @@ def find_task_by_reference(tasks, reference):
     return matches[0]
 
 
-def prepare_task_key_for_write(tasks: list[TaskModel], task_key: str | None) -> str | None:
+def prepare_task_key_for_write(
+    tasks: list[TaskModel],
+    task_key: str | None,
+    *,
+    current_task_id: str | None = None,
+) -> str | None:
     if task_key is None:
         return None
 
@@ -258,6 +263,9 @@ def prepare_task_key_for_write(tasks: list[TaskModel], task_key: str | None) -> 
     )
 
     for task in tasks:
+        if current_task_id is not None and task.task_id == current_task_id:
+            continue
+
         existing_task_key = normalize_task_key(getattr(task, "task_key", None))
         if existing_task_key == normalized_task_key:
             raise ValueError(

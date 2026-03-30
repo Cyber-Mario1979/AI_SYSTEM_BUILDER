@@ -467,3 +467,56 @@ def test_prepare_task_key_for_write_rejects_duplicate_normalized_task_key():
 
     with pytest.raises(ValueError, match="Duplicate task_key is not allowed"):
         prepare_task_key_for_write(tasks, "Prepare FAT Protocol")
+
+
+def test_prepare_task_key_for_write_allows_same_normalized_task_key_for_existing_task():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    assert (
+        prepare_task_key_for_write(
+            tasks,
+            " Prepare FAT ",
+            current_task_id="TASK-001",
+        )
+        == "prepare-fat"
+    )
+
+
+def test_prepare_task_key_for_write_rejects_duplicate_normalized_task_key_for_other_task_on_update():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Task A",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Task B",
+            task_key="execute-fat",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate task_key is not allowed: prepare-fat",
+    ):
+        prepare_task_key_for_write(
+            tasks,
+            "Prepare FAT",
+            current_task_id="TASK-002",
+        )

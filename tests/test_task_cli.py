@@ -945,6 +945,228 @@ def test_task_add_rejects_duplicate_normalized_task_key_without_saving(restore_s
 
     saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     assert len(saved_state["tasks"]) == 1
+
+
+def test_task_set_key_updates_normalized_task_key_by_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-key", "TASK-001", " Prepare_FAT ")
+
+    assert result.returncode == 0
+    assert "Task key updated: TASK-001 -> prepare-fat" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] == "prepare-fat"
+
+
+def test_task_set_key_resolves_target_by_existing_task_key(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-key",
+        " Prepare FAT ",
+        "Prepare FAT Protocol",
+    )
+
+    assert result.returncode == 0
+    assert "Task key updated: TASK-001 -> prepare-fat-protocol" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] == "prepare-fat-protocol"
+
+
+def test_task_set_key_allows_equivalent_normalized_value_for_same_task(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-key", "TASK-001", " Prepare FAT ")
+
+    assert result.returncode == 0
+    assert "Task key updated: TASK-001 -> prepare-fat" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] == "prepare-fat"
+
+
+def test_task_set_key_rejects_duplicate_normalized_task_key_without_saving(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-key", "TASK-002", "Prepare FAT")
+
+    assert result.returncode == 0
+    assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] == "prepare-fat"
+    assert saved_state["tasks"][1]["task_key"] == "execute-fat"
+
+
+@pytest.mark.parametrize(
+    "raw_task_key",
+    [
+        "TASK-002",
+        " task_002 ",
+        "Task 002",
+    ],
+)
+def test_task_set_key_rejects_reserved_task_id_namespace_without_saving(
+    restore_state_file,
+    raw_task_key,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-key", "TASK-001", raw_task_key)
+
+    assert result.returncode == 0
+    assert "Reserved task_key namespace is not allowed: task-002" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["task_key"] is None
+
+
 @pytest.mark.parametrize(
     "raw_task_key",
     [
