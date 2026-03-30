@@ -190,7 +190,14 @@ def handle_task_list(args):
 
     print("Tasks:")
     for task in tasks:
-        print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
+        if args.show_task_key:
+            task_key_display = task.get("task_key") or "<none>"
+            print(
+                f'- {task["task_id"]} | {task["status"]} | '
+                f'task_key={task_key_display} | {task["title"]}'
+            )
+        else:
+            print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
 
 def handle_task_update_status(args):
     state = load_state_or_none()
@@ -408,6 +415,11 @@ def build_parser():
         "--has-dependencies",
         choices=["true", "false"],
         help="Filter tasks by whether dependencies exist",
+    )
+    task_list_parser.add_argument(
+        "--show-task-key",
+        action="store_true",
+        help="Show task_key in list output",
     )
     task_list_parser.set_defaults(func=handle_task_list)
 

@@ -199,6 +199,137 @@ def test_task_list_shows_all_tasks_in_readable_format(restore_state_file):
     assert "- TASK-002 | completed | Second real task" in output
 
 
+def test_task_list_show_task_key_flag_displays_task_key_and_placeholder(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "description": None,
+                        "status": "planned",
+                        "task_key": "prepare-fat",
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "description": None,
+                        "status": "completed",
+                        "task_key": None,
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--show-task-key")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Tasks:" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | First real task" in output
+    assert "- TASK-002 | completed | task_key=<none> | Second real task" in output
+
+
+def test_task_list_preserves_default_contract_without_show_task_key_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "description": None,
+                        "status": "planned",
+                        "task_key": "prepare-fat",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "- TASK-001 | planned | First real task" in output
+    assert "task_key=" not in output
+
+
+def test_task_list_filters_tasks_by_status_with_show_task_key_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Third real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--status", "planned", "--show-task-key")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "- TASK-001 | planned | task_key=prepare-fat | First real task" in output
+    assert "- TASK-003 | planned | task_key=<none> | Third real task" in output
+    assert "- TASK-002 | completed | task_key=execute-fat | Second real task" not in output
+
+
 def test_task_list_handles_missing_state_file(restore_state_file):
     if STATE_FILE.exists():
         STATE_FILE.unlink()
