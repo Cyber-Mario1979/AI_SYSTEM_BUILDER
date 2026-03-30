@@ -344,13 +344,63 @@ Reality snapshot:
   - clean git working tree verification after restore for intended implementation files
   - local commit and push after slice 8 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 8 implementation:
-  - slice 9 planning is still pending
+- the Milestone 4 slice 9 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic existing-task `task_key` clear path
+- the slice 9 scope boundary is locked as:
+  - add a narrow explicit command to clear/remove `task_key` from an existing task
+  - resolve the target task by exact `task_id` first, then normalized `task_key`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - allow clearing only through an explicit existing-task command surface
+  - persist cleared state as:
+    - `task_key = null`
+  - preserve deterministic no-guess behavior
+  - preserve current read-path behavior:
+    - once cleared, lookup by the removed `task_key` must no longer resolve
+  - preserve current load-path validation behavior
+  - do not change `task add`
+  - do not change dependency behavior
+  - do not add any new indexing surfaces
+- Milestone 4 slice 9 is now implemented in the current verified live repo as:
+  - deterministic existing-task `task_key` clear path
+  - `task clear-key` now exists as an explicit existing-task `task_key` clear command
+  - `handle_task_clear_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
+  - cleared `task_key` values persist through the validated save path as `null`
+  - existing read-path behavior now preserves no-resolution for removed `task_key` values after clear
+  - existing load-path validation behavior remains preserved
+- Milestone 4 slice 9 was manually verified in this session through:
+  - manual `python -m asbp task clear-key TASK-001` success pass with:
+    - `Task key cleared: TASK-001`
+  - manual post-clear `python -m asbp task show TASK-001` pass confirming persisted task as:
+    - `task_key = null`
+  - manual post-clear `python -m asbp task show prepare-fat` pass confirming:
+    - `Task not found: prepare-fat`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore for intended implementation files
+  - local commit and push after slice 9 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 9 implementation:
+  - slice 10 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `94 passed in 9.07s`
+- manual Milestone 4 slice 9 verification completed in this session:
+  - `python -m asbp task clear-key TASK-001` succeeded with:
+    - `Task key cleared: TASK-001`
+  - `python -m asbp task show TASK-001` confirmed persisted task as:
+    - `task_key = null`
+  - `python -m asbp task show prepare-fat` preserved:
+    - `Task not found: prepare-fat`
+  - `data/state/state.json` was restored with `git restore`
+  - local commit completed with:
+    - `add deterministic task_key clear path for existing tasks`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `89 passed in 10.09s`
 - manual Milestone 4 slice 8 verification completed in this session:
@@ -666,7 +716,7 @@ Reality snapshot:
   - temporary manual verification state creation for slice 6 CLI verification
   - manual reserved-namespace rejection pass for:
     - `TASK-001`
-    - ` task_001 `
+    - `task_001`
     - `Task 001`
   - manual normal-key add pass for:
     - `prepare-fat`
@@ -788,37 +838,41 @@ Reality snapshot:
 - replacement `task_key` writes still reject duplicate normalized `task_key` values held by other tasks
 - normalized replacement `task_key` values persist through the validated save path
 - manual Milestone 4 slice 8 verification confirms existing-task `task_key` mutation now works through the explicit command surface without reopening persisted-load validation behavior
+- `task clear-key` now supports deterministic persisted `task_key` clearing for existing tasks
+- `task clear-key` resolves the target task by exact `task_id` first, then normalized `task_key`
+- cleared `task_key` values persist as `null` through the validated save path
+- removed `task_key` references no longer resolve after clear
+- manual Milestone 4 slice 9 verification confirms explicit existing-task `task_key` clear behavior works without reopening load-path validation or add-path behavior
 
 ## Latest completed step
 
-Milestone 4 slice 8 implementation checkpoint
+Milestone 4 slice 9 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 8 deterministic persisted `task_key` mutation support for existing tasks
-- verified `task set-key` now exists as an explicit existing-task `task_key` mutation command
-- verified `handle_task_set_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
-- verified `prepare_task_key_for_write(...)` now accepts `current_task_id` to prevent self-collision on equivalent normalized updates
-- verified replacement `task_key` writes still reject reserved task ID namespace values
-- verified replacement `task_key` writes still reject duplicate normalized `task_key` values held by other tasks
-- updated repo-aligned helper and CLI tests for slice 8 existing-task `task_key` mutation coverage
-- validated the full local suite after slice 8 implementation:
-  - `89 passed in 10.09s`
-- manually verified persisted pre-update `task_key` state on `TASK-001`
-- manually verified `task set-key "prepare-fat" "Prepare FAT Protocol"` success through the normalized secondary reference surface
-- manually verified persisted post-update `task_key` state on `TASK-001`
+- verified the pushed live repo contains slice 9 deterministic existing-task `task_key` clear support
+- verified `task clear-key` now exists as an explicit existing-task `task_key` clear command
+- verified `handle_task_clear_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
+- verified cleared `task_key` values persist through the validated save path as `null`
+- verified removed `task_key` references no longer resolve after clear
+- updated repo-aligned CLI tests for slice 9 existing-task `task_key` clear coverage
+- validated the full local suite after slice 9 implementation:
+  - `94 passed in 9.07s`
+- manually verified `task clear-key TASK-001` success on an existing persisted task
+- manually verified persisted post-clear `task_key` state on `TASK-001`
+- manually verified removed `task_key` lookup no longer resolves after clear
 - restored `data/state/state.json` after manual verification
 - verified clean git working tree after restore
-- committed and pushed the slice 8 implementation to `origin/main`
+- committed and pushed the slice 9 implementation to `origin/main`
 - verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 9 planning checkpoint
+Milestone 4 slice 10 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 8 deterministic persisted `task_key` mutation path for existing tasks
+- lock the next narrow Indexing Layer slice after slice 9 deterministic existing-task `task_key` clear path
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 9 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 10 scope or implementation until the planning checkpoint is recorded
