@@ -307,13 +307,64 @@ Reality snapshot:
   - clean git working tree verification after restore for intended implementation files
   - local commit and push after slice 7 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 7 implementation:
-  - slice 8 planning is still pending
+- the Milestone 4 slice 8 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic persisted `task_key` mutation path for existing tasks
+- the slice 8 scope boundary is locked as:
+  - add a narrow existing-task indexing mutation surface for `task_key` only
+  - allow setting or replacing `task_key` for an existing task through an explicit task command
+  - resolve the target task by exact `task_id` first, then normalized `task_key`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - reuse the existing normalized write-path validation rules for the new persisted value, including:
+    - duplicate normalized `task_key` rejection
+    - reserved task ID namespace rejection
+  - prevent a task from being rejected against its own current normalized `task_key` when updating to an equivalent normalized value
+  - preserve deterministic no-guess behavior
+  - preserve current read-path and load-path behavior
+  - do not introduce any new indexing surfaces in this slice
+  - do not add work package behavior in this slice
+- Milestone 4 slice 8 is now implemented in the current verified live repo as:
+  - deterministic persisted `task_key` mutation path for existing tasks
+  - `task set-key` now exists as an explicit existing-task `task_key` mutation command
+  - `handle_task_set_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
+  - `prepare_task_key_for_write(...)` now accepts `current_task_id` to exclude the target task from duplicate checks during equivalent normalized updates
+  - replacement `task_key` values still enforce reserved task ID namespace rejection
+  - replacement `task_key` values still enforce duplicate normalized secondary reference rejection against other tasks
+  - normalized replacement `task_key` values persist through the validated save path
+  - existing read-path and load-path behavior remain preserved
+- Milestone 4 slice 8 was manually verified in this session through:
+  - manual `python -m asbp task show TASK-001` pass confirming persisted task as:
+    - `task_key = "prepare-fat"`
+  - manual `python -m asbp task set-key "prepare-fat" "Prepare FAT Protocol"` success pass with:
+    - `Task key updated: TASK-001 -> prepare-fat-protocol`
+  - manual post-update `python -m asbp task show TASK-001` pass confirming persisted task as:
+    - `task_key = "prepare-fat-protocol"`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore for intended implementation files
+  - local commit and push after slice 8 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 8 implementation:
+  - slice 9 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `89 passed in 10.09s`
+- manual Milestone 4 slice 8 verification completed in this session:
+  - `python -m asbp task show TASK-001` confirmed persisted task as:
+    - `task_key = "prepare-fat"`
+  - `python -m asbp task set-key "prepare-fat" "Prepare FAT Protocol"` succeeded with:
+    - `Task key updated: TASK-001 -> prepare-fat-protocol`
+  - post-update `python -m asbp task show TASK-001` confirmed persisted task as:
+    - `task_key = "prepare-fat-protocol"`
+  - `data/state/state.json` was restored with `git restore`
+  - local commit completed with:
+    - `add deterministic task_key mutation command for existing tasks`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `80 passed in 7.79s`
 - manual Milestone 4 slice 7 verification completed in this session:
@@ -643,6 +694,22 @@ Reality snapshot:
   - local slice 7 commit creation
   - local slice 7 push to `origin/main`
   - post-push clean `git status` verification
+  - Milestone 4 slice 8 planning checkpoint lock
+  - narrow slice 8 lock as deterministic persisted `task_key` mutation path for existing tasks
+  - slice 8 scope lock for explicit existing-task `task_key` mutation only
+  - repo-aligned local `task_logic.py` patching for `prepare_task_key_for_write(..., current_task_id=...)`
+  - repo-aligned local `cli.py` patching for `handle_task_set_key(...)` and `task set-key` parser wiring
+  - repo-aligned `tests/test_task_logic.py` updates for same-task equivalent normalized `task_key` update allowance and cross-task duplicate rejection coverage
+  - repo-aligned `tests/test_task_cli.py` updates for `task set-key` CLI coverage
+  - green full-suite validation after the slice 8 local patch:
+    - `89 passed in 10.09s`
+  - manual `python -m asbp task show TASK-001` pre-update verification pass
+  - manual `python -m asbp task set-key "prepare-fat" "Prepare FAT Protocol"` pass by normalized `task_key`
+  - manual post-update `python -m asbp task show TASK-001` persisted-state verification pass
+  - manual `git restore data/state/state.json` pass after slice 8 verification
+  - local slice 8 commit creation
+  - local slice 8 push to `origin/main`
+  - post-push clean `git status` verification
 
 ## Current verified code snapshot
 
@@ -713,35 +780,45 @@ Reality snapshot:
 - persisted normalized `task_key` values matching `task-###` are rejected during load
 - duplicate normalized persisted `task_key` values are rejected during load before CLI command execution
 - manual Milestone 4 slice 7 verification confirms invalid persisted `task_key` indexing state now fails at state load rather than reaching command-level ambiguity handling
+- `prepare_task_key_for_write(...)` now accepts optional `current_task_id` for deterministic existing-task `task_key` mutation without self-collision
+- `task set-key` now supports deterministic persisted `task_key` mutation for existing tasks
+- `task set-key` resolves the target task by exact `task_id` first, then normalized `task_key`
+- equivalent normalized `task_key` updates for the same task are allowed
+- replacement `task_key` writes still reject reserved `task-###` namespace
+- replacement `task_key` writes still reject duplicate normalized `task_key` values held by other tasks
+- normalized replacement `task_key` values persist through the validated save path
+- manual Milestone 4 slice 8 verification confirms existing-task `task_key` mutation now works through the explicit command surface without reopening persisted-load validation behavior
 
 ## Latest completed step
 
-Milestone 4 slice 7 implementation checkpoint
+Milestone 4 slice 8 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 7 deterministic persisted `task_key` validation on state load
-- verified `validate_persisted_task_keys(...)` now exists and is called during `load_validated_state(...)`
-- verified persisted normalized `task_key` values matching `task-###` are rejected during load
-- verified duplicate normalized persisted `task_key` values are rejected during load
-- updated repo-aligned helper and CLI tests for slice 7 persisted-state validation coverage
-- adjusted duplicate persisted-state CLI tests to fail at load time instead of command-level ambiguity handling
-- validated the full local suite after slice 7 implementation:
-  - `80 passed in 7.79s`
-- manually verified reserved persisted namespace rejection using a temporary verification state payload
-- manually verified duplicate normalized persisted `task_key` rejection using a temporary verification state payload
+- verified the pushed live repo contains slice 8 deterministic persisted `task_key` mutation support for existing tasks
+- verified `task set-key` now exists as an explicit existing-task `task_key` mutation command
+- verified `handle_task_set_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
+- verified `prepare_task_key_for_write(...)` now accepts `current_task_id` to prevent self-collision on equivalent normalized updates
+- verified replacement `task_key` writes still reject reserved task ID namespace values
+- verified replacement `task_key` writes still reject duplicate normalized `task_key` values held by other tasks
+- updated repo-aligned helper and CLI tests for slice 8 existing-task `task_key` mutation coverage
+- validated the full local suite after slice 8 implementation:
+  - `89 passed in 10.09s`
+- manually verified persisted pre-update `task_key` state on `TASK-001`
+- manually verified `task set-key "prepare-fat" "Prepare FAT Protocol"` success through the normalized secondary reference surface
+- manually verified persisted post-update `task_key` state on `TASK-001`
 - restored `data/state/state.json` after manual verification
 - verified clean git working tree after restore
-- committed and pushed the slice 7 implementation to `origin/main`
+- committed and pushed the slice 8 implementation to `origin/main`
 - verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 8 planning checkpoint
+Milestone 4 slice 9 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 7 persisted `task_key` validation on state load
+- lock the next narrow Indexing Layer slice after slice 8 deterministic persisted `task_key` mutation path for existing tasks
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 8 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 9 scope or implementation until the planning checkpoint is recorded
