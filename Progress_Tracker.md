@@ -364,12 +364,14 @@ Reality snapshot:
   - do not add any new indexing surfaces
 - Milestone 4 slice 9 is now implemented in the current verified live repo as:
   - deterministic existing-task `task_key` clear path
-  - `task clear-key` now exists as an explicit existing-task `task_key` clear command
+  - `task clear-key` now exists as an explicit existing-task `task_key` clear/remove command
   - `handle_task_clear_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
-  - cleared `task_key` values persist through the validated save path as `null`
-  - existing read-path behavior now preserves no-resolution for removed `task_key` values after clear
-  - existing load-path validation behavior remains preserved
+  - cleared existing-task `task_key` values now persist through the validated save path as `null`
+  - removed `task_key` references no longer resolve through the secondary lookup surface
+  - existing read-path and load-path behavior otherwise remain preserved
 - Milestone 4 slice 9 was manually verified in this session through:
+  - full local suite pass captured in this session:
+    - `94 passed in 9.07s`
   - manual `python -m asbp task clear-key TASK-001` success pass with:
     - `Task key cleared: TASK-001`
   - manual post-clear `python -m asbp task show TASK-001` pass confirming persisted task as:
@@ -380,13 +382,74 @@ Reality snapshot:
   - clean git working tree verification after restore for intended implementation files
   - local commit and push after slice 9 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 9 implementation:
-  - slice 10 planning is still pending
+- the Milestone 4 slice 10 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic `task_key` visibility in task list output
+- the slice 10 scope boundary is locked as:
+  - add a narrow read-surface enhancement for existing indexing only
+  - expose persisted `task_key` values through `task list`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve current filtering behavior:
+    - `--status`
+    - `--has-dependencies`
+  - preserve current task ordering in list output
+  - preserve current default `task list` contract unless an explicit display flag is used
+  - when the explicit display flag is used:
+    - show each task’s normalized persisted `task_key`
+    - show a deterministic empty placeholder when `task_key` is `null`
+  - do not add any new indexing surfaces
+  - do not change `task show`
+  - do not change `task add`
+  - do not change `task set-key`
+  - do not change `task clear-key`
+  - do not change dependency behavior
+- Milestone 4 slice 10 is now implemented in the current verified live repo as:
+  - deterministic `task_key` visibility in task list output
+  - `task list --show-task-key` now exists as an explicit display flag for secondary reference visibility
+  - default `task list` output remains unchanged when `--show-task-key` is not provided
+  - `task list --show-task-key` now shows normalized persisted `task_key` values in list rows
+  - `task list --show-task-key` now shows a deterministic placeholder for cleared/missing keys:
+    - `task_key=<none>`
+  - existing filtering behavior and task ordering remain preserved under the display flag
+- Milestone 4 slice 10 was manually verified in this session through:
+  - targeted local slice-10 CLI test pass:
+    - `3 passed, 53 deselected in 0.56s`
+  - manual `python -m asbp task set-key TASK-001 "Prepare FAT"` success pass with:
+    - `Task key updated: TASK-001 -> prepare-fat`
+  - manual `python -m asbp task list --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=prepare-fat | Task A`
+  - manual `python -m asbp task clear-key TASK-001` pass confirming:
+    - `Task key cleared: TASK-001`
+  - manual post-clear `python -m asbp task list --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+  - restore of `data/state/state.json` after manual verification
+  - clean git working tree verification after restore for intended implementation files
+  - local commit and push after slice 10 verification
+  - clean git working tree verification after push
+- Milestone 4 remains in progress after slice 10 implementation:
+  - slice 11 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- targeted local slice-10 CLI test result verified in this session:
+  - `3 passed, 53 deselected in 0.56s`
+- manual Milestone 4 slice 10 verification completed in this session:
+  - `python -m asbp task set-key TASK-001 "Prepare FAT"` succeeded with:
+    - `Task key updated: TASK-001 -> prepare-fat`
+  - `python -m asbp task list --show-task-key` confirmed:
+    - `TASK-001 | completed | task_key=prepare-fat | Task A`
+  - `python -m asbp task clear-key TASK-001` succeeded with:
+    - `Task key cleared: TASK-001`
+  - post-clear `python -m asbp task list --show-task-key` confirmed:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+  - `data/state/state.json` was restored with `git restore`
+  - local commit completed with:
+    - `add deterministic task_key visibility in task list output`
+  - local push to `origin/main` completed successfully
+  - post-push `git status` was clean
 - fresh local full-suite result verified in this session:
   - `94 passed in 9.07s`
 - manual Milestone 4 slice 9 verification completed in this session:
@@ -394,7 +457,7 @@ Reality snapshot:
     - `Task key cleared: TASK-001`
   - `python -m asbp task show TASK-001` confirmed persisted task as:
     - `task_key = null`
-  - `python -m asbp task show prepare-fat` preserved:
+  - post-clear `python -m asbp task show prepare-fat` confirmed:
     - `Task not found: prepare-fat`
   - `data/state/state.json` was restored with `git restore`
   - local commit completed with:
@@ -760,6 +823,35 @@ Reality snapshot:
   - local slice 8 commit creation
   - local slice 8 push to `origin/main`
   - post-push clean `git status` verification
+  - Milestone 4 slice 9 planning checkpoint lock
+  - narrow slice 9 lock as deterministic existing-task `task_key` clear path
+  - slice 9 scope lock for explicit existing-task `task_key` clear/remove only
+  - repo-aligned local `cli.py` patching for `handle_task_clear_key(...)` and `task clear-key` parser wiring
+  - repo-aligned `tests/test_task_cli.py` updates for `task clear-key` CLI coverage
+  - green full-suite validation after the slice 9 local patch:
+    - `94 passed in 9.07s`
+  - manual `python -m asbp task clear-key TASK-001` success pass
+  - manual post-clear `python -m asbp task show TASK-001` persisted-state verification pass
+  - manual post-clear `python -m asbp task show prepare-fat` secondary-lookup removal verification pass
+  - manual `git restore data/state/state.json` pass after slice 9 verification
+  - local slice 9 commit creation
+  - local slice 9 push to `origin/main`
+  - post-push clean `git status` verification
+  - Milestone 4 slice 10 planning checkpoint lock
+  - narrow slice 10 lock as deterministic `task_key` visibility in task list output
+  - slice 10 scope lock for explicit `task list --show-task-key` display only
+  - repo-aligned local `cli.py` patching for `task list --show-task-key` output and parser wiring
+  - repo-aligned `tests/test_task_cli.py` updates for slice 10 task-list `task_key` visibility coverage
+  - targeted local slice-10 CLI test pass:
+    - `3 passed, 53 deselected in 0.56s`
+  - manual `python -m asbp task set-key TASK-001 "Prepare FAT"` pass before list-visibility verification
+  - manual `python -m asbp task list --show-task-key` pass confirming persisted-key visibility
+  - manual `python -m asbp task clear-key TASK-001` pass after list-visibility verification
+  - manual post-clear `python -m asbp task list --show-task-key` pass confirming deterministic `<none>` placeholder
+  - manual `git restore data/state/state.json` pass after slice 10 verification
+  - local slice 10 commit creation
+  - local slice 10 push to `origin/main`
+  - post-push clean `git status` verification
 
 ## Current verified code snapshot
 
@@ -838,41 +930,46 @@ Reality snapshot:
 - replacement `task_key` writes still reject duplicate normalized `task_key` values held by other tasks
 - normalized replacement `task_key` values persist through the validated save path
 - manual Milestone 4 slice 8 verification confirms existing-task `task_key` mutation now works through the explicit command surface without reopening persisted-load validation behavior
-- `task clear-key` now supports deterministic persisted `task_key` clearing for existing tasks
+- `task clear-key` now supports deterministic existing-task `task_key` clear/remove behavior
 - `task clear-key` resolves the target task by exact `task_id` first, then normalized `task_key`
-- cleared `task_key` values persist as `null` through the validated save path
-- removed `task_key` references no longer resolve after clear
-- manual Milestone 4 slice 9 verification confirms explicit existing-task `task_key` clear behavior works without reopening load-path validation or add-path behavior
+- cleared existing-task `task_key` values now persist through the validated save path as `null`
+- removed `task_key` references no longer resolve through the secondary lookup surface
+- manual Milestone 4 slice 9 verification confirms explicit existing-task `task_key` clearing now works without reopening other indexing behaviors
+- `task list --show-task-key` now supports deterministic secondary-reference visibility in list output
+- default `task list` output remains unchanged when the display flag is not used
+- `task list --show-task-key` now renders persisted normalized `task_key` values and deterministic `<none>` placeholders for missing keys
+- existing task-list ordering and filtering behavior remain preserved under the display flag
+- manual Milestone 4 slice 10 verification confirms explicit task-list `task_key` visibility now works without adding any new indexing surfaces
 
 ## Latest completed step
 
-Milestone 4 slice 9 implementation checkpoint
+Milestone 4 slice 10 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 9 deterministic existing-task `task_key` clear support
-- verified `task clear-key` now exists as an explicit existing-task `task_key` clear command
-- verified `handle_task_clear_key(...)` resolves the target task by exact `task_id` first, then normalized `task_key`
-- verified cleared `task_key` values persist through the validated save path as `null`
-- verified removed `task_key` references no longer resolve after clear
-- updated repo-aligned CLI tests for slice 9 existing-task `task_key` clear coverage
-- validated the full local suite after slice 9 implementation:
-  - `94 passed in 9.07s`
-- manually verified `task clear-key TASK-001` success on an existing persisted task
-- manually verified persisted post-clear `task_key` state on `TASK-001`
-- manually verified removed `task_key` lookup no longer resolves after clear
+- verified the pushed live repo contains slice 10 deterministic `task_key` visibility support in task list output
+- verified `task list --show-task-key` now exists as an explicit display flag for secondary reference visibility
+- verified default `task list` output remains unchanged when `--show-task-key` is not provided
+- verified `task list --show-task-key` now shows persisted normalized `task_key` values in list rows
+- verified `task list --show-task-key` now shows deterministic `<none>` placeholders for cleared or missing keys
+- verified existing task-list ordering and filtering behavior remain preserved under the display flag
+- updated repo-aligned CLI tests for slice 10 task-list `task_key` visibility coverage
+- validated targeted slice-10 CLI coverage after implementation:
+  - `3 passed, 53 deselected in 0.56s`
+- manually verified persisted-key visibility through `task list --show-task-key`
+- manually verified deterministic `<none>` placeholder behavior after `task clear-key`
 - restored `data/state/state.json` after manual verification
 - verified clean git working tree after restore
-- committed and pushed the slice 9 implementation to `origin/main`
+- committed and pushed the slice 10 implementation to `origin/main`
 - verified clean git working tree after push
 
 ## Exact next unfinished step
 
-Milestone 4 slice 10 planning checkpoint
+Milestone 4 slice 11 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 9 deterministic existing-task `task_key` clear path
+- lock the next narrow Indexing Layer slice after slice 10 deterministic `task_key` visibility in task list output
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 10 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 11 scope or implementation until the planning checkpoint is recorded
