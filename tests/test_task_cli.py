@@ -703,6 +703,148 @@ def test_task_show_handles_missing_state_file(restore_state_file):
     assert "State file not found:" in result.stdout
 
 
+def test_task_show_show_dependency_refs_flag_displays_resolved_dependency_refs(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-003", "--show-dependency-refs")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"task_id": "TASK-003"' in output
+    assert '"dependencies": [' in output
+    assert '"dependency_refs": [' in output
+    assert '"task_id": "TASK-001"' in output
+    assert '"task_key": "prepare-fat"' in output
+    assert '"task_id": "TASK-002"' in output
+    assert '"task_key": "<none>"' in output
+
+
+
+def test_task_show_preserves_default_contract_without_show_dependency_refs_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-002")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"task_id": "TASK-002"' in output
+    assert '"dependencies": [' in output
+    assert '"dependency_refs":' not in output
+
+
+
+def test_task_show_show_dependency_refs_flag_uses_missing_placeholder_for_unresolved_dependency(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-999"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-001", "--show-dependency-refs")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"dependency_refs": [' in output
+    assert '"task_id": "TASK-999"' in output
+    assert '"task_key": "<missing>"' in output
+
+
+
 def test_task_set_dependencies_updates_dependencies_when_valid(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(

@@ -213,7 +213,7 @@ def validate_task_status_transition(current_status, new_status):
         raise ValueError(
             f"Invalid status transition: {current_status} -> {new_status}"
         )
-    
+
 def validate_task_completion_readiness(
     tasks: list[TaskModel],
     task_id: str,
@@ -239,8 +239,32 @@ def validate_task_completion_readiness(
                 f"Task cannot be completed until dependency is completed: {dependency_id}"
             )
 
-    return errors 
-   
+    return errors
+
+
+def build_dependency_reference_view(
+    tasks: list[TaskModel],
+    dependency_ids: list[str],
+) -> list[dict[str, str]]:
+    dependency_refs: list[dict[str, str]] = []
+
+    for dependency_id in dependency_ids:
+        dependency_task = find_task_by_id(tasks, dependency_id)
+
+        if dependency_task is None:
+            task_key_display = "<missing>"
+        else:
+            task_key_display = normalize_task_key(dependency_task.task_key) or "<none>"
+
+        dependency_refs.append(
+            {
+                "task_id": dependency_id,
+                "task_key": task_key_display,
+            }
+        )
+
+    return dependency_refs    
+
 def normalize_task_key(value: str | None) -> str | None:
     if value is None:
         return None

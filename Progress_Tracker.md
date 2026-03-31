@@ -1345,3 +1345,103 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 15 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 15 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependency-reference visibility in task show output
+- the slice 15 scope boundary is locked as:
+  - add a narrow read-surface enhancement for existing indexing only
+  - expand dependency reference visibility in:
+    - `task show`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve persisted dependency storage as `task_id` only
+  - preserve current default `task show` contract unless an explicit display flag is used
+  - when the explicit display flag is used:
+    - show each persisted dependency’s stored `task_id`
+    - show the resolved persisted `task_key` when available
+    - show a deterministic empty placeholder when the dependency target has no `task_key`
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - do not add new indexing surfaces
+  - do not change dependency write behavior
+  - do not change task mutation behavior
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 15 is now implemented in the current verified local workspace as:
+  - deterministic dependency-reference visibility in task show output
+  - `task show --show-dependency-refs` now exists as an explicit display flag for dependency reference visibility
+  - default `task show` output remains unchanged when `--show-dependency-refs` is not provided
+  - `task show --show-dependency-refs` now shows each persisted dependency’s stored `task_id`
+  - `task show --show-dependency-refs` now shows the resolved persisted `task_key` when available
+  - `task show --show-dependency-refs` now shows a deterministic placeholder for dependencies whose target task has no `task_key`:
+    - `<none>`
+- Milestone 4 slice 15 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `117 passed in 11.24s`
+  - strict manual verification state creation with:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `null`
+    - `TASK-003` / `review-fat-package`
+  - manual `python -m asbp task show TASK-003 --show-dependency-refs` pass confirming:
+    - `dependency_refs` was present
+    - `TASK-001` resolved to:
+      - `task_key = "prepare-fat"`
+    - `TASK-002` resolved to:
+      - `task_key = "<none>"`
+  - manual `python -m asbp task show TASK-003` pass confirming:
+    - default output remained unchanged
+    - `dependency_refs` was not present
+- Milestone 4 remains in progress after slice 15 implementation:
+  - slice 16 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `117 passed in 11.24s`
+- strict manual Milestone 4 slice 15 verification completed in this session:
+  - `python -m asbp task show TASK-003 --show-dependency-refs` confirmed:
+    - `dependency_refs` was present
+    - `TASK-001` resolved to:
+      - `task_key = "prepare-fat"`
+    - `TASK-002` resolved to:
+      - `task_key = "<none>"`
+  - `python -m asbp task show TASK-003` confirmed:
+    - default output remained unchanged
+    - `dependency_refs` was not present
+
+## Latest completed step
+
+Milestone 4 slice 15 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 15 deterministic dependency-reference visibility support in task show output
+- verified `task show --show-dependency-refs` now exists as an explicit display flag for dependency reference visibility
+- verified default `task show` output remains unchanged when `--show-dependency-refs` is not provided
+- verified `task show --show-dependency-refs` now shows each persisted dependency’s stored `task_id`
+- verified `task show --show-dependency-refs` now shows the resolved persisted `task_key` when available
+- verified `task show --show-dependency-refs` now shows a deterministic placeholder for dependencies whose target task has no `task_key`:
+  - `<none>`
+- validated full local suite after slice 15 implementation:
+  - `117 passed in 11.24s`
+- manually verified controlled temporary-state behavior through:
+  - `python -m asbp task show TASK-003 --show-dependency-refs`
+  - `python -m asbp task show TASK-003`
+- manually verified the controlled temporary state returned:
+  - `TASK-001 -> prepare-fat`
+  - `TASK-002 -> <none>`
+- manually verified default `task show` output did not include:
+  - `dependency_refs`
+
+## Exact next unfinished step
+
+Milestone 4 slice 16 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 15 deterministic dependency-reference visibility in task show output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 16 scope or implementation until the planning checkpoint is recorded

@@ -2,6 +2,7 @@ import pytest
 
 from asbp.state_model import TaskModel
 from asbp.task_logic import (
+    build_dependency_reference_view,
     filter_tasks,
     update_task_status,
     validate_task_status_transition,
@@ -520,6 +521,54 @@ def test_prepare_task_key_for_write_rejects_duplicate_normalized_task_key_for_ot
             "Prepare FAT",
             current_task_id="TASK-002",
         )
+def test_build_dependency_reference_view_returns_stored_task_ids_and_resolved_task_keys():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    result = build_dependency_reference_view(tasks, ["TASK-001", "TASK-002"])
+
+    assert result == [
+        {"task_id": "TASK-001", "task_key": "prepare-fat"},
+        {"task_id": "TASK-002", "task_key": "<none>"},
+    ]
+
+
+
+def test_build_dependency_reference_view_returns_missing_placeholder_for_unresolved_dependency():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    result = build_dependency_reference_view(tasks, ["TASK-999"])
+
+    assert result == [
+        {"task_id": "TASK-999", "task_key": "<missing>"},
+    ]
+
+
 def test_filter_tasks_by_exact_normalized_task_key_only():
     tasks = [
         {

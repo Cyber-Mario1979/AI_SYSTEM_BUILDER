@@ -5,6 +5,7 @@ from pydantic import ValidationError
 
 from asbp.state_model import StateModel, TaskModel
 from asbp.task_logic import (
+    build_dependency_reference_view,
     delete_task_by_id,
     filter_tasks,
     filter_tasks_by_status,
@@ -303,7 +304,15 @@ def handle_task_show(args):
         print(f"Task not found: {args.task_id}")
         return
 
-    print(json.dumps(task.model_dump(), indent=2))
+    task_payload = task.model_dump()
+
+    if args.show_dependency_refs:
+        task_payload["dependency_refs"] = build_dependency_reference_view(
+            state.tasks,
+            task_payload["dependencies"],
+        )
+
+    print(json.dumps(task_payload, indent=2))
 
 
 def handle_task_set_key(args):
@@ -479,6 +488,11 @@ def build_parser():
 
     task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
     task_show_parser.add_argument("task_id", help="Task ID to show")
+    task_show_parser.add_argument(
+        "--show-dependency-refs",
+        action="store_true",
+        help="Show resolved dependency references in task output",
+    )
     task_show_parser.set_defaults(func=handle_task_show)   
 
     task_set_key_parser = task_subparsers.add_parser(
