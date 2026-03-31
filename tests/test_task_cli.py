@@ -2328,6 +2328,210 @@ def test_task_list_rejects_duplicate_normalized_persisted_task_key_state(
     assert "State validation failed:" in result.stdout
     assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
 
+def test_task_list_show_dependency_refs_flag_displays_resolved_dependency_refs(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--show-dependency-refs")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Tasks:" in output
+    assert "- TASK-001 | planned | dependency_refs=[] | Prepare FAT" in output
+    assert (
+        "- TASK-003 | completed | "
+        "dependency_refs=[TASK-001:prepare-fat, TASK-002:<none>] | "
+        "Review FAT Package"
+    ) in output
+
+
+def test_task_list_preserves_default_contract_without_show_dependency_refs_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-002"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "- TASK-001 | completed | Review FAT Package" in output
+    assert "dependency_refs=" not in output
+
+
+def test_task_list_show_dependency_refs_flag_uses_missing_placeholder_for_unresolved_dependency(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-999"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--show-dependency-refs")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert (
+        "- TASK-001 | completed | dependency_refs=[TASK-999:<missing>] | "
+        "Review FAT Package"
+    ) in output
+
+
+def test_task_list_show_dependency_refs_flag_preserves_compatibility_with_show_task_key_and_status(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                    {
+                        "task_id": "TASK-004",
+                        "order": 4,
+                        "title": "Archive FAT Package",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "archive-fat-package",
+                        "dependencies": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--status",
+        "completed",
+        "--show-task-key",
+        "--show-dependency-refs",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert (
+        "- TASK-003 | completed | task_key=review-fat-package | "
+        "dependency_refs=[TASK-001:prepare-fat, TASK-002:<none>] | "
+        "Review FAT Package"
+    ) in output
+    assert "- TASK-001 | planned |" not in output
+    assert "- TASK-004 | planned |" not in output    
+
 def test_task_list_filters_tasks_by_exact_normalized_task_key_with_show_task_key_flag(
     restore_state_file,
 ):

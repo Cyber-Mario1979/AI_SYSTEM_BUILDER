@@ -235,14 +235,29 @@ def handle_task_list(args):
 
     print("Tasks:")
     for task in tasks:
+        line_parts = [f'- {task["task_id"]}', task["status"]]
+
         if args.show_task_key:
             task_key_display = normalize_task_key(task.get("task_key")) or "<none>"
-            print(
-                f'- {task["task_id"]} | {task["status"]} | '
-                f'task_key={task_key_display} | {task["title"]}'
+            line_parts.append(f"task_key={task_key_display}")
+
+        if args.show_dependency_refs:
+            dependency_refs = build_dependency_reference_view(
+                state.tasks,
+                task.get("dependencies", []),
             )
-        else:
-            print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
+
+            if dependency_refs:
+                dependency_refs_display = ", ".join(
+                    f'{dependency_ref["task_id"]}:{dependency_ref["task_key"]}'
+                    for dependency_ref in dependency_refs
+                )
+                line_parts.append(f"dependency_refs=[{dependency_refs_display}]")
+            else:
+                line_parts.append("dependency_refs=[]")
+
+        line_parts.append(task["title"])
+        print(" | ".join(line_parts))
 
 def handle_task_update_status(args):
     state = load_state_or_none()
@@ -473,6 +488,11 @@ def build_parser():
         "--show-task-key",
         action="store_true",
         help="Show task_key in list output",
+    )
+    task_list_parser.add_argument(
+        "--show-dependency-refs",
+        action="store_true",
+        help="Show resolved dependency references in list output",
     )
     task_list_parser.add_argument(
         "--has-task-key",
