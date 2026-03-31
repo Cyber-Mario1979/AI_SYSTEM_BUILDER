@@ -518,13 +518,73 @@ Reality snapshot:
     - `asbp/task_logic.py`
     - `tests/test_task_cli.py`
     - `tests/test_task_logic.py`
-- Milestone 4 remains in progress after slice 12 implementation:
-  - slice 13 planning is still pending
+- the Milestone 4 slice 13 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic exact task-reference filtering in task list output
+- the slice 13 scope boundary is locked as:
+  - add a narrow list-surface filtering enhancement for existing indexing only
+  - allow `task list` to filter by one explicit task reference value
+  - resolve the list filter by:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve current task ordering in list output
+  - preserve compatibility with existing list surfaces:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--show-task-key`
+  - apply deterministic AND logic when combined with existing list filters
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - stay fully inside Milestone 4 — Indexing Layer
+- Milestone 4 slice 13 is now implemented in the current verified local workspace as:
+  - deterministic exact task-reference filtering in task list output
+  - `task list --task-ref <value>` now exists as an explicit exact-reference filter flag
+  - incoming `--task-ref` filter input resolves through the existing deterministic task reference hierarchy:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - `task list --task-ref <value>` now returns only the resolved target task when a match exists
+  - unresolved or non-normalizing `--task-ref` filter input now preserves deterministic no-guess behavior by returning:
+    - `No tasks found.`
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing list filtering and display behavior remain preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--show-task-key`
+- Milestone 4 slice 13 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `107 passed in 13.22s`
+  - temporary manual verification state creation with:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `execute-fat`
+    - `TASK-003` / `review-fat-package`
+  - manual `python -m asbp task list --task-ref "TASK-001" --show-task-key` pass confirming only:
+    - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
+  - manual `python -m asbp task list --task-ref "Execute FAT" --status completed --show-task-key` pass confirming only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - manual `python -m asbp task list --task-ref "***" --show-task-key` pass confirming:
+    - `No tasks found.`
+- Milestone 4 remains in progress after slice 13 implementation:
+  - slice 14 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `107 passed in 13.22s`
+- manual Milestone 4 slice 13 verification completed in this session:
+  - `python -m asbp task list --task-ref "TASK-001" --show-task-key` confirmed only:
+    - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
+  - `python -m asbp task list --task-ref "Execute FAT" --status completed --show-task-key` confirmed only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - `python -m asbp task list --task-ref "***" --show-task-key` confirmed:
+    - `No tasks found.`
 - fresh local full-suite result verified in this session:
   - `102 passed in 11.11s`
 - manual Milestone 4 slice 12 verification completed in this session:
@@ -992,6 +1052,23 @@ Reality snapshot:
   - manual invalid-filter verification pass confirming deterministic `No tasks found.`
   - temporary manual verification state restore completed
   - post-restore `git status --short` verification confirmed only intended implementation/test files remained modified
+  - Milestone 4 slice 13 planning checkpoint lock
+  - narrow slice 13 lock as deterministic exact task-reference filtering in task list output
+  - slice 13 scope lock for explicit `task list --task-ref <value>` exact reference filtering only
+  - repo-aligned local `task_logic.py` patching for exact task ID filtering support in `filter_tasks(...)`
+  - repo-aligned local `cli.py` patching for:
+    - exact task-reference resolution in `handle_task_list(...)`
+    - `task_id` filter handoff into `filter_tasks(...)`
+    - `task list --task-ref` parser wiring
+  - repo-aligned `tests/test_task_logic.py` updates for exact `task_id` helper coverage
+  - repo-aligned `tests/test_task_cli.py` updates for exact task-reference CLI coverage
+  - green full-suite validation after the final slice 13 local patch:
+    - `107 passed in 13.22s`
+  - temporary manual verification state creation for slice 13 CLI verification
+  - corrected no-BOM temporary state write path through Python `write_text(..., encoding='utf-8')`
+  - manual `task list --task-ref` verification pass for exact `task_id`
+  - manual `task list --task-ref` verification pass for normalized `task_key` plus `--status completed`
+  - manual invalid-reference verification pass confirming deterministic `No tasks found.`
 
 ## Current verified code snapshot
 
@@ -1092,45 +1169,57 @@ Reality snapshot:
   - `No tasks found.`
 - existing task-list ordering and existing `--status`, `--has-dependencies`, `--has-task-key`, and `--show-task-key` behavior remain preserved under the new exact filter flag
 - manual Milestone 4 slice 12 verification confirms explicit exact `task_key` filtering now works without adding any new indexing surfaces
+- `task list --task-ref <value>` now supports deterministic exact filtering by task reference
+- incoming `--task-ref` filter input resolves through the existing deterministic task reference hierarchy:
+  - exact `task_id` first
+  - normalized `task_key` second
+- `task list --task-ref <value>` now returns only the resolved target task when a match exists
+- unresolved or non-normalizing `--task-ref` filter input now preserves deterministic no-guess behavior by returning:
+  - `No tasks found.`
+- existing task-list ordering and existing `--status`, `--has-dependencies`, `--has-task-key`, `--task-key`, and `--show-task-key` behavior remain preserved under the new exact reference filter flag
+- manual Milestone 4 slice 13 verification confirms explicit exact task-reference filtering now works without adding any new indexing surfaces
 
 ## Latest completed step
 
-Milestone 4 slice 12 implementation checkpoint
+Milestone 4 slice 13 implementation checkpoint
 
 Completed:
 
-- verified the local workspace contains slice 12 deterministic exact `task_key` value filtering support in task list output
-- verified `task list --task-key <value>` now exists as an explicit exact-match filter flag for persisted `task_key`
-- verified incoming `--task-key` filter input is normalized through the existing deterministic `task_key` normalization rules
-- verified `task list --task-key <value>` now returns only tasks whose normalized persisted `task_key` exactly matches the normalized filter input
-- verified invalid or non-normalizing `--task-key` filter input preserves deterministic no-guess behavior by returning:
+- verified the local workspace contains slice 13 deterministic exact task-reference filtering support in task list output
+- verified `task list --task-ref <value>` now exists as an explicit exact-reference filter flag
+- verified incoming `--task-ref` filter input resolves through the existing deterministic task reference hierarchy:
+  - exact `task_id` first
+  - normalized `task_key` second
+- verified `task list --task-ref <value>` now returns only the resolved target task when a match exists
+- verified unresolved or non-normalizing `--task-ref` filter input preserves deterministic no-guess behavior by returning:
   - `No tasks found.`
 - verified existing task-list ordering remains preserved under the new filter flag
 - verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
   - `--status`
   - `--has-dependencies`
   - `--has-task-key`
+  - `--task-key`
   - `--show-task-key`
-- validated full local suite after slice 12 implementation:
-  - `102 passed in 11.11s`
+- validated full local suite after slice 13 implementation:
+  - `107 passed in 13.22s`
 - manually verified controlled temporary-state behavior through:
-  - `python -m asbp task list --task-key "Prepare FAT" --show-task-key`
-  - `python -m asbp task list --task-key "Execute FAT" --status completed --show-task-key`
-  - `python -m asbp task list --task-key "***" --show-task-key`
+  - `python -m asbp task list --task-ref "TASK-001" --show-task-key`
+  - `python -m asbp task list --task-ref "Execute FAT" --status completed --show-task-key`
+  - `python -m asbp task list --task-ref "***" --show-task-key`
 - manually verified the controlled temporary state returned only:
   - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
 - manually verified the controlled temporary state returned only:
   - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
-- manually verified invalid exact-filter input returned:
+- manually verified invalid exact-reference input returned:
   - `No tasks found.`
 
 ## Exact next unfinished step
 
-Milestone 4 slice 13 planning checkpoint
+Milestone 4 slice 14 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 12 deterministic exact `task_key` value filtering in task list output
+- lock the next narrow Indexing Layer slice after slice 13 deterministic exact task-reference filtering in task list output
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 13 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 14 scope or implementation until the planning checkpoint is recorded
