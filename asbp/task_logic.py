@@ -132,6 +132,7 @@ def filter_tasks(
     has_task_key=None,
     task_key=None,
     task_id=None,
+    dependency_task_id=None,
 ):
     """
     Return a filtered task list without mutating the original input.
@@ -144,6 +145,7 @@ def filter_tasks(
     - has_task_key=False: keep only tasks with task_key equal to None
     - task_key: keep only tasks whose normalized persisted task_key exactly matches
     - task_id: keep only tasks whose task_id exactly matches
+    - dependency_task_id: keep only tasks whose dependencies include that exact stored task_id
     - if multiple filters are provided, apply AND logic
     - preserve original task order
     """
@@ -185,6 +187,12 @@ def filter_tasks(
             task for task in filtered
             if task.get("task_id") == task_id
         ]
+    
+    if dependency_task_id is not None:
+        filtered = [
+            task for task in filtered
+            if dependency_task_id in task.get("dependencies", [])
+        ]    
 
     return filtered
 

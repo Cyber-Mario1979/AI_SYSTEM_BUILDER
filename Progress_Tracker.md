@@ -1223,3 +1223,125 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 14 scope or implementation until the planning checkpoint is recorded
+
+- the Milestone 4 slice 14 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependency-reference filtering in task list output
+- the slice 14 scope boundary is locked as:
+  - add a narrow list-surface filtering enhancement for existing indexing only
+  - allow `task list` to filter by one explicit dependency reference value
+  - resolve the dependency-reference filter by:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - match against persisted task dependencies using stored `task_id` values only after reference resolution
+  - preserve current task ordering in list output
+  - preserve compatibility with existing list surfaces:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--show-task-key`
+  - apply deterministic AND logic when combined with existing list filters
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not add new indexing surfaces
+  - do not drift into Milestone 5
+- Milestone 4 slice 14 is now implemented in the current verified local workspace as:
+  - deterministic dependency-reference filtering in task list output
+  - `task list --dependency-ref <value>` now exists as an explicit dependency-reference filter flag
+  - incoming `--dependency-ref` filter input resolves through the existing deterministic task reference hierarchy:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - resolved dependency-reference matches are applied only against persisted dependency storage values:
+    - stored `task_id` entries in `dependencies`
+  - `task list --dependency-ref <value>` now returns only tasks whose persisted dependencies include the resolved stored `task_id`
+  - unresolved or non-normalizing `--dependency-ref` filter input now preserves deterministic no-guess behavior by returning:
+    - `No tasks found.`
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing list filtering and display behavior remain preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--show-task-key`
+- Milestone 4 slice 14 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `112 passed in 10.44s`
+  - temporary strict manual verification state creation with:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `execute-fat`
+    - `TASK-003` / `review-fat-package`
+  - manual `python -m asbp task list --dependency-ref "TASK-001" --show-task-key` pass confirming only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+  - manual `python -m asbp task list --dependency-ref "Execute FAT" --status completed --show-task-key` pass confirming only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+  - manual `python -m asbp task list --dependency-ref "***" --show-task-key` pass confirming:
+    - `No tasks found.`
+  - original live state restore completed after strict manual verification
+- Milestone 4 remains in progress after slice 14 implementation:
+  - slice 15 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `112 passed in 10.44s`
+- strict manual Milestone 4 slice 14 verification completed in this session:
+  - `python -m asbp task list --dependency-ref "TASK-001" --show-task-key` confirmed only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+  - `python -m asbp task list --dependency-ref "Execute FAT" --status completed --show-task-key` confirmed only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+  - `python -m asbp task list --dependency-ref "***" --show-task-key` confirmed:
+    - `No tasks found.`
+
+## Latest completed step
+
+Milestone 4 slice 14 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 14 deterministic dependency-reference filtering support in task list output
+- verified `task list --dependency-ref <value>` now exists as an explicit dependency-reference filter flag
+- verified incoming `--dependency-ref` filter input resolves through the existing deterministic task reference hierarchy:
+  - exact `task_id` first
+  - normalized `task_key` second
+- verified resolved dependency-reference matches are applied only against persisted dependency storage values:
+  - stored `task_id` entries in `dependencies`
+- verified `task list --dependency-ref <value>` now returns only tasks whose persisted dependencies include the resolved stored `task_id`
+- verified unresolved or non-normalizing `--dependency-ref` filter input preserves deterministic no-guess behavior by returning:
+  - `No tasks found.`
+- verified existing task-list ordering remains preserved under the new filter flag
+- verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
+  - `--status`
+  - `--has-dependencies`
+  - `--has-task-key`
+  - `--task-key`
+  - `--task-ref`
+  - `--show-task-key`
+- validated full local suite after slice 14 implementation:
+  - `112 passed in 10.44s`
+- manually verified strict controlled temporary-state behavior through:
+  - `python -m asbp task list --dependency-ref "TASK-001" --show-task-key`
+  - `python -m asbp task list --dependency-ref "Execute FAT" --status completed --show-task-key`
+  - `python -m asbp task list --dependency-ref "***" --show-task-key`
+- manually verified the controlled temporary state returned only:
+  - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+- manually verified invalid dependency-reference input returned:
+  - `No tasks found.`
+
+## Exact next unfinished step
+
+Milestone 4 slice 15 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 14 deterministic dependency-reference filtering in task list output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 15 scope or implementation until the planning checkpoint is recorded

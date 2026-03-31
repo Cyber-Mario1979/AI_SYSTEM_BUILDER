@@ -202,6 +202,19 @@ def handle_task_list(args):
         else:
             resolved_task_id_filter = target_task.task_id
 
+    resolved_dependency_task_id_filter = None
+    if args.dependency_ref is not None:
+        try:
+            dependency_task = find_task_by_reference(state.tasks, args.dependency_ref)
+        except ValueError as e:
+            print(str(e))
+            return
+
+        if dependency_task is None:
+            tasks = []
+        else:
+            resolved_dependency_task_id_filter = dependency_task.task_id
+
     if args.task_key is not None and normalized_task_key_filter is None:
         tasks = []
     else:
@@ -212,6 +225,7 @@ def handle_task_list(args):
             has_task_key=has_task_key,
             task_key=normalized_task_key_filter,
             task_id=resolved_task_id_filter,
+            dependency_task_id=resolved_dependency_task_id_filter,
         )
 
     if not tasks:
@@ -504,10 +518,13 @@ def build_parser():
         "--task-ref",
         default=None,
         help="Filter tasks by exact task reference (task_id first, task_key second)",
+    )    
+    task_list_parser.add_argument(
+        "--dependency-ref",
+        default=None,
+        help="Filter tasks by one dependency reference (task_id first, task_key second)",
     )
     task_set_dependencies_parser.set_defaults(func=handle_task_set_dependencies)
-
-
 
     task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
     task_delete_parser.add_argument("task_id", help="Task ID to delete")
