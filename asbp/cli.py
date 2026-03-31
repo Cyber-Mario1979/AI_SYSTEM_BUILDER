@@ -178,15 +178,33 @@ def handle_task_list(args):
     elif args.has_dependencies == "false":
         has_dependencies = False
 
+    has_task_key = None
+    if args.has_task_key == "true":
+        has_task_key = True
+    elif args.has_task_key == "false":
+        has_task_key = False
+
     tasks = filter_tasks(
         tasks,
         status=args.status,
         has_dependencies=has_dependencies,
+        has_task_key=has_task_key,
     )
 
     if not tasks:
         print("No tasks found.")
         return
+
+    print("Tasks:")
+    for task in tasks:
+        if args.show_task_key:
+            task_key_display = task.get("task_key") or "<none>"
+            print(
+                f'- {task["task_id"]} | {task["status"]} | '
+                f'task_key={task_key_display} | {task["title"]}'
+            )
+        else:
+            print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
 
     print("Tasks:")
     for task in tasks:
@@ -420,6 +438,11 @@ def build_parser():
         "--show-task-key",
         action="store_true",
         help="Show task_key in list output",
+    )
+    task_list_parser.add_argument(
+        "--has-task-key",
+        choices=["true", "false"],
+        help="Filter tasks by whether task_key exists",
     )
     task_list_parser.set_defaults(func=handle_task_list)
 

@@ -427,13 +427,59 @@ Reality snapshot:
   - clean git working tree verification after restore for intended implementation files
   - local commit and push after slice 10 verification
   - clean git working tree verification after push
-- Milestone 4 remains in progress after slice 10 implementation:
-  - slice 11 planning is still pending
+- the Milestone 4 slice 11 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic `task_key` presence filtering in task list output
+- the slice 11 scope boundary is locked as:
+  - add a narrow list-surface filtering enhancement for existing indexing only
+  - allow `task list` to filter by whether a persisted `task_key` is present or absent
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve current task ordering in list output
+  - preserve existing filtering behavior:
+    - `--status`
+    - `--has-dependencies`
+  - preserve current default `task list` behavior unless an explicit filter flag is used
+  - when the explicit filter flag is used:
+    - `true` returns only tasks with a non-null persisted `task_key`
+    - `false` returns only tasks with `task_key = null`
+  - preserve compatibility with the existing explicit display flag:
+    - `--show-task-key`
+  - do not add any new indexing surfaces
+  - do not change `task show`
+  - do not change `task add`
+  - do not change `task set-key`
+  - do not change `task clear-key`
+  - do not change dependency behavior
+- Milestone 4 slice 11 is now implemented in the current verified local workspace as:
+  - deterministic `task_key` presence filtering in task list output
+  - `task list --has-task-key true|false` now exists as an explicit filter flag for persisted `task_key` presence
+  - `task list --has-task-key true` now returns only tasks with a non-null persisted `task_key`
+  - `task list --has-task-key false` now returns only tasks with `task_key = null`
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing filtering behavior remains preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--show-task-key`
+- Milestone 4 slice 11 was manually verified in this session through:
+  - manual `python -m asbp task list --has-task-key true --show-task-key` pass confirming current live state returned:
+    - `No tasks found.`
+  - manual `python -m asbp task list --has-task-key false --show-task-key` pass confirming only tasks with `task_key=<none>` were listed
+  - fresh local full-suite pass captured in this session:
+    - `97 passed in 9.66s`
+- Milestone 4 remains in progress after slice 11 implementation:
+  - slice 12 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `97 passed in 9.66s`
+- manual Milestone 4 slice 11 verification completed in this session:
+  - `python -m asbp task list --has-task-key true --show-task-key` confirmed current live state returned:
+    - `No tasks found.`
+  - `python -m asbp task list --has-task-key false --show-task-key` confirmed only tasks with `task_key=<none>` were listed
 - targeted local slice-10 CLI test result verified in this session:
   - `3 passed, 53 deselected in 0.56s`
 - manual Milestone 4 slice 10 verification completed in this session:
@@ -852,6 +898,15 @@ Reality snapshot:
   - local slice 10 commit creation
   - local slice 10 push to `origin/main`
   - post-push clean `git status` verification
+  - Milestone 4 slice 11 planning checkpoint lock
+  - narrow slice 11 lock as deterministic `task_key` presence filtering in task list output
+  - slice 11 scope lock for explicit `task list --has-task-key true|false` filtering only
+  - live workspace terminal verification showing:
+    - `python -m asbp task list --has-task-key true --show-task-key`
+    - `python -m asbp task list --has-task-key false --show-task-key`
+    - `python -m pytest -q`
+  - screenshot evidence confirming slice 11 live-workspace behavior and green full-suite validation:
+    - `97 passed in 9.66s`
 
 ## Current verified code snapshot
 
@@ -940,36 +995,42 @@ Reality snapshot:
 - `task list --show-task-key` now renders persisted normalized `task_key` values and deterministic `<none>` placeholders for missing keys
 - existing task-list ordering and filtering behavior remain preserved under the display flag
 - manual Milestone 4 slice 10 verification confirms explicit task-list `task_key` visibility now works without adding any new indexing surfaces
+- `task list --has-task-key true|false` now supports deterministic filtering by persisted `task_key` presence
+- `task list --has-task-key true` now returns only tasks with a non-null persisted `task_key`
+- `task list --has-task-key false` now returns only tasks with `task_key = null`
+- existing task-list ordering and existing `--status`, `--has-dependencies`, and `--show-task-key` behavior remain preserved under the new filter flag
+- manual Milestone 4 slice 11 verification confirms explicit task-list `task_key` presence filtering now works without adding any new indexing surfaces
 
 ## Latest completed step
 
-Milestone 4 slice 10 implementation checkpoint
+Milestone 4 slice 11 implementation checkpoint
 
 Completed:
 
-- verified the pushed live repo contains slice 10 deterministic `task_key` visibility support in task list output
-- verified `task list --show-task-key` now exists as an explicit display flag for secondary reference visibility
-- verified default `task list` output remains unchanged when `--show-task-key` is not provided
-- verified `task list --show-task-key` now shows persisted normalized `task_key` values in list rows
-- verified `task list --show-task-key` now shows deterministic `<none>` placeholders for cleared or missing keys
-- verified existing task-list ordering and filtering behavior remain preserved under the display flag
-- updated repo-aligned CLI tests for slice 10 task-list `task_key` visibility coverage
-- validated targeted slice-10 CLI coverage after implementation:
-  - `3 passed, 53 deselected in 0.56s`
-- manually verified persisted-key visibility through `task list --show-task-key`
-- manually verified deterministic `<none>` placeholder behavior after `task clear-key`
-- restored `data/state/state.json` after manual verification
-- verified clean git working tree after restore
-- committed and pushed the slice 10 implementation to `origin/main`
-- verified clean git working tree after push
+- verified the local workspace contains slice 11 deterministic `task_key` presence filtering support in task list output
+- verified `task list --has-task-key true|false` now exists as an explicit filter flag for persisted `task_key` presence
+- verified `task list --has-task-key true` now returns only tasks with a non-null persisted `task_key`
+- verified `task list --has-task-key false` now returns only tasks with `task_key = null`
+- verified existing task-list ordering remains preserved under the new filter flag
+- verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
+  - `--status`
+  - `--has-dependencies`
+  - `--show-task-key`
+- validated full local suite after slice 11 implementation:
+  - `97 passed in 9.66s`
+- manually verified current live state behavior through:
+  - `python -m asbp task list --has-task-key true --show-task-key`
+  - `python -m asbp task list --has-task-key false --show-task-key`
+- manually verified the current live state returned `No tasks found.` for `--has-task-key true`
+- manually verified the current live state listed only `task_key=<none>` rows for `--has-task-key false`
 
 ## Exact next unfinished step
 
-Milestone 4 slice 11 planning checkpoint
+Milestone 4 slice 12 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 10 deterministic `task_key` visibility in task list output
+- lock the next narrow Indexing Layer slice after slice 11 deterministic `task_key` presence filtering in task list output
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 11 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 12 scope or implementation until the planning checkpoint is recorded
