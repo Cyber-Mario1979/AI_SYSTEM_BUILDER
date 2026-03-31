@@ -467,13 +467,75 @@ Reality snapshot:
   - manual `python -m asbp task list --has-task-key false --show-task-key` pass confirming only tasks with `task_key=<none>` were listed
   - fresh local full-suite pass captured in this session:
     - `97 passed in 9.66s`
-- Milestone 4 remains in progress after slice 11 implementation:
-  - slice 12 planning is still pending
+- the Milestone 4 slice 12 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic exact `task_key` value filtering in task list output
+- the slice 12 scope boundary is locked as:
+  - add a narrow list-surface filtering enhancement for existing indexing only
+  - allow `task list` to filter by one explicit `task_key` value
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve current task ordering in list output
+  - preserve compatibility with existing list surfaces:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--show-task-key`
+  - apply deterministic AND logic when filters are combined
+  - normalize the incoming filter input using the same existing `task_key` normalization rules
+  - perform exact normalized match only against persisted `task_key` values
+  - preserve deterministic no-guess behavior when the incoming `task_key` filter normalizes to no valid value
+  - stay fully inside Milestone 4 — Indexing Layer
+- Milestone 4 slice 12 is now implemented in the current verified local workspace as:
+  - deterministic exact `task_key` value filtering in task list output
+  - `task list --task-key <value>` now exists as an explicit exact-match filter flag for persisted `task_key`
+  - incoming `--task-key` filter input is normalized through the existing deterministic `task_key` normalization rules
+  - `task list --task-key <value>` now returns only tasks whose normalized persisted `task_key` exactly matches the normalized filter value
+  - invalid / non-normalizing `--task-key` filter input now preserves deterministic no-guess behavior by returning:
+    - `No tasks found.`
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing list filtering and display behavior remain preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--show-task-key`
+- Milestone 4 slice 12 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `102 passed in 11.11s`
+  - temporary manual verification state creation with:
+    - `TASK-001` / `prepare-fat`
+    - `TASK-002` / `execute-fat`
+    - `TASK-003` / `review-fat-package`
+  - manual `python -m asbp task list --task-key "Prepare FAT" --show-task-key` pass confirming only:
+    - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
+  - manual `python -m asbp task list --task-key "Execute FAT" --status completed --show-task-key` pass confirming only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - manual `python -m asbp task list --task-key "***" --show-task-key` pass confirming:
+    - `No tasks found.`
+  - temporary manual verification state restore completed after verification
+  - post-restore `git status --short` confirmed only intended implementation/test files remained modified:
+    - `asbp/cli.py`
+    - `asbp/task_logic.py`
+    - `tests/test_task_cli.py`
+    - `tests/test_task_logic.py`
+- Milestone 4 remains in progress after slice 12 implementation:
+  - slice 13 planning is still pending
   - no Milestone 5 work package drift
   - no multiple indexing surfaces in the same slice
 
 ## Current verified validation status
 
+- fresh local full-suite result verified in this session:
+  - `102 passed in 11.11s`
+- manual Milestone 4 slice 12 verification completed in this session:
+  - `python -m asbp task list --task-key "Prepare FAT" --show-task-key` confirmed only:
+    - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
+  - `python -m asbp task list --task-key "Execute FAT" --status completed --show-task-key` confirmed only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - `python -m asbp task list --task-key "***" --show-task-key` confirmed:
+    - `No tasks found.`
+  - temporary manual verification state was restored after verification
+  - post-restore `git status --short` confirmed only intended implementation/test files remained modified
 - fresh local full-suite result verified in this session:
   - `97 passed in 9.66s`
 - manual Milestone 4 slice 11 verification completed in this session:
@@ -907,6 +969,29 @@ Reality snapshot:
     - `python -m pytest -q`
   - screenshot evidence confirming slice 11 live-workspace behavior and green full-suite validation:
     - `97 passed in 9.66s`
+  - Milestone 4 slice 12 planning checkpoint lock
+  - narrow slice 12 lock as deterministic exact `task_key` value filtering in task list output
+  - slice 12 scope lock for explicit `task list --task-key <value>` exact filtering only
+  - repo-aligned local `task_logic.py` patching for exact normalized `task_key` filtering in `filter_tasks(...)`
+  - repo-aligned local `cli.py` patching for:
+    - `normalize_task_key` import wiring
+    - normalized exact `--task-key` filter handling in `handle_task_list(...)`
+    - `task list --task-key` parser wiring
+  - repo-aligned `tests/test_task_logic.py` updates for exact normalized `task_key` filter helper coverage
+  - repo-aligned `tests/test_task_cli.py` updates for exact normalized `task_key` CLI coverage
+  - local repair cycle after an invalid intermediate `cli.py` paste:
+    - `git restore asbp/cli.py`
+    - full-suite recovery pass after restore
+  - green full-suite validation after the final slice 12 local patch:
+    - `102 passed in 11.11s`
+  - temporary manual verification state creation for slice 12 CLI verification
+  - initial manual verification attempt exposed UTF-8 BOM write behavior from PowerShell `Set-Content`
+  - corrected no-BOM temporary state write path through Python `write_text(..., encoding='utf-8')`
+  - manual `task list --task-key` verification pass for normalized match
+  - manual `task list --task-key` verification pass for AND logic with `--status completed`
+  - manual invalid-filter verification pass confirming deterministic `No tasks found.`
+  - temporary manual verification state restore completed
+  - post-restore `git status --short` verification confirmed only intended implementation/test files remained modified
 
 ## Current verified code snapshot
 
@@ -1000,37 +1085,52 @@ Reality snapshot:
 - `task list --has-task-key false` now returns only tasks with `task_key = null`
 - existing task-list ordering and existing `--status`, `--has-dependencies`, and `--show-task-key` behavior remain preserved under the new filter flag
 - manual Milestone 4 slice 11 verification confirms explicit task-list `task_key` presence filtering now works without adding any new indexing surfaces
+- `task list --task-key <value>` now supports deterministic exact filtering by normalized persisted `task_key`
+- incoming `--task-key` filter input is normalized through the existing deterministic `task_key` normalization rules
+- `task list --task-key <value>` now returns only tasks whose normalized persisted `task_key` exactly matches the normalized filter input
+- invalid or non-normalizing `--task-key` filter input now preserves deterministic no-guess behavior by returning:
+  - `No tasks found.`
+- existing task-list ordering and existing `--status`, `--has-dependencies`, `--has-task-key`, and `--show-task-key` behavior remain preserved under the new exact filter flag
+- manual Milestone 4 slice 12 verification confirms explicit exact `task_key` filtering now works without adding any new indexing surfaces
 
 ## Latest completed step
 
-Milestone 4 slice 11 implementation checkpoint
+Milestone 4 slice 12 implementation checkpoint
 
 Completed:
 
-- verified the local workspace contains slice 11 deterministic `task_key` presence filtering support in task list output
-- verified `task list --has-task-key true|false` now exists as an explicit filter flag for persisted `task_key` presence
-- verified `task list --has-task-key true` now returns only tasks with a non-null persisted `task_key`
-- verified `task list --has-task-key false` now returns only tasks with `task_key = null`
+- verified the local workspace contains slice 12 deterministic exact `task_key` value filtering support in task list output
+- verified `task list --task-key <value>` now exists as an explicit exact-match filter flag for persisted `task_key`
+- verified incoming `--task-key` filter input is normalized through the existing deterministic `task_key` normalization rules
+- verified `task list --task-key <value>` now returns only tasks whose normalized persisted `task_key` exactly matches the normalized filter input
+- verified invalid or non-normalizing `--task-key` filter input preserves deterministic no-guess behavior by returning:
+  - `No tasks found.`
 - verified existing task-list ordering remains preserved under the new filter flag
 - verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
   - `--status`
   - `--has-dependencies`
+  - `--has-task-key`
   - `--show-task-key`
-- validated full local suite after slice 11 implementation:
-  - `97 passed in 9.66s`
-- manually verified current live state behavior through:
-  - `python -m asbp task list --has-task-key true --show-task-key`
-  - `python -m asbp task list --has-task-key false --show-task-key`
-- manually verified the current live state returned `No tasks found.` for `--has-task-key true`
-- manually verified the current live state listed only `task_key=<none>` rows for `--has-task-key false`
+- validated full local suite after slice 12 implementation:
+  - `102 passed in 11.11s`
+- manually verified controlled temporary-state behavior through:
+  - `python -m asbp task list --task-key "Prepare FAT" --show-task-key`
+  - `python -m asbp task list --task-key "Execute FAT" --status completed --show-task-key`
+  - `python -m asbp task list --task-key "***" --show-task-key`
+- manually verified the controlled temporary state returned only:
+  - `TASK-001 | planned | task_key=prepare-fat | Prepare FAT`
+- manually verified the controlled temporary state returned only:
+  - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+- manually verified invalid exact-filter input returned:
+  - `No tasks found.`
 
 ## Exact next unfinished step
 
-Milestone 4 slice 12 planning checkpoint
+Milestone 4 slice 13 planning checkpoint
 
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 11 deterministic `task_key` presence filtering in task list output
+- lock the next narrow Indexing Layer slice after slice 12 deterministic exact `task_key` value filtering in task list output
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 12 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 13 scope or implementation until the planning checkpoint is recorded

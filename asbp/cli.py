@@ -12,6 +12,7 @@ from asbp.task_logic import (
     find_task_by_reference,
     generate_next_task_id,
     generate_next_task_order,
+    normalize_task_key,
     prepare_task_key_for_write,
     set_task_dependencies,
     update_task_status,
@@ -184,12 +185,20 @@ def handle_task_list(args):
     elif args.has_task_key == "false":
         has_task_key = False
 
-    tasks = filter_tasks(
-        tasks,
-        status=args.status,
-        has_dependencies=has_dependencies,
-        has_task_key=has_task_key,
-    )
+    normalized_task_key_filter = None
+    if args.task_key is not None:
+        normalized_task_key_filter = normalize_task_key(args.task_key)
+
+    if args.task_key is not None and normalized_task_key_filter is None:
+        tasks = []
+    else:
+        tasks = filter_tasks(
+            tasks,
+            status=args.status,
+            has_dependencies=has_dependencies,
+            has_task_key=has_task_key,
+            task_key=normalized_task_key_filter,
+        )
 
     if not tasks:
         print("No tasks found.")
@@ -198,18 +207,7 @@ def handle_task_list(args):
     print("Tasks:")
     for task in tasks:
         if args.show_task_key:
-            task_key_display = task.get("task_key") or "<none>"
-            print(
-                f'- {task["task_id"]} | {task["status"]} | '
-                f'task_key={task_key_display} | {task["title"]}'
-            )
-        else:
-            print(f'- {task["task_id"]} | {task["status"]} | {task["title"]}')
-
-    print("Tasks:")
-    for task in tasks:
-        if args.show_task_key:
-            task_key_display = task.get("task_key") or "<none>"
+            task_key_display = normalize_task_key(task.get("task_key")) or "<none>"
             print(
                 f'- {task["task_id"]} | {task["status"]} | '
                 f'task_key={task_key_display} | {task["title"]}'
@@ -443,6 +441,11 @@ def build_parser():
         "--has-task-key",
         choices=["true", "false"],
         help="Filter tasks by whether task_key exists",
+    )
+    task_list_parser.add_argument(
+        "--task-key",
+        default=None,
+        help="Filter tasks by exact normalized task_key",
     )
     task_list_parser.set_defaults(func=handle_task_list)
 

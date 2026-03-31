@@ -125,7 +125,14 @@ def validate_task_dependencies(
 
 
 
-def filter_tasks(tasks, *, status=None, has_dependencies=None, has_task_key=None):
+def filter_tasks(
+    tasks,
+    *,
+    status=None,
+    has_dependencies=None,
+    has_task_key=None,
+    task_key=None,
+):
     """
     Return a filtered task list without mutating the original input.
 
@@ -135,6 +142,7 @@ def filter_tasks(tasks, *, status=None, has_dependencies=None, has_task_key=None
     - has_dependencies=False: keep only tasks with zero dependencies
     - has_task_key=True: keep only tasks with a non-null task_key
     - has_task_key=False: keep only tasks with task_key equal to None
+    - task_key: keep only tasks whose normalized persisted task_key exactly matches
     - if multiple filters are provided, apply AND logic
     - preserve original task order
     """
@@ -163,6 +171,12 @@ def filter_tasks(tasks, *, status=None, has_dependencies=None, has_task_key=None
         filtered = [
             task for task in filtered
             if task.get("task_key") is None
+        ]
+
+    if task_key is not None:
+        filtered = [
+            task for task in filtered
+            if normalize_task_key(task.get("task_key")) == task_key
         ]
 
     return filtered

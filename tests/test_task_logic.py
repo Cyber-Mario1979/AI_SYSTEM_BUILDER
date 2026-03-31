@@ -520,3 +520,66 @@ def test_prepare_task_key_for_write_rejects_duplicate_normalized_task_key_for_ot
             "Prepare FAT",
             current_task_id="TASK-002",
         )
+def test_filter_tasks_by_exact_normalized_task_key_only():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "task_key": "prepare-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "planned",
+            "task_key": "Prepare FAT Protocol",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "planned",
+            "task_key": None,
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(tasks, task_key="prepare-fat-protocol")
+
+    assert [task["task_id"] for task in result] == ["TASK-002"]
+
+
+def test_filter_tasks_by_task_key_and_status_with_and_logic():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "task_key": "prepare-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "completed",
+            "task_key": "prepare-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "planned",
+            "task_key": "execute-fat",
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(
+        tasks,
+        status="completed",
+        has_task_key=True,
+        task_key="prepare-fat",
+    )
+
+    assert [task["task_id"] for task in result] == ["TASK-002"]

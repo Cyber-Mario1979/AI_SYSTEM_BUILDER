@@ -2185,3 +2185,164 @@ def test_task_list_rejects_duplicate_normalized_persisted_task_key_state(
     assert result.returncode == 0
     assert "State validation failed:" in result.stdout
     assert "Duplicate task_key is not allowed: prepare-fat" in result.stdout
+
+def test_task_list_filters_tasks_by_exact_normalized_task_key_with_show_task_key_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "Prepare FAT Protocol",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Third real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-key",
+        " Prepare_FAT Protocol ",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert "- TASK-002 | planned | task_key=prepare-fat-protocol | Second real task" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | First real task" not in output
+    assert "- TASK-003 | planned | task_key=<none> | Third real task" not in output
+
+
+def test_task_list_filters_tasks_by_task_key_and_status_with_and_logic(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Second real task",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Third real task",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-key",
+        "execute-fat",
+        "--status",
+        "completed",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert "- TASK-002 | completed | task_key=execute-fat | Second real task" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | First real task" not in output
+    assert "- TASK-003 | completed | task_key=review-fat-package | Third real task" not in output
+
+
+def test_task_list_invalid_task_key_filter_returns_no_tasks(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "First real task",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-key",
+        "***",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    assert "No tasks found." in result.stdout
+    assert "Tasks:" not in result.stdout
