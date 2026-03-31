@@ -189,6 +189,19 @@ def handle_task_list(args):
     if args.task_key is not None:
         normalized_task_key_filter = normalize_task_key(args.task_key)
 
+    resolved_task_id_filter = None
+    if args.task_ref is not None:
+        try:
+            target_task = find_task_by_reference(state.tasks, args.task_ref)
+        except ValueError as e:
+            print(str(e))
+            return
+
+        if target_task is None:
+            tasks = []
+        else:
+            resolved_task_id_filter = target_task.task_id
+
     if args.task_key is not None and normalized_task_key_filter is None:
         tasks = []
     else:
@@ -198,6 +211,7 @@ def handle_task_list(args):
             has_dependencies=has_dependencies,
             has_task_key=has_task_key,
             task_key=normalized_task_key_filter,
+            task_id=resolved_task_id_filter,
         )
 
     if not tasks:
@@ -485,6 +499,11 @@ def build_parser():
         "dependencies",
         nargs="*",
         help="Dependency task IDs",
+    )
+    task_list_parser.add_argument(
+        "--task-ref",
+        default=None,
+        help="Filter tasks by exact task reference (task_id first, task_key second)",
     )
     task_set_dependencies_parser.set_defaults(func=handle_task_set_dependencies)
 

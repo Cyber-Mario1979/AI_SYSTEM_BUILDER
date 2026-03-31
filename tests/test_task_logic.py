@@ -583,3 +583,65 @@ def test_filter_tasks_by_task_key_and_status_with_and_logic():
     )
 
     assert [task["task_id"] for task in result] == ["TASK-002"]
+def test_filter_tasks_by_exact_task_id_only():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "task_key": "prepare-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "completed",
+            "task_key": "execute-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "planned",
+            "task_key": None,
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(tasks, task_id="TASK-002")
+
+    assert [task["task_id"] for task in result] == ["TASK-002"]
+
+
+def test_filter_tasks_by_task_id_and_status_with_and_logic():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "task_key": "prepare-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "completed",
+            "task_key": "execute-fat",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "completed",
+            "task_key": "review-fat-package",
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(
+        tasks,
+        task_id="TASK-002",
+        status="completed",
+    )
+
+    assert [task["task_id"] for task in result] == ["TASK-002"]    

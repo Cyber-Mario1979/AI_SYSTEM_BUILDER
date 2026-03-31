@@ -3,7 +3,6 @@ import re
 
 from asbp.state_model import TaskModel
 
-
 TaskStatus = Literal["planned", "in_progress", "completed", "over_due"]
 
 _TASK_KEY_INVALID_CHARS_RE = re.compile(r"[^a-z0-9-]")
@@ -132,6 +131,7 @@ def filter_tasks(
     has_dependencies=None,
     has_task_key=None,
     task_key=None,
+    task_id=None,
 ):
     """
     Return a filtered task list without mutating the original input.
@@ -143,6 +143,7 @@ def filter_tasks(
     - has_task_key=True: keep only tasks with a non-null task_key
     - has_task_key=False: keep only tasks with task_key equal to None
     - task_key: keep only tasks whose normalized persisted task_key exactly matches
+    - task_id: keep only tasks whose task_id exactly matches
     - if multiple filters are provided, apply AND logic
     - preserve original task order
     """
@@ -177,6 +178,12 @@ def filter_tasks(
         filtered = [
             task for task in filtered
             if normalize_task_key(task.get("task_key")) == task_key
+        ]
+
+    if task_id is not None:
+        filtered = [
+            task for task in filtered
+            if task.get("task_id") == task_id
         ]
 
     return filtered

@@ -2346,3 +2346,164 @@ def test_task_list_invalid_task_key_filter_returns_no_tasks(restore_state_file):
     assert result.returncode == 0
     assert "No tasks found." in result.stdout
     assert "Tasks:" not in result.stdout
+
+def test_task_list_filters_tasks_by_task_ref_task_id_with_show_task_key_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-ref",
+        "TASK-002",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert "- TASK-002 | completed | task_key=execute-fat | Execute FAT" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | Prepare FAT" not in output
+    assert "- TASK-003 | completed | task_key=review-fat-package | Review FAT Package" not in output
+
+
+def test_task_list_filters_tasks_by_task_ref_resolved_by_task_key_and_status_with_and_logic(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-ref",
+        " Execute FAT ",
+        "--status",
+        "completed",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert "- TASK-002 | completed | task_key=execute-fat | Execute FAT" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | Prepare FAT" not in output
+    assert "- TASK-003 | completed | task_key=review-fat-package | Review FAT Package" not in output
+
+
+def test_task_list_invalid_task_ref_filter_returns_no_tasks(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-ref",
+        "***",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    assert "No tasks found." in result.stdout
+    assert "Tasks:" not in result.stdout
