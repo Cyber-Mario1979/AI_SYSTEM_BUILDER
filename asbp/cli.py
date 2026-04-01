@@ -258,6 +258,21 @@ def handle_task_list(args):
             else:
                 line_parts.append("dependency_refs=[]")
 
+        if args.show_dependent_refs:
+            dependent_refs = build_dependent_reference_view(
+                state.tasks,
+                task["task_id"],
+            )
+
+            if dependent_refs:
+                dependent_refs_display = ", ".join(
+                    f'{dependent_ref["task_id"]}:{dependent_ref["task_key"]}'
+                    for dependent_ref in dependent_refs
+                )
+                line_parts.append(f"dependent_refs=[{dependent_refs_display}]")
+            else:
+                line_parts.append("dependent_refs=[]")
+
         line_parts.append(task["title"])
         print(" | ".join(line_parts))
 
@@ -500,6 +515,11 @@ def build_parser():
         "--show-dependency-refs",
         action="store_true",
         help="Show resolved dependency references in list output",
+    )
+    task_list_parser.add_argument(
+        "--show-dependent-refs",
+        action="store_true",
+        help="Show resolved dependent references in list output",
     )
     task_list_parser.add_argument(
         "--has-task-key",

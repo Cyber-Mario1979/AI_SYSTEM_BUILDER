@@ -1650,3 +1650,107 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 18 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 18 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependent-reference visibility in task list output
+- the slice 18 scope boundary is locked as:
+  - add a narrow list read-surface enhancement for existing indexing only
+  - expand dependent reference visibility in:
+    - `task list`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - derive dependent references only from persisted stored `task_id` values found in other tasks’ `dependencies`
+  - preserve current default `task list` contract unless an explicit display flag is used
+  - when the explicit display flag is used:
+    - show each task’s dependent task references using each dependent task’s stored `task_id`
+    - show the resolved persisted `task_key` for each dependent when available
+    - show a deterministic empty placeholder when a dependent task has no `task_key`
+    - show an empty deterministic dependent surface when a task has no dependents
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - preserve current task ordering in list output
+  - preserve compatibility with existing list surfaces:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--show-task-key`
+    - `--show-dependency-refs`
+  - do not add new indexing surfaces beyond the explicit display flag for this slice
+  - do not change dependency write behavior
+  - do not change task mutation behavior
+  - do not change `task show` in this slice
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 18 is now implemented in the current verified local workspace as:
+  - deterministic dependent-reference visibility in task list output
+  - `task list --show-dependent-refs` now exists as an explicit display flag for dependent reference visibility
+  - default `task list` output remains unchanged when `--show-dependent-refs` is not provided
+  - `task list --show-dependent-refs` now shows each task’s dependent task references using each dependent task’s stored `task_id`
+  - `task list --show-dependent-refs` now shows the resolved persisted `task_key` for each dependent when available
+  - `task list --show-dependent-refs` now shows a deterministic placeholder for dependent tasks whose target has no `task_key`:
+    - `<none>`
+  - `task list --show-dependent-refs` now shows an empty deterministic dependent surface when no dependents exist:
+    - `dependent_refs=[]`
+- Milestone 4 slice 18 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `129 passed in 12.55s`
+  - manual `python -m asbp task list --show-dependent-refs` pass confirming:
+    - `dependent_refs` was present in task list output
+    - `TASK-001` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+    - tasks with no dependents showed:
+      - `dependent_refs=[]`
+- Milestone 4 remains in progress after slice 18 implementation:
+  - slice 19 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `129 passed in 12.55s`
+- manual Milestone 4 slice 18 verification completed in this session:
+  - `python -m asbp task list --show-dependent-refs` confirmed:
+    - `dependent_refs` was present in task list output
+    - `TASK-001` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+    - tasks with no dependents showed:
+      - `dependent_refs=[]`
+
+## Latest completed step
+
+Milestone 4 slice 18 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 18 deterministic dependent-reference visibility support in task list output
+- verified `task list --show-dependent-refs` now exists as an explicit display flag for dependent reference visibility
+- verified default `task list` output remains unchanged when `--show-dependent-refs` is not provided
+- verified `task list --show-dependent-refs` now shows each task’s dependent task references using each dependent task’s stored `task_id`
+- verified `task list --show-dependent-refs` now shows the resolved persisted `task_key` for each dependent when available
+- verified `task list --show-dependent-refs` now shows a deterministic placeholder for dependent tasks whose target has no `task_key`:
+  - `<none>`
+- verified `task list --show-dependent-refs` now shows an empty deterministic dependent surface when no dependents exist:
+  - `dependent_refs=[]`
+- validated full local suite after slice 18 implementation:
+  - `129 passed in 12.55s`
+- manually verified live-state behavior through:
+  - `python -m asbp task list --show-dependent-refs`
+- manually verified the live state returned:
+  - `TASK-001 | completed | dependent_refs=[TASK-003:<none>] | Task A`
+  - tasks with no dependents showed:
+    - `dependent_refs=[]`
+
+## Exact next unfinished step
+
+Milestone 4 slice 19 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 18 deterministic dependent-reference visibility in task list output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 19 scope or implementation until the planning checkpoint is recorded
