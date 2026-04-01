@@ -133,6 +133,7 @@ def filter_tasks(
     task_key=None,
     task_id=None,
     dependency_task_id=None,
+    dependent_task_id=None,
 ):
     """
     Return a filtered task list without mutating the original input.
@@ -146,9 +147,12 @@ def filter_tasks(
     - task_key: keep only tasks whose normalized persisted task_key exactly matches
     - task_id: keep only tasks whose task_id exactly matches
     - dependency_task_id: keep only tasks whose dependencies include that exact stored task_id
+    - dependent_task_id: keep only tasks whose derived dependent set includes that exact
+      stored task_id, using the full unfiltered input and persisted dependency storage
     - if multiple filters are provided, apply AND logic
     - preserve original task order
     """
+    all_tasks = list(tasks)
     filtered = list(tasks)
 
     if status is not None:
@@ -192,7 +196,26 @@ def filter_tasks(
         filtered = [
             task for task in filtered
             if dependency_task_id in task.get("dependencies", [])
-        ]    
+        ]
+
+    if dependent_task_id is not None:
+        dependent_task = next(
+            (
+                task for task in all_tasks
+                if task.get("task_id") == dependent_task_id
+            ),
+            None,
+        )
+        dependent_dependency_ids = set()
+        if dependent_task is not None:
+            dependent_dependency_ids = set(
+                dependent_task.get("dependencies", [])
+            )
+
+        filtered = [
+            task for task in filtered
+            if task.get("task_id") in dependent_dependency_ids
+        ]
 
     return filtered
 
