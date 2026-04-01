@@ -265,6 +265,26 @@ def build_dependency_reference_view(
 
     return dependency_refs    
 
+def build_dependent_reference_view(
+    tasks: list[TaskModel],
+    target_task_id: str,
+) -> list[dict[str, str]]:
+    dependent_refs: list[dict[str, str]] = []
+
+    for task in tasks:
+        if target_task_id not in task.dependencies:
+            continue
+
+        task_key_display = normalize_task_key(task.task_key) or "<none>"
+        dependent_refs.append(
+            {
+                "task_id": task.task_id,
+                "task_key": task_key_display,
+            }
+        )
+
+    return dependent_refs
+
 def normalize_task_key(value: str | None) -> str | None:
     if value is None:
         return None

@@ -2386,6 +2386,158 @@ def test_task_list_show_dependency_refs_flag_displays_resolved_dependency_refs(
     ) in output
 
 
+def test_task_show_show_dependent_refs_flag_displays_resolved_dependent_refs(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": ["TASK-001"],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": ["TASK-001"],
+                    },
+                    {
+                        "task_id": "TASK-004",
+                        "order": 4,
+                        "title": "Archive FAT Package",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "archive-fat-package",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-001", "--show-dependent-refs")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"task_id": "TASK-001"' in output
+    assert '"dependent_refs": [' in output
+    assert '"task_id": "TASK-002"' in output
+    assert '"task_key": "execute-fat"' in output
+    assert '"task_id": "TASK-003"' in output
+    assert '"task_key": "<none>"' in output
+    assert '"task_id": "TASK-004"' not in output
+
+
+def test_task_show_show_dependent_refs_flag_returns_empty_list_when_no_dependents(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-001", "--show-dependent-refs")
+
+    assert result.returncode == 0
+    assert '"dependent_refs": []' in result.stdout
+
+
+def test_task_show_preserves_default_contract_without_show_dependent_refs_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-001")
+
+    assert result.returncode == 0
+    assert '"task_id": "TASK-001"' in result.stdout
+    assert '"dependent_refs":' not in result.stdout
+
+
 def test_task_list_preserves_default_contract_without_show_dependency_refs_flag(
     restore_state_file,
 ):

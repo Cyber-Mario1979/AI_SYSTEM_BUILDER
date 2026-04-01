@@ -2,6 +2,7 @@ import pytest
 
 from asbp.state_model import TaskModel
 from asbp.task_logic import (
+    build_dependent_reference_view,
     build_dependency_reference_view,
     filter_tasks,
     update_task_status,
@@ -548,7 +549,73 @@ def test_build_dependency_reference_view_returns_stored_task_ids_and_resolved_ta
         {"task_id": "TASK-002", "task_key": "<none>"},
     ]
 
+def test_build_dependent_reference_view_returns_stored_task_ids_and_resolved_task_keys():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="planned",
+            dependencies=["TASK-001"],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key=None,
+            status="completed",
+            dependencies=["TASK-001"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key="archive-fat-package",
+            status="planned",
+            dependencies=["TASK-002"],
+        ),
+    ]
 
+    result = build_dependent_reference_view(tasks, "TASK-001")
+
+    assert result == [
+        {"task_id": "TASK-002", "task_key": "execute-fat"},
+        {"task_id": "TASK-003", "task_key": "<none>"},
+    ]
+
+
+def test_build_dependent_reference_view_returns_empty_list_when_no_dependents():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    result = build_dependent_reference_view(tasks, "TASK-001")
+
+    assert result == []
 
 def test_build_dependency_reference_view_returns_missing_placeholder_for_unresolved_dependency():
     tasks = [

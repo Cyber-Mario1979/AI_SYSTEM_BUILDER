@@ -1563,3 +1563,90 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 17 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 17 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependent-reference visibility in task show output
+- the slice 17 scope boundary is locked as:
+  - add a narrow read-surface enhancement for existing indexing only
+  - expand dependent reference visibility in:
+    - `task show`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - derive dependent references only from persisted stored `task_id` values found in other tasks’ `dependencies`
+  - preserve current default `task show` contract unless an explicit display flag is used
+  - when the explicit display flag is used:
+    - show each dependent task’s stored `task_id`
+    - show the resolved persisted `task_key` for each dependent when available
+    - show a deterministic empty placeholder when a dependent task has no `task_key`
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - do not change dependency write behavior
+  - do not change task mutation behavior
+  - do not change `task list` in this slice
+  - do not add new indexing identity surfaces
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 17 is now implemented in the current verified local workspace as:
+  - deterministic dependent-reference visibility in task show output
+  - `task show --show-dependent-refs` now exists as an explicit display flag for dependent reference visibility
+  - default `task show` output remains unchanged when `--show-dependent-refs` is not provided
+  - `task show --show-dependent-refs` now shows each dependent task’s stored `task_id`
+  - `task show --show-dependent-refs` now shows the resolved persisted `task_key` when available
+  - `task show --show-dependent-refs` now shows a deterministic placeholder for dependent tasks whose target has no `task_key`:
+    - `<none>`
+  - `task show --show-dependent-refs` now shows an empty deterministic dependent surface when no dependents exist:
+    - `dependent_refs = []`
+- Milestone 4 slice 17 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `126 passed in 13.05s`
+  - manual `python -m asbp task show TASK-001 --show-dependent-refs` pass confirming:
+    - `dependent_refs` was present
+    - `TASK-003` resolved to:
+      - `task_key = "<none>"`
+- Milestone 4 remains in progress after slice 17 implementation:
+  - slice 18 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `126 passed in 13.05s`
+- manual Milestone 4 slice 17 verification completed in this session:
+  - `python -m asbp task show TASK-001 --show-dependent-refs` confirmed:
+    - `dependent_refs` was present
+    - `TASK-003` resolved to:
+      - `task_key = "<none>"`
+
+## Latest completed step
+
+Milestone 4 slice 17 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 17 deterministic dependent-reference visibility support in task show output
+- verified `task show --show-dependent-refs` now exists as an explicit display flag for dependent reference visibility
+- verified default `task show` output remains unchanged when `--show-dependent-refs` is not provided
+- verified `task show --show-dependent-refs` now shows each dependent task’s stored `task_id`
+- verified `task show --show-dependent-refs` now shows the resolved persisted `task_key` when available
+- verified `task show --show-dependent-refs` now shows a deterministic placeholder for dependent tasks whose target has no `task_key`:
+  - `<none>`
+- verified `task show --show-dependent-refs` now shows an empty deterministic dependent surface when no dependents exist:
+  - `dependent_refs = []`
+- validated full local suite after slice 17 implementation:
+  - `126 passed in 13.05s`
+- manually verified live-state behavior through:
+  - `python -m asbp task show TASK-001 --show-dependent-refs`
+- manually verified the live state returned:
+  - `TASK-003 -> <none>`
+
+## Exact next unfinished step
+
+Milestone 4 slice 18 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 17 deterministic dependent-reference visibility in task show output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 18 scope or implementation until the planning checkpoint is recorded
