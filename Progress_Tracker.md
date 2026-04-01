@@ -1754,3 +1754,142 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 19 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 19 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependent-reference filtering in task list output
+- the slice 19 scope boundary is locked as:
+  - add a narrow list-surface filtering enhancement for existing indexing only
+  - allow `task list` to filter by one explicit dependent reference value
+  - resolve the dependent-reference filter by:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - derive dependent matches only from persisted stored `task_id` values found in other tasks’ `dependencies`
+  - return only tasks whose derived dependent set includes the resolved stored `task_id`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve current task ordering in list output
+  - preserve compatibility with existing list surfaces:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--show-task-key`
+    - `--show-dependency-refs`
+    - `--show-dependent-refs`
+  - apply deterministic AND logic when combined with existing list filters
+  - preserve deterministic no-guess behavior
+  - preserve existing persisted-load validation behavior
+  - do not change `task show` in this slice
+  - do not change dependency write behavior
+  - do not change task mutation behavior
+  - do not add new indexing identity surfaces beyond the explicit filter flag for this slice
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 19 is now implemented in the current verified local workspace as:
+  - deterministic dependent-reference filtering in task list output
+  - `task list --dependent-ref <value>` now exists as an explicit dependent-reference filter flag
+  - incoming `--dependent-ref` filter input resolves through the existing deterministic task reference hierarchy:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - resolved dependent-reference matches are applied through derived dependent sets built from persisted stored `task_id` values found in other tasks’ `dependencies`
+  - `task list --dependent-ref <value>` now returns only tasks whose `task_id` is included in the resolved dependent task’s persisted dependencies
+  - unresolved or non-normalizing `--dependent-ref` filter input now preserves deterministic no-guess behavior by returning:
+    - `No tasks found.`
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing list filtering and display behavior remain preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--show-task-key`
+    - `--show-dependency-refs`
+    - `--show-dependent-refs`
+- Milestone 4 slice 19 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `134 passed in 13.04s`
+  - live-state `python -m asbp task list --dependent-ref "TASK-003" --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+  - controlled temporary-state `python -m asbp task list --dependent-ref " Review FAT Package " --status completed --show-task-key` pass confirming only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - `python -m asbp task list --dependent-ref "***" --show-task-key` pass confirming:
+    - `No tasks found.`
+  - original live state restore completed after controlled temporary verification
+  - local commit completed with:
+    - `add deterministic dependent-reference filtering in task list output`
+  - post-commit `git status` was clean
+- Milestone 4 remains in progress after slice 19 implementation:
+  - slice 20 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `134 passed in 13.04s`
+- manual Milestone 4 slice 19 verification completed in this session:
+  - `python -m asbp task list --dependent-ref "TASK-003" --show-task-key` confirmed live state returned:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+  - controlled temporary-state `python -m asbp task list --dependent-ref " Review FAT Package " --status completed --show-task-key` confirmed only:
+    - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+  - `python -m asbp task list --dependent-ref "***" --show-task-key` confirmed:
+    - `No tasks found.`
+
+## Latest completed step
+
+Milestone 4 slice 19 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 19 deterministic dependent-reference filtering support in task list output
+- verified `task list --dependent-ref <value>` now exists as an explicit dependent-reference filter flag
+- verified incoming `--dependent-ref` filter input resolves through the existing deterministic task reference hierarchy:
+  - exact `task_id` first
+  - normalized `task_key` second
+- verified resolved dependent-reference matches are applied through derived dependent sets built from persisted stored `task_id` values found in other tasks’ `dependencies`
+- verified `task list --dependent-ref <value>` now returns only tasks whose `task_id` is included in the resolved dependent task’s persisted dependencies
+- verified unresolved or non-normalizing `--dependent-ref` filter input preserves deterministic no-guess behavior by returning:
+  - `No tasks found.`
+- verified existing task-list ordering remains preserved under the new filter flag
+- verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
+  - `--status`
+  - `--has-dependencies`
+  - `--has-task-key`
+  - `--task-key`
+  - `--task-ref`
+  - `--dependency-ref`
+  - `--show-task-key`
+  - `--show-dependency-refs`
+  - `--show-dependent-refs`
+- validated full local suite after slice 19 implementation:
+  - `134 passed in 13.04s`
+- manually verified live-state behavior through:
+  - `python -m asbp task list --dependent-ref "TASK-003" --show-task-key`
+- manually verified the live state returned:
+  - `TASK-001 | completed | task_key=<none> | Task A`
+  - `TASK-004 | completed | task_key=<none> | Task D`
+- manually verified controlled temporary-state behavior through:
+  - `python -m asbp task list --dependent-ref " Review FAT Package " --status completed --show-task-key`
+- manually verified the controlled temporary state returned only:
+  - `TASK-002 | completed | task_key=execute-fat | Execute FAT`
+- manually verified invalid dependent-reference input returned:
+  - `No tasks found.`
+- local commit completed with:
+  - `add deterministic dependent-reference filtering in task list output`
+- post-commit `git status` was clean
+
+## Exact next unfinished step
+
+Milestone 4 slice 20 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 19 deterministic dependent-reference filtering in task list output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 20 scope or implementation until the planning checkpoint is recorded
