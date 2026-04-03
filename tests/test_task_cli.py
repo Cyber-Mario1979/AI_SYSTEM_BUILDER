@@ -5,12 +5,13 @@ from pathlib import Path
 
 import pytest
 from asbp.cli import (
+    _attach_reference_views_to_task_payload,
     handle_task_add,
     load_state_or_none,
     load_validated_state,
     save_validated_state,
 )
-from asbp.state_model import StateModel
+from asbp.state_model import StateModel, TaskModel
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 STATE_FILE = REPO_ROOT / "data" / "state" / "state.json"
@@ -38,6 +39,98 @@ def restore_state_file():
     elif STATE_FILE.exists():
         STATE_FILE.unlink()
 
+def test_attach_reference_views_to_task_payload_attaches_only_enabled_dependency_refs():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="completed",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+    ]
+
+    result = _attach_reference_views_to_task_payload(
+        tasks,
+        tasks[2].model_dump(),
+        show_dependency_refs=True,
+        show_dependent_refs=False,
+    )
+
+    assert result["dependency_refs"] == [
+        {"task_id": "TASK-001", "task_key": "prepare-fat"},
+        {"task_id": "TASK-002", "task_key": "<none>"},
+    ]
+    assert "dependent_refs" not in result
+
+
+def test_attach_reference_views_to_task_payload_attaches_both_reference_views_when_enabled():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="completed",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key="archive-fat-package",
+            status="planned",
+            dependencies=["TASK-003"],
+        ),
+    ]
+
+    result = _attach_reference_views_to_task_payload(
+        tasks,
+        tasks[2].model_dump(),
+        show_dependency_refs=True,
+        show_dependent_refs=True,
+    )
+
+    assert result["dependency_refs"] == [
+        {"task_id": "TASK-001", "task_key": "prepare-fat"},
+        {"task_id": "TASK-002", "task_key": "<none>"},
+    ]
+    assert result["dependent_refs"] == [
+        {"task_id": "TASK-004", "task_key": "archive-fat-package"},
+    ]
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)

@@ -174,6 +174,26 @@ def _resolve_task_list_reference_filter_task_id(tasks, reference):
         return None, True
     return target_task.task_id, False
 
+def _attach_reference_views_to_task_payload(
+    tasks,
+    task_payload,
+    *,
+    show_dependency_refs=False,
+    show_dependent_refs=False,
+):
+    if show_dependency_refs:
+        task_payload["dependency_refs"] = build_dependency_reference_view(
+            tasks,
+            task_payload.get("dependencies", []),
+        )
+
+    if show_dependent_refs:
+        task_payload["dependent_refs"] = build_dependent_reference_view(
+            tasks,
+            task_payload["task_id"],
+        )
+
+    return task_payload
 
 def handle_task_list(args):
     state = load_state_or_none()
@@ -234,7 +254,6 @@ def handle_task_list(args):
 
         if should_return_no_tasks:
             tasks = []
-        
 
     resolved_dependent_task_id_filter = None
     if args.dependent_ref is not None:
@@ -273,17 +292,21 @@ def handle_task_list(args):
 
     print("Tasks:")
     for task in tasks:
-        line_parts = [f'- {task["task_id"]}', task["status"]]
+        task_output = _attach_reference_views_to_task_payload(
+            state.tasks,
+            dict(task),
+            show_dependency_refs=args.show_dependency_refs,
+            show_dependent_refs=args.show_dependent_refs,
+        )
+
+        line_parts = [f'- {task_output["task_id"]}', task_output["status"]]
 
         if args.show_task_key:
-            task_key_display = normalize_task_key(task.get("task_key")) or "<none>"
+            task_key_display = normalize_task_key(task_output.get("task_key")) or "<none>"
             line_parts.append(f"task_key={task_key_display}")
 
         if args.show_dependency_refs:
-            dependency_refs = build_dependency_reference_view(
-                state.tasks,
-                task.get("dependencies", []),
-            )
+            dependency_refs = task_output["dependency_refs"]
 
             if dependency_refs:
                 dependency_refs_display = ", ".join(
@@ -295,10 +318,7 @@ def handle_task_list(args):
                 line_parts.append("dependency_refs=[]")
 
         if args.show_dependent_refs:
-            dependent_refs = build_dependent_reference_view(
-                state.tasks,
-                task["task_id"],
-            )
+            dependent_refs = task_output["dependent_refs"]
 
             if dependent_refs:
                 dependent_refs_display = ", ".join(
@@ -309,7 +329,7 @@ def handle_task_list(args):
             else:
                 line_parts.append("dependent_refs=[]")
 
-        line_parts.append(task["title"])
+        line_parts.append(task_output["title"])
         print(" | ".join(line_parts))
 
 def handle_task_update_status(args):
@@ -372,21 +392,14 @@ def handle_task_show(args):
         print(f"Task not found: {args.task_id}")
         return
 
-    task_payload = task.model_dump()
-
-    if args.show_dependency_refs:
-        task_payload["dependency_refs"] = build_dependency_reference_view(
-            state.tasks,
-            task_payload["dependencies"],
-        )
-    if args.show_dependent_refs:
-        task_payload["dependent_refs"] = build_dependent_reference_view(
-            state.tasks,
-            task.task_id,
-        )
+    task_payload = _attach_reference_views_to_task_payload(
+        state.tasks,
+        task.model_dump(),
+        show_dependency_refs=args.show_dependency_refs,
+        show_dependent_refs=args.show_dependent_refs,
+    )
 
     print(json.dumps(task_payload, indent=2))
-
 
 def handle_task_set_key(args):
     state = load_state_or_none()

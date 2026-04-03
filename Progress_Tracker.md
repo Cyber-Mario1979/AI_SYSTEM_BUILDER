@@ -2277,3 +2277,86 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 24 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 24 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared reference-output attachment helper across current read surfaces
+- the slice 24 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that conditionally attaches already-built reference views to output payloads only when the explicit visibility flags are enabled
+  - reuse that shared helper across the current reference-visibility surfaces only:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve current output contracts, including:
+    - `dependency_refs`
+    - `dependent_refs`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as `[]` where already established
+  - preserve current ordering behavior in all existing read surfaces
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 24 is now implemented in the current verified local workspace as:
+  - deterministic shared reference-output attachment helper across current read surfaces
+  - `_attach_reference_views_to_task_payload(...)` now exists as a shared internal helper in `asbp/cli.py`
+  - `task show` now uses the shared helper to conditionally attach:
+    - `dependency_refs`
+    - `dependent_refs`
+  - `task list` now uses the shared helper before list-row rendering when reference-visibility flags are enabled
+  - current read-surface output contracts remain preserved across:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+- Milestone 4 slice 24 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `145 passed in 14.98s`
+- Milestone 4 remains in progress after slice 24 implementation:
+  - slice 25 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `145 passed in 14.98s`
+
+## Latest completed step
+
+Milestone 4 slice 24 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 24 deterministic shared reference-output attachment helper support across current read surfaces
+- verified `_attach_reference_views_to_task_payload(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified `task show` now reuses the shared helper for conditional reference-view attachment
+- verified `task list` now reuses the shared helper before list-row rendering
+- verified current read-surface output contracts remain preserved across:
+  - `task show --show-dependency-refs`
+  - `task show --show-dependent-refs`
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 24 implementation:
+  - `145 passed in 14.98s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 25 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 24 deterministic shared reference-output attachment helper across current read surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 25 scope or implementation until the planning checkpoint is recorded
