@@ -2453,3 +2453,110 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 26 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 26 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared task-list row assembly helper across current list visibility surfaces
+- the slice 26 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that assembles the final `task list` row parts before `" | ".join(...)`
+  - reuse that shared helper across the current list visibility surfaces only:
+    - default `task list`
+    - `task list --show-task-key`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+    - combined list visibility surfaces using those existing flags together
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve the existing shared reference-output attachment behavior already established in slice 24
+  - preserve the existing shared reference-display formatting behavior already established in slice 25
+  - preserve current task-list output contracts, including:
+    - base row structure and field order
+    - `task_key=<value>`
+    - `dependency_refs=[...]`
+    - `dependent_refs=[...]`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as:
+      - `dependency_refs=[]`
+      - `dependent_refs=[]`
+  - preserve current task-list ordering behavior
+  - preserve current task-show behavior unchanged in this slice
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 26 is now implemented in the current verified local workspace as:
+  - deterministic shared task-list row assembly helper across current list visibility surfaces
+  - `_build_task_list_row_parts(...)` now exists as a shared internal helper in `asbp/cli.py`
+  - `task list` now reuses the shared helper to assemble final row parts across:
+    - default `task list`
+    - `task list --show-task-key`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+    - combined list visibility surfaces using those existing flags together
+  - current task-list output contracts remain preserved, including:
+    - base row structure and field order
+    - `task_key=<value>`
+    - `dependency_refs=[...]`
+    - `dependent_refs=[...]`
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as:
+      - `dependency_refs=[]`
+      - `dependent_refs=[]`
+  - current task-show behavior remains unchanged in this slice
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+- Milestone 4 slice 26 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `149 passed in 13.94s`
+- Milestone 4 remains in progress after slice 26 implementation:
+  - slice 27 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `149 passed in 13.94s`
+
+## Latest completed step
+
+Milestone 4 slice 26 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 26 deterministic shared task-list row assembly helper support across current list visibility surfaces
+- verified `_build_task_list_row_parts(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified `task list` now reuses the shared helper to assemble final row parts across:
+  - default `task list`
+  - `task list --show-task-key`
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+  - combined list visibility surfaces using those existing flags together
+- verified current task-list output contracts remain preserved, including:
+  - base row structure and field order
+  - `task_key=<value>`
+  - `dependency_refs=[...]`
+  - `dependent_refs=[...]`
+  - deterministic `<none>` placeholder behavior
+  - deterministic empty-surface behavior such as:
+    - `dependency_refs=[]`
+    - `dependent_refs=[]`
+- verified current task-show behavior remains unchanged in this slice
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 26 implementation:
+  - `149 passed in 13.94s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 27 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 26 deterministic shared task-list row assembly helper across current list visibility surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 27 scope or implementation until the planning checkpoint is recorded

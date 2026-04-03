@@ -206,6 +206,39 @@ def _format_reference_view_for_task_list(field_name, reference_view):
 
     return f"{field_name}=[]"
 
+
+def _build_task_list_row_parts(
+    task_payload,
+    *,
+    show_task_key=False,
+    show_dependency_refs=False,
+    show_dependent_refs=False,
+):
+    line_parts = [f'- {task_payload["task_id"]}', task_payload["status"]]
+
+    if show_task_key:
+        task_key_display = normalize_task_key(task_payload.get("task_key")) or "<none>"
+        line_parts.append(f"task_key={task_key_display}")
+
+    if show_dependency_refs:
+        line_parts.append(
+            _format_reference_view_for_task_list(
+                "dependency_refs",
+                task_payload["dependency_refs"],
+            )
+        )
+
+    if show_dependent_refs:
+        line_parts.append(
+            _format_reference_view_for_task_list(
+                "dependent_refs",
+                task_payload["dependent_refs"],
+            )
+        )
+
+    line_parts.append(task_payload["title"])
+    return line_parts
+
 def handle_task_list(args):
     state = load_state_or_none()
 
@@ -310,29 +343,12 @@ def handle_task_list(args):
             show_dependent_refs=args.show_dependent_refs,
         )
 
-        line_parts = [f'- {task_output["task_id"]}', task_output["status"]]
-
-        if args.show_task_key:
-            task_key_display = normalize_task_key(task_output.get("task_key")) or "<none>"
-            line_parts.append(f"task_key={task_key_display}")
-
-        if args.show_dependency_refs:
-            line_parts.append(
-                _format_reference_view_for_task_list(
-                    "dependency_refs",
-                    task_output["dependency_refs"],
-                )
-            )
-
-        if args.show_dependent_refs:
-            line_parts.append(
-                _format_reference_view_for_task_list(
-                    "dependent_refs",
-                    task_output["dependent_refs"],
-                )
-            )
-
-        line_parts.append(task_output["title"])
+        line_parts = _build_task_list_row_parts(
+            task_output,
+            show_task_key=args.show_task_key,
+            show_dependency_refs=args.show_dependency_refs,
+            show_dependent_refs=args.show_dependent_refs,
+        )
         print(" | ".join(line_parts))
 
 def handle_task_update_status(args):

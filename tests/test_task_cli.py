@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from asbp.cli import (
     _attach_reference_views_to_task_payload,
+    _build_task_list_row_parts,
     _format_reference_view_for_task_list,
     handle_task_add,
     load_state_or_none,
@@ -150,6 +151,53 @@ def test_format_reference_view_for_task_list_formats_empty_reference_surface():
     result = _format_reference_view_for_task_list("dependent_refs", [])
 
     assert result == "dependent_refs=[]"
+
+
+def test_build_task_list_row_parts_preserves_default_contract_without_visibility_flags():
+    result = _build_task_list_row_parts(
+        {
+            "task_id": "TASK-001",
+            "status": "planned",
+            "title": "Prepare FAT",
+            "task_key": "prepare-fat",
+        }
+    )
+
+    assert result == [
+        "- TASK-001",
+        "planned",
+        "Prepare FAT",
+    ]
+
+
+def test_build_task_list_row_parts_includes_current_visibility_surfaces_in_contract_order():
+    result = _build_task_list_row_parts(
+        {
+            "task_id": "TASK-003",
+            "status": "completed",
+            "title": "Review FAT Package",
+            "task_key": "review-fat-package",
+            "dependency_refs": [
+                {"task_id": "TASK-001", "task_key": "prepare-fat"},
+                {"task_id": "TASK-002", "task_key": "<none>"},
+            ],
+            "dependent_refs": [
+                {"task_id": "TASK-004", "task_key": "archive-fat-package"},
+            ],
+        },
+        show_task_key=True,
+        show_dependency_refs=True,
+        show_dependent_refs=True,
+    )
+
+    assert result == [
+        "- TASK-003",
+        "completed",
+        "task_key=review-fat-package",
+        "dependency_refs=[TASK-001:prepare-fat, TASK-002:<none>]",
+        "dependent_refs=[TASK-004:archive-fat-package]",
+        "Review FAT Package",
+    ]
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
