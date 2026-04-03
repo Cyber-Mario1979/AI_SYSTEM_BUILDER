@@ -195,6 +195,17 @@ def _attach_reference_views_to_task_payload(
 
     return task_payload
 
+
+def _format_reference_view_for_task_list(field_name, reference_view):
+    if reference_view:
+        reference_view_display = ", ".join(
+            f'{reference["task_id"]}:{reference["task_key"]}'
+            for reference in reference_view
+        )
+        return f"{field_name}=[{reference_view_display}]"
+
+    return f"{field_name}=[]"
+
 def handle_task_list(args):
     state = load_state_or_none()
 
@@ -306,28 +317,20 @@ def handle_task_list(args):
             line_parts.append(f"task_key={task_key_display}")
 
         if args.show_dependency_refs:
-            dependency_refs = task_output["dependency_refs"]
-
-            if dependency_refs:
-                dependency_refs_display = ", ".join(
-                    f'{dependency_ref["task_id"]}:{dependency_ref["task_key"]}'
-                    for dependency_ref in dependency_refs
+            line_parts.append(
+                _format_reference_view_for_task_list(
+                    "dependency_refs",
+                    task_output["dependency_refs"],
                 )
-                line_parts.append(f"dependency_refs=[{dependency_refs_display}]")
-            else:
-                line_parts.append("dependency_refs=[]")
+            )
 
         if args.show_dependent_refs:
-            dependent_refs = task_output["dependent_refs"]
-
-            if dependent_refs:
-                dependent_refs_display = ", ".join(
-                    f'{dependent_ref["task_id"]}:{dependent_ref["task_key"]}'
-                    for dependent_ref in dependent_refs
+            line_parts.append(
+                _format_reference_view_for_task_list(
+                    "dependent_refs",
+                    task_output["dependent_refs"],
                 )
-                line_parts.append(f"dependent_refs=[{dependent_refs_display}]")
-            else:
-                line_parts.append("dependent_refs=[]")
+            )
 
         line_parts.append(task_output["title"])
         print(" | ".join(line_parts))

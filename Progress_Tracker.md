@@ -2360,3 +2360,96 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 25 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 25 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared reference-display formatting helper across current list visibility surfaces
+- the slice 25 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that formats already-attached reference views for task-list row rendering
+  - reuse that shared helper across the current list visibility surfaces only:
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve the existing shared reference-output attachment behavior already established in slice 24
+  - preserve current list output contracts, including:
+    - `dependency_refs=[...]`
+    - `dependent_refs=[...]`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as:
+      - `dependency_refs=[]`
+      - `dependent_refs=[]`
+  - preserve current task-list ordering behavior
+  - preserve current task-show behavior unchanged in this slice
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 25 is now implemented in the current verified local workspace as:
+  - deterministic shared reference-display formatting helper across current list visibility surfaces
+  - `_format_reference_view_for_task_list(...)` now exists as a shared internal helper in `asbp/cli.py`
+  - `task list` now reuses the shared helper for deterministic rendering of:
+    - `dependency_refs=[...]`
+    - `dependent_refs=[...]`
+  - current task-list output contracts remain preserved across:
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+    - combined list visibility surfaces with:
+      - `--show-task-key`
+      - `--status`
+      - `--show-dependency-refs`
+      - `--show-dependent-refs`
+  - current task-show behavior remains unchanged in this slice
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+- Milestone 4 slice 25 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `147 passed in 14.18s`
+- Milestone 4 remains in progress after slice 25 implementation:
+  - slice 26 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `147 passed in 14.18s`
+
+## Latest completed step
+
+Milestone 4 slice 25 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 25 deterministic shared reference-display formatting helper support across current list visibility surfaces
+- verified `_format_reference_view_for_task_list(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified `task list` now reuses the shared helper for deterministic formatting of:
+  - `dependency_refs=[...]`
+  - `dependent_refs=[...]`
+- verified current task-list output contracts remain preserved across:
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+  - combined list visibility surfaces with:
+    - `--show-task-key`
+    - `--status`
+    - `--show-dependency-refs`
+    - `--show-dependent-refs`
+- verified current task-show behavior remains unchanged in this slice
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 25 implementation:
+  - `147 passed in 14.18s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 26 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 25 deterministic shared reference-display formatting helper across current list visibility surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 26 scope or implementation until the planning checkpoint is recorded

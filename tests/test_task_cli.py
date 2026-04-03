@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from asbp.cli import (
     _attach_reference_views_to_task_payload,
+    _format_reference_view_for_task_list,
     handle_task_add,
     load_state_or_none,
     load_validated_state,
@@ -131,6 +132,24 @@ def test_attach_reference_views_to_task_payload_attaches_both_reference_views_wh
     assert result["dependent_refs"] == [
         {"task_id": "TASK-004", "task_key": "archive-fat-package"},
     ]
+
+
+def test_format_reference_view_for_task_list_formats_populated_reference_surface():
+    result = _format_reference_view_for_task_list(
+        "dependency_refs",
+        [
+            {"task_id": "TASK-001", "task_key": "prepare-fat"},
+            {"task_id": "TASK-002", "task_key": "<none>"},
+        ],
+    )
+
+    assert result == "dependency_refs=[TASK-001:prepare-fat, TASK-002:<none>]"
+
+
+def test_format_reference_view_for_task_list_formats_empty_reference_surface():
+    result = _format_reference_view_for_task_list("dependent_refs", [])
+
+    assert result == "dependent_refs=[]"
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
