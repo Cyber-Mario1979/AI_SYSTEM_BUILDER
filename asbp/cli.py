@@ -309,6 +309,27 @@ def _prepare_task_list_filter_inputs(args, tasks):
         ),
     }
 
+
+def _prepare_task_show_payload(
+    tasks,
+    task,
+    *,
+    show_dependency_refs=False,
+    show_dependent_refs=False,
+):
+    task_payload = task.model_dump()
+
+    if not show_dependency_refs and not show_dependent_refs:
+        return task_payload
+
+    return _attach_reference_views_to_task_payload(
+        tasks,
+        task_payload,
+        show_dependency_refs=show_dependency_refs,
+        show_dependent_refs=show_dependent_refs,
+    )
+
+
 def handle_task_list(args):
     state = load_state_or_none()
 

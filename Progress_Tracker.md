@@ -2627,43 +2627,14 @@ Next objective:
 
 ## Latest completed step
 
-Milestone 4 slice 27 implementation checkpoint
+Milestone 4 slice 28 planning checkpoint
 
 Completed:
 
-- verified the local workspace contains slice 27 deterministic shared task-list filter preparation helper support across current list filter surfaces
-- verified `_prepare_task_list_filter_inputs(...)` now exists as a shared internal helper in `asbp/cli.py`
-- verified `task list` now reuses the shared helper to prepare filter inputs across:
-  - `--has-dependencies`
-  - `--has-dependents`
-  - `--has-task-key`
-  - `--task-key`
-  - `--task-ref`
-  - `--dependency-ref`
-  - `--dependent-ref`
-- verified current task-list filtering contracts remain preserved, including:
-  - deterministic exact `task_id` first, normalized `task_key` second for reference filters
-  - deterministic no-guess behavior for unresolved or non-normalizing filter inputs
-  - deterministic AND logic when filters are combined
-  - current `No tasks found.` behavior where already established
-- verified current task-list ordering remains preserved
-- verified current task-list output contracts remain unchanged in this slice
-- verified current task-show behavior remains unchanged in this slice
-- verified current CLI contracts remain preserved with no new CLI flags in this slice
-- validated full local suite after slice 27 implementation:
-  - `151 passed in 13.90s`
-
-## Exact next unfinished step
-
-Milestone 4 slice 28 planning checkpoint
-
-Next objective:
-
-- lock the next narrow Indexing Layer slice after slice 27 deterministic shared task-list filter preparation helper across current list filter surfaces
-- stay inside the Indexing Layer milestone
-- avoid Milestone 5 drift
-- do not claim slice 28 scope or implementation until the planning checkpoint is recorded
-- the Milestone 4 slice 28 planning checkpoint was completed in this session
+- locked the next narrow Indexing Layer slice after slice 27 deterministic shared task-list filter preparation helper across current list filter surfaces
+- stayed inside the Indexing Layer milestone
+- avoided Milestone 5 drift
+- did not claim slice 28 scope or implementation before the planning checkpoint was recorded
 - the next narrow slice is locked as:
   - deterministic shared task-show payload preparation helper across current task show reference-visibility surfaces
 - the slice 28 scope boundary is locked as:
@@ -2692,3 +2663,55 @@ Next objective:
   - do not change persisted state shape
   - stay fully inside Milestone 4 — Indexing Layer
   - do not drift into Milestone 5
+
+## Exact next unfinished step
+
+Milestone 4 slice 28 implementation checkpoint
+
+Next objective:
+
+- implement the locked slice 28:
+  - deterministic shared task-show payload preparation helper across current task show reference-visibility surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 28 implementation checkpoint until implementation is completed and validated
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `154 passed in 14.38s`
+
+## Latest completed step
+
+Milestone 4 slice 28 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 28 deterministic shared task-show payload preparation helper support across current task show reference-visibility surfaces
+- verified `_prepare_task_show_payload(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified `task show` now reuses the shared helper across:
+  - `task show --show-dependency-refs`
+  - `task show --show-dependent-refs`
+  - combined `task show` usage when both flags are enabled
+- verified current task show output contracts remain preserved, including:
+  - default `task show` output unchanged when no reference-visibility flags are enabled
+  - `dependency_refs`
+  - `dependent_refs`
+  - resolved `task_key` visibility when available
+  - deterministic `<none>` placeholder behavior
+  - deterministic empty-surface behavior such as `[]` where already established
+- verified current task list behavior remains unchanged in this slice
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 28 implementation:
+  - `154 passed in 14.38s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 29 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 28 deterministic shared task-show payload preparation helper across current task show reference-visibility surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 29 scope or implementation until the planning checkpoint is recorded

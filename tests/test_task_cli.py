@@ -10,6 +10,7 @@ from asbp.cli import (
     _build_task_list_row_parts,
     _format_reference_view_for_task_list,
     _prepare_task_list_filter_inputs,
+    _prepare_task_show_payload,
     handle_task_add,
     load_state_or_none,
     load_validated_state,
@@ -298,6 +299,89 @@ def test_prepare_task_list_filter_inputs_marks_no_tasks_for_unresolved_reference
         "should_return_no_tasks": True,
         "task_key_filter_requested_and_invalid": True,
     }
+
+
+def test_prepare_task_show_payload_preserves_default_contract_without_reference_visibility_flags():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="planned",
+            dependencies=["TASK-001"],
+        ),
+    ]
+
+    result = _prepare_task_show_payload(
+        tasks,
+        tasks[0],
+        show_dependency_refs=False,
+        show_dependent_refs=False,
+    )
+
+    assert result == tasks[0].model_dump()
+
+
+def test_prepare_task_show_payload_attaches_both_reference_views_when_enabled():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="completed",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key="archive-fat-package",
+            status="planned",
+            dependencies=["TASK-003"],
+        ),
+    ]
+
+    result = _prepare_task_show_payload(
+        tasks,
+        tasks[2],
+        show_dependency_refs=True,
+        show_dependent_refs=True,
+    )
+
+    assert result["dependency_refs"] == [
+        {"task_id": "TASK-001", "task_key": "prepare-fat"},
+        {"task_id": "TASK-002", "task_key": "<none>"},
+    ]
+    assert result["dependent_refs"] == [
+        {"task_id": "TASK-004", "task_key": "archive-fat-package"},
+    ]
+
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -2796,6 +2880,81 @@ def test_task_show_preserves_default_contract_without_show_dependent_refs_flag(
     assert result.returncode == 0
     assert '"task_id": "TASK-001"' in result.stdout
     assert '"dependent_refs":' not in result.stdout
+
+
+def test_task_show_combined_reference_flags_display_both_reference_surfaces(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": None,
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                    {
+                        "task_id": "TASK-004",
+                        "order": 4,
+                        "title": "Archive FAT Package",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "archive-fat-package",
+                        "dependencies": ["TASK-003"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "show",
+        "TASK-003",
+        "--show-dependency-refs",
+        "--show-dependent-refs",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert '"task_id": "TASK-003"' in output
+    assert '"dependency_refs": [' in output
+    assert '"dependent_refs": [' in output
+    assert '"task_id": "TASK-001"' in output
+    assert '"task_key": "prepare-fat"' in output
+    assert '"task_id": "TASK-002"' in output
+    assert '"task_key": "<none>"' in output
+    assert '"task_id": "TASK-004"' in output
+    assert '"task_key": "archive-fat-package"' in output
 
 
 def test_task_list_preserves_default_contract_without_show_dependency_refs_flag(
