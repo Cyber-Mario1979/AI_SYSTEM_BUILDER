@@ -993,3 +993,102 @@ def test_filter_tasks_by_has_dependents_false_and_status_with_and_logic():
     )
 
     assert [task["task_id"] for task in result] == ["TASK-003", "TASK-004"]
+
+def test_filter_tasks_by_dependent_task_id_matches_dependent_reference_view_semantics():
+    task_models = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="completed",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="planned",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    task_dicts = [task.model_dump() for task in task_models]
+    expected_task_ids = []
+
+    for task in task_models:
+        dependent_ref_task_ids = [
+            ref["task_id"]
+            for ref in build_dependent_reference_view(task_models, task.task_id)
+        ]
+        if "TASK-003" in dependent_ref_task_ids:
+            expected_task_ids.append(task.task_id)
+
+    result = filter_tasks(task_dicts, dependent_task_id="TASK-003")
+
+    assert [task["task_id"] for task in result] == expected_task_ids
+
+
+def test_filter_tasks_by_has_dependents_matches_dependent_reference_view_semantics():
+    task_models = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="completed",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="planned",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key=None,
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    task_dicts = [task.model_dump() for task in task_models]
+    expected_task_ids = [
+        task.task_id
+        for task in task_models
+        if build_dependent_reference_view(task_models, task.task_id)
+    ]
+
+    result = filter_tasks(task_dicts, has_dependents=True)
+
+    assert [task["task_id"] for task in result] == expected_task_ids

@@ -1987,3 +1987,99 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 21 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 21 implementation checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared dependent-derivation helper across current indexing surfaces
+- the slice 21 implementation is now verified in the current local workspace as:
+  - deterministic shared dependent-derivation helper across current indexing surfaces
+  - `_build_dependent_tasks_index(...)` now exists as a shared internal helper for derived dependent lookup
+  - dependent derivation remains based only on persisted stored `task_id` values found in other tasks’ `dependencies`
+  - `build_dependent_reference_view(...)` now uses the shared dependent-derivation helper
+  - `filter_tasks(..., dependent_task_id=...)` now uses the shared dependent-derivation helper
+  - `filter_tasks(..., has_dependents=...)` now uses the shared dependent-derivation helper
+  - current CLI behavior remains preserved with no contract expansion in this slice
+  - no new CLI flags were added in this slice
+  - existing task-list ordering remains preserved
+  - existing indexing behavior remains preserved across current dependent-based surfaces
+- Milestone 4 slice 21 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `141 passed in 13.56s`
+  - live-state `python -m asbp task show TASK-001 --show-dependent-refs` pass confirming:
+    - `dependent_refs` was present
+    - `TASK-003` resolved to:
+      - `task_key = "<none>"`
+  - live-state `python -m asbp task list --dependent-ref "TASK-003" --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+  - live-state `python -m asbp task list --has-dependents true --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+    - `TASK-005 | in_progress | task_key=<none> | Task E`
+    - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+    - `TASK-009 | completed | task_key=<none> | Predecessor`
+    - `TASK-011 | in_progress | task_key=<none> | New test task`
+- Milestone 4 remains in progress after slice 21 implementation:
+  - slice 22 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `141 passed in 13.56s`
+- manual Milestone 4 slice 21 verification completed in this session:
+  - `python -m asbp task show TASK-001 --show-dependent-refs` confirmed:
+    - `dependent_refs` was present
+    - `TASK-003` resolved to:
+      - `task_key = "<none>"`
+  - `python -m asbp task list --dependent-ref "TASK-003" --show-task-key` confirmed live state returned:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+  - `python -m asbp task list --has-dependents true --show-task-key` confirmed live state returned:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+    - `TASK-005 | in_progress | task_key=<none> | Task E`
+    - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+    - `TASK-009 | completed | task_key=<none> | Predecessor`
+    - `TASK-011 | in_progress | task_key=<none> | New test task`
+
+## Latest completed step
+
+Milestone 4 slice 21 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 21 deterministic shared dependent-derivation helper support across current indexing surfaces
+- verified `_build_dependent_tasks_index(...)` now exists as a shared internal helper for derived dependent lookup
+- verified dependent derivation remains based only on persisted stored `task_id` values found in other tasks’ `dependencies`
+- verified `build_dependent_reference_view(...)` now uses the shared dependent-derivation helper
+- verified `filter_tasks(..., dependent_task_id=...)` now uses the shared dependent-derivation helper
+- verified `filter_tasks(..., has_dependents=...)` now uses the shared dependent-derivation helper
+- verified current CLI behavior remains preserved with no contract expansion in this slice
+- verified no new CLI flags were added in this slice
+- verified existing task-list ordering remains preserved
+- validated full local suite after slice 21 implementation:
+  - `141 passed in 13.56s`
+- manually verified live-state behavior through:
+  - `python -m asbp task show TASK-001 --show-dependent-refs`
+  - `python -m asbp task list --dependent-ref "TASK-003" --show-task-key`
+  - `python -m asbp task list --has-dependents true --show-task-key`
+- manually verified the live state returned:
+  - `TASK-003 -> <none>`
+  - `TASK-001 | completed | task_key=<none> | Task A`
+  - `TASK-004 | completed | task_key=<none> | Task D`
+  - `TASK-005 | in_progress | task_key=<none> | Task E`
+  - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+  - `TASK-009 | completed | task_key=<none> | Predecessor`
+  - `TASK-011 | in_progress | task_key=<none> | New test task`
+
+## Exact next unfinished step
+
+Milestone 4 slice 22 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 21 deterministic shared dependent-derivation helper across current indexing surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 22 scope or implementation until the planning checkpoint is recorded

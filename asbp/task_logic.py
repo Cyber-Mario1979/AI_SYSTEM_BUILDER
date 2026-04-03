@@ -123,6 +123,28 @@ def validate_task_dependencies(
     return errors
 
 
+def _build_dependent_tasks_index(tasks):
+    dependent_tasks_by_task_id = {}
+
+    for task in tasks:
+        if isinstance(task, dict):
+            task_id = task.get("task_id")
+        else:
+            task_id = task.task_id
+
+        dependent_tasks_by_task_id.setdefault(task_id, [])
+
+    for task in tasks:
+        if isinstance(task, dict):
+            dependency_ids = task.get("dependencies", [])
+        else:
+            dependency_ids = task.dependencies
+
+        for dependency_id in dependency_ids:
+            dependent_tasks_by_task_id.setdefault(dependency_id, []).append(task)
+
+    return dependent_tasks_by_task_id
+
 
 def filter_tasks(
     tasks,
@@ -157,6 +179,7 @@ def filter_tasks(
     """
     all_tasks = list(tasks)
     filtered = list(tasks)
+    dependent_tasks_index = _build_dependent_tasks_index(all_tasks)
 
     if status is not None:
         filtered = [task for task in filtered if task["status"] == status]
@@ -175,12 +198,12 @@ def filter_tasks(
     if has_dependents is True:
         filtered = [
             task for task in filtered
-            if any(task.get("task_id") in other.get("dependencies", []) for other in all_tasks)
+            if len(dependent_tasks_index.get(task.get("task_id"), [])) > 0
         ]
     elif has_dependents is False:
         filtered = [
             task for task in filtered
-            if not any(task.get("task_id") in other.get("dependencies", []) for other in all_tasks)
+            if len(dependent_tasks_index.get(task.get("task_id"), [])) == 0
         ]
 
     if has_task_key is True:
@@ -213,22 +236,15 @@ def filter_tasks(
         ]
 
     if dependent_task_id is not None:
-        dependent_task = next(
-            (
-                task for task in all_tasks
-                if task.get("task_id") == dependent_task_id
-            ),
-            None,
-        )
-        dependent_dependency_ids = set()
-        if dependent_task is not None:
-            dependent_dependency_ids = set(
-                dependent_task.get("dependencies", [])
-            )
-
         filtered = [
             task for task in filtered
-            if task.get("task_id") in dependent_dependency_ids
+            if any(
+                dependent_task.get("task_id") == dependent_task_id
+                for dependent_task in dependent_tasks_index.get(
+                    task.get("task_id"),
+                    [],
+                )
+            )
         ]
 
     return filtered
@@ -307,11 +323,9 @@ def build_dependent_reference_view(
     target_task_id: str,
 ) -> list[dict[str, str]]:
     dependent_refs: list[dict[str, str]] = []
+    dependent_tasks_index = _build_dependent_tasks_index(tasks)
 
-    for task in tasks:
-        if target_task_id not in task.dependencies:
-            continue
-
+    for task in dependent_tasks_index.get(target_task_id, []):
         task_key_display = normalize_task_key(task.task_key) or "<none>"
         dependent_refs.append(
             {
