@@ -166,6 +166,14 @@ def handle_task_add(args):
     save_validated_state(state)
 
     print(f"Task added: {new_task.task_id} - {new_task.title}")
+    
+
+def _resolve_task_list_reference_filter_task_id(tasks, reference):
+    target_task = find_task_by_reference(tasks, reference)
+    if target_task is None:
+        return None, True
+    return target_task.task_id, False
+
 
 def handle_task_list(args):
     state = load_state_or_none()
@@ -214,28 +222,35 @@ def handle_task_list(args):
     resolved_dependency_task_id_filter = None
     if args.dependency_ref is not None:
         try:
-            dependency_task = find_task_by_reference(state.tasks, args.dependency_ref)
+            resolved_dependency_task_id_filter, should_return_no_tasks = (
+                _resolve_task_list_reference_filter_task_id(
+                    state.tasks,
+                    args.dependency_ref,
+                )
+            )
         except ValueError as e:
             print(str(e))
             return
 
-        if dependency_task is None:
+        if should_return_no_tasks:
             tasks = []
-        else:
-            resolved_dependency_task_id_filter = dependency_task.task_id
+        
 
     resolved_dependent_task_id_filter = None
     if args.dependent_ref is not None:
         try:
-            dependent_task = find_task_by_reference(state.tasks, args.dependent_ref)
+            resolved_dependent_task_id_filter, should_return_no_tasks = (
+                _resolve_task_list_reference_filter_task_id(
+                    state.tasks,
+                    args.dependent_ref,
+                )
+            )
         except ValueError as e:
             print(str(e))
             return
 
-        if dependent_task is None:
+        if should_return_no_tasks:
             tasks = []
-        else:
-            resolved_dependent_task_id_filter = dependent_task.task_id
 
     if args.task_key is not None and normalized_task_key_filter is None:
         tasks = []

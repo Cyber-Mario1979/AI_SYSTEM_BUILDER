@@ -3770,3 +3770,147 @@ def test_task_list_filters_tasks_by_has_dependents_and_status_with_and_logic(
     assert "- TASK-001 | planned | task_key=prepare-fat | Prepare FAT" not in output
     assert "- TASK-003 | planned | task_key=review-fat-package | Review FAT Package" not in output
     assert "- TASK-004 | completed | task_key=<none> | Archive FAT Package" not in output
+def test_task_list_combines_task_ref_dependency_ref_and_dependent_ref_with_shared_reference_resolution(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                    {
+                        "task_id": "TASK-004",
+                        "order": 4,
+                        "title": "Archive FAT Package",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "archive-fat-package",
+                        "dependencies": ["TASK-003"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-ref",
+        " Review FAT Package ",
+        "--dependency-ref",
+        " Execute FAT ",
+        "--dependent-ref",
+        "Archive FAT Package",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert output.count("Tasks:") == 1
+    assert "- TASK-003 | completed | task_key=review-fat-package | Review FAT Package" in output
+    assert "- TASK-001 | planned | task_key=prepare-fat | Prepare FAT" not in output
+    assert "- TASK-002 | completed | task_key=execute-fat | Execute FAT" not in output
+    assert "- TASK-004 | planned | task_key=archive-fat-package | Archive FAT Package" not in output
+
+
+def test_task_list_invalid_task_ref_still_returns_no_tasks_with_other_reference_filters_present(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "prepare-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "execute-fat",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-003",
+                        "order": 3,
+                        "title": "Review FAT Package",
+                        "status": "completed",
+                        "description": None,
+                        "task_key": "review-fat-package",
+                        "dependencies": ["TASK-001", "TASK-002"],
+                    },
+                    {
+                        "task_id": "TASK-004",
+                        "order": 4,
+                        "title": "Archive FAT Package",
+                        "status": "planned",
+                        "description": None,
+                        "task_key": "archive-fat-package",
+                        "dependencies": ["TASK-003"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--task-ref",
+        "***",
+        "--dependency-ref",
+        "Execute FAT",
+        "--dependent-ref",
+        "Archive FAT Package",
+        "--show-task-key",
+    )
+
+    assert result.returncode == 0
+    assert "No tasks found." in result.stdout
+    assert "Tasks:" not in result.stdout

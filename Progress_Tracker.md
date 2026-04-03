@@ -2077,9 +2077,72 @@ Completed:
 
 Milestone 4 slice 22 planning checkpoint
 
+- the Milestone 4 slice 22 implementation checkpoint was completed in this session
+- the slice 22 implementation is now verified in the current local workspace as:
+  - deterministic shared task-reference resolution helper across current task-list filter surfaces
+  - `_resolve_task_list_reference_filter_task_id(...)` now exists as a shared internal helper for `task list` reference-filter resolution
+  - current `task list` reference filters now reuse the shared helper across:
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--dependent-ref`
+  - the existing deterministic task reference hierarchy remains preserved through the shared helper:
+    - exact `task_id` first
+    - normalized `task_key` second
+  - unresolved or non-normalizing task-list reference filters still preserve deterministic no-guess behavior by returning:
+    - `No tasks found.`
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+  - existing task-list ordering remains preserved
+- Milestone 4 slice 22 was verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `143 passed in 13.98s`
+  - controlled-state manual `python -m asbp task list --task-ref "Review FAT Package" --dependency-ref "Execute FAT" --dependent-ref "Archive FAT Package" --show-task-key` pass confirming only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+- Milestone 4 remains in progress after slice 22 implementation:
+  - slice 23 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `143 passed in 13.98s`
+- manual Milestone 4 slice 22 verification completed in this session:
+  - controlled-state `python -m asbp task list --task-ref "Review FAT Package" --dependency-ref "Execute FAT" --dependent-ref "Archive FAT Package" --show-task-key` confirmed only:
+    - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+
+## Latest completed step
+
+Milestone 4 slice 22 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 22 deterministic shared task-reference resolution helper support across current task-list filter surfaces
+- verified `_resolve_task_list_reference_filter_task_id(...)` now exists as a shared internal helper for `task list` reference-filter resolution
+- verified current `task list` reference filters now reuse the shared helper across:
+  - `--task-ref`
+  - `--dependency-ref`
+  - `--dependent-ref`
+- verified the existing deterministic task reference hierarchy remains preserved through the shared helper:
+  - exact `task_id` first
+  - normalized `task_key` second
+- verified unresolved or non-normalizing task-list reference filters still preserve deterministic no-guess behavior by returning:
+  - `No tasks found.`
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- verified existing task-list ordering remains preserved
+- validated full local suite after slice 22 implementation:
+  - `143 passed in 13.98s`
+- manually verified controlled-state behavior through:
+  - `python -m asbp task list --task-ref "Review FAT Package" --dependency-ref "Execute FAT" --dependent-ref "Archive FAT Package" --show-task-key`
+- manually verified the controlled state returned only:
+  - `TASK-003 | completed | task_key=review-fat-package | Review FAT Package`
+
+## Exact next unfinished step
+
+Milestone 4 slice 23 planning checkpoint
+
 Next objective:
 
-- lock the next narrow Indexing Layer slice after slice 21 deterministic shared dependent-derivation helper across current indexing surfaces
+- lock the next narrow Indexing Layer slice after slice 22 deterministic shared task-reference resolution helper across current task-list filter surfaces
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
-- do not claim slice 22 scope or implementation until the planning checkpoint is recorded
+- do not claim slice 23 scope or implementation until the planning checkpoint is recorded
