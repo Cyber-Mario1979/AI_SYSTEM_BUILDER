@@ -129,6 +129,7 @@ def filter_tasks(
     *,
     status=None,
     has_dependencies=None,
+    has_dependents=None,
     has_task_key=None,
     task_key=None,
     task_id=None,
@@ -142,6 +143,8 @@ def filter_tasks(
     - status: exact match on task["status"]
     - has_dependencies=True: keep only tasks with one or more dependencies
     - has_dependencies=False: keep only tasks with zero dependencies
+    - has_dependents=True: keep only tasks referenced by one or more persisted dependencies
+    - has_dependents=False: keep only tasks not referenced by any persisted dependency
     - has_task_key=True: keep only tasks with a non-null task_key
     - has_task_key=False: keep only tasks with task_key equal to None
     - task_key: keep only tasks whose normalized persisted task_key exactly matches
@@ -167,6 +170,17 @@ def filter_tasks(
         filtered = [
             task for task in filtered
             if len(task.get("dependencies", [])) == 0
+        ]
+
+    if has_dependents is True:
+        filtered = [
+            task for task in filtered
+            if any(task.get("task_id") in other.get("dependencies", []) for other in all_tasks)
+        ]
+    elif has_dependents is False:
+        filtered = [
+            task for task in filtered
+            if not any(task.get("task_id") in other.get("dependencies", []) for other in all_tasks)
         ]
 
     if has_task_key is True:

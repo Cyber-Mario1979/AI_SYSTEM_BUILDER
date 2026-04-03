@@ -1893,3 +1893,97 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 20 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 20 implementation checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic dependent-presence filtering in task list output
+- the slice 20 implementation is now verified in the current local workspace as:
+  - deterministic dependent-presence filtering in task list output
+  - `task list --has-dependents true|false` now exists as an explicit dependent-presence filter flag
+  - dependent presence is derived only from persisted stored `task_id` values found in other tasks’ `dependencies`
+  - `task list --has-dependents true` now returns only tasks referenced by at least one other task’s persisted dependency list
+  - `task list --has-dependents false` now returns only tasks not referenced by any other task’s persisted dependency list
+  - existing task-list ordering remains preserved under the new filter flag
+  - existing list filtering and display behavior remain preserved under the new filter flag, including:
+    - `--status`
+    - `--has-dependencies`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--dependent-ref`
+    - `--show-task-key`
+    - `--show-dependency-refs`
+    - `--show-dependent-refs`
+- Milestone 4 slice 20 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `139 passed in 13.87s`
+  - live-state `python -m asbp task list --has-dependents true --show-task-key` pass confirming:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+    - `TASK-005 | in_progress | task_key=<none> | Task E`
+    - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+    - `TASK-009 | completed | task_key=<none> | Predecessor`
+    - `TASK-011 | in_progress | task_key=<none> | New test task`
+- Milestone 4 remains in progress after slice 20 implementation:
+  - slice 21 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `139 passed in 13.87s`
+- manual Milestone 4 slice 20 verification completed in this session:
+  - `python -m asbp task list --has-dependents true --show-task-key` confirmed live state returned:
+    - `TASK-001 | completed | task_key=<none> | Task A`
+    - `TASK-004 | completed | task_key=<none> | Task D`
+    - `TASK-005 | in_progress | task_key=<none> | Task E`
+    - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+    - `TASK-009 | completed | task_key=<none> | Predecessor`
+    - `TASK-011 | in_progress | task_key=<none> | New test task`
+
+## Latest completed step
+
+Milestone 4 slice 20 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 20 deterministic dependent-presence filtering support in task list output
+- verified `task list --has-dependents true|false` now exists as an explicit dependent-presence filter flag
+- verified dependent presence is derived only from persisted stored `task_id` values found in other tasks’ `dependencies`
+- verified `task list --has-dependents true` now returns only tasks referenced by at least one other task’s persisted dependency list
+- verified `task list --has-dependents false` now returns only tasks not referenced by any other task’s persisted dependency list
+- verified existing task-list ordering remains preserved under the new filter flag
+- verified existing task-list filtering and display behavior remain preserved under the new filter flag, including:
+  - `--status`
+  - `--has-dependencies`
+  - `--has-task-key`
+  - `--task-key`
+  - `--task-ref`
+  - `--dependency-ref`
+  - `--dependent-ref`
+  - `--show-task-key`
+  - `--show-dependency-refs`
+  - `--show-dependent-refs`
+- validated full local suite after slice 20 implementation:
+  - `139 passed in 13.87s`
+- manually verified live-state behavior through:
+  - `python -m asbp task list --has-dependents true --show-task-key`
+- manually verified the live state returned:
+  - `TASK-001 | completed | task_key=<none> | Task A`
+  - `TASK-004 | completed | task_key=<none> | Task D`
+  - `TASK-005 | in_progress | task_key=<none> | Task E`
+  - `TASK-008 | completed | task_key=<none> | Blocked completion task`
+  - `TASK-009 | completed | task_key=<none> | Predecessor`
+  - `TASK-011 | in_progress | task_key=<none> | New test task`
+
+## Exact next unfinished step
+
+Milestone 4 slice 21 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 20 deterministic dependent-presence filtering in task list output
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 21 scope or implementation until the planning checkpoint is recorded

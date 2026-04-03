@@ -182,6 +182,12 @@ def handle_task_list(args):
     elif args.has_dependencies == "false":
         has_dependencies = False
 
+    has_dependents = None
+    if args.has_dependents == "true":
+        has_dependents = True
+    elif args.has_dependents == "false":
+        has_dependents = False
+
     has_task_key = None
     if args.has_task_key == "true":
         has_task_key = True
@@ -238,6 +244,7 @@ def handle_task_list(args):
             tasks,
             status=args.status,
             has_dependencies=has_dependencies,
+            has_dependents=has_dependents,
             has_task_key=has_task_key,
             task_key=normalized_task_key_filter,
             task_id=resolved_task_id_filter,
@@ -519,6 +526,11 @@ def build_parser():
         "--has-dependencies",
         choices=["true", "false"],
         help="Filter tasks by whether dependencies exist",
+    )
+    task_list_parser.add_argument(
+        "--has-dependents",
+        choices=["true", "false"],
+        help="Filter tasks by whether dependents exist",
     )
     task_list_parser.add_argument(
         "--show-task-key",
