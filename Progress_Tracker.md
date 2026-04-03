@@ -2663,3 +2663,32 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 28 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 28 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared task-show payload preparation helper across current task show reference-visibility surfaces
+- the slice 28 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that prepares the final `task show` payload before JSON output when reference-visibility flags are used
+  - reuse that shared helper across the current task show reference-visibility surfaces only:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - combined `task show` usage when both flags are enabled
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve the existing shared reference-output attachment behavior already established in slice 24
+  - preserve current task show output contracts, including:
+    - default `task show` output unchanged when no reference-visibility flags are enabled
+    - `dependency_refs`
+    - `dependent_refs`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as `[]` where already established
+  - preserve current task list behavior unchanged in this slice
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
