@@ -294,47 +294,48 @@ def validate_task_completion_readiness(
 
     return errors
 
+def _build_task_reference_view(
+    tasks: list[TaskModel],
+    task_ids: list[str],
+) -> list[dict[str, str]]:
+    tasks_by_task_id = {task.task_id: task for task in tasks}
+    task_refs: list[dict[str, str]] = []
+
+    for task_id in task_ids:
+        task = tasks_by_task_id.get(task_id)
+
+        if task is None:
+            task_key_display = "<missing>"
+        else:
+            task_key_display = normalize_task_key(task.task_key) or "<none>"
+
+        task_refs.append(
+            {
+                "task_id": task_id,
+                "task_key": task_key_display,
+            }
+        )
+
+    return task_refs
+
 
 def build_dependency_reference_view(
     tasks: list[TaskModel],
     dependency_ids: list[str],
 ) -> list[dict[str, str]]:
-    dependency_refs: list[dict[str, str]] = []
+    return _build_task_reference_view(tasks, dependency_ids)
 
-    for dependency_id in dependency_ids:
-        dependency_task = find_task_by_id(tasks, dependency_id)
-
-        if dependency_task is None:
-            task_key_display = "<missing>"
-        else:
-            task_key_display = normalize_task_key(dependency_task.task_key) or "<none>"
-
-        dependency_refs.append(
-            {
-                "task_id": dependency_id,
-                "task_key": task_key_display,
-            }
-        )
-
-    return dependency_refs    
 
 def build_dependent_reference_view(
     tasks: list[TaskModel],
     target_task_id: str,
 ) -> list[dict[str, str]]:
-    dependent_refs: list[dict[str, str]] = []
     dependent_tasks_index = _build_dependent_tasks_index(tasks)
-
-    for task in dependent_tasks_index.get(target_task_id, []):
-        task_key_display = normalize_task_key(task.task_key) or "<none>"
-        dependent_refs.append(
-            {
-                "task_id": task.task_id,
-                "task_key": task_key_display,
-            }
-        )
-
-    return dependent_refs
+    dependent_task_ids = [
+        task.task_id
+        for task in dependent_tasks_index.get(target_task_id, [])
+    ]
+    return _build_task_reference_view(tasks, dependent_task_ids)
 
 def normalize_task_key(value: str | None) -> str | None:
     if value is None:

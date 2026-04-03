@@ -2146,3 +2146,134 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 23 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 23 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared task-reference view helper across current reference-visibility surfaces
+- the slice 23 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper for deterministic task-reference view construction from stored `task_id` values
+  - reuse that shared helper across the current reference-visibility surfaces only:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve persisted dependency storage and derived dependent resolution behavior exactly as they are today
+  - preserve current output contracts, including:
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder when the referenced task has no `task_key`
+    - deterministic empty surfaces such as `[]` where already established
+  - preserve current ordering behavior in all existing read surfaces
+  - do not add new CLI flags
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 23 is now implemented in the current verified local workspace as:
+  - deterministic shared task-reference view helper across current reference-visibility surfaces
+  - `_build_task_reference_view(...)` now exists as a shared internal helper for task-reference view construction from stored `task_id` values
+  - `build_dependency_reference_view(...)` now uses the shared helper
+  - `build_dependent_reference_view(...)` now uses the shared helper after deriving dependent task IDs from `_build_dependent_tasks_index(...)`
+  - current read-surface output contracts remain preserved across:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+- Milestone 4 slice 23 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `143 passed in 14.36s`
+  - live-state `python -m asbp task show TASK-003 --show-dependency-refs` pass confirming:
+    - `dependency_refs` was present
+    - `TASK-001` resolved to:
+      - `task_key = "<none>"`
+    - `TASK-004` resolved to:
+      - `task_key = "<none>"`
+  - live-state `python -m asbp task list --show-dependent-refs` pass confirming:
+    - `dependent_refs` was present in task list output
+    - `TASK-001` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+    - `TASK-003` showed:
+      - `dependent_refs=[]`
+    - `TASK-004` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+    - `TASK-005` showed:
+      - `dependent_refs=[TASK-006:<none>]`
+    - `TASK-006` showed:
+      - `dependent_refs=[]`
+    - `TASK-007` showed:
+      - `dependent_refs=[]`
+    - `TASK-008` showed:
+      - `dependent_refs=[TASK-007:<none>]`
+    - `TASK-009` showed:
+      - `dependent_refs=[TASK-010:<none>]`
+    - `TASK-010` showed:
+      - `dependent_refs=[]`
+    - `TASK-011` showed:
+      - `dependent_refs=[TASK-012:<none>]`
+    - `TASK-012` showed:
+      - `dependent_refs=[]`
+    - `TASK-013` showed:
+      - `dependent_refs=[]`
+- Milestone 4 remains in progress after slice 23 implementation:
+  - slice 24 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `143 passed in 14.36s`
+- manual Milestone 4 slice 23 verification completed in this session:
+  - `python -m asbp task show TASK-003 --show-dependency-refs` confirmed:
+    - `dependency_refs` was present
+    - `TASK-001` resolved to:
+      - `task_key = "<none>"`
+    - `TASK-004` resolved to:
+      - `task_key = "<none>"`
+  - `python -m asbp task list --show-dependent-refs` confirmed:
+    - `dependent_refs` was present in task list output
+    - `TASK-001` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+    - `TASK-003` showed:
+      - `dependent_refs=[]`
+    - `TASK-004` showed:
+      - `dependent_refs=[TASK-003:<none>]`
+
+## Latest completed step
+
+Milestone 4 slice 23 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 23 deterministic shared task-reference view helper support across current reference-visibility surfaces
+- verified `_build_task_reference_view(...)` now exists as a shared internal helper for task-reference view construction from stored `task_id` values
+- verified `build_dependency_reference_view(...)` now uses the shared helper
+- verified `build_dependent_reference_view(...)` now uses the shared helper after deriving dependent task IDs from `_build_dependent_tasks_index(...)`
+- verified current read-surface output contracts remain preserved across:
+  - `task show --show-dependency-refs`
+  - `task show --show-dependent-refs`
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 23 implementation:
+  - `143 passed in 14.36s`
+- manually verified live-state behavior through:
+  - `python -m asbp task show TASK-003 --show-dependency-refs`
+  - `python -m asbp task list --show-dependent-refs`
+- manually verified the live state preserved:
+  - `dependency_refs` in task show output
+  - `dependent_refs` in task list output
+
+## Exact next unfinished step
+
+Milestone 4 slice 24 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 23 deterministic shared task-reference view helper across current reference-visibility surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 24 scope or implementation until the planning checkpoint is recorded

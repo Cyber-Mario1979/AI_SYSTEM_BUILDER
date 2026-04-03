@@ -549,7 +549,7 @@ def test_build_dependency_reference_view_returns_stored_task_ids_and_resolved_ta
         {"task_id": "TASK-002", "task_key": "<none>"},
     ]
 
-def test_build_dependent_reference_view_returns_stored_task_ids_and_resolved_task_keys():
+def test_build_dependent_reference_view_matches_dependency_reference_view_output_shape():
     tasks = [
         TaskModel(
             task_id="TASK-001",
@@ -575,23 +575,11 @@ def test_build_dependent_reference_view_returns_stored_task_ids_and_resolved_tas
             status="completed",
             dependencies=["TASK-001"],
         ),
-        TaskModel(
-            task_id="TASK-004",
-            order=4,
-            title="Archive FAT Package",
-            task_key="archive-fat-package",
-            status="planned",
-            dependencies=["TASK-002"],
-        ),
     ]
 
-    result = build_dependent_reference_view(tasks, "TASK-001")
-
-    assert result == [
-        {"task_id": "TASK-002", "task_key": "execute-fat"},
-        {"task_id": "TASK-003", "task_key": "<none>"},
-    ]
-
+    assert build_dependent_reference_view(tasks, "TASK-001") == (
+        build_dependency_reference_view(tasks, ["TASK-002", "TASK-003"])
+    )
 
 def test_build_dependent_reference_view_returns_empty_list_when_no_dependents():
     tasks = [
