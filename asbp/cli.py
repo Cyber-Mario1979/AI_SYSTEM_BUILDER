@@ -239,15 +239,8 @@ def _build_task_list_row_parts(
     line_parts.append(task_payload["title"])
     return line_parts
 
-def handle_task_list(args):
-    state = load_state_or_none()
 
-    if state is None:
-        print("No state file found. Run 'state init' first.")
-        return
-
-    tasks = [task.model_dump() for task in state.tasks]
-
+def _prepare_task_list_filter_inputs(args, tasks):
     has_dependencies = None
     if args.has_dependencies == "true":
         has_dependencies = True
@@ -271,63 +264,82 @@ def handle_task_list(args):
         normalized_task_key_filter = normalize_task_key(args.task_key)
 
     resolved_task_id_filter = None
-    if args.task_ref is not None:
-        try:
-            target_task = find_task_by_reference(state.tasks, args.task_ref)
-        except ValueError as e:
-            print(str(e))
-            return
+    should_return_no_tasks = False
 
+    if args.task_ref is not None:
+        target_task = find_task_by_reference(tasks, args.task_ref)
         if target_task is None:
-            tasks = []
+            should_return_no_tasks = True
         else:
             resolved_task_id_filter = target_task.task_id
 
     resolved_dependency_task_id_filter = None
     if args.dependency_ref is not None:
-        try:
-            resolved_dependency_task_id_filter, should_return_no_tasks = (
-                _resolve_task_list_reference_filter_task_id(
-                    state.tasks,
-                    args.dependency_ref,
-                )
+        resolved_dependency_task_id_filter, dependency_ref_missing = (
+            _resolve_task_list_reference_filter_task_id(
+                tasks,
+                args.dependency_ref,
             )
-        except ValueError as e:
-            print(str(e))
-            return
-
-        if should_return_no_tasks:
-            tasks = []
+        )
+        if dependency_ref_missing:
+            should_return_no_tasks = True
 
     resolved_dependent_task_id_filter = None
     if args.dependent_ref is not None:
-        try:
-            resolved_dependent_task_id_filter, should_return_no_tasks = (
-                _resolve_task_list_reference_filter_task_id(
-                    state.tasks,
-                    args.dependent_ref,
-                )
+        resolved_dependent_task_id_filter, dependent_ref_missing = (
+            _resolve_task_list_reference_filter_task_id(
+                tasks,
+                args.dependent_ref,
             )
-        except ValueError as e:
-            print(str(e))
-            return
+        )
+        if dependent_ref_missing:
+            should_return_no_tasks = True
 
-        if should_return_no_tasks:
-            tasks = []
+    return {
+        "has_dependencies": has_dependencies,
+        "has_dependents": has_dependents,
+        "has_task_key": has_task_key,
+        "normalized_task_key_filter": normalized_task_key_filter,
+        "resolved_task_id_filter": resolved_task_id_filter,
+        "resolved_dependency_task_id_filter": resolved_dependency_task_id_filter,
+        "resolved_dependent_task_id_filter": resolved_dependent_task_id_filter,
+        "should_return_no_tasks": should_return_no_tasks,
+        "task_key_filter_requested_and_invalid": (
+            args.task_key is not None and normalized_task_key_filter is None
+        ),
+    }
 
-    if args.task_key is not None and normalized_task_key_filter is None:
+def handle_task_list(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    tasks = [task.model_dump() for task in state.tasks]
+
+    try:
+        prepared_filters = _prepare_task_list_filter_inputs(args, state.tasks)
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if (
+        prepared_filters["should_return_no_tasks"]
+        or prepared_filters["task_key_filter_requested_and_invalid"]
+    ):
         tasks = []
     else:
         tasks = filter_tasks(
             tasks,
             status=args.status,
-            has_dependencies=has_dependencies,
-            has_dependents=has_dependents,
-            has_task_key=has_task_key,
-            task_key=normalized_task_key_filter,
-            task_id=resolved_task_id_filter,
-            dependency_task_id=resolved_dependency_task_id_filter,
-            dependent_task_id=resolved_dependent_task_id_filter,
+            has_dependencies=prepared_filters["has_dependencies"],
+            has_dependents=prepared_filters["has_dependents"],
+            has_task_key=prepared_filters["has_task_key"],
+            task_key=prepared_filters["normalized_task_key_filter"],
+            task_id=prepared_filters["resolved_task_id_filter"],
+            dependency_task_id=prepared_filters["resolved_dependency_task_id_filter"],
+            dependent_task_id=prepared_filters["resolved_dependent_task_id_filter"],
         )
 
     if not tasks:

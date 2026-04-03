@@ -2,12 +2,14 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from asbp.cli import (
     _attach_reference_views_to_task_payload,
     _build_task_list_row_parts,
     _format_reference_view_for_task_list,
+    _prepare_task_list_filter_inputs,
     handle_task_add,
     load_state_or_none,
     load_validated_state,
@@ -198,6 +200,104 @@ def test_build_task_list_row_parts_includes_current_visibility_surfaces_in_contr
         "dependent_refs=[TASK-004:archive-fat-package]",
         "Review FAT Package",
     ]
+
+
+def test_prepare_task_list_filter_inputs_resolves_current_list_filter_surfaces():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            task_key="execute-fat",
+            status="planned",
+            dependencies=[],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Review FAT Package",
+            task_key="review-fat-package",
+            status="completed",
+            dependencies=["TASK-001", "TASK-002"],
+        ),
+        TaskModel(
+            task_id="TASK-004",
+            order=4,
+            title="Archive FAT Package",
+            task_key="archive-fat-package",
+            status="planned",
+            dependencies=["TASK-003"],
+        ),
+    ]
+
+    args = SimpleNamespace(
+        has_dependencies="true",
+        has_dependents="false",
+        has_task_key="true",
+        task_key=" Review FAT Package ",
+        task_ref="TASK-003",
+        dependency_ref=" Prepare FAT ",
+        dependent_ref="Archive FAT Package",
+    )
+
+    result = _prepare_task_list_filter_inputs(args, tasks)
+
+    assert result == {
+        "has_dependencies": True,
+        "has_dependents": False,
+        "has_task_key": True,
+        "normalized_task_key_filter": "review-fat-package",
+        "resolved_task_id_filter": "TASK-003",
+        "resolved_dependency_task_id_filter": "TASK-001",
+        "resolved_dependent_task_id_filter": "TASK-004",
+        "should_return_no_tasks": False,
+        "task_key_filter_requested_and_invalid": False,
+    }
+
+
+def test_prepare_task_list_filter_inputs_marks_no_tasks_for_unresolved_reference_and_invalid_task_key():
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            task_key="prepare-fat",
+            status="planned",
+            dependencies=[],
+        ),
+    ]
+
+    args = SimpleNamespace(
+        has_dependencies=None,
+        has_dependents=None,
+        has_task_key=None,
+        task_key="***",
+        task_ref="missing-task",
+        dependency_ref=None,
+        dependent_ref=None,
+    )
+
+    result = _prepare_task_list_filter_inputs(args, tasks)
+
+    assert result == {
+        "has_dependencies": None,
+        "has_dependents": None,
+        "has_task_key": None,
+        "normalized_task_key_filter": None,
+        "resolved_task_id_filter": None,
+        "resolved_dependency_task_id_filter": None,
+        "resolved_dependent_task_id_filter": None,
+        "should_return_no_tasks": True,
+        "task_key_filter_requested_and_invalid": True,
+    }
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)

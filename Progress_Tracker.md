@@ -2560,3 +2560,106 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 27 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 27 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared task-list filter preparation helper across current list filter surfaces
+- the slice 27 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that prepares normalized and resolved `task list` filter inputs before the final `filter_tasks(...)` call
+  - reuse that shared helper across the current list filter surfaces only:
+    - `--has-dependencies`
+    - `--has-dependents`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--dependent-ref`
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-list reference-resolution behavior already established in slice 22
+  - preserve the existing shared task-list row assembly behavior already established in slice 26
+  - preserve current task-list filtering contracts, including:
+    - deterministic exact `task_id` first, normalized `task_key` second for reference filters
+    - deterministic no-guess behavior for unresolved or non-normalizing filter inputs
+    - deterministic AND logic when filters are combined
+    - current `No tasks found.` behavior where already established
+  - preserve current task-list ordering behavior
+  - preserve current task-list output contracts unchanged in this slice
+  - preserve current task-show behavior unchanged in this slice
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+- Milestone 4 slice 27 is now implemented in the current verified local workspace as:
+  - deterministic shared task-list filter preparation helper across current list filter surfaces
+  - `_prepare_task_list_filter_inputs(...)` now exists as a shared internal helper in `asbp/cli.py`
+  - `task list` now reuses the shared helper to prepare filter inputs across:
+    - `--has-dependencies`
+    - `--has-dependents`
+    - `--has-task-key`
+    - `--task-key`
+    - `--task-ref`
+    - `--dependency-ref`
+    - `--dependent-ref`
+  - current task-list filtering contracts remain preserved, including:
+    - deterministic exact `task_id` first, normalized `task_key` second for reference filters
+    - deterministic no-guess behavior for unresolved or non-normalizing filter inputs
+    - deterministic AND logic when filters are combined
+    - current `No tasks found.` behavior where already established
+  - current task-list ordering remains preserved
+  - current task-list output contracts remain unchanged in this slice
+  - current task-show behavior remains unchanged in this slice
+  - current CLI contracts remain preserved with no new CLI flags in this slice
+- Milestone 4 slice 27 was manually verified in this session through:
+  - fresh local full-suite pass captured in this session:
+    - `151 passed in 13.90s`
+- Milestone 4 remains in progress after slice 27 implementation:
+  - slice 28 planning is still pending
+  - no Milestone 5 work package drift
+  - no multiple indexing surfaces in the same slice
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `151 passed in 13.90s`
+
+## Latest completed step
+
+Milestone 4 slice 27 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 27 deterministic shared task-list filter preparation helper support across current list filter surfaces
+- verified `_prepare_task_list_filter_inputs(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified `task list` now reuses the shared helper to prepare filter inputs across:
+  - `--has-dependencies`
+  - `--has-dependents`
+  - `--has-task-key`
+  - `--task-key`
+  - `--task-ref`
+  - `--dependency-ref`
+  - `--dependent-ref`
+- verified current task-list filtering contracts remain preserved, including:
+  - deterministic exact `task_id` first, normalized `task_key` second for reference filters
+  - deterministic no-guess behavior for unresolved or non-normalizing filter inputs
+  - deterministic AND logic when filters are combined
+  - current `No tasks found.` behavior where already established
+- verified current task-list ordering remains preserved
+- verified current task-list output contracts remain unchanged in this slice
+- verified current task-show behavior remains unchanged in this slice
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 27 implementation:
+  - `151 passed in 13.90s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 28 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 27 deterministic shared task-list filter preparation helper across current list filter surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 28 scope or implementation until the planning checkpoint is recorded
