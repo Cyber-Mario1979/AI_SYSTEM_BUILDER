@@ -71,6 +71,23 @@ If not, the roadmap must be updated first before execution continues.
 8. The repo proves reality; it does not replace the roadmap.
 9. Every milestone needs allowed slice families and exit criteria.
 10. Future UI and documentation paths may be reserved early, but they must not distort the active build order.
+11. From Milestone 4 onward, milestone completion requires a formal UAT gate before closeout and before moving to the next milestone.
+
+---
+
+## UAT Gate Policy (active from Milestone 4 onward)
+
+For Milestone 4 and every milestone after it, the required sequence is:
+1. implementation complete
+2. internal validation / tests pass
+3. milestone UAT checkpoint
+4. milestone closeout
+5. only then may the next milestone begin
+
+Clarification:
+- validation / tests confirm technical correctness
+- UAT confirms milestone-level acceptance against intended user-facing or operator-facing behavior
+- historical milestones before Milestone 4 do not require retrospective UAT backfill
 
 ---
 
@@ -249,6 +266,9 @@ The next work should either:
 - finish the remaining read/helper consolidation under M4.F, or
 - move explicitly into M4.G milestone closeout and anti-fragmentation
 
+#### UAT gate
+Milestone 4 cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
+
 #### Exit criteria
 Milestone 4 is complete only when all of the following are true:
 - identity vs reference separation is stable
@@ -280,6 +300,9 @@ A system that supports work packages as real validated entities rather than info
 - task-to-WP association rules
 - WP indexing foundations only after Milestone 4 closeout
 
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
+
 #### Exit criteria
 - WP exists as a validated first-class entity
 - tasks can be associated to WP deterministically
@@ -303,6 +326,9 @@ A system that supports work packages as real validated entities rather than info
 #### Target deliverable
 A deterministic multi-surface planning structure where tasks can exist both as individual entities and as members of controlled collections.
 
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
+
 #### Exit criteria
 - collection entities are explicit
 - membership rules are deterministic
@@ -323,6 +349,9 @@ A deterministic multi-surface planning structure where tasks can exist both as i
 
 #### Target deliverable
 A deterministic system model where multiple entity types coexist cleanly and safely.
+
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
 
 #### Exit criteria
 - cross-entity contracts are frozen
@@ -349,6 +378,9 @@ A deterministic system model where multiple entity types coexist cleanly and saf
 #### Target deliverable
 A runtime where deterministic logic remains outside the model, and the model is used in controlled, validated, and limited ways.
 
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
+
 #### Exit criteria
 - deterministic core and AI writing paths are cleanly separated
 - bounded generation contracts exist
@@ -369,6 +401,9 @@ A runtime where deterministic logic remains outside the model, and the model is 
 
 #### Target deliverable
 A runtime that can generate bounded useful outputs while preserving system integrity.
+
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
 
 #### Exit criteria
 - generation targets are explicit
@@ -394,6 +429,9 @@ A runtime that can generate bounded useful outputs while preserving system integ
 
 #### Target deliverable
 A professional small-scale AI system with architecture, controls, maintainability, and disciplined runtime behavior.
+
+#### UAT gate
+This milestone cannot be closed until a formal milestone UAT checkpoint is completed after implementation and validation, and before milestone closeout.
 
 #### Exit criteria
 - regression discipline exists
@@ -433,6 +471,7 @@ This should happen after the core model, relationships, and runtime boundaries a
 5. Validate before declaring completion.
 6. Freeze milestone boundaries before moving forward.
 7. Reserve future UI/documentation needs early, but do not let them hijack the active core path.
+8. From Milestone 4 onward, do not move to the next milestone until the current milestone UAT gate has passed.
 
 ---
 
