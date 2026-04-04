@@ -2832,3 +2832,49 @@ Next objective:
   - do not change persisted state shape
   - stay fully inside Milestone 4 — Indexing Layer
   - do not drift into Milestone 5
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `156 passed in 14.29s`
+
+## Latest completed step
+
+Milestone 4 slice 30 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 30 deterministic shared reference-visibility option helper support across current read surfaces
+- verified `_prepare_reference_visibility_options(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified the shared helper now prepares the current reference-visibility option bundle before per-task read payload preparation
+- verified `task show` now reuses the shared visibility-option helper before shared read payload preparation across:
+  - `task show --show-dependency-refs`
+  - `task show --show-dependent-refs`
+  - combined `task show` usage when both flags are enabled
+- verified `task list` now reuses the shared visibility-option helper before shared read payload preparation across:
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+  - combined `task list` visibility usage when reference-view flags are enabled
+- verified current output contracts remain preserved, including:
+  - default `task show` output unchanged when no reference-visibility flags are enabled
+  - default `task list` output unchanged when no reference-visibility flags are enabled
+  - `dependency_refs`
+  - `dependent_refs`
+  - resolved `task_key` visibility when available
+  - deterministic `<none>` placeholder behavior
+  - deterministic empty-surface behavior such as `[]` where already established
+- verified current ordering behavior remains unchanged in existing read surfaces
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 30 implementation:
+  - `156 passed in 14.29s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 31 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 30 deterministic shared reference-visibility option helper across current read surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 31 scope or implementation until the planning checkpoint is recorded
