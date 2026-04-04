@@ -31,9 +31,16 @@ M4.G — Milestone closeout and anti-fragmentation
 - M4.D secondary key lifecycle controls are present
 - M4.E index-aware list and filter surfaces are present
 - M4.F read-surface consolidation is present
-- M4.G remaining indexing closeout helper flow across current task read/list/reference-preparation surfaces is completed in the local validated workspace
+- M4.G remaining indexing closeout helper flow across current task read/list/reference-preparation surfaces is present
 - no confirmed Milestone 5 implementation is active
-- GitHub repo/tracker sync for the completed local checkpoint is still pending
+
+## Repo Alignment Status
+
+Aligned with current repo reality and canonical roadmap
+
+## Active Notes
+
+- Do not begin Milestone 5 before Milestone 4 UAT and closeout are completed
 
 ## Latest Completed Checkpoint
 
@@ -51,12 +58,3 @@ Milestone 4 milestone UAT checkpoint
 
 Pending
 Milestone 4 cannot be closed until milestone UAT is completed.
-
-## Repo Alignment Status
-
-Roadmap aligned; local validated workspace is ahead of the last synced GitHub tracker/repo snapshot
-
-## Active Notes
-
-- Do not begin Milestone 5 before Milestone 4 UAT and closeout are completed
-- Sync the validated local checkpoint to the repo source used for session alignment before the next GitHub-based alignment pass
