@@ -9,6 +9,7 @@ from asbp.cli import (
     _attach_reference_views_to_task_payload,
     _build_task_list_row_parts,
     _format_reference_view_for_task_list,
+    _prepare_reference_visibility_options,
     _prepare_task_list_filter_inputs,
     _prepare_task_read_payload,
     handle_task_add,
@@ -381,6 +382,34 @@ def test_prepare_task_read_payload_attaches_both_reference_views_for_mapping_pay
     assert result["dependent_refs"] == [
         {"task_id": "TASK-004", "task_key": "archive-fat-package"},
     ]
+
+
+def test_prepare_reference_visibility_options_preserves_disabled_default_bundle():
+    args = SimpleNamespace(
+        show_dependency_refs=False,
+        show_dependent_refs=False,
+    )
+
+    result = _prepare_reference_visibility_options(args)
+
+    assert result == {
+        "show_dependency_refs": False,
+        "show_dependent_refs": False,
+    }
+
+
+def test_prepare_reference_visibility_options_preserves_enabled_bundle():
+    args = SimpleNamespace(
+        show_dependency_refs=True,
+        show_dependent_refs=True,
+    )
+
+    result = _prepare_reference_visibility_options(args)
+
+    assert result == {
+        "show_dependency_refs": True,
+        "show_dependent_refs": True,
+    }
 
 
 def test_task_add_creates_first_task_with_planned_status(restore_state_file):

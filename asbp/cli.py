@@ -310,6 +310,13 @@ def _prepare_task_list_filter_inputs(args, tasks):
     }
 
 
+def _prepare_reference_visibility_options(args):
+    return {
+        "show_dependency_refs": args.show_dependency_refs,
+        "show_dependent_refs": args.show_dependent_refs,
+    }
+
+
 def _prepare_task_read_payload(
     tasks,
     task,
@@ -369,21 +376,19 @@ def handle_task_list(args):
     if not tasks:
         print("No tasks found.")
         return
-
+    reference_visibility_options = _prepare_reference_visibility_options(args)
     print("Tasks:")
     for task in tasks:
         task_output = _prepare_task_read_payload(
             state.tasks,
             task,
-            show_dependency_refs=args.show_dependency_refs,
-            show_dependent_refs=args.show_dependent_refs,
+            **reference_visibility_options,
         )
 
         line_parts = _build_task_list_row_parts(
             task_output,
             show_task_key=args.show_task_key,
-            show_dependency_refs=args.show_dependency_refs,
-            show_dependent_refs=args.show_dependent_refs,
+            **reference_visibility_options,
         )
         print(" | ".join(line_parts))
 
@@ -446,14 +451,12 @@ def handle_task_show(args):
     if task is None:
         print(f"Task not found: {args.task_id}")
         return
-
+    reference_visibility_options = _prepare_reference_visibility_options(args)
     task_payload = _prepare_task_read_payload(
         state.tasks,
         task,
-        show_dependency_refs=args.show_dependency_refs,
-        show_dependent_refs=args.show_dependent_refs,
+        **reference_visibility_options,
     )
-
     print(json.dumps(task_payload, indent=2))
 
 def handle_task_set_key(args):

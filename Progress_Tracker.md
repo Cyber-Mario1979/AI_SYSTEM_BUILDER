@@ -2796,3 +2796,39 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 30 scope or implementation until the planning checkpoint is recorded
+
+- the Milestone 4 slice 30 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared reference-visibility option helper across current read surfaces
+- the slice 30 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that prepares the current reference-visibility option bundle before per-task read payload preparation
+  - reuse that shared helper across the current reference-visibility read surfaces only:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - combined `task show` usage when both flags are enabled
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+    - combined `task list` visibility usage when reference-view flags are enabled
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve the existing shared reference-output attachment behavior already established in slice 24
+  - preserve the existing shared task-list row assembly behavior already established in slice 26
+  - preserve the existing shared task-read payload behavior already established in slice 29
+  - preserve current output contracts, including:
+    - default `task show` output unchanged when no reference-visibility flags are enabled
+    - default `task list` output unchanged when no reference-visibility flags are enabled
+    - `dependency_refs`
+    - `dependent_refs`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as `[]` where already established
+  - preserve current ordering behavior in all existing read surfaces
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
