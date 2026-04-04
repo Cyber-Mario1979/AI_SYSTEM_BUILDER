@@ -168,11 +168,66 @@ def handle_task_add(args):
     print(f"Task added: {new_task.task_id} - {new_task.title}")
     
 
+def _coerce_task_payload(task):
+    if hasattr(task, "model_dump"):
+        return task.model_dump()
+    return dict(task)
+
+
+def _reference_views_requested(
+    *,
+    show_dependency_refs=False,
+    show_dependent_refs=False,
+):
+    return show_dependency_refs or show_dependent_refs
+
+
+def _parse_optional_bool_filter(value):
+    if value == "true":
+        return True
+    if value == "false":
+        return False
+    return None
+
+
 def _resolve_task_list_reference_filter_task_id(tasks, reference):
+    if reference is None:
+        return None, False
+
     target_task = find_task_by_reference(tasks, reference)
     if target_task is None:
         return None, True
     return target_task.task_id, False
+
+
+def _prepare_task_list_reference_filters(
+    tasks,
+    *,
+    task_ref=None,
+    dependency_ref=None,
+    dependent_ref=None,
+):
+    resolved_task_id_filter, task_ref_missing = (
+        _resolve_task_list_reference_filter_task_id(tasks, task_ref)
+    )
+    resolved_dependency_task_id_filter, dependency_ref_missing = (
+        _resolve_task_list_reference_filter_task_id(tasks, dependency_ref)
+    )
+    resolved_dependent_task_id_filter, dependent_ref_missing = (
+        _resolve_task_list_reference_filter_task_id(tasks, dependent_ref)
+    )
+
+    return {
+        "resolved_task_id_filter": resolved_task_id_filter,
+        "resolved_dependency_task_id_filter": resolved_dependency_task_id_filter,
+        "resolved_dependent_task_id_filter": resolved_dependent_task_id_filter,
+        "should_return_no_tasks": (
+            task_ref_missing
+            or dependency_ref_missing
+            or dependent_ref_missing
+        ),
+    }
+
 
 def _attach_reference_views_to_task_payload(
     tasks,
@@ -241,69 +296,30 @@ def _build_task_list_row_parts(
 
 
 def _prepare_task_list_filter_inputs(args, tasks):
-    has_dependencies = None
-    if args.has_dependencies == "true":
-        has_dependencies = True
-    elif args.has_dependencies == "false":
-        has_dependencies = False
-
-    has_dependents = None
-    if args.has_dependents == "true":
-        has_dependents = True
-    elif args.has_dependents == "false":
-        has_dependents = False
-
-    has_task_key = None
-    if args.has_task_key == "true":
-        has_task_key = True
-    elif args.has_task_key == "false":
-        has_task_key = False
-
     normalized_task_key_filter = None
     if args.task_key is not None:
         normalized_task_key_filter = normalize_task_key(args.task_key)
 
-    resolved_task_id_filter = None
-    should_return_no_tasks = False
-
-    if args.task_ref is not None:
-        target_task = find_task_by_reference(tasks, args.task_ref)
-        if target_task is None:
-            should_return_no_tasks = True
-        else:
-            resolved_task_id_filter = target_task.task_id
-
-    resolved_dependency_task_id_filter = None
-    if args.dependency_ref is not None:
-        resolved_dependency_task_id_filter, dependency_ref_missing = (
-            _resolve_task_list_reference_filter_task_id(
-                tasks,
-                args.dependency_ref,
-            )
-        )
-        if dependency_ref_missing:
-            should_return_no_tasks = True
-
-    resolved_dependent_task_id_filter = None
-    if args.dependent_ref is not None:
-        resolved_dependent_task_id_filter, dependent_ref_missing = (
-            _resolve_task_list_reference_filter_task_id(
-                tasks,
-                args.dependent_ref,
-            )
-        )
-        if dependent_ref_missing:
-            should_return_no_tasks = True
+    resolved_reference_filters = _prepare_task_list_reference_filters(
+        tasks,
+        task_ref=args.task_ref,
+        dependency_ref=args.dependency_ref,
+        dependent_ref=args.dependent_ref,
+    )
 
     return {
-        "has_dependencies": has_dependencies,
-        "has_dependents": has_dependents,
-        "has_task_key": has_task_key,
+        "has_dependencies": _parse_optional_bool_filter(args.has_dependencies),
+        "has_dependents": _parse_optional_bool_filter(args.has_dependents),
+        "has_task_key": _parse_optional_bool_filter(args.has_task_key),
         "normalized_task_key_filter": normalized_task_key_filter,
-        "resolved_task_id_filter": resolved_task_id_filter,
-        "resolved_dependency_task_id_filter": resolved_dependency_task_id_filter,
-        "resolved_dependent_task_id_filter": resolved_dependent_task_id_filter,
-        "should_return_no_tasks": should_return_no_tasks,
+        "resolved_task_id_filter": resolved_reference_filters["resolved_task_id_filter"],
+        "resolved_dependency_task_id_filter": (
+            resolved_reference_filters["resolved_dependency_task_id_filter"]
+        ),
+        "resolved_dependent_task_id_filter": (
+            resolved_reference_filters["resolved_dependent_task_id_filter"]
+        ),
+        "should_return_no_tasks": resolved_reference_filters["should_return_no_tasks"],
         "task_key_filter_requested_and_invalid": (
             args.task_key is not None and normalized_task_key_filter is None
         ),
@@ -324,12 +340,12 @@ def _prepare_task_read_payload(
     show_dependency_refs=False,
     show_dependent_refs=False,
 ):
-    if hasattr(task, "model_dump"):
-        task_payload = task.model_dump()
-    else:
-        task_payload = dict(task)
+    task_payload = _coerce_task_payload(task)
 
-    if not show_dependency_refs and not show_dependent_refs:
+    if not _reference_views_requested(
+        show_dependency_refs=show_dependency_refs,
+        show_dependent_refs=show_dependent_refs,
+    ):
         return task_payload
 
     return _attach_reference_views_to_task_payload(
