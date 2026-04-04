@@ -10,7 +10,7 @@ from asbp.cli import (
     _build_task_list_row_parts,
     _format_reference_view_for_task_list,
     _prepare_task_list_filter_inputs,
-    _prepare_task_show_payload,
+    _prepare_task_read_payload,
     handle_task_add,
     load_state_or_none,
     load_validated_state,
@@ -301,7 +301,7 @@ def test_prepare_task_list_filter_inputs_marks_no_tasks_for_unresolved_reference
     }
 
 
-def test_prepare_task_show_payload_preserves_default_contract_without_reference_visibility_flags():
+def test_prepare_task_read_payload_preserves_default_contract_without_reference_visibility_flags():
     tasks = [
         TaskModel(
             task_id="TASK-001",
@@ -321,7 +321,7 @@ def test_prepare_task_show_payload_preserves_default_contract_without_reference_
         ),
     ]
 
-    result = _prepare_task_show_payload(
+    result = _prepare_task_read_payload(
         tasks,
         tasks[0],
         show_dependency_refs=False,
@@ -331,7 +331,7 @@ def test_prepare_task_show_payload_preserves_default_contract_without_reference_
     assert result == tasks[0].model_dump()
 
 
-def test_prepare_task_show_payload_attaches_both_reference_views_when_enabled():
+def test_prepare_task_read_payload_attaches_both_reference_views_for_mapping_payload_when_enabled():
     tasks = [
         TaskModel(
             task_id="TASK-001",
@@ -367,9 +367,9 @@ def test_prepare_task_show_payload_attaches_both_reference_views_when_enabled():
         ),
     ]
 
-    result = _prepare_task_show_payload(
+    result = _prepare_task_read_payload(
         tasks,
-        tasks[2],
+        tasks[2].model_dump(),
         show_dependency_refs=True,
         show_dependent_refs=True,
     )

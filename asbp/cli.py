@@ -310,14 +310,17 @@ def _prepare_task_list_filter_inputs(args, tasks):
     }
 
 
-def _prepare_task_show_payload(
+def _prepare_task_read_payload(
     tasks,
     task,
     *,
     show_dependency_refs=False,
     show_dependent_refs=False,
 ):
-    task_payload = task.model_dump()
+    if hasattr(task, "model_dump"):
+        task_payload = task.model_dump()
+    else:
+        task_payload = dict(task)
 
     if not show_dependency_refs and not show_dependent_refs:
         return task_payload
@@ -369,9 +372,9 @@ def handle_task_list(args):
 
     print("Tasks:")
     for task in tasks:
-        task_output = _attach_reference_views_to_task_payload(
+        task_output = _prepare_task_read_payload(
             state.tasks,
-            dict(task),
+            task,
             show_dependency_refs=args.show_dependency_refs,
             show_dependent_refs=args.show_dependent_refs,
         )
@@ -444,9 +447,9 @@ def handle_task_show(args):
         print(f"Task not found: {args.task_id}")
         return
 
-    task_payload = _attach_reference_views_to_task_payload(
+    task_payload = _prepare_task_read_payload(
         state.tasks,
-        task.model_dump(),
+        task,
         show_dependency_refs=args.show_dependency_refs,
         show_dependent_refs=args.show_dependent_refs,
     )

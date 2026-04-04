@@ -2715,3 +2715,84 @@ Next objective:
 - stay inside the Indexing Layer milestone
 - avoid Milestone 5 drift
 - do not claim slice 29 scope or implementation until the planning checkpoint is recorded
+- the Milestone 4 slice 29 planning checkpoint was completed in this session
+- the next narrow slice is locked as:
+  - deterministic shared task-read payload preparation helper across current reference-visibility read surfaces
+- the slice 29 scope boundary is locked as:
+  - add a narrow internal-helper consolidation slice for existing indexing only
+  - introduce one shared internal helper in the read / CLI layer that prepares the per-task read payload before output-specific rendering when reference-visibility flags are enabled
+  - reuse that shared helper across the current reference-visibility read surfaces only:
+    - `task show --show-dependency-refs`
+    - `task show --show-dependent-refs`
+    - combined `task show` usage when both flags are enabled
+    - `task list --show-dependency-refs`
+    - `task list --show-dependent-refs`
+    - combined `task list` visibility usage when reference-view flags are enabled
+  - preserve `task_id` as storage identity
+  - preserve `task_key` as the secondary reference surface only
+  - preserve the existing shared task-reference view construction behavior already established in slice 23
+  - preserve the existing shared reference-output attachment behavior already established in slice 24
+  - preserve the existing shared task-list row assembly behavior already established in slice 26
+  - preserve the existing shared task-show payload behavior already established in slice 28 until consolidated into the new shared read helper
+  - preserve current output contracts, including:
+    - default `task show` output unchanged when no reference-visibility flags are enabled
+    - default `task list` output unchanged when no reference-visibility flags are enabled
+    - `dependency_refs`
+    - `dependent_refs`
+    - resolved `task_key` visibility when available
+    - deterministic `<none>` placeholder behavior
+    - deterministic empty-surface behavior such as `[]` where already established
+  - preserve current ordering behavior in all existing read surfaces
+  - do not add new CLI flags
+  - do not change reference resolution semantics
+  - do not change filter semantics
+  - do not change mutation behavior
+  - do not change persisted state shape
+  - stay fully inside Milestone 4 — Indexing Layer
+  - do not drift into Milestone 5
+
+## Current verified validation status
+
+- fresh local full-suite result verified in this session:
+  - `154 passed in 14.37s`
+
+## Latest completed step
+
+Milestone 4 slice 29 implementation checkpoint
+
+Completed:
+
+- verified the local workspace contains slice 29 deterministic shared task-read payload preparation helper support across current reference-visibility read surfaces
+- verified `_prepare_task_read_payload(...)` now exists as a shared internal helper in `asbp/cli.py`
+- verified the shared helper now prepares per-task read payloads for both model and mapping inputs
+- verified `task show` now reuses the shared helper across:
+  - `task show --show-dependency-refs`
+  - `task show --show-dependent-refs`
+  - combined `task show` usage when both flags are enabled
+- verified `task list` now reuses the shared helper across:
+  - `task list --show-dependency-refs`
+  - `task list --show-dependent-refs`
+  - combined `task list` visibility usage when reference-view flags are enabled
+- verified current output contracts remain preserved, including:
+  - default `task show` output unchanged when no reference-visibility flags are enabled
+  - default `task list` output unchanged when no reference-visibility flags are enabled
+  - `dependency_refs`
+  - `dependent_refs`
+  - resolved `task_key` visibility when available
+  - deterministic `<none>` placeholder behavior
+  - deterministic empty-surface behavior such as `[]` where already established
+- verified current ordering behavior remains unchanged in existing read surfaces
+- verified current CLI contracts remain preserved with no new CLI flags in this slice
+- validated full local suite after slice 29 implementation:
+  - `154 passed in 14.37s`
+
+## Exact next unfinished step
+
+Milestone 4 slice 30 planning checkpoint
+
+Next objective:
+
+- lock the next narrow Indexing Layer slice after slice 29 deterministic shared task-read payload preparation helper across current reference-visibility read surfaces
+- stay inside the Indexing Layer milestone
+- avoid Milestone 5 drift
+- do not claim slice 30 scope or implementation until the planning checkpoint is recorded
