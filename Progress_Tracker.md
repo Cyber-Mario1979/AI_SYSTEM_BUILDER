@@ -10,51 +10,45 @@ This file is a short current-state tracker only.
 It does not store session-by-session diary history.
 It is updated only when explicitly requested.
 
-## Current Phase
-
-Phase 2 — Deterministic System Modeling
-
 ## Current Milestone
 
-Milestone 4 — Indexing Layer
+Milestone 5 — Work Package Model
 
 ## Current Approved Slice Family
 
-M4.G — Milestone closeout and anti-fragmentation
+WP identity and schema
 
 ## Current Repo Reality
 
-- Milestone 4 remains the active implementation boundary
-- M4.A foundation is present
-- M4.B reference resolution expansion is present
-- M4.C safety and validation controls are present
-- M4.D secondary key lifecycle controls are present
-- M4.E index-aware list and filter surfaces are present
-- M4.F read-surface consolidation is present
-- M4.G remaining indexing closeout helper flow across current task read/list/reference-preparation surfaces is present
-- no confirmed Milestone 5 implementation is active
+- Milestone 5 is now the active implementation boundary
+- WorkPackageModel identity/schema foundation is present
+- StateModel work_packages collection is present with a safe default
+- legacy persisted state without work_packages remains accepted
+- no confirmed Work Package CLI surface is active
+- no confirmed task-to-work-package association is active
 
 ## Repo Alignment Status
 
-Aligned with current repo reality and canonical roadmap
+Aligned with current local validated repo reality and canonical roadmap
 
 ## Active Notes
 
-- Do not begin Milestone 5 before Milestone 4 closeout is completed
+- Keep the next checkpoint inside Milestone 5
+- Next checkpoint is planning only
+- Do not introduce Work Package CLI surfaces or task-to-work-package association before the next planning checkpoint
 
 ## Latest Completed Checkpoint
 
-Milestone 4 milestone UAT checkpoint passed
+Milestone 5 first implementation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 4 closeout checkpoint
+Milestone 5 planning checkpoint
 
 ## Latest Verified Validation Status
 
-156 passed in 14.22s
+162 passed in 14.12s
 
 ## Milestone UAT Status
 
-Passed
-Milestone 4 UAT gate is complete.
+Not started
