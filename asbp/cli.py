@@ -209,6 +209,22 @@ def handle_wp_add(args):
     )
 
 
+def handle_wp_update_status(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    work_package.status = args.status
+    save_validated_state(state)
+    print(f"Work Package status updated: {work_package.wp_id} -> {args.status}")
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
@@ -696,6 +712,18 @@ def build_parser():
     wp_add_parser.add_argument("wp_id", help="Work Package ID to add")
     wp_add_parser.add_argument("title", help="Work Package title")
     wp_add_parser.set_defaults(func=handle_wp_add)
+
+    wp_update_status_parser = wp_subparsers.add_parser(
+        "update-status",
+        help="Update work package status",
+    )
+    wp_update_status_parser.add_argument("wp_id", help="Work Package ID to update")
+    wp_update_status_parser.add_argument(
+        "status",
+        choices=["open", "in_progress", "completed"],
+        help="New work package status",
+    )
+    wp_update_status_parser.set_defaults(func=handle_wp_update_status)
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")
