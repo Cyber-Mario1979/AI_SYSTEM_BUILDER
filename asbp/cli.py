@@ -225,6 +225,28 @@ def handle_wp_update_status(args):
     save_validated_state(state)
     print(f"Work Package status updated: {work_package.wp_id} -> {args.status}")
 
+
+def handle_wp_delete(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    state.work_packages = [
+        existing_work_package
+        for existing_work_package in state.work_packages
+        if existing_work_package.wp_id != args.wp_id
+    ]
+    save_validated_state(state)
+    print(f"Work Package deleted: {args.wp_id}")
+
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
@@ -724,6 +746,13 @@ def build_parser():
         help="New work package status",
     )
     wp_update_status_parser.set_defaults(func=handle_wp_update_status)
+
+    wp_delete_parser = wp_subparsers.add_parser(
+        "delete",
+        help="Delete a work package",
+    )
+    wp_delete_parser.add_argument("wp_id", help="Work Package ID to delete")
+    wp_delete_parser.set_defaults(func=handle_wp_delete)
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")

@@ -33,16 +33,17 @@ WP read/write CLI surfaces
 - wp show read surface is present
 - wp add write surface is present
 - wp update-status write surface is present
+- wp delete write surface is present
 - no confirmed task-to-work-package association is active
 
 ## Latest Completed Checkpoint
 
-Milestone 5 sixth implementation checkpoint — deterministic wp update-status <wp_id> <status> write surface
+Milestone 5 seventh implementation checkpoint — deterministic wp delete <wp_id> write surface
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp update-status write surface
+Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp delete write surface
 
 ## Latest Verified Validation Status
 
-92 passed in 4.88s
+95 passed in 5.48s
