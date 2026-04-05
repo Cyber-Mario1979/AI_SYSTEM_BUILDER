@@ -40,15 +40,15 @@ Aligned with current repo reality and canonical roadmap
 
 ## Active Notes
 
-- Do not begin Milestone 5 before Milestone 4 UAT and closeout are completed
+- Do not begin Milestone 5 before Milestone 4 closeout is completed
 
 ## Latest Completed Checkpoint
 
-Milestone 4 M4.G implementation checkpoint completed
+Milestone 4 milestone UAT checkpoint passed
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 4 milestone UAT checkpoint
+Milestone 4 closeout checkpoint
 
 ## Latest Verified Validation Status
 
@@ -56,5 +56,5 @@ Milestone 4 milestone UAT checkpoint
 
 ## Milestone UAT Status
 
-Pending
-Milestone 4 cannot be closed until milestone UAT is completed.
+Passed
+Milestone 4 UAT gate is complete.
