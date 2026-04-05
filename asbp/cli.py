@@ -150,18 +150,25 @@ def handle_wp_list(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    if not state.work_packages:
+    work_packages = state.work_packages
+    if args.status is not None:
+        work_packages = [
+            work_package
+            for work_package in work_packages
+            if work_package.status == args.status
+        ]
+
+    if not work_packages:
         print("No work packages found.")
         return
 
     print("Work Packages:")
-    for work_package in state.work_packages:
+    for work_package in work_packages:
         print(
             f"- {work_package.wp_id} | "
             f"{work_package.status} | "
             f"{work_package.title}"
         )
-
 
 
 def handle_wp_show(args):
@@ -750,8 +757,15 @@ def build_parser():
     wp_parser = subparsers.add_parser("wp", help="Work Package operations")
     wp_subparsers = wp_parser.add_subparsers(dest="wp_command")
 
+    
     wp_list_parser = wp_subparsers.add_parser("list", help="List all work packages")
+    wp_list_parser.add_argument(
+        "--status",
+        choices=["open", "in_progress", "completed"],
+        help="Filter work packages by status",
+    )
     wp_list_parser.set_defaults(func=handle_wp_list)
+    
 
     wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
     wp_show_parser.add_argument("wp_id", help="Work Package ID to show")

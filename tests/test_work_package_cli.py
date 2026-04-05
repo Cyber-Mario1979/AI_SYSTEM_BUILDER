@@ -510,3 +510,82 @@ def test_wp_update_title_rejects_invalid_empty_title_without_mutating_state(rest
             "status": "open",
         }
     ]    
+
+def test_wp_list_filters_by_status_without_changing_output_format(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "completed",
+                    },
+                    {
+                        "wp_id": "WP-003",
+                        "title": "Granulation refresh",
+                        "status": "completed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--status", "completed")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Work Packages:" in output
+    assert "- WP-002 | completed | Blister line upgrade" in output
+    assert "- WP-003 | completed | Granulation refresh" in output
+    assert "- WP-001 | open | Tablet press qualification" not in output
+
+
+def test_wp_list_status_filter_shows_no_work_packages_message_when_no_matches(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--status", "completed")
+
+    assert result.returncode == 0
+    assert "No work packages found." in result.stdout
+    assert "Work Packages:" not in result.stdout
+
+
+def test_wp_list_status_filter_rejects_invalid_choice_at_parser_level():
+    result = run_cli("wp", "list", "--status", "planned")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output
+
