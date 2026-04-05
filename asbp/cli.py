@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from pydantic import ValidationError
 
-from asbp.state_model import StateModel, TaskModel
+from asbp.state_model import StateModel, TaskModel, WorkPackageModel
 from asbp.task_logic import (
     build_dependent_reference_view,
     build_dependency_reference_view,
@@ -133,6 +133,16 @@ def handle_state_set_status(args):
     print(f"State status updated to: {args.value}")
 
 
+def _find_work_package_by_id(
+    work_packages: list[WorkPackageModel],
+    wp_id: str,
+) -> WorkPackageModel | None:
+    for work_package in work_packages:
+        if work_package.wp_id == wp_id:
+            return work_package
+    return None
+
+
 def handle_wp_list(args):
     state = load_state_or_none()
 
@@ -151,6 +161,22 @@ def handle_wp_list(args):
             f"{work_package.status} | "
             f"{work_package.title}"
         )
+
+
+
+def handle_wp_show(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(work_package.model_dump(), indent=2))
 
 
 def handle_task_add(args):
@@ -631,6 +657,10 @@ def build_parser():
 
     wp_list_parser = wp_subparsers.add_parser("list", help="List all work packages")
     wp_list_parser.set_defaults(func=handle_wp_list)
+
+    wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
+    wp_show_parser.add_argument("wp_id", help="Work Package ID to show")
+    wp_show_parser.set_defaults(func=handle_wp_show)
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")

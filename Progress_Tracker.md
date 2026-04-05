@@ -45,16 +45,12 @@ Aligned with current pushed repo reality and canonical roadmap
 
 ## Latest Completed Checkpoint
 
-Milestone 5 third implementation checkpoint
+Milestone 5 fourth implementation checkpoint — deterministic wp show <wp_id> read surface
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp list read surface
+Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp show read surface
 
 ## Latest Verified Validation Status
 
-170 passed in 15.11s
-
-## Milestone UAT Status
-
-Not started
+173 passed in 14.41s
