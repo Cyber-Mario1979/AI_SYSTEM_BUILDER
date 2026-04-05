@@ -378,3 +378,135 @@ def test_wp_delete_handles_missing_state_file(restore_state_file):
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
     assert "No state file found. Run 'state init' first." in result.stdout    
+
+def test_wp_update_title_updates_only_existing_work_package_title(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "completed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "update-title", "WP-002", "Blister line modernization")
+
+    assert result.returncode == 0
+    assert "Work Package title updated: WP-002 -> Blister line modernization" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        },
+        {
+            "wp_id": "WP-002",
+            "title": "Blister line modernization",
+            "status": "completed",
+        },
+    ]
+
+
+def test_wp_update_title_handles_missing_work_package_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "update-title", "WP-999", "Missing work package")
+
+    assert result.returncode == 0
+    assert "Work Package not found: WP-999" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_update_title_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("wp", "update-title", "WP-001", "Tablet press modernization")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_update_title_rejects_invalid_empty_title_without_mutating_state(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "update-title", "WP-001", "")
+
+    assert result.returncode == 0
+    assert "Work Package validation failed:" in result.stdout
+    assert "title" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]    

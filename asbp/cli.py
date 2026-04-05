@@ -247,6 +247,33 @@ def handle_wp_delete(args):
     print(f"Work Package deleted: {args.wp_id}")
 
 
+def handle_wp_update_title(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    try:
+        validated_work_package = WorkPackageModel(
+            wp_id=work_package.wp_id,
+            title=args.title,
+            status=work_package.status,
+        )
+    except ValidationError as e:
+        print("Work Package validation failed:")
+        print(e)
+        return
+
+    work_package.title = validated_work_package.title
+    save_validated_state(state)
+    print(f"Work Package title updated: {work_package.wp_id} -> {validated_work_package.title}")
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
@@ -753,6 +780,14 @@ def build_parser():
     )
     wp_delete_parser.add_argument("wp_id", help="Work Package ID to delete")
     wp_delete_parser.set_defaults(func=handle_wp_delete)
+
+    wp_update_title_parser = wp_subparsers.add_parser(
+        "update-title",
+        help="Update work package title",
+    )
+    wp_update_title_parser.add_argument("wp_id", help="Work Package ID to update")
+    wp_update_title_parser.add_argument("title", help="New work package title")
+    wp_update_title_parser.set_defaults(func=handle_wp_update_title)    
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")
