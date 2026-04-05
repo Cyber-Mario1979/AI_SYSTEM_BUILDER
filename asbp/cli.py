@@ -133,11 +133,31 @@ def handle_state_set_status(args):
     print(f"State status updated to: {args.value}")
 
 
+def handle_wp_list(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    if not state.work_packages:
+        print("No work packages found.")
+        return
+
+    print("Work Packages:")
+    for work_package in state.work_packages:
+        print(
+            f"- {work_package.wp_id} | "
+            f"{work_package.status} | "
+            f"{work_package.title}"
+        )
+
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
         return
-
+    
     try:
         task_key = prepare_task_key_for_write(
             state.tasks,
@@ -605,6 +625,14 @@ def build_parser():
     )
     state_set_status_parser.set_defaults(func=handle_state_set_status)
 
+
+    wp_parser = subparsers.add_parser("wp", help="Work Package operations")
+    wp_subparsers = wp_parser.add_subparsers(dest="wp_command")
+
+    wp_list_parser = wp_subparsers.add_parser("list", help="List all work packages")
+    wp_list_parser.set_defaults(func=handle_wp_list)
+
+
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")
 
@@ -738,6 +766,10 @@ def main():
 
     if args.command == "state" and args.state_command is None:
         parser.parse_args(["state", "-h"])
+        return
+    
+    if args.command == "wp" and args.wp_command is None:
+        parser.parse_args(["wp", "-h"])
         return
 
     if args.command == "task" and args.task_command is None:

@@ -1,6 +1,8 @@
+import json
+
 import pytest
 
-from asbp.cli import load_validated_state
+from asbp.cli import load_validated_state, save_validated_state
 from asbp.state_model import StateModel, WorkPackageModel
 
 
@@ -78,6 +80,146 @@ def test_state_model_rejects_duplicate_wp_id():
                 ),
             ],
         )
+
+
+def test_save_validated_state_persists_work_packages(tmp_path, monkeypatch):
+    state_file = tmp_path / "state.json"
+    monkeypatch.setattr("asbp.cli.get_state_file_path", lambda: state_file)
+
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        tasks=[],
+        work_packages=[
+            WorkPackageModel(
+                wp_id="WP-001",
+                title="Tablet press qualification",
+                status="open",
+            )
+        ],
+    )
+
+    save_validated_state(state)
+
+    saved = json.loads(state_file.read_text(encoding="utf-8"))
+
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_load_validated_state_reloads_valid_persisted_work_packages(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [],
+  "work_packages": [
+    {
+      "wp_id": "WP-001",
+      "title": "Tablet press qualification",
+      "status": "open"
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    state = load_validated_state(state_file)
+
+    assert len(state.work_packages) == 1
+    assert state.work_packages[0].wp_id == "WP-001"
+    assert state.work_packages[0].title == "Tablet press qualification"
+    assert state.work_packages[0].status == "open"
+
+
+def test_load_validated_state_rejects_invalid_persisted_work_package_wp_id(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [],
+  "work_packages": [
+    {
+      "wp_id": "WP-1",
+      "title": "Tablet press qualification",
+      "status": "open"
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="String should match pattern"):
+        load_validated_state(state_file)
+
+
+def test_load_validated_state_rejects_invalid_persisted_work_package_status(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [],
+  "work_packages": [
+    {
+      "wp_id": "WP-001",
+      "title": "Tablet press qualification",
+      "status": "planned"
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="Input should be"):
+        load_validated_state(state_file)
+
+
+def test_load_validated_state_rejects_duplicate_persisted_wp_id(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [],
+  "work_packages": [
+    {
+      "wp_id": "WP-001",
+      "title": "Tablet press qualification A",
+      "status": "open"
+    },
+    {
+      "wp_id": "WP-001",
+      "title": "Tablet press qualification B",
+      "status": "in_progress"
+    }
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="Duplicate wp_id is not allowed: WP-001"):
+        load_validated_state(state_file)
 
 
 def test_load_validated_state_accepts_legacy_state_without_work_packages(tmp_path):
