@@ -179,6 +179,36 @@ def handle_wp_show(args):
     print(json.dumps(work_package.model_dump(), indent=2))
 
 
+def handle_wp_add(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    if _find_work_package_by_id(state.work_packages, args.wp_id) is not None:
+        print(f"Duplicate wp_id is not allowed: {args.wp_id}")
+        return
+
+    try:
+        new_work_package = WorkPackageModel(
+            wp_id=args.wp_id,
+            title=args.title,
+            status="open",
+        )
+    except ValidationError as e:
+        print("Work Package validation failed:")
+        print(e)
+        return
+
+    state.work_packages.append(new_work_package)
+    save_validated_state(state)
+    print(
+        f"Work Package added: {new_work_package.wp_id} - "
+        f"{new_work_package.title}"
+    )
+
+
 def handle_task_add(args):
     state = load_state_or_none()
     if state is None:
@@ -661,6 +691,11 @@ def build_parser():
     wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
     wp_show_parser.add_argument("wp_id", help="Work Package ID to show")
     wp_show_parser.set_defaults(func=handle_wp_show)
+
+    wp_add_parser = wp_subparsers.add_parser("add", help="Add a new work package")
+    wp_add_parser.add_argument("wp_id", help="Work Package ID to add")
+    wp_add_parser.add_argument("title", help="Work Package title")
+    wp_add_parser.set_defaults(func=handle_wp_add)
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")

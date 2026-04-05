@@ -30,27 +30,18 @@ WP read/write CLI surfaces
 - persisted save/load validation for work_packages is present
 - legacy persisted state without work_packages remains accepted
 - wp list read surface is present
-- no confirmed Work Package write surface is active
+- wp show read surface is present
+- wp add write surface is present
 - no confirmed task-to-work-package association is active
-
-## Repo Alignment Status
-
-Aligned with current pushed repo reality and canonical roadmap
-
-## Active Notes
-
-- Keep the next checkpoint inside Milestone 5
-- Next checkpoint is planning only
-- Do not introduce task-to-work-package association before the next planning checkpoint
 
 ## Latest Completed Checkpoint
 
-Milestone 5 fourth implementation checkpoint — deterministic wp show <wp_id> read surface
+Milestone 5 fifth implementation checkpoint — deterministic wp add <wp_id> <title> write surface
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp show read surface
+Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp add write surface
 
 ## Latest Verified Validation Status
 
-173 passed in 14.41s
+177 passed in 14.44s

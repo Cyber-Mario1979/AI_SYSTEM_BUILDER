@@ -184,3 +184,108 @@ def test_wp_show_handles_missing_state_file(restore_state_file):
     assert result.returncode == 0
     assert "State file not found:" in result.stdout
     assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_add_persists_new_work_package_with_default_open_status(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "add", "WP-001", "Tablet press qualification")
+
+    assert result.returncode == 0
+    assert "Work Package added: WP-001 - Tablet press qualification" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_add_rejects_duplicate_wp_id_without_mutating_state(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "add", "WP-001", "Duplicate title")
+
+    assert result.returncode == 0
+    assert "Duplicate wp_id is not allowed: WP-001" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_add_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("wp", "add", "WP-001", "Tablet press qualification")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_add_rejects_invalid_wp_id_format(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "add", "WP-1", "Tablet press qualification")
+
+    assert result.returncode == 0
+    assert "Work Package validation failed:" in result.stdout
+    assert "wp_id" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == []
