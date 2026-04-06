@@ -31,6 +31,7 @@ WP read/write CLI surfaces
 - legacy persisted state without work_packages remains accepted
 - wp list read surface is present
 - wp list --status read surface is present
+- wp list --title read surface is present
 - wp show read surface is present
 - wp add write surface is present
 - wp update-status write surface is present
@@ -43,12 +44,12 @@ WP read/write CLI surfaces
 
 ## Latest Completed Checkpoint
 
-Corrective integrity restoration checkpoint — restore the overwritten task CLI test suite and preserve the dedicated WP CLI test surface with no runtime behavior changes
+Milestone 5 tenth implementation checkpoint — deterministic wp list --title <title> read surface
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — re-lock the next narrow WP read/write CLI slice after corrective restoration checkpoint
+Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp list --title read surface
 
 ## Latest Verified Validation Status
 
-187 passed in 16.39s
+190 passed in 16.30s
