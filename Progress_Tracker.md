@@ -36,16 +36,19 @@ WP read/write CLI surfaces
 - wp update-status write surface is present
 - wp delete write surface is present
 - wp update-title write surface is present
+- restored task CLI test suite is present
+- dedicated WP CLI test file is present
+- corrective integrity restoration merged with no runtime behavior changes
 - no confirmed task-to-work-package association is active
 
 ## Latest Completed Checkpoint
 
-Milestone 5 ninth implementation checkpoint — deterministic wp list --status <status> read surface
+Corrective integrity restoration checkpoint — restore the overwritten task CLI test suite and preserve the dedicated WP CLI test surface with no runtime behavior changes
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp list --status read surface
+Milestone 5 planning checkpoint — re-lock the next narrow WP read/write CLI slice after corrective restoration checkpoint
 
 ## Latest Verified Validation Status
 
-102 passed in 6.17s
+187 passed in 16.39s
