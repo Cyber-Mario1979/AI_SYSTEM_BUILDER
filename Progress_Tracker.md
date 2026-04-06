@@ -18,10 +18,6 @@ Phase 2 — Deterministic System Modeling
 
 Milestone 5 — Work Package Model
 
-## Current Approved Slice Family
-
-WP read/write CLI surfaces
-
 ## Current Repo Reality
 
 - Milestone 5 is now the active implementation boundary
@@ -32,6 +28,7 @@ WP read/write CLI surfaces
 - wp list read surface is present
 - wp list --status read surface is present
 - wp list --title read surface is present
+- wp list --wp-id read surface is present
 - wp show read surface is present
 - wp add write surface is present
 - wp update-status write surface is present
@@ -44,12 +41,12 @@ WP read/write CLI surfaces
 
 ## Latest Completed Checkpoint
 
-Milestone 5 tenth implementation checkpoint — deterministic wp list --title <title> read surface
+Milestone 5 eleventh implementation checkpoint — deterministic wp list --wp-id <wp_id> read surface
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp list --title read surface
+Milestone 5 planning checkpoint — lock the next narrow WP read/write CLI slice after wp list --wp-id read surface
 
 ## Latest Verified Validation Status
 
-190 passed in 16.30s
+193 passed in 17.86s

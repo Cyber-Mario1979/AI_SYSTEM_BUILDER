@@ -165,6 +165,13 @@ def handle_wp_list(args):
             if work_package.title == args.title
         ]
 
+    if args.wp_id is not None:
+        work_packages = [
+            work_package
+            for work_package in work_packages
+            if work_package.wp_id == args.wp_id
+        ]
+
     if not work_packages:
         print("No work packages found.")
         return
@@ -774,6 +781,10 @@ def build_parser():
     wp_list_parser.add_argument(
         "--title",
         help="Filter work packages by exact title",
+    )
+    wp_list_parser.add_argument(
+        "--wp-id",
+        help="Filter work packages by exact work package ID",
     )
     wp_list_parser.set_defaults(func=handle_wp_list)
 

@@ -708,3 +708,121 @@ def test_wp_list_title_filter_combines_with_status_using_and_logic(restore_state
     assert "- WP-001 | open | Blister line upgrade" not in output
     assert "- WP-003 | completed | Granulation refresh" not in output
 
+def test_wp_list_filters_by_exact_wp_id_without_changing_output_format(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "completed",
+                    },
+                    {
+                        "wp_id": "WP-003",
+                        "title": "Granulation refresh",
+                        "status": "completed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--wp-id", "WP-002")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Work Packages:" in output
+    assert "- WP-002 | completed | Blister line upgrade" in output
+    assert "- WP-001 | open | Tablet press qualification" not in output
+    assert "- WP-003 | completed | Granulation refresh" not in output
+
+
+def test_wp_list_wp_id_filter_shows_no_work_packages_message_when_no_matches(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--wp-id", "WP-999")
+
+    assert result.returncode == 0
+    assert "No work packages found." in result.stdout
+    assert "Work Packages:" not in result.stdout
+
+
+def test_wp_list_wp_id_filter_combines_with_status_using_and_logic(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Blister line upgrade",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "completed",
+                    },
+                    {
+                        "wp_id": "WP-003",
+                        "title": "Granulation refresh",
+                        "status": "open",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "wp",
+        "list",
+        "--status",
+        "open",
+        "--wp-id",
+        "WP-001",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Work Packages:" in output
+    assert "- WP-001 | open | Blister line upgrade" in output
+    assert "- WP-002 | completed | Blister line upgrade" not in output
+    assert "- WP-003 | open | Granulation refresh" not in output
