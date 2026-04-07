@@ -31,19 +31,36 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("start_date", None)
         task.setdefault("end_date", None)
         task.setdefault("task_key", None)
+        task.setdefault("work_package_id", None)
 
     state = StateModel(**raw_state)
     validate_persisted_task_keys(state.tasks)
     return state
 
 
-def save_validated_state(state: StateModel) -> None:
-    state_file = get_state_file_path()
-    state_file.parent.mkdir(parents=True, exist_ok=True)
+def build_persisted_state_payload(state: StateModel) -> dict:
+    payload = state.model_dump()
 
-    with state_file.open("w", encoding="utf-8") as f:
-        json.dump(state.model_dump(), f, indent=2)
+    for task in payload.get("tasks", []):
+        if task.get("work_package_id") is None:
+            task.pop("work_package_id", None)
+
+    return payload
+
+
+def save_validated_state_to_path(
+    state: StateModel,
+    state_file_path: Path,
+) -> None:
+    state_file_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with state_file_path.open("w", encoding="utf-8") as f:
+        json.dump(build_persisted_state_payload(state), f, indent=2)
         f.write("\n")
+
+
+def save_validated_state(state: StateModel) -> None:
+    save_validated_state_to_path(state, get_state_file_path())
 
 
 def load_state_or_none() -> StateModel | None:
@@ -65,4 +82,3 @@ def load_state_or_none() -> StateModel | None:
         print("State validation failed:")
         print(e)
         return None
-

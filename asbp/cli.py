@@ -30,6 +30,7 @@ from asbp.work_package_logic import (
     find_work_package_by_id,
     update_work_package_status,
     update_work_package_title,
+    set_task_work_package,
 )
 
 VERSION = "0.1.0"
@@ -48,12 +49,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
 
 def save_validated_state(state: StateModel) -> None:
-    state_file = get_state_file_path()
-    state_file.parent.mkdir(parents=True, exist_ok=True)
-
-    with state_file.open("w", encoding="utf-8") as f:
-        json.dump(state.model_dump(), f, indent=2)
-        f.write("\n")
+    state_store.save_validated_state_to_path(state, get_state_file_path())
 
 
 def handle_state_init(args):
@@ -707,6 +703,37 @@ def handle_task_set_dependencies(args):
         f"Task dependencies updated: {target_task.task_id} -> {resolved_dependency_ids}"
     )
 
+
+def handle_task_set_work_package(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    try:
+        target_task, error_message = set_task_work_package(
+            state.tasks,
+            state.work_packages,
+            task_ref=args.task_id,
+            wp_id=args.wp_id,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if error_message is not None:
+        print(error_message)
+        return
+
+    if target_task is None:
+        return
+
+    save_validated_state(state)
+    print(
+        f"Task work package updated: "
+        f"{target_task.task_id} -> {target_task.work_package_id}"
+    )
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
@@ -913,6 +940,21 @@ def build_parser():
         help="Filter tasks by one dependent reference (task_id first, task_key second)",
     )
     task_set_dependencies_parser.set_defaults(func=handle_task_set_dependencies)
+
+    task_set_work_package_parser = task_subparsers.add_parser(
+        "set-work-package",
+        help="Set task work package association",
+    )
+    task_set_work_package_parser.add_argument(
+        "task_id",
+        help="Task reference to update",
+    )
+    task_set_work_package_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to associate",
+    )
+    task_set_work_package_parser.set_defaults(func=handle_task_set_work_package)
+
 
     task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
     task_delete_parser.add_argument("task_id", help="Task ID to delete")

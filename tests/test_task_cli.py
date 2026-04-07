@@ -4362,3 +4362,250 @@ def test_task_list_invalid_task_ref_still_returns_no_tasks_with_other_reference_
     assert result.returncode == 0
     assert "No tasks found." in result.stdout
     assert "Tasks:" not in result.stdout
+
+
+def test_task_set_work_package_updates_existing_task_and_persists_only_target_association(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-work-package", "TASK-001", "WP-001")
+
+    assert result.returncode == 0
+    assert "Task work package updated: TASK-001 -> WP-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"] == [
+        {
+            "task_id": "TASK-001",
+            "order": 1,
+            "title": "Prepare FAT",
+            "description": None,
+            "owner": None,
+            "duration": None,
+            "start_date": None,
+            "end_date": None,
+            "task_key": "prepare-fat",
+            "work_package_id": "WP-001",
+            "status": "planned",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "order": 2,
+            "title": "Execute FAT",
+            "description": None,
+            "owner": None,
+            "duration": None,
+            "start_date": None,
+            "end_date": None,
+            "task_key": None,
+            "status": "planned",
+            "dependencies": [],
+        },
+    ]
+
+
+def test_task_set_work_package_resolves_target_by_task_key(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "set-work-package",
+        " Prepare FAT ",
+        "WP-001",
+    )
+
+    assert result.returncode == 0
+    assert "Task work package updated: TASK-001 -> WP-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["tasks"][0]["work_package_id"] == "WP-001"
+
+
+def test_task_set_work_package_handles_unknown_task_reference(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-work-package", "TASK-999", "WP-001")
+
+    assert result.returncode == 0
+    assert "Task not found: TASK-999" in result.stdout
+
+
+def test_task_set_work_package_handles_unknown_work_package_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-work-package", "TASK-001", "WP-999")
+
+    assert result.returncode == 0
+    assert "Work Package not found: WP-999" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert "work_package_id" not in saved_state["tasks"][0]
+
+
+def test_task_set_work_package_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("task", "set-work-package", "TASK-001", "WP-001")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+
+
+def test_load_validated_state_accepts_legacy_task_without_work_package_id(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        """
+{
+  "project": "AI_SYSTEM_BUILDER",
+  "version": "0.8.0",
+  "status": "in_flight",
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "order": 1,
+      "title": "Legacy task",
+      "description": null,
+      "owner": null,
+      "status": "planned",
+      "dependencies": []
+    }
+  ],
+  "work_packages": []
+}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    state = load_validated_state(state_file)
+
+    assert len(state.tasks) == 1
+    assert state.tasks[0].task_id == "TASK-001"
+    assert state.tasks[0].work_package_id is None

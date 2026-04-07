@@ -43,31 +43,17 @@ Normal Milestone 5 slicing
 - CLI compatibility wrappers are preserved for validated surfaces
 - restored task CLI test suite is present
 - dedicated WP CLI test file is present
-- no confirmed task-to-work-package association is active
-
-## Active Notes
-
-- `ROADMAP_ADDENDUM_01_TEST_INTEGRITY_RESTORATION.md` is a completed historical overlay
-- `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md` is a completed historical overlay
-- `ARCHITECTURE_GUARDRAILS.md` remains active permanent governance
-- normal Milestone 5 feature slicing has resumed
+- first deterministic task-to-work-package association write surface is present
+- backward-compatible persisted task loading without work_package_id remains accepted
 
 ## Latest Completed Checkpoint
 
-Milestone 5 architectural hardening exit planning checkpoint — addendum 02 exit condition confirmed satisfied and return to normal Milestone 5 slicing approved
+Milestone 5 twelfth implementation checkpoint — add the first deterministic task-to-work-package association write surface via `task set-work-package <task_ref> <wp_id>` with validated WP existence and backward-compatible persistence
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 twelfth planning checkpoint — lock the first narrow task-to-work-package association foundation slice
+Milestone 5 thirteenth planning checkpoint — lock the first narrow task-to-work-package read-surface slice
 
 ## Latest Verified Validation Status
 
-193 passed in 16.82s
-
-## Milestone UAT Status
-
-Milestone 5 UAT not started
-
-## Repo Alignment Status
-
-Aligned
+199 passed in 19.43s

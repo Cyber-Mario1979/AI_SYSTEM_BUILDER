@@ -1,4 +1,7 @@
-from asbp.state_model import WorkPackageModel
+from typing import Literal
+
+from asbp.state_model import TaskModel, WorkPackageModel
+from asbp.task_logic import find_task_by_reference
 
 
 def find_work_package_by_id(
@@ -64,7 +67,7 @@ def update_work_package_status(
     work_packages: list[WorkPackageModel],
     *,
     wp_id: str,
-    status: str,
+    status: Literal["open", "in_progress", "completed"],
 ) -> WorkPackageModel | None:
     work_package = find_work_package_by_id(work_packages, wp_id)
     if work_package is None:
@@ -72,8 +75,6 @@ def update_work_package_status(
 
     work_package.status = status
     return work_package
-
-
 def delete_work_package_by_id(
     work_packages: list[WorkPackageModel],
     *,
@@ -106,3 +107,21 @@ def update_work_package_title(
     work_package.title = validated_work_package.title
     return work_package
 
+
+def set_task_work_package(
+    tasks: list[TaskModel],
+    work_packages: list[WorkPackageModel],
+    *,
+    task_ref: str,
+    wp_id: str,
+) -> tuple[TaskModel | None, str | None]:
+    target_task = find_task_by_reference(tasks, task_ref)
+    if target_task is None:
+        return None, f"Task not found: {task_ref}"
+
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return None, f"Work Package not found: {wp_id}"
+
+    target_task.work_package_id = work_package.wp_id
+    return target_task, None
