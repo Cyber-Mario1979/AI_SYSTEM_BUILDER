@@ -604,6 +604,12 @@ def handle_task_show(args):
         task,
         **reference_visibility_options,
     )
+
+    if getattr(args, "show_work_package_id", False):
+        task_payload["work_package_id"] = task_payload.get("work_package_id", None)
+    else:
+        task_payload.pop("work_package_id", None)
+
     print(json.dumps(task_payload, indent=2))
 
 def handle_task_set_key(args):
@@ -738,7 +744,6 @@ def handle_task_set_work_package(args):
         f"Task work package updated: "
         f"{target_task.task_id} -> {target_task.work_package_id}"
     )
-
 
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
@@ -946,6 +951,11 @@ def build_parser():
         "--show-dependent-refs",
         action="store_true",
         help="Show resolved dependent references in task output",
+    )
+    task_show_parser.add_argument(
+        "--show-work-package-id",
+        action="store_true",
+        help="Show work_package_id in task output",
     )
     task_show_parser.set_defaults(func=handle_task_show)
 

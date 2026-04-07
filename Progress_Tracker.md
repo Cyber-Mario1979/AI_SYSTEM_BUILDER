@@ -47,15 +47,17 @@ Normal Milestone 5 slicing
 - backward-compatible persisted task loading without work_package_id remains accepted
 - first deterministic task-to-work-package list read surface is present via `task list --show-work-package-id`
 - default task list contract remains unchanged when the flag is absent
+- first deterministic task-to-work-package task-show read surface is present via `task show --show-work-package-id`
+- default task show contract remains unchanged when the flag is absent
 
 ## Latest Completed Checkpoint
 
-Milestone 5 thirteenth implementation checkpoint — add the first narrow task-to-work-package read surface via `task list --show-work-package-id` while preserving the default list contract unchanged
+Milestone 5 fourteenth implementation checkpoint — add the first narrow task-to-work-package task-show read surface via `task show --show-work-package-id` while preserving the default task-show contract unchanged
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 fourteenth planning checkpoint — lock the next narrow task-to-work-package read surface after task list visibility
+Milestone 5 fifteenth planning checkpoint — lock the next narrow task-to-work-package surface after task-show visibility
 
 ## Latest Verified Validation Status
 
-203 passed in 19.47s
+207 passed in 20.29s
