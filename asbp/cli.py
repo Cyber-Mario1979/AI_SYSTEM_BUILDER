@@ -391,6 +391,7 @@ def _build_task_list_row_parts(
     task_payload,
     *,
     show_task_key=False,
+    show_work_package_id=False,
     show_dependency_refs=False,
     show_dependent_refs=False,
 ):
@@ -399,6 +400,10 @@ def _build_task_list_row_parts(
     if show_task_key:
         task_key_display = normalize_task_key(task_payload.get("task_key")) or "<none>"
         line_parts.append(f"task_key={task_key_display}")
+
+    if show_work_package_id:
+        work_package_id_display = task_payload.get("work_package_id") or "<none>"
+        line_parts.append(f"work_package_id={work_package_id_display}")
 
     if show_dependency_refs:
         line_parts.append(
@@ -529,6 +534,7 @@ def handle_task_list(args):
         line_parts = _build_task_list_row_parts(
             task_output,
             show_task_key=args.show_task_key,
+            show_work_package_id=args.show_work_package_id,
             **reference_visibility_options,
         )
         print(" | ".join(line_parts))
@@ -743,17 +749,29 @@ def build_parser():
     state_parser = subparsers.add_parser("state", help="State file operations")
     state_subparsers = state_parser.add_subparsers(dest="state_command")
 
-    state_init_parser = state_subparsers.add_parser("init", help="Initialize the state file")
+    state_init_parser = state_subparsers.add_parser(
+        "init",
+        help="Initialize the state file",
+    )
     state_init_parser.set_defaults(func=handle_state_init)
 
-    state_show_parser = state_subparsers.add_parser("show", help="Show current state")
+    state_show_parser = state_subparsers.add_parser(
+        "show",
+        help="Show current state",
+    )
     state_show_parser.set_defaults(func=handle_state_show)
 
-    state_set_version_parser = state_subparsers.add_parser("set-version", help="Set state version")
+    state_set_version_parser = state_subparsers.add_parser(
+        "set-version",
+        help="Set state version",
+    )
     state_set_version_parser.add_argument("value", help="New version value")
     state_set_version_parser.set_defaults(func=handle_state_set_version)
 
-    state_set_status_parser = state_subparsers.add_parser("set-status", help="Set state status")
+    state_set_status_parser = state_subparsers.add_parser(
+        "set-status",
+        help="Set state status",
+    )
     state_set_status_parser.add_argument(
         "value",
         choices=["not_started", "in_flight", "completed"],
@@ -761,11 +779,9 @@ def build_parser():
     )
     state_set_status_parser.set_defaults(func=handle_state_set_status)
 
-
     wp_parser = subparsers.add_parser("wp", help="Work Package operations")
     wp_subparsers = wp_parser.add_subparsers(dest="wp_command")
 
-    
     wp_list_parser = wp_subparsers.add_parser("list", help="List all work packages")
     wp_list_parser.add_argument(
         "--status",
@@ -781,7 +797,6 @@ def build_parser():
         help="Filter work packages by exact work package ID",
     )
     wp_list_parser.set_defaults(func=handle_wp_list)
-
 
     wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
     wp_show_parser.add_argument("wp_id", help="Work Package ID to show")
@@ -817,20 +832,44 @@ def build_parser():
     )
     wp_update_title_parser.add_argument("wp_id", help="Work Package ID to update")
     wp_update_title_parser.add_argument("title", help="New work package title")
-    wp_update_title_parser.set_defaults(func=handle_wp_update_title)    
-
+    wp_update_title_parser.set_defaults(func=handle_wp_update_title)
 
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")
 
     task_add_parser = task_subparsers.add_parser("add", help="Add a new task")
     task_add_parser.add_argument("title", help="Task title")
-    task_add_parser.add_argument("--description", default=None, help="Optional task description")
-    task_add_parser.add_argument("--owner", default=None, help="Optional task owner")
-    task_add_parser.add_argument("--duration", type=int, default=None, help="Optional task duration in days")
-    task_add_parser.add_argument("--start-date", default=None, help="Optional task start date")
-    task_add_parser.add_argument("--end-date", default=None, help="Optional task end date")
-    task_add_parser.add_argument("--task-key", default=None, help="Optional deterministic task key")
+    task_add_parser.add_argument(
+        "--description",
+        default=None,
+        help="Optional task description",
+    )
+    task_add_parser.add_argument(
+        "--owner",
+        default=None,
+        help="Optional task owner",
+    )
+    task_add_parser.add_argument(
+        "--duration",
+        type=int,
+        default=None,
+        help="Optional task duration in days",
+    )
+    task_add_parser.add_argument(
+        "--start-date",
+        default=None,
+        help="Optional task start date",
+    )
+    task_add_parser.add_argument(
+        "--end-date",
+        default=None,
+        help="Optional task end date",
+    )
+    task_add_parser.add_argument(
+        "--task-key",
+        default=None,
+        help="Optional deterministic task key",
+    )
     task_add_parser.set_defaults(func=handle_task_add)
 
     task_list_parser = task_subparsers.add_parser("list", help="List all tasks")
@@ -855,6 +894,11 @@ def build_parser():
         help="Show task_key in list output",
     )
     task_list_parser.add_argument(
+        "--show-work-package-id",
+        action="store_true",
+        help="Show work_package_id in list output",
+    )
+    task_list_parser.add_argument(
         "--show-dependency-refs",
         action="store_true",
         help="Show resolved dependency references in list output",
@@ -874,61 +918,11 @@ def build_parser():
         default=None,
         help="Filter tasks by exact normalized task_key",
     )
-    task_list_parser.set_defaults(func=handle_task_list)
-
-    task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
-    task_show_parser.add_argument("task_id", help="Task ID to show")
-    task_show_parser.add_argument(
-        "--show-dependency-refs",
-        action="store_true",
-        help="Show resolved dependency references in task output",
-    )
-    task_show_parser.set_defaults(func=handle_task_show)   
-
-    task_show_parser.add_argument(
-        "--show-dependent-refs",
-        action="store_true",
-        help="Show resolved dependent references in task output",
-    )
-
-    task_set_key_parser = task_subparsers.add_parser(
-        "set-key",
-        help="Set task key",
-    )
-    task_set_key_parser.add_argument("task_id", help="Task ID to update")
-    task_set_key_parser.add_argument("task_key", help="New deterministic task key")
-    task_set_key_parser.set_defaults(func=handle_task_set_key)
-
-    task_clear_key_parser = task_subparsers.add_parser(
-        "clear-key",
-        help="Clear task key",
-    )
-    task_clear_key_parser.add_argument("task_id", help="Task ID to update")
-    task_clear_key_parser.set_defaults(func=handle_task_clear_key)
-
-    task_update_status_parser = task_subparsers.add_parser("update-status", help="Update task status")
-    task_update_status_parser.add_argument("task_id", help="Task ID to update")
-    task_update_status_parser.add_argument(
-    "status",
-    choices=["planned", "in_progress", "completed", "over_due"],
-    help="New task status",
-)
-    task_update_status_parser.set_defaults(func=handle_task_update_status)
-    task_set_dependencies_parser = task_subparsers.add_parser(
-        "set-dependencies",
-        help="Set task dependencies",
-    )
-    task_set_dependencies_parser.add_argument("task_id", help="Task ID to update")
-    task_set_dependencies_parser.add_argument(
-        "dependencies",
-        nargs="*",
-        help="Dependency task IDs",
-    )
     task_list_parser.add_argument(
         "--task-ref",
         default=None,
         help="Filter tasks by exact task reference (task_id first, task_key second)",
-    )    
+    )
     task_list_parser.add_argument(
         "--dependency-ref",
         default=None,
@@ -938,6 +932,53 @@ def build_parser():
         "--dependent-ref",
         default=None,
         help="Filter tasks by one dependent reference (task_id first, task_key second)",
+    )
+    task_list_parser.set_defaults(func=handle_task_list)
+
+    task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
+    task_show_parser.add_argument("task_id", help="Task ID to show")
+    task_show_parser.add_argument(
+        "--show-dependency-refs",
+        action="store_true",
+        help="Show resolved dependency references in task output",
+    )
+    task_show_parser.add_argument(
+        "--show-dependent-refs",
+        action="store_true",
+        help="Show resolved dependent references in task output",
+    )
+    task_show_parser.set_defaults(func=handle_task_show)
+
+    task_set_key_parser = task_subparsers.add_parser("set-key", help="Set task key")
+    task_set_key_parser.add_argument("task_id", help="Task ID to update")
+    task_set_key_parser.add_argument("task_key", help="New deterministic task key")
+    task_set_key_parser.set_defaults(func=handle_task_set_key)
+
+    task_clear_key_parser = task_subparsers.add_parser("clear-key", help="Clear task key")
+    task_clear_key_parser.add_argument("task_id", help="Task ID to update")
+    task_clear_key_parser.set_defaults(func=handle_task_clear_key)
+
+    task_update_status_parser = task_subparsers.add_parser(
+        "update-status",
+        help="Update task status",
+    )
+    task_update_status_parser.add_argument("task_id", help="Task ID to update")
+    task_update_status_parser.add_argument(
+        "status",
+        choices=["planned", "in_progress", "completed", "over_due"],
+        help="New task status",
+    )
+    task_update_status_parser.set_defaults(func=handle_task_update_status)
+
+    task_set_dependencies_parser = task_subparsers.add_parser(
+        "set-dependencies",
+        help="Set task dependencies",
+    )
+    task_set_dependencies_parser.add_argument("task_id", help="Task ID to update")
+    task_set_dependencies_parser.add_argument(
+        "dependencies",
+        nargs="*",
+        help="Dependency task IDs",
     )
     task_set_dependencies_parser.set_defaults(func=handle_task_set_dependencies)
 
@@ -955,12 +996,12 @@ def build_parser():
     )
     task_set_work_package_parser.set_defaults(func=handle_task_set_work_package)
 
-
     task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
     task_delete_parser.add_argument("task_id", help="Task ID to delete")
     task_delete_parser.set_defaults(func=handle_task_delete)
 
     return parser
+
 
 def main():
     parser = build_parser()

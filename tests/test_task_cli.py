@@ -4609,3 +4609,186 @@ def test_load_validated_state_accepts_legacy_task_without_work_package_id(tmp_pa
     assert len(state.tasks) == 1
     assert state.tasks[0].task_id == "TASK-001"
     assert state.tasks[0].work_package_id is None
+
+def test_build_task_list_row_parts_includes_work_package_id_visibility_surface_in_contract_order():
+    result = _build_task_list_row_parts(
+        {
+            "task_id": "TASK-001",
+            "status": "planned",
+            "title": "Prepare FAT",
+            "task_key": "prepare-fat",
+            "work_package_id": "WP-001",
+        },
+        show_task_key=True,
+        show_work_package_id=True,
+    )
+
+    assert result == [
+        "- TASK-001",
+        "planned",
+        "task_key=prepare-fat",
+        "work_package_id=WP-001",
+        "Prepare FAT",
+    ]
+
+
+def test_task_list_show_work_package_id_flag_displays_value_and_placeholder(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--show-work-package-id")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Tasks:" in output
+    assert "- TASK-001 | planned | work_package_id=WP-001 | Prepare FAT" in output
+    assert "- TASK-002 | planned | work_package_id=<none> | Execute FAT" in output
+
+
+def test_task_list_preserves_default_contract_without_show_work_package_id_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "- TASK-001 | planned | Prepare FAT" in output
+    assert "work_package_id=" not in output
+
+
+def test_task_list_show_work_package_id_flag_preserves_compatibility_with_show_task_key(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "task",
+        "list",
+        "--show-task-key",
+        "--show-work-package-id",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert (
+        "- TASK-001 | planned | task_key=prepare-fat | "
+        "work_package_id=WP-001 | Prepare FAT"
+    ) in output

@@ -45,15 +45,17 @@ Normal Milestone 5 slicing
 - dedicated WP CLI test file is present
 - first deterministic task-to-work-package association write surface is present
 - backward-compatible persisted task loading without work_package_id remains accepted
+- first deterministic task-to-work-package list read surface is present via `task list --show-work-package-id`
+- default task list contract remains unchanged when the flag is absent
 
 ## Latest Completed Checkpoint
 
-Milestone 5 twelfth implementation checkpoint — add the first deterministic task-to-work-package association write surface via `task set-work-package <task_ref> <wp_id>` with validated WP existence and backward-compatible persistence
+Milestone 5 thirteenth implementation checkpoint — add the first narrow task-to-work-package read surface via `task list --show-work-package-id` while preserving the default list contract unchanged
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 thirteenth planning checkpoint — lock the first narrow task-to-work-package read-surface slice
+Milestone 5 fourteenth planning checkpoint — lock the next narrow task-to-work-package read surface after task list visibility
 
 ## Latest Verified Validation Status
 
-199 passed in 19.43s
+203 passed in 19.47s
