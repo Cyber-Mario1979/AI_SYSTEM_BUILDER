@@ -1,7 +1,10 @@
 import argparse
 import json
 from pathlib import Path
+
 from pydantic import ValidationError
+
+import asbp.state_store as state_store
 
 from asbp.state_model import StateModel, TaskModel, WorkPackageModel
 from asbp.task_logic import (
@@ -19,40 +22,29 @@ from asbp.task_logic import (
     set_task_dependencies,
     update_task_status,
     validate_persisted_task_keys,
-    
+)
+from asbp.work_package_logic import (
+    create_work_package,
+    delete_work_package_by_id,
+    filter_work_packages,
+    find_work_package_by_id,
+    update_work_package_status,
+    update_work_package_title,
 )
 
 VERSION = "0.1.0"
 
 
 def get_state_file_path() -> Path:
-    return Path(__file__).resolve().parents[1] / "data" / "state" / "state.json"
+    return state_store.get_state_file_path()
 
 
 def load_raw_state(state_file_path: Path) -> dict:
-    with state_file_path.open("r", encoding="utf-8") as f:
-        raw = json.load(f)
-
-    for task in raw.get("tasks", []):
-        if "dependencies" not in task:
-            task["dependencies"] = []
-
-    return raw
+    return state_store.load_raw_state(state_file_path)
 
 
 def load_validated_state(state_file_path: Path) -> StateModel:
-    raw_state = load_raw_state(state_file_path)
-    for task in raw_state.get("tasks", []):
-        task.setdefault("description", None)
-        task.setdefault("owner", None)
-        task.setdefault("duration", None)
-        task.setdefault("start_date", None)
-        task.setdefault("end_date", None)
-        task.setdefault("task_key", None)
-
-    state = StateModel(**raw_state)
-    validate_persisted_task_keys(state.tasks)
-    return state
+    return state_store.load_validated_state(state_file_path)
 
 
 def save_validated_state(state: StateModel) -> None:
@@ -133,16 +125,6 @@ def handle_state_set_status(args):
     print(f"State status updated to: {args.value}")
 
 
-def _find_work_package_by_id(
-    work_packages: list[WorkPackageModel],
-    wp_id: str,
-) -> WorkPackageModel | None:
-    for work_package in work_packages:
-        if work_package.wp_id == wp_id:
-            return work_package
-    return None
-
-
 def handle_wp_list(args):
     state = load_state_or_none()
 
@@ -150,27 +132,12 @@ def handle_wp_list(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    work_packages = state.work_packages
-    if args.status is not None:
-        work_packages = [
-            work_package
-            for work_package in work_packages
-            if work_package.status == args.status
-        ]
-
-    if args.title is not None:
-        work_packages = [
-            work_package
-            for work_package in work_packages
-            if work_package.title == args.title
-        ]
-
-    if args.wp_id is not None:
-        work_packages = [
-            work_package
-            for work_package in work_packages
-            if work_package.wp_id == args.wp_id
-        ]
+    work_packages = filter_work_packages(
+        state.work_packages,
+        status=args.status,
+        title=args.title,
+        wp_id=args.wp_id,
+    )
 
     if not work_packages:
         print("No work packages found.")
@@ -192,7 +159,7 @@ def handle_wp_show(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    work_package = find_work_package_by_id(state.work_packages, args.wp_id)
     if work_package is None:
         print(f"Work Package not found: {args.wp_id}")
         return
@@ -207,19 +174,18 @@ def handle_wp_add(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    if _find_work_package_by_id(state.work_packages, args.wp_id) is not None:
-        print(f"Duplicate wp_id is not allowed: {args.wp_id}")
-        return
-
     try:
-        new_work_package = WorkPackageModel(
+        new_work_package = create_work_package(
+            state.work_packages,
             wp_id=args.wp_id,
             title=args.title,
-            status="open",
         )
     except ValidationError as e:
         print("Work Package validation failed:")
         print(e)
+        return
+    except ValueError as e:
+        print(str(e))
         return
 
     state.work_packages.append(new_work_package)
@@ -237,12 +203,15 @@ def handle_wp_update_status(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
+    work_package = update_work_package_status(
+        state.work_packages,
+        wp_id=args.wp_id,
+        status=args.status,
+    )
     if work_package is None:
         print(f"Work Package not found: {args.wp_id}")
         return
 
-    work_package.status = args.status
     save_validated_state(state)
     print(f"Work Package status updated: {work_package.wp_id} -> {args.status}")
 
@@ -254,16 +223,15 @@ def handle_wp_delete(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
-    if work_package is None:
+    updated_work_packages, deleted_flag = delete_work_package_by_id(
+        state.work_packages,
+        wp_id=args.wp_id,
+    )
+    if not deleted_flag:
         print(f"Work Package not found: {args.wp_id}")
         return
 
-    state.work_packages = [
-        existing_work_package
-        for existing_work_package in state.work_packages
-        if existing_work_package.wp_id != args.wp_id
-    ]
+    state.work_packages = updated_work_packages
     save_validated_state(state)
     print(f"Work Package deleted: {args.wp_id}")
 
@@ -275,25 +243,24 @@ def handle_wp_update_title(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    work_package = _find_work_package_by_id(state.work_packages, args.wp_id)
-    if work_package is None:
-        print(f"Work Package not found: {args.wp_id}")
-        return
-
     try:
-        validated_work_package = WorkPackageModel(
-            wp_id=work_package.wp_id,
+        work_package = update_work_package_title(
+            state.work_packages,
+            wp_id=args.wp_id,
             title=args.title,
-            status=work_package.status,
         )
     except ValidationError as e:
         print("Work Package validation failed:")
         print(e)
         return
 
-    work_package.title = validated_work_package.title
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
     save_validated_state(state)
-    print(f"Work Package title updated: {work_package.wp_id} -> {validated_work_package.title}")
+    print(f"Work Package title updated: {work_package.wp_id} -> {work_package.title}")
+
 
 def handle_task_add(args):
     state = load_state_or_none()

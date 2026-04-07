@@ -24,7 +24,7 @@ Milestone 5 bounded architectural hardening under `ROADMAP_ADDENDUM_02_M5_ARCHIT
 
 ## Current Repo Reality
 
-- Milestone 5 is now the active implementation boundary
+- Milestone 5 is the active implementation boundary
 - WorkPackageModel identity/schema foundation is present
 - StateModel work_packages collection is present with a safe default
 - persisted save/load validation for work_packages is present
@@ -38,28 +38,30 @@ Milestone 5 bounded architectural hardening under `ROADMAP_ADDENDUM_02_M5_ARCHIT
 - wp update-status write surface is present
 - wp delete write surface is present
 - wp update-title write surface is present
+- Work Package operational logic is extracted out of `cli.py` into dedicated module boundaries
+- state access helpers are extracted into dedicated module boundaries
+- CLI compatibility wrappers are preserved for validated surfaces
 - restored task CLI test suite is present
 - dedicated WP CLI test file is present
-- corrective integrity restoration merged with no runtime behavior changes
 - no confirmed task-to-work-package association is active
 
 ## Active Notes
 
 - `ROADMAP_ADDENDUM_01_TEST_INTEGRITY_RESTORATION.md` is a completed historical overlay
-- `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md` is active
-- normal Milestone 5 feature expansion is paused while addendum 02 remains active
+- `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md` remains active pending exit planning checkpoint
+- normal Milestone 5 feature expansion remains paused until addendum 02 exit is explicitly confirmed
 
 ## Latest Completed Checkpoint
 
-Milestone 5 eleventh implementation checkpoint — deterministic wp list --wp-id <wp_id> read surface
+Milestone 5 architectural hardening implementation checkpoint 1 — extract current Work Package read/write operational logic out of `cli.py` into dedicated module boundaries while preserving current CLI behavior, persistence contracts, and validated runtime outputs exactly
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 architectural hardening implementation checkpoint 1 — extract current Work Package read/write operational logic out of `cli.py` into dedicated module boundaries while preserving current CLI behavior, persistence contracts, and validated runtime outputs exactly
+Milestone 5 architectural hardening exit planning checkpoint — decide whether addendum 02 exit condition is satisfied and whether normal Milestone 5 slicing may resume
 
 ## Latest Verified Validation Status
 
-193 passed in 17.86s
+193 passed in 16.82s
 
 ## Milestone UAT Status
 
