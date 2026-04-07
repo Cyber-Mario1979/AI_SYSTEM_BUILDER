@@ -20,7 +20,7 @@ Milestone 5 — Work Package Model
 
 ## Current Approved Slice Family
 
-Milestone 5 bounded architectural hardening under `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md`
+Normal Milestone 5 slicing
 
 ## Current Repo Reality
 
@@ -48,16 +48,17 @@ Milestone 5 bounded architectural hardening under `ROADMAP_ADDENDUM_02_M5_ARCHIT
 ## Active Notes
 
 - `ROADMAP_ADDENDUM_01_TEST_INTEGRITY_RESTORATION.md` is a completed historical overlay
-- `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md` remains active pending exit planning checkpoint
-- normal Milestone 5 feature expansion remains paused until addendum 02 exit is explicitly confirmed
+- `ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING.md` is a completed historical overlay
+- `ARCHITECTURE_GUARDRAILS.md` remains active permanent governance
+- normal Milestone 5 feature slicing has resumed
 
 ## Latest Completed Checkpoint
 
-Milestone 5 architectural hardening implementation checkpoint 1 — extract current Work Package read/write operational logic out of `cli.py` into dedicated module boundaries while preserving current CLI behavior, persistence contracts, and validated runtime outputs exactly
+Milestone 5 architectural hardening exit planning checkpoint — addendum 02 exit condition confirmed satisfied and return to normal Milestone 5 slicing approved
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 architectural hardening exit planning checkpoint — decide whether addendum 02 exit condition is satisfied and whether normal Milestone 5 slicing may resume
+Milestone 5 twelfth planning checkpoint — lock the first narrow task-to-work-package association foundation slice
 
 ## Latest Verified Validation Status
 
