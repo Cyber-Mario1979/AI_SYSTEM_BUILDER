@@ -132,9 +132,11 @@ def handle_wp_list(args):
 
     work_packages = filter_work_packages(
         state.work_packages,
+        tasks=state.tasks,
         status=args.status,
         title=args.title,
         wp_id=args.wp_id,
+        task_id=args.task_id,
     )
 
     if not work_packages:
@@ -836,6 +838,10 @@ def build_parser():
     wp_list_parser.add_argument(
         "--wp-id",
         help="Filter work packages by exact work package ID",
+    )
+    wp_list_parser.add_argument(
+        "--task-id",
+        help="Filter work packages by exact associated task_id",
     )
     wp_list_parser.set_defaults(func=handle_wp_list)
 

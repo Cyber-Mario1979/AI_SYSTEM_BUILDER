@@ -17,9 +17,11 @@ def find_work_package_by_id(
 def filter_work_packages(
     work_packages: list[WorkPackageModel],
     *,
+    tasks: list[TaskModel] | None = None,
     status: str | None = None,
     title: str | None = None,
     wp_id: str | None = None,
+    task_id: str | None = None,
 ) -> list[WorkPackageModel]:
     filtered = list(work_packages)
 
@@ -42,6 +44,18 @@ def filter_work_packages(
             work_package
             for work_package in filtered
             if work_package.wp_id == wp_id
+        ]
+
+    if task_id is not None:
+        matching_work_package_ids = {
+            task.work_package_id
+            for task in (tasks or [])
+            if task.task_id == task_id and task.work_package_id is not None
+        }
+        filtered = [
+            work_package
+            for work_package in filtered
+            if work_package.wp_id in matching_work_package_ids
         ]
 
     return filtered
