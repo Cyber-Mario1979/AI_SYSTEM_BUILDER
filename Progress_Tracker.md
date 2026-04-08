@@ -53,15 +53,17 @@ Normal Milestone 5 slicing
 - task list preserves existing behavior unchanged when the work-package filter is absent
 - deterministic task-to-work-package clear-association write surface is present via `task clear-work-package <task_ref>`
 - cleared task persistence omits `work_package_id` again when the association is removed
+- first inverse task-to-work-package read surface is present via `wp show --show-task-ids`
+- default wp show contract remains unchanged when the flag is absent
 
 ## Latest Completed Checkpoint
 
-Milestone 5 sixteenth implementation checkpoint — add the first narrow task-to-work-package clear-association write surface via `task clear-work-package <task_ref>` while preserving existing task/work-package read contracts, persistence shape, and backward-compatible loading behavior unchanged
+Milestone 5 seventeenth implementation checkpoint — add the first inverse work-package association read surface via `wp show --show-task-ids` while preserving the default `wp show` contract unchanged when the flag is absent
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 seventeenth planning checkpoint — lock the next narrow task-to-work-package surface after clear-association write support
+Milestone 5 eighteenth planning checkpoint — lock the next narrow task-to-work-package surface after inverse `wp show --show-task-ids` read support
 
 ## Latest Verified Validation Status
 
-219 passed in 21.78s
+224 passed in 24.67s

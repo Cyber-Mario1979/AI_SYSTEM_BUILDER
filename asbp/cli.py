@@ -24,6 +24,7 @@ from asbp.task_logic import (
     validate_persisted_task_keys,
 )
 from asbp.work_package_logic import (
+    build_work_package_task_ids,
     clear_task_work_package,
     create_work_package,
     delete_work_package_by_id,
@@ -161,7 +162,15 @@ def handle_wp_show(args):
         print(f"Work Package not found: {args.wp_id}")
         return
 
-    print(json.dumps(work_package.model_dump(), indent=2))
+    work_package_payload = work_package.model_dump()
+
+    if getattr(args, "show_task_ids", False):
+        work_package_payload["task_ids"] = build_work_package_task_ids(
+            state.tasks,
+            wp_id=work_package.wp_id,
+        )
+
+    print(json.dumps(work_package_payload, indent=2))
 
 
 def handle_wp_add(args):
@@ -832,6 +841,11 @@ def build_parser():
 
     wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
     wp_show_parser.add_argument("wp_id", help="Work Package ID to show")
+    wp_show_parser.add_argument(
+        "--show-task-ids",
+        action="store_true",
+        help="Show associated task_ids in work package output",
+    )
     wp_show_parser.set_defaults(func=handle_wp_show)
 
     wp_add_parser = wp_subparsers.add_parser("add", help="Add a new work package")

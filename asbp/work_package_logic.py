@@ -137,3 +137,15 @@ def clear_task_work_package(
 
     target_task.work_package_id = None
     return target_task, None
+
+
+def build_work_package_task_ids(
+    tasks: list[TaskModel],
+    *,
+    wp_id: str,
+) -> list[str]:
+    return [
+        task.task_id
+        for task in tasks
+        if task.work_package_id == wp_id
+    ]
