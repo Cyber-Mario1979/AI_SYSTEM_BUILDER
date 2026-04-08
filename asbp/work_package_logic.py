@@ -125,3 +125,15 @@ def set_task_work_package(
 
     target_task.work_package_id = work_package.wp_id
     return target_task, None
+
+def clear_task_work_package(
+    tasks: list[TaskModel],
+    *,
+    task_ref: str,
+) -> tuple[TaskModel | None, str | None]:
+    target_task = find_task_by_reference(tasks, task_ref)
+    if target_task is None:
+        return None, f"Task not found: {task_ref}"
+
+    target_task.work_package_id = None
+    return target_task, None

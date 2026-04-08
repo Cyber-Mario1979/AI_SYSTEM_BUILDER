@@ -51,15 +51,17 @@ Normal Milestone 5 slicing
 - default task show contract remains unchanged when the flag is absent
 - first deterministic task-to-work-package exact-match list filter surface is present via `task list --work-package-id <wp_id>`
 - task list preserves existing behavior unchanged when the work-package filter is absent
+- deterministic task-to-work-package clear-association write surface is present via `task clear-work-package <task_ref>`
+- cleared task persistence omits `work_package_id` again when the association is removed
 
 ## Latest Completed Checkpoint
 
-Milestone 5 fifteenth implementation checkpoint — add the first narrow task-to-work-package exact-match list filter surface via `task list --work-package-id <wp_id>` while preserving existing list behavior unchanged when the filter is absent
+Milestone 5 sixteenth implementation checkpoint — add the first narrow task-to-work-package clear-association write surface via `task clear-work-package <task_ref>` while preserving existing task/work-package read contracts, persistence shape, and backward-compatible loading behavior unchanged
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 sixteenth planning checkpoint — lock the next narrow task-to-work-package surface after exact work-package list filtering
+Milestone 5 seventeenth planning checkpoint — lock the next narrow task-to-work-package surface after clear-association write support
 
 ## Latest Verified Validation Status
 
-214 passed in 21.18s
+219 passed in 21.78s

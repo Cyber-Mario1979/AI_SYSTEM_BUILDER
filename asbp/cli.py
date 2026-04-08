@@ -24,6 +24,7 @@ from asbp.task_logic import (
     validate_persisted_task_keys,
 )
 from asbp.work_package_logic import (
+    clear_task_work_package,
     create_work_package,
     delete_work_package_by_id,
     filter_work_packages,
@@ -746,6 +747,31 @@ def handle_task_set_work_package(args):
         f"{target_task.task_id} -> {target_task.work_package_id}"
     )
 
+
+def handle_task_clear_work_package(args):
+    state = load_state_or_none()
+    if state is None:
+        return
+
+    try:
+        target_task, error_message = clear_task_work_package(
+            state.tasks,
+            task_ref=args.task_id,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if error_message is not None:
+        print(error_message)
+        return
+
+    if target_task is None:
+        return
+
+    save_validated_state(state)
+    print(f"Task work package cleared: {target_task.task_id}")
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
@@ -1014,6 +1040,16 @@ def build_parser():
         help="Work Package ID to associate",
     )
     task_set_work_package_parser.set_defaults(func=handle_task_set_work_package)
+
+    task_clear_work_package_parser = task_subparsers.add_parser(
+        "clear-work-package",
+        help="Clear task work package association",
+    )
+    task_clear_work_package_parser.add_argument(
+        "task_id",
+        help="Task reference to clear",
+    )
+    task_clear_work_package_parser.set_defaults(func=handle_task_clear_work_package)
 
     task_delete_parser = task_subparsers.add_parser("delete", help="Delete a task")
     task_delete_parser.add_argument("task_id", help="Task ID to delete")
