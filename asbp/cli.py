@@ -517,6 +517,7 @@ def handle_task_list(args):
             task_id=prepared_filters["resolved_task_id_filter"],
             dependency_task_id=prepared_filters["resolved_dependency_task_id_filter"],
             dependent_task_id=prepared_filters["resolved_dependent_task_id_filter"],
+            work_package_id=getattr(args, "work_package_id", None),
         )
 
     if not tasks:
@@ -938,6 +939,14 @@ def build_parser():
         default=None,
         help="Filter tasks by one dependent reference (task_id first, task_key second)",
     )
+    task_list_parser.add_argument(
+        "--work-package-id",
+        default=None,
+        help="Filter tasks by exact work_package_id",
+    )
+
+
+
     task_list_parser.set_defaults(func=handle_task_list)
 
     task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")

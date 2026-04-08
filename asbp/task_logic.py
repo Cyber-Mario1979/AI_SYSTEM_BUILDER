@@ -157,6 +157,7 @@ def filter_tasks(
     task_id=None,
     dependency_task_id=None,
     dependent_task_id=None,
+    work_package_id=None,
 ):
     """
     Return a filtered task list without mutating the original input.
@@ -174,6 +175,7 @@ def filter_tasks(
     - dependency_task_id: keep only tasks whose dependencies include that exact stored task_id
     - dependent_task_id: keep only tasks whose derived dependent set includes that exact
       stored task_id, using the full unfiltered input and persisted dependency storage
+    - work_package_id: keep only tasks whose stored work_package_id exactly matches
     - if multiple filters are provided, apply AND logic
     - preserve original task order
     """
@@ -228,7 +230,7 @@ def filter_tasks(
             task for task in filtered
             if task.get("task_id") == task_id
         ]
-    
+
     if dependency_task_id is not None:
         filtered = [
             task for task in filtered
@@ -245,6 +247,12 @@ def filter_tasks(
                     [],
                 )
             )
+        ]
+
+    if work_package_id is not None:
+        filtered = [
+            task for task in filtered
+            if task.get("work_package_id") == work_package_id
         ]
 
     return filtered

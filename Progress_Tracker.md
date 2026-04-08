@@ -49,15 +49,17 @@ Normal Milestone 5 slicing
 - default task list contract remains unchanged when the flag is absent
 - first deterministic task-to-work-package task-show read surface is present via `task show --show-work-package-id`
 - default task show contract remains unchanged when the flag is absent
+- first deterministic task-to-work-package exact-match list filter surface is present via `task list --work-package-id <wp_id>`
+- task list preserves existing behavior unchanged when the work-package filter is absent
 
 ## Latest Completed Checkpoint
 
-Milestone 5 fourteenth implementation checkpoint — add the first narrow task-to-work-package task-show read surface via `task show --show-work-package-id` while preserving the default task-show contract unchanged
+Milestone 5 fifteenth implementation checkpoint — add the first narrow task-to-work-package exact-match list filter surface via `task list --work-package-id <wp_id>` while preserving existing list behavior unchanged when the filter is absent
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 fifteenth planning checkpoint — lock the next narrow task-to-work-package surface after task-show visibility
+Milestone 5 sixteenth planning checkpoint — lock the next narrow task-to-work-package surface after exact work-package list filtering
 
 ## Latest Verified Validation Status
 
-207 passed in 20.29s
+214 passed in 21.18s

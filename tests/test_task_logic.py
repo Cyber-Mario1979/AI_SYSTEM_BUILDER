@@ -1080,3 +1080,82 @@ def test_filter_tasks_by_has_dependents_matches_dependent_reference_view_semanti
     result = filter_tasks(task_dicts, has_dependents=True)
 
     assert [task["task_id"] for task in result] == expected_task_ids
+
+
+def test_filter_tasks_by_exact_work_package_id_only():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "work_package_id": "WP-001",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "completed",
+            "work_package_id": "WP-002",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "planned",
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(tasks, work_package_id="WP-001")
+
+    assert [task["task_id"] for task in result] == ["TASK-001"]
+
+
+def test_filter_tasks_by_work_package_id_and_status_with_and_logic():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "work_package_id": "WP-001",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-002",
+            "title": "Task 2",
+            "status": "completed",
+            "work_package_id": "WP-001",
+            "dependencies": [],
+        },
+        {
+            "task_id": "TASK-003",
+            "title": "Task 3",
+            "status": "completed",
+            "work_package_id": "WP-002",
+            "dependencies": [],
+        },
+    ]
+
+    result = filter_tasks(
+        tasks,
+        work_package_id="WP-001",
+        status="completed",
+    )
+
+    assert [task["task_id"] for task in result] == ["TASK-002"]
+
+
+def test_filter_tasks_by_work_package_id_returns_empty_list_when_no_match():
+    tasks = [
+        {
+            "task_id": "TASK-001",
+            "title": "Task 1",
+            "status": "planned",
+            "work_package_id": "WP-001",
+            "dependencies": [],
+        }
+    ]
+
+    result = filter_tasks(tasks, work_package_id="WP-999")
+
+    assert result == []
