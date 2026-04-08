@@ -1,3 +1,16 @@
+---
+doc_type: roadmap_addendum
+canonical_name: ROADMAP_ADDENDUM_02_M5_ARCHITECHTURAL_HARDENING.md
+status: COMPLETED_HISTORICAL
+governs_execution: false
+authority: subordinate_to_ROADMAP_CANONICAL
+scope_type: temporary_overlay
+milestone_scope: M5
+phase_scope: Phase 2
+archive_location: docs/archives/roadmap_addenda/
+reason_kept: historical_traceability
+---
+
 # ROADMAP_ADDENDUM_02_M5_ARCHITECTURAL_HARDENING
 
 ## Purpose

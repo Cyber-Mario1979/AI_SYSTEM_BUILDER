@@ -1,3 +1,12 @@
+---
+doc_type: canonical_roadmap
+canonical_name: ROADMAP_CANONICAL
+status: ACTIVE
+governs_execution: true
+document_state_mode: state_agnostic
+authority: strategic_source_of_truth
+---
+
 # AI Systems Builder Program (ASBP) — Canonical Roadmap
 
 ## Purpose

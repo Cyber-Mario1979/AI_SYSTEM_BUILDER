@@ -1,3 +1,12 @@
+---
+doc_type: progress_tracker
+canonical_name: PROGRESS_TRACKER
+status: ACTIVE
+governs_execution: false
+document_state_mode: current_state_execution_evidence
+authority: execution_evidence_only
+---
+
 # PROGRESS_TRACKER
 
 ## Project
