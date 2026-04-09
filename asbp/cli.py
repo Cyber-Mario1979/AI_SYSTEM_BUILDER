@@ -145,11 +145,23 @@ def handle_wp_list(args):
 
     print("Work Packages:")
     for work_package in work_packages:
-        print(
-            f"- {work_package.wp_id} | "
-            f"{work_package.status} | "
-            f"{work_package.title}"
-        )
+        line_parts = [
+            f"- {work_package.wp_id}",
+            work_package.status,
+        ]
+
+        if getattr(args, "show_task_ids", False):
+            task_ids = build_work_package_task_ids(
+                state.tasks,
+                wp_id=work_package.wp_id,
+            )
+            if task_ids:
+                line_parts.append(f"task_ids=[{', '.join(task_ids)}]")
+            else:
+                line_parts.append("task_ids=[]")
+
+        line_parts.append(work_package.title)
+        print(" | ".join(line_parts))
 
 
 def handle_wp_show(args):
@@ -842,6 +854,11 @@ def build_parser():
     wp_list_parser.add_argument(
         "--task-id",
         help="Filter work packages by exact associated task_id",
+    )
+    wp_list_parser.add_argument(
+        "--show-task-ids",
+        action="store_true",
+        help="Show associated task_ids in list output",
     )
     wp_list_parser.set_defaults(func=handle_wp_list)
 
