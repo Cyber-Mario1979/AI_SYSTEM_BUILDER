@@ -153,6 +153,16 @@ def set_task_work_package(
     if work_package is None:
         return None, f"Work Package not found: {wp_id}"
 
+    if (
+        target_task.work_package_id is not None
+        and target_task.work_package_id != work_package.wp_id
+    ):
+        return (
+            None,
+            "Task already associated with a different Work Package: "
+            f"{target_task.task_id} -> {target_task.work_package_id}",
+        )
+
     target_task.work_package_id = work_package.wp_id
     return target_task, None
 
