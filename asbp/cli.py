@@ -243,10 +243,16 @@ def handle_wp_delete(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    updated_work_packages, deleted_flag = delete_work_package_by_id(
+    updated_work_packages, deleted_flag, error_message = delete_work_package_by_id(
         state.work_packages,
+        state.tasks,
         wp_id=args.wp_id,
     )
+
+    if error_message is not None:
+        print(error_message)
+        return
+
     if not deleted_flag:
         print(f"Work Package not found: {args.wp_id}")
         return

@@ -93,16 +93,30 @@ def update_work_package_status(
 
 def delete_work_package_by_id(
     work_packages: list[WorkPackageModel],
+    tasks: list[TaskModel],
     *,
     wp_id: str,
-) -> tuple[list[WorkPackageModel], bool]:
+) -> tuple[list[WorkPackageModel], bool, str | None]:
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return list(work_packages), False, None
+
+    associated_task_ids = build_work_package_task_ids(tasks, wp_id=wp_id)
+    if associated_task_ids:
+        task_ids_display = ", ".join(associated_task_ids)
+        return (
+            list(work_packages),
+            False,
+            f"Work Package cannot be deleted while tasks are associated: "
+            f"{wp_id} -> [{task_ids_display}]",
+        )
+
     updated_work_packages = [
-        work_package
-        for work_package in work_packages
-        if work_package.wp_id != wp_id
+        existing_work_package
+        for existing_work_package in work_packages
+        if existing_work_package.wp_id != wp_id
     ]
-    deleted_flag = len(updated_work_packages) != len(work_packages)
-    return updated_work_packages, deleted_flag
+    return updated_work_packages, True, None
 
 
 def update_work_package_title(

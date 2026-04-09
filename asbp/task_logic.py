@@ -419,6 +419,8 @@ def prepare_task_key_for_write(
             )
 
     return normalized_task_key
+
+
 def validate_persisted_task_keys(tasks: list[TaskModel]) -> None:
     seen_task_keys: set[str] = set()
 
