@@ -25,15 +25,15 @@ Phase 2 — Deterministic System Modeling
 
 ## Current Milestone
 
-Milestone 5 — Work Package Model
+Milestone 6 — Task Collections
 
 ## Current Approved Slice Family
 
-M5.9 — Milestone UAT checkpoint
+M6.1 — Collection identity foundation
 
 ## Current Repo Reality
 
-- Milestone 5 is the active implementation boundary
+- Milestone 5 Work Package Model boundary is closed and frozen after green UAT
 - WorkPackageModel identity/schema foundation is present
 - StateModel work_packages collection is present with a safe default
 - persisted save/load validation for work_packages is present
@@ -72,16 +72,18 @@ M5.9 — Milestone UAT checkpoint
 - work-package deletion is deterministically blocked while tasks remain associated
 - conflicting task-to-work-package reassignment is deterministically rejected until the current association is cleared
 - idempotent reattach to the same work package remains allowed
-- full validation checkpoint is satisfied via `python -m pytest -q`
-- interim manual smoke test evidence is present under `docs/smoke_tests/smoke_test_interim_M5.md`
+- full Milestone 5 validation checkpoint is satisfied via `python -m pytest -q`
+- Milestone 5 UAT report is present and green under `docs/UAT/`
+- Milestone 5 closeout notes are present under `docs/M5_CLOSEOUT_NOTES.md`
+- Milestone 6 implementation surfaces are not started yet
 
 ## Latest Completed Checkpoint
 
-M5.8 — Validation checkpoint completed
+M5.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M5.9 — Milestone UAT checkpoint
+M6.1 — Collection identity foundation
 
 ## Latest Verified Validation Status
 
