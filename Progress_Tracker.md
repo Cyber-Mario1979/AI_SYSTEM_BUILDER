@@ -66,15 +66,18 @@ Normal Milestone 5 slicing
 - default wp show contract remains unchanged when the flag is absent
 - inverse exact-match work-package list filter surface is present via `wp list --task-id <task_id>`
 - default wp list contract remains unchanged when the task-id filter is absent
+- inverse work-package list visibility surface is present via `wp list --show-task-ids`
+- default wp list contract remains unchanged when the flag is absent
+- interim manual smoke test evidence is present under `docs/smoke_tests/smoke_test_interim_M5.md`
 
 ## Latest Completed Checkpoint
 
-Milestone 5 eighteenth implementation checkpoint — add deterministic inverse exact-match work-package list filtering via `wp list --task-id <task_id>` while preserving the default `wp list` contract unchanged when the filter is absent
+Milestone 5 nineteenth implementation checkpoint — implement inverse work-package list visibility via `wp list --show-task-ids` while preserving the default `wp list` contract unchanged when the flag is absent
 
 ## Exact Next Unfinished Checkpoint
 
-Milestone 5 nineteenth planning checkpoint — lock the next narrow task-to-work-package surface after inverse `wp list --task-id <task_id>` filter support
+Milestone 5 twentieth planning checkpoint — lock the next narrow task-to-work-package surface after inverse `wp list --show-task-ids` visibility support
 
 ## Latest Verified Validation Status
 
-229 passed in 24.97s
+234 passed in 24.73s
