@@ -89,6 +89,8 @@ def update_work_package_status(
 
     work_package.status = status
     return work_package
+
+
 def delete_work_package_by_id(
     work_packages: list[WorkPackageModel],
     *,
@@ -140,6 +142,7 @@ def set_task_work_package(
     target_task.work_package_id = work_package.wp_id
     return target_task, None
 
+
 def clear_task_work_package(
     tasks: list[TaskModel],
     *,
@@ -163,3 +166,20 @@ def build_work_package_task_ids(
         for task in tasks
         if task.work_package_id == wp_id
     ]
+
+
+def validate_persisted_task_work_package_links(
+    tasks: list[TaskModel],
+    work_packages: list[WorkPackageModel],
+) -> None:
+    existing_wp_ids = {work_package.wp_id for work_package in work_packages}
+
+    for task in tasks:
+        if task.work_package_id is None:
+            continue
+
+        if task.work_package_id not in existing_wp_ids:
+            raise ValueError(
+                "Persisted task work_package_id does not exist: "
+                f"{task.task_id} -> {task.work_package_id}"
+            )

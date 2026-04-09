@@ -5,6 +5,7 @@ from pydantic import ValidationError
 
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
+from asbp.work_package_logic import validate_persisted_task_work_package_links
 
 
 def get_state_file_path() -> Path:
@@ -35,6 +36,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
     state = StateModel(**raw_state)
     validate_persisted_task_keys(state.tasks)
+    validate_persisted_task_work_package_links(
+        state.tasks,
+        state.work_packages,
+    )
     return state
 
 
