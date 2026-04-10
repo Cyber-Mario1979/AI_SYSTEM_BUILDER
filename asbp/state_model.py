@@ -20,6 +20,12 @@ class TaskModel(BaseModel):
     dependencies: list[str] = Field(default_factory=list)
 
 
+class TaskCollectionModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    collection_id: str = Field(pattern=r"^TC-\d{3}$")
+
+
 class WorkPackageModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 

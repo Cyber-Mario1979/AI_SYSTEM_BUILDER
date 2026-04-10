@@ -25,7 +25,7 @@ Phase 2 — Deterministic System Modeling
 
 ## Current Milestone
 
-Milestone 6 — Task Collections
+Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
