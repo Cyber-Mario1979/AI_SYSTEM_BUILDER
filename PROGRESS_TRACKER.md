@@ -29,7 +29,7 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.1 — Collection identity foundation
+M6.3 — Collection persistence and validated load/save
 
 ## Current Repo Reality
 
@@ -75,16 +75,30 @@ M6.1 — Collection identity foundation
 - full Milestone 5 validation checkpoint is satisfied via `python -m pytest -q`
 - Milestone 5 UAT report is present and green under `docs/UAT/`
 - Milestone 5 closeout notes are present under `docs/M5_CLOSEOUT_NOTES.md`
-- Milestone 6 implementation surfaces are not started yet
+- deterministic collection identifier model is present
+- collection identity helper logic is present in `asbp/collection_logic.py`
+- TaskCollectionModel schema now includes required workflow-aware fields for title and collection_state
+- StateModel task_collections collection is present with a safe default
+- duplicate task-collection identifiers are rejected at state-model validation time
+- collection workflow states are constrained to explicit allowed values
+- dedicated collection test coverage is present for identity, schema, and duplicate-validation behavior
 
 ## Latest Completed Checkpoint
 
-M5.10 — Milestone closeout completed
+M6.2 — Collection schema foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.1 — Collection identity foundation
+M6.3 — Collection persistence and validated load/save
 
 ## Latest Verified Validation Status
 
-241 passed in 24.51s
+253 passed in 24.91s
+
+## Milestone UAT Status
+
+NOT_STARTED_MILESTONE_OPEN
+
+## Repo Alignment Status
+
+ALIGNED_VERIFIED
