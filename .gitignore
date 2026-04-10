@@ -2,3 +2,11 @@
 **/__pycache__/
 **/.pytest_cache/
 **/*.pyc
+data/state/state.json
+logs/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.vscode/
