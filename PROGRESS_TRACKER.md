@@ -29,26 +29,24 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.6B — Initial collection membership rules
+M6.6C — Collection membership validation and failure behavior
 
 ## Current Repo Reality
 
-- collection membership attach surface is present via `collection add-task <collection_id> <task_ref>`
-- collection membership is persisted on collections via `task_ids`
-- collection add-task resolves task references using the existing task reference contract
-- collection add-task is idempotent for existing membership
-- collection persistence defaults missing `task_ids` to `[]` on load
-- collection persistence omits empty `task_ids` on save
-- dedicated collection task-membership attach CLI and persistence validation coverage is present
+- collection membership removal surface is present via `collection remove-task <collection_id> <task_ref>`
+- collection remove-task resolves task references using the existing task reference contract
+- collection remove-task is idempotent for non-member tasks
+- empty collection membership persists without `task_ids` on save after removal
+- dedicated collection task-membership removal CLI coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.6A — Task-to-collection membership attach rules completed
+M6.6B — Initial collection membership rules completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.6B — Initial collection membership rules
+M6.6C — Collection membership validation and failure behavior
 
 ## Latest Verified Validation Status
 
-284 passed in 29.68s
+290 passed in 30.67s

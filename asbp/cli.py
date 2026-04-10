@@ -28,6 +28,7 @@ from asbp.collection_logic import (
     create_collection,
     filter_collections,
     find_collection_by_id,
+    remove_task_from_collection,
     update_collection_state,
     update_collection_title,
 )
@@ -397,6 +398,38 @@ def handle_collection_add_task(args):
 
     save_validated_state(state)
     print(f"Task added to collection: {collection.collection_id} <- {target_task.task_id}")
+
+
+def handle_collection_remove_task(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        collection, target_task, error_message = remove_task_from_collection(
+            state.tasks,
+            state.task_collections,
+            collection_id=args.collection_id,
+            task_ref=args.task_ref,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if error_message is not None:
+        print(error_message)
+        return
+
+    if collection is None or target_task is None:
+        return
+
+    save_validated_state(state)
+    print(
+        f"Task removed from collection: "
+        f"{collection.collection_id} <- {target_task.task_id}"
+    )
 
 
 def handle_collection_update_title(args):
@@ -1160,6 +1193,20 @@ def build_parser():
         help="Task reference to add (task_id first, task_key second)",
     )
     collection_add_task_parser.set_defaults(func=handle_collection_add_task)
+
+    collection_remove_task_parser = collection_subparsers.add_parser(
+        "remove-task",
+        help="Remove a task from a collection",
+    )
+    collection_remove_task_parser.add_argument(
+        "collection_id",
+        help="Collection ID to update",
+    )
+    collection_remove_task_parser.add_argument(
+        "task_ref",
+        help="Task reference to remove (task_id first, task_key second)",
+    )
+    collection_remove_task_parser.set_defaults(func=handle_collection_remove_task)
 
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")

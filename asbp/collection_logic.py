@@ -139,3 +139,27 @@ def add_task_to_collection(
         collection.task_ids.append(target_task.task_id)
 
     return collection, target_task, None
+
+def remove_task_from_collection(
+    tasks: list[TaskModel],
+    collections: list[TaskCollectionModel],
+    *,
+    collection_id: str,
+    task_ref: str,
+) -> tuple[TaskCollectionModel | None, TaskModel | None, str | None]:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None, None, f"Collection not found: {collection_id}"
+
+    target_task = find_task_by_reference(tasks, task_ref)
+    if target_task is None:
+        return None, None, f"Task not found: {task_ref}"
+
+    collection.task_ids = [
+        task_id
+        for task_id in collection.task_ids
+        if task_id != target_task.task_id
+    ]
+
+    return collection, target_task, None
+
