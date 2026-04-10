@@ -203,3 +203,86 @@ def test_collection_add_rejects_invalid_collection_state_at_parser_level():
     assert result.returncode != 0
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
+
+def test_collection_show_prints_matching_collection_as_json(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "show", "TC-002")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+
+    assert payload == {
+        "collection_id": "TC-002",
+        "title": "Committed Selection",
+        "collection_state": "committed",
+    }
+
+
+def test_collection_show_handles_missing_collection_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "show", "TC-999")
+
+    assert result.returncode == 0
+    assert "Collection not found: TC-999" in result.stdout
+
+
+def test_collection_show_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("collection", "show", "TC-001")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+    
+        

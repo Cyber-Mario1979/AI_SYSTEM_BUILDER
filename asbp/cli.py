@@ -23,7 +23,7 @@ from asbp.task_logic import (
     update_task_status,
     validate_persisted_task_keys,
 )
-from asbp.collection_logic import create_collection
+from asbp.collection_logic import create_collection, find_collection_by_id
 from asbp.work_package_logic import (
     build_work_package_task_ids,
     clear_task_work_package,
@@ -316,6 +316,24 @@ def handle_collection_add(args):
         f"Collection added: {new_collection.collection_id} - "
         f"{new_collection.title} ({new_collection.collection_state})"
     )
+
+
+def handle_collection_show(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    collection = find_collection_by_id(
+        state.task_collections,
+        args.collection_id,
+    )
+    if collection is None:
+        print(f"Collection not found: {args.collection_id}")
+        return
+
+    print(json.dumps(collection.model_dump(), indent=2))
 
 
 def handle_task_add(args):
@@ -955,6 +973,17 @@ def build_parser():
         help="Collection workflow state",
     )
     collection_add_parser.set_defaults(func=handle_collection_add)
+
+
+    collection_show_parser = collection_subparsers.add_parser(
+        "show",
+        help="Show a collection by ID",
+    )
+    collection_show_parser.add_argument(
+        "collection_id",
+        help="Collection ID to show",
+    )
+    collection_show_parser.set_defaults(func=handle_collection_show)
 
 
     task_parser = subparsers.add_parser("task", help="Task operations")

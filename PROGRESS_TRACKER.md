@@ -29,7 +29,7 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.4B — Collection read surface
+M6.4C — Collection list / visibility surface
 
 ## Current Repo Reality
 
@@ -95,18 +95,23 @@ M6.4B — Collection read surface
 - default collection create behavior persists new collections with `source` state when no explicit state is provided
 - collection create failures leave persisted state unchanged for invalid title input
 - dedicated collection CLI create-surface coverage is present
+- deterministic single-collection read surface is present via `collection show <collection_id>`
+- collection read lookup is resolved by exact `collection_id`
+- collection show returns canonical JSON payload from the persisted collection model
+- missing collection reads fail deterministically with `Collection not found: <collection_id>`
+- dedicated collection CLI read-surface coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.4A — Collection create surface completed
+M6.4B — Collection read surface completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.4B — Collection read surface
+M6.4C — Collection list / visibility surface
 
 ## Latest Verified Validation Status
 
-264 passed in 27.02s
+267 passed in 27.19s
 
 ## Milestone UAT Status
 
