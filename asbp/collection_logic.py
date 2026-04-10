@@ -1,6 +1,6 @@
 import re
 
-from asbp.state_model import TaskCollectionModel
+from asbp.state_model import CollectionState, TaskCollectionModel
 
 
 def generate_next_collection_id(collections: list[TaskCollectionModel]) -> str:
@@ -40,3 +40,16 @@ def validate_unique_collection_ids(
                 f"Duplicate collection_id is not allowed: {collection.collection_id}"
             )
         seen_collection_ids.add(collection.collection_id)
+
+
+def create_collection(
+    collections: list[TaskCollectionModel],
+    *,
+    title: str,
+    collection_state: CollectionState = "source",
+) -> TaskCollectionModel:
+    return TaskCollectionModel(
+        collection_id=generate_next_collection_id(collections),
+        title=title,
+        collection_state=collection_state,
+    )

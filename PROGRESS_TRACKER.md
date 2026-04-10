@@ -29,7 +29,7 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.4A — Collection create surface
+M6.4B — Collection read surface
 
 ## Current Repo Reality
 
@@ -89,18 +89,24 @@ M6.4A — Collection create surface
 - invalid persisted collection workflow states are rejected during validated load
 - duplicate persisted collection identifiers are rejected during validated load
 - dedicated collection persistence validation coverage is present
+- deterministic collection create surface is present via `collection add <title>`
+- collection identifiers are auto-generated through the approved collection helper layer
+- collection create surface accepts optional `--collection-state` with parser-level constrained choices
+- default collection create behavior persists new collections with `source` state when no explicit state is provided
+- collection create failures leave persisted state unchanged for invalid title input
+- dedicated collection CLI create-surface coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.3 — Collection persistence and validated load/save completed
+M6.4A — Collection create surface completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.4A — Collection create surface
+M6.4B — Collection read surface
 
 ## Latest Verified Validation Status
 
-258 passed in 25.90s
+264 passed in 27.02s
 
 ## Milestone UAT Status
 

@@ -23,6 +23,7 @@ from asbp.task_logic import (
     update_task_status,
     validate_persisted_task_keys,
 )
+from asbp.collection_logic import create_collection
 from asbp.work_package_logic import (
     build_work_package_task_ids,
     clear_task_work_package,
@@ -286,6 +287,35 @@ def handle_wp_update_title(args):
 
     save_validated_state(state)
     print(f"Work Package title updated: {work_package.wp_id} -> {work_package.title}")
+
+
+def handle_collection_add(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        new_collection = create_collection(
+            state.task_collections,
+            title=args.title,
+            collection_state=args.collection_state,
+        )
+    except ValidationError as e:
+        print("Collection validation failed:")
+        print(e)
+        return
+    except ValueError as e:
+        print(str(e))
+        return
+
+    state.task_collections.append(new_collection)
+    save_validated_state(state)
+    print(
+        f"Collection added: {new_collection.collection_id} - "
+        f"{new_collection.title} ({new_collection.collection_state})"
+    )
 
 
 def handle_task_add(args):
@@ -909,6 +939,24 @@ def build_parser():
     wp_update_title_parser.add_argument("title", help="New work package title")
     wp_update_title_parser.set_defaults(func=handle_wp_update_title)
 
+
+    collection_parser = subparsers.add_parser("collection", help="Collection operations")
+    collection_subparsers = collection_parser.add_subparsers(dest="collection_command")
+
+    collection_add_parser = collection_subparsers.add_parser(
+        "add",
+        help="Add a new collection",
+    )
+    collection_add_parser.add_argument("title", help="Collection title")
+    collection_add_parser.add_argument(
+        "--collection-state",
+        default="source",
+        choices=["source", "staged", "committed", "refined"],
+        help="Collection workflow state",
+    )
+    collection_add_parser.set_defaults(func=handle_collection_add)
+
+
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")
 
@@ -1111,6 +1159,10 @@ def main():
     
     if args.command == "wp" and args.wp_command is None:
         parser.parse_args(["wp", "-h"])
+        return
+
+    if args.command == "collection" and args.collection_command is None:
+        parser.parse_args(["collection", "-h"])
         return
 
     if args.command == "task" and args.task_command is None:
