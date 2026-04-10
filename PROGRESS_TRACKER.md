@@ -29,7 +29,7 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.3 — Collection persistence and validated load/save
+M6.4A — Collection create surface
 
 ## Current Repo Reality
 
@@ -82,18 +82,25 @@ M6.3 — Collection persistence and validated load/save
 - duplicate task-collection identifiers are rejected at state-model validation time
 - collection workflow states are constrained to explicit allowed values
 - dedicated collection test coverage is present for identity, schema, and duplicate-validation behavior
+- collection persistence continues through the approved `asbp/state_store.py` boundary
+- persisted state without `task_collections` remains accepted as backward-compatible legacy state
+- persisted `task_collections` load back through `load_validated_state(...)`
+- persisted `task_collections` save through `save_validated_state_to_path(...)`
+- invalid persisted collection workflow states are rejected during validated load
+- duplicate persisted collection identifiers are rejected during validated load
+- dedicated collection persistence validation coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.2 — Collection schema foundation completed
+M6.3 — Collection persistence and validated load/save completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.3 — Collection persistence and validated load/save
+M6.4A — Collection create surface
 
 ## Latest Verified Validation Status
 
-253 passed in 24.91s
+258 passed in 25.90s
 
 ## Milestone UAT Status
 
