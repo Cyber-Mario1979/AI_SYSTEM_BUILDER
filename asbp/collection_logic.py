@@ -29,6 +29,39 @@ def find_collection_by_id(
     return None
 
 
+def filter_collections(
+    collections: list[TaskCollectionModel],
+    *,
+    collection_state: CollectionState | None = None,
+    title: str | None = None,
+    collection_id: str | None = None,
+) -> list[TaskCollectionModel]:
+    filtered = list(collections)
+
+    if collection_state is not None:
+        filtered = [
+            collection
+            for collection in filtered
+            if collection.collection_state == collection_state
+        ]
+
+    if title is not None:
+        filtered = [
+            collection
+            for collection in filtered
+            if collection.title == title
+        ]
+
+    if collection_id is not None:
+        filtered = [
+            collection
+            for collection in filtered
+            if collection.collection_id == collection_id
+        ]
+
+    return filtered
+
+
 def validate_unique_collection_ids(
     collections: list[TaskCollectionModel],
 ) -> None:

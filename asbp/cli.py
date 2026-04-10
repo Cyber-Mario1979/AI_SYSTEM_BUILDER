@@ -23,7 +23,11 @@ from asbp.task_logic import (
     update_task_status,
     validate_persisted_task_keys,
 )
-from asbp.collection_logic import create_collection, find_collection_by_id
+from asbp.collection_logic import (
+    create_collection,
+    filter_collections,
+    find_collection_by_id,
+)
 from asbp.work_package_logic import (
     build_work_package_task_ids,
     clear_task_work_package,
@@ -316,6 +320,33 @@ def handle_collection_add(args):
         f"Collection added: {new_collection.collection_id} - "
         f"{new_collection.title} ({new_collection.collection_state})"
     )
+
+
+def handle_collection_list(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    collections = filter_collections(
+        state.task_collections,
+        collection_state=args.collection_state,
+        title=args.title,
+        collection_id=args.collection_id,
+    )
+
+    if not collections:
+        print("No collections found.")
+        return
+
+    print("Collections:")
+    for collection in collections:
+        print(
+            f"- {collection.collection_id} | "
+            f"{collection.collection_state} | "
+            f"{collection.title}"
+        )
 
 
 def handle_collection_show(args):
@@ -960,6 +991,25 @@ def build_parser():
 
     collection_parser = subparsers.add_parser("collection", help="Collection operations")
     collection_subparsers = collection_parser.add_subparsers(dest="collection_command")
+    
+    collection_list_parser = collection_subparsers.add_parser(
+        "list",
+        help="List all collections",
+    )
+    collection_list_parser.add_argument(
+        "--collection-state",
+        choices=["source", "staged", "committed", "refined"],
+        help="Filter collections by workflow state",
+    )
+    collection_list_parser.add_argument(
+        "--title",
+        help="Filter collections by exact title",
+    )
+    collection_list_parser.add_argument(
+        "--collection-id",
+        help="Filter collections by exact collection ID",
+    )
+    collection_list_parser.set_defaults(func=handle_collection_list)
 
     collection_add_parser = collection_subparsers.add_parser(
         "add",

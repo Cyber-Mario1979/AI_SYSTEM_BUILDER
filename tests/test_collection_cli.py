@@ -283,6 +283,248 @@ def test_collection_show_handles_missing_state_file(restore_state_file):
     assert "State file not found:" in result.stdout
     assert "No state file found. Run 'state init' first." in result.stdout
 
+def test_collection_list_shows_no_collections_message_for_empty_collection(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
-    
-        
+    result = run_cli("collection", "list")
+
+    assert result.returncode == 0
+    assert "No collections found." in result.stdout
+    assert "Collections:" not in result.stdout
+
+
+def test_collection_list_shows_all_collections_in_persisted_order(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Collections:" in output
+
+    first_row = "- TC-001 | source | Source Pool"
+    second_row = "- TC-002 | committed | Committed Selection"
+
+    assert first_row in output
+    assert second_row in output
+    assert output.index(first_row) < output.index(second_row)
+
+
+def test_collection_list_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("collection", "list")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_collection_list_filters_by_collection_state_without_changing_output_format(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Staged Selection",
+                        "collection_state": "staged",
+                    },
+                    {
+                        "collection_id": "TC-003",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list", "--collection-state", "staged")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Collections:" in output
+    assert "- TC-002 | staged | Staged Selection" in output
+    assert "- TC-001 | source | Source Pool" not in output
+    assert "- TC-003 | committed | Committed Selection" not in output
+
+
+def test_collection_list_collection_state_filter_shows_no_collections_message_when_no_matches(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list", "--collection-state", "committed")
+
+    assert result.returncode == 0
+    assert "No collections found." in result.stdout
+    assert "Collections:" not in result.stdout
+
+
+def test_collection_list_filters_by_exact_title_using_and_logic(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Source Pool",
+                        "collection_state": "staged",
+                    },
+                    {
+                        "collection_id": "TC-003",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "collection",
+        "list",
+        "--collection-state",
+        "source",
+        "--title",
+        "Source Pool",
+    )
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Collections:" in output
+    assert "- TC-001 | source | Source Pool" in output
+    assert "- TC-002 | staged | Source Pool" not in output
+    assert "- TC-003 | committed | Committed Selection" not in output
+
+
+def test_collection_list_filters_by_exact_collection_id_without_changing_output_format(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list", "--collection-id", "TC-002")
+
+    assert result.returncode == 0
+    output = result.stdout
+    assert "Collections:" in output
+    assert "- TC-002 | committed | Committed Selection" in output
+    assert "- TC-001 | source | Source Pool" not in output
+
+
