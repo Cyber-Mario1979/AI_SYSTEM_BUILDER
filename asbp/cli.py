@@ -24,6 +24,7 @@ from asbp.task_logic import (
     validate_persisted_task_keys,
 )
 from asbp.collection_logic import (
+    add_task_to_collection,
     create_collection,
     filter_collections,
     find_collection_by_id,
@@ -367,6 +368,35 @@ def handle_collection_show(args):
         return
 
     print(json.dumps(collection.model_dump(), indent=2))
+
+
+def handle_collection_add_task(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        collection, target_task, error_message = add_task_to_collection(
+            state.tasks,
+            state.task_collections,
+            collection_id=args.collection_id,
+            task_ref=args.task_ref,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if error_message is not None:
+        print(error_message)
+        return
+
+    if collection is None or target_task is None:
+        return
+
+    save_validated_state(state)
+    print(f"Task added to collection: {collection.collection_id} <- {target_task.task_id}")
 
 
 def handle_collection_update_title(args):
@@ -1117,6 +1147,19 @@ def build_parser():
     )
     collection_show_parser.set_defaults(func=handle_collection_show)
 
+    collection_add_task_parser = collection_subparsers.add_parser(
+        "add-task",
+        help="Add a task to a collection",
+    )
+    collection_add_task_parser.add_argument(
+        "collection_id",
+        help="Collection ID to update",
+    )
+    collection_add_task_parser.add_argument(
+        "task_ref",
+        help="Task reference to add (task_id first, task_key second)",
+    )
+    collection_add_task_parser.set_defaults(func=handle_collection_add_task)
 
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")

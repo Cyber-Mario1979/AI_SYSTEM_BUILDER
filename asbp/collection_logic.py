@@ -1,7 +1,7 @@
 import re
 
-from asbp.state_model import CollectionState, TaskCollectionModel
-
+from asbp.state_model import CollectionState, TaskCollectionModel, TaskModel
+from asbp.task_logic import find_task_by_reference
 
 def generate_next_collection_id(collections: list[TaskCollectionModel]) -> str:
     if not collections:
@@ -119,3 +119,23 @@ def update_collection_state(
 
     collection.collection_state = collection_state
     return collection
+
+def add_task_to_collection(
+    tasks: list[TaskModel],
+    collections: list[TaskCollectionModel],
+    *,
+    collection_id: str,
+    task_ref: str,
+) -> tuple[TaskCollectionModel | None, TaskModel | None, str | None]:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None, None, f"Collection not found: {collection_id}"
+
+    target_task = find_task_by_reference(tasks, task_ref)
+    if target_task is None:
+        return None, None, f"Task not found: {task_ref}"
+
+    if target_task.task_id not in collection.task_ids:
+        collection.task_ids.append(target_task.task_id)
+
+    return collection, target_task, None

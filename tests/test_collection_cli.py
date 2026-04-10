@@ -238,9 +238,10 @@ def test_collection_show_prints_matching_collection_as_json(restore_state_file):
     payload = json.loads(result.stdout)
 
     assert payload == {
-        "collection_id": "TC-002",
-        "title": "Committed Selection",
-        "collection_state": "committed",
+    "collection_id": "TC-002",
+    "title": "Committed Selection",
+    "collection_state": "committed",
+    "task_ids": [],
     }
 
 

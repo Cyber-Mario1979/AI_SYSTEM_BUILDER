@@ -22,14 +22,13 @@ class TaskModel(BaseModel):
     status: Literal["planned", "in_progress", "completed", "over_due"]
     dependencies: list[str] = Field(default_factory=list)
 
-
 class TaskCollectionModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     collection_id: str = Field(pattern=r"^TC-\d{3}$")
     title: str = Field(min_length=1)
     collection_state: CollectionState
-
+    task_ids: list[str] = Field(default_factory=list)
 
 class WorkPackageModel(BaseModel):
     model_config = ConfigDict(extra="forbid")

@@ -34,6 +34,9 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("task_key", None)
         task.setdefault("work_package_id", None)
 
+    for task_collection in raw_state.get("task_collections", []):
+        task_collection.setdefault("task_ids", [])
+
     state = StateModel(**raw_state)
     validate_persisted_task_keys(state.tasks)
     validate_persisted_task_work_package_links(
@@ -50,6 +53,10 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if task.get("work_package_id") is None:
             task.pop("work_package_id", None)
 
+    for task_collection in payload.get("task_collections", []):
+        if task_collection.get("task_ids") == []:
+            task_collection.pop("task_ids", None)
+            
     return payload
 
 

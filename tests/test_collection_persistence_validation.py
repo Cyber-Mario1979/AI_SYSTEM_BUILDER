@@ -172,3 +172,65 @@ def test_load_validated_state_rejects_duplicate_persisted_collection_ids(tmp_pat
         match=r"Duplicate collection_id is not allowed: TC-001",
     ):
         load_validated_state(state_file)
+
+
+def test_load_validated_state_defaults_missing_collection_task_ids_to_empty_list(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    state = load_validated_state(state_file)
+
+    assert state.task_collections[0].task_ids == []
+
+
+def test_save_validated_state_to_path_persists_non_empty_collection_task_ids(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.1.0",
+        status="not_started",
+        task_collections=[
+            TaskCollectionModel(
+                collection_id="TC-001",
+                title="Source Pool",
+                collection_state="source",
+                task_ids=["TASK-001", "TASK-002"],
+            )
+        ],
+    )
+
+    save_validated_state_to_path(state, state_file)
+
+    payload = json.loads(state_file.read_text(encoding="utf-8"))
+
+    assert payload["task_collections"] == [
+        {
+            "collection_id": "TC-001",
+            "title": "Source Pool",
+            "collection_state": "source",
+            "task_ids": ["TASK-001", "TASK-002"],
+        }
+    ]
