@@ -29,36 +29,22 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.5 — Collection update surface
+M6.6A — Task-to-collection membership attach rules
 
 ## Current Repo Reality
 
-- Milestone 5 Work Package Model boundary remains closed and frozen after green UAT
-- Milestone 6 collection identity, schema, persistence, create, read, and list/visibility slices are now present
-- collection state is persisted through the approved `asbp/state_store.py` boundary
-- collection create surface is present via `collection add <title>`
-- collection read surface is present via `collection show <collection_id>`
-- collection list surface is present via `collection list`
-- collection list exact-match filters are present for `--collection-state`, `--title`, and `--collection-id`
-- collection list output remains deterministic with stable row formatting and empty-result handling
+- collection update title surface is present via `collection update-title <collection_id> <title>`
+- collection update state surface is present via `collection update-state <collection_id> <collection_state>`
 - dedicated collection CLI and persistence validation coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.4C — Collection list / visibility surface completed
+M6.5 — Collection update surface completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.5 — Collection update surface
+M6.6A — Task-to-collection membership attach rules
 
 ## Latest Verified Validation Status
 
-274 passed in 28.26s
-
-## Milestone UAT Status
-
-NOT_STARTED_MILESTONE_OPEN
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+282 passed in 29.88s

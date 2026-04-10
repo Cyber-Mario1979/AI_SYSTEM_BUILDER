@@ -527,4 +527,208 @@ def test_collection_list_filters_by_exact_collection_id_without_changing_output_
     assert "- TC-002 | committed | Committed Selection" in output
     assert "- TC-001 | source | Source Pool" not in output
 
+def test_collection_update_title_updates_only_title(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
+    result = run_cli("collection", "update-title", "TC-001", "Refined Pool")
+
+    assert result.returncode == 0
+    assert "Collection title updated: TC-001 -> Refined Pool" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["task_collections"] == [
+        {
+            "collection_id": "TC-001",
+            "title": "Refined Pool",
+            "collection_state": "source",
+        }
+    ]
+
+
+def test_collection_update_title_handles_missing_collection_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "update-title", "TC-999", "Refined Pool")
+
+    assert result.returncode == 0
+    assert "Collection not found: TC-999" in result.stdout
+
+
+def test_collection_update_title_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("collection", "update-title", "TC-001", "Refined Pool")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_collection_update_title_rejects_invalid_empty_title_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "update-title", "TC-001", "")
+
+    assert result.returncode == 0
+    assert "Collection validation failed:" in result.stdout
+    assert "title" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["task_collections"] == [
+        {
+            "collection_id": "TC-001",
+            "title": "Source Pool",
+            "collection_state": "source",
+        }
+    ]
+
+
+def test_collection_update_state_updates_only_collection_state(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "update-state", "TC-001", "committed")
+
+    assert result.returncode == 0
+    assert "Collection state updated: TC-001 -> committed" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["task_collections"] == [
+        {
+            "collection_id": "TC-001",
+            "title": "Source Pool",
+            "collection_state": "committed",
+        }
+    ]
+
+
+def test_collection_update_state_handles_missing_collection_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "update-state", "TC-999", "committed")
+
+    assert result.returncode == 0
+    assert "Collection not found: TC-999" in result.stdout
+
+
+def test_collection_update_state_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("collection", "update-state", "TC-001", "committed")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_collection_update_state_rejects_invalid_collection_state_at_parser_level():
+    result = run_cli("collection", "update-state", "TC-001", "draft")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output
+
+    

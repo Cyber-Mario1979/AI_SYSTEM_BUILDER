@@ -27,6 +27,8 @@ from asbp.collection_logic import (
     create_collection,
     filter_collections,
     find_collection_by_id,
+    update_collection_state,
+    update_collection_title,
 )
 from asbp.work_package_logic import (
     build_work_package_task_ids,
@@ -365,6 +367,58 @@ def handle_collection_show(args):
         return
 
     print(json.dumps(collection.model_dump(), indent=2))
+
+
+def handle_collection_update_title(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        collection = update_collection_title(
+            state.task_collections,
+            collection_id=args.collection_id,
+            title=args.title,
+        )
+    except ValidationError as e:
+        print("Collection validation failed:")
+        print(e)
+        return
+
+    if collection is None:
+        print(f"Collection not found: {args.collection_id}")
+        return
+
+    save_validated_state(state)
+    print(
+        f"Collection title updated: "
+        f"{collection.collection_id} -> {collection.title}"
+    )
+
+
+def handle_collection_update_state(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    collection = update_collection_state(
+        state.task_collections,
+        collection_id=args.collection_id,
+        collection_state=args.collection_state,
+    )
+    if collection is None:
+        print(f"Collection not found: {args.collection_id}")
+        return
+
+    save_validated_state(state)
+    print(
+        f"Collection state updated: "
+        f"{collection.collection_id} -> {collection.collection_state}"
+    )
 
 
 def handle_task_add(args):
@@ -991,7 +1045,7 @@ def build_parser():
 
     collection_parser = subparsers.add_parser("collection", help="Collection operations")
     collection_subparsers = collection_parser.add_subparsers(dest="collection_command")
-    
+
     collection_list_parser = collection_subparsers.add_parser(
         "list",
         help="List all collections",
@@ -1024,6 +1078,34 @@ def build_parser():
     )
     collection_add_parser.set_defaults(func=handle_collection_add)
 
+    collection_update_title_parser = collection_subparsers.add_parser(
+        "update-title",
+        help="Update collection title",
+    )
+    collection_update_title_parser.add_argument(
+        "collection_id",
+        help="Collection ID to update",
+    )
+    collection_update_title_parser.add_argument(
+        "title",
+        help="New collection title",
+    )
+    collection_update_title_parser.set_defaults(func=handle_collection_update_title)
+
+    collection_update_state_parser = collection_subparsers.add_parser(
+        "update-state",
+        help="Update collection state",
+    )
+    collection_update_state_parser.add_argument(
+        "collection_id",
+        help="Collection ID to update",
+    )
+    collection_update_state_parser.add_argument(
+        "collection_state",
+        choices=["source", "staged", "committed", "refined"],
+        help="New collection workflow state",
+    )
+    collection_update_state_parser.set_defaults(func=handle_collection_update_state)
 
     collection_show_parser = collection_subparsers.add_parser(
         "show",

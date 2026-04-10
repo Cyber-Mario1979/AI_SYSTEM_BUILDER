@@ -86,3 +86,36 @@ def create_collection(
         title=title,
         collection_state=collection_state,
     )
+
+
+def update_collection_title(
+    collections: list[TaskCollectionModel],
+    *,
+    collection_id: str,
+    title: str,
+) -> TaskCollectionModel | None:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None
+
+    validated_collection = TaskCollectionModel(
+        collection_id=collection.collection_id,
+        title=title,
+        collection_state=collection.collection_state,
+    )
+    collection.title = validated_collection.title
+    return collection
+
+
+def update_collection_state(
+    collections: list[TaskCollectionModel],
+    *,
+    collection_id: str,
+    collection_state: CollectionState,
+) -> TaskCollectionModel | None:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None
+
+    collection.collection_state = collection_state
+    return collection
