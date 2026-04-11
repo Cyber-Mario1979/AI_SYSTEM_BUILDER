@@ -234,3 +234,133 @@ def test_save_validated_state_to_path_persists_non_empty_collection_task_ids(
             "task_ids": ["TASK-001", "TASK-002"],
         }
     ]
+
+def test_load_validated_state_rejects_duplicate_task_membership_inside_one_collection(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                        "task_ids": ["TASK-001", "TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"Duplicate task membership is not allowed in collection: TC-001 -> TASK-001",
+    ):
+        load_validated_state(state_file)
+
+
+def test_load_validated_state_rejects_missing_persisted_collection_task_id(tmp_path):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                        "task_ids": ["TASK-999"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"Persisted collection task_id does not exist: TC-001 -> TASK-999",
+    ):
+        load_validated_state(state_file)
+
+
+def test_load_validated_state_rejects_task_in_multiple_non_source_collections(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Staged Selection",
+                        "collection_state": "staged",
+                        "task_ids": ["TASK-001"],
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "task_ids": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"Task cannot belong to more than one non-source collection: TASK-001 -> TC-001 \(staged\), TC-002 \(committed\)",
+    ):
+        load_validated_state(state_file)

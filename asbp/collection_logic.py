@@ -120,6 +120,23 @@ def update_collection_state(
     collection.collection_state = collection_state
     return collection
 
+
+def _find_conflicting_non_source_collection(
+    collections: list[TaskCollectionModel],
+    *,
+    task_id: str,
+    exclude_collection_id: str,
+) -> TaskCollectionModel | None:
+    for collection in collections:
+        if collection.collection_id == exclude_collection_id:
+            continue
+        if collection.collection_state == "source":
+            continue
+        if task_id in collection.task_ids:
+            return collection
+    return None
+
+
 def add_task_to_collection(
     tasks: list[TaskModel],
     collections: list[TaskCollectionModel],
@@ -135,9 +152,31 @@ def add_task_to_collection(
     if target_task is None:
         return None, None, f"Task not found: {task_ref}"
 
-    if target_task.task_id not in collection.task_ids:
-        collection.task_ids.append(target_task.task_id)
+    if target_task.task_id in collection.task_ids:
+        return (
+            None,
+            None,
+            "Task already associated with collection: "
+            f"{target_task.task_id} -> {collection.collection_id}",
+        )
 
+    if collection.collection_state != "source":
+        conflicting_collection = _find_conflicting_non_source_collection(
+            collections,
+            task_id=target_task.task_id,
+            exclude_collection_id=collection.collection_id,
+        )
+        if conflicting_collection is not None:
+            return (
+                None,
+                None,
+                "Task already associated with a different non-source collection: "
+                f"{target_task.task_id} -> "
+                f"{conflicting_collection.collection_id} "
+                f"({conflicting_collection.collection_state})",
+            )
+
+    collection.task_ids.append(target_task.task_id)
     return collection, target_task, None
 
 def remove_task_from_collection(
@@ -163,3 +202,44 @@ def remove_task_from_collection(
 
     return collection, target_task, None
 
+def validate_persisted_collection_task_memberships(
+    tasks: list[TaskModel],
+    collections: list[TaskCollectionModel],
+) -> None:
+    existing_task_ids = {task.task_id for task in tasks}
+    non_source_memberships: dict[str, TaskCollectionModel] = {}
+
+    for collection in collections:
+        seen_task_ids_in_collection: set[str] = set()
+
+        for task_id in collection.task_ids:
+            if task_id in seen_task_ids_in_collection:
+                raise ValueError(
+                    "Duplicate task membership is not allowed in collection: "
+                    f"{collection.collection_id} -> {task_id}"
+                )
+            seen_task_ids_in_collection.add(task_id)
+
+            if task_id not in existing_task_ids:
+                raise ValueError(
+                    "Persisted collection task_id does not exist: "
+                    f"{collection.collection_id} -> {task_id}"
+                )
+
+            if collection.collection_state == "source":
+                continue
+
+            existing_collection = non_source_memberships.get(task_id)
+            if existing_collection is not None:
+                raise ValueError(
+                    "Task cannot belong to more than one non-source collection: "
+                    f"{task_id} -> "
+                    f"{existing_collection.collection_id} "
+                    f"({existing_collection.collection_state}), "
+                    f"{collection.collection_id} "
+                    f"({collection.collection_state})"
+                )
+
+            non_source_memberships[task_id] = collection
+
+            

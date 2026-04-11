@@ -3,6 +3,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
+from asbp.collection_logic import validate_persisted_collection_task_memberships
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
 from asbp.work_package_logic import validate_persisted_task_work_package_links
@@ -43,6 +44,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         state.tasks,
         state.work_packages,
     )
+    validate_persisted_collection_task_memberships(
+        state.tasks,
+        state.task_collections,
+    )
     return state
 
 
@@ -56,7 +61,7 @@ def build_persisted_state_payload(state: StateModel) -> dict:
     for task_collection in payload.get("task_collections", []):
         if task_collection.get("task_ids") == []:
             task_collection.pop("task_ids", None)
-            
+
     return payload
 
 

@@ -732,4 +732,175 @@ def test_collection_update_state_rejects_invalid_collection_state_at_parser_leve
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
 
+def test_collection_add_task_rejects_duplicate_membership_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.1.0",
+        "status": "not_started",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Source Pool",
+                "collection_state": "source",
+                "task_ids": ["TASK-001"],
+            }
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "add-task", "TC-001", "TASK-001")
+
+    assert result.returncode == 0
+    assert (
+        "Task already associated with collection: TASK-001 -> TC-001"
+        in result.stdout
+    )
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+
+def test_collection_add_task_rejects_conflicting_non_source_membership_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.1.0",
+        "status": "not_started",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Staged Selection",
+                "collection_state": "staged",
+                "task_ids": ["TASK-001"],
+            },
+            {
+                "collection_id": "TC-002",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+            },
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "add-task", "TC-002", "TASK-001")
+
+    assert result.returncode == 0
+    assert (
+        "Task already associated with a different non-source collection: "
+        "TASK-001 -> TC-001 (staged)"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+
+def test_collection_add_task_allows_source_membership_alongside_non_source_membership(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "task_ids": ["TASK-001"],
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "add-task", "TC-002", "TASK-001")
+
+    assert result.returncode == 0
+    assert "Task added to collection: TC-002 <- TASK-001" in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state["task_collections"] == [
+        {
+            "collection_id": "TC-001",
+            "title": "Committed Selection",
+            "collection_state": "committed",
+            "task_ids": ["TASK-001"],
+        },
+        {
+            "collection_id": "TC-002",
+            "title": "Source Pool",
+            "collection_state": "source",
+            "task_ids": ["TASK-001"],
+        },
+    ]    
+
     

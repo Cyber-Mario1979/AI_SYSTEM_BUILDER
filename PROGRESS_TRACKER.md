@@ -29,24 +29,27 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.6C — Collection membership validation and failure behavior
+M6.7A — Selector context foundation
 
 ## Current Repo Reality
 
-- collection membership removal surface is present via `collection remove-task <collection_id> <task_ref>`
-- collection remove-task resolves task references using the existing task reference contract
-- collection remove-task is idempotent for non-member tasks
-- empty collection membership persists without `task_ids` on save after removal
-- dedicated collection task-membership removal CLI coverage is present
+- collection add-task rejects duplicate membership in the same collection
+- collection add-task rejects conflicting membership in a different non-source collection
+- source collection membership is still allowed alongside non-source membership
+- persisted collection memberships are validated on load
+- persisted collection membership validation rejects duplicate task membership inside one collection
+- persisted collection membership validation rejects missing referenced task IDs
+- persisted collection membership validation rejects a task appearing in more than one non-source collection
+- dedicated M6.6C collection CLI and persistence validation coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.6B — Initial collection membership rules completed
+M6.6C — Collection membership validation and failure behavior completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.6C — Collection membership validation and failure behavior
+M6.7A — Selector context foundation
 
 ## Latest Verified Validation Status
 
-290 passed in 30.67s
+296 passed in 31.46s
