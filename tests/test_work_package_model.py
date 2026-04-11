@@ -491,3 +491,63 @@ def test_save_validated_state_persists_selector_context_with_standards_bundles(
             },
         }
     ]
+
+def test_work_package_model_accepts_selector_context_scope_intent():
+    work_package = WorkPackageModel(
+        wp_id="WP-001",
+        title="Tablet press qualification",
+        status="open",
+        selector_context=SelectorContextModel(
+            system_type="process-equipment",
+            scope_intent="qualification-only",
+        ),
+    )
+
+    assert work_package.selector_context is not None
+    assert work_package.selector_context.scope_intent == "qualification-only"
+
+
+def test_save_validated_state_persists_selector_context_with_scope_intent(
+    tmp_path,
+    monkeypatch,
+):
+    state_file = tmp_path / "state.json"
+    monkeypatch.setattr("asbp.cli.get_state_file_path", lambda: state_file)
+
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        tasks=[],
+        work_packages=[
+            WorkPackageModel(
+                wp_id="WP-001",
+                title="Tablet press qualification",
+                status="open",
+                selector_context=SelectorContextModel(
+                    system_type="process-equipment",
+                    preset_id="oral-solid-dose-standard",
+                    scope_intent="qualification-only",
+                    standards_bundles=["cqv-core", "automation"],
+                ),
+            )
+        ],
+    )
+
+    save_validated_state(state)
+
+    saved = json.loads(state_file.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+                "preset_id": "oral-solid-dose-standard",
+                "scope_intent": "qualification-only",
+                "standards_bundles": ["cqv-core", "automation"],
+            },
+        }
+    ]
+    

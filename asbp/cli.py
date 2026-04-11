@@ -40,6 +40,7 @@ from asbp.work_package_logic import (
     filter_work_packages,
     find_work_package_by_id,
     set_work_package_preset,
+    set_work_package_scope_intent,
     set_work_package_selector_type,
     set_work_package_standards_bundles,
     update_work_package_status,
@@ -419,6 +420,40 @@ def handle_wp_set_standards_bundles(args):
     print(
         f"Work Package standards bundles updated: "
         f"{work_package.wp_id} -> [{bundle_display}]"
+    )
+
+
+def handle_wp_set_scope_intent(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        work_package = set_work_package_scope_intent(
+            state.work_packages,
+            wp_id=args.wp_id,
+            scope_intent=args.scope_intent,
+        )
+    except ValidationError as e:
+        print("Work Package validation failed:")
+        print(e)
+        return
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    assert work_package.selector_context is not None
+
+    save_validated_state(state)
+    print(
+        f"Work Package scope intent updated: "
+        f"{work_package.wp_id} -> {work_package.selector_context.scope_intent}"
     )
 
 
@@ -1285,6 +1320,30 @@ def build_parser():
     )
     wp_set_standards_bundles_parser.set_defaults(
         func=handle_wp_set_standards_bundles
+    )
+
+    wp_set_scope_intent_parser = wp_subparsers.add_parser(
+        "set-scope-intent",
+        help="Set work package scope / intent selector value",
+    )
+    wp_set_scope_intent_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to update",
+    )
+    wp_set_scope_intent_parser.add_argument(
+        "scope_intent",
+        choices=[
+            "end-to-end",
+            "qualification-only",
+            "commissioning-only",
+            "periodic-verification",
+            "post-change",
+            "post-deviation",
+        ],
+        help="Scope / intent selector value",
+    )
+    wp_set_scope_intent_parser.set_defaults(
+        func=handle_wp_set_scope_intent
     )
 
     collection_parser = subparsers.add_parser("collection", help="Collection operations")

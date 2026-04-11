@@ -7,6 +7,14 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 CollectionState = Literal["source", "staged", "committed", "refined"]
 StandardsBundleId = Literal["cqv-core", "cleanroom-hvac", "automation"]
+ScopeIntentId = Literal[
+    "end-to-end",
+    "qualification-only",
+    "commissioning-only",
+    "periodic-verification",
+    "post-change",
+    "post-deviation",
+]
 
 
 class TaskModel(BaseModel):
@@ -39,6 +47,7 @@ class SelectorContextModel(BaseModel):
 
     system_type: str | None = Field(default=None, min_length=1)
     preset_id: str | None = Field(default=None, min_length=1)
+    scope_intent: ScopeIntentId | None = None
     standards_bundles: list[StandardsBundleId] = Field(default_factory=list)
 
     @field_validator("standards_bundles")

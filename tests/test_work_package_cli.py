@@ -1514,3 +1514,228 @@ def test_wp_set_standards_bundles_rejects_invalid_choice_at_parser_level():
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
 
+def test_wp_set_scope_intent_persists_scope_intent_for_target_work_package_only(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                            "preset_id": "oral-solid-dose-standard",
+                            "standards_bundles": ["cqv-core", "automation"],
+                        },
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "in_progress",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "wp",
+        "set-scope-intent",
+        "WP-001",
+        "post-deviation",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "Work Package scope intent updated: "
+        "WP-001 -> post-deviation"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+                "preset_id": "oral-solid-dose-standard",
+                "scope_intent": "post-deviation",
+                "standards_bundles": ["cqv-core", "automation"],
+            },
+        },
+        {
+            "wp_id": "WP-002",
+            "title": "Blister line upgrade",
+            "status": "in_progress",
+        },
+    ]
+
+
+def test_wp_show_show_selector_context_flag_displays_scope_intent(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                            "preset_id": "oral-solid-dose-standard",
+                            "scope_intent": "post-deviation",
+                            "standards_bundles": ["cqv-core", "automation"],
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "show", "WP-001", "--show-selector-context")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "wp_id": "WP-001",
+        "title": "Tablet press qualification",
+        "status": "open",
+        "selector_context": {
+            "system_type": "process-equipment",
+            "preset_id": "oral-solid-dose-standard",
+            "scope_intent": "post-deviation",
+            "standards_bundles": ["cqv-core", "automation"],
+        },
+    }
+
+
+def test_wp_set_scope_intent_handles_missing_work_package_id(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "wp",
+        "set-scope-intent",
+        "WP-999",
+        "post-deviation",
+    )
+
+    assert result.returncode == 0
+    assert "Work Package not found: WP-999" in result.stdout
+
+
+def test_wp_set_scope_intent_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli(
+        "wp",
+        "set-scope-intent",
+        "WP-001",
+        "post-deviation",
+    )
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_set_scope_intent_rejects_missing_selector_seed(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "wp",
+        "set-scope-intent",
+        "WP-001",
+        "post-deviation",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "Work Package selector context seed must exist before scope intent "
+        "can be bound: WP-001"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_set_scope_intent_rejects_invalid_choice_at_parser_level():
+    result = run_cli("wp", "set-scope-intent", "WP-001", "invalid-scope")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output
+

@@ -71,6 +71,9 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if selector_context.get("preset_id") is None:
             selector_context.pop("preset_id", None)
 
+        if selector_context.get("scope_intent") is None:
+            selector_context.pop("scope_intent", None)    
+
         if selector_context.get("standards_bundles") == []:
             selector_context.pop("standards_bundles", None)
 

@@ -2,6 +2,7 @@ from typing import Literal
 
 from asbp.task_logic import find_task_by_reference
 from asbp.state_model import (
+    ScopeIntentId,
     SelectorContextModel,
     StandardsBundleId,
     TaskModel,
@@ -172,6 +173,7 @@ def _build_updated_selector_context(
     *,
     system_type: str | None = None,
     preset_id: str | None = None,
+    scope_intent: ScopeIntentId | None = None,
     standards_bundles: list[StandardsBundleId] | None = None,
 ) -> SelectorContextModel:
     current_selector_context = work_package.selector_context
@@ -194,6 +196,15 @@ def _build_updated_selector_context(
             else None
         )
     )
+    next_scope_intent = (
+        scope_intent
+        if scope_intent is not None
+        else (
+            current_selector_context.scope_intent
+            if current_selector_context is not None
+            else None
+        )
+    )
     next_standards_bundles = (
         list(standards_bundles)
         if standards_bundles is not None
@@ -207,6 +218,7 @@ def _build_updated_selector_context(
     return SelectorContextModel(
         system_type=next_system_type,
         preset_id=next_preset_id,
+        scope_intent=next_scope_intent,
         standards_bundles=next_standards_bundles,
     )
 
@@ -282,6 +294,35 @@ def set_work_package_standards_bundles(
             standards_bundles=_build_effective_standards_bundles(
                 add_on_bundle_ids,
             ),
+        ),
+    )
+    work_package.selector_context = validated_work_package.selector_context
+    return work_package
+
+
+def set_work_package_scope_intent(
+    work_packages: list[WorkPackageModel],
+    *,
+    wp_id: str,
+    scope_intent: ScopeIntentId,
+) -> WorkPackageModel | None:
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return None
+
+    if work_package.selector_context is None:
+        raise ValueError(
+            "Work Package selector context seed must exist before scope intent "
+            f"can be bound: {wp_id}"
+        )
+
+    validated_work_package = WorkPackageModel(
+        wp_id=work_package.wp_id,
+        title=work_package.title,
+        status=work_package.status,
+        selector_context=_build_updated_selector_context(
+            work_package,
+            scope_intent=scope_intent,
         ),
     )
     work_package.selector_context = validated_work_package.selector_context
