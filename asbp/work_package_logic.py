@@ -1,8 +1,12 @@
 from typing import Literal
 
-from asbp.state_model import SelectorContextModel, TaskModel, WorkPackageModel
 from asbp.task_logic import find_task_by_reference
-
+from asbp.state_model import (
+    SelectorContextModel,
+    StandardsBundleId,
+    TaskModel,
+    WorkPackageModel,
+)
 
 def find_work_package_by_id(
     work_packages: list[WorkPackageModel],
@@ -138,12 +142,37 @@ def update_work_package_title(
     return work_package
 
 
+CQV_CORE_STANDARD_BUNDLE: StandardsBundleId = "cqv-core"
+CANONICAL_STANDARD_BUNDLE_ORDER: tuple[StandardsBundleId, ...] = (
+    "cqv-core",
+    "cleanroom-hvac",
+    "automation",
+)
+
+
+def _build_effective_standards_bundles(
+    add_on_bundle_ids: list[StandardsBundleId] | None,
+) -> list[StandardsBundleId]:
+    selected_add_on_bundle_ids = set(add_on_bundle_ids or [])
+    effective_standards_bundles: list[StandardsBundleId] = [
+        CQV_CORE_STANDARD_BUNDLE
+    ]
+
+    for bundle_id in CANONICAL_STANDARD_BUNDLE_ORDER:
+        if bundle_id == CQV_CORE_STANDARD_BUNDLE:
+            continue
+        if bundle_id in selected_add_on_bundle_ids:
+            effective_standards_bundles.append(bundle_id)
+
+    return effective_standards_bundles
+
 
 def _build_updated_selector_context(
     work_package: WorkPackageModel,
     *,
     system_type: str | None = None,
     preset_id: str | None = None,
+    standards_bundles: list[StandardsBundleId] | None = None,
 ) -> SelectorContextModel:
     current_selector_context = work_package.selector_context
 
@@ -165,10 +194,20 @@ def _build_updated_selector_context(
             else None
         )
     )
+    next_standards_bundles = (
+        list(standards_bundles)
+        if standards_bundles is not None
+        else (
+            list(current_selector_context.standards_bundles)
+            if current_selector_context is not None
+            else []
+        )
+    )
 
     return SelectorContextModel(
         system_type=next_system_type,
         preset_id=next_preset_id,
+        standards_bundles=next_standards_bundles,
     )
 
 
@@ -212,6 +251,37 @@ def set_work_package_preset(
         selector_context=_build_updated_selector_context(
             work_package,
             preset_id=preset_id,
+        ),
+    )
+    work_package.selector_context = validated_work_package.selector_context
+    return work_package
+
+
+def set_work_package_standards_bundles(
+    work_packages: list[WorkPackageModel],
+    *,
+    wp_id: str,
+    add_on_bundle_ids: list[StandardsBundleId],
+) -> WorkPackageModel | None:
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return None
+
+    if work_package.selector_context is None:
+        raise ValueError(
+            "Work Package selector context seed must exist before standards bundles "
+            f"can be bound: {wp_id}"
+        )
+
+    validated_work_package = WorkPackageModel(
+        wp_id=work_package.wp_id,
+        title=work_package.title,
+        status=work_package.status,
+        selector_context=_build_updated_selector_context(
+            work_package,
+            standards_bundles=_build_effective_standards_bundles(
+                add_on_bundle_ids,
+            ),
         ),
     )
     work_package.selector_context = validated_work_package.selector_context

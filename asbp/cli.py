@@ -41,6 +41,7 @@ from asbp.work_package_logic import (
     find_work_package_by_id,
     set_work_package_preset,
     set_work_package_selector_type,
+    set_work_package_standards_bundles,
     update_work_package_status,
     update_work_package_title,
     set_task_work_package,
@@ -184,7 +185,7 @@ def _normalize_selector_context_payload_for_output(
     normalized_selector_context = {
         key: value
         for key, value in selector_context.items()
-        if value is not None
+        if value is not None and value != []
     }
     return normalized_selector_context or None
 
@@ -383,6 +384,41 @@ def handle_wp_set_preset(args):
     print(
         f"Work Package preset updated: "
         f"{work_package.wp_id} -> {work_package.selector_context.preset_id}"
+    )
+
+
+def handle_wp_set_standards_bundles(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        work_package = set_work_package_standards_bundles(
+            state.work_packages,
+            wp_id=args.wp_id,
+            add_on_bundle_ids=args.add_on_bundle_ids,
+        )
+    except ValidationError as e:
+        print("Work Package validation failed:")
+        print(e)
+        return
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    assert work_package.selector_context is not None
+
+    save_validated_state(state)
+    bundle_display = ", ".join(work_package.selector_context.standards_bundles)
+    print(
+        f"Work Package standards bundles updated: "
+        f"{work_package.wp_id} -> [{bundle_display}]"
     )
 
 
@@ -1230,6 +1266,26 @@ def build_parser():
     )
     wp_set_preset_parser.set_defaults(func=handle_wp_set_preset)
 
+    wp_set_standards_bundles_parser = wp_subparsers.add_parser(
+        "set-standards-bundles",
+        help="Set work package standards bundle binding",
+    )
+    wp_set_standards_bundles_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to update",
+    )
+    wp_set_standards_bundles_parser.add_argument(
+        "add_on_bundle_ids",
+        nargs="*",
+        choices=["cleanroom-hvac", "automation"],
+        help=(
+            "Optional add-on standards bundles; cqv-core is always included "
+            "as the baseline bundle"
+        ),
+    )
+    wp_set_standards_bundles_parser.set_defaults(
+        func=handle_wp_set_standards_bundles
+    )
 
     collection_parser = subparsers.add_parser("collection", help="Collection operations")
     collection_subparsers = collection_parser.add_subparsers(dest="collection_command")

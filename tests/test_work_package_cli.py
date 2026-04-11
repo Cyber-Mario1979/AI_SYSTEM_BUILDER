@@ -1262,3 +1262,255 @@ def test_wp_set_preset_rejects_invalid_empty_value_without_mutating_state(
             "status": "open",
         }
     ]
+
+def test_wp_set_standards_bundles_persists_baseline_and_add_on_for_target_only(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                            "preset_id": "oral-solid-dose-standard",
+                        },
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "in_progress",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-standards-bundles", "WP-001", "automation")
+
+    assert result.returncode == 0
+    assert (
+        "Work Package standards bundles updated: "
+        "WP-001 -> [cqv-core, automation]"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+                "preset_id": "oral-solid-dose-standard",
+                "standards_bundles": ["cqv-core", "automation"],
+            },
+        },
+        {
+            "wp_id": "WP-002",
+            "title": "Blister line upgrade",
+            "status": "in_progress",
+        },
+    ]
+
+
+def test_wp_set_standards_bundles_with_no_add_on_persists_baseline_only(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "preset_id": "oral-solid-dose-standard",
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-standards-bundles", "WP-001")
+
+    assert result.returncode == 0
+    assert (
+        "Work Package standards bundles updated: "
+        "WP-001 -> [cqv-core]"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "preset_id": "oral-solid-dose-standard",
+                "standards_bundles": ["cqv-core"],
+            },
+        }
+    ]
+
+
+def test_wp_show_show_selector_context_flag_displays_standards_bundles(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                            "preset_id": "oral-solid-dose-standard",
+                            "standards_bundles": ["cqv-core", "automation"],
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "show", "WP-001", "--show-selector-context")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "wp_id": "WP-001",
+        "title": "Tablet press qualification",
+        "status": "open",
+        "selector_context": {
+            "system_type": "process-equipment",
+            "preset_id": "oral-solid-dose-standard",
+            "standards_bundles": ["cqv-core", "automation"],
+        },
+    }
+
+
+def test_wp_set_standards_bundles_handles_missing_work_package_id(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-standards-bundles", "WP-999", "automation")
+
+    assert result.returncode == 0
+    assert "Work Package not found: WP-999" in result.stdout
+
+
+def test_wp_set_standards_bundles_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("wp", "set-standards-bundles", "WP-001", "automation")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_set_standards_bundles_rejects_missing_selector_seed(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-standards-bundles", "WP-001", "automation")
+
+    assert result.returncode == 0
+    assert (
+        "Work Package selector context seed must exist before standards "
+        "bundles can be bound: WP-001"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_set_standards_bundles_rejects_invalid_choice_at_parser_level():
+    result = run_cli("wp", "set-standards-bundles", "WP-001", "invalid-bundle")
+
+    assert result.returncode != 0
+    combined_output = result.stdout + result.stderr
+    assert "invalid choice" in combined_output
+

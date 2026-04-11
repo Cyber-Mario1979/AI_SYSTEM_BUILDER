@@ -413,3 +413,81 @@ def test_save_validated_state_persists_selector_context_with_system_type_and_pre
             },
         }
     ]
+
+def test_work_package_model_accepts_selector_context_standards_bundles():
+    work_package = WorkPackageModel(
+        wp_id="WP-001",
+        title="Tablet press qualification",
+        status="open",
+        selector_context=SelectorContextModel(
+            system_type="process-equipment",
+            standards_bundles=["cqv-core", "automation"],
+        ),
+    )
+
+    assert work_package.selector_context is not None
+    assert work_package.selector_context.standards_bundles == [
+        "cqv-core",
+        "automation",
+    ]
+
+
+def test_work_package_model_rejects_standards_bundles_without_cqv_core():
+    with pytest.raises(
+        ValueError,
+        match="standards_bundles must include cqv-core as the baseline bundle",
+    ):
+        WorkPackageModel.model_validate(
+            {
+                "wp_id": "WP-001",
+                "title": "Tablet press qualification",
+                "status": "open",
+                "selector_context": {
+                    "system_type": "process-equipment",
+                    "standards_bundles": ["automation"],
+                },
+            }
+        )
+
+
+def test_save_validated_state_persists_selector_context_with_standards_bundles(
+    tmp_path,
+    monkeypatch,
+):
+    state_file = tmp_path / "state.json"
+    monkeypatch.setattr("asbp.cli.get_state_file_path", lambda: state_file)
+
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        tasks=[],
+        work_packages=[
+            WorkPackageModel(
+                wp_id="WP-001",
+                title="Tablet press qualification",
+                status="open",
+                selector_context=SelectorContextModel(
+                    system_type="process-equipment",
+                    preset_id="oral-solid-dose-standard",
+                    standards_bundles=["cqv-core", "automation"],
+                ),
+            )
+        ],
+    )
+
+    save_validated_state(state)
+
+    saved = json.loads(state_file.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+                "preset_id": "oral-solid-dose-standard",
+                "standards_bundles": ["cqv-core", "automation"],
+            },
+        }
+    ]

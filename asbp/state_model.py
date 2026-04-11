@@ -3,7 +3,10 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
+ 
+
 CollectionState = Literal["source", "staged", "committed", "refined"]
+StandardsBundleId = Literal["cqv-core", "cleanroom-hvac", "automation"]
 
 
 class TaskModel(BaseModel):
@@ -36,6 +39,23 @@ class SelectorContextModel(BaseModel):
 
     system_type: str | None = Field(default=None, min_length=1)
     preset_id: str | None = Field(default=None, min_length=1)
+    standards_bundles: list[StandardsBundleId] = Field(default_factory=list)
+
+    @field_validator("standards_bundles")
+    @classmethod
+    def validate_standards_bundles(
+        cls,
+        standards_bundles: list[StandardsBundleId],
+    ) -> list[StandardsBundleId]:
+        if len(standards_bundles) != len(set(standards_bundles)):
+            raise ValueError("Duplicate standards bundle is not allowed")
+
+        if standards_bundles and "cqv-core" not in standards_bundles:
+            raise ValueError(
+                "standards_bundles must include cqv-core as the baseline bundle"
+            )
+
+        return standards_bundles
 
     @model_validator(mode="after")
     def validate_at_least_one_selector_seed(self):
