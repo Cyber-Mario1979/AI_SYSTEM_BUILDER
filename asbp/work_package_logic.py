@@ -139,6 +139,39 @@ def update_work_package_title(
 
 
 
+def _build_updated_selector_context(
+    work_package: WorkPackageModel,
+    *,
+    system_type: str | None = None,
+    preset_id: str | None = None,
+) -> SelectorContextModel:
+    current_selector_context = work_package.selector_context
+
+    next_system_type = (
+        system_type
+        if system_type is not None
+        else (
+            current_selector_context.system_type
+            if current_selector_context is not None
+            else None
+        )
+    )
+    next_preset_id = (
+        preset_id
+        if preset_id is not None
+        else (
+            current_selector_context.preset_id
+            if current_selector_context is not None
+            else None
+        )
+    )
+
+    return SelectorContextModel(
+        system_type=next_system_type,
+        preset_id=next_preset_id,
+    )
+
+
 def set_work_package_selector_type(
     work_packages: list[WorkPackageModel],
     *,
@@ -153,7 +186,33 @@ def set_work_package_selector_type(
         wp_id=work_package.wp_id,
         title=work_package.title,
         status=work_package.status,
-        selector_context=SelectorContextModel(system_type=system_type),
+        selector_context=_build_updated_selector_context(
+            work_package,
+            system_type=system_type,
+        ),
+    )
+    work_package.selector_context = validated_work_package.selector_context
+    return work_package
+
+
+def set_work_package_preset(
+    work_packages: list[WorkPackageModel],
+    *,
+    wp_id: str,
+    preset_id: str,
+) -> WorkPackageModel | None:
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return None
+
+    validated_work_package = WorkPackageModel(
+        wp_id=work_package.wp_id,
+        title=work_package.title,
+        status=work_package.status,
+        selector_context=_build_updated_selector_context(
+            work_package,
+            preset_id=preset_id,
+        ),
     )
     work_package.selector_context = validated_work_package.selector_context
     return work_package

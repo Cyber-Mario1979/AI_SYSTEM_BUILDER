@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 CollectionState = Literal["source", "staged", "committed", "refined"]
@@ -34,7 +34,16 @@ class TaskCollectionModel(BaseModel):
 class SelectorContextModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    system_type: str = Field(min_length=1)
+    system_type: str | None = Field(default=None, min_length=1)
+    preset_id: str | None = Field(default=None, min_length=1)
+
+    @model_validator(mode="after")
+    def validate_at_least_one_selector_seed(self):
+        if self.system_type is None and self.preset_id is None:
+            raise ValueError(
+                "selector_context must include at least one selector seed"
+            )
+        return self
 
 class WorkPackageModel(BaseModel):
     model_config = ConfigDict(extra="forbid")

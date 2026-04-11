@@ -58,9 +58,20 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if task.get("work_package_id") is None:
             task.pop("work_package_id", None)
 
-
     for work_package in payload.get("work_packages", []):
-        if work_package.get("selector_context") is None:
+        selector_context = work_package.get("selector_context")
+
+        if selector_context is None:
+            work_package.pop("selector_context", None)
+            continue
+
+        if selector_context.get("system_type") is None:
+            selector_context.pop("system_type", None)
+
+        if selector_context.get("preset_id") is None:
+            selector_context.pop("preset_id", None)
+
+        if not selector_context:
             work_package.pop("selector_context", None)
 
     for task_collection in payload.get("task_collections", []):
