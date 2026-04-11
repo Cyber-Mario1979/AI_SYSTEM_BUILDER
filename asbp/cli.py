@@ -39,6 +39,7 @@ from asbp.work_package_logic import (
     delete_work_package_by_id,
     filter_work_packages,
     find_work_package_by_id,
+    set_work_package_selector_type,
     update_work_package_status,
     update_work_package_title,
     set_task_work_package,
@@ -193,6 +194,14 @@ def handle_wp_show(args):
             wp_id=work_package.wp_id,
         )
 
+    if getattr(args, "show_selector_context", False):
+        work_package_payload["selector_context"] = work_package_payload.get(
+            "selector_context",
+            None,
+        )
+    else:
+        work_package_payload.pop("selector_context", None)
+
     print(json.dumps(work_package_payload, indent=2))
 
 
@@ -296,6 +305,37 @@ def handle_wp_update_title(args):
     save_validated_state(state)
     print(f"Work Package title updated: {work_package.wp_id} -> {work_package.title}")
 
+
+
+def handle_wp_set_selector_type(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        work_package = set_work_package_selector_type(
+            state.work_packages,
+            wp_id=args.wp_id,
+            system_type=args.system_type,
+        )
+    except ValidationError as e:
+        print("Work Package validation failed:")
+        print(e)
+        return
+
+    if work_package is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    assert work_package.selector_context is not None
+
+    save_validated_state(state)
+    print(
+        f"Work Package selector type updated: "
+        f"{work_package.wp_id} -> {work_package.selector_context.system_type}"
+    )
 
 def handle_collection_add(args):
     state = load_state_or_none()
@@ -1071,6 +1111,12 @@ def build_parser():
         action="store_true",
         help="Show associated task_ids in work package output",
     )
+
+    wp_show_parser.add_argument(
+        "--show-selector-context",
+        action="store_true",
+        help="Show selector_context in work package output",
+    )
     wp_show_parser.set_defaults(func=handle_wp_show)
 
     wp_add_parser = wp_subparsers.add_parser("add", help="Add a new work package")
@@ -1104,6 +1150,21 @@ def build_parser():
     wp_update_title_parser.add_argument("wp_id", help="Work Package ID to update")
     wp_update_title_parser.add_argument("title", help="New work package title")
     wp_update_title_parser.set_defaults(func=handle_wp_update_title)
+
+
+    wp_set_selector_type_parser = wp_subparsers.add_parser(
+        "set-selector-type",
+        help="Set work package selector system_type",
+    )
+    wp_set_selector_type_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to update",
+    )
+    wp_set_selector_type_parser.add_argument(
+        "system_type",
+        help="Selector system_type value",
+    )
+    wp_set_selector_type_parser.set_defaults(func=handle_wp_set_selector_type)
 
 
     collection_parser = subparsers.add_parser("collection", help="Collection operations")

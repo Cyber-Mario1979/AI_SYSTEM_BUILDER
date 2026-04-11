@@ -3,7 +3,7 @@ import json
 import pytest
 
 from asbp.cli import load_validated_state, save_validated_state
-from asbp.state_model import StateModel, WorkPackageModel
+from asbp.state_model import SelectorContextModel, StateModel, WorkPackageModel
 
 
 def test_state_model_defaults_work_packages_to_empty_list():
@@ -239,3 +239,84 @@ def test_load_validated_state_accepts_legacy_state_without_work_packages(tmp_pat
     state = load_validated_state(state_file)
 
     assert state.work_packages == []
+
+def test_work_package_model_accepts_selector_context_system_type():
+    work_package = WorkPackageModel(
+        wp_id="WP-001",
+        title="Tablet press qualification",
+        status="open",
+        selector_context=SelectorContextModel(system_type="process-equipment"),
+    )
+
+    assert work_package.selector_context is not None
+    assert work_package.selector_context.system_type == "process-equipment"
+
+
+def test_save_validated_state_omits_null_selector_context_for_work_package(
+    tmp_path,
+    monkeypatch,
+):
+    state_file = tmp_path / "state.json"
+    monkeypatch.setattr("asbp.cli.get_state_file_path", lambda: state_file)
+
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        tasks=[],
+        work_packages=[
+            WorkPackageModel(
+                wp_id="WP-001",
+                title="Tablet press qualification",
+                status="open",
+            )
+        ],
+    )
+
+    save_validated_state(state)
+
+    saved = json.loads(state_file.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_save_validated_state_persists_selector_context_for_work_package(
+    tmp_path,
+    monkeypatch,
+):
+    state_file = tmp_path / "state.json"
+    monkeypatch.setattr("asbp.cli.get_state_file_path", lambda: state_file)
+
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        tasks=[],
+        work_packages=[
+            WorkPackageModel(
+                wp_id="WP-001",
+                title="Tablet press qualification",
+                status="open",
+                selector_context=SelectorContextModel(system_type="process-equipment"),
+            )
+        ],
+    )
+
+    save_validated_state(state)
+
+    saved = json.loads(state_file.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+            },
+        }
+    ]

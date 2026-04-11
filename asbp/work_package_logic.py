@@ -1,6 +1,6 @@
 from typing import Literal
 
-from asbp.state_model import TaskModel, WorkPackageModel
+from asbp.state_model import SelectorContextModel, TaskModel, WorkPackageModel
 from asbp.task_logic import find_task_by_reference
 
 
@@ -135,6 +135,27 @@ def update_work_package_title(
         status=work_package.status,
     )
     work_package.title = validated_work_package.title
+    return work_package
+
+
+
+def set_work_package_selector_type(
+    work_packages: list[WorkPackageModel],
+    *,
+    wp_id: str,
+    system_type: str,
+) -> WorkPackageModel | None:
+    work_package = find_work_package_by_id(work_packages, wp_id)
+    if work_package is None:
+        return None
+
+    validated_work_package = WorkPackageModel(
+        wp_id=work_package.wp_id,
+        title=work_package.title,
+        status=work_package.status,
+        selector_context=SelectorContextModel(system_type=system_type),
+    )
+    work_package.selector_context = validated_work_package.selector_context
     return work_package
 
 

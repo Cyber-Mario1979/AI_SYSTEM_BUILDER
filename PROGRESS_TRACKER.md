@@ -29,27 +29,25 @@ Milestone 6 — Binding Context and Task Collections
 
 ## Current Approved Slice Family
 
-M6.7A — Selector context foundation
+M6.7B — Preset-first binding direction
 
 ## Current Repo Reality
 
-- collection add-task rejects duplicate membership in the same collection
-- collection add-task rejects conflicting membership in a different non-source collection
-- source collection membership is still allowed alongside non-source membership
-- persisted collection memberships are validated on load
-- persisted collection membership validation rejects duplicate task membership inside one collection
-- persisted collection membership validation rejects missing referenced task IDs
-- persisted collection membership validation rejects a task appearing in more than one non-source collection
-- dedicated M6.6C collection CLI and persistence validation coverage is present
+- work package selector context foundation is present via `selector_context.system_type`
+- selector context is persisted on work packages and omitted on save when null
+- work package selector type write surface is present via `wp set-selector-type <wp_id> <system_type>`
+- work package show supports opt-in selector visibility via `wp show <wp_id> --show-selector-context`
+- default work package show contract remains unchanged without the selector visibility flag
+- dedicated selector context model, CLI, and persistence validation coverage is present
 
 ## Latest Completed Checkpoint
 
-M6.6C — Collection membership validation and failure behavior completed
+M6.7A — Selector context foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.7A — Selector context foundation
+M6.7B — Preset-first binding direction
 
 ## Latest Verified Validation Status
 
-296 passed in 31.46s
+305 passed in 32.39s

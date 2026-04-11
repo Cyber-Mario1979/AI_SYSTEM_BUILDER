@@ -30,12 +30,19 @@ class TaskCollectionModel(BaseModel):
     collection_state: CollectionState
     task_ids: list[str] = Field(default_factory=list)
 
+
+class SelectorContextModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    system_type: str = Field(min_length=1)
+
 class WorkPackageModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     wp_id: str = Field(pattern=r"^WP-\d{3}$")
     title: str = Field(min_length=1)
     status: Literal["open", "in_progress", "completed"]
+    selector_context: SelectorContextModel | None = None
 
 
 class StateModel(BaseModel):

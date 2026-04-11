@@ -826,3 +826,215 @@ def test_wp_list_wp_id_filter_combines_with_status_using_and_logic(restore_state
     assert "- WP-001 | open | Blister line upgrade" in output
     assert "- WP-002 | completed | Blister line upgrade" not in output
     assert "- WP-003 | open | Granulation refresh" not in output
+
+def test_wp_set_selector_type_persists_selector_context_for_target_work_package_only(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "in_progress",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-selector-type", "WP-001", "process-equipment")
+
+    assert result.returncode == 0
+    assert (
+        "Work Package selector type updated: WP-001 -> process-equipment"
+        in result.stdout
+    )
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+            "selector_context": {
+                "system_type": "process-equipment",
+            },
+        },
+        {
+            "wp_id": "WP-002",
+            "title": "Blister line upgrade",
+            "status": "in_progress",
+        },
+    ]
+
+
+def test_wp_set_selector_type_handles_missing_work_package_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-selector-type", "WP-999", "process-equipment")
+
+    assert result.returncode == 0
+    assert "Work Package not found: WP-999" in result.stdout
+
+
+def test_wp_set_selector_type_handles_missing_state_file(restore_state_file):
+    if STATE_FILE.exists():
+        STATE_FILE.unlink()
+
+    result = run_cli("wp", "set-selector-type", "WP-001", "process-equipment")
+
+    assert result.returncode == 0
+    assert "State file not found:" in result.stdout
+    assert "No state file found. Run 'state init' first." in result.stdout
+
+
+def test_wp_set_selector_type_rejects_invalid_empty_value_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "set-selector-type", "WP-001", "")
+
+    assert result.returncode == 0
+    assert "Work Package validation failed:" in result.stdout
+    assert "system_type" in result.stdout
+
+    saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved["work_packages"] == [
+        {
+            "wp_id": "WP-001",
+            "title": "Tablet press qualification",
+            "status": "open",
+        }
+    ]
+
+
+def test_wp_show_show_selector_context_flag_displays_selector_context(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "show", "WP-001", "--show-selector-context")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "wp_id": "WP-001",
+        "title": "Tablet press qualification",
+        "status": "open",
+        "selector_context": {
+            "system_type": "process-equipment",
+        },
+    }
+
+
+def test_wp_show_preserves_default_contract_without_show_selector_context_flag(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                        "selector_context": {
+                            "system_type": "process-equipment",
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "show", "WP-001")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "wp_id": "WP-001",
+        "title": "Tablet press qualification",
+        "status": "open",
+    }
