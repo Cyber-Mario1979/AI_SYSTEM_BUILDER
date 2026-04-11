@@ -39,6 +39,8 @@ M6.7B — Preset-first binding direction
 - work package show supports opt-in selector visibility via `wp show <wp_id> --show-selector-context`
 - default work package show contract remains unchanged without the selector visibility flag
 - dedicated selector context model, CLI, and persistence validation coverage is present
+- M6.7A smoke test passed
+- smoke test protocol and result record are present under `docs/smoke_tests/`
 
 ## Latest Completed Checkpoint
 
