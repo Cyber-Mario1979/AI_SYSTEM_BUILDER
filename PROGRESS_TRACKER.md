@@ -25,24 +25,24 @@ Phase 2 — Deterministic System Modeling
 
 ## Current Milestone
 
-Milestone 6 — Binding Context and Task Collections
+Milestone 7 — Planning Layer
 
 ## Current Approved Slice Family
 
-M6.10 — Milestone closeout
+M7.1 — Planning entity foundation
 
 ## Latest Completed Checkpoint
 
-M6.9 — Milestone UAT checkpoint completed
+M6.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M6.10 — Milestone closeout
+M7.1 — Planning entity foundation
+
+## Milestone UAT Status
+
+NOT_STARTED_MILESTONE_OPEN
 
 ## Latest Verified Validation Status
 
 332 passed in 32.28s
-
-## Milestone UAT Status
-
-PASSED
