@@ -60,6 +60,7 @@ Run:
 
 ```powershell
 python -m pytest -q
+```
 
 If validation fails, the contribution is not ready.
 
@@ -107,4 +108,3 @@ Conduct
 Be respectful, explicit, and technically grounded.
 
 This repository values clarity over noise, determinism over improvisation, and evidence over assumption.
-```
