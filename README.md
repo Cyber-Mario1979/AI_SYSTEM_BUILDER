@@ -1,8 +1,13 @@
+<p align="center">
+  <img src="assets/banner.png" alt="AI_SYSTEM_BUILDER Banner"/>
+</p>
+
 # AI_SYSTEM_BUILDER
 
 A deterministic Python CLI project for building structured system-modeling workflows with strong validation discipline, milestone-based progression, and explicit operational boundaries.
 
 This repository is being built as a serious engineering foundation first:
+
 - deterministic before “smart”
 - validated before convenient
 - explicit state before hidden automation
@@ -32,6 +37,7 @@ The long-term direction is a more capable workflow engine that can eventually su
 ## Why this repository exists
 
 Many workflow-oriented systems become hard to trust because they mix:
+
 - business logic
 - state mutation
 - UI assumptions
@@ -52,6 +58,7 @@ The project is designed to prove that a useful workflow engine can be built by e
 - milestone UAT before closeout
 
 That makes the project useful both as:
+
 - a real engineering build
 - and a serious learning/building repository for deterministic system design
 
@@ -87,6 +94,7 @@ Latest recorded validated baseline on the current repo boundary:
 This project does not treat determinism as a cleanup step.
 
 Deterministic behavior is part of the design from the beginning:
+
 - command behavior is explicit
 - failure behavior is explicit
 - state mutation rules are explicit
@@ -97,6 +105,7 @@ Deterministic behavior is part of the design from the beginning:
 The repository follows an architecture where the CLI is an adapter layer and domain behavior belongs in core logic modules.
 
 That matters because it protects:
+
 - maintainability
 - future UI readiness
 - future runtime layering
@@ -107,6 +116,7 @@ That matters because it protects:
 This repository is not advanced by random feature additions.
 
 It uses:
+
 - a canonical roadmap
 - a current-position tracker
 - validation checkpoints
@@ -118,6 +128,7 @@ That means the project has direction, not just motion.
 ### 4. It is building toward a real workflow engine, not just CRUD
 
 The repo already goes beyond basic entity CRUD by modeling:
+
 - Work Package-centered workflow structure
 - collection state concepts
 - context-aware binding
@@ -194,6 +205,7 @@ This repository separates direction, implementation truth, and current position.
 `ROADMAP_CANONICAL.md`
 
 Defines:
+
 - phase order
 - milestone order
 - checkpoint ladder
@@ -205,6 +217,7 @@ Defines:
 The code and tests in the repository
 
 Defines:
+
 - what actually exists now
 - what commands are live
 - what validations are live
@@ -215,6 +228,7 @@ Defines:
 `PROGRESS_TRACKER.md`
 
 Defines only:
+
 - latest completed checkpoint
 - exact next unfinished checkpoint
 - latest recorded validation status
@@ -286,6 +300,7 @@ This repository uses:
 That means a milestone is not treated as complete just because code exists.
 
 It must also be:
+
 - validated
 - accepted at milestone level
 - explicitly closed
