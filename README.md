@@ -326,4 +326,5 @@ The implementation boundary, tests, roadmap, tracker, and milestone evidence rem
 
 ## License
 
-License file to be finalized as part of the public-readiness workstream.
+This repository is licensed under the GNU General Public License v3.0.
+See LICENSE.
