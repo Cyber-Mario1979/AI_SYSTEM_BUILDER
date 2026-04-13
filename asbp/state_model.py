@@ -5,6 +5,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 CollectionState = Literal["source", "staged", "committed", "refined"]
 PlanState = Literal["draft", "committed"]
+DurationSourceId = Literal["task_duration"]
 StandardsBundleId = Literal["cqv-core", "cleanroom-hvac", "automation"]
 ScopeIntentId = Literal[
     "end-to-end",
@@ -84,12 +85,20 @@ class WorkPackageModel(BaseModel):
     selector_context: SelectorContextModel | None = None
 
 
+class PlanningBasisModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    duration_source: DurationSourceId
+    basis_label: str | None = Field(default=None, min_length=1)
+
+
 class PlanningModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     plan_id: str = Field(pattern=r"^PLAN-\d{3}$")
     work_package_id: str = Field(pattern=r"^WP-\d{3}$")
     plan_state: PlanState
+    planning_basis: PlanningBasisModel | None = None
 
 
 class StateModel(BaseModel):

@@ -1,6 +1,11 @@
 import re
 
-from asbp.state_model import PlanningModel, WorkPackageModel
+from asbp.state_model import (
+    DurationSourceId,
+    PlanningBasisModel,
+    PlanningModel,
+    WorkPackageModel,
+)
 
 
 def generate_next_plan_id(plans: list[PlanningModel]) -> str:
@@ -27,6 +32,30 @@ def find_plan_by_id(
         if plan.plan_id == plan_id:
             return plan
     return None
+
+
+def set_plan_planning_basis(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+    duration_source: DurationSourceId,
+    basis_label: str | None = None,
+) -> PlanningModel | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    validated_plan = PlanningModel(
+        plan_id=plan.plan_id,
+        work_package_id=plan.work_package_id,
+        plan_state=plan.plan_state,
+        planning_basis=PlanningBasisModel(
+            duration_source=duration_source,
+            basis_label=basis_label,
+        ),
+    )
+    plan.planning_basis = validated_plan.planning_basis
+    return plan
 
 
 def validate_persisted_plan_work_package_links(

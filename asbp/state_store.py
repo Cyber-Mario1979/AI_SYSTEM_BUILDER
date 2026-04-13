@@ -92,6 +92,16 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if task_collection.get("task_ids") == []:
             task_collection.pop("task_ids", None)
 
+    for plan in payload.get("plans", []):
+        planning_basis = plan.get("planning_basis")
+
+        if planning_basis is None:
+            plan.pop("planning_basis", None)
+            continue
+
+        if planning_basis.get("basis_label") is None:
+            planning_basis.pop("basis_label", None)
+
     if payload.get("plans") == []:
         payload.pop("plans", None)
 
