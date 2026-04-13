@@ -29,15 +29,15 @@ Milestone 7 — Planning Layer
 
 ## Current Approved Slice Family
 
-M7.1 — Planning entity foundation
+M7.2 — Planning basis attachment rules
 
 ## Latest Completed Checkpoint
 
-M6.10 — Milestone closeout completed
+M7.1 — Planning entity foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M7.1 — Planning entity foundation
+M7.2 — Planning basis attachment rules
 
 ## Milestone UAT Status
 
@@ -45,4 +45,4 @@ NOT_STARTED_MILESTONE_OPEN
 
 ## Latest Verified Validation Status
 
-332 passed in 32.28s
+338 passed in 33.95s

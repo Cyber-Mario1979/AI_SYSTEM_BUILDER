@@ -3,9 +3,8 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
- 
-
 CollectionState = Literal["source", "staged", "committed", "refined"]
+PlanState = Literal["draft", "committed"]
 StandardsBundleId = Literal["cqv-core", "cleanroom-hvac", "automation"]
 ScopeIntentId = Literal[
     "end-to-end",
@@ -32,6 +31,7 @@ class TaskModel(BaseModel):
     work_package_id: str | None = None
     status: Literal["planned", "in_progress", "completed", "over_due"]
     dependencies: list[str] = Field(default_factory=list)
+
 
 class TaskCollectionModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -74,6 +74,7 @@ class SelectorContextModel(BaseModel):
             )
         return self
 
+
 class WorkPackageModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -81,6 +82,14 @@ class WorkPackageModel(BaseModel):
     title: str = Field(min_length=1)
     status: Literal["open", "in_progress", "completed"]
     selector_context: SelectorContextModel | None = None
+
+
+class PlanningModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    plan_id: str = Field(pattern=r"^PLAN-\d{3}$")
+    work_package_id: str = Field(pattern=r"^WP-\d{3}$")
+    plan_state: PlanState
 
 
 class StateModel(BaseModel):
@@ -92,6 +101,7 @@ class StateModel(BaseModel):
     tasks: list[TaskModel] = Field(default_factory=list)
     work_packages: list[WorkPackageModel] = Field(default_factory=list)
     task_collections: list[TaskCollectionModel] = Field(default_factory=list)
+    plans: list[PlanningModel] = Field(default_factory=list)
 
     @field_validator("work_packages")
     @classmethod
@@ -127,3 +137,20 @@ class StateModel(BaseModel):
             seen_collection_ids.add(task_collection.collection_id)
 
         return task_collections
+
+    @field_validator("plans")
+    @classmethod
+    def validate_unique_plan_ids(
+        cls,
+        plans: list[PlanningModel],
+    ) -> list[PlanningModel]:
+        seen_plan_ids: set[str] = set()
+
+        for plan in plans:
+            if plan.plan_id in seen_plan_ids:
+                raise ValueError(
+                    f"Duplicate plan_id is not allowed: {plan.plan_id}"
+                )
+            seen_plan_ids.add(plan.plan_id)
+
+        return plans

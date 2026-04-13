@@ -4,6 +4,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from asbp.collection_logic import validate_persisted_collection_task_memberships
+from asbp.planning_logic import validate_persisted_plan_work_package_links
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
 from asbp.work_package_logic import validate_persisted_task_work_package_links
@@ -26,6 +27,7 @@ def load_raw_state(state_file_path: Path) -> dict:
 
 def load_validated_state(state_file_path: Path) -> StateModel:
     raw_state = load_raw_state(state_file_path)
+
     for task in raw_state.get("tasks", []):
         task.setdefault("description", None)
         task.setdefault("owner", None)
@@ -38,6 +40,8 @@ def load_validated_state(state_file_path: Path) -> StateModel:
     for task_collection in raw_state.get("task_collections", []):
         task_collection.setdefault("task_ids", [])
 
+    raw_state.setdefault("plans", [])
+
     state = StateModel(**raw_state)
     validate_persisted_task_keys(state.tasks)
     validate_persisted_task_work_package_links(
@@ -47,6 +51,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
     validate_persisted_collection_task_memberships(
         state.tasks,
         state.task_collections,
+    )
+    validate_persisted_plan_work_package_links(
+        state.plans,
+        state.work_packages,
     )
     return state
 
@@ -72,7 +80,7 @@ def build_persisted_state_payload(state: StateModel) -> dict:
             selector_context.pop("preset_id", None)
 
         if selector_context.get("scope_intent") is None:
-            selector_context.pop("scope_intent", None)    
+            selector_context.pop("scope_intent", None)
 
         if selector_context.get("standards_bundles") == []:
             selector_context.pop("standards_bundles", None)
@@ -83,6 +91,9 @@ def build_persisted_state_payload(state: StateModel) -> dict:
     for task_collection in payload.get("task_collections", []):
         if task_collection.get("task_ids") == []:
             task_collection.pop("task_ids", None)
+
+    if payload.get("plans") == []:
+        payload.pop("plans", None)
 
     return payload
 
