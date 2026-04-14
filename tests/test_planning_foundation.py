@@ -8,8 +8,14 @@ from asbp.planning_logic import (
     generate_next_plan_id,
     set_plan_planned_start_at,
     set_plan_planning_basis,
+    set_plan_planning_calendar,
 )
-from asbp.state_model import PlanningBasisModel, PlanningModel, StateModel
+from asbp.state_model import (
+    PlanningBasisModel,
+    PlanningCalendarModel,
+    PlanningModel,
+    StateModel,
+)
 from asbp.state_store import build_persisted_state_payload, load_validated_state
 
 
@@ -579,3 +585,317 @@ def test_load_validated_state_rejects_naive_planned_start_at(tmp_path):
         load_validated_state(state_file)
 
     assert "planned_start_at" in str(exc_info.value)
+
+
+def test_set_plan_planning_calendar_updates_target_plan_only():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=datetime(2026, 4, 15, 8, 30, tzinfo=timezone.utc),
+        ),
+        PlanningModel(
+            plan_id="PLAN-002",
+            work_package_id="WP-002",
+            plan_state="committed",
+        ),
+    ]
+
+    updated_plan = set_plan_planning_calendar(
+        plans,
+        plan_id="PLAN-001",
+        working_days=["friday", "monday", "wednesday"],
+        workday_hours=8,
+        workmonth_mode="calendar_month",
+    )
+
+    assert updated_plan is plans[0]
+    assert plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=datetime(2026, 4, 15, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        ),
+        PlanningModel(
+            plan_id="PLAN-002",
+            work_package_id="WP-002",
+            plan_state="committed",
+        ),
+    ]
+
+
+def test_set_plan_planning_calendar_returns_none_for_missing_plan_id():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+        )
+    ]
+
+    updated_plan = set_plan_planning_calendar(
+        plans,
+        plan_id="PLAN-999",
+        working_days=["monday", "tuesday", "wednesday"],
+        workday_hours=8,
+    )
+
+    assert updated_plan is None
+    assert plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+        )
+    ]
+
+
+def test_load_validated_state_accepts_plan_with_planning_calendar(tmp_path):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                }
+            ],
+        },
+    )
+
+    state = load_validated_state(state_file)
+
+    assert state.plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+
+
+def test_build_persisted_state_payload_omits_null_planning_calendar_for_backward_compatibility():
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        plans=[
+            PlanningModel(
+                plan_id="PLAN-001",
+                work_package_id="WP-001",
+                plan_state="draft",
+            )
+        ],
+    )
+
+    payload = build_persisted_state_payload(state)
+
+    assert payload["plans"] == [
+        {
+            "plan_id": "PLAN-001",
+            "work_package_id": "WP-001",
+            "plan_state": "draft",
+        }
+    ]
+
+
+def test_build_persisted_state_payload_persists_planning_calendar():
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        plans=[
+            PlanningModel(
+                plan_id="PLAN-001",
+                work_package_id="WP-001",
+                plan_state="draft",
+                planning_calendar=PlanningCalendarModel(
+                    working_days=["monday", "wednesday", "friday"],
+                    workday_hours=8,
+                    workmonth_mode="calendar_month",
+                ),
+            )
+        ],
+    )
+
+    payload = build_persisted_state_payload(state)
+
+    assert payload["plans"] == [
+        {
+            "plan_id": "PLAN-001",
+            "work_package_id": "WP-001",
+            "plan_state": "draft",
+            "planning_calendar": {
+                "working_days": ["monday", "wednesday", "friday"],
+                "workday_hours": 8,
+                "workmonth_mode": "calendar_month",
+            },
+        }
+    ]
+
+
+def test_load_validated_state_normalizes_working_days_to_canonical_order(tmp_path):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_calendar": {
+                        "working_days": ["friday", "monday", "wednesday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                }
+            ],
+        },
+    )
+
+    state = load_validated_state(state_file)
+
+    assert state.plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+
+
+def test_load_validated_state_rejects_duplicate_working_days_in_planning_calendar(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_calendar": {
+                        "working_days": ["monday", "monday", "wednesday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValidationError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Duplicate working day is not allowed" in str(exc_info.value)
+
+
+def test_load_validated_state_rejects_invalid_workday_hours_in_planning_calendar(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 0,
+                        "workmonth_mode": "calendar_month",
+                    },
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValidationError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "workday_hours" in str(exc_info.value)

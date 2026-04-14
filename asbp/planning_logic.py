@@ -4,8 +4,11 @@ from datetime import datetime
 from asbp.state_model import (
     DurationSourceId,
     PlanningBasisModel,
+    PlanningCalendarModel,
     PlanningModel,
+    WeekdayId,
     WorkPackageModel,
+    WorkmonthModeId,
 )
 
 
@@ -55,6 +58,7 @@ def set_plan_planning_basis(
             basis_label=basis_label,
         ),
         planned_start_at=plan.planned_start_at,
+        planning_calendar=plan.planning_calendar,
     )
     plan.planning_basis = validated_plan.planning_basis
     return plan
@@ -76,8 +80,37 @@ def set_plan_planned_start_at(
         plan_state=plan.plan_state,
         planning_basis=plan.planning_basis,
         planned_start_at=planned_start_at,
+        planning_calendar=plan.planning_calendar,
     )
     plan.planned_start_at = validated_plan.planned_start_at
+    return plan
+
+
+def set_plan_planning_calendar(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+    working_days: list[WeekdayId],
+    workday_hours: int,
+    workmonth_mode: WorkmonthModeId = "calendar_month",
+) -> PlanningModel | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    validated_plan = PlanningModel(
+        plan_id=plan.plan_id,
+        work_package_id=plan.work_package_id,
+        plan_state=plan.plan_state,
+        planning_basis=plan.planning_basis,
+        planned_start_at=plan.planned_start_at,
+        planning_calendar=PlanningCalendarModel(
+            working_days=working_days,
+            workday_hours=workday_hours,
+            workmonth_mode=workmonth_mode,
+        ),
+    )
+    plan.planning_calendar = validated_plan.planning_calendar
     return plan
 
 

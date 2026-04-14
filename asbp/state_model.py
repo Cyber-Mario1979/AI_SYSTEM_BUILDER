@@ -7,6 +7,16 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 CollectionState = Literal["source", "staged", "committed", "refined"]
 PlanState = Literal["draft", "committed"]
 DurationSourceId = Literal["task_duration"]
+WeekdayId = Literal[
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+]
+WorkmonthModeId = Literal["calendar_month"]
 StandardsBundleId = Literal["cqv-core", "cleanroom-hvac", "automation"]
 ScopeIntentId = Literal[
     "end-to-end",
@@ -16,6 +26,19 @@ ScopeIntentId = Literal[
     "post-change",
     "post-deviation",
 ]
+
+CANONICAL_WEEKDAY_ORDER: tuple[WeekdayId, ...] = (
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+)
+_WEEKDAY_ORDER_INDEX = {
+    weekday: index for index, weekday in enumerate(CANONICAL_WEEKDAY_ORDER)
+}
 
 
 class TaskModel(BaseModel):
@@ -93,6 +116,28 @@ class PlanningBasisModel(BaseModel):
     basis_label: str | None = Field(default=None, min_length=1)
 
 
+class PlanningCalendarModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    working_days: list[WeekdayId] = Field(min_length=1, max_length=7)
+    workday_hours: int = Field(ge=1, le=24)
+    workmonth_mode: WorkmonthModeId
+
+    @field_validator("working_days")
+    @classmethod
+    def validate_and_normalize_working_days(
+        cls,
+        working_days: list[WeekdayId],
+    ) -> list[WeekdayId]:
+        if len(working_days) != len(set(working_days)):
+            raise ValueError("Duplicate working day is not allowed")
+
+        return sorted(
+            working_days,
+            key=lambda weekday: _WEEKDAY_ORDER_INDEX[weekday],
+        )
+
+
 class PlanningModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -101,6 +146,7 @@ class PlanningModel(BaseModel):
     plan_state: PlanState
     planning_basis: PlanningBasisModel | None = None
     planned_start_at: datetime | None = None
+    planning_calendar: PlanningCalendarModel | None = None
 
     @field_validator("planned_start_at")
     @classmethod

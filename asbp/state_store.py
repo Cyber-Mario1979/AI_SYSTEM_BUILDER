@@ -104,6 +104,9 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if plan.get("planned_start_at") is None:
             plan.pop("planned_start_at", None)
 
+        if plan.get("planning_calendar") is None:
+            plan.pop("planning_calendar", None)
+
     if payload.get("plans") == []:
         payload.pop("plans", None)
 
