@@ -6,17 +6,22 @@ from pydantic import ValidationError
 
 from asbp.planning_logic import (
     generate_next_plan_id,
+    generate_plan_baseline,
     set_plan_planned_start_at,
     set_plan_planning_basis,
     set_plan_planning_calendar,
 )
 from asbp.state_model import (
+    GeneratedTaskPlanModel,
     PlanningBasisModel,
     PlanningCalendarModel,
     PlanningModel,
     StateModel,
+    TaskCollectionModel,
+    TaskModel,
 )
 from asbp.state_store import build_persisted_state_payload, load_validated_state
+
 
 
 def write_state_file(state_file, payload: dict) -> None:
@@ -899,3 +904,393 @@ def test_load_validated_state_rejects_invalid_workday_hours_in_planning_calendar
         load_validated_state(state_file)
 
     assert "workday_hours" in str(exc_info.value)
+def test_generate_plan_baseline_builds_serialized_dependency_aware_plan():
+    plan_start = datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc)
+
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=plan_start,
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            duration=2,
+            work_package_id="WP-001",
+            status="planned",
+            dependencies=["TASK-001"],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Not committed",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+        ),
+    ]
+    task_collections = [
+        TaskCollectionModel(
+            collection_id="TC-001",
+            title="Committed Selection",
+            collection_state="committed",
+            task_ids=["TASK-002", "TASK-001"],
+        )
+    ]
+
+    updated_plan = generate_plan_baseline(
+        plans,
+        tasks,
+        task_collections,
+        plan_id="PLAN-001",
+    )
+
+    assert updated_plan is plans[0]
+    assert plans[0].generated_task_plans == [
+        GeneratedTaskPlanModel(
+            task_id="TASK-001",
+            sequence_order=1,
+            duration_days=1,
+            dependency_task_ids=[],
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planned_finish_at=datetime(2026, 4, 13, 16, 30, tzinfo=timezone.utc),
+        ),
+        GeneratedTaskPlanModel(
+            task_id="TASK-002",
+            sequence_order=2,
+            duration_days=2,
+            dependency_task_ids=["TASK-001"],
+            planned_start_at=datetime(2026, 4, 15, 8, 30, tzinfo=timezone.utc),
+            planned_finish_at=datetime(2026, 4, 17, 16, 30, tzinfo=timezone.utc),
+        ),
+    ]
+
+
+def test_generate_plan_baseline_returns_none_for_missing_plan_id():
+    updated_plan = generate_plan_baseline(
+        [],
+        [],
+        [],
+        plan_id="PLAN-999",
+    )
+
+    assert updated_plan is None
+
+
+def test_generate_plan_baseline_rejects_missing_planning_basis():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+        )
+    ]
+    task_collections = [
+        TaskCollectionModel(
+            collection_id="TC-001",
+            title="Committed Selection",
+            collection_state="committed",
+            task_ids=["TASK-001"],
+        )
+    ]
+
+    with pytest.raises(ValueError) as exc_info:
+        generate_plan_baseline(
+            plans,
+            tasks,
+            task_collections,
+            plan_id="PLAN-001",
+        )
+
+    assert "planning_basis must exist" in str(exc_info.value)
+
+
+def test_generate_plan_baseline_rejects_dependency_outside_eligible_committed_scope():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+    tasks = [
+        TaskModel(
+            task_id="TASK-001",
+            order=1,
+            title="Prepare FAT",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+        ),
+        TaskModel(
+            task_id="TASK-002",
+            order=2,
+            title="Execute FAT",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+            dependencies=["TASK-003"],
+        ),
+        TaskModel(
+            task_id="TASK-003",
+            order=3,
+            title="Outside committed scope",
+            duration=1,
+            work_package_id="WP-001",
+            status="planned",
+        ),
+    ]
+    task_collections = [
+        TaskCollectionModel(
+            collection_id="TC-001",
+            title="Committed Selection",
+            collection_state="committed",
+            task_ids=["TASK-001", "TASK-002"],
+        )
+    ]
+
+    with pytest.raises(ValueError) as exc_info:
+        generate_plan_baseline(
+            plans,
+            tasks,
+            task_collections,
+            plan_id="PLAN-001",
+        )
+
+    assert "outside eligible committed plan scope" in str(exc_info.value)
+
+
+def test_load_validated_state_accepts_plan_with_generated_task_plans(tmp_path):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        }
+                    ],
+                }
+            ],
+        },
+    )
+
+    state = load_validated_state(state_file)
+
+    assert state.plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            generated_task_plans=[
+                GeneratedTaskPlanModel(
+                    task_id="TASK-001",
+                    sequence_order=1,
+                    duration_days=1,
+                    dependency_task_ids=[],
+                    planned_start_at=datetime(
+                        2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                    ),
+                )
+            ],
+        )
+    ]
+
+
+def test_build_persisted_state_payload_omits_empty_generated_task_plans():
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        plans=[
+            PlanningModel(
+                plan_id="PLAN-001",
+                work_package_id="WP-001",
+                plan_state="draft",
+            )
+        ],
+    )
+
+    payload = build_persisted_state_payload(state)
+
+    assert payload["plans"] == [
+        {
+            "plan_id": "PLAN-001",
+            "work_package_id": "WP-001",
+            "plan_state": "draft",
+        }
+    ]
+
+
+def test_build_persisted_state_payload_persists_generated_task_plans():
+    state = StateModel(
+        project="AI_SYSTEM_BUILDER",
+        version="0.8.0",
+        status="in_flight",
+        plans=[
+            PlanningModel(
+                plan_id="PLAN-001",
+                work_package_id="WP-001",
+                plan_state="draft",
+                generated_task_plans=[
+                    GeneratedTaskPlanModel(
+                        task_id="TASK-001",
+                        sequence_order=1,
+                        duration_days=1,
+                        dependency_task_ids=[],
+                        planned_start_at=datetime(
+                            2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                        ),
+                        planned_finish_at=datetime(
+                            2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                        ),
+                    )
+                ],
+            )
+        ],
+    )
+
+    payload = build_persisted_state_payload(state)
+
+    assert payload["plans"] == [
+        {
+            "plan_id": "PLAN-001",
+            "work_package_id": "WP-001",
+            "plan_state": "draft",
+            "generated_task_plans": [
+                {
+                    "task_id": "TASK-001",
+                    "sequence_order": 1,
+                    "duration_days": 1,
+                    "dependency_task_ids": [],
+                    "planned_start_at": "2026-04-13T08:30:00Z",
+                    "planned_finish_at": "2026-04-13T16:30:00Z",
+                }
+            ],
+        }
+    ]
+
+
+def test_load_validated_state_rejects_duplicate_generated_task_plan_task_ids(tmp_path):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        },
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 2,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-15T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-15T16:30:00+00:00",
+                        },
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Duplicate generated task plan task_id is not allowed: TASK-001" in str(
+        exc_info.value
+    )

@@ -29,15 +29,15 @@ Milestone 7 — Planning Layer
 
 ## Current Approved Slice Family
 
-M7.5A — Plan generation baseline
+M7.5B — Plan review / visibility surfaces
 
 ## Latest Completed Checkpoint
 
-M7.4 — Calendar model introduction completed
+M7.5A — Plan generation baseline completed
 
 ## Exact Next Unfinished Checkpoint
 
-M7.5A — Plan generation baseline
+M7.5B — Plan review / visibility surfaces
 
 ## Milestone UAT Status
 
@@ -45,4 +45,4 @@ NOT_STARTED_MILESTONE_OPEN
 
 ## Latest Verified Validation Status
 
-358 passed in 35.57s
+366 passed in 35.67s

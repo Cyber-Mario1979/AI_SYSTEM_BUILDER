@@ -4,7 +4,10 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from asbp.collection_logic import validate_persisted_collection_task_memberships
-from asbp.planning_logic import validate_persisted_plan_work_package_links
+from asbp.planning_logic import (
+    validate_persisted_generated_task_plan_task_ids,
+    validate_persisted_plan_work_package_links,
+)
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
 from asbp.work_package_logic import validate_persisted_task_work_package_links
@@ -56,6 +59,9 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         state.plans,
         state.work_packages,
     )
+    validate_persisted_generated_task_plan_task_ids(
+        state.plans,
+    )
     return state
 
 
@@ -94,6 +100,9 @@ def build_persisted_state_payload(state: StateModel) -> dict:
 
     for plan in payload.get("plans", []):
         planning_basis = plan.get("planning_basis")
+        
+        if plan.get("generated_task_plans") == []:
+            plan.pop("generated_task_plans", None)
 
         if planning_basis is None:
             plan.pop("planning_basis", None)

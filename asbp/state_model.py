@@ -138,6 +138,33 @@ class PlanningCalendarModel(BaseModel):
         )
 
 
+class GeneratedTaskPlanModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    task_id: str
+    sequence_order: int = Field(ge=1)
+    duration_days: int = Field(ge=1)
+    dependency_task_ids: list[str] = Field(default_factory=list)
+    planned_start_at: datetime
+    planned_finish_at: datetime
+
+    @field_validator("planned_start_at", "planned_finish_at")
+    @classmethod
+    def validate_generated_task_plan_timestamps_are_timezone_aware(
+        cls,
+        value: datetime,
+    ) -> datetime:
+        if value.tzinfo is None or value.utcoffset() is None:
+            raise ValueError("generated task plan timestamp must be timezone-aware")
+        return value
+
+    @model_validator(mode="after")
+    def validate_finish_after_start(self):
+        if self.planned_finish_at <= self.planned_start_at:
+            raise ValueError("planned_finish_at must be after planned_start_at")
+        return self
+
+
 class PlanningModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -147,6 +174,7 @@ class PlanningModel(BaseModel):
     planning_basis: PlanningBasisModel | None = None
     planned_start_at: datetime | None = None
     planning_calendar: PlanningCalendarModel | None = None
+    generated_task_plans: list[GeneratedTaskPlanModel] = Field(default_factory=list)
 
     @field_validator("planned_start_at")
     @classmethod
