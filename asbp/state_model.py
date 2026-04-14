@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -99,6 +100,24 @@ class PlanningModel(BaseModel):
     work_package_id: str = Field(pattern=r"^WP-\d{3}$")
     plan_state: PlanState
     planning_basis: PlanningBasisModel | None = None
+    planned_start_at: datetime | None = None
+
+    @field_validator("planned_start_at")
+    @classmethod
+    def validate_planned_start_at_is_timezone_aware(
+        cls,
+        planned_start_at: datetime | None,
+    ) -> datetime | None:
+        if planned_start_at is None:
+            return None
+
+        if (
+            planned_start_at.tzinfo is None
+            or planned_start_at.utcoffset() is None
+        ):
+            raise ValueError("planned_start_at must be timezone-aware")
+
+        return planned_start_at
 
 
 class StateModel(BaseModel):

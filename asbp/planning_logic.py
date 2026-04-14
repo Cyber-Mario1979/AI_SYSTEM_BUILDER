@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from asbp.state_model import (
     DurationSourceId,
@@ -53,8 +54,30 @@ def set_plan_planning_basis(
             duration_source=duration_source,
             basis_label=basis_label,
         ),
+        planned_start_at=plan.planned_start_at,
     )
     plan.planning_basis = validated_plan.planning_basis
+    return plan
+
+
+def set_plan_planned_start_at(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+    planned_start_at: datetime,
+) -> PlanningModel | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    validated_plan = PlanningModel(
+        plan_id=plan.plan_id,
+        work_package_id=plan.work_package_id,
+        plan_state=plan.plan_state,
+        planning_basis=plan.planning_basis,
+        planned_start_at=planned_start_at,
+    )
+    plan.planned_start_at = validated_plan.planned_start_at
     return plan
 
 

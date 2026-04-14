@@ -60,7 +60,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
 
 def build_persisted_state_payload(state: StateModel) -> dict:
-    payload = state.model_dump()
+    payload = state.model_dump(mode="json")
 
     for task in payload.get("tasks", []):
         if task.get("work_package_id") is None:
@@ -97,10 +97,12 @@ def build_persisted_state_payload(state: StateModel) -> dict:
 
         if planning_basis is None:
             plan.pop("planning_basis", None)
-            continue
+        else:
+            if planning_basis.get("basis_label") is None:
+                planning_basis.pop("basis_label", None)
 
-        if planning_basis.get("basis_label") is None:
-            planning_basis.pop("basis_label", None)
+        if plan.get("planned_start_at") is None:
+            plan.pop("planned_start_at", None)
 
     if payload.get("plans") == []:
         payload.pop("plans", None)
