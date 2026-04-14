@@ -193,7 +193,6 @@ class PlanningModel(BaseModel):
 
         return planned_start_at
 
-
 class StateModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 

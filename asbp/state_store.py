@@ -67,7 +67,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
 def build_persisted_state_payload(state: StateModel) -> dict:
     payload = state.model_dump(mode="json")
-
+    
     for task in payload.get("tasks", []):
         if task.get("work_package_id") is None:
             task.pop("work_package_id", None)
