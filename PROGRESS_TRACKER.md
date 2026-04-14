@@ -29,15 +29,15 @@ Milestone 7 — Planning Layer
 
 ## Current Approved Slice Family
 
-M7.5B — Plan review / visibility surfaces
+M7.5C — Plan commit behavior
 
 ## Latest Completed Checkpoint
 
-M7.5A — Plan generation baseline completed
+M7.5B — Plan review / visibility surfaces completed
 
 ## Exact Next Unfinished Checkpoint
 
-M7.5B — Plan review / visibility surfaces
+M7.5C — Plan commit behavior
 
 ## Milestone UAT Status
 
@@ -45,4 +45,4 @@ NOT_STARTED_MILESTONE_OPEN
 
 ## Latest Verified Validation Status
 
-366 passed in 35.67s
+371 passed in 36.47s

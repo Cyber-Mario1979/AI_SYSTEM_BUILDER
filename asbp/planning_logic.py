@@ -242,6 +242,19 @@ def _order_tasks_for_generation(
     return ordered_tasks
 
 
+def _build_sorted_generated_task_plan_payloads(
+    generated_task_plans: list[GeneratedTaskPlanModel],
+) -> list[dict]:
+    payloads = [
+        generated_task_plan.model_dump(mode="json")
+        for generated_task_plan in generated_task_plans
+    ]
+    return sorted(
+        payloads,
+        key=lambda payload: (payload["sequence_order"], payload["task_id"]),
+    )
+
+
 def set_plan_planning_basis(
     plans: list[PlanningModel],
     *,
@@ -385,6 +398,49 @@ def generate_plan_baseline(
     plan.generated_task_plans = validated_plan.generated_task_plans
     return plan
 
+
+
+def list_plan_review_rows(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+) -> list[dict] | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    return _build_sorted_generated_task_plan_payloads(plan.generated_task_plans)
+
+
+def build_plan_review_payload(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+) -> dict | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    payload = plan.model_dump(mode="json")
+    generated_task_plan_rows = _build_sorted_generated_task_plan_payloads(
+        plan.generated_task_plans
+    )
+
+    payload["generated_task_plans"] = generated_task_plan_rows
+    payload["generated_task_plan_count"] = len(generated_task_plan_rows)
+
+    if generated_task_plan_rows:
+        payload["generated_schedule_start_at"] = generated_task_plan_rows[0][
+            "planned_start_at"
+        ]
+        payload["generated_schedule_finish_at"] = generated_task_plan_rows[-1][
+            "planned_finish_at"
+        ]
+    else:
+        payload["generated_schedule_start_at"] = None
+        payload["generated_schedule_finish_at"] = None
+
+    return payload
 
 
 def validate_persisted_plan_work_package_links(

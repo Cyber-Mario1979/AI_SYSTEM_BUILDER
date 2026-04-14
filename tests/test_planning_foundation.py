@@ -5,8 +5,10 @@ import pytest
 from pydantic import ValidationError
 
 from asbp.planning_logic import (
+    build_plan_review_payload,
     generate_next_plan_id,
     generate_plan_baseline,
+    list_plan_review_rows,
     set_plan_planned_start_at,
     set_plan_planning_basis,
     set_plan_planning_calendar,
@@ -1294,3 +1296,213 @@ def test_load_validated_state_rejects_duplicate_generated_task_plan_task_ids(tmp
     assert "Duplicate generated task plan task_id is not allowed: TASK-001" in str(
         exc_info.value
     )
+
+def test_list_plan_review_rows_returns_none_for_missing_plan_id():
+    rows = list_plan_review_rows(
+        [],
+        plan_id="PLAN-999",
+    )
+
+    assert rows is None
+
+
+def test_list_plan_review_rows_returns_sequence_ordered_generated_rows():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            generated_task_plans=[
+                GeneratedTaskPlanModel(
+                    task_id="TASK-002",
+                    sequence_order=2,
+                    duration_days=2,
+                    dependency_task_ids=["TASK-001"],
+                    planned_start_at=datetime(
+                        2026, 4, 15, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 17, 16, 30, tzinfo=timezone.utc
+                    ),
+                ),
+                GeneratedTaskPlanModel(
+                    task_id="TASK-001",
+                    sequence_order=1,
+                    duration_days=1,
+                    dependency_task_ids=[],
+                    planned_start_at=datetime(
+                        2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                    ),
+                ),
+            ],
+        )
+    ]
+
+    rows = list_plan_review_rows(
+        plans,
+        plan_id="PLAN-001",
+    )
+
+    assert rows == [
+        {
+            "task_id": "TASK-001",
+            "sequence_order": 1,
+            "duration_days": 1,
+            "dependency_task_ids": [],
+            "planned_start_at": "2026-04-13T08:30:00Z",
+            "planned_finish_at": "2026-04-13T16:30:00Z",
+        },
+        {
+            "task_id": "TASK-002",
+            "sequence_order": 2,
+            "duration_days": 2,
+            "dependency_task_ids": ["TASK-001"],
+            "planned_start_at": "2026-04-15T08:30:00Z",
+            "planned_finish_at": "2026-04-17T16:30:00Z",
+        },
+    ]
+
+
+def test_build_plan_review_payload_returns_none_for_missing_plan_id():
+    payload = build_plan_review_payload(
+        [],
+        plan_id="PLAN-999",
+    )
+
+    assert payload is None
+
+
+def test_build_plan_review_payload_returns_summary_for_generated_plan():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+            generated_task_plans=[
+                GeneratedTaskPlanModel(
+                    task_id="TASK-002",
+                    sequence_order=2,
+                    duration_days=2,
+                    dependency_task_ids=["TASK-001"],
+                    planned_start_at=datetime(
+                        2026, 4, 15, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 17, 16, 30, tzinfo=timezone.utc
+                    ),
+                ),
+                GeneratedTaskPlanModel(
+                    task_id="TASK-001",
+                    sequence_order=1,
+                    duration_days=1,
+                    dependency_task_ids=[],
+                    planned_start_at=datetime(
+                        2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                    ),
+                ),
+            ],
+        )
+    ]
+
+    payload = build_plan_review_payload(
+        plans,
+        plan_id="PLAN-001",
+    )
+
+    assert payload == {
+        "plan_id": "PLAN-001",
+        "work_package_id": "WP-001",
+        "plan_state": "draft",
+        "planning_basis": {
+            "duration_source": "task_duration",
+            "basis_label": "Task duration baseline",
+        },
+        "planned_start_at": "2026-04-13T08:30:00Z",
+        "planning_calendar": {
+            "working_days": ["monday", "wednesday", "friday"],
+            "workday_hours": 8,
+            "workmonth_mode": "calendar_month",
+        },
+        "generated_task_plans": [
+            {
+                "task_id": "TASK-001",
+                "sequence_order": 1,
+                "duration_days": 1,
+                "dependency_task_ids": [],
+                "planned_start_at": "2026-04-13T08:30:00Z",
+                "planned_finish_at": "2026-04-13T16:30:00Z",
+            },
+            {
+                "task_id": "TASK-002",
+                "sequence_order": 2,
+                "duration_days": 2,
+                "dependency_task_ids": ["TASK-001"],
+                "planned_start_at": "2026-04-15T08:30:00Z",
+                "planned_finish_at": "2026-04-17T16:30:00Z",
+            },
+        ],
+        "generated_task_plan_count": 2,
+        "generated_schedule_start_at": "2026-04-13T08:30:00Z",
+        "generated_schedule_finish_at": "2026-04-17T16:30:00Z",
+    }
+
+
+def test_build_plan_review_payload_returns_empty_generated_summary_when_not_generated():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+
+    payload = build_plan_review_payload(
+        plans,
+        plan_id="PLAN-001",
+    )
+
+    assert payload == {
+        "plan_id": "PLAN-001",
+        "work_package_id": "WP-001",
+        "plan_state": "draft",
+        "planning_basis": {
+            "duration_source": "task_duration",
+            "basis_label": None,
+        },
+        "planned_start_at": "2026-04-13T08:30:00Z",
+        "planning_calendar": {
+            "working_days": ["monday", "wednesday", "friday"],
+            "workday_hours": 8,
+            "workmonth_mode": "calendar_month",
+        },
+        "generated_task_plans": [],
+        "generated_task_plan_count": 0,
+        "generated_schedule_start_at": None,
+        "generated_schedule_finish_at": None,
+    }
+
