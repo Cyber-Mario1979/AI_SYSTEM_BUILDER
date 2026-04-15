@@ -6,6 +6,7 @@ from pydantic import ValidationError
 
 from asbp.planning_logic import (
     build_plan_review_payload,
+    commit_plan,
     generate_next_plan_id,
     generate_plan_baseline,
     list_plan_review_rows,
@@ -1506,3 +1507,188 @@ def test_build_plan_review_payload_returns_empty_generated_summary_when_not_gene
         "generated_schedule_finish_at": None,
     }
 
+
+
+def test_commit_plan_returns_none_for_missing_plan_id():
+    updated_plan = commit_plan(
+        [],
+        plan_id="PLAN-999",
+    )
+
+    assert updated_plan is None
+
+
+
+def test_commit_plan_transitions_draft_plan_to_committed_without_mutating_payload():
+    generated_task_plans = [
+        GeneratedTaskPlanModel(
+            task_id="TASK-001",
+            sequence_order=1,
+            duration_days=1,
+            dependency_task_ids=[],
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planned_finish_at=datetime(2026, 4, 13, 16, 30, tzinfo=timezone.utc),
+        )
+    ]
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+            generated_task_plans=generated_task_plans,
+        ),
+        PlanningModel(
+            plan_id="PLAN-002",
+            work_package_id="WP-002",
+            plan_state="draft",
+        ),
+    ]
+
+    updated_plan = commit_plan(
+        plans,
+        plan_id="PLAN-001",
+    )
+
+    assert updated_plan is plans[0]
+    assert plans == [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="committed",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+                basis_label="Task duration baseline",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+            generated_task_plans=generated_task_plans,
+        ),
+        PlanningModel(
+            plan_id="PLAN-002",
+            work_package_id="WP-002",
+            plan_state="draft",
+        ),
+    ]
+
+
+
+def test_commit_plan_rejects_already_committed_plan():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="committed",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+            generated_task_plans=[
+                GeneratedTaskPlanModel(
+                    task_id="TASK-001",
+                    sequence_order=1,
+                    duration_days=1,
+                    dependency_task_ids=[],
+                    planned_start_at=datetime(
+                        2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                    ),
+                )
+            ],
+        )
+    ]
+
+    with pytest.raises(ValueError) as exc_info:
+        commit_plan(
+            plans,
+            plan_id="PLAN-001",
+        )
+
+    assert "Plan is already committed: PLAN-001" in str(exc_info.value)
+
+
+
+def test_commit_plan_rejects_missing_planning_basis():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+            generated_task_plans=[
+                GeneratedTaskPlanModel(
+                    task_id="TASK-001",
+                    sequence_order=1,
+                    duration_days=1,
+                    dependency_task_ids=[],
+                    planned_start_at=datetime(
+                        2026, 4, 13, 8, 30, tzinfo=timezone.utc
+                    ),
+                    planned_finish_at=datetime(
+                        2026, 4, 13, 16, 30, tzinfo=timezone.utc
+                    ),
+                )
+            ],
+        )
+    ]
+
+    with pytest.raises(ValueError) as exc_info:
+        commit_plan(
+            plans,
+            plan_id="PLAN-001",
+        )
+
+    assert "planning_basis must exist" in str(exc_info.value)
+
+
+
+def test_commit_plan_rejects_missing_generated_task_plans():
+    plans = [
+        PlanningModel(
+            plan_id="PLAN-001",
+            work_package_id="WP-001",
+            plan_state="draft",
+            planning_basis=PlanningBasisModel(
+                duration_source="task_duration",
+            ),
+            planned_start_at=datetime(2026, 4, 13, 8, 30, tzinfo=timezone.utc),
+            planning_calendar=PlanningCalendarModel(
+                working_days=["monday", "wednesday", "friday"],
+                workday_hours=8,
+                workmonth_mode="calendar_month",
+            ),
+        )
+    ]
+
+    with pytest.raises(ValueError) as exc_info:
+        commit_plan(
+            plans,
+            plan_id="PLAN-001",
+        )
+
+    assert "generated_task_plans must exist before commit" in str(exc_info.value)

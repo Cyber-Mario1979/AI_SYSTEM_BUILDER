@@ -255,6 +255,44 @@ def _build_sorted_generated_task_plan_payloads(
     )
 
 
+
+
+def _validate_plan_commit_preconditions(plan: PlanningModel) -> None:
+    if plan.plan_state == "committed":
+        raise ValueError(f"Plan is already committed: {plan.plan_id}")
+
+    _validate_plan_generation_preconditions(plan)
+
+    if not plan.generated_task_plans:
+        raise ValueError(
+            "Plan generated_task_plans must exist before commit: "
+            f"{plan.plan_id}"
+        )
+
+
+def commit_plan(
+    plans: list[PlanningModel],
+    *,
+    plan_id: str,
+) -> PlanningModel | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    _validate_plan_commit_preconditions(plan)
+
+    validated_plan = PlanningModel(
+        plan_id=plan.plan_id,
+        work_package_id=plan.work_package_id,
+        plan_state="committed",
+        planning_basis=plan.planning_basis,
+        planned_start_at=plan.planned_start_at,
+        planning_calendar=plan.planning_calendar,
+        generated_task_plans=plan.generated_task_plans,
+    )
+    plan.plan_state = validated_plan.plan_state
+    return plan
+
 def set_plan_planning_basis(
     plans: list[PlanningModel],
     *,
