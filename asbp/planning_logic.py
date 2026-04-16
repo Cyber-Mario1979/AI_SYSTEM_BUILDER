@@ -506,4 +506,132 @@ def validate_persisted_generated_task_plan_task_ids(
                     "Duplicate generated task plan task_id is not allowed: "
                     f"{generated_task_plan.task_id}"
                 )
-            seen_task_ids.add(generated_task_plan.task_id)        
+            seen_task_ids.add(generated_task_plan.task_id)
+
+
+
+def _is_legacy_generated_plan_snapshot(plan: PlanningModel) -> bool:
+    return (
+        plan.plan_state == "draft"
+        and bool(plan.generated_task_plans)
+        and plan.planning_basis is None
+        and plan.planned_start_at is None
+        and plan.planning_calendar is None
+    )
+
+
+def _validate_generated_task_plan_schedule_context(plan: PlanningModel) -> None:
+    if plan.plan_state == "committed" and not plan.generated_task_plans:
+        raise ValueError(
+            "Committed plan must include generated_task_plans: "
+            f"{plan.plan_id}"
+        )
+
+    if not plan.generated_task_plans:
+        return
+
+    if _is_legacy_generated_plan_snapshot(plan):
+        return
+
+    if plan.planning_basis is None:
+        raise ValueError(
+            "Plan with generated_task_plans must include planning_basis: "
+            f"{plan.plan_id}"
+        )
+
+    if plan.planned_start_at is None:
+        raise ValueError(
+            "Plan with generated_task_plans must include planned_start_at: "
+            f"{plan.plan_id}"
+        )
+
+    if plan.planning_calendar is None:
+        raise ValueError(
+            "Plan with generated_task_plans must include planning_calendar: "
+            f"{plan.plan_id}"
+        )
+
+
+def validate_persisted_generated_task_plan_consistency(
+    plans: list[PlanningModel],
+    tasks: list[TaskModel],
+) -> None:
+    tasks_by_id = {task.task_id: task for task in tasks}
+
+    for plan in plans:
+        _validate_generated_task_plan_schedule_context(plan)
+
+        if not plan.generated_task_plans:
+            continue
+
+        seen_task_ids: set[str] = set()
+        seen_sequence_orders: set[int] = set()
+        generated_task_id_set = {
+            generated_task_plan.task_id
+            for generated_task_plan in plan.generated_task_plans
+        }
+
+        for generated_task_plan in plan.generated_task_plans:
+            if generated_task_plan.task_id in seen_task_ids:
+                raise ValueError(
+                    "Duplicate generated task plan task_id is not allowed: "
+                    f"{generated_task_plan.task_id}"
+                )
+            seen_task_ids.add(generated_task_plan.task_id)
+
+            if generated_task_plan.sequence_order in seen_sequence_orders:
+                raise ValueError(
+                    "Duplicate generated task plan sequence_order is not allowed: "
+                    f"{plan.plan_id} -> {generated_task_plan.sequence_order}"
+                )
+            seen_sequence_orders.add(generated_task_plan.sequence_order)
+
+            seen_dependency_ids: set[str] = set()
+
+            for dependency_task_id in generated_task_plan.dependency_task_ids:
+                if dependency_task_id == generated_task_plan.task_id:
+                    raise ValueError(
+                        "Generated task plan dependency cannot reference the same "
+                        f"task: {plan.plan_id} -> {generated_task_plan.task_id}"
+                    )
+
+                if dependency_task_id in seen_dependency_ids:
+                    raise ValueError(
+                        "Duplicate generated task plan dependency is not allowed: "
+                        f"{plan.plan_id} -> {generated_task_plan.task_id} -> "
+                        f"{dependency_task_id}"
+                    )
+                seen_dependency_ids.add(dependency_task_id)
+
+                if dependency_task_id not in generated_task_id_set:
+                    raise ValueError(
+                        "Generated task plan dependency must exist inside plan "
+                        f"scope: {plan.plan_id} -> "
+                        f"{generated_task_plan.task_id} -> {dependency_task_id}"
+                    )
+
+        expected_sequence_orders = list(range(1, len(plan.generated_task_plans) + 1))
+        actual_sequence_orders = sorted(seen_sequence_orders)
+        if actual_sequence_orders != expected_sequence_orders:
+            raise ValueError(
+                "Generated task plan sequence_order must be contiguous starting at 1: "
+                f"{plan.plan_id}"
+            )
+
+        if _is_legacy_generated_plan_snapshot(plan):
+            continue
+
+        for generated_task_plan in plan.generated_task_plans:
+            task = tasks_by_id.get(generated_task_plan.task_id)
+            if task is None:
+                raise ValueError(
+                    "Generated task plan task_id does not exist in tasks: "
+                    f"{plan.plan_id} -> {generated_task_plan.task_id}"
+                )
+
+            if task.work_package_id != plan.work_package_id:
+                raise ValueError(
+                    "Generated task plan task belongs to different work_package: "
+                    f"{plan.plan_id} -> {generated_task_plan.task_id} "
+                    f"({task.work_package_id})"
+                )

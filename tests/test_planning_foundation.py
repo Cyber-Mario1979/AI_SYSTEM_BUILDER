@@ -1692,3 +1692,481 @@ def test_commit_plan_rejects_missing_generated_task_plans():
         )
 
     assert "generated_task_plans must exist before commit" in str(exc_info.value)
+
+def test_load_validated_state_rejects_committed_plan_without_generated_task_plans(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "committed",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Committed plan must include generated_task_plans: PLAN-001" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_generated_task_plans_without_planning_basis(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [
+                {
+                    "task_id": "TASK-001",
+                    "order": 1,
+                    "title": "Prepare FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                }
+            ],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        }
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Plan with generated_task_plans must include planning_basis: PLAN-001" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_generated_task_plan_with_missing_task_record(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-999",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        }
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Generated task plan task_id does not exist in tasks: PLAN-001 -> TASK-999" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_generated_task_plan_task_from_different_work_package(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [
+                {
+                    "task_id": "TASK-001",
+                    "order": 1,
+                    "title": "Prepare FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-002",
+                    "status": "planned",
+                }
+            ],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                },
+                {
+                    "wp_id": "WP-002",
+                    "title": "Autoclave qualification",
+                    "status": "open",
+                },
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        }
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Generated task plan task belongs to different work_package: PLAN-001 -> TASK-001 (WP-002)" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_duplicate_generated_task_plan_sequence_order(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [
+                {
+                    "task_id": "TASK-001",
+                    "order": 1,
+                    "title": "Prepare FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                },
+                {
+                    "task_id": "TASK-002",
+                    "order": 2,
+                    "title": "Execute FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                },
+            ],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        },
+                        {
+                            "task_id": "TASK-002",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": ["TASK-001"],
+                            "planned_start_at": "2026-04-15T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-15T16:30:00+00:00",
+                        },
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Duplicate generated task plan sequence_order is not allowed: PLAN-001 -> 1" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_non_contiguous_generated_task_plan_sequence_order(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [
+                {
+                    "task_id": "TASK-001",
+                    "order": 1,
+                    "title": "Prepare FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                },
+                {
+                    "task_id": "TASK-002",
+                    "order": 2,
+                    "title": "Execute FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                },
+            ],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        },
+                        {
+                            "task_id": "TASK-002",
+                            "sequence_order": 3,
+                            "duration_days": 1,
+                            "dependency_task_ids": ["TASK-001"],
+                            "planned_start_at": "2026-04-15T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-15T16:30:00+00:00",
+                        },
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Generated task plan sequence_order must be contiguous starting at 1: PLAN-001" in str(
+        exc_info.value
+    )
+
+
+def test_load_validated_state_rejects_generated_task_plan_dependency_outside_plan_scope(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    write_state_file(
+        state_file,
+        {
+            "project": "AI_SYSTEM_BUILDER",
+            "version": "0.8.0",
+            "status": "in_flight",
+            "tasks": [
+                {
+                    "task_id": "TASK-001",
+                    "order": 1,
+                    "title": "Prepare FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                },
+                {
+                    "task_id": "TASK-002",
+                    "order": 2,
+                    "title": "Execute FAT",
+                    "duration": 1,
+                    "work_package_id": "WP-001",
+                    "status": "planned",
+                    "dependencies": ["TASK-001"],
+                },
+            ],
+            "work_packages": [
+                {
+                    "wp_id": "WP-001",
+                    "title": "Tablet press qualification",
+                    "status": "open",
+                }
+            ],
+            "task_collections": [],
+            "plans": [
+                {
+                    "plan_id": "PLAN-001",
+                    "work_package_id": "WP-001",
+                    "plan_state": "draft",
+                    "planning_basis": {
+                        "duration_source": "task_duration",
+                    },
+                    "planned_start_at": "2026-04-13T08:30:00+00:00",
+                    "planning_calendar": {
+                        "working_days": ["monday", "wednesday", "friday"],
+                        "workday_hours": 8,
+                        "workmonth_mode": "calendar_month",
+                    },
+                    "generated_task_plans": [
+                        {
+                            "task_id": "TASK-001",
+                            "sequence_order": 1,
+                            "duration_days": 1,
+                            "dependency_task_ids": [],
+                            "planned_start_at": "2026-04-13T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-13T16:30:00+00:00",
+                        },
+                        {
+                            "task_id": "TASK-002",
+                            "sequence_order": 2,
+                            "duration_days": 1,
+                            "dependency_task_ids": ["TASK-999"],
+                            "planned_start_at": "2026-04-15T08:30:00+00:00",
+                            "planned_finish_at": "2026-04-15T16:30:00+00:00",
+                        },
+                    ],
+                }
+            ],
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        load_validated_state(state_file)
+
+    assert "Generated task plan dependency must exist inside plan scope: PLAN-001 -> TASK-002 -> TASK-999" in str(
+        exc_info.value
+    )
+
