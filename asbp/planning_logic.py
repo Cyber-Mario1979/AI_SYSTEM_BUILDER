@@ -493,23 +493,6 @@ def validate_persisted_plan_work_package_links(
                 "Persisted plan work_package_id does not exist: "
                 f"{plan.plan_id} -> {plan.work_package_id}"
             )
-
-def validate_persisted_generated_task_plan_task_ids(
-    plans: list[PlanningModel],
-) -> None:
-    for plan in plans:
-        seen_task_ids: set[str] = set()
-
-        for generated_task_plan in plan.generated_task_plans:
-            if generated_task_plan.task_id in seen_task_ids:
-                raise ValueError(
-                    "Duplicate generated task plan task_id is not allowed: "
-                    f"{generated_task_plan.task_id}"
-                )
-            seen_task_ids.add(generated_task_plan.task_id)
-
-
-
 def _is_legacy_generated_plan_snapshot(plan: PlanningModel) -> bool:
     return (
         plan.plan_state == "draft"

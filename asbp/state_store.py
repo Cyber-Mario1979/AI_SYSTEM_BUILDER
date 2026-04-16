@@ -6,7 +6,6 @@ from pydantic import ValidationError
 from asbp.collection_logic import validate_persisted_collection_task_memberships
 from asbp.planning_logic import (
     validate_persisted_generated_task_plan_consistency,
-    validate_persisted_generated_task_plan_task_ids,
     validate_persisted_plan_work_package_links,
 )
 from asbp.state_model import StateModel
@@ -59,9 +58,6 @@ def load_validated_state(state_file_path: Path) -> StateModel:
     validate_persisted_plan_work_package_links(
         state.plans,
         state.work_packages,
-    )
-    validate_persisted_generated_task_plan_task_ids(
-        state.plans,
     )
     validate_persisted_generated_task_plan_consistency(
         state.plans,

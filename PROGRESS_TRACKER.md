@@ -29,24 +29,16 @@ Milestone 7 — Planning Layer
 
 ## Current Approved Slice Family
 
-M7.7 — Planning surface consolidation
+M7.8 — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-M7.6 — Planning validation and failure behavior completed
+M7.7 — Planning surface consolidation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M7.7 — Planning surface consolidation
-
-## Milestone UAT Status
-
-NOT_STARTED_MILESTONE_OPEN
+M7.8 — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-383 passed in 35.25s
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+383 passed in 35.13s
