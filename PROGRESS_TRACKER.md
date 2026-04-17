@@ -21,32 +21,24 @@ It is updated only when explicitly requested.
 
 ## Current Phase
 
-Phase 2 — Deterministic System Modeling
+Phase 3 — AI Runtime Architecture
 
 ## Current Milestone
 
-Milestone 7 — Planning Layer
+Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M7.10 — Milestone closeout
+M8.1 — Cross-entity relationship foundation
 
 ## Latest Completed Checkpoint
 
-M7.9 — Milestone UAT checkpoint completed
+M7.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M7.10 — Milestone closeout
-
-## Latest Verified Validation Status
-
-383 passed in 34.98s
+M8.1 — Cross-entity relationship foundation
 
 ## Milestone UAT Status
 
-PASSED
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+NOT_STARTED_MILESTONE_OPEN
