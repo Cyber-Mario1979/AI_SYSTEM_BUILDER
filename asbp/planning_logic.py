@@ -51,12 +51,29 @@ def find_plan_by_id(
 
 def _build_committed_task_id_set(
     task_collections: list[TaskCollectionModel],
+    *,
+    work_package_id: str,
 ) -> set[str]:
-    committed_task_ids: set[str] = set()
+    bound_committed_collections: list[TaskCollectionModel] = []
+    legacy_unbound_committed_collections: list[TaskCollectionModel] = []
 
     for task_collection in task_collections:
         if task_collection.collection_state != "committed":
             continue
+
+        if task_collection.work_package_id == work_package_id:
+            bound_committed_collections.append(task_collection)
+        elif task_collection.work_package_id is None:
+            legacy_unbound_committed_collections.append(task_collection)
+
+    selected_collections = (
+        bound_committed_collections
+        if bound_committed_collections
+        else legacy_unbound_committed_collections
+    )
+
+    committed_task_ids: set[str] = set()
+    for task_collection in selected_collections:
         committed_task_ids.update(task_collection.task_ids)
 
     return committed_task_ids
@@ -382,7 +399,10 @@ def generate_plan_baseline(
 
     _validate_plan_generation_preconditions(plan)
 
-    committed_task_ids = _build_committed_task_id_set(task_collections)
+    committed_task_ids = _build_committed_task_id_set(
+    task_collections,
+    work_package_id=plan.work_package_id,
+)
     eligible_tasks = _build_eligible_plan_tasks(
         tasks,
         work_package_id=plan.work_package_id,

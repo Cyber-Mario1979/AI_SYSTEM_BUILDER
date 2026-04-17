@@ -3,7 +3,10 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from asbp.collection_logic import validate_persisted_collection_task_memberships
+from asbp.collection_logic import (
+    validate_persisted_collection_task_memberships,
+    validate_persisted_collection_work_package_links,
+)
 from asbp.planning_logic import (
     validate_persisted_generated_task_plan_consistency,
     validate_persisted_plan_work_package_links,
@@ -45,6 +48,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("source_definition_id", None)
 
     for task_collection in raw_state.get("task_collections", []):
+        task_collection.setdefault("work_package_id", None)
         task_collection.setdefault("task_ids", [])
 
     raw_state.setdefault("plans", [])
@@ -54,6 +58,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
     validate_persisted_task_source_contracts(state.tasks)
     validate_persisted_task_work_package_links(
         state.tasks,
+        state.work_packages,
+    )
+    validate_persisted_collection_work_package_links(
+        state.task_collections,
         state.work_packages,
     )
     validate_persisted_collection_task_memberships(
@@ -109,9 +117,17 @@ def build_persisted_state_payload(state: StateModel) -> dict:
         if not selector_context:
             work_package.pop("selector_context", None)
 
-    for task_collection in payload.get("task_collections", []):
-        if task_collection.get("task_ids") == []:
-            task_collection.pop("task_ids", None)
+    for task_collection, task_collection_payload in zip(
+        state.task_collections,
+        payload.get("task_collections", []),
+    ):
+        if task_collection.work_package_id is not None:
+            task_collection_payload["work_package_id"] = (
+                task_collection.work_package_id
+            )
+
+        if task_collection_payload.get("task_ids") == []:
+            task_collection_payload.pop("task_ids", None)
 
     for plan in payload.get("plans", []):
         planning_basis = plan.get("planning_basis")

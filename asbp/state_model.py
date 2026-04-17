@@ -107,6 +107,11 @@ class TaskCollectionModel(BaseModel):
     collection_id: str = Field(pattern=r"^TC-\d{3}$")
     title: str = Field(min_length=1)
     collection_state: CollectionState
+    work_package_id: str | None = Field(
+        default=None,
+        pattern=r"^WP-\d{3}$",
+        exclude=True,
+    )
     task_ids: list[str] = Field(default_factory=list)
 
 

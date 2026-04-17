@@ -1,7 +1,13 @@
 import re
 
-from asbp.state_model import CollectionState, TaskCollectionModel, TaskModel
+from asbp.state_model import (
+    CollectionState,
+    TaskCollectionModel,
+    TaskModel,
+    WorkPackageModel,
+)
 from asbp.task_logic import find_task_by_reference
+
 
 def generate_next_collection_id(collections: list[TaskCollectionModel]) -> str:
     if not collections:
@@ -102,6 +108,8 @@ def update_collection_title(
         collection_id=collection.collection_id,
         title=title,
         collection_state=collection.collection_state,
+        work_package_id=collection.work_package_id,
+        task_ids=list(collection.task_ids),
     )
     collection.title = validated_collection.title
     return collection
@@ -117,7 +125,14 @@ def update_collection_state(
     if collection is None:
         return None
 
-    collection.collection_state = collection_state
+    validated_collection = TaskCollectionModel(
+        collection_id=collection.collection_id,
+        title=collection.title,
+        collection_state=collection_state,
+        work_package_id=collection.work_package_id,
+        task_ids=list(collection.task_ids),
+    )
+    collection.collection_state = validated_collection.collection_state
     return collection
 
 
@@ -179,6 +194,7 @@ def add_task_to_collection(
     collection.task_ids.append(target_task.task_id)
     return collection, target_task, None
 
+
 def remove_task_from_collection(
     tasks: list[TaskModel],
     collections: list[TaskCollectionModel],
@@ -201,6 +217,24 @@ def remove_task_from_collection(
     ]
 
     return collection, target_task, None
+
+
+def validate_persisted_collection_work_package_links(
+    task_collections: list[TaskCollectionModel],
+    work_packages: list[WorkPackageModel],
+) -> None:
+    existing_wp_ids = {work_package.wp_id for work_package in work_packages}
+
+    for task_collection in task_collections:
+        if task_collection.work_package_id is None:
+            continue
+
+        if task_collection.work_package_id not in existing_wp_ids:
+            raise ValueError(
+                "Persisted collection work_package_id does not exist: "
+                f"{task_collection.collection_id} -> {task_collection.work_package_id}"
+            )
+
 
 def validate_persisted_collection_task_memberships(
     tasks: list[TaskModel],
@@ -241,5 +275,3 @@ def validate_persisted_collection_task_memberships(
                 )
 
             non_source_memberships[task_id] = collection
-
-            

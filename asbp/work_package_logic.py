@@ -9,6 +9,7 @@ from asbp.state_model import (
     WorkPackageModel,
 )
 
+
 def find_work_package_by_id(
     work_packages: list[WorkPackageModel],
     wp_id: str,
