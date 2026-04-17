@@ -5,37 +5,38 @@ status: ACTIVE_APPROVED
 governs_execution: true
 document_state_mode: state_agnostic
 authority: canonical_strategic_source_of_truth
-version: v2
-supersedes: ROADMAP_CANONICAL v1
+version: v3
+supersedes: ROADMAP_CANONICAL v2
 ---
 
-# AI Systems Builder Program (ASBP) — Canonical Roadmap v2
+# AI Systems Builder Program (ASBP) — Canonical Roadmap v3
 ## Full checkpoint-ladder version
 
 ## Approval Note
 
-This roadmap v2 is approved and authoritative.
+This roadmap v3 is approved and authoritative.
 
 It is a real roadmap amendment, not a minor wording cleanup.
 
-It preserves the completed history through Milestone 5 while making the forward product model more explicit from Milestone 6 onward.
+It preserves the completed deterministic foundation and planning history while making the upstream source-of-work model explicit for all forward execution from Milestone 8 onward.
 
 ---
 
-## Why v2 exists
+## Why v3 exists
 
-Roadmap v2 exists because the system model became materially richer after Milestone 5 closeout and M5 UAT review.
+Roadmap v3 exists because the prior roadmap already made preset-first direction, selector context, standards bundles, collection workflow states, and planning direction explicit, but it still left one product-model distinction too implicit.
 
-The following forward directions are now explicit and must not remain buried in notes:
+That distinction is the difference between authoritative work-definition sources and instantiated execution records.
 
-- Work Package should be treated as the canonical parent-facing unit
-- preset-first deterministic entry and binding should be modeled explicitly
-- selector logic must include scope / intent, not only type
-- standards bundle binding is part of runtime context, not only final documentation
-- Task Collections must be interpreted as source / staged / committed workflow states
-- planning must become an explicit future layer
-- the system should be treated as timestamp-aware by design
-- none of the above cancels the broader AI / UI / production-grade SaaS direction
+The following forward directions are now explicit and must not remain inferred:
+
+- preset and selector context are upstream binding seeds, not decorative metadata
+- task pools or equivalent source libraries are authoritative work-definition sources when preset-driven flow is used
+- persisted `tasks` represent instantiated execution records inside the active deterministic system state
+- task collections organize and govern instantiated execution records, not raw library definitions
+- planning consumes committed instantiated tasks, not task-pool library entries directly
+- the deterministic execution core remains valid, but it must be understood as downstream from source resolution and instantiation
+- the manual-first task path remains a valid lower-automation fallback and must remain explicit rather than accidental
 
 ---
 
@@ -222,6 +223,12 @@ Rules:
 14. Preset/binding direction, standards bundles, and scope/intent selector logic are roadmap-level concerns, not hidden implementation assumptions.
 15. The system is timestamp-aware by design even before full planning implementation is complete.
 16. None of the deterministic foundation layers cancels the broader AI / UI / production-grade SaaS direction.
+17. Authoritative work-definition sources must be explicitly separated from instantiated execution records.
+18. Preset-driven flow may resolve work from source libraries before execution records are instantiated.
+19. Persisted tasks are execution-state records and must not be treated as the only possible upstream source-of-work model.
+20. Collections govern workflow-state handling over instantiated tasks.
+21. Planning is downstream from committed instantiated tasks, even when the original source-of-work came from task pools or selector-bound libraries.
+22. The manual-first task path remains valid as a lower-automation fallback and must stay compatible with the deterministic execution core.
 
 ---
 
@@ -647,6 +654,18 @@ The collection model should support at least these conceptual states:
 
 Selector/binding direction in this milestone should make explicit that downstream deterministic bindings are resolved from context, not from Work Package type alone.
 
+Clarification for v3:
+
+The collection model does not replace authoritative task-definition libraries.
+
+When preset-driven flow is used, selector context may resolve authoritative work-definition sources before execution tasks are instantiated.
+
+Collections remain the deterministic workflow-state layer over instantiated task records after source resolution and instantiation occur.
+
+Manual task entry remains valid in Milestone 6 as a direct execution-record path.
+
+It does not replace preset-driven source resolution, but it remains a legitimate lower-automation operating mode.
+
 #### Allowed work mapping
 
 ##### `M6.1` — Collection identity foundation
@@ -834,6 +853,12 @@ Planning should use:
 The roadmap does not pre-decide all local calendar parameters in advance.
 Local planning decisions such as weekend defaults or user-amendable weekend policies should be discussed immediately before the relevant checkpoint implementation under the local decision policy.
 
+Clarification for v3:
+
+Planning consumes committed instantiated task records.
+
+It must not plan directly from task-pool library definitions or other upstream source records without instantiation into the deterministic execution state first.
+
 #### Allowed work mapping
 
 ##### `M7.1` — Planning entity foundation
@@ -944,11 +969,41 @@ Allowed work:
 
 ### Milestone 8 — Multi-Entity Coordination
 
-**Goal:** Stabilize deterministic relationships across Work Package, collections, planning context, and future downstream layers before introducing AI runtime behavior.
+**Goal:** Stabilize deterministic relationships across authoritative work sources, Work Package context, instantiated task records, collections, planning context, and future downstream layers before introducing AI runtime behavior.
+
+#### Design direction for Milestone 8
+
+Milestone 8 is where the roadmap must make the source-of-work model fully explicit.
+
+The canonical forward model is:
+
+- user-facing preset selection
+- selector-context resolution
+- authoritative source lookup such as task pool / profile / calendar / standards bundle
+- staged selection where applicable
+- task instantiation into persisted deterministic execution state
+- workflow-state handling over instantiated tasks through collections
+- planning from committed instantiated tasks
+- later downstream runtime and output layers
+
+This milestone does not require source libraries to share the same persisted representation as execution tasks.
+
+It requires only that source authority, instantiation rules, and downstream handoff boundaries are explicit and deterministic.
+
+This milestone must preserve deterministic boundaries between:
+
+- source definition
+- instantiated execution record
+- ownership
+- membership
+- reference
+- derived planning artifact
+
+This milestone must not collapse those layers into one ambiguous task model.
 
 #### Canonical checkpoint ladder
 
-- `M8.1` Cross-entity relationship foundation
+- `M8.1` Source-of-work and cross-entity relationship foundation
 - `M8.2` Work Package ↔ collection relationship normalization
 - `M8.3` Task ↔ collection relationship normalization
 - `M8.4` Binding-context consistency controls
@@ -963,13 +1018,20 @@ Allowed work:
 
 #### Allowed work mapping
 
-##### `M8.1` — Cross-entity relationship foundation
+##### `M8.1` — Source-of-work and cross-entity relationship foundation
 
 Allowed work:
 
-- define the canonical relationship model across task, Work Package, collection, and planning entities
-- define ownership vs membership vs reference distinctions
-- preserve deterministic identity boundaries
+- define the canonical source-of-work path for preset-driven deterministic flow
+- define preset and selector context as upstream binding seeds where applicable
+- define task pools or equivalent bound libraries as authoritative work-definition sources where applicable
+- define persisted `tasks` as instantiated execution records inside system state
+- define the deterministic boundary between source definition and instantiated execution record
+- define the manual-first fallback path as direct task instantiation without prior library resolution
+- define ownership vs membership vs reference distinctions across Work Package, task, collection, and planning layers
+- define how staged selection relates to later instantiated task state
+- define how committed instantiated task state becomes the valid planning input boundary
+- preserve deterministic identity boundaries across source records, instantiated tasks, collections, and plans
 
 ##### `M8.2` — Work Package ↔ collection relationship normalization
 
@@ -1062,9 +1124,13 @@ Allowed work:
 
 #### Exit criteria
 
+- the authoritative source-of-work model is explicit
+- the distinction between source definitions and instantiated execution records is explicit
 - cross-entity contracts are frozen
 - relationship validation exists
 - binding-context consistency is stable
+- planning input boundaries are explicit and deterministic
+- the lower-automation manual path remains compatible with the deterministic execution core
 
 ---
 
@@ -1472,3 +1538,4 @@ This should happen after the core model, relationships, runtime boundaries, and 
 6. Keep live project state only in the tracker and repo evidence.
 7. From Milestone 4 onward, do not move to the next milestone until the current milestone validation, UAT, and closeout checkpoints are complete.
 8. Keep addenda explicitly active or explicitly historical; never leave their governing status implicit.
+9. If forward execution depends on distinguishing source definitions from instantiated execution records, that distinction must be made explicit in the roadmap before implementation continues.
