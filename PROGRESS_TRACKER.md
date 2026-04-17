@@ -29,7 +29,7 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.1 — Cross-entity relationship foundation
+M8.1 — Source-of-work and cross-entity relationship foundation
 
 ## Latest Completed Checkpoint
 
@@ -37,7 +37,19 @@ M7.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.1 — Cross-entity relationship foundation
+M8.1 — Source-of-work and cross-entity relationship foundation
+
+## Latest Approved Roadmap Status
+
+ROADMAP_CANONICAL v3 — ACTIVE_APPROVED
+
+## Roadmap Amendment Draft Status
+
+docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md — superseded by canonical merge
+
+## Addendum Status
+
+ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md — completion transition pending historical status update
 
 ## Milestone UAT Status
 
