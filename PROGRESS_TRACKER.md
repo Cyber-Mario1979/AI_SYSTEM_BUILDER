@@ -29,19 +29,19 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.1 — Source-of-work and cross-entity relationship foundation
+M8.2 — Work Package ↔ collection relationship normalization
 
 ## Latest Completed Checkpoint
 
-M7.10 — Milestone closeout completed
+M8.1 — Source-of-work and cross-entity relationship foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.1 — Source-of-work and cross-entity relationship foundation
+M8.2 — Work Package ↔ collection relationship normalization
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `383 passed in 34.98s`
+`python -m pytest -q` — `390 passed in 36.23s`
 
 ## Milestone UAT Status
 

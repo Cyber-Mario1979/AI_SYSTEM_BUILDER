@@ -26,6 +26,8 @@ ScopeIntentId = Literal[
     "post-change",
     "post-deviation",
 ]
+TaskInstantiationMode = Literal["manual", "preset_resolved"]
+TaskSourceDefinitionKind = Literal["task_pool"]
 
 CANONICAL_WEEKDAY_ORDER: tuple[WeekdayId, ...] = (
     "monday",
@@ -54,8 +56,49 @@ class TaskModel(BaseModel):
     end_date: str | None = Field(default=None, min_length=1)
     task_key: str | None = None
     work_package_id: str | None = None
+    instantiation_mode: TaskInstantiationMode = Field(
+        default="manual",
+        exclude=True,
+    )
+    source_definition_kind: TaskSourceDefinitionKind | None = Field(
+        default=None,
+        exclude=True,
+    )
+    source_definition_id: str | None = Field(
+        default=None,
+        min_length=1,
+        exclude=True,
+    )
     status: Literal["planned", "in_progress", "completed", "over_due"]
     dependencies: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_source_of_work_contract(self):
+        if self.instantiation_mode == "manual":
+            if self.source_definition_kind is not None:
+                raise ValueError(
+                    "Manual task cannot declare source_definition_kind"
+                )
+            if self.source_definition_id is not None:
+                raise ValueError(
+                    "Manual task cannot declare source_definition_id"
+                )
+            return self
+
+        if self.source_definition_kind != "task_pool":
+            raise ValueError(
+                "Preset-resolved task must declare source_definition_kind=task_pool"
+            )
+        if self.source_definition_id is None:
+            raise ValueError(
+                "Preset-resolved task must declare source_definition_id"
+            )
+        if self.work_package_id is None:
+            raise ValueError(
+                "Preset-resolved task must declare work_package_id"
+            )
+
+        return self
 
 
 class TaskCollectionModel(BaseModel):
@@ -192,6 +235,7 @@ class PlanningModel(BaseModel):
             raise ValueError("planned_start_at must be timezone-aware")
 
         return planned_start_at
+
 
 class StateModel(BaseModel):
     model_config = ConfigDict(extra="forbid")

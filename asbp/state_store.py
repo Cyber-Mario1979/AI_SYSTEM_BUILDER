@@ -8,6 +8,7 @@ from asbp.planning_logic import (
     validate_persisted_generated_task_plan_consistency,
     validate_persisted_plan_work_package_links,
 )
+from asbp.source_of_work_logic import validate_persisted_task_source_contracts
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
 from asbp.work_package_logic import validate_persisted_task_work_package_links
@@ -39,6 +40,9 @@ def load_validated_state(state_file_path: Path) -> StateModel:
         task.setdefault("end_date", None)
         task.setdefault("task_key", None)
         task.setdefault("work_package_id", None)
+        task.setdefault("instantiation_mode", "manual")
+        task.setdefault("source_definition_kind", None)
+        task.setdefault("source_definition_id", None)
 
     for task_collection in raw_state.get("task_collections", []):
         task_collection.setdefault("task_ids", [])
@@ -47,6 +51,7 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
     state = StateModel(**raw_state)
     validate_persisted_task_keys(state.tasks)
+    validate_persisted_task_source_contracts(state.tasks)
     validate_persisted_task_work_package_links(
         state.tasks,
         state.work_packages,
@@ -68,10 +73,19 @@ def load_validated_state(state_file_path: Path) -> StateModel:
 
 def build_persisted_state_payload(state: StateModel) -> dict:
     payload = state.model_dump(mode="json")
-    
-    for task in payload.get("tasks", []):
-        if task.get("work_package_id") is None:
-            task.pop("work_package_id", None)
+
+    for task, task_payload in zip(state.tasks, payload.get("tasks", [])):
+        if task.work_package_id is None:
+            task_payload.pop("work_package_id", None)
+
+        if task.instantiation_mode != "manual":
+            task_payload["instantiation_mode"] = task.instantiation_mode
+
+        if task.source_definition_kind is not None:
+            task_payload["source_definition_kind"] = task.source_definition_kind
+
+        if task.source_definition_id is not None:
+            task_payload["source_definition_id"] = task.source_definition_id
 
     for work_package in payload.get("work_packages", []):
         selector_context = work_package.get("selector_context")
@@ -101,7 +115,7 @@ def build_persisted_state_payload(state: StateModel) -> dict:
 
     for plan in payload.get("plans", []):
         planning_basis = plan.get("planning_basis")
-        
+
         if plan.get("generated_task_plans") == []:
             plan.pop("generated_task_plans", None)
 
