@@ -10,6 +10,10 @@ supersedes: ROADMAP_CANONICAL v2
 ---
 
 # AI Systems Builder Program (ASBP) — Canonical Roadmap v3
+<<<<<<< HEAD
+=======
+
+>>>>>>> d7907e8 (Merge roadmap v3, close addendum 03, and normalize tracker for M8.1 source-of-work alignment)
 ## Full checkpoint-ladder version
 
 ## Approval Note
@@ -24,11 +28,21 @@ It preserves the completed deterministic foundation and planning history while m
 
 ## Why v3 exists
 
+<<<<<<< HEAD
 Roadmap v3 exists because the prior roadmap already made preset-first direction, selector context, standards bundles, collection workflow states, and planning direction explicit, but it still left one product-model distinction too implicit.
 
 That distinction is the difference between authoritative work-definition sources and instantiated execution records.
 
 The following forward directions are now explicit and must not remain inferred:
+=======
+Roadmap v3 exists because the prior roadmap already made preset-first direction, selector context, standards bundles, collection workflow states, and planning direction explicit, but it still left one product-model distinction too implicit:
+
+the difference between **authoritative work-definition sources** and **instantiated execution records**.
+
+That distinction must now be explicit.
+
+The following forward directions are now authoritative and must not remain inferred:
+>>>>>>> d7907e8 (Merge roadmap v3, close addendum 03, and normalize tracker for M8.1 source-of-work alignment)
 
 - preset and selector context are upstream binding seeds, not decorative metadata
 - task pools or equivalent source libraries are authoritative work-definition sources when preset-driven flow is used

@@ -39,6 +39,7 @@ M7.10 — Milestone closeout completed
 
 M8.1 — Source-of-work and cross-entity relationship foundation
 
+<<<<<<< HEAD
 ## Latest Approved Roadmap Status
 
 ROADMAP_CANONICAL v3 — ACTIVE_APPROVED
@@ -50,7 +51,22 @@ docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md — superseded by canon
 ## Addendum Status
 
 ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md — completion transition pending historical status update
+=======
+## Latest Verified Validation Status
+
+`python -m pytest -q` — `383 passed in 34.98s`
+>>>>>>> d7907e8 (Merge roadmap v3, close addendum 03, and normalize tracker for M8.1 source-of-work alignment)
 
 ## Milestone UAT Status
 
 NOT_STARTED_MILESTONE_OPEN
+
+## Repo Alignment Status
+
+ALIGNED_VERIFIED
+
+## Active Notes
+
+- `ROADMAP_CANONICAL.md` is now the approved v3 canonical roadmap.
+- `ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md` is completed historical and no longer governs execution.
+- `docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md` remains a design-spec review artifact only and is non-authoritative.

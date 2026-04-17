@@ -1,8 +1,8 @@
 ---
 doc_type: roadmap_addendum
 canonical_name: ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md
-status: ACTIVE
-governs_execution: true
+status: COMPLETED_HISTORICAL
+governs_execution: false
 authority: subordinate_to_ROADMAP_CANONICAL
 scope_type: temporary_overlay
 milestone_scope: PRE_M8_ALIGNMENT
@@ -11,31 +11,42 @@ phase_scope: Phase 3 gateway
 
 # ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT
 
+## Historical Completion Note
+
+This addendum is no longer active.
+
+Its exit condition was satisfied after:
+
+- canonical roadmap amendment to v3
+- tracker normalization to the corrected Milestone 8 checkpoint label
+
+It remains in the repo for traceability only.
+
 ## Purpose
 
-This addendum authorizes a bounded pre-implementation alignment pass before further Milestone 8 execution continues.
+This addendum authorized a bounded pre-implementation alignment pass before further Milestone 8 execution continued.
 
-It exists because the imported design snapshot and the current repo-real ASBP model are not merely using different wording.
-They currently express different upstream product models for how work enters the system.
+It existed because the imported design snapshot and the current repo-real ASBP model were not merely using different wording.
+They expressed different upstream product models for how work enters the system.
 
-This addendum does not replace the canonical roadmap.
-It temporarily supplements it so the product model can be aligned explicitly before more implementation work proceeds.
+This addendum did not replace the canonical roadmap.
+It temporarily supplemented it so the product model could be aligned explicitly before more implementation work proceeded.
 
 ## Authority
 
-This addendum is subordinate to `ROADMAP_CANONICAL.md`.
+This addendum remained subordinate to `ROADMAP_CANONICAL.md`.
 
-It is active because the next tracked checkpoint is currently `M8.1 — Cross-entity relationship foundation`, while the current imported design snapshot indicates a missing upstream source-of-work layer that materially affects how cross-entity relationships should be modeled.
+It was activated because the tracked next checkpoint was `M8.1 — Cross-entity relationship foundation`, while the imported design snapshot indicated a missing upstream source-of-work layer that materially affected how cross-entity relationships should be modeled.
 
-## Current application of this addendum
+## Historical application of this addendum
 
-The current repo-real model treats:
+The repo-real model at the time treated:
 
 - `tasks` as already-instantiated persisted entities
 - `task_collections` as workflow-state containers over existing tasks
 - `plans` as downstream schedule artifacts derived from committed tasks
 
-The imported design snapshot instead makes explicit a different upstream flow:
+The imported design snapshot made explicit a different upstream flow:
 
 - preset
 - selector context
@@ -44,13 +55,13 @@ The imported design snapshot instead makes explicit a different upstream flow:
 - committed task instantiation
 - downstream execution and planning
 
-Therefore, continuing normal `M8.1` implementation immediately would risk hardening the wrong relationship model.
+Therefore, continuing normal `M8.1` implementation at that time would have risked hardening the wrong relationship model.
 
-## Scope of this addendum
+## Historical scope of this addendum
 
-This addendum applies only to the bounded alignment work required to formalize the upstream source-of-work model before further Milestone 8 implementation continues.
+This addendum applied only to the bounded alignment work required to formalize the upstream source-of-work model before further Milestone 8 implementation continued.
 
-It applies only to:
+It applied only to:
 
 - product-model comparison between the current repo and the imported design snapshot
 - explicit identification of the authoritative source-of-work path
@@ -68,8 +79,8 @@ Allowed work:
 - compare current repo behavior against imported orchestration/runtime design
 - define the canonical upstream source-of-work model
 - preserve the current ASBP deterministic core as the downstream execution layer if still valid
-- draft a canonical roadmap amendment that formalizes the corrected model
-- update tracker wording only after the roadmap direction is formally amended
+- draft a canonical roadmap amendment that formalized the corrected model
+- update tracker wording after the roadmap direction was formally amended
 - perform design-only normalization needed to restore checkpoint clarity
 
 ## Not allowed under this addendum
@@ -77,45 +88,43 @@ Allowed work:
 Not allowed:
 
 - normal Milestone 8 feature coding
-- silent continuation of `M8.1` as if no model conflict exists
+- silent continuation of `M8.1` as if no model conflict existed
 - treating the imported pack snapshot as implementation truth
 - replacing the current repo core without explicit roadmap approval
 - parallel-system feature expansion
 - hidden roadmap changes without explicit amendment
-- using this alignment pass as a pretext for unrelated refactors
+- using the alignment pass as a pretext for unrelated refactors
 
-## Pause rule
+## Historical pause rule
 
-While this addendum is active:
+While this addendum was active:
 
-- further normal `M8.1` implementation is paused
-- no new cross-entity runtime behavior should be coded
-- no new task-source behavior should be implemented
-  until the canonical source-of-work model is formally clarified
+- further normal `M8.1` implementation was paused
+- no new cross-entity runtime behavior was to be coded
+- no new task-source behavior was to be implemented
+  until the canonical source-of-work model was formally clarified
 
-## Locked next checkpoint under this addendum
-
-Locked checkpoint:
+## Historical locked checkpoint
 
 **Pre-M8 product-model alignment checkpoint — define the canonical source-of-work path and formalize it through a canonical roadmap amendment before resuming implementation.**
 
-## Required alignment outcome
+## Historical required alignment outcome
 
-The alignment work under this addendum must explicitly decide and document:
+The alignment work under this addendum explicitly required deciding and documenting:
 
-1. whether presets and selector context are only metadata or true upstream binding seeds
-2. whether task pools are authoritative work sources
-3. whether `state.tasks` are canonical source records or instantiated execution records
-4. what role `task_collections` play relative to staged/committed task selection
-5. how planning relates to instantiated committed tasks
-6. what exact checkpoint should follow once the roadmap is amended
+1. whether presets and selector context were only metadata or true upstream binding seeds
+2. whether task pools were authoritative work sources
+3. whether `state.tasks` were canonical source records or instantiated execution records
+4. what role `task_collections` played relative to staged/committed task selection
+5. how planning related to instantiated committed tasks
+6. what exact checkpoint should follow once the roadmap was amended
 
-## Exit condition for this addendum
+## Exit condition
 
-This addendum remains active until all of the following are true:
+This addendum reached completion when all of the following became true:
 
-- the canonical upstream source-of-work model is explicitly decided
-- the canonical roadmap is amended to reflect that model
-- the tracker is updated to reflect the corrected execution position
-- the exact next unfinished checkpoint is re-declared without ambiguity
-- normal implementation can resume without product-model conflict
+- the canonical upstream source-of-work model was explicitly decided
+- the canonical roadmap was amended to reflect that model
+- the tracker was updated to reflect the corrected execution position
+- the exact next unfinished checkpoint was re-declared without ambiguity
+- normal implementation could resume without product-model conflict
