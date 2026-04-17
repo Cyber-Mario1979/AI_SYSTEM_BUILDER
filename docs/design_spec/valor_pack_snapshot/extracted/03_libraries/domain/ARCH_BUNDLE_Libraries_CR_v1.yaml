@@ -1,0 +1,992 @@
+bundle_id: VALOR-ARCH-LIBRARIES-CR
+version: v1
+date: '2026-02-14'
+sources:
+- path: libraries/context_selector_library/CS-CR-E2E_v1.yaml
+  sha256: c0a3ff202b13c21e4155f724e5a05f63d8aec0522b09d7f656d3ec464a517279
+  category: CS-CR-E2E_v1.yaml
+  filename: CS-CR-E2E_v1.yaml
+- path: libraries/profile_library/PROF-CR-E2E_v1.yaml
+  sha256: f9f921712b1b5cd3728f88dd3fb11b36024f1f8b5813cbdc521520b6cdf55249
+  category: PROF-CR-E2E_v1.yaml
+  filename: PROF-CR-E2E_v1.yaml
+- path: libraries/context_selector_library/CS-CR-COMM_v1.yaml
+  sha256: 9fef0d87db09b748a0b01ed78bec78d5f2cdce7787da25d8c7289fa2589010fa
+  category: CS-CR-COMM_v1.yaml
+  filename: CS-CR-COMM_v1.yaml
+- path: libraries/profile_library/PROF-CR-COMM_v1.yaml
+  sha256: 982dbf3fcb226f9870d5523e042bf31458b2602337b4318375d8dba288059a4a
+  category: PROF-CR-COMM_v1.yaml
+  filename: PROF-CR-COMM_v1.yaml
+- path: libraries/context_selector_library/CS-CR-QUAL_v1.yaml
+  sha256: 54795975cb2e2785c8026894d2ab387f9aa646a3cfe18aec8295a11b1cc5faa7
+  category: CS-CR-QUAL_v1.yaml
+  filename: CS-CR-QUAL_v1.yaml
+- path: libraries/profile_library/PROF-CR-QUAL_v1.yaml
+  sha256: aa454d1f958f4ddc674d462285b5d96d2f37a25434dae864daa1a9786f65574a
+  category: PROF-CR-QUAL_v1.yaml
+  filename: PROF-CR-QUAL_v1.yaml
+- path: libraries/context_selector_library/CS-CR-PV_v1.yaml
+  sha256: c2b74a9dcca73a7febddd1886a437a9860748c953c3154724bfaf3394d6e537e
+  category: CS-CR-PV_v1.yaml
+  filename: CS-CR-PV_v1.yaml
+- path: libraries/profile_library/PROF-CR-PV_v1.yaml
+  sha256: 316ab061cd4c3643ae077d37c5da9d1e94503956ff780ed2f02b85180ecea2fd
+  category: PROF-CR-PV_v1.yaml
+  filename: PROF-CR-PV_v1.yaml
+dependencies:
+- bundle_id: VALOR-ARCH-LIBRARIES-COMMON
+  version: v1
+  provides:
+  - calendar
+  - wp_header_library
+  - group_bindings
+usage:
+  purpose: 'Provide Cleanroom (CR) governed libraries: Context Selectors + Profiles
+    + Task Pools.'
+  rules:
+  - This bundle contains ONLY Cleanroom assets.
+  - Explicit user binds always win; presets only apply when CS=UNBOUND.
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-CR-E2E_v1.yaml
+sha256: c0a3ff202b13c21e4155f724e5a05f63d8aec0522b09d7f656d3ec464a517279
+library:
+  selector_id: CS-CR-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Cleanroom \u2014 High (Project/System)"
+  description: Context selector for high-complexity cleanroom programs. Binds TP-CR-E2E
+    + PROF-CR-E2E and CAL-WORKWEEK. Designed for deterministic staging and planning.
+  applicability:
+    system_type: Cleanroom
+    complexity: High
+    tags_any:
+    - Cleanroom
+    - HighComplexity
+    tags_all: []
+    scope_hints:
+    - project
+    - facility
+    - multi-system
+    - cleanroom
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-CR-E2E
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-CR-E2E
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-CR-E2E
+      version: v1
+    profile:
+      id: PROF-CR-E2E
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+    task_pool:
+      id: TP-CR-E2E
+      version: v1
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-CR-E2E_v1.yaml
+sha256: f9f921712b1b5cd3728f88dd3fb11b36024f1f8b5813cbdc521520b6cdf55249
+library:
+  profile_id: PROF-CR-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Clean Room \u2014 High"
+  description: Governed duration and lead-time defaults for Clean Room (High complexity),
+    aligned to CQV lifecycle and vendor realities.
+  applicability:
+    equipment_domain: CleanRoom
+    complexity: High
+    scope: Project
+    vendor_model: Intercontinental
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal work; CALENDAR_MONTHS/CALENDAR_DAYS for vendor
+      lead-time blocks (no implicit conversion).
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: VMP_CYCLE_DUR
+    description: VMP cycle duration (authoring+review+approval as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VMP
+        task_type: CYCLE
+      value: 20
+      unit: WORKING_DAYS
+  - profile_key: URS_AUTHORING_DUR
+    description: URS drafting/authoring duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: AUTHORING
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: URS_REVIEW_DUR
+    description: URS review duration (multi-function review cycle).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: REVIEW
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: URS_APPROVAL_DUR
+    description: URS approval/signature cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: QUOTATION_WAIT_DUR
+    description: Vendor quotation wait time after URS issuance/hand-off.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: VENDOR_WAIT
+      value: 14
+      unit: WORKING_DAYS
+  - profile_key: RTM_DRAFT_DUR
+    description: RTM drafting duration (initial build).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    description: RTM coordination block duration (vendor & multi-party alignment).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: VENDOR_COORDINATION_BLOCK
+      value: 30
+      unit: WORKING_DAYS
+  - profile_key: RTM_FINALIZE_DUR
+    description: RTM finalization duration (closure, final edits, sign-off prep).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: FINALIZE
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_CYCLE_DUR
+    description: RTM total cycle duration (draft + coordination block + finalize).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: CYCLE
+      value: 40
+      unit: WORKING_DAYS
+  - profile_key: DQ_CYCLE_DUR
+    description: DQ cycle duration (protocol-like authoring/review/closure as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: DQ
+        task_type: CYCLE
+      value: 15
+      unit: WORKING_DAYS
+  - profile_key: IQ_PROTOCOL_DUR
+    description: IQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_EXECUTION_DUR
+    description: IQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_REPORT_DUR
+    description: IQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: OQ_PROTOCOL_DUR
+    description: OQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: PROTOCOL_AUTHORING
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_APPROVAL_DUR
+    description: OQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: OQ_EXECUTION_DUR
+    description: OQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_REPORT_DUR
+    description: OQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PQ_PROTOCOL_DUR
+    description: PQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_APPROVAL_DUR
+    description: PQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PQ_EXECUTION_DUR
+    description: PQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_REPORT_DUR
+    description: PQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_DRAFT_DUR
+    description: VSR draft duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: VSR_REVIEW_DUR
+    description: VSR review duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_APPROVAL_DUR
+    description: VSR approval duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: VSR_CYCLE_DUR
+    description: VSR total cycle duration (draft+review+approval).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: CLEANROOM_CONSTRUCTION_LEADTIME
+    description: Cleanroom construction & installation execution lead time (contractor).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: CONSTRUCTION
+        task_type: EXECUTION
+      value: 5
+      unit: CALENDAR_MONTHS
+  - profile_key: COMMISSIONING_CERTIFICATION_DUR
+    description: Cleanroom commissioning, balancing, and room certification execution
+      block.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 15
+      unit: WORKING_DAYS
+  - profile_key: TURNOVER_ASBUILT_DUR
+    description: Turnover/as-built package completion and handover to CQV/QA.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: DOCUMENT_HANDOVER
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record drafting, impact assessment, and QA disposition
+      (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record creation, action tracking setup, and QA review (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-CR-COMM_v1.yaml
+sha256: 9fef0d87db09b748a0b01ed78bec78d5f2cdce7787da25d8c7289fa2589010fa
+library:
+  selector_id: CS-CR-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Commissioning Only"
+  description: Commissioning-only lifecycle for cleanroom/facility areas where formal
+    qualification/classification is out of scope or handled in a separate WP. Binds
+    TP-CR-COMM + PROF-CR-COMM + CAL-WORKWEEK.
+  applicability:
+    system_type: Cleanroom
+    complexity: CommissioningOnly
+    tags_any:
+    - Cleanroom
+    - CommissioningOnly
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-CR-COMM
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-CR-COMM
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-CR-COMM
+      version: v1
+    task_pool:
+      id: TP-CR-COMM
+      version: v1
+    profile:
+      id: PROF-CR-COMM
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-CR-COMM_v1.yaml
+sha256: 982dbf3fcb226f9870d5523e042bf31458b2602337b4318375d8dba288059a4a
+library:
+  profile_id: PROF-CR-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Commissioning Only"
+  description: Duration defaults for cleanroom commissioning-only WPs (no IQ/OQ/PQ).
+  applicability:
+    equipment_domain: Cleanroom
+    complexity: CommissioningOnly
+    scope: Area
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: CR_COMM_PLAN_DUR
+    description: Commissioning plan / execution plan.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: PLAN
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CR_READINESS_DUR
+    description: Area readiness / pre-commissioning checks.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: READINESS
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CR_BALANCE_CONTROLS_DUR
+    description: Air balancing / control functional commissioning.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: EXECUTION_CONTROLS
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CR_HEPA_TEST_DUR
+    description: HEPA integrity / leak testing (commissioning evidence).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: EXECUTION_HEPA
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CR_RECOVERY_TEST_DUR
+    description: Room recovery checks (optional, commissioning scope).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: EXECUTION_RECOVERY
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CR_PUNCHLIST_CLOSE_DUR
+    description: Punch list closure and re-check.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMM
+        task_type: CLOSURE
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: CR_TURNOVER_DUR
+    description: Turnover / as-built handover.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: HANDOVER
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-CR-QUAL_v1.yaml
+sha256: 54795975cb2e2785c8026894d2ab387f9aa646a3cfe18aec8295a11b1cc5faa7
+library:
+  selector_id: CS-CR-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Qualification Only (Rooms Qualification)"
+  description: Qualification-only lifecycle for classified rooms/areas when Commissioning
+    is handled in a separate WP. Binds TP-CR-QUAL + PROF-CR-QUAL + CAL-WORKWEEK.
+  applicability:
+    system_type: Cleanroom
+    complexity: QualificationOnly
+    tags_any:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-CR-QUAL
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-CR-QUAL
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-CR-QUAL
+      version: v1
+    task_pool:
+      id: TP-CR-QUAL
+      version: v1
+    profile:
+      id: PROF-CR-QUAL
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-CR-QUAL_v1.yaml
+sha256: aa454d1f958f4ddc674d462285b5d96d2f37a25434dae864daa1a9786f65574a
+library:
+  profile_id: PROF-CR-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Qualification Only (Rooms Qualification)"
+  description: Duration defaults for cleanroom/rooms qualification-only WPs. Commissioning
+    is executed in separate WP(s) and provides Turnover evidence.
+  applicability:
+    equipment_domain: Cleanroom
+    complexity: QualificationOnly
+    scope: Area
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: CRQ_PLAN_DUR
+    description: Rooms qualification plan + scope finalization (room list, states,
+      acceptance criteria approach).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PLAN
+        task_type: AUTHORING
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRQ_RISK_ASSESS_DUR
+    description: Risk assessment (room criticality, product exposure, test scope definition).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: AUTHORING
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRQ_READINESS_REVIEW_DUR
+    description: Qualification readiness gate (turnover pack review + test readiness).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: READINESS_REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRQ_PROTOCOL_AUTHOR_DUR
+    description: Rooms qualification protocol / test scripts authoring.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: CRQ_PROTOCOL_APPROVAL_DUR
+    description: Protocol approval cycle.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: APPROVAL
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRQ_IQ_EXEC_DUR
+    description: Room IQ execution (documentation & installation verification).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CRQ_OQ_EXEC_DUR
+    description: Room OQ execution (operational checks).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CRQ_ATREST_TEST_DUR
+    description: "Classification testing \u2014 At Rest (per room list)."
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: AT_REST
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CRQ_INOP_TEST_DUR
+    description: "Classification testing \u2014 In Operation (per room list)."
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: IN_OPERATION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CRQ_RECOVERY_TEST_DUR
+    description: Recovery testing (optional; per critical rooms).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: RECOVERY
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRQ_AIRFLOW_VIS_DUR
+    description: Airflow visualization / smoke studies (optional; per critical rooms).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: AIRFLOW_VIS
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRQ_REPORT_DUR
+    description: Reports compilation (IQ/OQ/PQ/classification) and closeout.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: REPORTING
+        task_type: REPORT
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CRQ_VSR_DUR
+    description: Final summary / qualification statement (VSR-style) approval cycle.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: CYCLE
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-CR-PV_v1.yaml
+sha256: c2b74a9dcca73a7febddd1886a437a9860748c953c3154724bfaf3394d6e537e
+library:
+  selector_id: CS-CR-PV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Periodic Verification (Periodic Reclassification)"
+  description: Periodic verification / reclassification WP for rooms/areas (not new-build
+    qualification). Binds TP-CR-PV + PROF-CR-PV + CAL-WORKWEEK.
+  applicability:
+    system_type: Cleanroom
+    complexity: PeriodicVerification
+    tags_any:
+    - Cleanroom
+    - PeriodicVerification
+    - Reclassification
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-CR-PV
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-CR-PV
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-CR-PV
+      version: v1
+    task_pool:
+      id: TP-CR-PV
+      version: v1
+    profile:
+      id: PROF-CR-PV
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-CR-PV_v1.yaml
+sha256: 316ab061cd4c3643ae077d37c5da9d1e94503956ff780ed2f02b85180ecea2fd
+library:
+  profile_id: PROF-CR-PV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Cleanroom \u2014 Periodic Verification (Periodic Reclassification)"
+  description: Duration defaults for periodic verification / periodic reclassification
+    activities for rooms/areas.
+  applicability:
+    equipment_domain: Cleanroom
+    complexity: PeriodicVerification
+    scope: Area
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: CRPV_PLAN_DUR
+    description: PV plan / scope definition (rooms list, states, sampling plan).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: PLAN
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRPV_DOC_REVIEW_DUR
+    description: Document review (HVAC maintenance, balancing, filter changes, alarms,
+      changes, deviations).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: REVIEW
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRPV_READINESS_DUR
+    description: Test readiness (room availability, states, instruments readiness/calibration
+      checks).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: READINESS
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRPV_ATREST_TEST_DUR
+    description: At Rest reclassification testing execution.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: AT_REST
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRPV_INOP_TEST_DUR
+    description: In Operation reclassification testing execution (optional).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: IN_OPERATION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CRPV_RECOVERY_TEST_DUR
+    description: Recovery testing execution (optional, critical rooms).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: RECOVERY
+      value: 1
+      unit: WORKING_DAYS
+  - profile_key: CRPV_AIRFLOW_VIS_DUR
+    description: Airflow visualization / smoke studies (optional).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: AIRFLOW_VIS
+      value: 1
+      unit: WORKING_DAYS
+  - profile_key: CRPV_REPORT_DUR
+    description: PV report / reclassification report compilation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: REPORT
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CRPV_APPROVAL_DUR
+    description: QA review/approval cycle.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: APPROVAL
+      value: 1
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS

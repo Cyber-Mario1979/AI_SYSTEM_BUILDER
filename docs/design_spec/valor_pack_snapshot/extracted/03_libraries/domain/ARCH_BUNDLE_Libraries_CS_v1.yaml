@@ -1,0 +1,215 @@
+bundle_id: VALOR-ARCH-LIBRARIES-CS
+version: v1
+date: '2026-02-14'
+sources:
+- path: libraries/context_selector_library/CS-CS-E2E_v1.yaml
+  sha256: ad05b15873bb6c26f5362cc34f95efa19f83ac683e66eadf9a85f2e072fa03a5
+  category: CS-CS-E2E_v1.yaml
+  filename: CS-CS-E2E_v1.yaml
+- path: libraries/profile_library/PROF-CS-E2E_v1.yaml
+  sha256: c4c7ea513589ba847f99721c1d2d74f86af0b1251cec9ef4dc3e1307eceb9b28
+  category: PROF-CS-E2E_v1.yaml
+  filename: PROF-CS-E2E_v1.yaml
+dependencies:
+- bundle_id: VALOR-ARCH-LIBRARIES-COMMON
+  version: v2
+  provides:
+  - calendar
+  - wp_header_library
+  - group_bindings
+usage:
+  purpose: 'Provide Computerized Systems (CS/CSV) governed libraries: Context Selector
+    + Profile + Task Pool (BMS/EMS).'
+  rules:
+  - Simulated FAT is included as optional due to intercontinental/vendor constraints.
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-CS-E2E_v1.yaml
+sha256: ad05b15873bb6c26f5362cc34f95efa19f83ac683e66eadf9a85f2e072fa03a5
+library:
+  selector_id: CS-CS-E2E
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Computerized Systems \u2014 High (CSV Lifecycle)"
+  description: Context selector for CSV lifecycle (BMS/EMS/automation systems). Binds
+    TP-CS-E2E + PROF-CS-E2E and CAL-WORKWEEK.
+  applicability:
+    system_type: ComputerizedSystem
+    complexity: High
+    tags_any:
+    - ComputerizedSystem
+    - CSV
+    - HighComplexity
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-CS-E2E
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-CS-E2E
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-CS-E2E
+      version: v1
+    task_pool:
+      id: TP-CS-E2E
+      version: v1
+    profile:
+      id: PROF-CS-E2E
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-CS-E2E_v1.yaml
+sha256: c4c7ea513589ba847f99721c1d2d74f86af0b1251cec9ef4dc3e1307eceb9b28
+library:
+  profile_id: PROF-CS-E2E
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Computerized Systems \u2014 High (CSV Lifecycle)"
+  description: Duration defaults for CSV lifecycle execution (BMS/EMS).
+  applicability:
+    equipment_domain: ComputerizedSystem
+    complexity: High
+    scope: System
+    vendor_model: Intercontinental
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: CSV_PLAN_CYCLE_DUR
+    description: CSV plan (SVP/VMP) cycle.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VMP
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: CSV_URS_CYCLE_DUR
+    description: URS authoring/review/approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: CYCLE
+      value: 12
+      unit: WORKING_DAYS
+  - profile_key: CSV_QRM_DUR
+    description: Risk assessment (GxP/data integrity scope).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CSV_SPEC_DUR
+    description: FS/CS (functional/config spec) preparation and approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: SPEC
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: CSV_RTM_DUR
+    description: Traceability matrix build/finalize.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: CYCLE
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CSV_FAT_SIM_DUR
+    description: Simulated FAT (remote evidence review + scripted witness where applicable).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: FAT
+        task_type: SIMULATED
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CSV_SAT_DUR
+    description: SAT / site integration checks (optional).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: SAT
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CSV_IQ_DUR
+    description: IQ (install/config baseline + access/backup baseline).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CSV_OQ_DUR
+    description: OQ (functional + security + audit trail + backup/restore).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: CSV_PQ_DUR
+    description: PQ / performance verification in intended use (optional for some
+      systems).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CSV_REPORT_VSR_DUR
+    description: Reporting + VSR/release.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: CYCLE
+      value: 5
+      unit: WORKING_DAYS

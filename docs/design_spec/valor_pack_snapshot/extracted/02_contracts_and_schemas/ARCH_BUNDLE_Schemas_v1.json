@@ -1,0 +1,2567 @@
+[
+  {
+    "path": "schemas/contracts/contract_request.schema.json",
+    "sha256": "4c87ff27aad5a37165b201a9bcb4703da02a32327ba86c71ba23942403432cf0",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/contract_request.schema.json",
+      "title": "Contract Request Envelope",
+      "type": "object",
+      "required": [
+        "contract_id",
+        "action_type",
+        "mode",
+        "payload",
+        "stamps"
+      ],
+      "properties": {
+        "contract_id": {
+          "type": "string"
+        },
+        "action_type": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "stamps": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "trace": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/contract_response.schema.json",
+    "sha256": "e2655cad1fd9a2d0e4302cb5a546cc8438bc6c4169095842f04e554e56930c6c",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/contract_response.schema.json",
+      "title": "Contract Response Envelope",
+      "type": "object",
+      "required": [
+        "contract_id",
+        "action_type",
+        "status"
+      ],
+      "properties": {
+        "contract_id": {
+          "type": "string"
+        },
+        "action_type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "ERROR"
+          ]
+        },
+        "result": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/doc_artifact_result.schema.json",
+    "sha256": "d66dd947859d9639a595c6ece2af49faaf8f355ce78f9872853d2adb3f832681",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/doc_artifact_result.schema.json",
+      "title": "Document Artifact Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/doc_draft_result.schema.json",
+    "sha256": "5ee5b14863d33e1e172af02b770fde209b6359f779f44260c5ba483fce5d56d1",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/doc_draft_result.schema.json",
+      "title": "Document Draft Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/export_result.schema.json",
+    "sha256": "b18e4cf1ff3b9146ab9cda5d81c571a01e021af2ff2df4a9db92afdeef5197cc",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/export_result.schema.json",
+      "title": "Export Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_anchors_list.schema.json",
+    "sha256": "f0032f2f8ef55d1dff9821d562154bbc42b2ae3f5f0009010e73afdb266f8475",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_anchors_list.schema.json",
+      "title": "Knowledge Store Anchors List",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_bundle.schema.json",
+    "sha256": "9edd3f7c0477f46165da9f1e85e27349c0f305a2972e736baf0cce99a15d9353",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_bundle.schema.json",
+      "title": "Knowledge Store Bundle",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_bundle_validation.schema.json",
+    "sha256": "4940aa97004ed21d743f6d4ecfb4c881fe0cdbb731c0922032839b68b40989af",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_bundle_validation.schema.json",
+      "title": "Knowledge Store Bundle Validation",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_bundles_list.schema.json",
+    "sha256": "2eb26611185cebcb8ed6a84f177ed8749acbd76c1000fe8bb1049022c191d1fd",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_bundles_list.schema.json",
+      "title": "Knowledge Store Bundles List",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_citation_resolved.schema.json",
+    "sha256": "2088cf3dc53ff3bf6022da9c12eaec9fb1ed15fb3ba48e4f7e2dca5ebf818ac7",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_citation_resolved.schema.json",
+      "title": "Knowledge Store Citation Resolved",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_standard.schema.json",
+    "sha256": "848b85153668ebff3c9de9b9a1be54310dab939e078f0ee34aff5e7b5dd6c2f8",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_standard.schema.json",
+      "title": "Knowledge Store Standard",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_standards_list.schema.json",
+    "sha256": "e7f189dc686483884d1e7f9e780edf5deab9f9751244ea5e585ccaae79cb4ce3",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_standards_list.schema.json",
+      "title": "Knowledge Store Standards List",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_template.schema.json",
+    "sha256": "4e4257b50583a5e90634ef0967c273e1e123f979815389d042d299b20df420c0",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_template.schema.json",
+      "title": "Knowledge Store Template",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ks_templates_list.schema.json",
+    "sha256": "b92b24bfe7f98ae2f3e95cc38c469a52560487689e6407c07bd922f1b5f478ce",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ks_templates_list.schema.json",
+      "title": "Knowledge Store Templates List",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/plan_proposal.schema.json",
+    "sha256": "cab5727c0ee865b4f872359fd3eda30261088a6d5604be0758eb80114ab12090",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/plan_proposal.schema.json",
+      "title": "Plan Proposal",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/plan_validation_result.schema.json",
+    "sha256": "76e3ca4cdfccb06645293a8ff5dc5b5467b3b1b6e7a162e132467f032a2a090d",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/plan_validation_result.schema.json",
+      "title": "Plan Validation Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/plan_computed_schedule.schema.json",
+    "sha256": "fc5852589084a2626dcc5e3573919d1da44e885dae52ee855bd1dfa467a75a34",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/plan_computed_schedule.schema.json",
+      "title": "Plan Computed Schedule Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/plan_write_result.schema.json",
+    "sha256": "7767f1e4211125ab70d037b6e504bb393a48bd57cf42ec07af4e12a32148c48f",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/plan_write_result.schema.json",
+      "title": "Plan Write Result",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/context_selector.schema.json",
+    "sha256": "2f7b1b27fd7bbf365b3f1704d04e274bd809e97a19bc90d4f461d5896ca6811d",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/context_selector.schema.json",
+      "title": "Context Selector",
+      "type": "object",
+      "required": [
+        "selector_id",
+        "version",
+        "bindings"
+      ],
+      "properties": {
+        "selector_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "applicability": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "bindings": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "rules": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "stamps": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/ps_presets_list.schema.json",
+    "sha256": "8c45f010e3fd37b3f67cb5a518f6d43523af102a9b46d8fd1f75971c2609d521",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/ps_presets_list.schema.json",
+      "title": "Presets List",
+      "type": "object",
+      "required": [
+        "presets"
+      ],
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "selector_id",
+              "version"
+            ],
+            "properties": {
+              "selector_id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "system_type": {
+                "type": "string"
+              },
+              "complexity": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/cs_resolve_result.schema.json",
+    "sha256": "37beabd08f768e80666c0cd176bd69c153dd2ed8393951059c3e50e163079d99",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/cs_resolve_result.schema.json",
+      "title": "Context Selector Resolve Result",
+      "type": "object",
+      "required": [
+        "selector_id",
+        "selector_version",
+        "bindings"
+      ],
+      "properties": {
+        "selector_id": {
+          "type": "string"
+        },
+        "selector_version": {
+          "type": "string"
+        },
+        "bindings": {
+          "type": "object",
+          "properties": {
+            "task_pool_ref": {
+              "type": "object",
+              "properties": {
+                "task_pool_id": {
+                  "type": "string"
+                },
+                "task_pool_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "task_pool_id",
+                "task_pool_version"
+              ],
+              "additionalProperties": true
+            },
+            "profile_ref": {
+              "type": "object",
+              "properties": {
+                "profile_id": {
+                  "type": "string"
+                },
+                "profile_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "profile_id",
+                "profile_version"
+              ],
+              "additionalProperties": true
+            },
+            "calendar_logic_ref": {
+              "type": "object",
+              "properties": {
+                "calendar_id": {
+                  "type": "string"
+                },
+                "calendar_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "calendar_id",
+                "calendar_version"
+              ],
+              "additionalProperties": true
+            },
+            "standards_bundle_ref": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "task_pool_ref",
+            "profile_ref",
+            "calendar_logic_ref"
+          ],
+          "additionalProperties": true
+        },
+        "rules_fired": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stamps": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "schemas/contracts/report_result.schema.json",
+    "sha256": "ceb47843b03140a4c3d01a12d6c99635942b218583b9ba41b6bff1e13697a7c8",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/report_result.schema.json",
+      "title": "VALOR Report Result",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "report_id",
+        "report_type",
+        "generated_at_utc",
+        "wp_summaries",
+        "rendered_markdown",
+        "completeness"
+      ],
+      "properties": {
+        "report_id": {
+          "type": "string"
+        },
+        "report_type": {
+          "type": "string",
+          "enum": [
+            "WP_TASKS_REPORT"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "generated_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "wp_summaries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "wp_id",
+              "wp_title",
+              "tasks_table"
+            ],
+            "properties": {
+              "wp_id": {
+                "type": "string"
+              },
+              "wp_title": {
+                "type": "string"
+              },
+              "wp_scope": {
+                "type": "string"
+              },
+              "tasks_table": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [
+                    "task_id",
+                    "description",
+                    "owner",
+                    "start_date",
+                    "finish_date",
+                    "status"
+                  ],
+                  "properties": {
+                    "task_id": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "start_date": {
+                      "type": "string"
+                    },
+                    "finish_date": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sections": {
+          "description": "Optional structured sections extracted from the report. The rendered_markdown remains canonical for presentation.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "bullets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "text": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "rendered_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completeness": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "percent",
+            "missing_items_detected"
+          ],
+          "properties": {
+            "percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "missing_items_detected": {
+              "type": "boolean"
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "path": "schemas/contracts/staged_task_set.schema.json",
+    "sha256": "ad3632e7a6f881ab4485a1cb66cf38289d17c3df284564080404b41515119efe",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://schemas/contracts/staged_task_set.schema.json",
+      "title": "Staged Task Set",
+      "type": "object",
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "documents/T10_VSR_Template_V1_0_1.schema.json",
+    "sha256": "5e7bb74ad0b1a535fda183631b9b87dfc68efc5492dfef0ac0999be71d81c762",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T10_VSR_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T10_VSR_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T1_VMP_Template_V1_0_1.schema.json",
+    "sha256": "17a7d39cb1c740c773d9878eb965d1a489ae78105d55807d9f26d6dee1d46d3c",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T1_VMP_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T1_VMP_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T3_Risk_Assessment_Template_V1_0_1.schema.json",
+    "sha256": "088fe4700b2e2c7f1937a252a884e5d6740107dcf85afafbda04bd455f211487",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T3_Risk_Assessment_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T3_Risk_Assessment_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T4_URS_Template_V1_0_1.schema.json",
+    "sha256": "91d689d9064e2106d6553b54b2c25107716fef717523b1e4efbece21ae38d9c0",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T4_URS_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T4_URS_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "urs": {
+          "type": "object",
+          "properties": {
+            "requirements_table_md": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "urs.requirements_table_md",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T5_RTM_Template_V1_0_1.schema.json",
+    "sha256": "4ad5eb0026e29c5b321e2cce105f729579ef67e22e7b6dbb58c47b3c9c5eb820",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T5_RTM_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T5_RTM_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T6_DQ_Template_V1_0_1.schema.json",
+    "sha256": "1f78c4e413d959d89ac52a6d614a5c426c34e1280b73b6249545d8b213a0dfc7",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T6_DQ_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T6_DQ_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "citations_list_md": {
+              "type": "string"
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.citations_list_md",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T7_IQ_Protocol_Template_V1_0_1.schema.json",
+    "sha256": "a6d0022c33b8e966711d7d780af3edb34d708942c0477df0623fe42d4b26002a",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T7_IQ_Protocol_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T7_IQ_Protocol_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "citations_list_md": {
+              "type": "string"
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.citations_list_md",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T8_OQ_Protocol_Template_V1_0_1.schema.json",
+    "sha256": "ac650b2bf923e49e0edc8438bad0313c26ee11cc8b452d3d0099e38dd65f5208",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T8_OQ_Protocol_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T8_OQ_Protocol_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "citations_list_md": {
+              "type": "string"
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.citations_list_md",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T9_PQ_Protocol_Template_V1_0_1.schema.json",
+    "sha256": "4c25e810ee0da608523573702adfe01d8c4c318d4c086386db3b96919147a9d2",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T9_PQ_Protocol_Template_V1_0_1.schema.json",
+      "title": "Render inputs for T9_PQ_Protocol_Template_V1_0_1.md",
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object",
+          "properties": {
+            "actors": {
+              "type": "object",
+              "properties": {
+                "approver": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reviewer": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "citations_list_md": {
+              "type": "string"
+            },
+            "doc_type": {
+              "type": "string"
+            },
+            "generated_utc": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "revision_date": {
+              "type": "string"
+            },
+            "signatures_table_md": {
+              "type": "string"
+            },
+            "stamps": {
+              "type": "object",
+              "properties": {
+                "bundle": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "calendar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "selector": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "wp": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "doc.actors.approver",
+        "doc.actors.author",
+        "doc.actors.reviewer",
+        "doc.citations_list_md",
+        "doc.doc_type",
+        "doc.generated_utc",
+        "doc.id",
+        "doc.revision_date",
+        "doc.signatures_table_md",
+        "doc.stamps.bundle.id",
+        "doc.stamps.bundle.version",
+        "doc.stamps.calendar.id",
+        "doc.stamps.calendar.version",
+        "doc.stamps.selector.id",
+        "doc.stamps.selector.version",
+        "doc.stamps.profile.id",
+        "doc.stamps.profile.version",
+        "doc.status",
+        "doc.title",
+        "doc.version",
+        "wp.id",
+        "wp.title"
+      ],
+      "additionalProperties": true,
+      "description": "Auto-generated from template placeholders. Provide these keys to render the template."
+    }
+  },
+  {
+    "path": "documents/T11_Deviation_Record_Template_V1_0_1.schema.json",
+    "sha256": "96e9e06b9c6cde6f14010fad930951dca409193eab5a488c295dbd219ee5d678",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T11_Deviation_Record_Template_V1_0_1.schema.json",
+      "title": "Placeholder render inputs for T11_Deviation_Record_Template_V1_0_1.md",
+      "type": "object",
+      "description": "Placeholder schema for DEV document type. Keep command/type wiring stable until the final template and full schema are added.",
+      "properties": {
+        "placeholder": {
+          "type": "boolean",
+          "const": true,
+          "description": "Temporary marker for placeholder schema entry."
+        }
+      },
+      "required": [
+        "placeholder"
+      ],
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "documents/T12_CAPA_Record_Template_V1_0_1.schema.json",
+    "sha256": "3f7b636ddaa4a72585a7777806ef644798a74c773126892a119adebc7aef79d6",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "valor://documents/T12_CAPA_Record_Template_V1_0_1.schema.json",
+      "title": "Placeholder render inputs for T12_CAPA_Record_Template_V1_0_1.md",
+      "type": "object",
+      "description": "Placeholder schema for CAPA document type. Keep command/type wiring stable until the final template and full schema are added.",
+      "properties": {
+        "placeholder": {
+          "type": "boolean",
+          "const": true,
+          "description": "Temporary marker for placeholder schema entry."
+        }
+      },
+      "required": [
+        "placeholder"
+      ],
+      "additionalProperties": true
+    }
+  },
+  {
+    "path": "objects/csv_export_schema.json",
+    "sha256": "674abae03a6d2ab4565a64a20379093b970f03f81d07b56a1ffd8927f8cb10a3",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CSV Export Row (Strict 16-Column Template)",
+      "type": "object",
+      "properties": {
+        "WP ID": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Scope": {
+          "type": "string"
+        },
+        "Objective": {
+          "type": "string"
+        },
+        "Governance": {
+          "type": "string"
+        },
+        "Task ID": {
+          "type": "string"
+        },
+        "Task Description": {
+          "type": "string"
+        },
+        "Task Status": {
+          "type": "string"
+        },
+        "Task Owner": {
+          "type": "string"
+        },
+        "Start Date": {
+          "type": "string",
+          "pattern": "^$|^\\d{2}-\\d{2}-\\d{4}$"
+        },
+        "Finish Date": {
+          "type": "string",
+          "pattern": "^$|^\\d{2}-\\d{2}-\\d{4}$"
+        },
+        "Planned Duration (d)": {
+          "type": "string",
+          "pattern": "^$|^-?\\d+$"
+        },
+        "Elapsed (d)": {
+          "type": "string",
+          "pattern": "^$|^-?\\d+$"
+        },
+        "Remaining (d)": {
+          "type": "string",
+          "pattern": "^$|^-?\\d+$"
+        },
+        "Lateness (d)": {
+          "type": "string",
+          "pattern": "^$|^-?\\d+$"
+        },
+        "% Time Elapsed": {
+          "type": "string",
+          "pattern": "^$|^\\d+%$"
+        }
+      },
+      "required": [
+        "WP ID",
+        "Title",
+        "Scope",
+        "Objective",
+        "Governance",
+        "Task ID",
+        "Task Description",
+        "Task Status",
+        "Task Owner",
+        "Start Date",
+        "Finish Date",
+        "Planned Duration (d)",
+        "Elapsed (d)",
+        "Remaining (d)",
+        "Lateness (d)",
+        "% Time Elapsed"
+      ],
+      "additionalProperties": false,
+      "$id": "valor://objects/csv_export_schema.json"
+    }
+  },
+  {
+    "path": "objects/document_metadata_schema.json",
+    "sha256": "b563915e23c68922728bab2f6a8ee1fb7baa0eaadd0dd0a9abe6e71f6a6982d2",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Document Metadata Schema",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "revision_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "anchor": {
+          "type": "string"
+        },
+        "doc_type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "generated_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "control_block_md": {
+          "type": "string"
+        },
+        "citations_list_md": {
+          "type": "string"
+        },
+        "signatures_table_md": {
+          "type": "string"
+        },
+        "actors": {
+          "type": "object",
+          "properties": {
+            "author": {
+              "type": "string"
+            },
+            "reviewer": {
+              "type": "string"
+            },
+            "approver": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "stamps": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "profile": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "calendar": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "bundle": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "additionalProperties": true,
+      "$id": "valor://objects/document_metadata_schema.json",
+      "description": "Document metadata (object schema). Extended with optional fields to support template rendering."
+    }
+  },
+  {
+    "path": "objects/task_schema.json",
+    "sha256": "fbb268f0ca2911778580fb2e1fc29edd0ec09a7ac7cee265b0115a4d043e862f",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Task",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^WP[0-9]{3}-T[0-9]{3}$",
+          "description": "Task ID in format WP###-T### (three digits each, zero-padded)."
+        },
+        "work_package_id": {
+          "type": "string",
+          "pattern": "^WP[0-9]{3}$",
+          "description": "Parent Work Package ID in format WP###."
+        },
+        "description": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Owner role/title; blank allowed."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Open",
+            "Planned",
+            "In Progress",
+            "Completed",
+            "Overdue",
+            ""
+          ],
+          "description": "Canonical task status vocabulary (blank allowed for partial drafts)."
+        },
+        "planned_duration_days": {
+          "description": "Canonical 'Planned Duration (d)' field. Numeric WORKING_DAYS preferred; blank allowed.",
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:\\d+(?:\\.\\d+)?)?$"
+            }
+          ]
+        },
+        "start_date": {
+          "type": "string",
+          "pattern": "^(?:\\d{2}-\\d{2}-\\d{4})?$",
+          "description": "Start Date in dd-mm-yyyy format; blank until planned/applied."
+        },
+        "finish_date": {
+          "type": "string",
+          "pattern": "^(?:\\d{2}-\\d{2}-\\d{4})?$",
+          "description": "Finish Date in dd-mm-yyyy format; blank until planned/applied."
+        },
+        "dependencies": {
+          "description": "Canonical 'Dependencies' field (comma-separated Task IDs in table form) or normalized array.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^WP\\d{3}-T\\d{3}$"
+              }
+            }
+          ]
+        },
+        "atomic_task_id": {
+          "type": "string",
+          "description": "Task-pool linkage (Atomic Task ID); use em dash or blank if not applicable."
+        },
+        "duration_ref": {
+          "type": "string",
+          "description": "Duration profile key or COMPOSITE(k1+k2+...)."
+        },
+        "external_dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^WP\\d{3}-T\\d{3}$"
+          },
+          "description": "Alias; use 'dependencies' for canonical field naming."
+        }
+      },
+      "required": [
+        "id",
+        "work_package_id",
+        "description"
+      ],
+      "additionalProperties": true,
+      "$id": "valor://objects/task_schema.json"
+    }
+  },
+  {
+    "path": "objects/work_package_schema.json",
+    "sha256": "1f374f77bf86f04ff5a0bb3b8be8d205bed26738a4ddbf07683fbdf591101c42",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Work Package",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^WP[0-9]{3}$",
+          "description": "Work Package ID in format WP### (three digits, zero-padded)."
+        },
+        "title": {
+          "type": "string"
+        },
+        "area": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Objective field from canonical WP header; blank allowed."
+        },
+        "governance": {
+          "type": "string",
+          "description": "Governance field from canonical WP header; blank allowed."
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/task"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "ProcessEquipment",
+            "Utilities",
+            "CleanRoom",
+            "ComputerizedSystems"
+          ],
+          "description": "Canonical Work Package Type."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Open",
+            "Planned",
+            "In Progress",
+            "Completed"
+          ],
+          "description": "Canonical WP status vocabulary."
+        },
+        "bound_context": {
+          "description": "Canonical Bound Context header field (CS/TP/PROF/CAL) as raw string or normalized object.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "ps": {
+                  "type": "string"
+                },
+                "tp": {
+                  "type": "string"
+                },
+                "prof": {
+                  "type": "string"
+                },
+                "cal": {
+                  "type": "string"
+                },
+                "raw": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          ]
+        },
+        "planning_basis": {
+          "description": "Canonical Planning Basis header field as raw string or normalized object.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ]
+        },
+        "standards_bundle": {
+          "description": "Canonical Standards Bundle header field (single bundle ID or list).",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^SB-[A-Z0-9_-]+@v[0-9]+$"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "scope",
+        "type",
+        "status"
+      ],
+      "definitions": {
+        "task": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^WP[0-9]{3}-T[0-9]{3}$",
+              "description": "Task ID in format WP###-T### (three digits each, zero-padded)."
+            },
+            "description": {
+              "type": "string"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Owner role/title; blank allowed."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "Open",
+                "Planned",
+                "In Progress",
+                "Completed",
+                "Overdue",
+                ""
+              ],
+              "description": "Canonical task status vocabulary (blank allowed for partial drafts)."
+            },
+            "planned_duration_days": {
+              "description": "Canonical 'Planned Duration (d)' field. Numeric WORKING_DAYS preferred; blank allowed.",
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(?:\\d+(?:\\.\\d+)?)?$"
+                }
+              ]
+            },
+            "start_date": {
+              "type": "string",
+              "pattern": "^(?:\\d{2}-\\d{2}-\\d{4})?$",
+              "description": "Start Date in dd-mm-yyyy format; blank until planned/applied."
+            },
+            "finish_date": {
+              "type": "string",
+              "pattern": "^(?:\\d{2}-\\d{2}-\\d{4})?$",
+              "description": "Finish Date in dd-mm-yyyy format; blank until planned/applied."
+            },
+            "dependencies": {
+              "description": "Canonical 'Dependencies' field (comma-separated Task IDs in table form) or normalized array.",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^WP\\d{3}-T\\d{3}$"
+                  }
+                }
+              ]
+            },
+            "atomic_task_id": {
+              "type": "string",
+              "description": "Task-pool linkage (Atomic Task ID); use em dash or blank if not applicable."
+            },
+            "duration_ref": {
+              "type": "string",
+              "description": "Duration profile key or COMPOSITE(k1+k2+...)."
+            },
+            "external_dependencies": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^WP\\d{3}-T\\d{3}$"
+              },
+              "description": "Alias; use 'dependencies' for canonical field naming."
+            }
+          },
+          "required": [
+            "id",
+            "description"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true,
+      "$id": "valor://objects/work_package_schema.json"
+    }
+  }
+]

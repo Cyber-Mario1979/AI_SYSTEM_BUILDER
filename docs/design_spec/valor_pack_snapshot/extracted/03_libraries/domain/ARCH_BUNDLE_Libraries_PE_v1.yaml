@@ -1,0 +1,913 @@
+bundle_id: VALOR-ARCH-LIBRARIES-PE
+version: v1
+date: '2026-02-14'
+sources:
+- path: libraries/context_selector_library/CS-PE-E2E_v1.yaml
+  sha256: 9ba6248176dc8600e88ad9f268ea8277e83a19bd4dcd3f96c0c5ea3ce31b1603
+  category: CS-PE-E2E_v1.yaml
+  filename: CS-PE-E2E_v1.yaml
+- path: libraries/profile_library/PROF-PE-E2E_v1.yaml
+  sha256: 35017eda687914b1e6479fce5e22e5784827cf90388174c548e7328f101da773
+  category: PROF-PE-E2E_v1.yaml
+  filename: PROF-PE-E2E_v1.yaml
+- path: libraries/context_selector_library/CS-PE-PV_v1.yaml
+  sha256: bd55cbdf0973d014bef691fc9d3b766c91d643c224e8eb7585a4147ef0289100
+  category: CS-PE-PV_v1.yaml
+  filename: CS-PE-PV_v1.yaml
+- path: libraries/profile_library/PROF-PE-PV_v1.yaml
+  sha256: 4eabef252413589c01ee12cff3cd8a7c19e28506521528a05fc8c0c66b9db138
+  category: PROF-PE-PV_v1.yaml
+  filename: PROF-PE-PV_v1.yaml
+- path: libraries/context_selector_library/CS-PE-POST-DEV_v1.yaml
+  sha256: 680975ed05caba3424fcba566772ac22b05bec1e885f4485010bab28db969020
+  category: CS-PE-POST-DEV_v1.yaml
+  filename: CS-PE-POST-DEV_v1.yaml
+- path: libraries/profile_library/PROF-PE-POST-DEV_v1.yaml
+  sha256: 5c9d7d2cd10e5f32f9ac090c3aac71533fa0f681f4e87dd35003677e8b572d25
+  category: PROF-PE-POST-DEV_v1.yaml
+  filename: PROF-PE-POST-DEV_v1.yaml
+- path: libraries/context_selector_library/CS-PE-POST-CHANGE_v1.yaml
+  sha256: c736d271881cb60a4f8197663b0912e475a3859c3a20260eb83093778da634fd
+  category: CS-PE-POST-CHANGE_v1.yaml
+  filename: CS-PE-POST-CHANGE_v1.yaml
+- path: libraries/profile_library/PROF-PE-POST-CHANGE_v1.yaml
+  sha256: c7f243a90e07ce051ee4496cb6261646a0728008f7f93b6ab81828a3dc3edfdd
+  category: PROF-PE-POST-CHANGE_v1.yaml
+  filename: PROF-PE-POST-CHANGE_v1.yaml
+dependencies:
+- bundle_id: VALOR-ARCH-LIBRARIES-COMMON
+  version: v1
+  provides:
+  - calendar
+  - wp_header_library
+  - group_bindings
+usage:
+  purpose: 'Provide Process Equipment (PE) governed libraries: Context Selectors +
+    Profiles + Task Pools.'
+  rules:
+  - This bundle contains ONLY Process Equipment assets.
+  - Explicit user binds always win; presets only apply when CS=UNBOUND.
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-PE-E2E_v1.yaml
+sha256: 9ba6248176dc8600e88ad9f268ea8277e83a19bd4dcd3f96c0c5ea3ce31b1603
+library:
+  selector_id: CS-PE-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Process Equipment \u2014 High (Project/Line)"
+  description: Context selector for high-complexity process equipment programs (e.g.,
+    blister line). Binds TP-PE-E2E + PROF-PE-E2E and CAL-WORKWEEK. Designed for deterministic
+    staging and planning.
+  applicability:
+    system_type: Process
+    complexity: High
+    tags_any:
+    - ProcessEquipment
+    - HighComplexity
+    tags_all: []
+    scope_hints:
+    - project
+    - multi-equipment
+    - line
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-PE-E2E
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-PE-E2E
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-PE-E2E
+      version: v1
+    profile:
+      id: PROF-PE-E2E
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+    task_pool:
+      id: TP-PE-E2E
+      version: v1
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-PE-E2E_v1.yaml
+sha256: 35017eda687914b1e6479fce5e22e5784827cf90388174c548e7328f101da773
+library:
+  profile_id: PROF-PE-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Process Equipment \u2014 High"
+  description: Governed duration and lead-time defaults for Process Equipment (High
+    complexity), aligned to CQV lifecycle and vendor realities.
+  applicability:
+    equipment_domain: ProcessEquipment
+    complexity: High
+    scope: Project
+    vendor_model: Intercontinental
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal work; CALENDAR_MONTHS/CALENDAR_DAYS for vendor
+      lead-time blocks (no implicit conversion).
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: VMP_CYCLE_DUR
+    description: VMP cycle duration (authoring+review+approval as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VMP
+        task_type: CYCLE
+      value: 20
+      unit: WORKING_DAYS
+  - profile_key: URS_AUTHORING_DUR
+    description: URS drafting/authoring duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: AUTHORING
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: URS_REVIEW_DUR
+    description: URS review duration (multi-function review cycle).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: REVIEW
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: URS_APPROVAL_DUR
+    description: URS approval/signature cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: QUOTATION_WAIT_DUR
+    description: Vendor quotation wait time after URS issuance/hand-off.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: VENDOR_WAIT
+      value: 14
+      unit: WORKING_DAYS
+  - profile_key: RTM_DRAFT_DUR
+    description: RTM drafting duration (initial build).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    description: RTM coordination block duration (vendor & multi-party alignment).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: VENDOR_COORDINATION_BLOCK
+      value: 30
+      unit: WORKING_DAYS
+  - profile_key: RTM_FINALIZE_DUR
+    description: RTM finalization duration (closure, final edits, sign-off prep).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: FINALIZE
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_CYCLE_DUR
+    description: RTM total cycle duration (draft + coordination block + finalize).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: CYCLE
+      value: 40
+      unit: WORKING_DAYS
+  - profile_key: DQ_CYCLE_DUR
+    description: DQ cycle duration (protocol-like authoring/review/closure as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: DQ
+        task_type: CYCLE
+      value: 15
+      unit: WORKING_DAYS
+  - profile_key: MANUFACTURING_LEADTIME_BLISTERLINE
+    description: Manufacturing lead time for a blister line / high complexity process
+      equipment.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PROCUREMENT
+        task_type: MANUFACTURING_LEADTIME
+      value: 7
+      unit: CALENDAR_MONTHS
+  - profile_key: FAT_SCHEDULING_DUR
+    description: FAT scheduling/coordination duration after manufacturing completion
+      (dates, agenda, attendees).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: FAT
+        task_type: SCHEDULING
+      value: 14
+      unit: CALENDAR_DAYS
+  - profile_key: LOGISTICS_DELIVERY_DUR
+    description: Logistics/delivery duration after FAT complete to site delivery.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: LOGISTICS
+        task_type: DELIVERY
+      value: 21
+      unit: CALENDAR_DAYS
+  - profile_key: IQ_PROTOCOL_DUR
+    description: IQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_EXECUTION_DUR
+    description: IQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_REPORT_DUR
+    description: IQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: OQ_PROTOCOL_DUR
+    description: OQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: PROTOCOL_AUTHORING
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_APPROVAL_DUR
+    description: OQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: OQ_EXECUTION_DUR
+    description: OQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_REPORT_DUR
+    description: OQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PQ_PROTOCOL_DUR
+    description: PQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_APPROVAL_DUR
+    description: PQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PQ_EXECUTION_DUR
+    description: PQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_REPORT_DUR
+    description: PQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_DRAFT_DUR
+    description: VSR draft duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: VSR_REVIEW_DUR
+    description: VSR review duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_APPROVAL_DUR
+    description: VSR approval duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: VSR_CYCLE_DUR
+    description: VSR total cycle duration (draft+review+approval).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record drafting, impact assessment, and QA disposition
+      (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record creation, action tracking setup, and QA review (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-PE-PV_v1.yaml
+sha256: bd55cbdf0973d014bef691fc9d3b766c91d643c224e8eb7585a4147ef0289100
+library:
+  selector_id: CS-PE-PV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Periodic Verification"
+  description: Periodic/annual verification WP for Process Equipment (not new-build
+    CQV). Binds TP-PE-PV + PROF-PE-PV + CAL-WORKWEEK.
+  applicability:
+    system_type: ProcessEquipment
+    complexity: PeriodicVerification
+    tags_any:
+    - ProcessEquipment
+    - PeriodicVerification
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-PE-PV
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-PE-PV
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-PE-PV
+      version: v1
+    task_pool:
+      id: TP-PE-PV
+      version: v1
+    profile:
+      id: PROF-PE-PV
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-PE-PV_v1.yaml
+sha256: 4eabef252413589c01ee12cff3cd8a7c19e28506521528a05fc8c0c66b9db138
+library:
+  profile_id: PROF-PE-PV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Periodic Verification"
+  description: Duration defaults for periodic verification activities on process equipment.
+  applicability:
+    equipment_domain: ProcessEquipment
+    complexity: PeriodicVerification
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: PEPV_PLAN_DUR
+    description: PV plan / scope definition.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: PLAN
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: PEPV_DOC_REVIEW_DUR
+    description: PV document review (maintenance, calibration, changes, deviations,
+      prior PV).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PEPV_BASELINE_CHECK_DUR
+    description: Baseline/configuration check (setpoints, software version if applicable,
+      parameter snapshot).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: BASELINE_CHECK
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: PEPV_FUNCTIONAL_CHECKS_DUR
+    description: Functional checks of critical features (interlocks, alarms, safety
+      functions, core operations).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PEPV_SAFETY_CHECKS_DUR
+    description: Safety checks (guards, E-stops, safety circuits) if not covered in
+      functional checks.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: SAFETY_CHECK
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: PEPV_REPORT_DUR
+    description: PV report / closeout.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PV
+        task_type: REPORT
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-PE-POST-DEV_v1.yaml
+sha256: 680975ed05caba3424fcba566772ac22b05bec1e885f4485010bab28db969020
+library:
+  selector_id: CS-PE-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Post Deviation (Targeted Re-Qualification)"
+  description: Targeted re-qualification activities triggered by a deviation during/after
+    PE CQV execution. Binds TP-PE-POST-DEV + PROF-PE-POST-DEV + CAL-WORKWEEK.
+  applicability:
+    system_type: ProcessEquipment
+    complexity: PostDeviation
+    tags_any:
+    - ProcessEquipment
+    - PostDeviation
+    - TargetedRetest
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-PE-POST-DEV
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-PE-POST-DEV
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-PE-POST-DEV
+      version: v1
+    task_pool:
+      id: TP-PE-POST-DEV
+      version: v1
+    profile:
+      id: PROF-PE-POST-DEV
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-PE-POST-DEV_v1.yaml
+sha256: 5c9d7d2cd10e5f32f9ac090c3aac71533fa0f681f4e87dd35003677e8b572d25
+library:
+  profile_id: PROF-PE-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Post Deviation"
+  description: Duration defaults for deviation-driven targeted re-qualification on
+    process equipment.
+  applicability:
+    equipment_domain: ProcessEquipment
+    complexity: PostDeviation
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: PEDEV_IMPACT_ASSESS_DUR
+    description: Deviation impact assessment + test impact mapping.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: IMPACT_ASSESSMENT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PEDEV_PROTOCOL_ADDENDUM_DUR
+    description: Protocol addendum / retest script preparation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: AUTHORING
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PEDEV_EXEC_RETEST_DUR
+    description: Targeted retest execution (delta testing).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PEDEV_REPORT_ADDENDUM_DUR
+    description: Retest report / addendum compilation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: REPORT
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: PEDEV_RELEASE_GATE_DUR
+    description: QA disposition / release decision update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record update & QA disposition (event-driven administration).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record & tracking (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-PE-POST-CHANGE_v1.yaml
+sha256: c736d271881cb60a4f8197663b0912e475a3859c3a20260eb83093778da634fd
+library:
+  selector_id: CS-PE-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Post Change (Change Control Re-Qualification)"
+  description: Re-qualification activities triggered by a controlled modification
+    (change control). Binds TP-PE-POST-CHANGE + PROF-PE-POST-CHANGE + CAL-WORKWEEK.
+  applicability:
+    system_type: ProcessEquipment
+    complexity: PostChange
+    tags_any:
+    - ProcessEquipment
+    - PostChange
+    - ChangeControl
+    - DeltaQualification
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-PE-POST-CHANGE
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-PE-POST-CHANGE
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-PE-POST-CHANGE
+      version: v1
+    task_pool:
+      id: TP-PE-POST-CHANGE
+      version: v1
+    profile:
+      id: PROF-PE-POST-CHANGE
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-PE-POST-CHANGE_v1.yaml
+sha256: c7f243a90e07ce051ee4496cb6261646a0728008f7f93b6ab81828a3dc3edfdd
+library:
+  profile_id: PROF-PE-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Process Equipment \u2014 Post Change"
+  description: Duration defaults for change-control-driven delta qualification on
+    process equipment.
+  applicability:
+    equipment_domain: ProcessEquipment
+    complexity: PostChange
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: PECHG_IMPACT_ASSESS_DUR
+    description: Change impact assessment (requirements/tests affected).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: IMPACT_ASSESSMENT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PECHG_RTM_DELTA_DUR
+    description: RTM / requirements delta update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: UPDATE
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PECHG_PROTOCOL_DELTA_DUR
+    description: Protocol delta authoring (partial IQ/OQ/PQ as needed).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: AUTHORING
+      value: 4
+      unit: WORKING_DAYS
+  - profile_key: PECHG_EXEC_DELTA_DUR
+    description: Delta execution (partial IQ/OQ/PQ steps).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PECHG_REPORT_ADDENDUM_DUR
+    description: Qualification report addendum / update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PECHG_RELEASE_GATE_DUR
+    description: QA approval / change closure gate.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: TRAINING_UPDATE_DUR
+    description: Training / SOP update readiness (if required).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: READINESS
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven, if change triggers a deviation).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS

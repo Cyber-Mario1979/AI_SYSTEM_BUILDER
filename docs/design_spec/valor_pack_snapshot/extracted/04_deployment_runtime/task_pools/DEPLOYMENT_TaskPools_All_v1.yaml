@@ -1,0 +1,4997 @@
+# DEPLOYMENT_TaskPools_All_v1.yaml
+# Deployment runtime-facing authoritative Task Pools file.
+# Extracted verbatim from task pool library bundles (PE/UT/CR/CS).
+# Contains ONLY category: task_pool documents.
+
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-CR-COMM_v1.yaml
+sha256: 519fec01e5e08316942873180dea1e25a7a6599eeb914077308db40aa363af3d
+library:
+  task_pool_id: TP-CR-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for cleanroom commissioning-only WPs. Commissioning
+    and turnover only; qualification/classification handled in separate WP if required.
+  owner_function: Engineering
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-CR-COMM
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: CRCOM-PLAN
+    name: Commissioning plan / execution plan
+    phase: COMM
+    task_type: PLAN
+    owner_role_default: Facilities/Engineering Lead
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Area scope and boundaries defined
+    - Utilities/AHU interface points identified
+    outputs:
+    - Approved commissioning plan
+    duration_ref:
+      profile_key: CR_COMM_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCOM-READINESS
+    name: Area readiness / pre-commissioning checks
+    phase: COMM
+    task_type: READINESS
+    owner_role_default: Facilities/Engineering Lead
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Commissioning plan approved
+    - Installation substantially complete (architectural/HVAC/electrical)
+    outputs:
+    - Readiness checklist complete
+    duration_ref:
+      profile_key: CR_READINESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCOM-BALANCE-CONTROLS
+    name: Air balancing & controls functional commissioning
+    phase: COMM
+    task_type: EXECUTION_CONTROLS
+    owner_role_default: Facilities/Controls Engineer
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Readiness complete
+    - AHU systems available for operation
+    outputs:
+    - Balancing/controls commissioning evidence
+    - Issues list (if any)
+    duration_ref:
+      profile_key: CR_BALANCE_CONTROLS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCOM-HEPA
+    name: HEPA integrity / leak testing (commissioning scope)
+    phase: COMM
+    task_type: EXECUTION_HEPA
+    owner_role_default: Facilities/Validation Service Provider
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Air balancing at stable state (as applicable)
+    outputs:
+    - HEPA integrity/leak test evidence
+    duration_ref:
+      profile_key: CR_HEPA_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-BALANCE-CONTROLS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional if HEPA testing is reserved for formal qualification/classification
+      WP.
+  - atomic_task_id: CRCOM-RECOVERY
+    name: Room recovery checks (optional)
+    phase: COMM
+    task_type: EXECUTION_RECOVERY
+    owner_role_default: Facilities/Engineering Lead
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Stable HVAC operation
+    outputs:
+    - Recovery check evidence (if executed)
+    duration_ref:
+      profile_key: CR_RECOVERY_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-BALANCE-CONTROLS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRCOM-PUNCHLIST
+    name: Punch list closure & re-check
+    phase: COMM
+    task_type: CLOSURE
+    owner_role_default: Facilities/Engineering Lead
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Commissioning issues list raised (if any)
+    outputs:
+    - Punch list closed (or dispositioned)
+    - Re-check evidence
+    duration_ref:
+      profile_key: CR_PUNCHLIST_CLOSE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-BALANCE-CONTROLS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRCOM-TURNOVER
+    name: Turnover / as-built handover
+    phase: TURNOVER
+    task_type: HANDOVER
+    owner_role_default: Facilities/Engineering Lead
+    applicability_tags:
+    - Cleanroom
+    - CommissioningOnly
+    required_inputs:
+    - Commissioning evidence complete
+    - Punch list closed or dispositioned
+    outputs:
+    - Turnover package (as-builts, O&M manuals, commissioning records)
+    - Ready for qualification WP (if applicable)
+    duration_ref:
+      profile_key: CR_TURNOVER_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCOM-BALANCE-CONTROLS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-CR-E2E_v1.yaml
+sha256: cdd14c3f38777aac51fb9dfd303ca2d03d8d21ed8ff5f0c8f3d84703dd899d54
+library:
+  task_pool_id: TP-CR-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  description: Atomic task pool for Cleanroom — High. Tasks reference Profile Library
+    duration keys (no embedded numeric durations). Designed for deterministic staging
+    into WPs.
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-CR-E2E
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: CR2E-VMP-CYCLE
+    name: VMP cycle (draft/review/approval)
+    phase: VMP
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Project
+    required_inputs:
+    - Project scope defined
+    - System boundary agreed
+    outputs:
+    - Approved VMP
+    duration_ref:
+      profile_key: VMP_CYCLE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: true
+    notes: Optional predecessor for single equipment; mandatory for project/multi-equipment
+      per policy flags.
+  - atomic_task_id: CR2E-URS-AUTH
+    name: URS authoring
+    phase: URS
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - SingleEquipment
+    - Project
+    required_inputs:
+    - WP created
+    - Scope defined
+    outputs:
+    - URS draft
+    duration_ref:
+      profile_key: URS_AUTHORING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-VMP-CYCLE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-URS-REVIEW
+    name: URS cross-functional review
+    phase: URS
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - URS draft
+    outputs:
+    - URS review comments
+    duration_ref:
+      profile_key: URS_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-URS-AUTH
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-URS-APPROVAL
+    name: URS approval cycle
+    phase: URS
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - URS review completed
+    outputs:
+    - Approved URS
+    duration_ref:
+      profile_key: URS_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-URS-REVIEW
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-QUOTE-WAIT
+    name: Contractor quotation waiting period
+    phase: PROCUREMENT
+    task_type: VENDOR_WAIT
+    owner_role_default: Contractor
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - Approved URS issued to vendor
+    outputs:
+    - Quotation received
+    duration_ref:
+      profile_key: QUOTATION_WAIT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents external waiting time; not resource-consuming in v1.
+  - atomic_task_id: CR2E-RTM-DRAFT
+    name: RTM draft
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - Approved URS
+    outputs:
+    - RTM draft
+    duration_ref:
+      profile_key: RTM_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-RTM-COORD
+    name: RTM vendor coordination block
+    phase: RTM
+    task_type: VENDOR_WAIT
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - RTM draft
+    - Vendor responses required
+    outputs:
+    - Vendor feedback integrated
+    duration_ref:
+      profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-RTM-DRAFT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: CR2E-RTM-FINALIZE
+    name: RTM finalize
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - RTM coordination completed
+    outputs:
+    - Final RTM
+    duration_ref:
+      profile_key: RTM_FINALIZE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-RTM-COORD
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-DQ-CYCLE
+    name: Design Qualification (DQ) cycle
+    phase: DQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - Final RTM
+    - Design inputs available
+    outputs:
+    - Approved DQ
+    duration_ref:
+      profile_key: DQ_CYCLE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-RTM-FINALIZE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-CONSTRUCTION
+    name: Construction & installation execution (contractor)
+    phase: CONSTRUCTION
+    task_type: EXECUTION
+    owner_role_default: Contractor
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Project
+    - Contractor
+    required_inputs:
+    - Approved design (DQ closed)
+    - Construction package released
+    - Permits/ITP available
+    outputs:
+    - Cleanroom built/installed to design
+    - Ready for commissioning
+    duration_ref:
+      profile_key: CLEANROOM_CONSTRUCTION_LEADTIME
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-DQ-CYCLE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents the contractor execution window (envelope, HVAC/HEPA, finishes,
+      utilities tie-ins).
+  - atomic_task_id: CR2E-COMM-CERT
+    name: Commissioning & room certification (execution)
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Engineering
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Project
+    required_inputs:
+    - Construction complete
+    - Start-up/commissioning plan approved
+    - Instrumentation available
+    outputs:
+    - Commissioning complete
+    - Cleanroom certification results available (as applicable)
+    duration_ref:
+      profile_key: COMMISSIONING_CERTIFICATION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-CONSTRUCTION
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Includes HVAC balancing, pressure cascade checks, HEPA integrity (if applicable),
+      and room classification testing coordination.
+  - atomic_task_id: CR2E-TURNOVER
+    name: Turnover / as-built documentation & handover
+    phase: TURNOVER
+    task_type: DOCUMENT_HANDOVER
+    owner_role_default: Engineering
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Project
+    required_inputs:
+    - Commissioning/certification complete
+    - As-built package compiled
+    outputs:
+    - Turnover package delivered (as-built, O&M manuals, certificates)
+    - Ready for IQ protocol execution
+    duration_ref:
+      profile_key: TURNOVER_ASBUILT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-COMM-CERT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Handover gate before IQ activities start.
+  - atomic_task_id: CR2E-IQ-PROTOCOL
+    name: IQ protocol preparation
+    phase: IQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - IQ strategy agreed
+    - Vendor documentation available
+    outputs:
+    - Approved IQ protocol
+    duration_ref:
+      profile_key: IQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-TURNOVER
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-IQ-EXEC
+    name: IQ execution
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: Engineering
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - Approved IQ protocol
+    - Installation complete
+    outputs:
+    - Executed IQ protocol
+    duration_ref:
+      profile_key: IQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-IQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-IQ-REPORT
+    name: IQ report
+    phase: IQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - IQ execution complete
+    outputs:
+    - Approved IQ report
+    duration_ref:
+      profile_key: IQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-IQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-OQ-PROTOCOL
+    name: OQ protocol preparation
+    phase: OQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - IQ complete
+    - Control strategy available
+    outputs:
+    - OQ protocol draft
+    duration_ref:
+      profile_key: OQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-IQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-OQ-APPROVAL
+    name: OQ protocol approval
+    phase: OQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - OQ protocol draft
+    outputs:
+    - Approved OQ protocol
+    duration_ref:
+      profile_key: OQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-OQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-OQ-EXEC
+    name: OQ execution
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - Approved OQ protocol
+    outputs:
+    - Executed OQ protocol
+    duration_ref:
+      profile_key: OQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-OQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-OQ-REPORT
+    name: OQ report
+    phase: OQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - OQ execution complete
+    outputs:
+    - Approved OQ report
+    duration_ref:
+      profile_key: OQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-OQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-PQ-PROTOCOL
+    name: PQ protocol preparation
+    phase: PQ
+    task_type: AUTHORING
+    owner_role_default: Production
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - OQ complete
+    - Process parameters defined
+    outputs:
+    - PQ protocol draft
+    duration_ref:
+      profile_key: PQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-OQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-PQ-APPROVAL
+    name: PQ protocol approval
+    phase: PQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - PQ protocol draft
+    outputs:
+    - Approved PQ protocol
+    duration_ref:
+      profile_key: PQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-PQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-PQ-EXEC
+    name: PQ execution
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: Production
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - Approved PQ protocol
+    - Materials available
+    outputs:
+    - Executed PQ runs
+    duration_ref:
+      profile_key: PQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-PQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-PQ-REPORT
+    name: PQ report
+    phase: PQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - PQ execution complete
+    outputs:
+    - Approved PQ report
+    duration_ref:
+      profile_key: PQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-PQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation raised during execution or document review
+    outputs:
+    - Deviation Record DEV-### created/updated
+    - Disposition recorded (accept/retest/rework)
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: do not auto-plan. Activate only if a deviation is raised;
+      otherwise leave Open/unscheduled.'
+  - atomic_task_id: CR2E-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation record indicates CAPA required
+    outputs:
+    - CAPA Record CAPA-### created/updated
+    - Corrective/Preventive actions tracked to closure
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: activate only when CAPA is required; otherwise leave Open/unscheduled.'
+  - atomic_task_id: CR2E-VSR-DRAFT
+    name: VSR draft
+    phase: VSR
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - PQ complete
+    - All deviations resolved
+    outputs:
+    - VSR draft
+    duration_ref:
+      profile_key: VSR_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-VSR-REVIEW
+    name: VSR review
+    phase: VSR
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - VSR draft
+    outputs:
+    - VSR review comments
+    duration_ref:
+      profile_key: VSR_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-VSR-DRAFT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: CR2E-VSR-APPROVAL
+    name: VSR approval
+    phase: VSR
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - HighComplexity
+    required_inputs:
+    - VSR review complete
+    outputs:
+    - Approved VSR
+    duration_ref:
+      profile_key: VSR_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CR2E-VSR-REVIEW
+        dependency_type: FS
+        lag_days: 0
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-CR-PV_v1.yaml
+sha256: f9bd8fefc35ddbeccab226acf22bcae340b8cf389fe39f9368c8387d711ff3bb
+library:
+  task_pool_id: TP-CR-PV
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for Cleanroom periodic verification / periodic reclassification
+    of rooms/areas (At Rest required; In Operation optional).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-CR-PV
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: CRPV-PLAN
+    name: PV plan / scope definition (rooms + states + sampling plan)
+    phase: PV
+    task_type: PLAN
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    - Reclassification
+    required_inputs:
+    - Room list and classifications available
+    - Previous qualification/reclassification baseline available
+    outputs:
+    - PV plan approved
+    - Room-state test matrix confirmed
+    duration_ref:
+      profile_key: CRPV_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-DOC-REVIEW
+    name: PV document review (maintenance, balancing, filters, alarms, changes, deviations)
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    required_inputs:
+    - PV plan approved
+    - HVAC maintenance logs available
+    - Change control and deviation logs available
+    outputs:
+    - Review record
+    - Exceptions/concerns list (if any)
+    duration_ref:
+      profile_key: CRPV_DOC_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-READINESS
+    name: Test readiness (room availability, states, instrument readiness)
+    phase: PV
+    task_type: READINESS
+    owner_role_default: Facilities / CQV
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    required_inputs:
+    - Document review completed
+    - Rooms scheduled and available in required states
+    - Instruments ready (calibration/functional checks as applicable)
+    outputs:
+    - Readiness confirmed
+    - Test schedule confirmed
+    duration_ref:
+      profile_key: CRPV_READINESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-DOC-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-ATREST
+    name: Periodic reclassification — At Rest (execution)
+    phase: PV
+    task_type: AT_REST
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    - Reclassification
+    required_inputs:
+    - Readiness confirmed
+    - Rooms set to At Rest state per plan
+    outputs:
+    - At Rest reclassification evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: CRPV_ATREST_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-INOP
+    name: Periodic reclassification — In Operation (execution)
+    phase: PV
+    task_type: IN_OPERATION
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    - Reclassification
+    required_inputs:
+    - At Rest testing complete
+    - In Operation state definition available (activities/personnel/doors)
+    outputs:
+    - In Operation reclassification evidence pack
+    duration_ref:
+      profile_key: CRPV_INOP_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional for non-critical/support rooms depending on site strategy.
+  - atomic_task_id: CRPV-RECOVERY
+    name: Recovery testing (optional, critical rooms)
+    phase: PV
+    task_type: RECOVERY
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    required_inputs:
+    - At Rest testing complete
+    - Recovery endpoints defined in plan
+    outputs:
+    - Recovery test evidence
+    duration_ref:
+      profile_key: CRPV_RECOVERY_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRPV-AIRFLOW-VIS
+    name: Airflow visualization / smoke studies (optional)
+    phase: PV
+    task_type: AIRFLOW_VIS
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    required_inputs:
+    - At Rest testing complete
+    - Study points/acceptance criteria defined
+    outputs:
+    - Airflow visualization evidence
+    duration_ref:
+      profile_key: CRPV_AIRFLOW_VIS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRPV-REPORT
+    name: PV report / reclassification report compilation
+    phase: PV
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    - Reclassification
+    required_inputs:
+    - Required PV tests complete
+    - Exceptions dispositioned
+    outputs:
+    - PV / reclassification report draft
+    duration_ref:
+      profile_key: CRPV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-APPROVAL
+    name: QA review / approval (PV closure)
+    phase: PV
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - PeriodicVerification
+    required_inputs:
+    - PV report draft available
+    outputs:
+    - Approved PV / reclassification report
+    - Actions list approved (if any)
+    duration_ref:
+      profile_key: CRPV_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRPV-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - Quality
+    required_inputs:
+    - PV exception requires deviation
+    outputs:
+    - Deviation record raised and dispositioned
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: CRPV-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRPV-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-CR-QUAL_v1.yaml
+sha256: 001796f63392a187033855bac19ef638fc779ec669033d847251d07622088bde
+library:
+  task_pool_id: TP-CR-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for Cleanroom/Rooms qualification-only WPs. Starts
+    from Turnover/Readiness and executes room qualification/classification with optional
+    recovery and airflow visualization.
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-CR-QUAL
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: CRQ-PLAN
+    name: Rooms qualification plan & scope finalization
+    phase: PLAN
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Room list / layout available
+    - Intended room states defined (At Rest / In Operation)
+    - Baseline URS/DQ package available (if applicable)
+    outputs:
+    - Approved rooms qualification plan/scope
+    - Room test matrix (rooms x state x test types)
+    duration_ref:
+      profile_key: CRQ_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-RISK
+    name: Risk assessment for rooms qualification scope
+    phase: QRM
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Approved rooms qualification plan/scope
+    outputs:
+    - Risk assessment complete
+    - Critical rooms list and test scope confirmed
+    duration_ref:
+      profile_key: CRQ_RISK_ASSESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-READINESS
+    name: Qualification readiness gate (turnover pack review)
+    phase: TURNOVER
+    task_type: READINESS_REVIEW
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Turnover package received from commissioning WP(s)
+    - As-builts available (architectural + HVAC)
+    - Balancing/controls commissioning evidence available
+    - Open punch list dispositioned
+    - Instruments calibrated (particle counter, manometers, thermo-hygro as applicable)
+    outputs:
+    - Test readiness confirmed (rooms available in agreed states)
+    duration_ref:
+      profile_key: CRQ_READINESS_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-RISK
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: Formal bridge between COMM WP(s) and this Rooms QUAL WP.
+  - atomic_task_id: CRQ-PROTOCOL
+    name: Rooms qualification protocol / test scripts authoring
+    phase: VERIFICATION
+    task_type: PROTOCOL_AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Risk assessment complete
+    - Readiness confirmed
+    outputs:
+    - Rooms qualification protocol drafted (tests per room/state)
+    duration_ref:
+      profile_key: CRQ_PROTOCOL_AUTHOR_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-PROTOCOL-APPROVAL
+    name: Protocol approval cycle
+    phase: VERIFICATION
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Draft protocol available
+    outputs:
+    - Approved rooms qualification protocol
+    duration_ref:
+      profile_key: CRQ_PROTOCOL_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-IQ-EXEC
+    name: Room IQ execution (documentation & installation verification)
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Approved protocol
+    - Turnover/as-built pack available
+    outputs:
+    - IQ evidence pack (room finishes checks, drawings verification, HEPA list, instrument
+      list)
+    duration_ref:
+      profile_key: CRQ_IQ_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-PROTOCOL-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-OQ-EXEC
+    name: Room OQ execution (operational checks)
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - IQ complete
+    - HVAC operating within control ranges
+    outputs:
+    - OQ evidence pack (pressure cascade functional checks, alarms as applicable)
+    duration_ref:
+      profile_key: CRQ_OQ_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-IQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-ATREST
+    name: Classification testing — At Rest
+    phase: PQ
+    task_type: AT_REST
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - OQ complete
+    - Rooms set to At Rest state per protocol
+    outputs:
+    - At Rest classification evidence (per room matrix)
+    duration_ref:
+      profile_key: CRQ_ATREST_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-OQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-INOP
+    name: Classification testing — In Operation
+    phase: PQ
+    task_type: IN_OPERATION
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - At Rest tests complete
+    - Rooms set to In Operation state per protocol
+    - Simulated operations defined (personnel, doors, activities)
+    outputs:
+    - In Operation classification evidence (per room matrix)
+    duration_ref:
+      profile_key: CRQ_INOP_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional for non-critical/support rooms depending on site strategy.
+  - atomic_task_id: CRQ-RECOVERY
+    name: Recovery testing (optional)
+    phase: PQ
+    task_type: RECOVERY
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - At Rest complete
+    - Recovery endpoints defined
+    outputs:
+    - Recovery test evidence
+    duration_ref:
+      profile_key: CRQ_RECOVERY_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRQ-AIRFLOW-VIS
+    name: Airflow visualization / smoke studies (optional)
+    phase: PQ
+    task_type: AIRFLOW_VIS
+    owner_role_default: CQV / Classification Service Provider
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - At Rest complete
+    - Study locations and acceptance criteria defined
+    outputs:
+    - Airflow visualization evidence
+    duration_ref:
+      profile_key: CRQ_AIRFLOW_VIS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CRQ-REPORT
+    name: Qualification reports compilation & closeout (IQ/OQ/PQ/classification)
+    phase: REPORTING
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - All required tests complete
+    - Deviations/exceptions dispositioned
+    outputs:
+    - Approved qualification report package
+    duration_ref:
+      profile_key: CRQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-ATREST
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-VSR
+    name: Final summary / qualification statement (VSR-style)
+    phase: VSR
+    task_type: CYCLE
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - QualificationOnly
+    - RoomsQualification
+    required_inputs:
+    - Qualification reports compiled
+    outputs:
+    - Approved final qualification statement / VSR-style closure
+    duration_ref:
+      profile_key: CRQ_VSR_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRQ-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - Quality
+    required_inputs:
+    - Deviation raised during qualification activities
+    outputs:
+    - Deviation record created/updated and dispositioned
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-VSR
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: CRQ-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Cleanroom
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRQ-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-CS-E2E_v1.yaml
+sha256: 2a7c396047da1adfe111d0096e4bd1d5d27d8350b5954ea6f9cbd98d77dba35f
+library:
+  task_pool_id: TP-CS-E2E
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for computerized system validation (CSV) lifecycle
+    (BMS/EMS). Includes simulated FAT for intercontinental/vendor constraints.
+  owner_function: CSV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-CS-E2E
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: CSV-PLAN
+    name: CSV plan cycle (SVP/VMP)
+    phase: VMP
+    task_type: CYCLE
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    - HighComplexity
+    required_inputs:
+    - Project scope defined
+    - System boundary agreed
+    outputs:
+    - Approved CSV plan (SVP/VMP)
+    duration_ref:
+      profile_key: CSV_PLAN_CYCLE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-URS
+    name: URS cycle (author/review/approve)
+    phase: URS
+    task_type: CYCLE
+    owner_role_default: System Owner
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - Approved CSV plan
+    outputs:
+    - Approved URS
+    duration_ref:
+      profile_key: CSV_URS_CYCLE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-QRM
+    name: Risk assessment (GxP impact + data integrity scope)
+    phase: QRM
+    task_type: AUTHORING
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - Approved URS
+    - System architecture/overview available
+    outputs:
+    - Risk assessment complete
+    - Test scope defined (critical functions)
+    duration_ref:
+      profile_key: CSV_QRM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-URS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-SPEC
+    name: FS/CS cycle (functional/configuration specification)
+    phase: SPEC
+    task_type: CYCLE
+    owner_role_default: Automation / Supplier Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - Approved URS
+    - Risk assessment scope
+    outputs:
+    - Approved FS/CS (or controlled configuration/design spec)
+    duration_ref:
+      profile_key: CSV_SPEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-QRM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-RTM
+    name: Traceability matrix (RTM) build & finalize
+    phase: RTM
+    task_type: CYCLE
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - Approved URS
+    - Approved FS/CS
+    outputs:
+    - RTM finalized
+    duration_ref:
+      profile_key: CSV_RTM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-SPEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-FAT-SIM
+    name: Simulated FAT (remote evidence review + scripted witness)
+    phase: FAT
+    task_type: SIMULATED
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    - SimulatedFAT
+    required_inputs:
+    - RTM finalized
+    - Supplier test evidence pack available (as applicable)
+    outputs:
+    - Simulated FAT evidence
+    - Issue log (if any)
+    duration_ref:
+      profile_key: CSV_FAT_SIM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-RTM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CSV-SAT
+    name: SAT / site integration checks (optional)
+    phase: SAT
+    task_type: EXECUTION
+    owner_role_default: Automation Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - System installed/integrated on site
+    outputs:
+    - SAT evidence
+    - Interface checks complete
+    duration_ref:
+      profile_key: CSV_SAT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-FAT-SIM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CSV-IQ
+    name: IQ (installation + configuration baseline + access/backup baseline)
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - Installed system baseline available
+    - User/access roles list available
+    outputs:
+    - IQ evidence pack
+    - Configuration baseline recorded
+    duration_ref:
+      profile_key: CSV_IQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-SAT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-OQ
+    name: OQ (functional + security + audit trail + backup/restore)
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: CSV / CQV Engineer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - IQ complete
+    - Approved OQ scripts/protocol (controlled)
+    outputs:
+    - OQ evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: CSV_OQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-IQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSV-PQ
+    name: PQ / performance verification (intended use scenarios)
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: System Owner / User SME
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - OQ complete
+    - Intended use scenarios defined
+    outputs:
+    - PQ evidence (as applicable)
+    - Operational readiness confirmed
+    duration_ref:
+      profile_key: CSV_PQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-OQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: CSV-VSR
+    name: CSV report pack + VSR/release
+    phase: VSR
+    task_type: CYCLE
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ComputerizedSystem
+    - CSV
+    required_inputs:
+    - IQ/OQ complete
+    - PQ complete if required
+    - Exceptions dispositioned
+    outputs:
+    - Approved CSV summary (VSR/release)
+    duration_ref:
+      profile_key: CSV_REPORT_VSR_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSV-OQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-PE-E2E_v1.yaml
+sha256: 627faccf3703cf33a9051783edc89b48c32baa8616f6bd3f3c9bf6716b9bcdc6
+library:
+  task_pool_id: TP-PE-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  description: Atomic task pool for Process Equipment — High. Tasks reference Profile
+    Library duration keys (no embedded numeric durations). Designed for deterministic
+    staging into WPs.
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-PE-E2E
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: PE2E-VMP-CYCLE
+    name: VMP cycle (draft/review/approval)
+    phase: VMP
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Project
+    required_inputs:
+    - Project scope defined
+    - System boundary agreed
+    outputs:
+    - Approved VMP
+    duration_ref:
+      profile_key: VMP_CYCLE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: true
+    notes: Optional predecessor for single equipment; mandatory for project/multi-equipment
+      per policy flags.
+  - atomic_task_id: PE2E-URS-AUTH
+    name: URS authoring
+    phase: URS
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - SingleEquipment
+    - Project
+    required_inputs:
+    - WP created
+    - Scope defined
+    outputs:
+    - URS draft
+    duration_ref:
+      profile_key: URS_AUTHORING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-VMP-CYCLE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-URS-REVIEW
+    name: URS cross-functional review
+    phase: URS
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - URS draft
+    outputs:
+    - URS review comments
+    duration_ref:
+      profile_key: URS_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-URS-AUTH
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-URS-APPROVAL
+    name: URS approval cycle
+    phase: URS
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - URS review completed
+    outputs:
+    - Approved URS
+    duration_ref:
+      profile_key: URS_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-URS-REVIEW
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-QUOTE-WAIT
+    name: Vendor quotation waiting period
+    phase: OTHER
+    task_type: VENDOR_WAIT
+    owner_role_default: Vendor
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - Approved URS issued to vendor
+    outputs:
+    - Quotation received
+    duration_ref:
+      profile_key: QUOTATION_WAIT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents external waiting time; not resource-consuming in v1.
+  - atomic_task_id: PE2E-RTM-DRAFT
+    name: RTM draft
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - Approved URS
+    outputs:
+    - RTM draft
+    duration_ref:
+      profile_key: RTM_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-RTM-COORD
+    name: RTM vendor coordination block
+    phase: RTM
+    task_type: VENDOR_WAIT
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - RTM draft
+    - Vendor responses required
+    outputs:
+    - Vendor feedback integrated
+    duration_ref:
+      profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-RTM-DRAFT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: PE2E-RTM-FINALIZE
+    name: RTM finalize
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - RTM coordination completed
+    outputs:
+    - Final RTM
+    duration_ref:
+      profile_key: RTM_FINALIZE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-RTM-COORD
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-DQ-CYCLE
+    name: Design Qualification (DQ) cycle
+    phase: DQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - Final RTM
+    - Design inputs available
+    outputs:
+    - Approved DQ
+    duration_ref:
+      profile_key: DQ_CYCLE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-RTM-FINALIZE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-MFG-LEAD
+    name: Manufacturing lead time (vendor)
+    phase: PROCUREMENT
+    task_type: MANUFACTURING_LEADTIME
+    owner_role_default: Vendor
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - PO issued
+    outputs:
+    - Equipment manufactured
+    duration_ref:
+      profile_key: MANUFACTURING_LEADTIME_BLISTERLINE
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-DQ-CYCLE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents external manufacturing lead time; stored as CALENDAR_MONTHS/DAYS
+      per profile unit policy.
+  - atomic_task_id: PE2E-FAT-SCHED
+    name: FAT scheduling / coordination
+    phase: FAT
+    task_type: SCHEDULING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - Manufacturing complete
+    outputs:
+    - FAT scheduled
+    duration_ref:
+      profile_key: FAT_SCHEDULING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-MFG-LEAD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: PE2E-LOGISTICS
+    name: Logistics / delivery lead time
+    phase: LOGISTICS
+    task_type: DELIVERY
+    owner_role_default: Vendor
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - FAT complete
+    outputs:
+    - Equipment delivered to site
+    duration_ref:
+      profile_key: LOGISTICS_DELIVERY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-FAT-SCHED
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: PE2E-IQ-PROTOCOL
+    name: IQ protocol preparation
+    phase: IQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - IQ strategy agreed
+    - Vendor documentation available
+    outputs:
+    - Approved IQ protocol
+    duration_ref:
+      profile_key: IQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-LOGISTICS
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-IQ-EXEC
+    name: IQ execution
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - Approved IQ protocol
+    - Installation complete
+    outputs:
+    - Executed IQ protocol
+    duration_ref:
+      profile_key: IQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-IQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-IQ-REPORT
+    name: IQ report
+    phase: IQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - IQ execution complete
+    outputs:
+    - Approved IQ report
+    duration_ref:
+      profile_key: IQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-IQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-OQ-PROTOCOL
+    name: OQ protocol preparation
+    phase: OQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - IQ complete
+    - Control strategy available
+    outputs:
+    - OQ protocol draft
+    duration_ref:
+      profile_key: OQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-IQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-OQ-APPROVAL
+    name: OQ protocol approval
+    phase: OQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - OQ protocol draft
+    outputs:
+    - Approved OQ protocol
+    duration_ref:
+      profile_key: OQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-OQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-OQ-EXEC
+    name: OQ execution
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - Approved OQ protocol
+    outputs:
+    - Executed OQ protocol
+    duration_ref:
+      profile_key: OQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-OQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-OQ-REPORT
+    name: OQ report
+    phase: OQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - OQ execution complete
+    outputs:
+    - Approved OQ report
+    duration_ref:
+      profile_key: OQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-OQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-PQ-PROTOCOL
+    name: PQ protocol preparation
+    phase: PQ
+    task_type: AUTHORING
+    owner_role_default: Production
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - OQ complete
+    - Process parameters defined
+    outputs:
+    - PQ protocol draft
+    duration_ref:
+      profile_key: PQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-OQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-PQ-APPROVAL
+    name: PQ protocol approval
+    phase: PQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - PQ protocol draft
+    outputs:
+    - Approved PQ protocol
+    duration_ref:
+      profile_key: PQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-PQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-PQ-EXEC
+    name: PQ execution
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: Production
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - Approved PQ protocol
+    - Materials available
+    outputs:
+    - Executed PQ runs
+    duration_ref:
+      profile_key: PQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-PQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-PQ-REPORT
+    name: PQ report
+    phase: PQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - PQ execution complete
+    outputs:
+    - Approved PQ report
+    duration_ref:
+      profile_key: PQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-PQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation raised during execution or document review
+    outputs:
+    - Deviation Record DEV-### created/updated
+    - Disposition recorded (accept/retest/rework)
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: do not auto-plan. Activate only if a deviation is raised;
+      otherwise leave Open/unscheduled.'
+  - atomic_task_id: PE2E-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation record indicates CAPA required
+    outputs:
+    - CAPA Record CAPA-### created/updated
+    - Corrective/Preventive actions tracked to closure
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: activate only when CAPA is required; otherwise leave Open/unscheduled.'
+  - atomic_task_id: PE2E-VSR-DRAFT
+    name: VSR draft
+    phase: VSR
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - PQ complete
+    - All deviations resolved
+    outputs:
+    - VSR draft
+    duration_ref:
+      profile_key: VSR_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-VSR-REVIEW
+    name: VSR review
+    phase: VSR
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - VSR draft
+    outputs:
+    - VSR review comments
+    duration_ref:
+      profile_key: VSR_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-VSR-DRAFT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: PE2E-VSR-APPROVAL
+    name: VSR approval
+    phase: VSR
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - HighComplexity
+    required_inputs:
+    - VSR review complete
+    outputs:
+    - Approved VSR
+    duration_ref:
+      profile_key: VSR_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PE2E-VSR-REVIEW
+        dependency_type: FS
+        lag_days: 0
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-PE-POST-CHANGE_v1.yaml
+sha256: 3e022ced07df96e14767b40292cb078f404a9ea48d6065bde26ff28103bf5c72
+library:
+  task_pool_id: TP-PE-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for process equipment post-change delta qualification
+    (change control impact + targeted re-qualification + release).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-PE-POST-CHANGE
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: PECHG-IMPACT
+    name: Change impact assessment (requirements/tests affected)
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Approved change request (scope, rationale, implementation details)
+    - Baseline qualification pack available
+    outputs:
+    - Impact assessment completed
+    - Delta qualification strategy defined (what to re-test)
+    duration_ref:
+      profile_key: PECHG_IMPACT_ASSESS_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PECHG-RTM-DELTA
+    name: RTM / requirements delta update
+    phase: RTM
+    task_type: UPDATE
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Impact assessment completed
+    outputs:
+    - RTM delta updated (coverage of changed requirements)
+    duration_ref:
+      profile_key: PECHG_RTM_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional if your RTM is not maintained post-project; recommended for GMP
+      critical systems.
+  - atomic_task_id: PECHG-PROTOCOL-DELTA
+    name: Protocol delta authoring (partial IQ/OQ/PQ as needed)
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    - DeltaQualification
+    required_inputs:
+    - Impact assessment completed
+    - RTM delta updated (if used)
+    outputs:
+    - Approved protocol delta / addendum
+    duration_ref:
+      profile_key: PECHG_PROTOCOL_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECHG-EXEC-DELTA
+    name: Delta execution (partial IQ/OQ/PQ steps)
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    - DeltaQualification
+    required_inputs:
+    - Approved protocol delta / addendum
+    - Equipment available and safe to test
+    outputs:
+    - Delta execution evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: PECHG_EXEC_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-PROTOCOL-DELTA
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECHG-REPORT
+    name: Qualification report addendum / update
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    required_inputs:
+    - Delta execution complete
+    - Exceptions dispositioned (if any)
+    outputs:
+    - Approved qualification addendum / updated report section
+    duration_ref:
+      profile_key: PECHG_REPORT_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-EXEC-DELTA
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECHG-TRAINING
+    name: Training / SOP update readiness (if required)
+    phase: RELEASE
+    task_type: READINESS
+    owner_role_default: System Owner
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    required_inputs:
+    - Change impacts on procedures identified
+    outputs:
+    - Training completed (if required)
+    - SOP/work instruction updates completed (if required)
+    duration_ref:
+      profile_key: TRAINING_UPDATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: PECHG-RELEASE
+    name: QA approval / change closure gate
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Qualification addendum/update approved
+    - Training/SOP updates complete or justified (if applicable)
+    outputs:
+    - Change control closure approved
+    - Release decision confirmed
+    duration_ref:
+      profile_key: PECHG_RELEASE_GATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECHG-DEV-RECORD
+    name: Deviation record (event-driven, if required)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - Deviation raised (if applicable)
+    outputs:
+    - Deviation record created/updated
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: PECHG-CAPA-RECORD
+    name: CAPA record (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECHG-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-PE-POST-DEV_v1.yaml
+sha256: cb91e77fa6a12145927cb522bd8971c43df9f7e507e9f6a075237b31fcee1a2b
+library:
+  task_pool_id: TP-PE-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for process equipment post-deviation targeted re-qualification
+    (delta re-test + closure).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-PE-POST-DEV
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: PEDEV-IMPACT
+    name: Deviation impact assessment & test impact mapping
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Deviation description and evidence available
+    - Baseline qualification package available (IQ/OQ/PQ as applicable)
+    outputs:
+    - Impact assessment completed
+    - Retest scope defined (requirements / test steps impacted)
+    duration_ref:
+      profile_key: PEDEV_IMPACT_ASSESS_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEV-PROTOCOL-ADD
+    name: Protocol addendum / retest script preparation
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Impact assessment completed
+    outputs:
+    - Approved retest addendum / scripts (delta steps)
+    duration_ref:
+      profile_key: PEDEV_PROTOCOL_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEV-RETEST-EXEC
+    name: Targeted retest execution (delta testing)
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Approved retest addendum / scripts
+    - Equipment available and safe to test
+    outputs:
+    - Retest evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: PEDEV_EXEC_RETEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-PROTOCOL-ADD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEV-REPORT
+    name: Retest report / addendum compilation
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Retest evidence complete
+    - Exceptions dispositioned (if any)
+    outputs:
+    - Retest report / addendum approved
+    duration_ref:
+      profile_key: PEDEV_REPORT_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-RETEST-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEV-RELEASE
+    name: QA disposition / release decision update
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - PostDeviation
+    required_inputs:
+    - Retest report / addendum available
+    - Deviation disposition available
+    outputs:
+    - QA disposition recorded
+    - Release decision confirmed (or further actions defined)
+    duration_ref:
+      profile_key: PEDEV_RELEASE_GATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEV-DEV-RECORD
+    name: Deviation record update & closure (event-driven administration)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - Deviation raised
+    outputs:
+    - Deviation record updated and closed (if applicable)
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: PEDEV-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEV-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-PE-PV_v1.yaml
+sha256: f887c4fe92cef144c0618a4ceb6525638cd3255c766dc87cc33678832fcd6be0
+library:
+  task_pool_id: TP-PE-PV
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for Process Equipment periodic verification / annual
+    checks (not new-build CQV).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-PE-PV
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: PEPV-PLAN
+    name: PV plan / scope definition
+    phase: PV
+    task_type: PLAN
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - Equipment boundary and intended use available
+    - Last qualification / baseline package available
+    outputs:
+    - PV plan approved
+    - Critical functions list for checks
+    duration_ref:
+      profile_key: PEPV_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PEPV-DOC-REVIEW
+    name: PV document review (maintenance, calibration, changes, deviations)
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - PV plan approved
+    - Maintenance & calibration history available
+    - Change control log available
+    - Deviations list available
+    outputs:
+    - PV review record
+    - Gaps list (if any)
+    duration_ref:
+      profile_key: PEPV_DOC_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEPV-BASELINE
+    name: Baseline/configuration check (setpoints/parameters/version as applicable)
+    phase: PV
+    task_type: BASELINE_CHECK
+    owner_role_default: Engineering / Automation
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - Document review completed
+    - Current configuration/setpoints accessible
+    outputs:
+    - Baseline snapshot evidence
+    - Discrepancies list (if any)
+    duration_ref:
+      profile_key: PEPV_BASELINE_CHECK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-DOC-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional for purely mechanical equipment with no controlled parameters;
+      keep for PLC/HMI systems.
+  - atomic_task_id: PEPV-FUNCTIONAL
+    name: PV functional checks (critical functions, alarms/interlocks)
+    phase: PV
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - Document review completed
+    - Equipment available and safe to test
+    outputs:
+    - Functional check evidence
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: PEPV_FUNCTIONAL_CHECKS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-DOC-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEPV-SAFETY
+    name: PV safety checks (guards, E-stops, safety circuits)
+    phase: PV
+    task_type: SAFETY_CHECK
+    owner_role_default: EHS / Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - Equipment available and safe to test
+    outputs:
+    - Safety check evidence
+    - Safety actions list (if any)
+    duration_ref:
+      profile_key: PEPV_SAFETY_CHECKS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-FUNCTIONAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional if your site EHS program already executes this under a separate
+      periodic safety inspection.
+  - atomic_task_id: PEPV-REPORT
+    name: PV report / closeout
+    phase: PV
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - ProcessEquipment
+    - PeriodicVerification
+    required_inputs:
+    - PV checks complete
+    - Exceptions dispositioned
+    outputs:
+    - Approved PV report
+    - Recommendations / follow-ups (if required)
+    duration_ref:
+      profile_key: PEPV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-FUNCTIONAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEPV-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - PV finding requires deviation
+    outputs:
+    - Deviation record raised and dispositioned
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-FUNCTIONAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: PEPV-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - ProcessEquipment
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEPV-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-UT-COMM_v1.yaml
+sha256: c8879b3c6d4f72433086e7a20cfc045e87890ccbab288cd1df485acd0d8641a1
+library:
+  task_pool_id: TP-UT-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  description: Utilities Commissioning Only task pool (installation, commissioning,
+    startup, performance run, turnover). Excludes CQV qualification deliverables (URS/RA/RTM/DQ/IQ/OQ/PQ/VSR).
+  owner_function: Facilities / Engineering
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-UT-COMM
+      profile_version: v1
+    determinism: ORDERED_LIST
+    task_id_uniqueness: ENFORCED
+    dependency_graph: ACYCLIC_EXPECTED
+  governance:
+    default_status: Open
+    status_vocab:
+    - Open
+    - Planned
+    - In Progress
+    - Completed
+    - Blocked
+    note: Status vocabulary is advisory; orchestration layer may map to WP task table
+      states.
+  tasks:
+  - atomic_task_id: UTC-COMM-PLAN
+    name: Commissioning plan & execution strategy
+    phase: COMMISSIONING
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - WP created
+    - System boundary & P&IDs available
+    outputs:
+    - Approved commissioning plan
+    duration_ref:
+      profile_key: COMM_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-KICKOFF
+    name: Commissioning kickoff & stakeholder alignment
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: PM
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Commissioning plan draft available
+    outputs:
+    - Kickoff minutes / action log
+    duration_ref:
+      profile_key: COMM_KICKOFF_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-COMM-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-PID-WALKDOWN
+    name: P&ID walkdown, tag verification, boundary confirmation
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Kickoff complete
+    - P&IDs / equipment list
+    outputs:
+    - Walkdown punch list / boundary sign-off
+    duration_ref:
+      profile_key: PID_WALKDOWN_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-KICKOFF
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-RECEIVING
+    name: Delivery, receiving, and incoming inspection
+    phase: LOGISTICS
+    task_type: DELIVERY
+    owner_role_default: Warehouse
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Purchase/delivery scheduled
+    outputs:
+    - Receiving report
+    - Damage/shortage log
+    duration_ref:
+      profile_key: RECEIVING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-PID-WALKDOWN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-INSTALL-MECH
+    name: Mechanical installation checks (supports, piping, insulation, labeling)
+    phase: INSTALLATION
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Materials received
+    outputs:
+    - Mechanical installation checklist
+    duration_ref:
+      profile_key: INSTALL_MECH_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-RECEIVING
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-INSTALL-EL
+    name: Electrical installation checks (power, grounding, MCC/VFD checks)
+    phase: INSTALLATION
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Mechanical installation checks complete
+    outputs:
+    - Electrical installation checklist
+    duration_ref:
+      profile_key: INSTALL_EL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-MECH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-INSTR-CAL-VERIFY
+    name: Instrumentation calibration verification (event-driven)
+    phase: COMMISSIONING
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Calibration certificates available
+    outputs:
+    - Calibration status verified
+    duration_ref:
+      profile_key: INSTR_CAL_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-EL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-LOOP-CHECK
+    name: I/O checkout & loop checks (sensors, actuators, signals)
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Electrical checks complete
+    - Instrument calibration verified (if applicable)
+    outputs:
+    - Loop check records
+    duration_ref:
+      profile_key: LOOP_CHECK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-EL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-CONTROL-FUNC
+    name: Controls functional testing (sequences, permissives, interlocks)
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Loop checks complete
+    outputs:
+    - Functional test records
+    duration_ref:
+      profile_key: CONTROL_FUNC_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-LOOP-CHECK
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-ALARM-VERIFY
+    name: Alarm verification & safety interlock challenge tests
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Functional testing complete
+    outputs:
+    - Alarm matrix verified
+    - Interlock test records
+    duration_ref:
+      profile_key: ALARM_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-CONTROL-FUNC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-FLUSH-CLEAN
+    name: System flushing/cleaning (chemical treatment as applicable)
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Mechanical installation complete
+    outputs:
+    - Flush/cleaning records
+    - Water quality checks (if applicable)
+    duration_ref:
+      profile_key: FLUSH_CLEAN_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-MECH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-PRESSURE-LEAK
+    name: Pressure/leak testing and integrity checks
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Mechanical installation complete
+    outputs:
+    - Pressure test records
+    duration_ref:
+      profile_key: PRESSURE_TEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-MECH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-BALANCE
+    name: Flow/pressure balancing & setpoint tuning (hydronic balancing)
+    phase: COMMISSIONING
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Controls functional testing complete
+    - Flushing complete (if required)
+    outputs:
+    - Balancing report / setpoints
+    duration_ref:
+      profile_key: BALANCING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-CONTROL-FUNC
+        dependency_type: FS
+        lag_days: 0
+      - atomic_task_id: UTC-FLUSH-CLEAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-STARTUP
+    name: Initial startup (pumps/chillers interface), rotation check, vibration/noise
+      check
+    phase: STARTUP
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Balancing complete
+    - Pressure/leak test complete
+    outputs:
+    - Startup checklist
+    - Initial parameters recorded
+    duration_ref:
+      profile_key: STARTUP_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-BALANCE
+        dependency_type: FS
+        lag_days: 0
+      - atomic_task_id: UTC-PRESSURE-LEAK
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-PERF-RUN
+    name: Performance run (capacity / stability) against design intent
+    phase: PERFORMANCE
+    task_type: EXECUTION
+    owner_role_default: Facilities
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Startup complete
+    outputs:
+    - Performance test results
+    - Issue log
+    duration_ref:
+      profile_key: PERF_RUN_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-STARTUP
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-TREND-RUN
+    name: Reliability/trending run (e.g., 72-hr) with alarm review
+    phase: PERFORMANCE
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Performance run complete
+    outputs:
+    - Trend pack
+    - Alarm/event review summary
+    duration_ref:
+      profile_key: TREND_RUN_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-PERF-RUN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-TRAINING
+    name: Operator/maintenance training & SOP handover
+    phase: TURNOVER
+    task_type: EXECUTION
+    owner_role_default: Operations
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - System stable in operation
+    outputs:
+    - Training records
+    - SOP draft list
+    duration_ref:
+      profile_key: TRAINING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-TREND-RUN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-ASBUILT-OM
+    name: As-built drawings, redlines, and O&M manual compilation
+    phase: TURNOVER
+    task_type: REPORTING
+    owner_role_default: Engineering
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Installation complete
+    outputs:
+    - As-built pack
+    - O&M manual
+    duration_ref:
+      profile_key: ASBUILT_OM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-INSTALL-MECH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-PUNCHLIST
+    name: Punch list triage & closure (commissioning closeout)
+    phase: TURNOVER
+    task_type: EXECUTION
+    owner_role_default: PM
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - All commissioning tests complete
+    outputs:
+    - Closed punch list
+    duration_ref:
+      profile_key: PUNCHLIST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-TREND-RUN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-TURNOVER
+    name: Turnover package & handover to operations (system release)
+    phase: TURNOVER
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Punch list closed
+    - Training complete
+    - As-built pack ready
+    outputs:
+    - Turnover certificate / handover record
+    duration_ref:
+      profile_key: TURNOVER_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-PUNCHLIST
+        dependency_type: FS
+        lag_days: 0
+      - atomic_task_id: UTC-TRAINING
+        dependency_type: FS
+        lag_days: 0
+      - atomic_task_id: UTC-ASBUILT-OM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+  - atomic_task_id: UTC-CLOSEOUT
+    name: Commissioning closeout report & lessons learned
+    phase: TURNOVER
+    task_type: REPORTING
+    owner_role_default: PM
+    applicability_tags:
+    - Utilities
+    - CommissioningOnly
+    - Turnover
+    required_inputs:
+    - Turnover complete
+    outputs:
+    - Closeout report
+    - Lessons learned register
+    duration_ref:
+      profile_key: CLOSEOUT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTC-TURNOVER
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: ''
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-UT-E2E_v1.yaml
+sha256: 5fb17aad9f36a4a069a73db54bc6aaf0a30bedb0c097871203d0698cf997b87d
+library:
+  task_pool_id: TP-UT-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  description: Atomic task pool for Utilities — High. Tasks reference Profile Library
+    duration keys (no embedded numeric durations). Designed for deterministic staging
+    into WPs.
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-UT-E2E
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: UT2E-VMP-CYCLE
+    name: VMP cycle (draft/review/approval)
+    phase: VMP
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Project
+    required_inputs:
+    - Project scope defined
+    - System boundary agreed
+    outputs:
+    - Approved VMP
+    duration_ref:
+      profile_key: VMP_CYCLE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: true
+    notes: Optional predecessor for single equipment; mandatory for project/multi-equipment
+      per policy flags.
+  - atomic_task_id: UT2E-URS-AUTH
+    name: URS authoring
+    phase: URS
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - SingleEquipment
+    - Project
+    required_inputs:
+    - WP created
+    - Scope defined
+    outputs:
+    - URS draft
+    duration_ref:
+      profile_key: URS_AUTHORING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-VMP-CYCLE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-URS-REVIEW
+    name: URS cross-functional review
+    phase: URS
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - URS draft
+    outputs:
+    - URS review comments
+    duration_ref:
+      profile_key: URS_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-URS-AUTH
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-URS-APPROVAL
+    name: URS approval cycle
+    phase: URS
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - URS review completed
+    outputs:
+    - Approved URS
+    duration_ref:
+      profile_key: URS_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-URS-REVIEW
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-QUOTE-WAIT
+    name: Contractor/vendor quotation waiting period
+    phase: PROCUREMENT
+    task_type: VENDOR_WAIT
+    owner_role_default: Vendor
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - Approved URS issued to vendor
+    outputs:
+    - Quotation received
+    duration_ref:
+      profile_key: QUOTATION_WAIT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents external waiting time; not resource-consuming in v1.
+  - atomic_task_id: UT2E-RTM-DRAFT
+    name: RTM draft
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - Approved URS
+    outputs:
+    - RTM draft
+    duration_ref:
+      profile_key: RTM_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-RTM-COORD
+    name: RTM vendor coordination block
+    phase: RTM
+    task_type: VENDOR_WAIT
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - RTM draft
+    - Vendor responses required
+    outputs:
+    - Vendor feedback integrated
+    duration_ref:
+      profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-RTM-DRAFT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: UT2E-RTM-FINALIZE
+    name: RTM finalize
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - RTM coordination completed
+    outputs:
+    - Final RTM
+    duration_ref:
+      profile_key: RTM_FINALIZE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-RTM-COORD
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-DQ-CYCLE
+    name: Design Qualification (DQ) cycle
+    phase: DQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - Final RTM
+    - Design inputs available
+    outputs:
+    - Approved DQ
+    duration_ref:
+      profile_key: DQ_CYCLE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-RTM-FINALIZE
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-MFG-LEAD
+    name: Procurement & fabrication lead time (vendor)
+    phase: PROCUREMENT
+    task_type: MANUFACTURING_LEADTIME
+    owner_role_default: Vendor
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - PO issued
+    outputs:
+    - Equipment manufactured
+    duration_ref:
+      profile_key: MANUFACTURING_LEADTIME_UTILITIES_PACKAGE
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-DQ-CYCLE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Represents external manufacturing lead time; stored as CALENDAR_MONTHS/DAYS
+      per profile unit policy.
+  - atomic_task_id: UT2E-FAT-SCHED
+    name: FAT/SAT scheduling and coordination
+    phase: FAT
+    task_type: SCHEDULING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - Manufacturing complete
+    outputs:
+    - FAT scheduled
+    duration_ref:
+      profile_key: FAT_SCHEDULING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-MFG-LEAD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: UT2E-LOGISTICS
+    name: Delivery & receiving at site
+    phase: LOGISTICS
+    task_type: DELIVERY
+    owner_role_default: Vendor
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Vendor
+    required_inputs:
+    - FAT complete
+    outputs:
+    - Equipment delivered to site
+    duration_ref:
+      profile_key: LOGISTICS_DELIVERY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-FAT-SCHED
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+  - atomic_task_id: UT2E-INSTALL-COMM
+    name: Installation & commissioning execution (site)
+    phase: INSTALLATION
+    task_type: EXECUTION
+    owner_role_default: Engineering
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Site
+    required_inputs:
+    - System delivered to site
+    - Installation plan approved
+    - Utilities tie-in permits/LOTO available
+    outputs:
+    - Installed and commissioned utility system ready for IQ
+    duration_ref:
+      profile_key: INSTALLATION_COMMISSIONING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-LOGISTICS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_insertion_block: true
+    notes: Site work block (piping, tie-ins, loop checks, vendor/contractor support).
+  - atomic_task_id: UT2E-IQ-PROTOCOL
+    name: IQ protocol preparation
+    phase: IQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - IQ strategy agreed
+    - Vendor documentation available
+    outputs:
+    - Approved IQ protocol
+    duration_ref:
+      profile_key: IQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-INSTALL-COMM
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-IQ-EXEC
+    name: IQ execution
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: Engineering
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - Approved IQ protocol
+    - Installation complete
+    outputs:
+    - Executed IQ protocol
+    duration_ref:
+      profile_key: IQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-IQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-IQ-REPORT
+    name: IQ report
+    phase: IQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - IQ execution complete
+    outputs:
+    - Approved IQ report
+    duration_ref:
+      profile_key: IQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-IQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-OQ-PROTOCOL
+    name: OQ protocol preparation
+    phase: OQ
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - IQ complete
+    - Control strategy available
+    outputs:
+    - OQ protocol draft
+    duration_ref:
+      profile_key: OQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-IQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-OQ-APPROVAL
+    name: OQ protocol approval
+    phase: OQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - OQ protocol draft
+    outputs:
+    - Approved OQ protocol
+    duration_ref:
+      profile_key: OQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-OQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-OQ-EXEC
+    name: OQ execution
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: Automation
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - Approved OQ protocol
+    outputs:
+    - Executed OQ protocol
+    duration_ref:
+      profile_key: OQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-OQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-OQ-REPORT
+    name: OQ report
+    phase: OQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - OQ execution complete
+    outputs:
+    - Approved OQ report
+    duration_ref:
+      profile_key: OQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-OQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-PQ-PROTOCOL
+    name: PQ protocol preparation
+    phase: PQ
+    task_type: AUTHORING
+    owner_role_default: Production
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - OQ complete
+    - Process parameters defined
+    outputs:
+    - PQ protocol draft
+    duration_ref:
+      profile_key: PQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-OQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-PQ-APPROVAL
+    name: PQ protocol approval
+    phase: PQ
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - PQ protocol draft
+    outputs:
+    - Approved PQ protocol
+    duration_ref:
+      profile_key: PQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-PQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-PQ-EXEC
+    name: PQ execution
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: Production
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - Approved PQ protocol
+    - Materials available
+    outputs:
+    - Executed PQ runs
+    duration_ref:
+      profile_key: PQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-PQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-PQ-REPORT
+    name: PQ report
+    phase: PQ
+    task_type: REPORTING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - PQ execution complete
+    outputs:
+    - Approved PQ report
+    duration_ref:
+      profile_key: PQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-PQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation raised during execution or document review
+    outputs:
+    - Deviation Record DEV-### created/updated
+    - Disposition recorded (accept/retest/rework)
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: do not auto-plan. Activate only if a deviation is raised;
+      otherwise leave Open/unscheduled.'
+  - atomic_task_id: UT2E-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    - Quality
+    required_inputs:
+    - Deviation record indicates CAPA required
+    outputs:
+    - CAPA Record CAPA-### created/updated
+    - Corrective/Preventive actions tracked to closure
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+    notes: 'Event-driven: activate only when CAPA is required; otherwise leave Open/unscheduled.'
+  - atomic_task_id: UT2E-VSR-DRAFT
+    name: VSR draft
+    phase: VSR
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - PQ complete
+    - All deviations resolved
+    outputs:
+    - VSR draft
+    duration_ref:
+      profile_key: VSR_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-VSR-REVIEW
+    name: VSR review
+    phase: VSR
+    task_type: REVIEW
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - VSR draft
+    outputs:
+    - VSR review comments
+    duration_ref:
+      profile_key: VSR_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-VSR-DRAFT
+        dependency_type: FS
+        lag_days: 0
+  - atomic_task_id: UT2E-VSR-APPROVAL
+    name: VSR approval
+    phase: VSR
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - HighComplexity
+    required_inputs:
+    - VSR review complete
+    outputs:
+    - Approved VSR
+    duration_ref:
+      profile_key: VSR_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UT2E-VSR-REVIEW
+        dependency_type: FS
+        lag_days: 0
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-UT-POST-CHANGE_v1.yaml
+sha256: 5b972a06f0fe290844e849691b353663e78bba4ff5ee45ce15aa87cc9d531b9e
+library:
+  task_pool_id: TP-UT-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for utilities post-change delta qualification (change
+    control impact + targeted re-qualification + release).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-UT-POST-CHANGE
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: UTCHG-IMPACT
+    name: Change impact assessment (requirements/tests affected)
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Approved change request (scope, rationale, implementation details)
+    - Baseline qualification package available (IQ/OQ/PQ as applicable)
+    - Updated drawings/specs available (P&ID, datasheets) if impacted
+    outputs:
+    - Impact assessment completed
+    - Delta qualification strategy defined (what to re-test and why)
+    duration_ref:
+      profile_key: UTCHG_IMPACT_ASSESS_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: UTCHG-RTM-DELTA
+    name: RTM / requirements delta update
+    phase: RTM
+    task_type: UPDATE
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Impact assessment completed
+    outputs:
+    - RTM delta updated (coverage of changed requirements)
+    duration_ref:
+      profile_key: UTCHG_RTM_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+    notes: Optional if RTM is not maintained in operations; recommended for GMP critical
+      utilities.
+  - atomic_task_id: UTCHG-PROTOCOL-DELTA
+    name: Protocol delta authoring (partial IQ/OQ/PQ as needed)
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    - DeltaQualification
+    required_inputs:
+    - Impact assessment completed
+    - RTM delta updated (if used)
+    - Updated design/configuration details available
+    outputs:
+    - Approved protocol delta / addendum (test steps + acceptance criteria)
+    duration_ref:
+      profile_key: UTCHG_PROTOCOL_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTCHG-EXEC-DELTA
+    name: Delta execution (partial IQ/OQ/PQ steps)
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    - DeltaQualification
+    required_inputs:
+    - Approved protocol delta / addendum
+    - Utility system available and safe to test
+    - Operations/facilities coordination complete (permits/LOTO as applicable)
+    outputs:
+    - Delta execution evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: UTCHG_EXEC_DELTA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-PROTOCOL-DELTA
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTCHG-REPORT
+    name: Qualification report addendum / update
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    required_inputs:
+    - Delta execution complete
+    - Exceptions dispositioned (if any)
+    outputs:
+    - Approved qualification addendum / updated report section
+    duration_ref:
+      profile_key: UTCHG_REPORT_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-EXEC-DELTA
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTCHG-TRAINING
+    name: Training / SOP update readiness (if required)
+    phase: RELEASE
+    task_type: READINESS
+    owner_role_default: System Owner
+    applicability_tags:
+    - Utilities
+    - PostChange
+    required_inputs:
+    - Change impacts on procedures identified
+    outputs:
+    - Training completed (if required)
+    - SOP/work instruction updates completed (if required)
+    duration_ref:
+      profile_key: TRAINING_UPDATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: UTCHG-RELEASE
+    name: QA approval / change closure gate
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - PostChange
+    - ChangeControl
+    required_inputs:
+    - Qualification addendum/update approved
+    - Training/SOP updates complete or justified (if applicable)
+    - Change package complete (redlines/as-builts updated if impacted)
+    outputs:
+    - Change control closure approved
+    - Release decision confirmed
+    duration_ref:
+      profile_key: UTCHG_RELEASE_GATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTCHG-DEV-RECORD
+    name: Deviation record (event-driven, if required)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - Deviation raised (if applicable)
+    outputs:
+    - Deviation record created/updated
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: UTCHG-CAPA-RECORD
+    name: CAPA record (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTCHG-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-UT-POST-DEV_v1.yaml
+sha256: 1f5742bc7a04b32058f4dd9fc484c6531a09a4127e5ffa58a884ba7ff580795d
+library:
+  task_pool_id: TP-UT-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for utilities post-deviation targeted re-qualification
+    (delta re-test + closure).
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-UT-POST-DEV
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: UTDEV-IMPACT
+    name: Deviation impact assessment & test impact mapping
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Deviation description and evidence available
+    - Baseline qualification package available (IQ/OQ/PQ as applicable)
+    outputs:
+    - Impact assessment completed
+    - Retest scope defined (requirements / test steps impacted)
+    duration_ref:
+      profile_key: UTDEV_IMPACT_ASSESS_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEV-PROTOCOL-ADD
+    name: Protocol addendum / retest script preparation
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Impact assessment completed
+    outputs:
+    - Approved retest addendum / scripts (delta steps)
+    duration_ref:
+      profile_key: UTDEV_PROTOCOL_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEV-RETEST-EXEC
+    name: Targeted retest execution (delta testing)
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Approved retest addendum / scripts
+    - Utility system available and safe to test
+    outputs:
+    - Retest evidence pack
+    - Exceptions list (if any)
+    duration_ref:
+      profile_key: UTDEV_EXEC_RETEST_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-PROTOCOL-ADD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEV-REPORT
+    name: Retest report / addendum compilation
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - PostDeviation
+    - TargetedRetest
+    required_inputs:
+    - Retest evidence complete
+    - Exceptions dispositioned (if any)
+    outputs:
+    - Retest report / addendum approved
+    duration_ref:
+      profile_key: UTDEV_REPORT_ADDENDUM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-RETEST-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEV-RELEASE
+    name: QA disposition / release decision update
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - PostDeviation
+    required_inputs:
+    - Retest report / addendum available
+    - Deviation disposition available
+    outputs:
+    - QA disposition recorded
+    - Release decision confirmed (or further actions defined)
+    duration_ref:
+      profile_key: UTDEV_RELEASE_GATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEV-DEV-RECORD
+    name: Deviation record update & closure (event-driven administration)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - Deviation raised
+    outputs:
+    - Deviation record updated and closed (if applicable)
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: UTDEV-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEV-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+source_path: libraries/task_pool/TP-UT-QUAL_v1.yaml
+sha256: c78c9cbd405fe7330a57ef24fc17b3bca44e081d1eadf49f809c06793011292a
+library:
+  task_pool_id: TP-UT-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  description: Atomic task pool for Utilities qualification-only WPs. Commissioning
+    is handled in a separate WP; this pool starts from readiness/turnover into IQ/OQ/PQ/VSR.
+  owner_function: CQV
+  integrity:
+    schema_version: v0.1.0
+    binds_to_profile:
+      profile_id: PROF-UT-QUAL
+      profile_version: v1
+  governance:
+    change_control_ref: N/A (design-stage dataset)
+  tasks:
+  - atomic_task_id: UTQ-VMP-CYCLE
+    name: VMP cycle (draft/review/approval)
+    phase: VMP
+    task_type: CYCLE
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Project scope defined
+    - CQV strategy agreed
+    outputs:
+    - Approved VMP (or system validation plan)
+    duration_ref:
+      profile_key: VMP_CYCLE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-URS-AUTH
+    name: URS authoring
+    phase: URS
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved VMP
+    - User requirements available
+    outputs:
+    - URS draft
+    duration_ref:
+      profile_key: URS_AUTHORING_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-VMP-CYCLE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-URS-REVIEW
+    name: URS review
+    phase: URS
+    task_type: REVIEW
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - URS draft
+    outputs:
+    - Reviewed URS (comments resolved)
+    duration_ref:
+      profile_key: URS_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-URS-AUTH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-URS-APPROVAL
+    name: URS approval
+    phase: URS
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - URS review complete
+    outputs:
+    - Approved URS
+    duration_ref:
+      profile_key: URS_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-URS-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-RTM-DRAFT
+    name: RTM draft
+    phase: RTM
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved URS
+    outputs:
+    - RTM draft
+    duration_ref:
+      profile_key: RTM_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-URS-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-RTM-FINALIZE
+    name: RTM finalize
+    phase: RTM
+    task_type: FINALIZE
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - RTM draft
+    outputs:
+    - RTM finalized
+    duration_ref:
+      profile_key: RTM_FINALIZE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-RTM-DRAFT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-DQ-CYCLE
+    name: DQ cycle (draft/review/approval)
+    phase: DQ
+    task_type: CYCLE
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved URS
+    - RTM finalized
+    - Design package available (P&IDs, GA, datasheets as applicable)
+    outputs:
+    - Approved DQ
+    duration_ref:
+      profile_key: DQ_CYCLE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-RTM-FINALIZE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-QUAL-READINESS
+    name: Qualification readiness gate (turnover pack review)
+    phase: TURNOVER
+    task_type: READINESS_REVIEW
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Turnover package received from COMM WP
+    - As-built drawings and commissioning evidence available
+    - Open punch list dispositioned
+    outputs:
+    - IQ readiness confirmed
+    duration_ref:
+      profile_key: QUAL_READINESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-DQ-CYCLE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+    notes: This task is the formal bridge between COMM WP and QUAL WP.
+  - atomic_task_id: UTQ-IQ-PROTOCOL
+    name: IQ protocol preparation
+    phase: IQ
+    task_type: PROTOCOL_AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - IQ readiness confirmed
+    outputs:
+    - IQ protocol
+    duration_ref:
+      profile_key: IQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-QUAL-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-IQ-EXEC
+    name: IQ execution
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved IQ protocol
+    outputs:
+    - IQ evidence pack
+    - IQ deviations (if any)
+    duration_ref:
+      profile_key: IQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-IQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-IQ-REPORT
+    name: IQ report
+    phase: IQ
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - IQ execution complete
+    outputs:
+    - Approved IQ report
+    duration_ref:
+      profile_key: IQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-IQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-OQ-PROTOCOL
+    name: OQ protocol preparation
+    phase: OQ
+    task_type: PROTOCOL_AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - IQ complete
+    - RTM available
+    outputs:
+    - OQ protocol
+    duration_ref:
+      profile_key: OQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-IQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-OQ-APPROVAL
+    name: OQ protocol approval
+    phase: OQ
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - OQ protocol drafted
+    outputs:
+    - Approved OQ protocol
+    duration_ref:
+      profile_key: OQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-OQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-OQ-EXEC
+    name: OQ execution
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved OQ protocol
+    outputs:
+    - OQ evidence pack
+    - OQ deviations (if any)
+    duration_ref:
+      profile_key: OQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-OQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-OQ-REPORT
+    name: OQ report
+    phase: OQ
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - OQ execution complete
+    outputs:
+    - Approved OQ report
+    duration_ref:
+      profile_key: OQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-OQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-PQ-PROTOCOL
+    name: PQ protocol preparation
+    phase: PQ
+    task_type: PROTOCOL_AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - OQ complete
+    outputs:
+    - PQ protocol
+    duration_ref:
+      profile_key: PQ_PROTOCOL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-OQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-PQ-APPROVAL
+    name: PQ protocol approval
+    phase: PQ
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - PQ protocol drafted
+    outputs:
+    - Approved PQ protocol
+    duration_ref:
+      profile_key: PQ_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-PQ-PROTOCOL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-PQ-EXEC
+    name: PQ execution
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: Production SME
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - Approved PQ protocol
+    outputs:
+    - PQ evidence pack
+    - PQ deviations (if any)
+    duration_ref:
+      profile_key: PQ_EXECUTION_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-PQ-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-PQ-REPORT
+    name: PQ report
+    phase: PQ
+    task_type: REPORT
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - PQ execution complete
+    outputs:
+    - Approved PQ report
+    duration_ref:
+      profile_key: PQ_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-PQ-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-VSR-DRAFT
+    name: VSR draft
+    phase: VSR
+    task_type: AUTHORING
+    owner_role_default: CQV Engineer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - IQ/OQ/PQ reports complete
+    - Deviations closed or dispositioned
+    outputs:
+    - VSR draft
+    duration_ref:
+      profile_key: VSR_DRAFT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-PQ-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-VSR-REVIEW
+    name: VSR review
+    phase: VSR
+    task_type: REVIEW
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - VSR draft
+    outputs:
+    - Reviewed VSR
+    duration_ref:
+      profile_key: VSR_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-VSR-DRAFT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-VSR-APPROVAL
+    name: VSR approval
+    phase: VSR
+    task_type: APPROVAL
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - QualificationOnly
+    required_inputs:
+    - VSR review complete
+    outputs:
+    - Approved VSR
+    duration_ref:
+      profile_key: VSR_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-VSR-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTQ-DEV-RECORD
+    name: Deviation record & impact assessment (event-driven)
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - Deviation raised during qualification activities
+    outputs:
+    - Deviation record created and dispositioned
+    duration_ref:
+      profile_key: DEV_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-VSR-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+  - atomic_task_id: UTQ-CAPA-RECORD
+    name: CAPA record & tracking (event-driven)
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA Reviewer
+    applicability_tags:
+    - Utilities
+    - Quality
+    required_inputs:
+    - CAPA required by QA disposition
+    outputs:
+    - CAPA record created and tracked
+    duration_ref:
+      profile_key: CAPA_RECORD_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTQ-DEV-RECORD
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true

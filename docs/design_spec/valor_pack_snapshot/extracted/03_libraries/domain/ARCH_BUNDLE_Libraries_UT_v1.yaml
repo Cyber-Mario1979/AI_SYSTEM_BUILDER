@@ -1,0 +1,1353 @@
+bundle_id: VALOR-ARCH-LIBRARIES-UT
+version: v1
+date: '2026-02-16'
+sources:
+- path: libraries/context_selector_library/CS-UT-E2E_v1.yaml
+  sha256: b9a7967bce73ab7545f16516f3724a379524b0580d5ccd154be60414b294b08d
+  category: CS-UT-E2E_v1.yaml
+  filename: CS-UT-E2E_v1.yaml
+- path: libraries/profile_library/PROF-UT-E2E_v1.yaml
+  sha256: 7002c477b08292cd94236bd40e9d783ac56c7edb03fd30bd5c9a9da76eac98d5
+  category: PROF-UT-E2E_v1.yaml
+  filename: PROF-UT-E2E_v1.yaml
+- path: libraries/context_selector_library/CS-UT-QUAL_v1.yaml
+  sha256: c72e23d3e3d97c22d1c8d581029b245e318d5ef84c92629a86ead9296fa3c6b1
+  category: CS-UT-QUAL_v1.yaml
+  filename: CS-UT-QUAL_v1.yaml
+- path: libraries/profile_library/PROF-UT-QUAL_v1.yaml
+  sha256: ff2a932757f86b8e5e41bbbafcd1f4dc0849372e8f5005f58d9a35671ce00194
+  category: PROF-UT-QUAL_v1.yaml
+  filename: PROF-UT-QUAL_v1.yaml
+- path: libraries/context_selector_library/CS-UT-POST-DEV_v1.yaml
+  sha256: 23bc403ac963bcf0a59137a0d0d0d344571b2a94d421f2848d8014e40f07e6fe
+  category: CS-UT-POST-DEV_v1.yaml
+  filename: CS-UT-POST-DEV_v1.yaml
+- path: libraries/profile_library/PROF-UT-POST-DEV_v1.yaml
+  sha256: 0a793aa38d3e538eddfb761ec22827c9c25effb2f849056f35285c042f8b1470
+  category: PROF-UT-POST-DEV_v1.yaml
+  filename: PROF-UT-POST-DEV_v1.yaml
+- path: libraries/context_selector_library/CS-UT-POST-CHANGE_v1.yaml
+  sha256: f587972c6febc52cd277a37a27fb52b193d9d748d2b1381bc9bb079c4e6a7387
+  category: CS-UT-POST-CHANGE_v1.yaml
+  filename: CS-UT-POST-CHANGE_v1.yaml
+- path: libraries/profile_library/PROF-UT-POST-CHANGE_v1.yaml
+  sha256: 5286ae52d31564780a6ce4694b30ad74a4133bd12fec604bcb25860ffd0afffa
+  category: PROF-UT-POST-CHANGE_v1.yaml
+  filename: PROF-UT-POST-CHANGE_v1.yaml
+- path: libraries/context_selector_library/CS-UT-COMM_v1.yaml
+  sha256: 6946e370dddcec684b72e6ad18a075076185a4abb297c946db15b28bb4017c34
+  category: CS-UT-COMM_v1.yaml
+  filename: CS-UT-COMM_v1.yaml
+- path: libraries/profile_library/PROF-UT-COMM_v1.yaml
+  sha256: 787a3aa73ec9f66f7960077f4696547203a6497093c08aba83f933bfda8e3cdd
+  category: PROF-UT-COMM_v1.yaml
+  filename: PROF-UT-COMM_v1.yaml
+dependencies:
+- bundle_id: VALOR-ARCH-LIBRARIES-COMMON
+  version: v1
+  provides:
+  - calendar
+  - wp_header_library
+  - group_bindings
+usage:
+  purpose: 'Provide Utilities (UT) governed libraries: Context Selectors + Profiles
+    + Task Pools (incl. COMM).'
+  rules:
+  - This bundle contains ONLY Utilities assets.
+  - Explicit user binds always win; presets only apply when CS=UNBOUND.
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-UT-E2E_v1.yaml
+sha256: b9a7967bce73ab7545f16516f3724a379524b0580d5ccd154be60414b294b08d
+library:
+  selector_id: CS-UT-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Utilities \u2014 High (Project/System)"
+  description: Context selector for high-complexity utilities programs (e.g., HVAC,
+    PWS, steam, CDA). Binds TP-UT-E2E + PROF-UT-E2E and CAL-WORKWEEK. Designed for
+    deterministic staging and planning.
+  applicability:
+    system_type: Utilities
+    complexity: High
+    tags_any:
+    - Utilities
+    - HighComplexity
+    tags_all: []
+    scope_hints:
+    - project
+    - facility
+    - multi-system
+    - utilities
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-UT-E2E
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-UT-E2E
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-UT-E2E
+      version: v1
+    profile:
+      id: PROF-UT-E2E
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+    task_pool:
+      id: TP-UT-E2E
+      version: v1
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-UT-E2E_v1.yaml
+sha256: 7002c477b08292cd94236bd40e9d783ac56c7edb03fd30bd5c9a9da76eac98d5
+library:
+  profile_id: PROF-UT-E2E
+  version: v1
+  revision_date: '2025-12-26'
+  name: "Utilities \u2014 High"
+  description: Governed duration and lead-time defaults for Utilities (High complexity),
+    aligned to CQV lifecycle and vendor realities.
+  applicability:
+    equipment_domain: Utilities
+    complexity: High
+    scope: Project
+    vendor_model: Intercontinental
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal work; CALENDAR_MONTHS/CALENDAR_DAYS for vendor
+      lead-time blocks (no implicit conversion).
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: VMP_CYCLE_DUR
+    description: VMP cycle duration (authoring+review+approval as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VMP
+        task_type: CYCLE
+      value: 20
+      unit: WORKING_DAYS
+  - profile_key: URS_AUTHORING_DUR
+    description: URS drafting/authoring duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: AUTHORING
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: URS_REVIEW_DUR
+    description: URS review duration (multi-function review cycle).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: REVIEW
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: URS_APPROVAL_DUR
+    description: URS approval/signature cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: QUOTATION_WAIT_DUR
+    description: Vendor quotation wait time after URS issuance/hand-off.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: VENDOR_WAIT
+      value: 14
+      unit: WORKING_DAYS
+  - profile_key: RTM_DRAFT_DUR
+    description: RTM drafting duration (initial build).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_VENDOR_COORDINATION_BLOCK_DUR
+    description: RTM coordination block duration (vendor & multi-party alignment).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: VENDOR_COORDINATION_BLOCK
+      value: 30
+      unit: WORKING_DAYS
+  - profile_key: RTM_FINALIZE_DUR
+    description: RTM finalization duration (closure, final edits, sign-off prep).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: FINALIZE
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_CYCLE_DUR
+    description: RTM total cycle duration (draft + coordination block + finalize).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: CYCLE
+      value: 40
+      unit: WORKING_DAYS
+  - profile_key: DQ_CYCLE_DUR
+    description: DQ cycle duration (protocol-like authoring/review/closure as a package).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: DQ
+        task_type: CYCLE
+      value: 15
+      unit: WORKING_DAYS
+  - profile_key: MANUFACTURING_LEADTIME_UTILITIES_PACKAGE
+    description: Manufacturing lead time for a utilities package / high complexity
+      utilities equipment.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PROCUREMENT
+        task_type: MANUFACTURING_LEADTIME
+      value: 7
+      unit: CALENDAR_MONTHS
+  - profile_key: FAT_SCHEDULING_DUR
+    description: FAT scheduling/coordination duration after manufacturing completion
+      (dates, agenda, attendees).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: FAT
+        task_type: SCHEDULING
+      value: 14
+      unit: CALENDAR_DAYS
+  - profile_key: LOGISTICS_DELIVERY_DUR
+    description: Logistics/delivery duration after FAT complete to site delivery.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: LOGISTICS
+        task_type: DELIVERY
+      value: 21
+      unit: CALENDAR_DAYS
+  - profile_key: IQ_PROTOCOL_DUR
+    description: IQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_EXECUTION_DUR
+    description: IQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: IQ_REPORT_DUR
+    description: IQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: OQ_PROTOCOL_DUR
+    description: OQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: PROTOCOL_AUTHORING
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_APPROVAL_DUR
+    description: OQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: OQ_EXECUTION_DUR
+    description: OQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_REPORT_DUR
+    description: OQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PQ_PROTOCOL_DUR
+    description: PQ protocol drafting duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_APPROVAL_DUR
+    description: PQ protocol approval cycle duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PQ_EXECUTION_DUR
+    description: PQ execution duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_REPORT_DUR
+    description: PQ report writing/review closure duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_DRAFT_DUR
+    description: VSR draft duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: VSR_REVIEW_DUR
+    description: VSR review duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_APPROVAL_DUR
+    description: VSR approval duration.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: VSR_CYCLE_DUR
+    description: VSR total cycle duration (draft+review+approval).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: INSTALLATION_COMMISSIONING_DUR
+    description: Site installation + commissioning execution block for utility systems
+      (skids, piping, tie-ins).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: INSTALLATION
+        task_type: EXECUTION
+      value: 20
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record drafting, impact assessment, and QA disposition
+      (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record creation, action tracking setup, and QA review (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-UT-QUAL_v1.yaml
+sha256: c72e23d3e3d97c22d1c8d581029b245e318d5ef84c92629a86ead9296fa3c6b1
+library:
+  selector_id: CS-UT-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Qualification Only"
+  description: Qualification-only lifecycle for Utilities when Commissioning is managed
+    in a separate WP. Binds TP-UT-QUAL + PROF-UT-QUAL + CAL-WORKWEEK.
+  applicability:
+    system_type: Utilities
+    complexity: QualificationOnly
+    tags_any:
+    - Utilities
+    - QualificationOnly
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-UT-QUAL
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-UT-QUAL
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-UT-QUAL
+      version: v1
+    task_pool:
+      id: TP-UT-QUAL
+      version: v1
+    profile:
+      id: PROF-UT-QUAL
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-UT-QUAL_v1.yaml
+sha256: ff2a932757f86b8e5e41bbbafcd1f4dc0849372e8f5005f58d9a35671ce00194
+library:
+  profile_id: PROF-UT-QUAL
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Qualification Only"
+  description: Duration defaults for Utilities qualification-only WPs (Commissioning
+    is handled in a separate WP).
+  applicability:
+    equipment_domain: Utilities
+    complexity: QualificationOnly
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: VMP_CYCLE_DUR
+    description: VMP cycle (draft/review/approval).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VMP
+        task_type: CYCLE
+      value: 15
+      unit: WORKING_DAYS
+  - profile_key: URS_AUTHORING_DUR
+    description: URS authoring.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: AUTHORING
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: URS_REVIEW_DUR
+    description: URS review.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: REVIEW
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: URS_APPROVAL_DUR
+    description: URS approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: URS
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_DRAFT_DUR
+    description: RTM draft.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: RTM_FINALIZE_DUR
+    description: RTM finalize.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: FINALIZE
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: DQ_CYCLE_DUR
+    description: DQ cycle (draft/review/approval).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: DQ
+        task_type: CYCLE
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: QUAL_READINESS_DUR
+    description: Qualification readiness gate (turnover pack review + IQ readiness).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: READINESS_REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: IQ_PROTOCOL_DUR
+    description: IQ protocol preparation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: PROTOCOL_AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: IQ_EXECUTION_DUR
+    description: IQ execution.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: IQ_REPORT_DUR
+    description: IQ report.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: IQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: OQ_PROTOCOL_DUR
+    description: OQ protocol preparation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: PROTOCOL_AUTHORING
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_APPROVAL_DUR
+    description: OQ protocol approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: OQ_EXECUTION_DUR
+    description: OQ execution.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: EXECUTION
+      value: 8
+      unit: WORKING_DAYS
+  - profile_key: OQ_REPORT_DUR
+    description: OQ report.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: OQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: PQ_PROTOCOL_DUR
+    description: PQ protocol preparation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: PROTOCOL_AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_APPROVAL_DUR
+    description: PQ protocol approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: APPROVAL
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PQ_EXECUTION_DUR
+    description: PQ execution.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: EXECUTION
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PQ_REPORT_DUR
+    description: PQ report.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PQ
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_DRAFT_DUR
+    description: VSR draft.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: AUTHORING
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: VSR_REVIEW_DUR
+    description: VSR review.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: REVIEW
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: VSR_APPROVAL_DUR
+    description: VSR approval.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VSR
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-UT-POST-DEV_v1.yaml
+sha256: 23bc403ac963bcf0a59137a0d0d0d344571b2a94d421f2848d8014e40f07e6fe
+library:
+  selector_id: CS-UT-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Post Deviation (Targeted Re-Qualification)"
+  description: Targeted re-qualification activities triggered by a deviation during/after
+    utilities CQV execution or in operation. Binds TP-UT-POST-DEV + PROF-UT-POST-DEV
+    + CAL-WORKWEEK.
+  applicability:
+    system_type: Utilities
+    complexity: PostDeviation
+    tags_any:
+    - Utilities
+    - PostDeviation
+    - TargetedRetest
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-UT-POST-DEV
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-UT-POST-DEV
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-UT-POST-DEV
+      version: v1
+    task_pool:
+      id: TP-UT-POST-DEV
+      version: v1
+    profile:
+      id: PROF-UT-POST-DEV
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-UT-POST-DEV_v1.yaml
+sha256: 0a793aa38d3e538eddfb761ec22827c9c25effb2f849056f35285c042f8b1470
+library:
+  profile_id: PROF-UT-POST-DEV
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Post Deviation"
+  description: Duration defaults for deviation-driven targeted re-qualification on
+    utilities.
+  applicability:
+    equipment_domain: Utilities
+    complexity: PostDeviation
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: UTDEV_IMPACT_ASSESS_DUR
+    description: Deviation impact assessment + test impact mapping.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: IMPACT_ASSESSMENT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: UTDEV_PROTOCOL_ADDENDUM_DUR
+    description: Protocol addendum / retest script preparation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: AUTHORING
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: UTDEV_EXEC_RETEST_DUR
+    description: Targeted retest execution (delta testing).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: UTDEV_REPORT_ADDENDUM_DUR
+    description: Retest report / addendum compilation.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: REPORT
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: UTDEV_RELEASE_GATE_DUR
+    description: QA disposition / release decision update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record update & QA disposition (event-driven administration).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record & tracking (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-UT-POST-CHANGE_v1.yaml
+sha256: f587972c6febc52cd277a37a27fb52b193d9d748d2b1381bc9bb079c4e6a7387
+library:
+  selector_id: CS-UT-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Post Change (Change Control Delta Qualification)"
+  description: Delta qualification activities triggered by a controlled modification
+    (change control) to a utility system. Binds TP-UT-POST-CHANGE + PROF-UT-POST-CHANGE
+    + CAL-WORKWEEK.
+  applicability:
+    system_type: Utilities
+    complexity: PostChange
+    tags_any:
+    - Utilities
+    - PostChange
+    - ChangeControl
+    - DeltaQualification
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-UT-POST-CHANGE
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-UT-POST-CHANGE
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-UT-POST-CHANGE
+      version: v1
+    task_pool:
+      id: TP-UT-POST-CHANGE
+      version: v1
+    profile:
+      id: PROF-UT-POST-CHANGE
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-UT-POST-CHANGE_v1.yaml
+sha256: 5286ae52d31564780a6ce4694b30ad74a4133bd12fec604bcb25860ffd0afffa
+library:
+  profile_id: PROF-UT-POST-CHANGE
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Post Change"
+  description: Duration defaults for change-control-driven delta qualification on
+    utilities.
+  applicability:
+    equipment_domain: Utilities
+    complexity: PostChange
+    scope: System
+    vendor_model: Site
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: WORKING_DAYS for internal execution; vendor lead times are out of scope.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: UTCHG_IMPACT_ASSESS_DUR
+    description: Change impact assessment (requirements/tests affected).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QRM
+        task_type: IMPACT_ASSESSMENT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: UTCHG_RTM_DELTA_DUR
+    description: RTM / requirements delta update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RTM
+        task_type: UPDATE
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: UTCHG_PROTOCOL_DELTA_DUR
+    description: Protocol delta authoring (partial IQ/OQ/PQ as needed).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: AUTHORING
+      value: 4
+      unit: WORKING_DAYS
+  - profile_key: UTCHG_EXEC_DELTA_DUR
+    description: Delta execution (partial IQ/OQ/PQ steps).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: UTCHG_REPORT_ADDENDUM_DUR
+    description: Qualification report addendum / update.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: VERIFICATION
+        task_type: REPORT
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: TRAINING_UPDATE_DUR
+    description: Training / SOP update readiness (if required).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: READINESS
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: UTCHG_RELEASE_GATE_DUR
+    description: QA approval / change closure gate.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: RELEASE
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: DEV_RECORD_DUR
+    description: Deviation record (event-driven, if required).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: DEVIATION_RECORD
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: CAPA_RECORD_DUR
+    description: CAPA record (event-driven).
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: QMS
+        task_type: CAPA_RECORD
+      value: 5
+      unit: WORKING_DAYS
+
+---
+doc_type: library
+category: context_selector_library
+source_path: libraries/context_selector_library/CS-UT-COMM_v1.yaml
+sha256: 6946e370dddcec684b72e6ad18a075076185a4abb297c946db15b28bb4017c34
+library:
+  selector_id: CS-UT-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities \u2014 Commissioning Only"
+  description: 'Commissioning-only workflow for utilities: installation, commissioning,
+    startup, performance run, and turnover (no qualification deliverables).'
+  applicability:
+    system_type: Utilities
+    complexity: CommissioningOnly
+    tags_any:
+    - Utilities
+    - CommissioningOnly
+    tags_all: []
+    scope_hints: []
+  bindings:
+    task_pool_ref:
+      task_pool_id: TP-UT-COMM
+      task_pool_version: v1
+    profile_ref:
+      profile_id: PROF-UT-COMM
+      profile_version: v1
+    calendar_logic_ref:
+      calendar_id: CAL-WORKWEEK
+      calendar_version: v1
+    standards_bundle_ref: null
+  rules:
+    matching:
+      strategy: exact_then_best_effort
+      require_exact_match: true
+    staging:
+      default_ordering: task_pool_order
+      apply_optional_tasks_policy: include_optional_with_flags
+  stamps:
+    selector:
+      id: CS-UT-COMM
+      version: v1
+    task_pool:
+      id: TP-UT-COMM
+      version: v1
+    profile:
+      id: PROF-UT-COMM
+      version: v1
+    calendar:
+      id: CAL-WORKWEEK
+      version: v1
+    bundle: null
+
+---
+doc_type: library
+category: profile_library
+source_path: libraries/profile_library/PROF-UT-COMM_v1.yaml
+sha256: 787a3aa73ec9f66f7960077f4696547203a6497093c08aba83f933bfda8e3cdd
+library:
+  profile_id: PROF-UT-COMM
+  version: v1
+  revision_date: '2026-02-14'
+  name: "Utilities Commissioning Only \u2014 Duration Profile"
+  description: Default durations for Utilities Commissioning Only task pool.
+  applicability:
+    domain: Utilities
+    intent: COMM
+  unit_policy:
+    internal_work: WORKING_DAYS
+    vendor_lead_times:
+    - CALENDAR_DAYS
+    - CALENDAR_WEEKS
+    - CALENDAR_MONTHS
+    no_implicit_conversion: true
+    note: Use WORKING_DAYS for internal commissioning work; use CALENDAR_DAYS for
+      endurance runs if required.
+  calendar_policy:
+    working_days:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    weekend:
+    - Fri
+    - Sat
+    fs_successor_rule: finish_plus_1_calendar_day_then_defer
+  keys:
+  - profile_key: COMM_PLAN_DUR
+    description: Default duration for COMM_PLAN_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: AUTHORING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: COMM_KICKOFF_DUR
+    description: Default duration for COMM_KICKOFF_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 1
+      unit: WORKING_DAYS
+  - profile_key: PID_WALKDOWN_DUR
+    description: Default duration for PID_WALKDOWN_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: RECEIVING_DUR
+    description: Default duration for RECEIVING_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: LOGISTICS
+        task_type: DELIVERY
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: INSTALL_MECH_DUR
+    description: Default duration for INSTALL_MECH_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: INSTALLATION
+        task_type: EXECUTION
+      value: 10
+      unit: WORKING_DAYS
+  - profile_key: INSTALL_EL_DUR
+    description: Default duration for INSTALL_EL_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: INSTALLATION
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: INSTR_CAL_VERIFY_DUR
+    description: Default duration for INSTR_CAL_VERIFY_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: REVIEW
+      value: 1
+      unit: WORKING_DAYS
+  - profile_key: LOOP_CHECK_DUR
+    description: Default duration for LOOP_CHECK_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: CONTROL_FUNC_TEST_DUR
+    description: Default duration for CONTROL_FUNC_TEST_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: ALARM_VERIFY_DUR
+    description: Default duration for ALARM_VERIFY_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: FLUSH_CLEAN_DUR
+    description: Default duration for FLUSH_CLEAN_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: PRESSURE_TEST_DUR
+    description: Default duration for PRESSURE_TEST_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: BALANCING_DUR
+    description: Default duration for BALANCING_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: COMMISSIONING
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: STARTUP_DUR
+    description: Default duration for STARTUP_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: STARTUP
+        task_type: EXECUTION
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: PERF_RUN_DUR
+    description: Default duration for PERF_RUN_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PERFORMANCE
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: TREND_RUN_DUR
+    description: Default duration for TREND_RUN_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: PERFORMANCE
+        task_type: EXECUTION
+      value: 3
+      unit: WORKING_DAYS
+  - profile_key: TRAINING_DUR
+    description: Default duration for TRAINING_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: EXECUTION
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: ASBUILT_OM_DUR
+    description: Default duration for ASBUILT_OM_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: REPORTING
+      value: 7
+      unit: WORKING_DAYS
+  - profile_key: PUNCHLIST_DUR
+    description: Default duration for PUNCHLIST_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: EXECUTION
+      value: 5
+      unit: WORKING_DAYS
+  - profile_key: TURNOVER_DUR
+    description: Default duration for TURNOVER_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: APPROVAL
+      value: 2
+      unit: WORKING_DAYS
+  - profile_key: CLOSEOUT_DUR
+    description: Default duration for CLOSEOUT_DUR.
+    selection_priority: 0
+    value_table:
+    - context_selector:
+        phase: TURNOVER
+        task_type: REPORTING
+      value: 3
+      unit: WORKING_DAYS

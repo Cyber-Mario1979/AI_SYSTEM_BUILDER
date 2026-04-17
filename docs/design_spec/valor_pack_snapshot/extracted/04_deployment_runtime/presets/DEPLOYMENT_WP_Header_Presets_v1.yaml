@@ -1,0 +1,232 @@
+---
+doc_type: library
+category: wp_header_library
+source_path: libraries/preset_library/WP-HEADERS_v1.yaml
+sha256: 5aaad3687288d8d7b9b59136cf3287dfbe18a5358dd9a7b385665b679a0913c9
+library:
+  wp_header_library_id: WP-HEADERS
+  version: v1
+  revision_date: '2026-02-14'
+  name: WP Header Presets (User-Facing)
+  description: User-facing WP header presets only. Q variants removed. _INTRO removed from wp_id codes. Added CS domain for BMS/EMS.
+  groups:
+  - group_id: PRO-WP-LIB
+    name: Process Equipment
+    wp_ids:
+    - TABPRESS
+    - PAN_COATER
+    - CAPSULE
+    - BIN_BLENDER
+    - VG
+    - FBD
+    - RC
+    - BLISTER
+    - TAB_SORT
+    - MILL
+  - group_id: UTI-WP-LIB
+    name: Utilities
+    wp_ids:
+    - COMP_AIR
+    - PWS
+    - HVAC
+    - CHW
+    - HOT_WATER
+    - STEAM
+    - VACUUM
+    - NITROGEN
+    - DRAIN
+    - POWER
+  - group_id: CR-WP-LIB
+    name: Cleanroom
+    wp_ids:
+    - CLEANROOM
+  - group_id: CS-WP-LIB
+    name: Computerized Systems
+    wp_ids:
+    - BMS
+    - EMS
+  wp_headers:
+  - wp_id: TABPRESS
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Tablet Compression Machine
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: PAN_COATER
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Pan Coater
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: CAPSULE
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Capsule Machine
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: BIN_BLENDER
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Bin Blender
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: VG
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Vacuum Granulator
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: FBD
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Fluid Bed Dryer
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: RC
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Roller Compactor
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: BLISTER
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Blister Line
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: TAB_SORT
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Tablet Sorter
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: MILL
+    group_id: PRO-WP-LIB
+    type: ProcessEquipment
+    title: Mill
+    area: SDF
+    scope:
+    objective:
+    governance: SDF Area Owner / CQV / QA
+  - wp_id: COMP_AIR
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Compressed Air System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: PWS
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Purified Water System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: HVAC
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: HVAC System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: CHW
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Chilled Water System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: HOT_WATER
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Hot Water System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: STEAM
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Steam System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: VACUUM
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Vacuum System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: NITROGEN
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Nitrogen System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: DRAIN
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Drainage System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: POWER
+    group_id: UTI-WP-LIB
+    type: Utilities
+    title: Electrical Power System
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / CQV / QA
+  - wp_id: CLEANROOM
+    group_id: CR-WP-LIB
+    type: CleanRoom
+    title: Rooms Qualification / Cleanroom Classification
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities Owner / Production / CQV / QA
+  - wp_id: BMS
+    group_id: CS-WP-LIB
+    type: ComputerizedSystems
+    title: Building Management System (BMS) Computerized System Validation
+    area: Facilities
+    scope:
+    objective:
+    governance: Facilities System Owner / Automation / CQV / QA
+  - wp_id: EMS
+    group_id: CS-WP-LIB
+    type: ComputerizedSystems
+    title: Environmental Monitoring System (EMS) Computerized System Validation
+    area: Production / QC
+    scope:
+    objective:
+    governance: System Owner / QC / Automation / CQV / QA

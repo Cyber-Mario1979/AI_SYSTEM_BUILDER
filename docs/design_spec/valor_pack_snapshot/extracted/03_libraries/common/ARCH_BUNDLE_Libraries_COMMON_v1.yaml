@@ -1,0 +1,58 @@
+---
+bundle_id: VALOR-ARCH-LIBRARIES-COMMON
+version: v1
+date: '2026-02-14'
+sources:
+- path: schemas/index.json
+  sha256: 32791215b521f86df7fba72de6b89d089cdd826879617518b84dcbf200e54ca0
+  category: index.json
+  filename: index.json
+dependencies: []
+usage:
+  purpose: 'Provide shared (COMMON) governed libraries: Calendar + WP Headers.'
+  rules:
+  - WP headers are user-facing presets only.
+
+---
+doc_type: library
+category: documents_index_manifest
+source_path: schemas/index.json
+sha256: 32791215b521f86df7fba72de6b89d089cdd826879617518b84dcbf200e54ca0
+library:
+  generated_at_utc: '2025-12-26T03:09:36.351765Z'
+  pack_version: v1
+  count: 11
+  items:
+  - template: T10_VSR_Template_V1_0_1.md
+    schema: T10_VSR_Template_V1_0_1.schema.json
+    placeholder_count: 21
+  - template: T11_Deviation_Record_Template_V1_0_1.md
+    schema: T11_Deviation_Record_Template_V1_0_1.schema.json
+    placeholder_count: 1
+  - template: T12_CAPA_Record_Template_V1_0_1.md
+    schema: T12_CAPA_Record_Template_V1_0_1.schema.json
+    placeholder_count: 1
+  - template: T1_VMP_Template_V1_0_1.md
+    schema: T1_VMP_Template_V1_0_1.schema.json
+    placeholder_count: 21
+  - template: T3_Risk_Assessment_Template_V1_0_1.md
+    schema: T3_Risk_Assessment_Template_V1_0_1.schema.json
+    placeholder_count: 21
+  - template: T4_URS_Template_V1_0_1.md
+    schema: T4_URS_Template_V1_0_1.schema.json
+    placeholder_count: 22
+  - template: T5_RTM_Template_V1_0_1.md
+    schema: T5_RTM_Template_V1_0_1.schema.json
+    placeholder_count: 21
+  - template: T6_DQ_Template_V1_0_1.md
+    schema: T6_DQ_Template_V1_0_1.schema.json
+    placeholder_count: 22
+  - template: T7_IQ_Protocol_Template_V1_0_1.md
+    schema: T7_IQ_Protocol_Template_V1_0_1.schema.json
+    placeholder_count: 22
+  - template: T8_OQ_Protocol_Template_V1_0_1.md
+    schema: T8_OQ_Protocol_Template_V1_0_1.schema.json
+    placeholder_count: 22
+  - template: T9_PQ_Protocol_Template_V1_0_1.md
+    schema: T9_PQ_Protocol_Template_V1_0_1.schema.json
+    placeholder_count: 22
