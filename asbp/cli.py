@@ -31,6 +31,7 @@ from asbp.collection_logic import (
     remove_task_from_collection,
     update_collection_state,
     update_collection_title,
+    validate_task_delete_membership,
 )
 from asbp.work_package_logic import (
     build_work_package_task_ids,
@@ -628,11 +629,16 @@ def handle_collection_update_state(args):
         print("No state file found. Run 'state init' first.")
         return
 
-    collection = update_collection_state(
-        state.task_collections,
-        collection_id=args.collection_id,
-        collection_state=args.collection_state,
-    )
+    try:
+        collection = update_collection_state(
+            state.task_collections,
+            collection_id=args.collection_id,
+            collection_state=args.collection_state,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
     if collection is None:
         print(f"Collection not found: {args.collection_id}")
         return
@@ -642,7 +648,6 @@ def handle_collection_update_state(args):
         f"Collection state updated: "
         f"{collection.collection_id} -> {collection.collection_state}"
     )
-
 
 def handle_task_add(args):
     state = load_state_or_none()
@@ -961,6 +966,14 @@ def handle_task_delete(args):
         print(f"Task not found: {args.task_id}")
         return
 
+    membership_error = validate_task_delete_membership(
+        state.task_collections,
+        task_id=target_task.task_id,
+    )
+    if membership_error is not None:
+        print(membership_error)
+        return
+
     updated_tasks, deleted_flag = delete_task_by_id(state.tasks, target_task.task_id)
 
     if not deleted_flag:
@@ -970,6 +983,7 @@ def handle_task_delete(args):
     state.tasks = updated_tasks
     save_validated_state(state)
     print(f"Task deleted: {target_task.task_id}")
+
 
 def handle_task_show(args):
     state = load_state_or_none()
@@ -1112,6 +1126,7 @@ def handle_task_set_work_package(args):
         target_task, error_message = set_task_work_package(
             state.tasks,
             state.work_packages,
+            state.task_collections,
             task_ref=args.task_id,
             wp_id=args.wp_id,
         )
@@ -1141,6 +1156,7 @@ def handle_task_clear_work_package(args):
     try:
         target_task, error_message = clear_task_work_package(
             state.tasks,
+            state.task_collections,
             task_ref=args.task_id,
         )
     except ValueError as e:
@@ -1156,6 +1172,7 @@ def handle_task_clear_work_package(args):
 
     save_validated_state(state)
     print(f"Task work package cleared: {target_task.task_id}")
+
 
 def build_parser():
     parser = argparse.ArgumentParser(prog="asbp")

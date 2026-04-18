@@ -151,3 +151,4 @@ def test_state_model_rejects_duplicate_task_collection_ids():
                 make_collection("TC-001", title="Duplicate Collection"),
             ],
         )
+

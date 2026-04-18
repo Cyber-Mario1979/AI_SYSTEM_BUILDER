@@ -1,13 +1,17 @@
 from typing import Literal
 
+from asbp.collection_logic import validate_task_work_package_membership_change
 from asbp.task_logic import find_task_by_reference
 from asbp.state_model import (
     ScopeIntentId,
     SelectorContextModel,
     StandardsBundleId,
+    TaskCollectionModel,
     TaskModel,
     WorkPackageModel,
 )
+
+
 
 
 def find_work_package_by_id(
@@ -333,6 +337,7 @@ def set_work_package_scope_intent(
 def set_task_work_package(
     tasks: list[TaskModel],
     work_packages: list[WorkPackageModel],
+    task_collections: list[TaskCollectionModel],
     *,
     task_ref: str,
     wp_id: str,
@@ -344,6 +349,14 @@ def set_task_work_package(
     work_package = find_work_package_by_id(work_packages, wp_id)
     if work_package is None:
         return None, f"Work Package not found: {wp_id}"
+
+    membership_change_error = validate_task_work_package_membership_change(
+        task_collections,
+        task_id=target_task.task_id,
+        target_work_package_id=work_package.wp_id,
+    )
+    if membership_change_error is not None:
+        return None, membership_change_error
 
     if (
         target_task.work_package_id is not None
@@ -358,15 +371,23 @@ def set_task_work_package(
     target_task.work_package_id = work_package.wp_id
     return target_task, None
 
-
 def clear_task_work_package(
     tasks: list[TaskModel],
+    task_collections: list[TaskCollectionModel],
     *,
     task_ref: str,
 ) -> tuple[TaskModel | None, str | None]:
     target_task = find_task_by_reference(tasks, task_ref)
     if target_task is None:
         return None, f"Task not found: {task_ref}"
+
+    membership_change_error = validate_task_work_package_membership_change(
+        task_collections,
+        task_id=target_task.task_id,
+        target_work_package_id=None,
+    )
+    if membership_change_error is not None:
+        return None, membership_change_error
 
     target_task.work_package_id = None
     return target_task, None

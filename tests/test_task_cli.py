@@ -5322,3 +5322,291 @@ def test_task_list_work_package_id_filter_preserves_and_logic_with_status(
     assert "- TASK-002 | completed | task_key=execute-fat | Execute FAT" in output
     assert "- TASK-001 | planned | task_key=prepare-fat | Prepare FAT" not in output
     assert "- TASK-003 | completed | task_key=review-fat-package | Review FAT Package" not in output
+
+def test_task_delete_rejects_delete_when_collection_memberships_still_exist(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.8.0",
+        "status": "in_flight",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Source Pool",
+                "collection_state": "source",
+                "task_ids": ["TASK-001"],
+            },
+            {
+                "collection_id": "TC-002",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+                "task_ids": ["TASK-001"],
+            },
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "delete", "TASK-001")
+
+    assert result.returncode == 0
+    assert (
+        "Task cannot be deleted while still associated with collections: "
+        "TASK-001 -> [TC-001, TC-002]"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+
+def test_task_set_work_package_rejects_change_when_bound_collection_requires_different_work_package(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.8.0",
+        "status": "in_flight",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "work_package_id": "WP-001",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [
+            {
+                "wp_id": "WP-001",
+                "title": "Tablet press qualification",
+                "status": "open",
+            },
+            {
+                "wp_id": "WP-002",
+                "title": "Packaging line qualification",
+                "status": "open",
+            },
+        ],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+                "work_package_id": "WP-001",
+                "task_ids": ["TASK-001"],
+            }
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "set-work-package", "TASK-001", "WP-002")
+
+    assert result.returncode == 0
+    assert (
+        "Task work package cannot be changed because bound collection "
+        "memberships require a different work package: "
+        "TASK-001 -> target WP-002; memberships=[TC-001 (WP-001)]"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+
+def test_task_clear_work_package_rejects_clear_when_bound_collection_memberships_exist(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.8.0",
+        "status": "in_flight",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "work_package_id": "WP-001",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [
+            {
+                "wp_id": "WP-001",
+                "title": "Tablet press qualification",
+                "status": "open",
+            }
+        ],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+                "work_package_id": "WP-001",
+                "task_ids": ["TASK-001"],
+            }
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "clear-work-package", "TASK-001")
+
+    assert result.returncode == 0
+    assert (
+        "Task work package cannot be cleared while bound collection "
+        "memberships exist: TASK-001 -> [TC-001 (WP-001)]"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+def test_collection_add_task_rejects_bound_collection_work_package_mismatch_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.1.0",
+        "status": "not_started",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [
+            {
+                "wp_id": "WP-001",
+                "title": "Tablet press qualification",
+                "status": "open",
+            }
+        ],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+                "work_package_id": "WP-001",
+            }
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "add-task", "TC-001", "TASK-001")
+
+    assert result.returncode == 0
+    assert (
+        "Task work package does not match bound collection work package: "
+        "TASK-001 -> <none>; TC-001 -> WP-001"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state
+
+
+def test_collection_update_state_rejects_conflicting_non_source_membership_without_mutating_state(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    original_state = {
+        "project": "AI_SYSTEM_BUILDER",
+        "version": "0.1.0",
+        "status": "not_started",
+        "tasks": [
+            {
+                "task_id": "TASK-001",
+                "order": 1,
+                "title": "Prepare FAT",
+                "description": None,
+                "owner": None,
+                "duration": None,
+                "start_date": None,
+                "end_date": None,
+                "task_key": "prepare-fat",
+                "status": "planned",
+                "dependencies": [],
+            }
+        ],
+        "work_packages": [],
+        "task_collections": [
+            {
+                "collection_id": "TC-001",
+                "title": "Source Pool",
+                "collection_state": "source",
+                "task_ids": ["TASK-001"],
+            },
+            {
+                "collection_id": "TC-002",
+                "title": "Committed Selection",
+                "collection_state": "committed",
+                "task_ids": ["TASK-001"],
+            },
+        ],
+    }
+    STATE_FILE.write_text(
+        json.dumps(original_state, indent=2),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "update-state", "TC-001", "staged")
+
+    assert result.returncode == 0
+    assert (
+        "Collection state change would create conflicting non-source "
+        "membership: TASK-001 -> TC-001 (staged), TC-002 (committed)"
+    ) in result.stdout
+
+    saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    assert saved_state == original_state        

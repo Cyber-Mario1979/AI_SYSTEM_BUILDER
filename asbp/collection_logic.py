@@ -132,6 +132,24 @@ def update_collection_state(
         work_package_id=collection.work_package_id,
         task_ids=list(collection.task_ids),
     )
+
+    if validated_collection.collection_state != "source":
+        for task_id in collection.task_ids:
+            conflicting_collection = _find_conflicting_non_source_collection(
+                collections,
+                task_id=task_id,
+                exclude_collection_id=collection.collection_id,
+            )
+            if conflicting_collection is not None:
+                raise ValueError(
+                    "Collection state change would create conflicting non-source "
+                    "membership: "
+                    f"{task_id} -> {collection.collection_id} "
+                    f"({validated_collection.collection_state}), "
+                    f"{conflicting_collection.collection_id} "
+                    f"({conflicting_collection.collection_state})"
+                )
+
     collection.collection_state = validated_collection.collection_state
     return collection
 
@@ -150,6 +168,92 @@ def _find_conflicting_non_source_collection(
         if task_id in collection.task_ids:
             return collection
     return None
+
+
+def _find_task_bound_collections(
+    collections: list[TaskCollectionModel],
+    *,
+    task_id: str,
+) -> list[TaskCollectionModel]:
+    return [
+        collection
+        for collection in collections
+        if task_id in collection.task_ids and collection.work_package_id is not None
+    ]
+
+
+def build_task_collection_ids(
+    collections: list[TaskCollectionModel],
+    *,
+    task_id: str,
+    bound_only: bool = False,
+) -> list[str]:
+    return [
+        collection.collection_id
+        for collection in collections
+        if task_id in collection.task_ids
+        and (not bound_only or collection.work_package_id is not None)
+    ]
+
+
+def validate_task_delete_membership(
+    collections: list[TaskCollectionModel],
+    *,
+    task_id: str,
+) -> str | None:
+    collection_ids = build_task_collection_ids(collections, task_id=task_id)
+    if not collection_ids:
+        return None
+
+    collection_ids_display = ", ".join(collection_ids)
+    return (
+        "Task cannot be deleted while still associated with collections: "
+        f"{task_id} -> [{collection_ids_display}]"
+    )
+
+
+def validate_task_work_package_membership_change(
+    collections: list[TaskCollectionModel],
+    *,
+    task_id: str,
+    target_work_package_id: str | None,
+) -> str | None:
+    bound_collections = _find_task_bound_collections(
+        collections,
+        task_id=task_id,
+    )
+    if not bound_collections:
+        return None
+
+    if target_work_package_id is None:
+        bound_collection_display = ", ".join(
+            f"{collection.collection_id} ({collection.work_package_id})"
+            for collection in bound_collections
+        )
+        return (
+            "Task work package cannot be cleared while bound collection "
+            "memberships exist: "
+            f"{task_id} -> [{bound_collection_display}]"
+        )
+
+    conflicting_bound_collections = [
+        collection
+        for collection in bound_collections
+        if collection.work_package_id != target_work_package_id
+    ]
+    if not conflicting_bound_collections:
+        return None
+
+    conflicting_collection_display = ", ".join(
+        f"{collection.collection_id} ({collection.work_package_id})"
+        for collection in conflicting_bound_collections
+    )
+    return (
+        "Task work package cannot be changed because bound collection "
+        "memberships require a different work package: "
+        f"{task_id} -> target {target_work_package_id}; "
+        f"memberships=[{conflicting_collection_display}]"
+    )
 
 
 def add_task_to_collection(
@@ -174,6 +278,17 @@ def add_task_to_collection(
             "Task already associated with collection: "
             f"{target_task.task_id} -> {collection.collection_id}",
         )
+
+    if collection.work_package_id is not None:
+        task_work_package_display = target_task.work_package_id or "<none>"
+        if target_task.work_package_id != collection.work_package_id:
+            return (
+                None,
+                None,
+                "Task work package does not match bound collection work package: "
+                f"{target_task.task_id} -> {task_work_package_display}; "
+                f"{collection.collection_id} -> {collection.work_package_id}",
+            )
 
     if collection.collection_state != "source":
         conflicting_collection = _find_conflicting_non_source_collection(
@@ -240,7 +355,8 @@ def validate_persisted_collection_task_memberships(
     tasks: list[TaskModel],
     collections: list[TaskCollectionModel],
 ) -> None:
-    existing_task_ids = {task.task_id for task in tasks}
+    tasks_by_id = {task.task_id: task for task in tasks}
+    existing_task_ids = set(tasks_by_id)
     non_source_memberships: dict[str, TaskCollectionModel] = {}
 
     for collection in collections:
@@ -259,6 +375,17 @@ def validate_persisted_collection_task_memberships(
                     "Persisted collection task_id does not exist: "
                     f"{collection.collection_id} -> {task_id}"
                 )
+
+            task = tasks_by_id[task_id]
+            if collection.work_package_id is not None:
+                task_work_package_display = task.work_package_id or "<none>"
+                if task.work_package_id != collection.work_package_id:
+                    raise ValueError(
+                        "Persisted collection task work_package mismatch: "
+                        f"{collection.collection_id} -> {task.task_id} "
+                        f"({task_work_package_display} != "
+                        f"{collection.work_package_id})"
+                    )
 
             if collection.collection_state == "source":
                 continue

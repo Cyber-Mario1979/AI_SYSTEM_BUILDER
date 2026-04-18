@@ -364,3 +364,170 @@ def test_load_validated_state_rejects_task_in_multiple_non_source_collections(
         match=r"Task cannot belong to more than one non-source collection: TASK-001 -> TC-001 \(staged\), TC-002 \(committed\)",
     ):
         load_validated_state(state_file)
+
+def test_load_validated_state_accepts_bound_collection_with_matching_task_work_package(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                        "task_ids": ["TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    state = load_validated_state(state_file)
+
+    assert state.task_collections[0].work_package_id == "WP-001"
+    assert state.task_collections[0].task_ids == ["TASK-001"]
+
+
+def test_load_validated_state_rejects_bound_collection_membership_when_task_has_no_work_package(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                        "task_ids": ["TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"Persisted collection task work_package mismatch: TC-001 -> TASK-001 \(\<none\> != WP-001\)",
+    ):
+        load_validated_state(state_file)
+
+
+def test_load_validated_state_rejects_bound_collection_membership_when_task_has_different_work_package(
+    tmp_path,
+):
+    state_file = tmp_path / "state.json"
+    state_file.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.1.0",
+                "status": "not_started",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": None,
+                        "work_package_id": "WP-002",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Packaging line qualification",
+                        "status": "open",
+                    },
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                        "task_ids": ["TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"Persisted collection task work_package mismatch: TC-001 -> TASK-001 \(WP-002 != WP-001\)",
+    ):
+        load_validated_state(state_file)
