@@ -29,19 +29,19 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.4 — Binding-context consistency controls
+M8.5A — Cross-entity read rules
 
 ## Latest Completed Checkpoint
 
-M8.3 — Task ↔ collection relationship normalization completed
+M8.4 — Binding-context consistency controls completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.4 — Binding-context consistency controls
+M8.5A — Cross-entity read rules
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `402 passed in 37.03s`
+`python -m pytest -q` — `402 passed in 37.56s`
 
 ## Milestone UAT Status
 

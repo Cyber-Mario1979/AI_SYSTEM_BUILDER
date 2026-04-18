@@ -22,6 +22,8 @@ from asbp.state_model import (
     StateModel,
     TaskCollectionModel,
     TaskModel,
+    SelectorContextModel,
+    WorkPackageModel,
 )
 from asbp.state_store import build_persisted_state_payload, load_validated_state
 
@@ -29,6 +31,37 @@ from asbp.state_store import build_persisted_state_payload, load_validated_state
 
 def write_state_file(state_file, payload: dict) -> None:
     state_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+def make_bound_context_work_package_model(
+    wp_id: str = "WP-001",
+    title: str = "Tablet press qualification",
+) -> WorkPackageModel:
+    return WorkPackageModel(
+        wp_id=wp_id,
+        title=title,
+        status="open",
+        selector_context=SelectorContextModel(
+            preset_id="oral-solid-dose-standard",
+            scope_intent="qualification-only",
+            standards_bundles=["cqv-core", "automation"],
+        ),
+    )
+
+
+def make_bound_context_work_package_payload(
+    wp_id: str = "WP-001",
+    title: str = "Tablet press qualification",
+) -> dict:
+    return {
+        "wp_id": wp_id,
+        "title": title,
+        "status": "open",
+        "selector_context": {
+            "preset_id": "oral-solid-dose-standard",
+            "scope_intent": "qualification-only",
+            "standards_bundles": ["cqv-core", "automation"],
+        },
+    }    
 
 
 def test_load_validated_state_defaults_missing_plans_to_empty_list(tmp_path):
@@ -89,11 +122,7 @@ def test_load_validated_state_accepts_plan_linked_to_existing_work_package(tmp_p
             "status": "in_flight",
             "tasks": [],
             "work_packages": [
-                {
-                    "wp_id": "WP-001",
-                    "title": "Tablet press qualification",
-                    "status": "open",
-                }
+                make_bound_context_work_package_payload()
             ],
             "task_collections": [],
             "plans": [
@@ -963,8 +992,11 @@ def test_generate_plan_baseline_builds_serialized_dependency_aware_plan():
         )
     ]
 
+    work_packages = [make_bound_context_work_package_model()]
+
     updated_plan = generate_plan_baseline(
         plans,
+        work_packages,
         tasks,
         task_collections,
         plan_id="PLAN-001",
@@ -993,6 +1025,7 @@ def test_generate_plan_baseline_builds_serialized_dependency_aware_plan():
 
 def test_generate_plan_baseline_returns_none_for_missing_plan_id():
     updated_plan = generate_plan_baseline(
+        [],
         [],
         [],
         [],
@@ -1038,6 +1071,7 @@ def test_generate_plan_baseline_rejects_missing_planning_basis():
     with pytest.raises(ValueError) as exc_info:
         generate_plan_baseline(
             plans,
+            [],
             tasks,
             task_collections,
             plan_id="PLAN-001",
@@ -1099,9 +1133,12 @@ def test_generate_plan_baseline_rejects_dependency_outside_eligible_committed_sc
         )
     ]
 
+    work_packages = [make_bound_context_work_package_model()]
+
     with pytest.raises(ValueError) as exc_info:
         generate_plan_baseline(
             plans,
+            work_packages,
             tasks,
             task_collections,
             plan_id="PLAN-001",
@@ -1120,11 +1157,7 @@ def test_load_validated_state_accepts_plan_with_generated_task_plans(tmp_path):
             "status": "in_flight",
             "tasks": [],
             "work_packages": [
-                {
-                    "wp_id": "WP-001",
-                    "title": "Tablet press qualification",
-                    "status": "open",
-                }
+                make_bound_context_work_package_payload()
             ],
             "task_collections": [],
             "plans": [
@@ -1512,6 +1545,7 @@ def test_build_plan_review_payload_returns_empty_generated_summary_when_not_gene
 def test_commit_plan_returns_none_for_missing_plan_id():
     updated_plan = commit_plan(
         [],
+        [],
         plan_id="PLAN-999",
     )
 
@@ -1554,8 +1588,11 @@ def test_commit_plan_transitions_draft_plan_to_committed_without_mutating_payloa
         ),
     ]
 
+    work_packages = [make_bound_context_work_package_model()]
+
     updated_plan = commit_plan(
         plans,
+        work_packages,
         plan_id="PLAN-001",
     )
 
@@ -1621,6 +1658,7 @@ def test_commit_plan_rejects_already_committed_plan():
     with pytest.raises(ValueError) as exc_info:
         commit_plan(
             plans,
+            [],
             plan_id="PLAN-001",
         )
 
@@ -1660,6 +1698,7 @@ def test_commit_plan_rejects_missing_planning_basis():
     with pytest.raises(ValueError) as exc_info:
         commit_plan(
             plans,
+            [],
             plan_id="PLAN-001",
         )
 
@@ -1688,6 +1727,7 @@ def test_commit_plan_rejects_missing_generated_task_plans():
     with pytest.raises(ValueError) as exc_info:
         commit_plan(
             plans,
+            [],
             plan_id="PLAN-001",
         )
 

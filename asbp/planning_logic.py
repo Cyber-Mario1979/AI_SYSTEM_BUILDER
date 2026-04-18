@@ -13,6 +13,11 @@ from asbp.state_model import (
     WorkPackageModel,
     WorkmonthModeId,
 )
+from asbp.binding_context_logic import (
+    validate_work_package_binding_context_for_planning,
+)
+
+
 _WEEKDAY_TO_PYTHON_INDEX = {
     "monday": 0,
     "tuesday": 1,
@@ -48,6 +53,7 @@ def find_plan_by_id(
         if plan.plan_id == plan_id:
             return plan
     return None
+
 
 def _build_committed_task_id_set(
     task_collections: list[TaskCollectionModel],
@@ -274,7 +280,10 @@ def _build_sorted_generated_task_plan_payloads(
 
 
 
-def _validate_plan_commit_preconditions(plan: PlanningModel) -> None:
+def _validate_plan_commit_preconditions(
+    plan: PlanningModel,
+    work_packages: list[WorkPackageModel],
+) -> None:
     if plan.plan_state == "committed":
         raise ValueError(f"Plan is already committed: {plan.plan_id}")
 
@@ -286,29 +295,12 @@ def _validate_plan_commit_preconditions(plan: PlanningModel) -> None:
             f"{plan.plan_id}"
         )
 
-
-def commit_plan(
-    plans: list[PlanningModel],
-    *,
-    plan_id: str,
-) -> PlanningModel | None:
-    plan = find_plan_by_id(plans, plan_id)
-    if plan is None:
-        return None
-
-    _validate_plan_commit_preconditions(plan)
-
-    validated_plan = PlanningModel(
-        plan_id=plan.plan_id,
+    validate_work_package_binding_context_for_planning(
+        work_packages,
         work_package_id=plan.work_package_id,
-        plan_state="committed",
-        planning_basis=plan.planning_basis,
-        planned_start_at=plan.planned_start_at,
-        planning_calendar=plan.planning_calendar,
-        generated_task_plans=plan.generated_task_plans,
+        plan_id=plan.plan_id,
     )
-    plan.plan_state = validated_plan.plan_state
-    return plan
+
 
 def set_plan_planning_basis(
     plans: list[PlanningModel],
@@ -386,8 +378,34 @@ def set_plan_planning_calendar(
     return plan
 
 
+def commit_plan(
+    plans: list[PlanningModel],
+    work_packages: list[WorkPackageModel],
+    *,
+    plan_id: str,
+) -> PlanningModel | None:
+    plan = find_plan_by_id(plans, plan_id)
+    if plan is None:
+        return None
+
+    _validate_plan_commit_preconditions(plan, work_packages)
+
+    validated_plan = PlanningModel(
+        plan_id=plan.plan_id,
+        work_package_id=plan.work_package_id,
+        plan_state="committed",
+        planning_basis=plan.planning_basis,
+        planned_start_at=plan.planned_start_at,
+        planning_calendar=plan.planning_calendar,
+        generated_task_plans=plan.generated_task_plans,
+    )
+    plan.plan_state = validated_plan.plan_state
+    return plan
+
+
 def generate_plan_baseline(
     plans: list[PlanningModel],
+    work_packages: list[WorkPackageModel],
     tasks: list[TaskModel],
     task_collections: list[TaskCollectionModel],
     *,
@@ -398,11 +416,16 @@ def generate_plan_baseline(
         return None
 
     _validate_plan_generation_preconditions(plan)
+    validate_work_package_binding_context_for_planning(
+        work_packages,
+        work_package_id=plan.work_package_id,
+        plan_id=plan.plan_id,
+    )
 
     committed_task_ids = _build_committed_task_id_set(
-    task_collections,
-    work_package_id=plan.work_package_id,
-)
+        task_collections,
+        work_package_id=plan.work_package_id,
+    )
     eligible_tasks = _build_eligible_plan_tasks(
         tasks,
         work_package_id=plan.work_package_id,
@@ -513,6 +536,8 @@ def validate_persisted_plan_work_package_links(
                 "Persisted plan work_package_id does not exist: "
                 f"{plan.plan_id} -> {plan.work_package_id}"
             )
+
+
 def _is_legacy_generated_plan_snapshot(plan: PlanningModel) -> bool:
     return (
         plan.plan_state == "draft"

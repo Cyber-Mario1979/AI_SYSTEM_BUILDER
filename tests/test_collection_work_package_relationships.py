@@ -12,6 +12,7 @@ from asbp.state_model import (
     TaskCollectionModel,
     TaskModel,
     WorkPackageModel,
+    SelectorContextModel,
 )
 from asbp.state_store import build_persisted_state_payload, load_validated_state
 
@@ -143,6 +144,18 @@ def test_generate_plan_baseline_prefers_work_package_bound_committed_collection_
             ),
         )
     ]
+    work_packages = [
+        WorkPackageModel(
+            wp_id="WP-001",
+            title="Tablet press qualification",
+            status="open",
+            selector_context=SelectorContextModel(
+                preset_id="oral-solid-dose-standard",
+                scope_intent="qualification-only",
+                standards_bundles=["cqv-core", "automation"],
+            ),
+        )
+    ]
     tasks = [
         TaskModel(
             task_id="TASK-001",
@@ -179,6 +192,7 @@ def test_generate_plan_baseline_prefers_work_package_bound_committed_collection_
 
     updated_plan = generate_plan_baseline(
         plans,
+        work_packages,
         tasks,
         task_collections,
         plan_id="PLAN-001",

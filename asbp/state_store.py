@@ -11,6 +11,9 @@ from asbp.planning_logic import (
     validate_persisted_generated_task_plan_consistency,
     validate_persisted_plan_work_package_links,
 )
+from asbp.binding_context_logic import (
+    validate_persisted_plan_binding_context_consistency,
+)
 from asbp.source_of_work_logic import validate_persisted_task_source_contracts
 from asbp.state_model import StateModel
 from asbp.task_logic import validate_persisted_task_keys
@@ -75,6 +78,10 @@ def load_validated_state(state_file_path: Path) -> StateModel:
     validate_persisted_generated_task_plan_consistency(
         state.plans,
         state.tasks,
+    )
+    validate_persisted_plan_binding_context_consistency(
+        state.plans,
+        state.work_packages,
     )
     return state
 
