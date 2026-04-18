@@ -55,4 +55,5 @@ ALIGNED_VERIFIED
 
 - `ROADMAP_CANONICAL.md` is now the approved v3 canonical roadmap.
 - `ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md` is completed historical and no longer governs execution.
+- `ROADMAP_ADDENDUM_04_M8_DESIGN_RESERVATIONS_GATE.md` is ACTIVE and governs the temporary M8 design-reservations gate until reserved items are explicitly dispositioned before M8 closeout.
 - `docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md` remains a design-spec review artifact only and is non-authoritative.
