@@ -1739,3 +1739,135 @@ def test_wp_set_scope_intent_rejects_invalid_choice_at_parser_level():
     combined_output = result.stdout + result.stderr
     assert "invalid choice" in combined_output
 
+def test_wp_show_show_collection_ids_flag_displays_bound_collection_ids(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Refined Selection",
+                        "collection_state": "refined",
+                        "work_package_id": "WP-001",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "show", "WP-001", "--show-collection-ids")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "wp_id": "WP-001",
+        "title": "Tablet press qualification",
+        "status": "open",
+        "collection_ids": ["TC-001", "TC-002"],
+    }
+
+
+def test_wp_list_show_collection_ids_flag_displays_collection_ids(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--show-collection-ids")
+
+    assert result.returncode == 0
+    assert (
+        "- WP-001 | open | collection_ids=[TC-001] | Tablet press qualification"
+    ) in result.stdout
+
+
+def test_wp_list_filters_by_collection_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "open",
+                    },
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Second WP Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-002",
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("wp", "list", "--collection-id", "TC-001")
+
+    assert result.returncode == 0
+    assert "- WP-002 | open | Blister line upgrade" in result.stdout
+    assert "- WP-001 | open | Tablet press qualification" not in result.stdout
+
+    

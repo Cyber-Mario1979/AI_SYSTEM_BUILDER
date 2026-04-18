@@ -41,6 +41,8 @@ def filter_collections(
     collection_state: CollectionState | None = None,
     title: str | None = None,
     collection_id: str | None = None,
+    work_package_id: str | None = None,
+    task_id: str | None = None,
 ) -> list[TaskCollectionModel]:
     filtered = list(collections)
 
@@ -63,6 +65,20 @@ def filter_collections(
             collection
             for collection in filtered
             if collection.collection_id == collection_id
+        ]
+
+    if work_package_id is not None:
+        filtered = [
+            collection
+            for collection in filtered
+            if collection.work_package_id == work_package_id
+        ]
+
+    if task_id is not None:
+        filtered = [
+            collection
+            for collection in filtered
+            if task_id in collection.task_ids
         ]
 
     return filtered
@@ -193,6 +209,18 @@ def build_task_collection_ids(
         for collection in collections
         if task_id in collection.task_ids
         and (not bound_only or collection.work_package_id is not None)
+    ]
+
+
+def build_work_package_collection_ids(
+    collections: list[TaskCollectionModel],
+    *,
+    wp_id: str,
+) -> list[str]:
+    return [
+        collection.collection_id
+        for collection in collections
+        if collection.work_package_id == wp_id
     ]
 
 

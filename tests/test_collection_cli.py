@@ -902,5 +902,250 @@ def test_collection_add_task_allows_source_membership_alongside_non_source_membe
             "task_ids": ["TASK-001"],
         },
     ]    
+def test_collection_show_show_work_package_id_flag_displays_bound_work_package_id(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                        "task_ids": ["TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
-    
+    result = run_cli("collection", "show", "TC-001", "--show-work-package-id")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "collection_id": "TC-001",
+        "title": "Committed Selection",
+        "collection_state": "committed",
+        "work_package_id": "WP-001",
+        "task_ids": ["TASK-001"],
+    }
+
+
+def test_collection_list_show_work_package_id_and_task_ids_displays_cross_entity_fields(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "work_package_id": "WP-001",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    }
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                        "task_ids": ["TASK-001", "TASK-002"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli(
+        "collection",
+        "list",
+        "--show-work-package-id",
+        "--show-task-ids",
+    )
+
+    assert result.returncode == 0
+    assert (
+        "- TC-001 | committed | work_package_id=WP-001 | "
+        "task_ids=[TASK-001, TASK-002] | Committed Selection"
+    ) in result.stdout
+
+
+def test_collection_list_filters_by_work_package_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [],
+                "work_packages": [
+                    {
+                        "wp_id": "WP-001",
+                        "title": "Tablet press qualification",
+                        "status": "open",
+                    },
+                    {
+                        "wp_id": "WP-002",
+                        "title": "Blister line upgrade",
+                        "status": "open",
+                    },
+                ],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "WP-001 Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-001",
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "WP-002 Selection",
+                        "collection_state": "committed",
+                        "work_package_id": "WP-002",
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list", "--work-package-id", "WP-002")
+
+    assert result.returncode == 0
+    assert "- TC-002 | committed | WP-002 Selection" in result.stdout
+    assert "- TC-001 | committed | WP-001 Selection" not in result.stdout
+
+
+def test_collection_list_filters_by_task_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "First Selection",
+                        "collection_state": "committed",
+                        "task_ids": ["TASK-001"],
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Second Selection",
+                        "collection_state": "source",
+                        "task_ids": ["TASK-002"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("collection", "list", "--task-id", "TASK-002")
+
+    assert result.returncode == 0
+    assert "- TC-002 | source | Second Selection" in result.stdout
+    assert "- TC-001 | committed | First Selection" not in result.stdout

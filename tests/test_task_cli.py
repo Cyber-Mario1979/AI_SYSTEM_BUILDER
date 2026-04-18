@@ -324,7 +324,9 @@ def test_prepare_task_read_payload_preserves_default_contract_without_reference_
 
     result = _prepare_task_read_payload(
         tasks,
+        [],
         tasks[0],
+        show_collection_ids=False,
         show_dependency_refs=False,
         show_dependent_refs=False,
     )
@@ -370,7 +372,9 @@ def test_prepare_task_read_payload_attaches_both_reference_views_for_mapping_pay
 
     result = _prepare_task_read_payload(
         tasks,
+        [],
         tasks[2].model_dump(),
+        show_collection_ids=False,
         show_dependency_refs=True,
         show_dependent_refs=True,
     )
@@ -386,6 +390,7 @@ def test_prepare_task_read_payload_attaches_both_reference_views_for_mapping_pay
 
 def test_prepare_reference_visibility_options_preserves_disabled_default_bundle():
     args = SimpleNamespace(
+        show_collection_ids=False,
         show_dependency_refs=False,
         show_dependent_refs=False,
     )
@@ -393,6 +398,7 @@ def test_prepare_reference_visibility_options_preserves_disabled_default_bundle(
     result = _prepare_reference_visibility_options(args)
 
     assert result == {
+        "show_collection_ids": False,
         "show_dependency_refs": False,
         "show_dependent_refs": False,
     }
@@ -400,6 +406,7 @@ def test_prepare_reference_visibility_options_preserves_disabled_default_bundle(
 
 def test_prepare_reference_visibility_options_preserves_enabled_bundle():
     args = SimpleNamespace(
+        show_collection_ids=True,
         show_dependency_refs=True,
         show_dependent_refs=True,
     )
@@ -407,6 +414,7 @@ def test_prepare_reference_visibility_options_preserves_enabled_bundle():
     result = _prepare_reference_visibility_options(args)
 
     assert result == {
+        "show_collection_ids": True,
         "show_dependency_refs": True,
         "show_dependent_refs": True,
     }
@@ -5610,3 +5618,173 @@ def test_collection_update_state_rejects_conflicting_non_source_membership_witho
 
     saved_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     assert saved_state == original_state        
+def test_task_show_show_collection_ids_flag_displays_collection_ids(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                        "task_ids": ["TASK-001"],
+                    },
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "task_ids": ["TASK-001"],
+                    },
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "show", "TASK-001", "--show-collection-ids")
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "task_id": "TASK-001",
+        "order": 1,
+        "title": "Prepare FAT",
+        "description": None,
+        "owner": None,
+        "duration": None,
+        "start_date": None,
+        "end_date": None,
+        "task_key": "prepare-fat",
+        "status": "planned",
+        "dependencies": [],
+        "collection_ids": ["TC-001", "TC-002"],
+    }
+
+
+def test_task_list_show_collection_ids_flag_displays_collection_ids(
+    restore_state_file,
+):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    }
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-001",
+                        "title": "Source Pool",
+                        "collection_state": "source",
+                        "task_ids": ["TASK-001"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--show-collection-ids")
+
+    assert result.returncode == 0
+    assert (
+        "- TASK-001 | planned | collection_ids=[TC-001] | Prepare FAT"
+    ) in result.stdout
+
+
+def test_task_list_filters_by_collection_id(restore_state_file):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(
+            {
+                "project": "AI_SYSTEM_BUILDER",
+                "version": "0.8.0",
+                "status": "in_flight",
+                "tasks": [
+                    {
+                        "task_id": "TASK-001",
+                        "order": 1,
+                        "title": "Prepare FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "prepare-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                    {
+                        "task_id": "TASK-002",
+                        "order": 2,
+                        "title": "Execute FAT",
+                        "description": None,
+                        "owner": None,
+                        "duration": None,
+                        "start_date": None,
+                        "end_date": None,
+                        "task_key": "execute-fat",
+                        "status": "planned",
+                        "dependencies": [],
+                    },
+                ],
+                "work_packages": [],
+                "task_collections": [
+                    {
+                        "collection_id": "TC-002",
+                        "title": "Committed Selection",
+                        "collection_state": "committed",
+                        "task_ids": ["TASK-002"],
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_cli("task", "list", "--collection-id", "TC-002")
+
+    assert result.returncode == 0
+    assert "- TASK-002 | planned | Execute FAT" in result.stdout
+    assert "- TASK-001 | planned | Prepare FAT" not in result.stdout

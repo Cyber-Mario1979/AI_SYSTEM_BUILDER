@@ -25,6 +25,8 @@ from asbp.task_logic import (
 )
 from asbp.collection_logic import (
     add_task_to_collection,
+    build_task_collection_ids,
+    build_work_package_collection_ids,
     create_collection,
     filter_collections,
     find_collection_by_id,
@@ -153,6 +155,20 @@ def handle_wp_list(args):
         task_id=args.task_id,
     )
 
+    if getattr(args, "collection_id", None) is not None:
+        collection = find_collection_by_id(
+            state.task_collections,
+            args.collection_id,
+        )
+        if collection is None or collection.work_package_id is None:
+            work_packages = []
+        else:
+            work_packages = [
+                work_package
+                for work_package in work_packages
+                if work_package.wp_id == collection.work_package_id
+            ]
+
     if not work_packages:
         print("No work packages found.")
         return
@@ -173,6 +189,16 @@ def handle_wp_list(args):
                 line_parts.append(f"task_ids=[{', '.join(task_ids)}]")
             else:
                 line_parts.append("task_ids=[]")
+
+        if getattr(args, "show_collection_ids", False):
+            collection_ids = build_work_package_collection_ids(
+                state.task_collections,
+                wp_id=work_package.wp_id,
+            )
+            if collection_ids:
+                line_parts.append(f"collection_ids=[{', '.join(collection_ids)}]")
+            else:
+                line_parts.append("collection_ids=[]")
 
         line_parts.append(work_package.title)
         print(" | ".join(line_parts))
@@ -209,6 +235,12 @@ def handle_wp_show(args):
     if getattr(args, "show_task_ids", False):
         work_package_payload["task_ids"] = build_work_package_task_ids(
             state.tasks,
+            wp_id=work_package.wp_id,
+        )
+
+    if getattr(args, "show_collection_ids", False):
+        work_package_payload["collection_ids"] = build_work_package_collection_ids(
+            state.task_collections,
             wp_id=work_package.wp_id,
         )
 
@@ -499,6 +531,8 @@ def handle_collection_list(args):
         collection_state=args.collection_state,
         title=args.title,
         collection_id=args.collection_id,
+        work_package_id=getattr(args, "work_package_id", None),
+        task_id=getattr(args, "task_id", None),
     )
 
     if not collections:
@@ -507,11 +541,52 @@ def handle_collection_list(args):
 
     print("Collections:")
     for collection in collections:
-        print(
-            f"- {collection.collection_id} | "
-            f"{collection.collection_state} | "
-            f"{collection.title}"
+        line_parts = _build_collection_list_row_parts(
+            collection,
+            show_work_package_id=getattr(args, "show_work_package_id", False),
+            show_task_ids=getattr(args, "show_task_ids", False),
         )
+        print(" | ".join(line_parts))
+
+
+def _build_collection_list_row_parts(
+    collection,
+    *,
+    show_work_package_id: bool = False,
+    show_task_ids: bool = False,
+):
+    line_parts = [
+        f"- {collection.collection_id}",
+        collection.collection_state,
+    ]
+
+    if show_work_package_id:
+        work_package_id_display = collection.work_package_id or "<none>"
+        line_parts.append(f"work_package_id={work_package_id_display}")
+
+    if show_task_ids:
+        if collection.task_ids:
+            line_parts.append(f"task_ids=[{', '.join(collection.task_ids)}]")
+        else:
+            line_parts.append("task_ids=[]")
+
+    line_parts.append(collection.title)
+    return line_parts
+
+
+def _prepare_collection_read_payload(
+    collection,
+    *,
+    show_work_package_id: bool = False,
+):
+    payload = collection.model_dump()
+
+    if show_work_package_id:
+        payload["work_package_id"] = collection.work_package_id
+    else:
+        payload.pop("work_package_id", None)
+
+    return payload
 
 
 def handle_collection_show(args):
@@ -529,7 +604,11 @@ def handle_collection_show(args):
         print(f"Collection not found: {args.collection_id}")
         return
 
-    print(json.dumps(collection.model_dump(), indent=2))
+    payload = _prepare_collection_read_payload(
+        collection,
+        show_work_package_id=getattr(args, "show_work_package_id", False),
+    )
+    print(json.dumps(payload, indent=2))
 
 
 def handle_collection_add_task(args):
@@ -783,6 +862,7 @@ def _build_task_list_row_parts(
     *,
     show_task_key=False,
     show_work_package_id=False,
+    show_collection_ids=False,
     show_dependency_refs=False,
     show_dependent_refs=False,
 ):
@@ -795,6 +875,13 @@ def _build_task_list_row_parts(
     if show_work_package_id:
         work_package_id_display = task_payload.get("work_package_id") or "<none>"
         line_parts.append(f"work_package_id={work_package_id_display}")
+
+    if show_collection_ids:
+        collection_ids = task_payload.get("collection_ids", [])
+        if collection_ids:
+            line_parts.append(f"collection_ids=[{', '.join(collection_ids)}]")
+        else:
+            line_parts.append("collection_ids=[]")
 
     if show_dependency_refs:
         line_parts.append(
@@ -849,19 +936,27 @@ def _prepare_task_list_filter_inputs(args, tasks):
 
 def _prepare_reference_visibility_options(args):
     return {
+        "show_collection_ids": getattr(args, "show_collection_ids", False),
         "show_dependency_refs": args.show_dependency_refs,
         "show_dependent_refs": args.show_dependent_refs,
     }
 
-
 def _prepare_task_read_payload(
     tasks,
+    task_collections,
     task,
     *,
+    show_collection_ids=False,
     show_dependency_refs=False,
     show_dependent_refs=False,
 ):
     task_payload = _coerce_task_payload(task)
+
+    if show_collection_ids:
+        task_payload["collection_ids"] = build_task_collection_ids(
+            task_collections,
+            task_id=task_payload["task_id"],
+        )
 
     if not _reference_views_requested(
         show_dependency_refs=show_dependency_refs,
@@ -875,6 +970,10 @@ def _prepare_task_read_payload(
         show_dependency_refs=show_dependency_refs,
         show_dependent_refs=show_dependent_refs,
     )
+
+
+
+
 
 
 def handle_task_list(args):
@@ -911,14 +1010,31 @@ def handle_task_list(args):
             work_package_id=getattr(args, "work_package_id", None),
         )
 
+    if getattr(args, "collection_id", None) is not None:
+        collection = find_collection_by_id(
+            state.task_collections,
+            args.collection_id,
+        )
+        if collection is None:
+            tasks = []
+        else:
+            collection_task_ids = set(collection.task_ids)
+            tasks = [
+                task
+                for task in tasks
+                if task.get("task_id") in collection_task_ids
+            ]
+
     if not tasks:
         print("No tasks found.")
         return
+
     reference_visibility_options = _prepare_reference_visibility_options(args)
     print("Tasks:")
     for task in tasks:
         task_output = _prepare_task_read_payload(
             state.tasks,
+            state.task_collections,
             task,
             **reference_visibility_options,
         )
@@ -1002,6 +1118,7 @@ def handle_task_show(args):
     reference_visibility_options = _prepare_reference_visibility_options(args)
     task_payload = _prepare_task_read_payload(
         state.tasks,
+        state.task_collections,
         task,
         **reference_visibility_options,
     )
@@ -1010,6 +1127,9 @@ def handle_task_show(args):
         task_payload["work_package_id"] = task_payload.get("work_package_id", None)
     else:
         task_payload.pop("work_package_id", None)
+
+    if not getattr(args, "show_collection_ids", False):
+        task_payload.pop("collection_ids", None)
 
     print(json.dumps(task_payload, indent=2))
 
@@ -1216,6 +1336,7 @@ def build_parser():
     wp_parser = subparsers.add_parser("wp", help="Work Package operations")
     wp_subparsers = wp_parser.add_subparsers(dest="wp_command")
 
+
     wp_list_parser = wp_subparsers.add_parser("list", help="List all work packages")
     wp_list_parser.add_argument(
         "--status",
@@ -1235,11 +1356,21 @@ def build_parser():
         help="Filter work packages by exact associated task_id",
     )
     wp_list_parser.add_argument(
+        "--collection-id",
+        help="Filter work packages by exact bound collection_id",
+    )
+    wp_list_parser.add_argument(
         "--show-task-ids",
         action="store_true",
         help="Show associated task_ids in list output",
     )
+    wp_list_parser.add_argument(
+        "--show-collection-ids",
+        action="store_true",
+        help="Show bound collection_ids in list output",
+    )
     wp_list_parser.set_defaults(func=handle_wp_list)
+    
 
     wp_show_parser = wp_subparsers.add_parser("show", help="Show a work package by ID")
     wp_show_parser.add_argument("wp_id", help="Work Package ID to show")
@@ -1248,7 +1379,11 @@ def build_parser():
         action="store_true",
         help="Show associated task_ids in work package output",
     )
-
+    wp_show_parser.add_argument(
+        "--show-collection-ids",
+        action="store_true",
+        help="Show bound collection_ids in work package output",
+    )
     wp_show_parser.add_argument(
         "--show-selector-context",
         action="store_true",
@@ -1383,6 +1518,24 @@ def build_parser():
         "--collection-id",
         help="Filter collections by exact collection ID",
     )
+    collection_list_parser.add_argument(
+        "--work-package-id",
+        help="Filter collections by exact bound work_package_id",
+    )
+    collection_list_parser.add_argument(
+        "--task-id",
+        help="Filter collections by exact member task_id",
+    )
+    collection_list_parser.add_argument(
+        "--show-work-package-id",
+        action="store_true",
+        help="Show bound work_package_id in list output",
+    )
+    collection_list_parser.add_argument(
+        "--show-task-ids",
+        action="store_true",
+        help="Show member task_ids in list output",
+    )
     collection_list_parser.set_defaults(func=handle_collection_list)
 
     collection_add_parser = collection_subparsers.add_parser(
@@ -1426,7 +1579,6 @@ def build_parser():
         help="New collection workflow state",
     )
     collection_update_state_parser.set_defaults(func=handle_collection_update_state)
-
     collection_show_parser = collection_subparsers.add_parser(
         "show",
         help="Show a collection by ID",
@@ -1435,8 +1587,13 @@ def build_parser():
         "collection_id",
         help="Collection ID to show",
     )
+    collection_show_parser.add_argument(
+        "--show-work-package-id",
+        action="store_true",
+        help="Show bound work_package_id in collection output",
+    )
     collection_show_parser.set_defaults(func=handle_collection_show)
-
+   
     collection_add_task_parser = collection_subparsers.add_parser(
         "add-task",
         help="Add a task to a collection",
@@ -1569,9 +1726,16 @@ def build_parser():
         default=None,
         help="Filter tasks by exact work_package_id",
     )
-
-
-
+    task_list_parser.add_argument(
+        "--collection-id",
+        default=None,
+        help="Filter tasks by exact collection_id membership",
+    )
+    task_list_parser.add_argument(
+        "--show-collection-ids",
+        action="store_true",
+        help="Show collection_ids in list output",
+    )
     task_list_parser.set_defaults(func=handle_task_list)
 
     task_show_parser = task_subparsers.add_parser("show", help="Show a task by ID")
@@ -1590,6 +1754,11 @@ def build_parser():
         "--show-work-package-id",
         action="store_true",
         help="Show work_package_id in task output",
+    )
+    task_show_parser.add_argument(
+        "--show-collection-ids",
+        action="store_true",
+        help="Show collection_ids in task output",
     )
     task_show_parser.set_defaults(func=handle_task_show)
 
