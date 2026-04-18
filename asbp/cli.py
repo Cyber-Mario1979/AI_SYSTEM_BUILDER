@@ -27,10 +27,12 @@ from asbp.collection_logic import (
     add_task_to_collection,
     build_task_collection_ids,
     build_work_package_collection_ids,
+    clear_collection_work_package,
     create_collection,
     filter_collections,
     find_collection_by_id,
     remove_task_from_collection,
+    set_collection_work_package,
     update_collection_state,
     update_collection_title,
     validate_task_delete_membership,
@@ -727,6 +729,59 @@ def handle_collection_update_state(args):
         f"Collection state updated: "
         f"{collection.collection_id} -> {collection.collection_state}"
     )
+
+def handle_collection_set_work_package(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        collection, error_message = set_collection_work_package(
+            state.tasks,
+            state.task_collections,
+            state.work_packages,
+            collection_id=args.collection_id,
+            wp_id=args.wp_id,
+        )
+    except ValueError as e:
+        print(str(e))
+        return
+
+    if error_message is not None:
+        print(error_message)
+        return
+
+    if collection is None:
+        print(f"Collection not found: {args.collection_id}")
+        return
+
+    save_validated_state(state)
+    print(
+        f"Collection work package updated: "
+        f"{collection.collection_id} -> {collection.work_package_id}"
+    )
+
+
+def handle_collection_clear_work_package(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    collection = clear_collection_work_package(
+        state.task_collections,
+        collection_id=args.collection_id,
+    )
+    if collection is None:
+        print(f"Collection not found: {args.collection_id}")
+        return
+
+    save_validated_state(state)
+    print(f"Collection work package cleared: {collection.collection_id}")
+
 
 def handle_task_add(args):
     state = load_state_or_none()
@@ -1579,6 +1634,34 @@ def build_parser():
         help="New collection workflow state",
     )
     collection_update_state_parser.set_defaults(func=handle_collection_update_state)
+    collection_set_work_package_parser = collection_subparsers.add_parser(
+        "set-work-package",
+        help="Set collection work package association",
+    )
+    collection_set_work_package_parser.add_argument(
+        "collection_id",
+        help="Collection ID to update",
+    )
+    collection_set_work_package_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to associate",
+    )
+    collection_set_work_package_parser.set_defaults(
+        func=handle_collection_set_work_package
+    )
+
+    collection_clear_work_package_parser = collection_subparsers.add_parser(
+        "clear-work-package",
+        help="Clear collection work package association",
+    )
+    collection_clear_work_package_parser.add_argument(
+        "collection_id",
+        help="Collection ID to clear",
+    )
+    collection_clear_work_package_parser.set_defaults(
+        func=handle_collection_clear_work_package
+    )
+
     collection_show_parser = collection_subparsers.add_parser(
         "show",
         help="Show a collection by ID",

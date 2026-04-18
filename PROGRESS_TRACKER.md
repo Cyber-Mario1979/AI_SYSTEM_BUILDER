@@ -29,19 +29,19 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.5B — Cross-entity update rules
+M8.5C — Cross-entity validation and failure behavior
 
 ## Latest Completed Checkpoint
 
-M8.5A — Cross-entity read rules completed
+M8.5B — Cross-entity update rules completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.5B — Cross-entity update rules
+M8.5C — Cross-entity validation and failure behavior
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `412 passed in 38.24s`
+`python -m pytest -q` — `419 passed in 39.50s`
 
 ## Milestone UAT Status
 

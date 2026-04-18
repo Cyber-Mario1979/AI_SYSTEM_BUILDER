@@ -170,6 +170,60 @@ def update_collection_state(
     return collection
 
 
+def set_collection_work_package(
+    tasks: list[TaskModel],
+    collections: list[TaskCollectionModel],
+    work_packages: list[WorkPackageModel],
+    *,
+    collection_id: str,
+    wp_id: str,
+) -> tuple[TaskCollectionModel | None, str | None]:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None, None
+
+    target_work_package = next(
+        (
+            work_package
+            for work_package in work_packages
+            if work_package.wp_id == wp_id
+        ),
+        None,
+    )
+    if target_work_package is None:
+        return None, f"Work Package not found: {wp_id}"
+
+    tasks_by_id = {task.task_id: task for task in tasks}
+
+    for task_id in collection.task_ids:
+        task = tasks_by_id[task_id]
+        task_work_package_display = task.work_package_id or "<none>"
+        if task.work_package_id != target_work_package.wp_id:
+            return (
+                None,
+                "Collection work package cannot be bound because member task "
+                "has a different work package: "
+                f"{collection.collection_id} -> {task.task_id} "
+                f"({task_work_package_display} != {target_work_package.wp_id})",
+            )
+
+    collection.work_package_id = target_work_package.wp_id
+    return collection, None
+
+
+def clear_collection_work_package(
+    collections: list[TaskCollectionModel],
+    *,
+    collection_id: str,
+) -> TaskCollectionModel | None:
+    collection = find_collection_by_id(collections, collection_id)
+    if collection is None:
+        return None
+
+    collection.work_package_id = None
+    return collection
+
+
 def _find_conflicting_non_source_collection(
     collections: list[TaskCollectionModel],
     *,
