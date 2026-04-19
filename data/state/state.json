@@ -1,165 +1,105 @@
 {
   "project": "AI_SYSTEM_BUILDER",
-  "version": "0.8.0",
+  "version": "0.1.0",
   "status": "in_flight",
   "tasks": [
     {
       "task_id": "TASK-001",
       "order": 1,
-      "title": "Task A",
+      "title": "Prepare FAT",
       "description": null,
       "owner": null,
-      "duration": null,
+      "duration": 1,
       "start_date": null,
       "end_date": null,
-      "task_key": null,
-      "status": "completed",
+      "task_key": "prepare-fat",
+      "work_package_id": "WP-001",
+      "status": "planned",
+      "dependencies": []
+    },
+    {
+      "task_id": "TASK-002",
+      "order": 2,
+      "title": "Execute FAT",
+      "description": null,
+      "owner": null,
+      "duration": 1,
+      "start_date": null,
+      "end_date": null,
+      "task_key": "execute-fat",
+      "work_package_id": "WP-001",
+      "status": "planned",
       "dependencies": []
     },
     {
       "task_id": "TASK-003",
-      "order": 2,
-      "title": "Task C",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": ["TASK-001", "TASK-004"]
-    },
-    {
-      "task_id": "TASK-004",
       "order": 3,
-      "title": "Task D",
+      "title": "Autoclave FAT",
       "description": null,
       "owner": null,
-      "duration": null,
+      "duration": 1,
       "start_date": null,
       "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": []
-    },
-    {
-      "task_id": "TASK-005",
-      "order": 4,
-      "title": "Task E",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "in_progress",
-      "dependencies": []
-    },
-    {
-      "task_id": "TASK-006",
-      "order": 5,
-      "title": "Ordering verification task",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": ["TASK-005"]
-    },
-    {
-      "task_id": "TASK-007",
-      "order": 6,
-      "title": "Dependency task for completion gating",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": ["TASK-008"]
-    },
-    {
-      "task_id": "TASK-008",
-      "order": 7,
-      "title": "Blocked completion task",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": []
-    },
-    {
-      "task_id": "TASK-009",
-      "order": 8,
-      "title": "Predecessor",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": []
-    },
-    {
-      "task_id": "TASK-010",
-      "order": 9,
-      "title": "Successor",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "completed",
-      "dependencies": ["TASK-009"]
-    },
-    {
-      "task_id": "TASK-011",
-      "order": 10,
-      "title": "New test task",
-      "description": "Test",
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "in_progress",
-      "dependencies": []
-    },
-    {
-      "task_id": "TASK-012",
-      "order": 11,
-      "title": "Prepare FAT protocol",
-      "description": "Draft",
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
-      "status": "planned",
-      "dependencies": ["TASK-011"]
-    },
-    {
-      "task_id": "TASK-013",
-      "order": 12,
-      "title": "Prepare DQ",
-      "description": null,
-      "owner": null,
-      "duration": null,
-      "start_date": null,
-      "end_date": null,
-      "task_key": null,
+      "task_key": "autoclave-fat",
+      "work_package_id": "WP-002",
       "status": "planned",
       "dependencies": []
     }
+  ],
+  "work_packages": [
+    {
+      "wp_id": "WP-001",
+      "title": "Tablet press qualification",
+      "status": "open",
+      "selector_context": {
+        "preset_id": "oral-solid-dose-standard",
+        "scope_intent": "qualification-only",
+        "standards_bundles": [
+          "cqv-core",
+          "automation"
+        ]
+      }
+    },
+    {
+      "wp_id": "WP-002",
+      "title": "Autoclave qualification",
+      "status": "open"
+    },
+    {
+      "wp_id": "WP-003",
+      "title": "Line clearance package",
+      "status": "open"
+    },
+    {
+      "wp_id": "WP-004",
+      "title": "Plan-only package",
+      "status": "open"
+    }
+  ],
+  "task_collections": [
+    {
+      "collection_id": "TC-001",
+      "title": "Committed Selection",
+      "collection_state": "committed",
+      "task_ids": [
+        "TASK-001",
+        "TASK-002"
+      ],
+      "work_package_id": "WP-001"
+    },
+    {
+      "collection_id": "TC-002",
+      "title": "Conflicting Selection",
+      "collection_state": "committed",
+      "task_ids": [
+        "TASK-003"
+      ]
+    },
+    {
+      "collection_id": "TC-003",
+      "title": "Empty Bound Selection",
+      "collection_state": "committed",
+      "work_package_id": "WP-003"
+    }
   ]
 }
-
-
