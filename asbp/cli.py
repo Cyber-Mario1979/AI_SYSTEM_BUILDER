@@ -56,6 +56,7 @@ from asbp.orchestration_logic import build_work_package_orchestration_payload
 from asbp.runtime_boundary_logic import build_work_package_runtime_boundary_payload
 from asbp.prompt_contract_logic import build_work_package_prompt_contract_payload
 from asbp.runtime_handoff_logic import build_work_package_llm_handoff_payload
+from asbp.generation_surface_logic import build_work_package_generation_request_payload
 from asbp.output_validation_logic import (
     load_candidate_response_json,
     validate_work_package_candidate_response,
@@ -866,6 +867,27 @@ def handle_runtime_handoff_wp(args):
         return
 
     payload = build_work_package_llm_handoff_payload(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
+def handle_runtime_generate_request_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    payload = build_work_package_generation_request_payload(
         state.work_packages,
         state.task_collections,
         state.tasks,
@@ -1940,6 +1962,18 @@ def build_parser():
     )
     runtime_handoff_wp_parser.set_defaults(
         func=handle_runtime_handoff_wp
+    )
+
+    runtime_generate_request_wp_parser = runtime_subparsers.add_parser(
+        "generate-request-wp",
+        help="Show bounded Work Package controlled generation request payload",
+    )
+    runtime_generate_request_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID for controlled generation request packaging",
+    )
+    runtime_generate_request_wp_parser.set_defaults(
+        func=handle_runtime_generate_request_wp
     )
 
     runtime_validate_response_wp_parser = runtime_subparsers.add_parser(

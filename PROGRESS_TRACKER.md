@@ -29,19 +29,19 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.6A — Controlled generation surface
+M9.6B — Output acceptance rules
 
 ## Latest Completed Checkpoint
 
-M9.5 — Retry / fail behavior rules completed
+M9.6A — Controlled generation surface completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.6A — Controlled generation surface
+M9.6B — Output acceptance rules
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `464 passed in 41.89s`
+`python -m pytest -q` — `469 passed in 45.66s`
 
 ## Milestone UAT Status
 
