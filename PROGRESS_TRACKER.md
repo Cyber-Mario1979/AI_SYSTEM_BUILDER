@@ -29,19 +29,19 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.7 — Cross-entity surface consolidation
+M8.8 — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-M8.6 — Minimal orchestration without LLM dependency completed
+M8.7 — Cross-entity surface consolidation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.7 — Cross-entity surface consolidation
+M8.8 — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `433 passed in 41.75s`
+`python -m pytest -q` — `436 passed in 42.29s`
 
 ## Milestone UAT Status
 

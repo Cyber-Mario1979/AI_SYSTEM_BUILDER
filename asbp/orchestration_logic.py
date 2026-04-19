@@ -1,20 +1,17 @@
+from asbp.binding_context_logic import (
+    build_work_package_binding_context_blockers,
+)
+from asbp.collection_logic import filter_collections
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
     TaskModel,
     WorkPackageModel,
 )
-
-
-def _find_work_package_by_id(
-    work_packages: list[WorkPackageModel],
-    *,
-    wp_id: str,
-) -> WorkPackageModel | None:
-    for work_package in work_packages:
-        if work_package.wp_id == wp_id:
-            return work_package
-    return None
+from asbp.work_package_logic import (
+    build_work_package_task_ids,
+    find_work_package_by_id,
+)
 
 
 def _build_bound_committed_collections(
@@ -22,12 +19,11 @@ def _build_bound_committed_collections(
     *,
     wp_id: str,
 ) -> list[TaskCollectionModel]:
-    return [
-        task_collection
-        for task_collection in task_collections
-        if task_collection.collection_state == "committed"
-        and task_collection.work_package_id == wp_id
-    ]
+    return filter_collections(
+        task_collections,
+        collection_state="committed",
+        work_package_id=wp_id,
+    )
 
 
 def _build_committed_task_ids(
@@ -37,18 +33,6 @@ def _build_committed_task_ids(
     for task_collection in task_collections:
         committed_task_ids.update(task_collection.task_ids)
     return sorted(committed_task_ids)
-
-
-def _build_work_package_task_ids(
-    tasks: list[TaskModel],
-    *,
-    wp_id: str,
-) -> list[str]:
-    return sorted(
-        task.task_id
-        for task in tasks
-        if task.work_package_id == wp_id
-    )
 
 
 def _build_work_package_plans(
@@ -63,19 +47,20 @@ def _build_work_package_plans(
     ]
 
 
-def _build_binding_context_blockers(
-    work_package: WorkPackageModel,
-) -> list[str]:
-    selector_context = work_package.selector_context
-    if selector_context is None:
-        return ["selector_context_missing"]
-
-    blockers: list[str] = []
-    if selector_context.scope_intent is None:
-        blockers.append("scope_intent_missing")
-    if not selector_context.standards_bundles:
-        blockers.append("standards_bundles_missing")
-    return blockers
+def _build_plan_state_partition(
+    work_package_plans: list[PlanningModel],
+) -> tuple[list[PlanningModel], list[PlanningModel]]:
+    committed_plans = [
+        plan
+        for plan in work_package_plans
+        if plan.plan_state == "committed"
+    ]
+    draft_plans = [
+        plan
+        for plan in work_package_plans
+        if plan.plan_state == "draft"
+    ]
+    return committed_plans, draft_plans
 
 
 def build_work_package_orchestration_payload(
@@ -86,11 +71,14 @@ def build_work_package_orchestration_payload(
     *,
     wp_id: str,
 ) -> dict | None:
-    work_package = _find_work_package_by_id(work_packages, wp_id=wp_id)
+    work_package = find_work_package_by_id(work_packages, wp_id)
     if work_package is None:
         return None
 
-    binding_context_blockers = _build_binding_context_blockers(work_package)
+    binding_context_blockers = build_work_package_binding_context_blockers(
+        work_packages,
+        work_package_id=wp_id,
+    )
     bound_committed_collections = _build_bound_committed_collections(
         task_collections,
         wp_id=wp_id,
@@ -102,7 +90,7 @@ def build_work_package_orchestration_payload(
     bound_committed_task_ids = _build_committed_task_ids(
         bound_committed_collections,
     )
-    work_package_task_ids = _build_work_package_task_ids(tasks, wp_id=wp_id)
+    work_package_task_ids = build_work_package_task_ids(tasks, wp_id=wp_id)
     work_package_plans = _build_work_package_plans(plans, wp_id=wp_id)
     plan_ids = [plan.plan_id for plan in work_package_plans]
 
@@ -144,16 +132,7 @@ def build_work_package_orchestration_payload(
         ]
         return payload
 
-    committed_plans = [
-        plan
-        for plan in work_package_plans
-        if plan.plan_state == "committed"
-    ]
-    draft_plans = [
-        plan
-        for plan in work_package_plans
-        if plan.plan_state == "draft"
-    ]
+    committed_plans, draft_plans = _build_plan_state_partition(work_package_plans)
 
     if len(committed_plans) > 1:
         payload["orchestration_stage"] = "blocked"
