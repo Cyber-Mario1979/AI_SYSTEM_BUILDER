@@ -52,6 +52,7 @@ from asbp.work_package_logic import (
     update_work_package_title,
     set_task_work_package,
 )
+from asbp.orchestration_logic import build_work_package_orchestration_payload
 from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
@@ -784,6 +785,27 @@ def handle_collection_clear_work_package(args):
 
     save_validated_state(state)
     print(f"Collection work package cleared: {collection.collection_id}")
+
+
+def handle_orchestrate_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    payload = build_work_package_orchestration_payload(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
 
 
 def handle_task_add(args):
@@ -1717,6 +1739,24 @@ def build_parser():
     )
     collection_remove_task_parser.set_defaults(func=handle_collection_remove_task)
 
+    orchestrate_parser = subparsers.add_parser(
+        "orchestrate",
+        help="Deterministic orchestration surfaces",
+    )
+    orchestrate_subparsers = orchestrate_parser.add_subparsers(
+        dest="orchestrate_command"
+    )
+
+    orchestrate_wp_parser = orchestrate_subparsers.add_parser(
+        "wp",
+        help="Show deterministic Work Package orchestration state",
+    )
+    orchestrate_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID to orchestrate",
+    )
+    orchestrate_wp_parser.set_defaults(func=handle_orchestrate_wp)
+
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")
 
@@ -1935,6 +1975,10 @@ def main():
 
     if args.command == "collection" and args.collection_command is None:
         parser.parse_args(["collection", "-h"])
+        return
+
+    if args.command == "orchestrate" and args.orchestrate_command is None:
+        parser.parse_args(["orchestrate", "-h"])
         return
 
     if args.command == "task" and args.task_command is None:
