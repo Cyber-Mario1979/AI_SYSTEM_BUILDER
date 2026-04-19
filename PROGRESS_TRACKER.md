@@ -25,19 +25,19 @@ Phase 3 — AI Runtime Architecture
 
 ## Current Milestone
 
-Milestone 8 — Multi-Entity Coordination
+Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M8.10 — Milestone closeout
+M9.1 — Runtime boundary definition
 
 ## Latest Completed Checkpoint
 
-M8.9 — Milestone UAT checkpoint completed
+M8.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.10 — Milestone closeout
+M9.1 — Runtime boundary definition
 
 ## Latest Verified Validation Status
 
@@ -45,15 +45,11 @@ M8.10 — Milestone closeout
 
 ## Milestone UAT Status
 
-COMPLETED_PASS
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+NOT_STARTED_MILESTONE_OPEN
 
 ## Active Notes
 
 - `ROADMAP_CANONICAL.md` is now the approved v3 canonical roadmap.
 - `ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md` is completed historical and no longer governs execution.
-- `ROADMAP_ADDENDUM_04_M8_DESIGN_RESERVATIONS_GATE.md` is ACTIVE and governs the temporary M8 design-reservations gate until reserved items are explicitly dispositioned before M8 closeout.
+- `ROADMAP_ADDENDUM_04_M8_DESIGN_RESERVATIONS_GATE.md` is completed historical and no longer governs execution.
 - `docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md` remains a design-spec review artifact only and is non-authoritative.
