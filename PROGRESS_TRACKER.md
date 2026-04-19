@@ -29,19 +29,19 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.2 — Prompt contract foundation
+M9.3 — Deterministic-to-LLM handoff structure
 
 ## Latest Completed Checkpoint
 
-M9.1 — Runtime boundary definition completed
+M9.2 — Prompt contract foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.2 — Prompt contract foundation
+M9.3 — Deterministic-to-LLM handoff structure
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `441 passed in 44.05s`
+`python -m pytest -q` — `446 passed in 42.95s`
 
 ## Milestone UAT Status
 
