@@ -29,15 +29,15 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.9 — Milestone UAT checkpoint
+M8.10 — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-M8.8 — Validation checkpoint completed
+M8.9 — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.9 — Milestone UAT checkpoint
+M8.10 — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -45,7 +45,7 @@ M8.9 — Milestone UAT checkpoint
 
 ## Milestone UAT Status
 
-NOT_STARTED_MILESTONE_OPEN
+COMPLETED_PASS
 
 ## Repo Alignment Status
 
