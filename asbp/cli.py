@@ -56,6 +56,10 @@ from asbp.orchestration_logic import build_work_package_orchestration_payload
 from asbp.runtime_boundary_logic import build_work_package_runtime_boundary_payload
 from asbp.prompt_contract_logic import build_work_package_prompt_contract_payload
 from asbp.runtime_handoff_logic import build_work_package_llm_handoff_payload
+from asbp.output_validation_logic import (
+    load_candidate_response_json,
+    validate_work_package_candidate_response,
+)
 from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
@@ -866,6 +870,42 @@ def handle_runtime_handoff_wp(args):
         state.tasks,
         state.plans,
         wp_id=args.wp_id,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
+def handle_runtime_validate_response_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        candidate_output = load_candidate_response_json(
+            Path(args.candidate_json_path)
+        )
+    except FileNotFoundError:
+        print(f"Candidate response file not found: {args.candidate_json_path}")
+        return
+    except json.JSONDecodeError as e:
+        print(f"Invalid JSON in candidate response file: {e}")
+        return
+    except ValueError as e:
+        print(str(e))
+        return
+
+    payload = validate_work_package_candidate_response(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+        candidate_output=candidate_output,
     )
     if payload is None:
         print(f"Work Package not found: {args.wp_id}")
@@ -1861,6 +1901,22 @@ def build_parser():
     )
     runtime_handoff_wp_parser.set_defaults(
         func=handle_runtime_handoff_wp
+    )
+
+    runtime_validate_response_wp_parser = runtime_subparsers.add_parser(
+        "validate-response-wp",
+        help="Validate candidate generated response against the Work Package handoff contract",
+    )
+    runtime_validate_response_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID for validation",
+    )
+    runtime_validate_response_wp_parser.add_argument(
+        "candidate_json_path",
+        help="Path to candidate response JSON file",
+    )
+    runtime_validate_response_wp_parser.set_defaults(
+        func=handle_runtime_validate_response_wp
     )
 
     task_parser = subparsers.add_parser("task", help="Task operations")

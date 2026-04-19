@@ -29,19 +29,19 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.4 — Validation loop foundation
+M9.5 — Retry / fail behavior rules
 
 ## Latest Completed Checkpoint
 
-M9.3 — Deterministic-to-LLM handoff structure completed
+M9.4 — Validation loop foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.4 — Validation loop foundation
+M9.5 — Retry / fail behavior rules
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `451 passed in 41.37s`
+`python -m pytest -q` — `457 passed in 41.46s`
 
 ## Milestone UAT Status
 
