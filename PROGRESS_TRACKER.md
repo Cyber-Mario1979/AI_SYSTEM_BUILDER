@@ -29,19 +29,19 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.1 — Runtime boundary definition
+M9.2 — Prompt contract foundation
 
 ## Latest Completed Checkpoint
 
-M8.10 — Milestone closeout completed
+M9.1 — Runtime boundary definition completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.1 — Runtime boundary definition
+M9.2 — Prompt contract foundation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `436 passed in 42.29s`
+`python -m pytest -q` — `441 passed in 44.05s`
 
 ## Milestone UAT Status
 

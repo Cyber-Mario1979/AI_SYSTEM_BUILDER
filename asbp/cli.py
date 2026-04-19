@@ -53,6 +53,7 @@ from asbp.work_package_logic import (
     set_task_work_package,
 )
 from asbp.orchestration_logic import build_work_package_orchestration_payload
+from asbp.runtime_boundary_logic import build_work_package_runtime_boundary_payload
 from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
@@ -795,6 +796,27 @@ def handle_orchestrate_wp(args):
         return
 
     payload = build_work_package_orchestration_payload(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
+def handle_runtime_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    payload = build_work_package_runtime_boundary_payload(
         state.work_packages,
         state.task_collections,
         state.tasks,
@@ -1757,6 +1779,22 @@ def build_parser():
     )
     orchestrate_wp_parser.set_defaults(func=handle_orchestrate_wp)
 
+    runtime_parser = subparsers.add_parser(
+        "runtime",
+        help="Runtime boundary definition surfaces",
+    )
+    runtime_subparsers = runtime_parser.add_subparsers(dest="runtime_command")
+
+    runtime_wp_parser = runtime_subparsers.add_parser(
+        "wp",
+        help="Show Work Package runtime boundary payload",
+    )
+    runtime_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID for runtime boundary inspection",
+    )
+    runtime_wp_parser.set_defaults(func=handle_runtime_wp)
+
     task_parser = subparsers.add_parser("task", help="Task operations")
     task_subparsers = task_parser.add_subparsers(dest="task_command")
 
@@ -1979,6 +2017,10 @@ def main():
 
     if args.command == "orchestrate" and args.orchestrate_command is None:
         parser.parse_args(["orchestrate", "-h"])
+        return
+
+    if args.command == "runtime" and args.runtime_command is None:
+        parser.parse_args(["runtime", "-h"])
         return
 
     if args.command == "task" and args.task_command is None:
