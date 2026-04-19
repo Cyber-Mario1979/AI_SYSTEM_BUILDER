@@ -52,6 +52,7 @@ from asbp.work_package_logic import (
     update_work_package_title,
     set_task_work_package,
 )
+from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
 
@@ -317,6 +318,8 @@ def handle_wp_delete(args):
     updated_work_packages, deleted_flag, error_message = delete_work_package_by_id(
         state.work_packages,
         state.tasks,
+        state.task_collections,
+        state.plans,
         wp_id=args.wp_id,
     )
 
@@ -1145,6 +1148,14 @@ def handle_task_delete(args):
         print(membership_error)
         return
 
+    plan_membership_error = validate_task_plan_membership_delete(
+        state.plans,
+        task_id=target_task.task_id,
+    )
+    if plan_membership_error is not None:
+        print(plan_membership_error)
+        return
+
     updated_tasks, deleted_flag = delete_task_by_id(state.tasks, target_task.task_id)
 
     if not deleted_flag:
@@ -1332,6 +1343,7 @@ def handle_task_clear_work_package(args):
         target_task, error_message = clear_task_work_package(
             state.tasks,
             state.task_collections,
+            state.plans,
             task_ref=args.task_id,
         )
     except ValueError as e:

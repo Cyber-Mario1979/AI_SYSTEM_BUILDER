@@ -663,3 +663,81 @@ def validate_persisted_generated_task_plan_consistency(
                     f"{plan.plan_id} -> {generated_task_plan.task_id} "
                     f"({task.work_package_id})"
                 )
+
+
+def _build_plan_ids_for_task(
+    plans: list[PlanningModel],
+    *,
+    task_id: str,
+) -> list[str]:
+    plan_ids: list[str] = []
+
+    for plan in plans:
+        if any(
+            generated_task_plan.task_id == task_id
+            or task_id in generated_task_plan.dependency_task_ids
+            for generated_task_plan in plan.generated_task_plans
+        ):
+            plan_ids.append(plan.plan_id)
+
+    return plan_ids
+
+
+def validate_work_package_plan_membership_delete(
+    plans: list[PlanningModel],
+    *,
+    work_package_id: str,
+) -> str | None:
+    plan_ids = [
+        plan.plan_id
+        for plan in plans
+        if plan.work_package_id == work_package_id
+    ]
+    if not plan_ids:
+        return None
+
+    plan_ids_display = ", ".join(plan_ids)
+    return (
+        "Work Package cannot be deleted while plans are associated: "
+        f"{work_package_id} -> [{plan_ids_display}]"
+    )
+
+
+def validate_task_plan_membership_delete(
+    plans: list[PlanningModel],
+    *,
+    task_id: str,
+) -> str | None:
+    plan_ids = _build_plan_ids_for_task(plans, task_id=task_id)
+    if not plan_ids:
+        return None
+
+    plan_ids_display = ", ".join(plan_ids)
+    return (
+        "Task cannot be deleted while plans still reference it: "
+        f"{task_id} -> [{plan_ids_display}]"
+    )
+
+
+def validate_task_work_package_plan_clear(
+    plans: list[PlanningModel],
+    *,
+    task_id: str,
+) -> str | None:
+    plan_refs = [
+        f"{plan.plan_id} ({plan.work_package_id})"
+        for plan in plans
+        if any(
+            generated_task_plan.task_id == task_id
+            or task_id in generated_task_plan.dependency_task_ids
+            for generated_task_plan in plan.generated_task_plans
+        )
+    ]
+    if not plan_refs:
+        return None
+
+    plan_refs_display = ", ".join(plan_refs)
+    return (
+        "Task work package cannot be cleared while plans still reference it: "
+        f"{task_id} -> [{plan_refs_display}]"
+    )

@@ -1,6 +1,13 @@
 from typing import Literal
 
-from asbp.collection_logic import validate_task_work_package_membership_change
+from asbp.collection_logic import (
+    validate_task_work_package_membership_change,
+    validate_work_package_collection_membership_delete,
+)
+from asbp.planning_logic import (
+    validate_task_work_package_plan_clear,
+    validate_work_package_plan_membership_delete,
+)
 from asbp.task_logic import find_task_by_reference
 from asbp.state_model import (
     ScopeIntentId,
@@ -104,6 +111,8 @@ def update_work_package_status(
 def delete_work_package_by_id(
     work_packages: list[WorkPackageModel],
     tasks: list[TaskModel],
+    task_collections: list[TaskCollectionModel],
+    plans: list,
     *,
     wp_id: str,
 ) -> tuple[list[WorkPackageModel], bool, str | None]:
@@ -120,6 +129,20 @@ def delete_work_package_by_id(
             f"Work Package cannot be deleted while tasks are associated: "
             f"{wp_id} -> [{task_ids_display}]",
         )
+
+    collection_membership_error = validate_work_package_collection_membership_delete(
+        task_collections,
+        wp_id=wp_id,
+    )
+    if collection_membership_error is not None:
+        return list(work_packages), False, collection_membership_error
+
+    plan_membership_error = validate_work_package_plan_membership_delete(
+        plans,
+        work_package_id=wp_id,
+    )
+    if plan_membership_error is not None:
+        return list(work_packages), False, plan_membership_error
 
     updated_work_packages = [
         existing_work_package
@@ -374,6 +397,7 @@ def set_task_work_package(
 def clear_task_work_package(
     tasks: list[TaskModel],
     task_collections: list[TaskCollectionModel],
+    plans: list,
     *,
     task_ref: str,
 ) -> tuple[TaskModel | None, str | None]:
@@ -388,6 +412,13 @@ def clear_task_work_package(
     )
     if membership_change_error is not None:
         return None, membership_change_error
+
+    plan_membership_error = validate_task_work_package_plan_clear(
+        plans,
+        task_id=target_task.task_id,
+    )
+    if plan_membership_error is not None:
+        return None, plan_membership_error
 
     target_task.work_package_id = None
     return target_task, None

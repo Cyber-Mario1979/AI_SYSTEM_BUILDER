@@ -484,3 +484,19 @@ def validate_persisted_collection_task_memberships(
                 )
 
             non_source_memberships[task_id] = collection
+
+
+def validate_work_package_collection_membership_delete(
+    collections: list[TaskCollectionModel],
+    *,
+    wp_id: str,
+) -> str | None:
+    collection_ids = build_work_package_collection_ids(collections, wp_id=wp_id)
+    if not collection_ids:
+        return None
+
+    collection_ids_display = ", ".join(collection_ids)
+    return (
+        "Work Package cannot be deleted while collections are bound: "
+        f"{wp_id} -> [{collection_ids_display}]"
+    )
