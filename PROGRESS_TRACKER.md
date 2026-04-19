@@ -29,15 +29,15 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.6B — Output acceptance rules
+M9.7 — Runtime surface consolidation
 
 ## Latest Completed Checkpoint
 
-M9.6A — Controlled generation surface completed
+M9.6C — Failure recovery and retry discipline completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.6B — Output acceptance rules
+M9.7 — Runtime surface consolidation
 
 ## Latest Verified Validation Status
 
