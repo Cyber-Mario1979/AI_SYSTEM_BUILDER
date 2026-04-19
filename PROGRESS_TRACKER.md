@@ -29,15 +29,15 @@ Milestone 8 — Multi-Entity Coordination
 
 ## Current Approved Slice Family
 
-M8.8 — Validation checkpoint
+M8.9 — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-M8.7 — Cross-entity surface consolidation completed
+M8.8 — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-M8.8 — Validation checkpoint
+M8.9 — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
