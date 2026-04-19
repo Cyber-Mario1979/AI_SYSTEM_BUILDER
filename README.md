@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Phase-3%20%E2%80%94%20AI%20Runtime%20Architecture-blue" alt="Phase 3"/>
   <img src="https://img.shields.io/badge/Milestone-M8%20Multi--Entity%20Coordination-orange" alt="M8"/>
-  <img src="https://img.shields.io/badge/Tests-402%20passed-brightgreen" alt="402 passed"/>
+  <img src="https://img.shields.io/badge/Tests-424%20passed-brightgreen" alt="424 passed"/>
   <img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/>
 </p>
 
