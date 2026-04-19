@@ -60,6 +60,7 @@ from asbp.output_validation_logic import (
     load_candidate_response_json,
     validate_work_package_candidate_response,
 )
+from asbp.retry_fail_logic import evaluate_work_package_candidate_response_attempt
 from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
@@ -906,6 +907,44 @@ def handle_runtime_validate_response_wp(args):
         state.plans,
         wp_id=args.wp_id,
         candidate_output=candidate_output,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
+def handle_runtime_decide_response_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    try:
+        candidate_output = load_candidate_response_json(
+            Path(args.candidate_json_path)
+        )
+    except FileNotFoundError:
+        print(f"Candidate response file not found: {args.candidate_json_path}")
+        return
+    except json.JSONDecodeError as e:
+        print(f"Invalid JSON in candidate response file: {e}")
+        return
+    except ValueError as e:
+        print(str(e))
+        return
+
+    payload = evaluate_work_package_candidate_response_attempt(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+        candidate_output=candidate_output,
+        attempt_number=args.attempt_number,
+        max_attempts=args.max_attempts,
     )
     if payload is None:
         print(f"Work Package not found: {args.wp_id}")
@@ -1917,6 +1956,32 @@ def build_parser():
     )
     runtime_validate_response_wp_parser.set_defaults(
         func=handle_runtime_validate_response_wp
+    )
+
+    runtime_decide_response_wp_parser = runtime_subparsers.add_parser(
+        "decide-response-wp",
+        help="Apply retry / fail decision rules to candidate generated response",
+    )
+    runtime_decide_response_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID for retry / fail decision",
+    )
+    runtime_decide_response_wp_parser.add_argument(
+        "candidate_json_path",
+        help="Path to candidate response JSON file",
+    )
+    runtime_decide_response_wp_parser.add_argument(
+        "attempt_number",
+        type=int,
+        help="Current candidate attempt number (1-based)",
+    )
+    runtime_decide_response_wp_parser.add_argument(
+        "max_attempts",
+        type=int,
+        help="Maximum allowed candidate attempts",
+    )
+    runtime_decide_response_wp_parser.set_defaults(
+        func=handle_runtime_decide_response_wp
     )
 
     task_parser = subparsers.add_parser("task", help="Task operations")
