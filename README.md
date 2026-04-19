@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Phase-3%20%E2%80%94%20AI%20Runtime%20Architecture-blue" alt="Phase 3"/>
-  <img src="https://img.shields.io/badge/Milestone-M8%20Multi--Entity%20Coordination-orange" alt="M8"/>
-  <img src="https://img.shields.io/badge/Tests-424%20passed-brightgreen" alt="424 passed"/>
-  <img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/>
+  <img src="https://img.shields.io/badge/Tests-402%20passed-brightgreen" alt="402 passed"/>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/></a>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/ROADMAP_CANONICAL.md"><img src="https://img.shields.io/badge/Roadmap-Canonical-blueviolet" alt="Roadmap"/></a>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/README.md"><img src="https://img.shields.io/badge/Docs-README-informational" alt="README"/></a>
 </p>
 
 ---
