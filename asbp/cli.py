@@ -55,6 +55,7 @@ from asbp.work_package_logic import (
 from asbp.orchestration_logic import build_work_package_orchestration_payload
 from asbp.runtime_boundary_logic import build_work_package_runtime_boundary_payload
 from asbp.prompt_contract_logic import build_work_package_prompt_contract_payload
+from asbp.runtime_handoff_logic import build_work_package_llm_handoff_payload
 from asbp.planning_logic import validate_task_plan_membership_delete
 
 VERSION = "0.1.0"
@@ -839,6 +840,27 @@ def handle_runtime_prompt_contract_wp(args):
         return
 
     payload = build_work_package_prompt_contract_payload(
+        state.work_packages,
+        state.task_collections,
+        state.tasks,
+        state.plans,
+        wp_id=args.wp_id,
+    )
+    if payload is None:
+        print(f"Work Package not found: {args.wp_id}")
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
+def handle_runtime_handoff_wp(args):
+    state = load_state_or_none()
+
+    if state is None:
+        print("No state file found. Run 'state init' first.")
+        return
+
+    payload = build_work_package_llm_handoff_payload(
         state.work_packages,
         state.task_collections,
         state.tasks,
@@ -1827,6 +1849,18 @@ def build_parser():
     )
     runtime_prompt_contract_wp_parser.set_defaults(
         func=handle_runtime_prompt_contract_wp
+    )
+
+    runtime_handoff_wp_parser = runtime_subparsers.add_parser(
+        "handoff-wp",
+        help="Show Work Package deterministic-to-LLM handoff payload",
+    )
+    runtime_handoff_wp_parser.add_argument(
+        "wp_id",
+        help="Work Package ID for handoff inspection",
+    )
+    runtime_handoff_wp_parser.set_defaults(
+        func=handle_runtime_handoff_wp
     )
 
     task_parser = subparsers.add_parser("task", help="Task operations")
