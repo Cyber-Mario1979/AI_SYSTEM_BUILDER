@@ -25,19 +25,19 @@ Phase 3 — AI Runtime Architecture
 
 ## Current Milestone
 
-Milestone 9 — Hybrid Runtime
+Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M9.10 — Milestone closeout
+M10.1 — Output target definition
 
 ## Latest Completed Checkpoint
 
-M9.9 — Milestone UAT checkpoint completed
+M9.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.10 — Milestone closeout
+M10.1 — Output target definition
 
 ## Latest Verified Validation Status
 
@@ -45,4 +45,4 @@ M9.10 — Milestone closeout
 
 ## Milestone UAT Status
 
-PASSED
+NOT_STARTED_MILESTONE_OPEN
