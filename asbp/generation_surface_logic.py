@@ -1,21 +1,16 @@
 from asbp.runtime_handoff_logic import build_work_package_llm_handoff_payload
+from asbp.runtime_surface_helpers import (
+    GENERATION_SURFACE_ID,
+    build_candidate_response_template,
+    build_generation_state,
+    build_output_contract,
+)
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
     TaskModel,
     WorkPackageModel,
 )
-
-GENERATION_SURFACE_ID = "work_package_controlled_generation_surface_v1"
-
-
-def _build_candidate_response_template(*, response_mode: str) -> dict:
-    return {
-        "response_mode": response_mode,
-        "operator_message": "",
-        "recommended_next_actions": [],
-        "grounded_input_fields_used": [],
-    }
 
 
 def build_work_package_generation_request_payload(
@@ -49,10 +44,8 @@ def build_work_package_generation_request_payload(
             "source_prompt_contract_id": handoff_metadata[
                 "source_prompt_contract_id"
             ],
-            "generation_state": (
-                "ready"
-                if generation_allowed
-                else "blocked"
+            "generation_state": build_generation_state(
+                generation_allowed=generation_allowed
             ),
             "generation_allowed": generation_allowed,
             "generation_mode": instructions["response_mode"],
@@ -72,18 +65,8 @@ def build_work_package_generation_request_payload(
                 instructions["prohibited_freeform_drift"]
             ),
         },
-        "output_contract": {
-            "required_output_fields": list(
-                instructions["required_output_fields"]
-            ),
-            "field_types": {
-                "response_mode": "string",
-                "operator_message": "string",
-                "recommended_next_actions": "list[string]",
-                "grounded_input_fields_used": "list[string]",
-            },
-        },
-        "candidate_response_template": _build_candidate_response_template(
+        "output_contract": build_output_contract(),
+        "candidate_response_template": build_candidate_response_template(
             response_mode=instructions["response_mode"]
         ),
     }

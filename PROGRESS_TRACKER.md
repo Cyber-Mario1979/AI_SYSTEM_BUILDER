@@ -29,19 +29,19 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.7 — Runtime surface consolidation
+M9.8 — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-M9.6C — Failure recovery and retry discipline completed
+M9.7 — Runtime surface consolidation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.7 — Runtime surface consolidation
+M9.8 — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `469 passed in 45.66s`
+`python -m pytest -q` — `469 passed in 44.92s`
 
 ## Milestone UAT Status
 

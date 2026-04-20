@@ -1,24 +1,15 @@
 from asbp.orchestration_logic import build_work_package_orchestration_payload
+from asbp.runtime_surface_helpers import (
+    MODEL_MAY,
+    MODEL_MAY_NOT,
+    build_runtime_boundary_state,
+)
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
     TaskModel,
     WorkPackageModel,
 )
-
-MODEL_MAY: list[str] = [
-    "consume only validated deterministic facts exposed through this boundary payload",
-    "transform those facts into bounded language outputs only after a future prompt contract is defined",
-    "return only fields explicitly requested by a future runtime contract",
-]
-
-MODEL_MAY_NOT: list[str] = [
-    "mutate persisted state",
-    "invent facts, statuses, dates, dependencies, or identifiers",
-    "change selected work package, selected plan, task scope, or collection scope",
-    "resolve blocked deterministic state by inference",
-    "bypass deterministic validation or acceptance rules",
-]
 
 
 def build_work_package_runtime_boundary_payload(
@@ -44,10 +35,8 @@ def build_work_package_runtime_boundary_payload(
 
     return {
         "wp_id": orchestration_payload["wp_id"],
-        "runtime_boundary_state": (
-            "eligible_for_prompt_contract"
-            if eligible_for_prompt_contract
-            else "deterministic_blocked"
+        "runtime_boundary_state": build_runtime_boundary_state(
+            eligible_for_prompt_contract=eligible_for_prompt_contract
         ),
         "eligible_for_prompt_contract": eligible_for_prompt_contract,
         "selected_plan_id": orchestration_payload["selected_plan_id"],
