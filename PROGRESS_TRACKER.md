@@ -29,27 +29,20 @@ Milestone 9 — Hybrid Runtime
 
 ## Current Approved Slice Family
 
-M9.8 — Validation checkpoint
+M9.10 — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-M9.7 — Runtime surface consolidation completed
+M9.9 — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-M9.8 — Validation checkpoint
+M9.10 — Milestone closeout
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `469 passed in 44.92s`
+`python -m pytest -q` — `469 passed in 44.73s`
 
 ## Milestone UAT Status
 
-NOT_STARTED_MILESTONE_OPEN
-
-## Active Notes
-
-- `ROADMAP_CANONICAL.md` is now the approved v3 canonical roadmap.
-- `ROADMAP_ADDENDUM_03_PRE_M8_PRESET_SOURCE_ALIGNMENT.md` is completed historical and no longer governs execution.
-- `ROADMAP_ADDENDUM_04_M8_DESIGN_RESERVATIONS_GATE.md` is completed historical and no longer governs execution.
-- `docs/design_spec/ROADMAP_CANONICAL_v3_AMENDMENT_DRAFT.md` remains a design-spec review artifact only and is non-authoritative.
+PASSED
