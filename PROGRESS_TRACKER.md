@@ -29,23 +29,23 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.9 — Milestone UAT checkpoint
+M10.10 — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-M10.8 — Validation checkpoint completed
+M10.9 — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.9 — Milestone UAT checkpoint
+M10.10 — Milestone closeout
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `502 passed in 49.25s`
+`python -m pytest -q` — `502 passed in 45.50s`
 
 ## Milestone UAT Status
 
-NOT_STARTED_MILESTONE_OPEN
+PASSED_MILESTONE_OPEN
 
 ## Repo Alignment Status
 
