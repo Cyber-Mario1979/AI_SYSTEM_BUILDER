@@ -29,19 +29,19 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.5 — Regeneration / retry structure
+M10.6A — Output family expansion
 
 ## Latest Completed Checkpoint
 
-M10.4 — Validation before acceptance completed
+M10.5 — Regeneration / retry structure completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.5 — Regeneration / retry structure
+M10.6A — Output family expansion
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `482 passed in 42.47s`
+`python -m pytest -q` — `487 passed in 42.75s`
 
 ## Milestone UAT Status
 
