@@ -21,35 +21,30 @@ It is updated only when explicitly requested.
 
 ## Current Phase
 
-Phase 3 — AI Runtime Architecture
+Phase 3 to Phase 4 transition window
 
 ## Current Milestone
 
-Milestone 10 — Runtime-Orchestrated Outputs
+Pre-`M11.1` destination-alignment and design-readiness gate
 
 ## Current Approved Slice Family
 
-Pre-`M11.1` hard integration decision gate — `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`
+Pre-`M11.1` destination-alignment and design-readiness gate — `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md`
 
 ## Latest Completed Checkpoint
 
-M10.10 — Milestone closeout completed
+`A06.6` — Gate closeout and implementation re-entry decision completed
 
 ## Exact Next Unfinished Checkpoint
 
-Pre-`M11.1` hard integration decision gate — `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`
-
-## Latest Verified Validation Status
-
-`python -m pytest -q` — `502 passed in 47.06s`
-
-## Milestone UAT Status
-
-PASSED
+Close `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md` and normalize tracker for re-entry to `M11.1`
 
 ## Active Notes
 
-- Parallel design tracks are governed by `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`.
-- Design register: `docs/design_future/PARALLEL_DESIGN_TRACK_REGISTER.md`
-- Mandatory `M10.10` full repo pass completed.
-- Hard integration decision required before `M11.1`.
+- Destination-alignment blueprint completed at `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
+- Addendum 06 remains `ACTIVE` in repo and still governs execution until it is marked `COMPLETED_HISTORICAL`
+- Exact implementation re-entry checkpoint after addendum closeout: `M11.1` — Production structure baseline
+
+## Repo Alignment Status
+
+ALIGNED_VERIFIED
