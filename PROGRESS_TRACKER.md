@@ -21,15 +21,15 @@ It is updated only when explicitly requested.
 
 ## Current Phase
 
-Phase 3 to Phase 4 transition window
+Phase 4 — Professionalization
 
 ## Current Milestone
 
-Pre-`M11.1` destination-alignment and design-readiness gate
+Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-Pre-`M11.1` destination-alignment and design-readiness gate — `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md`
+`M11.1` — Production structure baseline
 
 ## Latest Completed Checkpoint
 
@@ -37,14 +37,18 @@ Pre-`M11.1` destination-alignment and design-readiness gate — `ROADMAP_ADDENDU
 
 ## Exact Next Unfinished Checkpoint
 
-Close `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md` and normalize tracker for re-entry to `M11.1`
+`M11.1` — Production structure baseline
+
+## Latest Verified Validation Status
+
+`python -m pytest -q` — `502 passed in 47.06s`
+
+## Milestone UAT Status
+
+NOT STARTED
 
 ## Active Notes
 
+- `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md` is now `COMPLETED_HISTORICAL`.
 - Destination-alignment blueprint completed at `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
-- Addendum 06 remains `ACTIVE` in repo and still governs execution until it is marked `COMPLETED_HISTORICAL`
-- Exact implementation re-entry checkpoint after addendum closeout: `M11.1` — Production structure baseline
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+- Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with the completed blueprint.
