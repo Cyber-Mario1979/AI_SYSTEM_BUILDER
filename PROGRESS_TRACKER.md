@@ -29,31 +29,27 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.10 — Milestone closeout
+Pre-`M11.1` hard integration decision gate — `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`
 
 ## Latest Completed Checkpoint
 
-M10.9 — Milestone UAT checkpoint completed
+M10.10 — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.10 — Milestone closeout
+Pre-`M11.1` hard integration decision gate — `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `502 passed in 45.50s`
+`python -m pytest -q` — `502 passed in 47.06s`
 
 ## Milestone UAT Status
 
-PASSED_MILESTONE_OPEN
-
-## Repo Alignment Status
-
-ALIGNED_VERIFIED
+PASSED
 
 ## Active Notes
 
 - Parallel design tracks are governed by `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`.
 - Design register: `docs/design_future/PARALLEL_DESIGN_TRACK_REGISTER.md`
-- Mandatory full repo pass at `M10.10` milestone closeout.
+- Mandatory `M10.10` full repo pass completed.
 - Hard integration decision required before `M11.1`.
