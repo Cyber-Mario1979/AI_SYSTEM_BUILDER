@@ -1,6 +1,10 @@
 # asbp/output_consistency_logic.py
 
 from asbp.output_family_logic import build_work_package_output_family_payload
+from asbp.output_surface_helpers import (
+    build_output_runtime_trace_payload,
+    find_output_family_by_id,
+)
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
@@ -58,13 +62,9 @@ def validate_work_package_output_family_consistency(
         errors.append("No output family could be resolved.")
         selected_family = None
     else:
-        selected_family = next(
-            (
-                family
-                for family in available_output_families
-                if family["output_family_id"] == resolved_family_id
-            ),
-            None,
+        selected_family = find_output_family_by_id(
+            available_output_families,
+            resolved_family_id,
         )
         if selected_family is None:
             errors.append(
@@ -83,6 +83,12 @@ def validate_work_package_output_family_consistency(
                 f"expected {current_response_mode}, got {supported_response_mode}"
             )
 
+    trace_payload = build_output_runtime_trace_payload(
+        retry_policy=family_payload["retry_policy"],
+        decision_rationale=family_payload["decision_rationale"],
+        validation_errors=family_payload["validation_errors"],
+    )
+
     return {
         "wp_id": family_payload["wp_id"],
         "output_consistency_metadata": {
@@ -97,7 +103,5 @@ def validate_work_package_output_family_consistency(
         "consistency_errors": errors,
         "consistent_output_family": selected_family if not errors else None,
         "consistent_output_payload": family_ready_output if not errors else None,
-        "retry_policy": dict(family_payload["retry_policy"]),
-        "decision_rationale": list(family_payload["decision_rationale"]),
-        "validation_errors": list(family_payload["validation_errors"]),
+        **trace_payload,
     }

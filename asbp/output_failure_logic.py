@@ -3,6 +3,12 @@
 from asbp.output_consistency_logic import (
     validate_work_package_output_family_consistency,
 )
+from asbp.output_surface_helpers import (
+    INVALID_RETRY_CONTROL_PREFIX,
+    REQUESTED_OUTPUT_FAMILY_UNAVAILABLE_PREFIX,
+    build_output_runtime_trace_payload,
+    list_contains_prefixed_value,
+)
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
@@ -25,15 +31,15 @@ def _resolve_failure_reason_category(
     if "validation_rejected_but_retry_budget_remaining" in decision_rationale:
         return "retryable_generation_rejection"
 
-    if any(
-        error.startswith("Requested output family is not available:")
-        for error in consistency_errors
+    if list_contains_prefixed_value(
+        consistency_errors,
+        REQUESTED_OUTPUT_FAMILY_UNAVAILABLE_PREFIX,
     ):
         return "non_retryable_output_family_rejection"
 
-    if any(
-        reason.startswith("invalid_retry_control_state:")
-        for reason in decision_rationale
+    if list_contains_prefixed_value(
+        decision_rationale,
+        INVALID_RETRY_CONTROL_PREFIX,
     ):
         return "non_retryable_retry_control_rejection"
 
@@ -68,9 +74,9 @@ def _build_fail_closed_feedback(
         "Review the deterministic rejection details before starting a new attempt.",
     ]
 
-    if any(
-        error.startswith("Requested output family is not available:")
-        for error in consistency_errors
+    if list_contains_prefixed_value(
+        consistency_errors,
+        REQUESTED_OUTPUT_FAMILY_UNAVAILABLE_PREFIX,
     ):
         recommended_next_actions.append(
             "Correct the requested output family selection before retrying."
@@ -79,9 +85,9 @@ def _build_fail_closed_feedback(
         recommended_next_actions.append(
             "Start a clean new attempt only after fixing the recorded validation errors."
         )
-    elif any(
-        reason.startswith("invalid_retry_control_state:")
-        for reason in decision_rationale
+    elif list_contains_prefixed_value(
+        decision_rationale,
+        INVALID_RETRY_CONTROL_PREFIX,
     ):
         recommended_next_actions.append(
             "Correct the retry control inputs before retrying."
@@ -153,6 +159,13 @@ def build_work_package_output_failure_payload(
             decision_rationale=decision_rationale,
         )
 
+    trace_payload = build_output_runtime_trace_payload(
+        retry_policy=retry_policy,
+        decision_rationale=decision_rationale,
+        validation_errors=validation_errors,
+        consistency_errors=consistency_errors,
+    )
+
     return {
         "wp_id": consistency_payload["wp_id"],
         "output_failure_metadata": {
@@ -180,8 +193,5 @@ def build_work_package_output_failure_payload(
             if failure_state == "accepted"
             else None
         ),
-        "retry_policy": retry_policy,
-        "decision_rationale": decision_rationale,
-        "consistency_errors": consistency_errors,
-        "validation_errors": validation_errors,
+        **trace_payload,
     }
