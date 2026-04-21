@@ -29,19 +29,19 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.2 — Output contract foundation
+M10.3 — Deterministic input-to-output mapping
 
 ## Latest Completed Checkpoint
 
-M10.1 — Output target definition completed
+M10.2 — Output contract foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.2 — Output contract foundation
+M10.3 — Deterministic input-to-output mapping
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `472 passed in 42.71s`
+`python -m pytest -q` — `475 passed in 45.37s`
 
 ## Milestone UAT Status
 
