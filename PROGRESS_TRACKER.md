@@ -50,3 +50,10 @@ NOT_STARTED_MILESTONE_OPEN
 ## Repo Alignment Status
 
 ALIGNED_VERIFIED
+
+## Active Notes
+
+- Parallel design tracks are governed by `ROADMAP_ADDENDUM_05_PARALLEL_DESIGN_TRACK_GOVERNANCE.md`.
+- Design register: `docs/design_future/PARALLEL_DESIGN_TRACK_REGISTER.md`
+- Mandatory full repo pass at `M10.10` milestone closeout.
+- Hard integration decision required before `M11.1`.
