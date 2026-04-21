@@ -89,10 +89,10 @@ Use the following controlled maturity values:
 
 ## Track status
 
-- maturity: `SEED`
+- maturity: `SHAPING`
 - governing intent: expand the authoritative library content universe deterministically
 - current implementation authority: design-only
-- integration target: undecided pending maturity
+- integration target: undecided pending hard decision before `M11.1`
 
 ## Why this track exists
 
@@ -224,10 +224,10 @@ Candidate concerns:
 
 ## Track status
 
-- maturity: `SEED`
+- maturity: `SHAPING`
 - governing intent: decompose the future post-core system architecture into roadmap-ready executable layers
 - current implementation authority: design-only
-- integration target: undecided pending maturity
+- integration target: undecided pending hard decision before `M11.1`
 
 ## Why this track exists
 
@@ -382,6 +382,35 @@ Use the template below for each required review.
 - `M10.10` full repo pass
 - pre-`M11.1` hard integration decision
 
+### Completed review entry — `M10.10` full repo pass
+
+- review point: `M10.10` full repo pass
+- trigger type: mandatory_full_repo_pass_and_milestone_closeout_review
+- current milestone / checkpoint context: Milestone 10 closeout after recorded validation checkpoint and passed milestone UAT
+- Track 1 maturity before: `SEED`
+- Track 1 maturity after: `SHAPING`
+- Track 2 maturity before: `SEED`
+- Track 2 maturity after: `SHAPING`
+- new signals:
+  - explicit source-of-work contract enforcement now exists for persisted preset-resolved task records
+  - selector-context and standards-bundle shaping pressure is now visible at the binding-context boundary
+  - orchestration now provides a clearer planning/input readiness boundary
+  - CLI-adapter governance is explicit while runtime/output behavior attaches through core module boundaries
+  - runtime/output decomposition now exists across target, contract, mapping, acceptance, retry, family, consistency, and failure layers
+- new gaps:
+  - no implemented canonical library taxonomy or authored-versus-deployment library program exists yet
+  - no implemented library validation/freeze program exists yet
+  - broader product decomposition for retrieval, API, UI, deployment, packaging, and production topology is still incomplete
+  - neither track yet has enough bounded checkpoint structure to qualify as `ROADMAP_READY`
+- roadmap-ready candidates:
+  - none at this closeout point
+- integration recommendation:
+  - Track 1: keep design-only, continue shaping, and decide before `M11.1` whether it becomes later roadmap material, a new addendum, or a post-roadmap library program
+  - Track 2: keep design-only, continue shaping, and record an explicit pre-`M11.1` integration decision rather than silently carrying it forward
+- notes:
+  - mandatory `M10.10` full repo pass completed
+  - active addendum remains in force because the hard integration decision before `M11.1` is still pending
+
 ---
 
 # Integration readiness criteria
@@ -403,11 +432,11 @@ A track is not `ROADMAP_READY` unless all of the following are true:
 
 # Current disposition
 
-At creation time, both tracks are acknowledged and actively governed, but neither is yet roadmap-ready.
+Both tracks are acknowledged and actively governed, but neither is yet roadmap-ready.
 
 Current disposition:
 
-- Track 1 — `SEED`
-- Track 2 — `SEED`
+- Track 1 — `SHAPING`
+- Track 2 — `SHAPING`
 
 Normal checkpoint execution continues unchanged while this register matures under addendum governance.
