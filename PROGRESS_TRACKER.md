@@ -29,19 +29,19 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.1` — Production structure baseline
+`M11.4` — Retrieval architecture basics
 
 ## Latest Completed Checkpoint
 
-`A06.6` — Gate closeout and implementation re-entry decision completed
+`M11.3` — Versioning discipline completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.1` — Production structure baseline
+`M11.4` — Retrieval architecture basics
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `502 passed in 47.06s`
+`python -m pytest -q` — `510 passed in 44.77s`
 
 ## Milestone UAT Status
 
@@ -49,6 +49,7 @@ NOT STARTED
 
 ## Active Notes
 
-- `ROADMAP_ADDENDUM_06_PRE_M11_DESTINATION_ALIGNMENT_AND_DESIGN_READINESS.md` is now `COMPLETED_HISTORICAL`.
-- Destination-alignment blueprint completed at `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
-- Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with the completed blueprint.
+- `M11.1` production-structure baseline is established through the new adapter/core/state/services/runtime package surfaces and compatibility wrappers.
+- `M11.2` evaluation and regression baseline is documented at `docs/reference/M11_2_EVALUATION_AND_REGRESSION_BASELINE.md`
+- `M11.3` canonical versioning surface is established at `asbp/versioning.py`
+- Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`

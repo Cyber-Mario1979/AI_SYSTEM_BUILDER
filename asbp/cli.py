@@ -63,8 +63,10 @@ from asbp.output_validation_logic import (
 )
 from asbp.retry_fail_logic import evaluate_work_package_candidate_response_attempt
 from asbp.planning_logic import validate_task_plan_membership_delete
+from asbp.versioning import RELEASE_STATE, RUNTIME_VERSION, STATE_VERSION
 
-VERSION = "0.1.0"
+VERSION = RUNTIME_VERSION
+CURRENT_RELEASE_STATE = RELEASE_STATE
 
 
 def get_state_file_path() -> Path:
@@ -89,7 +91,7 @@ def handle_state_init(args):
 
     initial_state = StateModel(
         project="AI_SYSTEM_BUILDER",
-        version="0.1.0",
+        version=STATE_VERSION,
         status="not_started",
     )
 
