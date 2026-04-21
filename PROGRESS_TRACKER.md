@@ -29,15 +29,15 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.8 — Validation checkpoint
+M10.9 — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-M10.7 — Runtime-output consolidation completed
+M10.8 — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.8 — Validation checkpoint
+M10.9 — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
