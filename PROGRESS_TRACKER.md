@@ -29,19 +29,19 @@ Milestone 10 — Runtime-Orchestrated Outputs
 
 ## Current Approved Slice Family
 
-M10.6C — Output failure handling
+M10.7 — Runtime-output consolidation
 
 ## Latest Completed Checkpoint
 
-M10.6B — Output consistency controls completed
+M10.6C — Output failure handling completed
 
 ## Exact Next Unfinished Checkpoint
 
-M10.6C — Output failure handling
+M10.7 — Runtime-output consolidation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `496 passed in 44.58s`
+`python -m pytest -q` — `502 passed in 48.61s`
 
 ## Milestone UAT Status
 
