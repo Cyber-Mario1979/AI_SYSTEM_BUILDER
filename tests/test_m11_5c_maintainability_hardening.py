@@ -9,6 +9,9 @@ from asbp.output_contract_logic import (
 from asbp.output_mapping_logic import (
     build_work_package_output_mapping_payload as legacy_build_work_package_output_mapping_payload,
 )
+from asbp.output_retry_logic import (
+    evaluate_work_package_output_attempt as legacy_evaluate_work_package_output_attempt,
+)
 from asbp.output_target_logic import (
     build_work_package_output_target_payload as legacy_build_work_package_output_target_payload,
 )
@@ -22,6 +25,7 @@ from asbp.runtime import (
     build_work_package_output_contract,
     build_work_package_output_mapping_payload,
     build_work_package_output_target_payload,
+    evaluate_work_package_output_attempt,
     validate_work_package_output_before_acceptance,
 )
 from asbp.state_model import (
@@ -171,6 +175,26 @@ def test_m11_5c_runtime_output_surface_wrappers_match_legacy_logic() -> None:
         plans,
         wp_id="WP-001",
         candidate_output=candidate_output,
+    )
+
+    assert evaluate_work_package_output_attempt(
+        work_packages,
+        task_collections,
+        tasks,
+        plans,
+        wp_id="WP-001",
+        candidate_output=candidate_output,
+        attempt_number=1,
+        max_attempts=2,
+    ) == legacy_evaluate_work_package_output_attempt(
+        work_packages,
+        task_collections,
+        tasks,
+        plans,
+        wp_id="WP-001",
+        candidate_output=candidate_output,
+        attempt_number=1,
+        max_attempts=2,
     )
 
 

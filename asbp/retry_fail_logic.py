@@ -7,6 +7,8 @@ from asbp.state_model import (
     WorkPackageModel,
 )
 
+__all__ = ["evaluate_work_package_candidate_response_attempt"]
+
 
 def evaluate_work_package_candidate_response_attempt(
     work_packages: list[WorkPackageModel],

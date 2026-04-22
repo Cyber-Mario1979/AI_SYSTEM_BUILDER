@@ -24,6 +24,7 @@ from .handoff import build_work_package_llm_handoff_payload
 from .output_acceptance import validate_work_package_output_before_acceptance
 from .output_contract import build_work_package_output_contract
 from .output_mapping import build_work_package_output_mapping_payload
+from .output_retry import evaluate_work_package_output_attempt
 from .output_target import build_work_package_output_target_payload
 from .output_validation import (
     load_candidate_response_json,
@@ -57,6 +58,7 @@ __all__ = [
     "build_work_package_prompt_contract_payload",
     "build_work_package_runtime_boundary_payload",
     "evaluate_work_package_candidate_response_attempt",
+    "evaluate_work_package_output_attempt",
     "load_candidate_response_json",
     "validate_work_package_candidate_response",
     "validate_work_package_output_before_acceptance",

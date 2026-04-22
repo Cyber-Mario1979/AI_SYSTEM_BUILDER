@@ -74,6 +74,7 @@ def test_retry_fail_accepts_valid_candidate_output():
         max_attempts=2,
     )
 
+    assert payload is not None
     assert payload["validation_state"] == "accepted"
     assert payload["decision_state"] == "accepted"
     assert payload["fallback_action"] == "use_validated_output"
@@ -113,6 +114,7 @@ def test_retry_fail_allows_retry_when_validation_rejects_and_budget_remains():
         max_attempts=2,
     )
 
+    assert payload is not None
     assert payload["validation_state"] == "rejected"
     assert payload["decision_state"] == "retry_allowed"
     assert payload["fallback_action"] == "request_new_candidate_from_same_handoff_contract"
@@ -154,6 +156,7 @@ def test_retry_fail_closes_when_validation_rejects_and_budget_is_exhausted():
         max_attempts=2,
     )
 
+    assert payload is not None
     assert payload["validation_state"] == "rejected"
     assert payload["decision_state"] == "fail_closed"
     assert payload["fallback_action"] == "return_deterministic_rejection_without_acceptance"
@@ -227,6 +230,7 @@ def test_retry_fail_closes_on_invalid_retry_control_state():
         max_attempts=2,
     )
 
+    assert payload is not None
     assert payload["validation_state"] == "accepted"
     assert payload["decision_state"] == "fail_closed"
     assert payload["fallback_action"] == "return_deterministic_rejection_without_acceptance"
