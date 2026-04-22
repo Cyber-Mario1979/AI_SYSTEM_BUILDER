@@ -1,5 +1,3 @@
-# tests/test_output_mapping_logic.py
-
 from datetime import datetime, timezone
 
 from asbp.output_mapping_logic import build_work_package_output_mapping_payload
@@ -67,7 +65,7 @@ def test_output_mapping_reports_blocked_mapping_payload():
         "output_contract_id": "work_package_operator_response_contract_v1",
         "generation_surface_id": "work_package_controlled_generation_surface_v1",
         "mapping_scope": "single_work_package",
-        "mapping_state": "blocked",
+        "mapping_state": "available",
         "current_response_mode": "blocked_explainer",
         "selected_plan_id": None,
     }
@@ -78,6 +76,18 @@ def test_output_mapping_reports_blocked_mapping_payload():
             "Only validated deterministic input and the bounded output "
             "contract may shape the mapped output payload."
         ),
+    }
+    assert payload["deterministic_input"]["runtime_control_metadata"] == {
+        "runtime_control_id": "work_package_runtime_control_v1",
+        "handoff_contract_id": "work_package_llm_handoff_v1",
+        "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
+        "runtime_control_state": "blocked_explainer_only",
+        "control_action": "explain_blocked_state",
+        "generation_allowed": False,
+        "operator_response_allowed": True,
+        "selected_plan_id": None,
+        "allowed_response_modes": ["blocked_explainer"],
+        "default_response_mode": "blocked_explainer",
     }
     assert payload["deterministic_input"]["structured_facts"] == {
         "work_package_status": "open",
@@ -166,6 +176,18 @@ def test_output_mapping_reports_available_mapping_payload():
         "mapping_state": "available",
         "current_response_mode": "execution_ready_summary",
         "selected_plan_id": "PLAN-001",
+    }
+    assert payload["deterministic_input"]["runtime_control_metadata"] == {
+        "runtime_control_id": "work_package_runtime_control_v1",
+        "handoff_contract_id": "work_package_llm_handoff_v1",
+        "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
+        "runtime_control_state": "execution_ready_summary_only",
+        "control_action": "summarize_execution_ready_state",
+        "generation_allowed": True,
+        "operator_response_allowed": True,
+        "selected_plan_id": "PLAN-001",
+        "allowed_response_modes": ["execution_ready_summary"],
+        "default_response_mode": "execution_ready_summary",
     }
     assert payload["deterministic_input"]["structured_facts"] == {
         "work_package_status": "open",

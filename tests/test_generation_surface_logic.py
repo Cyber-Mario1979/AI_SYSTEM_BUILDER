@@ -58,17 +58,35 @@ def test_generation_surface_reports_blocked_generation_request_payload():
         [],
         wp_id="WP-001",
     )
+    assert payload is not None
 
     assert payload["wp_id"] == "WP-001"
     assert payload["generation_surface_metadata"] == {
         "generation_surface_id": "work_package_controlled_generation_surface_v1",
+        "runtime_control_id": "work_package_runtime_control_v1",
         "handoff_contract_id": "work_package_llm_handoff_v1",
         "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
         "generation_state": "blocked",
         "generation_allowed": False,
+        "operator_response_allowed": True,
+        "runtime_control_state": "blocked_explainer_only",
+        "control_action": "explain_blocked_state",
+        "allowed_response_modes": ["blocked_explainer"],
         "generation_mode": "blocked_explainer",
         "generation_scope": "single_work_package_operator_response",
         "selected_plan_id": None,
+    }
+    assert payload["deterministic_input"]["runtime_control_metadata"] == {
+        "runtime_control_id": "work_package_runtime_control_v1",
+        "handoff_contract_id": "work_package_llm_handoff_v1",
+        "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
+        "runtime_control_state": "blocked_explainer_only",
+        "control_action": "explain_blocked_state",
+        "generation_allowed": False,
+        "operator_response_allowed": True,
+        "selected_plan_id": None,
+        "allowed_response_modes": ["blocked_explainer"],
+        "default_response_mode": "blocked_explainer",
     }
     assert payload["deterministic_input"]["structured_facts"] == {
         "work_package_status": "open",
@@ -146,17 +164,35 @@ def test_generation_surface_reports_ready_generation_request_payload():
         plans,
         wp_id="WP-001",
     )
+    assert payload is not None
 
     assert payload["wp_id"] == "WP-001"
     assert payload["generation_surface_metadata"] == {
         "generation_surface_id": "work_package_controlled_generation_surface_v1",
+        "runtime_control_id": "work_package_runtime_control_v1",
         "handoff_contract_id": "work_package_llm_handoff_v1",
         "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
         "generation_state": "ready",
         "generation_allowed": True,
+        "operator_response_allowed": True,
+        "runtime_control_state": "execution_ready_summary_only",
+        "control_action": "summarize_execution_ready_state",
+        "allowed_response_modes": ["execution_ready_summary"],
         "generation_mode": "execution_ready_summary",
         "generation_scope": "single_work_package_operator_response",
         "selected_plan_id": "PLAN-001",
+    }
+    assert payload["deterministic_input"]["runtime_control_metadata"] == {
+        "runtime_control_id": "work_package_runtime_control_v1",
+        "handoff_contract_id": "work_package_llm_handoff_v1",
+        "source_prompt_contract_id": "work_package_runtime_prompt_contract_v1",
+        "runtime_control_state": "execution_ready_summary_only",
+        "control_action": "summarize_execution_ready_state",
+        "generation_allowed": True,
+        "operator_response_allowed": True,
+        "selected_plan_id": "PLAN-001",
+        "allowed_response_modes": ["execution_ready_summary"],
+        "default_response_mode": "execution_ready_summary",
     }
     assert payload["deterministic_input"]["structured_facts"] == {
         "work_package_status": "open",

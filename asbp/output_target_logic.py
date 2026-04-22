@@ -1,5 +1,3 @@
-# asbp/output_target_logic.py
-
 from asbp.generation_surface_logic import (
     build_work_package_generation_request_payload,
 )
@@ -12,10 +10,6 @@ from asbp.state_model import (
 
 OUTPUT_TARGET_ID = "work_package_operator_response_target_v1"
 OUTPUT_TARGET_FAMILY = "single_work_package_operator_response"
-ALLOWED_RESPONSE_MODES: list[str] = [
-    "blocked_explainer",
-    "execution_ready_summary",
-]
 
 
 def build_work_package_output_target_payload(
@@ -40,6 +34,9 @@ def build_work_package_output_target_payload(
         "generation_surface_metadata"
     ]
     generation_allowed = generation_surface_metadata["generation_allowed"]
+    operator_response_allowed = generation_surface_metadata[
+        "operator_response_allowed"
+    ]
 
     return {
         "wp_id": generation_request_payload["wp_id"],
@@ -49,14 +46,20 @@ def build_work_package_output_target_payload(
             "target_scope": "single_work_package",
             "target_audience": "operator",
             "delivery_format": "chat_text",
-            "target_state": "available" if generation_allowed else "blocked",
+            "target_state": "available" if operator_response_allowed else "blocked",
             "generation_surface_id": generation_surface_metadata[
                 "generation_surface_id"
             ],
             "selected_plan_id": generation_surface_metadata["selected_plan_id"],
             "generation_allowed": generation_allowed,
+            "operator_response_allowed": operator_response_allowed,
+            "runtime_control_state": generation_surface_metadata[
+                "runtime_control_state"
+            ],
         },
-        "allowed_response_modes": list(ALLOWED_RESPONSE_MODES),
+        "allowed_response_modes": list(
+            generation_surface_metadata["allowed_response_modes"]
+        ),
         "current_response_mode": generation_surface_metadata["generation_mode"],
         "target_boundaries": {
             "multi_work_package_output": False,

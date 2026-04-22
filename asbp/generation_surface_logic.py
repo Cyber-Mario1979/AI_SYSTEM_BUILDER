@@ -1,4 +1,4 @@
-from asbp.runtime_handoff_logic import build_work_package_llm_handoff_payload
+from asbp.runtime_control_logic import build_work_package_runtime_control_payload
 from asbp.runtime_surface_helpers import (
     GENERATION_SURFACE_ID,
     build_candidate_response_template,
@@ -21,39 +21,50 @@ def build_work_package_generation_request_payload(
     *,
     wp_id: str,
 ) -> dict | None:
-    handoff_payload = build_work_package_llm_handoff_payload(
+    runtime_control_payload = build_work_package_runtime_control_payload(
         work_packages,
         task_collections,
         tasks,
         plans,
         wp_id=wp_id,
     )
-    if handoff_payload is None:
+    if runtime_control_payload is None:
         return None
 
-    handoff_metadata = handoff_payload["handoff_metadata"]
-    structured_facts = handoff_payload["structured_facts"]
-    instructions = handoff_payload["prose_generation_instructions"]
-    generation_allowed = handoff_metadata["generation_allowed"]
+    handoff_metadata = runtime_control_payload["handoff_metadata"]
+    runtime_control_metadata = runtime_control_payload["runtime_control_metadata"]
+    structured_facts = runtime_control_payload["structured_facts"]
+    instructions = runtime_control_payload["prose_generation_instructions"]
+    generation_allowed = runtime_control_metadata["generation_allowed"]
 
     return {
-        "wp_id": handoff_payload["wp_id"],
+        "wp_id": runtime_control_payload["wp_id"],
         "generation_surface_metadata": {
             "generation_surface_id": GENERATION_SURFACE_ID,
-            "handoff_contract_id": handoff_metadata["handoff_contract_id"],
-            "source_prompt_contract_id": handoff_metadata[
+            "runtime_control_id": runtime_control_metadata["runtime_control_id"],
+            "handoff_contract_id": runtime_control_metadata["handoff_contract_id"],
+            "source_prompt_contract_id": runtime_control_metadata[
                 "source_prompt_contract_id"
             ],
             "generation_state": build_generation_state(
                 generation_allowed=generation_allowed
             ),
             "generation_allowed": generation_allowed,
-            "generation_mode": instructions["response_mode"],
+            "operator_response_allowed": runtime_control_metadata[
+                "operator_response_allowed"
+            ],
+            "runtime_control_state": runtime_control_metadata["runtime_control_state"],
+            "control_action": runtime_control_metadata["control_action"],
+            "allowed_response_modes": list(
+                runtime_control_metadata["allowed_response_modes"]
+            ),
+            "generation_mode": runtime_control_metadata["default_response_mode"],
             "generation_scope": "single_work_package_operator_response",
-            "selected_plan_id": handoff_metadata["selected_plan_id"],
+            "selected_plan_id": runtime_control_metadata["selected_plan_id"],
         },
         "deterministic_input": {
             "handoff_metadata": dict(handoff_metadata),
+            "runtime_control_metadata": dict(runtime_control_metadata),
             "structured_facts": dict(structured_facts),
         },
         "generation_instructions": {
@@ -67,6 +78,6 @@ def build_work_package_generation_request_payload(
         },
         "output_contract": build_output_contract(),
         "candidate_response_template": build_candidate_response_template(
-            response_mode=instructions["response_mode"]
+            response_mode=runtime_control_metadata["default_response_mode"]
         ),
     }

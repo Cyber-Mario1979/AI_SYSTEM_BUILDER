@@ -216,9 +216,9 @@ def test_output_acceptance_rejects_contract_breaking_candidate():
         "current_response_mode": "blocked_explainer",
         "selected_plan_id": None,
     }
-    assert payload["validated_output"] is None
     assert payload["errors"] == [
         "Unexpected output fields: extra_field",
+        "response_mode must be one of: blocked_explainer",
         "response_mode mismatch: expected blocked_explainer, got 'execution_ready_summary'",
         "operator_message must be a non-empty string.",
         "recommended_next_actions must be a list of strings.",

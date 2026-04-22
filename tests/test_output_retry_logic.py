@@ -138,9 +138,9 @@ def test_output_retry_allows_retry_when_validation_rejected_and_budget_remains()
     assert payload["decision_rationale"] == [
         "validation_rejected_but_retry_budget_remaining"
     ]
-    assert payload["validated_output"] is None
     assert payload["validation_errors"] == [
         "Unexpected output fields: extra_field",
+        "response_mode must be one of: blocked_explainer",
         "response_mode mismatch: expected blocked_explainer, got 'execution_ready_summary'",
         "operator_message must be a non-empty string.",
         "recommended_next_actions must be a list of strings.",

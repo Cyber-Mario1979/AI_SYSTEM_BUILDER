@@ -1,5 +1,3 @@
-# tests/test_output_contract_logic.py
-
 from datetime import datetime, timezone
 
 from asbp.output_contract_logic import build_work_package_output_contract
@@ -67,7 +65,7 @@ def test_output_contract_reports_blocked_single_work_package_operator_contract()
         "contract_scope": "single_work_package",
         "target_audience": "operator",
         "delivery_format": "chat_text",
-        "contract_state": "blocked",
+        "contract_state": "available",
         "current_response_mode": "blocked_explainer",
         "selected_plan_id": None,
     }
@@ -85,7 +83,6 @@ def test_output_contract_reports_blocked_single_work_package_operator_contract()
     }
     assert payload["allowed_response_modes"] == [
         "blocked_explainer",
-        "execution_ready_summary",
     ]
     assert payload["prohibited_contract_drift"] == [
         "omit required output fields",
@@ -103,7 +100,6 @@ def test_output_contract_reports_blocked_single_work_package_operator_contract()
                 "type": "string",
                 "allowed_values": [
                     "blocked_explainer",
-                    "execution_ready_summary",
                 ],
                 "must_equal_current_response_mode": True,
             },
@@ -188,7 +184,6 @@ def test_output_contract_reports_available_single_work_package_operator_contract
         "grounded_input_fields_used",
     ]
     assert payload["allowed_response_modes"] == [
-        "blocked_explainer",
         "execution_ready_summary",
     ]
     assert payload["acceptance_shape"]["top_level_container"] == "object"
@@ -196,7 +191,6 @@ def test_output_contract_reports_available_single_work_package_operator_contract
     assert payload["acceptance_shape"]["field_rules"]["response_mode"] == {
         "type": "string",
         "allowed_values": [
-            "blocked_explainer",
             "execution_ready_summary",
         ],
         "must_equal_current_response_mode": True,

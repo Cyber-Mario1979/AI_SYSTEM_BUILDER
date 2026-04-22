@@ -29,19 +29,19 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.5A` — Runtime control hardening
+`M11.5B` — Failure-discipline hardening
 
 ## Latest Completed Checkpoint
 
-`M11.4` — Retrieval architecture basics completed
+`M11.5A` — Runtime control hardening completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.5A` — Runtime control hardening
+`M11.5B` — Failure-discipline hardening
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `515 passed in 42.64s`
+`python -m pytest -q` — `518 passed in 46.89s`
 
 ## Active Notes
 
@@ -49,4 +49,5 @@ Milestone 11 — Production-Grade Micro AI System
 - `M11.2` evaluation and regression baseline is documented at `docs/reference/M11_2_EVALUATION_AND_REGRESSION_BASELINE.md`
 - `M11.3` canonical versioning surface is established at `asbp/versioning.py`
 - `M11.4` retrieval architecture basics is established through the dedicated `asbp/retrieval` boundary, explicit governed-vs-probabilistic retrieval separation, and validation rules that prevent retrieval from claiming source authority before future resolver/registry foundations.
+- `M11.5A` runtime control hardening is established through the dedicated runtime-control layer, explicit operator-response allowance in blocked and execution-ready states, and narrowed allowed-response-mode control across generation, output target, contract, and mapping surfaces.
 - Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`

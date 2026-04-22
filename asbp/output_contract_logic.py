@@ -1,9 +1,4 @@
-# asbp/output_contract_logic.py
-
-from asbp.output_target_logic import (
-    ALLOWED_RESPONSE_MODES,
-    build_work_package_output_target_payload,
-)
+from asbp.output_target_logic import build_work_package_output_target_payload
 from asbp.runtime_surface_helpers import (
     EXPECTED_OUTPUT_FIELDS,
     OUTPUT_FIELD_TYPES,
@@ -39,6 +34,7 @@ def build_work_package_output_contract(
 
     output_target_metadata = output_target_payload["output_target_metadata"]
     current_response_mode = output_target_payload["current_response_mode"]
+    allowed_response_modes = list(output_target_payload["allowed_response_modes"])
 
     return {
         "output_contract_metadata": {
@@ -54,7 +50,7 @@ def build_work_package_output_contract(
         },
         "required_output_fields": list(EXPECTED_OUTPUT_FIELDS),
         "field_types": dict(OUTPUT_FIELD_TYPES),
-        "allowed_response_modes": list(ALLOWED_RESPONSE_MODES),
+        "allowed_response_modes": allowed_response_modes,
         "prohibited_contract_drift": list(PROHIBITED_FREEFORM_DRIFT),
         "acceptance_shape": {
             "top_level_container": "object",
@@ -62,7 +58,7 @@ def build_work_package_output_contract(
             "field_rules": {
                 "response_mode": {
                     "type": "string",
-                    "allowed_values": list(ALLOWED_RESPONSE_MODES),
+                    "allowed_values": allowed_response_modes,
                     "must_equal_current_response_mode": True,
                 },
                 "operator_message": {

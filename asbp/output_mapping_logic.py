@@ -1,5 +1,3 @@
-# asbp/output_mapping_logic.py
-
 from asbp.generation_surface_logic import (
     build_work_package_generation_request_payload,
 )
@@ -74,6 +72,11 @@ def build_work_package_output_mapping_payload(
             "handoff_metadata": dict(
                 generation_request_payload["deterministic_input"][
                     "handoff_metadata"
+                ]
+            ),
+            "runtime_control_metadata": dict(
+                generation_request_payload["deterministic_input"][
+                    "runtime_control_metadata"
                 ]
             ),
             "structured_facts": dict(
