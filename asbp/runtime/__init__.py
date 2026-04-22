@@ -21,6 +21,10 @@ from .contracts import (
 )
 from .generation import build_work_package_generation_request_payload
 from .handoff import build_work_package_llm_handoff_payload
+from .output_acceptance import validate_work_package_output_before_acceptance
+from .output_contract import build_work_package_output_contract
+from .output_mapping import build_work_package_output_mapping_payload
+from .output_target import build_work_package_output_target_payload
 from .output_validation import (
     load_candidate_response_json,
     validate_work_package_candidate_response,
@@ -47,9 +51,13 @@ __all__ = [
     "build_runtime_boundary_state",
     "build_work_package_generation_request_payload",
     "build_work_package_llm_handoff_payload",
+    "build_work_package_output_contract",
+    "build_work_package_output_mapping_payload",
+    "build_work_package_output_target_payload",
     "build_work_package_prompt_contract_payload",
     "build_work_package_runtime_boundary_payload",
     "evaluate_work_package_candidate_response_attempt",
     "load_candidate_response_json",
     "validate_work_package_candidate_response",
+    "validate_work_package_output_before_acceptance",
 ]

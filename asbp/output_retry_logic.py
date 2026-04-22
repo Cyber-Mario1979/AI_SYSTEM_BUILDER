@@ -1,8 +1,7 @@
-# asbp/output_retry_logic.py
-
 from asbp.output_acceptance_logic import (
     validate_work_package_output_before_acceptance,
 )
+from asbp.retry_decision_helpers import build_retry_decision
 from asbp.state_model import (
     PlanningModel,
     TaskCollectionModel,
@@ -37,48 +36,14 @@ def evaluate_work_package_output_attempt(
 
     acceptance_metadata = acceptance_payload["output_acceptance_metadata"]
     validation_state = acceptance_metadata["validation_state"]
-    decision_rationale: list[str] = []
-
-    if max_attempts < 1:
-        decision_state = "fail_closed"
-        regeneration_action = "return_rejected_output_without_acceptance"
-        retries_remaining = 0
-        decision_rationale.append(
-            "invalid_retry_control_state:max_attempts_must_be_positive"
-        )
-    elif attempt_number < 1:
-        decision_state = "fail_closed"
-        regeneration_action = "return_rejected_output_without_acceptance"
-        retries_remaining = 0
-        decision_rationale.append(
-            "invalid_retry_control_state:attempt_number_must_be_positive"
-        )
-    elif attempt_number > max_attempts:
-        decision_state = "fail_closed"
-        regeneration_action = "return_rejected_output_without_acceptance"
-        retries_remaining = 0
-        decision_rationale.append(
-            "invalid_retry_control_state:attempt_number_exceeds_max_attempts"
-        )
-    elif validation_state == "accepted":
-        decision_state = "accepted"
-        regeneration_action = "use_validated_output"
-        retries_remaining = max_attempts - attempt_number
-        decision_rationale.append("validated_output_accepted")
-    elif attempt_number < max_attempts:
-        decision_state = "retry_allowed"
-        regeneration_action = "request_regenerated_output_from_same_mapping_contract"
-        retries_remaining = max_attempts - attempt_number
-        decision_rationale.append(
-            "validation_rejected_but_retry_budget_remaining"
-        )
-    else:
-        decision_state = "fail_closed"
-        regeneration_action = "return_rejected_output_without_acceptance"
-        retries_remaining = 0
-        decision_rationale.append(
-            "validation_rejected_and_retry_budget_exhausted"
-        )
+    retry_decision = build_retry_decision(
+        validation_state=validation_state,
+        attempt_number=attempt_number,
+        max_attempts=max_attempts,
+        accepted_action="use_validated_output",
+        retry_action="request_regenerated_output_from_same_mapping_contract",
+        fail_closed_action="return_rejected_output_without_acceptance",
+    )
 
     return {
         "wp_id": acceptance_payload["wp_id"],
@@ -88,17 +53,17 @@ def evaluate_work_package_output_attempt(
             "output_mapping_id": acceptance_metadata["output_mapping_id"],
             "output_contract_id": acceptance_metadata["output_contract_id"],
             "validation_state": validation_state,
-            "decision_state": decision_state,
-            "regeneration_action": regeneration_action,
+            "decision_state": retry_decision["decision_state"],
+            "regeneration_action": retry_decision["action"],
             "current_response_mode": acceptance_metadata["current_response_mode"],
             "selected_plan_id": acceptance_metadata["selected_plan_id"],
         },
         "retry_policy": {
             "attempt_number": attempt_number,
             "max_attempts": max_attempts,
-            "retries_remaining": retries_remaining,
+            "retries_remaining": retry_decision["retries_remaining"],
         },
-        "decision_rationale": decision_rationale,
+        "decision_rationale": list(retry_decision["decision_rationale"]),
         "validation_errors": list(acceptance_payload["errors"]),
         "validated_output": acceptance_payload["validated_output"],
     }

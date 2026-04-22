@@ -1,7 +1,10 @@
-# asbp/output_acceptance_logic.py
-
 from asbp.output_mapping_logic import (
     build_work_package_output_mapping_payload,
+)
+from asbp.output_validation_helpers import (
+    build_disallowed_grounded_fields_errors,
+    validate_list_of_strings_field,
+    validate_non_empty_string_field,
 )
 from asbp.state_model import (
     PlanningModel,
@@ -11,36 +14,6 @@ from asbp.state_model import (
 )
 
 OUTPUT_ACCEPTANCE_ID = "work_package_output_acceptance_v1"
-
-
-def _validate_non_empty_string_field(
-    candidate_output: dict,
-    field_name: str,
-) -> str | None:
-    value = candidate_output.get(field_name)
-    if not isinstance(value, str) or not value.strip():
-        return f"{field_name} must be a non-empty string."
-    return None
-
-
-def _validate_list_of_strings_field(
-    candidate_output: dict,
-    field_name: str,
-) -> tuple[list[str], list[str]]:
-    value = candidate_output.get(field_name)
-    if not isinstance(value, list):
-        return [], [f"{field_name} must be a list of strings."]
-
-    errors: list[str] = []
-    normalized_values: list[str] = []
-
-    for item in value:
-        if not isinstance(item, str) or not item.strip():
-            errors.append(f"{field_name} must contain only non-empty strings.")
-            continue
-        normalized_values.append(item)
-
-    return normalized_values, errors
 
 
 def validate_work_package_output_before_acceptance(
@@ -134,7 +107,7 @@ def validate_work_package_output_before_acceptance(
             f"expected {expected_response_mode}, got {response_mode!r}"
         )
 
-    operator_message_error = _validate_non_empty_string_field(
+    operator_message_error = validate_non_empty_string_field(
         candidate_output,
         "operator_message",
     )
@@ -142,7 +115,7 @@ def validate_work_package_output_before_acceptance(
         errors.append(operator_message_error)
 
     recommended_next_actions, recommended_next_actions_errors = (
-        _validate_list_of_strings_field(
+        validate_list_of_strings_field(
             candidate_output,
             "recommended_next_actions",
         )
@@ -150,7 +123,7 @@ def validate_work_package_output_before_acceptance(
     errors.extend(recommended_next_actions_errors)
 
     grounded_input_fields_used, grounded_input_fields_used_errors = (
-        _validate_list_of_strings_field(
+        validate_list_of_strings_field(
             candidate_output,
             "grounded_input_fields_used",
         )
@@ -160,16 +133,12 @@ def validate_work_package_output_before_acceptance(
     if not grounded_input_fields_used:
         errors.append("grounded_input_fields_used must not be empty.")
     else:
-        invalid_grounded_fields = sorted(
-            field_name
-            for field_name in grounded_input_fields_used
-            if field_name not in allowed_grounded_fields
-        )
-        if invalid_grounded_fields:
-            errors.append(
-                "grounded_input_fields_used contains disallowed fields: "
-                + ", ".join(invalid_grounded_fields)
+        errors.extend(
+            build_disallowed_grounded_fields_errors(
+                grounded_input_fields_used,
+                allowed_grounded_fields=allowed_grounded_fields,
             )
+        )
 
     return {
         "wp_id": output_mapping_payload["wp_id"],
