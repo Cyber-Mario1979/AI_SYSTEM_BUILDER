@@ -29,10 +29,6 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.6` — Architecture cleanup and consolidation
-
-## Current Approved Slice Family
-
 `M11.5C` — Maintainability hardening
 
 ## Latest Completed Checkpoint
@@ -46,6 +42,10 @@ Milestone 11 — Production-Grade Micro AI System
 ## Latest Verified Validation Status
 
 `python -m pytest -q` — `521 passed in 42.34s`
+
+## Milestone UAT Status
+
+`NOT_STARTED_MILESTONE_OPEN`
 
 ## Repo Alignment Status
 
