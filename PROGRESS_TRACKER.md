@@ -29,25 +29,33 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.5B` — Failure-discipline hardening
+`M11.5C` — Maintainability hardening
 
 ## Latest Completed Checkpoint
 
-`M11.5A` — Runtime control hardening completed
+`M11.5B` — Failure-discipline hardening completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.5B` — Failure-discipline hardening
+`M11.5C` — Maintainability hardening
 
 ## Latest Verified Validation Status
 
 `python -m pytest -q` — `518 passed in 46.89s`
 
+## Milestone UAT Status
+
+`NOT_STARTED_MILESTONE_OPEN`
+
+## Repo Alignment Status
+
+`ALIGNED_VERIFIED`
+
 ## Active Notes
 
 - `M11.1` production-structure baseline is established through the new adapter/core/state/services/runtime package surfaces and compatibility wrappers.
-- `M11.2` evaluation and regression baseline is documented at `docs/reference/M11_2_EVALUATION_AND_REGRESSION_BASELINE.md`
 - `M11.3` canonical versioning surface is established at `asbp/versioning.py`
 - `M11.4` retrieval architecture basics is established through the dedicated `asbp/retrieval` boundary, explicit governed-vs-probabilistic retrieval separation, and validation rules that prevent retrieval from claiming source authority before future resolver/registry foundations.
 - `M11.5A` runtime control hardening is established through the dedicated runtime-control layer, explicit operator-response allowance in blocked and execution-ready states, and narrowed allowed-response-mode control across generation, output target, contract, and mapping surfaces.
+- `M11.5B` failure-discipline hardening is established through the dedicated candidate-response validation and retry/fail surfaces, explicit retry-budget handling, and deterministic fail-closed fallback behavior.
 - Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
