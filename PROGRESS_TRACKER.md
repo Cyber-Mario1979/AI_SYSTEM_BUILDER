@@ -29,23 +29,23 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.8` — Milestone UAT checkpoint
+`M11.9` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M11.7` — Validation checkpoint completed
+`M11.8` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.8` — Milestone UAT checkpoint
+`M11.9` — Milestone closeout
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `524 passed in 45.79s`
+`python -m pytest -q` — `524 passed in 42.83s`
 
 ## Milestone UAT Status
 
-`NOT_STARTED_MILESTONE_OPEN`
+`PASS_MILESTONE_OPEN`
 
 ## Repo Alignment Status
 
@@ -62,3 +62,4 @@ Milestone 11 — Production-Grade Micro AI System
 - Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
 - `M11.6` architecture cleanup and consolidation is established through explicit runtime wrapper exports, removal of wildcard runtime re-export patterns across the governed wrapper layer, and parity tests confirming runtime-package exports remain aligned with root logic surfaces.
 - `M11.7` validation checkpoint is established at `docs/M11_VALIDATION_CHECKPOINT.md` with Milestone 11 validation accepted on the current repo-real baseline and no additional in-scope bug fix indicated by the latest verified green run.
+- `M11.8` milestone UAT checkpoint is established at `docs/UAT/M11_UAT_REPORT.md` with `M11_UAT Pass`, no evidenced execution deviations, and a preserved green post-UAT validation baseline.
