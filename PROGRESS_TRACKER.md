@@ -21,15 +21,15 @@ It is updated only when explicitly requested.
 
 ## Current Phase
 
-Phase 4 — Professionalization
+Phase 4 closeout to Phase 5 transition window
 
 ## Current Milestone
 
-Milestone 11 — Production-Grade Micro AI System
+Post-M11 transition under Addendum 07
 
 ## Current Approved Slice Family
 
-`M11.9` — Milestone closeout completed
+`A07.1` — Full repo pass and repo-reality audit
 
 ## Latest Completed Checkpoint
 
@@ -37,15 +37,7 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Exact Next Unfinished Checkpoint
 
-`TBD — pending verified post-M11 roadmap successor`
-
-## Milestone UAT Status
-
-`PASSED`
-
-## Latest Verified Validation Status
-
-`python -m pytest -q` — `524 passed in 42.83s`
+`A07.1` — Full repo pass and repo-reality audit
 
 ## Repo Alignment Status
 
@@ -53,6 +45,7 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Active Notes
 
-- `M11.9` closeout is established at `docs/M11_CLOSEOUT_NOTES.md`.
-- Milestone 11 is closed on the repo-real boundary validated at `docs/M11_VALIDATION_CHECKPOINT.md` and accepted at `docs/UAT/M11_UAT_REPORT.md`.
-- Set the next checkpoint only after explicit verification of the post-`M11.9` roadmap successor.
+- `ROADMAP_CANONICAL.md` v4 is now the active canonical roadmap.
+- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md` remains active and governs the current post-`M11.9` transition window.
+- `ROADMAP_CANONICAL_CONTINUATION_PART_1_PHASES_5_6.md` and `ROADMAP_CANONICAL_CONTINUATION_PART_2_PHASES_7_9.md` are now represented in the adopted canonical roadmap v4.
+- The first active post-`M11.9` transition checkpoint is `A07.1` — Full repo pass and repo-reality audit.
