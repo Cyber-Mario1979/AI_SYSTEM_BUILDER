@@ -29,15 +29,15 @@ Post-M11 transition under Addendum 07
 
 ## Current Approved Slice Family
 
-`A07.1` — Full repo pass and repo-reality audit
+`A07.3` — README and runtime/operator-document normalization
 
 ## Latest Completed Checkpoint
 
-`M11.9` — Milestone closeout completed
+`A07.2` — Cleanup and polish pass completed
 
 ## Exact Next Unfinished Checkpoint
 
-`A07.1` — Full repo pass and repo-reality audit
+`A07.3` — README and runtime/operator-document normalization
 
 ## Milestone UAT Status
 
@@ -53,7 +53,8 @@ Post-M11 transition under Addendum 07
 
 ## Active Notes
 
-- `ROADMAP_CANONICAL.md` v4 is now the active canonical roadmap.
-- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md` remains active and governs the current post-`M11.9` transition window.
-- `ROADMAP_CANONICAL_CONTINUATION_PART_1_PHASES_5_6.md` and `ROADMAP_CANONICAL_CONTINUATION_PART_2_PHASES_7_9.md` are now represented in the adopted canonical roadmap v4.
-- The first active post-`M11.9` transition checkpoint is `A07.1` — Full repo pass and repo-reality audit.
+- `ROADMAP_CANONICAL.md` v4 is now the active canonical roadmap. :contentReference[oaicite:0]{index=0}
+- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md` remains active and governs the current post-`M11.9` transition window. :contentReference[oaicite:1]{index=1}
+- `A07.1` repo pass identified stale `README.md` public claims and stale `docs/reference/asbp_runtime_cheat_sheet.md` runtime/operator reference content. :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}
+- `A07.2` cleanup restored the missing tracker fields and corrected the Milestone 9 UAT protocol filename to `docs/UAT/M9_UAT_PROTOCOL.md`. :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
+- The next active transition checkpoint is `A07.3` — README and runtime/operator-document normalization. :contentReference[oaicite:6]{index=6}
