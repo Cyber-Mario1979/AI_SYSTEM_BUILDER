@@ -3,75 +3,99 @@ doc_type: runtime_cheat_sheet
 canonical_name: ASBP_RUNTIME_CHEAT_SHEET
 status: ACTIVE
 governs_execution: false
-document_state_mode: session_validated_convenience_reference
+document_state_mode: repo_aligned_convenience_reference
 authority: non_authoritative_operator_reference
 scope_type: runtime_command_surface
 ---
 
-# ASBP Runtime Cheat Sheet V6
+# ASBP Runtime Cheat Sheet
 
-Non-authoritative convenience snapshot based on the latest locally validated runtime command surface in the current session.
+Non-authoritative convenience snapshot aligned to the current repo boundary.
 
 Source of truth remains:
 
 - repo code
 - `ROADMAP_CANONICAL.md`
+- active `ROADMAP_ADDENDUM_*.md` files when present
 - `ARCHITECTURE_GUARDRAILS.md`
 - `PROGRESS_TRACKER.md`
 
 ---
 
-## Current checkpoint context
+## Current execution context
 
-- Current milestone: **Milestone 8 — Multi-Entity Coordination**
-- Current approved slice family: **M8.5A — Cross-entity read rules**
-- Latest completed checkpoint: **M8.4 — Binding-context consistency controls completed**
-- Exact next unfinished checkpoint: **M8.5A — Cross-entity read rules**
-- Latest locally verified validation status: **402 passed in 37.56s**
+- Current phase: **Phase 4 closeout to Phase 5 transition window**
+- Current milestone: **Post-M11 transition under Addendum 07**
+- Current approved slice family: **`A07.3` — README and runtime/operator-document normalization**
+- Latest completed checkpoint: **`A07.2` — Cleanup and polish pass completed**
+- Exact next unfinished checkpoint: **`A07.3` — README and runtime/operator-document normalization**
+- Milestone UAT status: **`PASSED`**
+- Latest verified validation status: **`python -m pytest -q` → `524 passed in 42.83s`**
+
+---
+
+## Important scope note
+
+This cheat sheet separates two kinds of public surfaces that now coexist in the repo:
+
+1. **stable operator CLI surfaces**
+2. **validated public Python package surfaces** introduced through the M11 boundary
+
+Because the architecture guardrails keep the CLI as an adapter only, not every validated public surface is primarily exposed as an operator-first CLI workflow.
 
 ---
 
 ## Base entry
 
-```bash
+```powershell
 python -m asbp
 ```
 
 ## Global
 
-```bash
+```powershell
 python -m asbp --version
+```
+
+Version metadata in repo code:
+
+```text
+runtime_version = 0.1.0
+state_version = 0.1.0
+release_state = active_development
 ```
 
 ---
 
-## State commands
+## Stable CLI surfaces
 
-### Initialize state file
+### State commands
 
-```bash
+#### Initialize state file
+
+```powershell
 python -m asbp state init
 ```
 
-### Show current state
+#### Show current state
 
-```bash
+```powershell
 python -m asbp state show
 ```
 
-### Set state version
+#### Set state version
 
-```bash
+```powershell
 python -m asbp state set-version <value>
 ```
 
 Example:
 
-```bash
-python -m asbp state set-version 0.8.0
+```powershell
+python -m asbp state set-version 0.1.0
 ```
 
-### Set state status
+#### Set state status
 
 Allowed values:
 
@@ -79,24 +103,51 @@ Allowed values:
 - `in_flight`
 - `completed`
 
-```bash
+```powershell
 python -m asbp state set-status <value>
 ```
 
 Example:
 
-```bash
+```powershell
 python -m asbp state set-status in_flight
 ```
 
 ---
 
-## Work Package commands
+### Work Package commands
 
-### List work packages
+#### Add work package
 
-```bash
-python -m asbp wp list [--status <value>] [--title "<value>"] [--wp-id <value>] [--task-id <value>] [--show-task-ids]
+```powershell
+python -m asbp wp add <wp_id> "<title>"
+```
+
+Example:
+
+```powershell
+python -m asbp wp add WP-001 "Tablet press qualification"
+```
+
+#### Show work package
+
+```powershell
+python -m asbp wp show <wp_id> [--show-task-ids] [--show-selector-context] [--show-collection-ids]
+```
+
+Examples:
+
+```powershell
+python -m asbp wp show WP-001
+python -m asbp wp show WP-001 --show-task-ids
+python -m asbp wp show WP-001 --show-selector-context
+python -m asbp wp show WP-001 --show-selector-context --show-collection-ids
+```
+
+#### List work packages
+
+```powershell
+python -m asbp wp list [--status <value>] [--title "<value>"] [--wp-id <value>] [--task-id <value>] [--collection-id <value>] [--show-task-ids] [--show-collection-ids]
 ```
 
 Allowed `--status` values:
@@ -107,44 +158,23 @@ Allowed `--status` values:
 
 Useful examples:
 
-```bash
+```powershell
 python -m asbp wp list
 python -m asbp wp list --status open
-python -m asbp wp list --title "Tablet press qualification"
 python -m asbp wp list --wp-id WP-001
 python -m asbp wp list --task-id TASK-001
+python -m asbp wp list --collection-id TC-001
 python -m asbp wp list --show-task-ids
-python -m asbp wp list --task-id TASK-001 --show-task-ids
+python -m asbp wp list --show-collection-ids
 ```
 
-### Show work package
+#### Update work package title
 
-```bash
-python -m asbp wp show <wp_id> [--show-task-ids] [--show-selector-context]
+```powershell
+python -m asbp wp update-title <wp_id> "<new_title>"
 ```
 
-Examples:
-
-```bash
-python -m asbp wp show WP-001
-python -m asbp wp show WP-001 --show-task-ids
-python -m asbp wp show WP-001 --show-selector-context
-python -m asbp wp show WP-001 --show-task-ids --show-selector-context
-```
-
-### Add work package
-
-```bash
-python -m asbp wp add <wp_id> "<title>"
-```
-
-Example:
-
-```bash
-python -m asbp wp add WP-001 "Tablet press qualification"
-```
-
-### Update work package status
+#### Update work package status
 
 Allowed values:
 
@@ -152,86 +182,62 @@ Allowed values:
 - `in_progress`
 - `completed`
 
-```bash
+```powershell
 python -m asbp wp update-status <wp_id> <status>
 ```
 
-Example:
+#### Delete work package
 
-```bash
-python -m asbp wp update-status WP-001 in_progress
-```
-
-### Update work package title
-
-```bash
-python -m asbp wp update-title <wp_id> "<new_title>"
-```
-
-Example:
-
-```bash
-python -m asbp wp update-title WP-001 "Updated tablet press qualification"
-```
-
-### Delete work package
-
-```bash
+```powershell
 python -m asbp wp delete <wp_id>
 ```
 
-Example:
+#### Set selector type
 
-```bash
-python -m asbp wp delete WP-001
-```
-
-### Set work package selector type
-
-```bash
+```powershell
 python -m asbp wp set-selector-type <wp_id> "<system_type>"
 ```
 
 Example:
 
-```bash
+```powershell
 python -m asbp wp set-selector-type WP-001 "process-equipment"
 ```
 
-### Set work package preset
+#### Set preset
 
-```bash
+```powershell
 python -m asbp wp set-preset <wp_id> "<preset_id>"
 ```
 
 Example:
 
-```bash
+```powershell
 python -m asbp wp set-preset WP-001 "oral-solid-dose-standard"
 ```
 
-### Set work package standards bundles
+#### Set standards bundles
 
-CLI accepts only add-on bundle IDs. `cqv-core` is injected automatically as the baseline bundle.
+CLI accepts add-on bundle IDs and persists `cqv-core` as the baseline bundle.
 
 Allowed add-on bundle values:
 
 - `cleanroom-hvac`
 - `automation`
 
-```bash
+```powershell
 python -m asbp wp set-standards-bundles <wp_id> [add_on_bundle_id_1] [add_on_bundle_id_2]
 ```
 
 Examples:
 
-```bash
+```powershell
 python -m asbp wp set-standards-bundles WP-001
 python -m asbp wp set-standards-bundles WP-001 automation
 python -m asbp wp set-standards-bundles WP-001 cleanroom-hvac automation
 ```
 
-### Set work package scope intent
+#### Set scope intent
 
 Allowed values:
 
@@ -242,25 +248,25 @@ Allowed values:
 - `post-change`
 - `post-deviation`
 
-```bash
+```powershell
 python -m asbp wp set-scope-intent <wp_id> <scope_intent>
 ```
 
 Examples:
 
-```bash
+```powershell
 python -m asbp wp set-scope-intent WP-001 qualification-only
 python -m asbp wp set-scope-intent WP-001 end-to-end
 ```
 
 ---
 
-## Collection commands
+### Collection commands
 
-### List collections
+#### Add collection
 
-```bash
-python -m asbp collection list [--collection-state <value>] [--title "<value>"] [--collection-id <value>]
+```powershell
+python -m asbp collection add "<title>" [--collection-state <value>]
 ```
 
 Allowed `--collection-state` values:
@@ -270,113 +276,100 @@ Allowed `--collection-state` values:
 - `committed`
 - `refined`
 
-Useful examples:
-
-```bash
-python -m asbp collection list
-python -m asbp collection list --collection-state committed
-python -m asbp collection list --title "Committed Selection"
-python -m asbp collection list --collection-id TC-001
-```
-
-### Add collection
-
-```bash
-python -m asbp collection add "<title>" [--collection-state <value>]
-```
-
 Examples:
 
-```bash
+```powershell
 python -m asbp collection add "Source Pool"
 python -m asbp collection add "Committed Selection" --collection-state committed
 ```
 
-### Show collection
+#### List collections
 
-```bash
-python -m asbp collection show <collection_id>
+```powershell
+python -m asbp collection list [--collection-state <value>] [--title "<value>"] [--collection-id <value>] [--work-package-id <wp_id>] [--task-id <task_id>] [--show-work-package-id] [--show-task-ids]
 ```
 
-Example:
+Examples:
 
-```bash
+```powershell
+python -m asbp collection list
+python -m asbp collection list --collection-state committed
+python -m asbp collection list --work-package-id WP-001 --show-work-package-id
+python -m asbp collection list --task-id TASK-001 --show-task-ids
+```
+
+#### Show collection
+
+```powershell
+python -m asbp collection show <collection_id> [--show-work-package-id]
+```
+
+Examples:
+
+```powershell
 python -m asbp collection show TC-001
+python -m asbp collection show TC-001 --show-work-package-id
 ```
 
-### Update collection title
+#### Update collection title
 
-```bash
+```powershell
 python -m asbp collection update-title <collection_id> "<new_title>"
 ```
 
-Example:
+#### Update collection state
 
-```bash
-python -m asbp collection update-title TC-001 "Updated Committed Selection"
-```
-
-### Update collection state
-
-```bash
+```powershell
 python -m asbp collection update-state <collection_id> <collection_state>
 ```
 
-Example:
-
-```bash
-python -m asbp collection update-state TC-001 staged
-```
-
-### Add task to collection
+#### Add task to collection
 
 Task reference resolves by exact `task_id` first, then normalized `task_key`.
 
-```bash
+```powershell
 python -m asbp collection add-task <collection_id> <task_reference>
 ```
 
-Examples:
-
-```bash
-python -m asbp collection add-task TC-001 TASK-001
-python -m asbp collection add-task TC-001 "prepare-fat"
-```
-
-### Remove task from collection
+#### Remove task from collection
 
 Task reference resolves by exact `task_id` first, then normalized `task_key`.
 
-```bash
+```powershell
 python -m asbp collection remove-task <collection_id> <task_reference>
 ```
 
-Examples:
+#### Set collection work package
 
-```bash
-python -m asbp collection remove-task TC-001 TASK-001
-python -m asbp collection remove-task TC-001 "prepare-fat"
+```powershell
+python -m asbp collection set-work-package <collection_id> <wp_id>
+```
+
+#### Clear collection work package
+
+```powershell
+python -m asbp collection clear-work-package <collection_id>
 ```
 
 ---
 
-## Task commands
+### Task commands
 
-### Add task
+#### Add task
 
-```bash
+```powershell
 python -m asbp task add "<title>" [--description "<text>"] [--owner "<name>"] [--duration <days>] [--start-date "<yyyy-mm-dd>"] [--end-date "<yyyy-mm-dd>"] [--task-key "<key>"]
 ```
 
 Example:
 
-```bash
+```powershell
 python -m asbp task add "Prepare FAT" --description "Draft FAT package" --owner "Amr" --duration 3 --start-date "2026-03-31" --end-date "2026-04-02" --task-key "prepare-fat"
 ```
 
-### List tasks
+#### List tasks
 
-```bash
+```powershell
 python -m asbp task list [--status <value>] [--has-dependencies true|false] [--has-dependents true|false] [--show-task-key] [--show-work-package-id] [--show-dependency-refs] [--show-dependent-refs] [--has-task-key true|false] [--task-key "<value>"] [--task-ref "<value>"] [--dependency-ref "<value>"] [--dependent-ref "<value>"] [--work-package-id <wp_id>]
 ```
 
@@ -389,15 +382,12 @@ Allowed `--status` values:
 
 Useful examples:
 
-```bash
+```powershell
 python -m asbp task list
 python -m asbp task list --show-task-key
 python -m asbp task list --show-work-package-id
-python -m asbp task list --show-task-key --show-work-package-id --show-dependency-refs --show-dependent-refs
 python -m asbp task list --status completed
 python -m asbp task list --has-dependencies true
-python -m asbp task list --has-dependents true
-python -m asbp task list --has-task-key false --show-task-key
 python -m asbp task list --task-key "prepare-fat" --show-task-key
 python -m asbp task list --task-ref "TASK-001" --show-task-key
 python -m asbp task list --dependency-ref "execute-fat" --show-task-key
@@ -405,52 +395,36 @@ python -m asbp task list --dependent-ref "review-fat-package" --show-task-key
 python -m asbp task list --work-package-id WP-001 --show-task-key --show-work-package-id
 ```
 
-### Show task
+#### Show task
 
 Target resolves by exact `task_id` first, then normalized `task_key`.
 
-```bash
+```powershell
 python -m asbp task show <task_reference> [--show-work-package-id] [--show-dependency-refs] [--show-dependent-refs]
 ```
 
 Examples:
 
-```bash
+```powershell
 python -m asbp task show TASK-001
 python -m asbp task show "prepare-fat"
 python -m asbp task show "prepare-fat" --show-work-package-id
 python -m asbp task show "review-fat-package" --show-work-package-id --show-dependency-refs --show-dependent-refs
 ```
 
-### Set task key
+#### Set task key
 
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-```bash
+```powershell
 python -m asbp task set-key <task_reference> "<new_task_key>"
 ```
 
-Example:
+#### Clear task key
 
-```bash
-python -m asbp task set-key TASK-001 "prepare-fat"
-```
-
-### Clear task key
-
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-```bash
+```powershell
 python -m asbp task clear-key <task_reference>
 ```
 
-Example:
-
-```bash
-python -m asbp task clear-key TASK-001
-```
-
-### Update task status
+#### Update task status
 
 Allowed values:
 
@@ -459,114 +433,145 @@ Allowed values:
 - `completed`
 - `over_due`
 
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-```bash
+```powershell
 python -m asbp task update-status <task_reference> <status>
 ```
 
-Examples:
+#### Set task dependencies
 
-```bash
-python -m asbp task update-status TASK-001 in_progress
-python -m asbp task update-status "prepare-fat" completed
-```
+Each dependency input resolves by exact `task_id` first, then normalized `task_key`, while persisted dependency storage remains `task_id`-based.
 
-### Set task dependencies
-
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-Each dependency input also resolves by exact `task_id` first, then normalized `task_key`, but persisted dependency storage remains `task_id`-based.
-
-```bash
+```powershell
 python -m asbp task set-dependencies <task_reference> [dependency_1] [dependency_2] [...]
 ```
 
-Examples:
+#### Set task work package
 
-```bash
-python -m asbp task set-dependencies TASK-003 TASK-001 TASK-002
-python -m asbp task set-dependencies "review-fat-package" TASK-001 "execute-fat"
-```
-
-### Set task work package
-
-Target task resolves by exact `task_id` first, then normalized `task_key`.
-
-The work package input is exact `wp_id`.
-
-```bash
+```powershell
 python -m asbp task set-work-package <task_reference> <wp_id>
 ```
 
-Examples:
+#### Clear task work package
 
-```bash
-python -m asbp task set-work-package TASK-001 WP-001
-python -m asbp task set-work-package "prepare-fat" WP-001
-```
-
-### Clear task work package
-
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-```bash
+```powershell
 python -m asbp task clear-work-package <task_reference>
 ```
 
-Examples:
+#### Delete task
 
-```bash
-python -m asbp task clear-work-package TASK-001
-python -m asbp task clear-work-package "prepare-fat"
-```
-
-### Delete task
-
-Target resolves by exact `task_id` first, then normalized `task_key`.
-
-```bash
+```powershell
 python -m asbp task delete <task_reference>
 ```
 
-Examples:
+---
 
-```bash
-python -m asbp task delete TASK-001
-python -m asbp task delete "prepare-fat"
+## Verified public Python package surfaces
+
+These are repo-real public surfaces and part of the accepted M11 boundary. They are useful for operator/developer inspection and controlled inline execution.
+
+### Versioning
+
+```powershell
+@'
+from asbp.versioning import (
+    RELEASE_STATE,
+    RUNTIME_VERSION,
+    STATE_VERSION,
+    build_version_metadata,
+)
+
+print(build_version_metadata())
+print(RUNTIME_VERSION)
+print(STATE_VERSION)
+print(RELEASE_STATE)
+'@ | python -
+```
+
+### Retrieval
+
+```powershell
+@'
+from asbp.retrieval import (
+    build_governed_retrieval_request,
+    build_probabilistic_search_retrieval_request,
+    build_retrieval_architecture_baseline,
+)
+
+print(build_retrieval_architecture_baseline())
+print(
+    build_governed_retrieval_request(
+        artifact_kind="task_pool",
+        lookup_id="POOL-TABPRESS-001",
+        compiled_surface_id="compiled-task-pools-v1",
+        library_version="2026.04",
+    )
+)
+print(
+    build_probabilistic_search_retrieval_request(
+        query_text="tablet press FAT",
+        search_scope="uat_notes",
+    )
+)
+'@ | python -
+```
+
+### Runtime
+
+```powershell
+@'
+from asbp.runtime import (
+    build_work_package_runtime_boundary_payload,
+    build_work_package_prompt_contract_payload,
+    build_work_package_llm_handoff_payload,
+    build_work_package_generation_request_payload,
+    validate_work_package_candidate_response,
+    evaluate_work_package_candidate_response_attempt,
+    validate_work_package_output_before_acceptance,
+    evaluate_work_package_output_attempt,
+)
+
+print(build_work_package_runtime_boundary_payload)
+print(build_work_package_prompt_contract_payload)
+print(build_work_package_llm_handoff_payload)
+print(build_work_package_generation_request_payload)
+print(validate_work_package_candidate_response)
+print(evaluate_work_package_candidate_response_attempt)
+print(validate_work_package_output_before_acceptance)
+print(evaluate_work_package_output_attempt)
+'@ | python -
 ```
 
 ---
 
 ## Minimal current runtime verification flow
 
-```bash
+```powershell
 python -m pytest -q
 python -m asbp state init
 python -m asbp state set-status in_flight
 python -m asbp wp add WP-001 "Tablet press qualification"
-python -m asbp wp set-selector-type WP-001 "process-equipment"
-python -m asbp wp set-preset WP-001 "oral-solid-dose-standard"
+python -m asbp wp set-selector-type WP-001 process-equipment
+python -m asbp wp set-preset WP-001 oral-solid-dose-standard
 python -m asbp wp set-standards-bundles WP-001 automation
 python -m asbp wp set-scope-intent WP-001 qualification-only
 python -m asbp task add "Prepare FAT" --task-key "prepare-fat"
 python -m asbp task set-work-package "prepare-fat" WP-001
 python -m asbp collection add "Committed Selection" --collection-state committed
+python -m asbp collection set-work-package TC-001 WP-001
 python -m asbp collection add-task TC-001 "prepare-fat"
-python -m asbp wp show WP-001 --show-task-ids --show-selector-context
+python -m asbp wp show WP-001 --show-selector-context --show-collection-ids
+python -m asbp collection show TC-001 --show-work-package-id
 python -m asbp task show "prepare-fat" --show-work-package-id
-python -m asbp collection show TC-001
 python -m pytest -q
 ```
 
 Expected:
 
 - both pytest runs pass
-- the work package can be seeded with selector type, preset, standards bundles, and scope intent
-- selector context is visible through `wp show --show-selector-context`
+- the Work Package can be seeded with selector type, preset, standards bundles, and scope intent
 - the task can be associated to `WP-001`
-- the collection can own task membership
-- WP and task read surfaces show current cross-entity visibility already exposed by the CLI
+- the collection can be bound to `WP-001`
+- cross-entity read surfaces reflect the current deterministic state
 
 ---
 
@@ -581,101 +586,27 @@ Where a command accepts a task reference, resolution is:
 
 ### Work package reference resolution
 
-Current work package operations use exact `wp_id`.
+Current Work Package operations use exact `wp_id`.
 
-### Current work package list surface
+### Collection reference resolution
 
-`wp list` currently supports:
-
-- `--status`
-- `--title`
-- `--wp-id`
-- `--task-id`
-- `--show-task-ids`
-
-### Current work package show surface
-
-`wp show` currently supports:
-
-- `--show-task-ids`
-- `--show-selector-context`
-
-### Current work package binding surface
-
-Current selector / binding support includes:
-
-- `wp set-selector-type <wp_id> <system_type>`
-- `wp set-preset <wp_id> <preset_id>`
-- `wp set-standards-bundles <wp_id> [add_on_bundle_ids...]`
-- `wp set-scope-intent <wp_id> <scope_intent>`
-
-### Current collection surface
-
-Current collection support includes:
-
-- `collection list`
-- `collection add`
-- `collection show`
-- `collection update-title`
-- `collection update-state`
-- `collection add-task`
-- `collection remove-task`
-
-### Current task list filter and visibility surface
-
-`task list` currently supports:
-
-- `--status`
-- `--has-dependencies`
-- `--has-dependents`
-- `--show-task-key`
-- `--show-work-package-id`
-- `--show-dependency-refs`
-- `--show-dependent-refs`
-- `--has-task-key`
-- `--task-key`
-- `--task-ref`
-- `--dependency-ref`
-- `--dependent-ref`
-- `--work-package-id`
-
-### Current task show visibility surface
-
-`task show` currently supports:
-
-- `--show-work-package-id`
-- `--show-dependency-refs`
-- `--show-dependent-refs`
-
-### Current task-to-work-package surface
-
-Current association support includes:
-
-- `task set-work-package <task_reference> <wp_id>`
-- `task clear-work-package <task_reference>`
-- `task list --show-work-package-id`
-- `task show --show-work-package-id`
-- `task list --work-package-id <wp_id>`
-- `wp show <wp_id> --show-task-ids`
-- `wp list --task-id <task_id>`
-- `wp list --show-task-ids`
+Current collection operations use exact `collection_id`.
 
 ### Planning surface status
 
-Planning exists in core logic and tests, but there is no stabilized planning CLI surface yet.
+Planning entities and validation exist in repo reality, but a fully stabilized operator-first CLI planning workflow is not the main public runtime surface at this boundary.
 
 ### Current state path
-
-The runtime uses:
 
 ```text
 data/state/state.json
 ```
 
-### Package version
+### Why this cheat sheet does not guess extra runtime CLI spellings
 
-Current CLI version string:
+The repo now includes validated runtime package surfaces beyond the older CRUD-style CLI framing. This cheat sheet documents:
 
-```text
-0.1.0
-```
+- stable CLI surfaces that are already operator-usable
+- public Python package surfaces that are validated and supported
+
+It intentionally does not invent or rename additional operator commands that are not yet documented as a stabilized operator contract.

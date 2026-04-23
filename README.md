@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Tests-518%20passed-brightgreen" alt="518 passed"/>
+  <img src="https://img.shields.io/badge/Tests-524%20passed-brightgreen" alt="524 passed"/>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/></a>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/ROADMAP_CANONICAL.md"><img src="https://img.shields.io/badge/Roadmap-Canonical-blueviolet" alt="Roadmap"/></a>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/README.md#quick-start"><img src="https://img.shields.io/badge/Quick%20Start-Guide-success" alt="Quick Start"/></a>
@@ -27,7 +27,7 @@ Most workflow systems are built fast and trusted late — if ever.
 - **Validated before convenient** — state mutations are controlled and persisted with evidence
 - **Governed before expanded** — milestones are closed by acceptance, not by assumption
 
-The result is a workflow engine you can reason about, extend with confidence, and eventually hand off to an AI runtime — because the foundation was designed to hold that weight.
+The result is a workflow engine you can reason about, extend with confidence, and eventually hand off to richer runtime layers — because the foundation was designed to hold that weight.
 
 ---
 
@@ -39,18 +39,18 @@ The result is a workflow engine you can reason about, extend with confidence, an
 
 The project proves three things simultaneously:
 
-1. That deterministic behavior must be _designed_ — not assumed or retrofitted
-2. That milestone governance produces a codebase that can be navigated by anyone, not just its author
+1. That deterministic behavior must be **designed** — not assumed or retrofitted
+2. That milestone governance produces a codebase that can be navigated by someone other than its author
 3. That a real engineering foundation can be built through human + AI co-building under strict execution discipline
 
 ### What it is not
 
-| Not this                       | Because                                                 |
-| ------------------------------ | ------------------------------------------------------- |
-| A general AI agent framework   | AI behavior is a _future layer_, not the starting point |
-| A CQV application              | CQV is the proving ground, not the product identity     |
-| A vibe-coded prototype         | Every checkpoint is validated before progression        |
-| A free-form automation sandbox | Mutation rules are explicit; nothing happens implicitly |
+| Not this                       | Because                                                    |
+| ------------------------------ | ---------------------------------------------------------- |
+| A general AI agent framework   | AI/runtime expansion is downstream, not the starting point |
+| A CQV application              | CQV is the proving ground, not the product identity        |
+| A vibe-coded prototype         | Every checkpoint is validated before progression           |
+| A free-form automation sandbox | Mutation rules are explicit; nothing happens implicitly    |
 
 > **On CQV:** Pharmaceutical commissioning, qualification, and validation was chosen as the test domain precisely because it is demanding, regulated, and unforgiving. When the system holds up under CQV pressure, it holds up everywhere.
 
@@ -58,27 +58,28 @@ The project proves three things simultaneously:
 
 ## Current live boundary
 
-> **Phase 3 — AI Runtime Architecture | Milestone 8 — Multi-Entity Coordination**
+> **Controlled post-M11 transition window under `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md`**
 
-| Tracker field               | Current value                                                  |
-| --------------------------- | -------------------------------------------------------------- |
-| Latest completed checkpoint | M8.5C — Cross-entity validation and failure behavior completed |
-| Next unfinished checkpoint  | M8.6 — Minimal orchestration without LLM dependency            |
-| Validation status           | `424 passed in 40.53s`                                         |
+| Tracker field                    | Current value                                                |
+| -------------------------------- | ------------------------------------------------------------ |
+| Current phase                    | Phase 4 closeout to Phase 5 transition window                |
+| Current milestone                | Post-M11 transition under Addendum 07                        |
+| Current approved slice family    | `A07.3` — README and runtime/operator-document normalization |
+| Latest completed checkpoint      | `A07.2` — Cleanup and polish pass completed                  |
+| Exact next unfinished checkpoint | `A07.3` — README and runtime/operator-document normalization |
+| Milestone UAT status             | `PASSED`                                                     |
+| Validation status                | `python -m pytest -q` → `524 passed in 42.83s`               |
 
 **Stable capabilities at this boundary:**
 
-- Deterministic task management
-- Work Package model with full task association
-- Task collections with controlled workflow states
-- Deterministic task ↔ collection relationship normalization
-- Work Package selector context: type, preset seed, standards bundles, scope/intent
-- Binding-context consistency controls for planning surfaces
-- Cross-entity read surfaces across Work Packages, collections, tasks, and selector-context visibility
-- Cross-entity update rules for collection ↔ Work Package mutation
-- Cross-entity validation and fail-closed behavior for conflicting deletes, bound relationship breaks, and plan-referenced destructive mutations
-- Planning foundation entities with persisted schedule-consistency validation
-- Milestone UAT and closeout governance through all prior milestones
+- Deterministic state, task, Work Package, collection, and planning-foundation layers
+- Selector-context and standards-bundle binding on Work Packages
+- Cross-entity read/update/validation behavior across Work Packages, collections, tasks, and plans
+- Canonical versioning surface through `asbp.versioning`
+- Governed-versus-probabilistic retrieval separation through `asbp.retrieval`
+- Deterministic blocked-state and execution-ready runtime boundary/control behavior through the runtime package
+- Deterministic candidate-response validation, retry/fail behavior, output acceptance, and output-retry behavior
+- Preserved package-aligned runtime and retrieval exports after the Milestone 11 cleanup and closeout
 
 ---
 
@@ -86,75 +87,67 @@ The project proves three things simultaneously:
 
 ### 1 — Determinism is a first-class design rule
 
-Command behavior, failure behavior, state mutation rules, and persistence validation are all explicit by design — not emergent, not discovered at runtime.
+Command behavior, failure behavior, state mutation rules, retrieval boundaries, and persistence validation are all explicit by design — not emergent, not discovered at runtime.
 
 ### 2 — The CLI is an adapter, not the system
 
-Domain logic lives in core modules. The CLI is a thin adapter layer on top. This protects maintainability, future UI readiness, and the ability to layer an orchestrator without rewriting the engine.
+Domain logic lives in core modules. The CLI is a thin adapter layer on top. This protects maintainability, future UI readiness, and the ability to layer richer runtime behavior without rewriting the engine.
 
 ### 3 — Progression is governed, not improvised
 
-The repository uses a canonical roadmap, architecture guardrails, a current-position tracker, implementation checkpoints, milestone UAT, and milestone closeout notes. The project has **direction**, not just motion.
+The repository uses a canonical roadmap, active roadmap addenda when needed, architecture guardrails, a current-position tracker, milestone UAT, and milestone closeout notes. The project has **direction**, not just motion.
 
 ### 4 — The goal is trustworthy runtime behavior — not just CRUD
 
-The system now models Work Package workflow structure, collection state concepts, context-aware binding, cross-entity read/update contracts, fail-closed destructive mutation rules, and planning consistency validation. That groundwork exists because the long-term direction is toward controlled AI/runtime orchestration — and that future needs a foundation strong enough to support it.
+The system now spans deterministic workflow entities, bound context, planning foundations, governed retrieval boundaries, and runtime/output validation contracts. That groundwork exists because the long-term direction is toward controlled AI/runtime orchestration — and that future needs a foundation strong enough to support it.
 
 ---
 
 ## Implemented capabilities
 
-### State and task layer
+### Stable CLI workflow surfaces
 
 ```powershell
 python -m asbp state init
 python -m asbp state show
 python -m asbp task add "Prepare FAT" --task-key "prepare-fat"
-python -m asbp task list
-```
-
-State initialization, inspection, controlled mutation, and deterministic task operations.
-
----
-
-### Work Package layer
-
-```powershell
 python -m asbp wp add WP-001 "Tablet press qualification"
-python -m asbp wp list
-python -m asbp wp show WP-001
-python -m asbp task set-work-package prepare-fat WP-001
 python -m asbp wp set-selector-type WP-001 process-equipment
 python -m asbp wp set-preset WP-001 oral-solid-dose-standard
 python -m asbp wp set-standards-bundles WP-001 automation
 python -m asbp wp set-scope-intent WP-001 qualification-only
+python -m asbp collection add "Committed Selection" --collection-state committed
+python -m asbp collection set-work-package TC-001 WP-001
 python -m asbp wp show WP-001 --show-selector-context --show-collection-ids
 ```
 
-Work Package creation, inspection, update, deletion, filtering, task association, selector-context mutation, and cross-entity visibility into bound collections.
+These surfaces cover deterministic state handling, task operations, Work Package management, selector-context mutation, collection membership, and cross-entity visibility on the current stable CLI boundary.
 
 ---
 
-### Collection layer
+### Public Python package surfaces
 
 ```powershell
-python -m asbp collection add "Source Pool"
-python -m asbp collection add "Committed Selection" --collection-state committed
-python -m asbp collection list --show-work-package-id --show-task-ids
-python -m asbp collection show TC-001 --show-work-package-id
-python -m asbp collection add-task TC-001 prepare-fat
-python -m asbp collection set-work-package TC-001 WP-001
-python -m asbp collection clear-work-package TC-001
-python -m asbp collection remove-task TC-001 prepare-fat
+@'
+from asbp.versioning import build_version_metadata
+from asbp.retrieval import build_retrieval_architecture_baseline
+from asbp.runtime import (
+    build_work_package_runtime_boundary_payload,
+    build_work_package_prompt_contract_payload,
+    build_work_package_llm_handoff_payload,
+    build_work_package_generation_request_payload,
+)
+
+print(build_version_metadata())
+print(build_retrieval_architecture_baseline())
+print(build_work_package_runtime_boundary_payload)
+print(build_work_package_prompt_contract_payload)
+print(build_work_package_llm_handoff_payload)
+print(build_work_package_generation_request_payload)
+'@ | python -
 ```
 
-Collection creation, listing, state and title management, controlled task membership, and explicit collection ↔ Work Package mutation surfaces.
-
----
-
-### Planning foundation layer
-
-Planning foundation logic, persisted schedule-consistency validation, and plan-aware cross-entity protection rules now exist in the core/state-validation layer. This is still not a fully stabilized public CLI planning surface — it is the validated groundwork for what comes next.
+These package surfaces are part of the repo-real post-M11 boundary. They are public and validated, but they are still logic-first surfaces rather than a fully stabilized operator CLI workflow.
 
 ---
 
@@ -166,7 +159,8 @@ tests/                        Automated validation suite
 docs/                         UAT records, closeout notes, supporting artifacts
 assets/                       Repository presentation assets
 ROADMAP_CANONICAL.md          Canonical direction and checkpoint ladder
-PROGRESS_TRACKER.md           Current-position tracker (single source of truth)
+ROADMAP_ADDENDUM_*.md         Active or historical bounded overlays
+PROGRESS_TRACKER.md           Current-position tracker
 ARCHITECTURE_GUARDRAILS.md    Permanent architectural boundary rules
 ```
 
@@ -174,16 +168,17 @@ ARCHITECTURE_GUARDRAILS.md    Permanent architectural boundary rules
 
 ## Governance model
 
-This repository separates four things that most projects conflate:
+This repository separates the things that many projects conflate:
 
-| Document                     | Defines                                                                     |
-| ---------------------------- | --------------------------------------------------------------------------- |
-| `ROADMAP_CANONICAL.md`       | Phase order, milestone order, checkpoint ladder, transition rules           |
-| `ARCHITECTURE_GUARDRAILS.md` | Permanent boundaries: CLI as adapter, state access rules, module boundaries |
-| Code and tests               | What actually exists, what commands are live, what validations are enforced |
-| `PROGRESS_TRACKER.md`        | Latest completed checkpoint, next target, current validation status         |
+| Document / surface                   | Defines                                                                                                |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ROADMAP_CANONICAL.md`               | Phase order, milestone order, checkpoint ladder, transition rules                                      |
+| Active `ROADMAP_ADDENDUM_*.md` files | Temporary bounded overlays when normal progression needs controlled governance                         |
+| `ARCHITECTURE_GUARDRAILS.md`         | Permanent boundaries: CLI as adapter, state access rules, approved core-module attachment points       |
+| Code and tests                       | What actually exists, what commands are live, what contracts are enforced                              |
+| `PROGRESS_TRACKER.md`                | Latest completed checkpoint, exact next unfinished checkpoint, current validation/UAT/alignment status |
 
-That separation is what prevents drift. At any point, anyone can open the tracker and know exactly where the project stands.
+That separation is what prevents drift.
 
 ---
 
@@ -224,24 +219,30 @@ python -m asbp state init
 python -m asbp state show
 ```
 
-**4. Explore the CLI**
+**4. Explore the stable CLI boundary**
 
 ```powershell
 python -m asbp --help
+python -m asbp state -h
+python -m asbp task -h
 python -m asbp wp -h
 python -m asbp collection -h
-python -m asbp task -h
 ```
 
 ---
 
 ## What comes next
 
-The next active slice is **M8.6 — Minimal orchestration without LLM dependency**.
+The project is currently in a controlled post-M11 transition window governed by Addendum 07.
 
-Near-term direction continues to strengthen multi-entity coordination, deterministic orchestration behavior, and bounded runtime readiness before any AI writing layer is introduced.
+That means the immediate remaining work is not direct Phase 5 implementation yet. The repo is moving through:
 
-Longer term, the project is intended to support richer workflow execution and controlled AI/runtime orchestration — but only once the underlying deterministic model is strong enough to carry that weight. That sequencing is deliberate, and it will not be rushed.
+1. public-surface and export-surface audit
+2. canonical roadmap continuation packaging
+3. tracker re-entry
+4. clean return to normal roadmap-controlled execution
+
+Direct feature expansion resumes only after that transition gate is finished.
 
 ---
 

@@ -29,32 +29,25 @@ Post-M11 transition under Addendum 07
 
 ## Current Approved Slice Family
 
-`A07.3` — README and runtime/operator-document normalization
+`A07.4` — Public-surface and export-surface audit
 
 ## Latest Completed Checkpoint
 
-`A07.2` — Cleanup and polish pass completed
+`A07.3` — README and runtime/operator-document normalization completed
 
 ## Exact Next Unfinished Checkpoint
 
-`A07.3` — README and runtime/operator-document normalization
-
-## Milestone UAT Status
-
-`PASSED`
+`A07.4` — Public-surface and export-surface audit
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `524 passed in 42.83s`
-
-## Repo Alignment Status
-
-`ALIGNED_VERIFIED`
+`python -m pytest -q` — `524 passed in 45.65s`
 
 ## Active Notes
 
-- `ROADMAP_CANONICAL.md` v4 is now the active canonical roadmap. :contentReference[oaicite:0]{index=0}
-- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md` remains active and governs the current post-`M11.9` transition window. :contentReference[oaicite:1]{index=1}
-- `A07.1` repo pass identified stale `README.md` public claims and stale `docs/reference/asbp_runtime_cheat_sheet.md` runtime/operator reference content. :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}
-- `A07.2` cleanup restored the missing tracker fields and corrected the Milestone 9 UAT protocol filename to `docs/UAT/M9_UAT_PROTOCOL.md`. :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
-- The next active transition checkpoint is `A07.3` — README and runtime/operator-document normalization. :contentReference[oaicite:6]{index=6}
+- `ROADMAP_CANONICAL.md` v4 is now the active canonical roadmap.
+- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md` remains active and governs the current post-`M11.9` transition window.
+- `A07.1` repo pass identified stale `README.md` public claims and stale `docs/reference/asbp_runtime_cheat_sheet.md` runtime/operator reference content.
+- `A07.2` cleanup restored the missing tracker fields and corrected the Milestone 9 UAT protocol filename to `docs/UAT/M9_UAT_PROTOCOL.md`.
+- `A07.3` normalized `README.md` and `docs/reference/asbp_runtime_cheat_sheet.md` to current repo reality and current transition-state framing.
+- The next active transition checkpoint is `A07.4` — Public-surface and export-surface audit.
