@@ -29,15 +29,15 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.7` — Validation checkpoint
+`M11.8` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M11.6` — Architecture cleanup and consolidation completed
+`M11.7` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.7` — Validation checkpoint
+`M11.8` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
@@ -61,3 +61,4 @@ Milestone 11 — Production-Grade Micro AI System
 - `M11.5C` maintainability hardening is established through shared validation helpers, shared retry-decision logic, and completed runtime-package output surfaces without changing existing runtime contracts.
 - Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
 - `M11.6` architecture cleanup and consolidation is established through explicit runtime wrapper exports, removal of wildcard runtime re-export patterns across the governed wrapper layer, and parity tests confirming runtime-package exports remain aligned with root logic surfaces.
+- `M11.7` validation checkpoint is established at `docs/M11_VALIDATION_CHECKPOINT.md` with Milestone 11 validation accepted on the current repo-real baseline and no additional in-scope bug fix indicated by the latest verified green run.
