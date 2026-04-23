@@ -39,6 +39,14 @@ Post-M11 transition under Addendum 07
 
 `A07.1` — Full repo pass and repo-reality audit
 
+## Milestone UAT Status
+
+`PASSED`
+
+## Latest Verified Validation Status
+
+`python -m pytest -q` — `524 passed in 42.83s`
+
 ## Repo Alignment Status
 
 `ALIGNED_VERIFIED`
