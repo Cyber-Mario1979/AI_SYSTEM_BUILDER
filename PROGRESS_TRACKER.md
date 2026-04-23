@@ -29,19 +29,19 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.6` — Architecture cleanup and consolidation
+`M11.7` — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-`M11.5C` — Maintainability hardening completed
+`M11.6` — Architecture cleanup and consolidation completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.6` — Architecture cleanup and consolidation
+`M11.7` — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `521 passed in 45.35s`
+`python -m pytest -q` — `524 passed in 45.79s`
 
 ## Milestone UAT Status
 
@@ -60,3 +60,4 @@ Milestone 11 — Production-Grade Micro AI System
 - `M11.5B` failure-discipline hardening is established through the dedicated candidate-response validation and retry/fail surfaces, explicit retry-budget handling, and deterministic fail-closed fallback behavior.
 - `M11.5C` maintainability hardening is established through shared validation helpers, shared retry-decision logic, and completed runtime-package output surfaces without changing existing runtime contracts.
 - Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
+- `M11.6` architecture cleanup and consolidation is established through explicit runtime wrapper exports, removal of wildcard runtime re-export patterns across the governed wrapper layer, and parity tests confirming runtime-package exports remain aligned with root logic surfaces.
