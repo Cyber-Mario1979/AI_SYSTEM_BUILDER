@@ -29,37 +29,22 @@ Milestone 11 — Production-Grade Micro AI System
 
 ## Current Approved Slice Family
 
-`M11.9` — Milestone closeout
+`M11.9` — Milestone closeout completed
 
 ## Latest Completed Checkpoint
 
-`M11.8` — Milestone UAT checkpoint completed
+`M11.9` — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M11.9` — Milestone closeout
-
-## Latest Verified Validation Status
-
-`python -m pytest -q` — `524 passed in 42.83s`
+`TBD — pending verified post-M11 roadmap successor`
 
 ## Milestone UAT Status
 
-`PASS_MILESTONE_OPEN`
-
-## Repo Alignment Status
-
-`ALIGNED_VERIFIED`
+`PASSED`
 
 ## Active Notes
 
-- `M11.1` production-structure baseline is established through the new adapter/core/state/services/runtime package surfaces and compatibility wrappers.
-- `M11.3` canonical versioning surface is established at `asbp/versioning.py`
-- `M11.4` retrieval architecture basics is established through the dedicated `asbp/retrieval` boundary, explicit governed-vs-probabilistic retrieval separation, and validation rules that prevent retrieval from claiming source authority before future resolver/registry foundations.
-- `M11.5A` runtime control hardening is established through the dedicated runtime-control layer, explicit operator-response allowance in blocked and execution-ready states, and narrowed allowed-response-mode control across generation, output target, contract, and mapping surfaces.
-- `M11.5B` failure-discipline hardening is established through the dedicated candidate-response validation and retry/fail surfaces, explicit retry-budget handling, and deterministic fail-closed fallback behavior.
-- `M11.5C` maintainability hardening is established through shared validation helpers, shared retry-decision logic, and completed runtime-package output surfaces without changing existing runtime contracts.
-- Milestone-local choices that materially affect future library shape or future product/runtime boundaries must remain compatible with `docs/design_future/PRE_M11_DESTINATION_ALIGNMENT_BLUEPRINT.md`
-- `M11.6` architecture cleanup and consolidation is established through explicit runtime wrapper exports, removal of wildcard runtime re-export patterns across the governed wrapper layer, and parity tests confirming runtime-package exports remain aligned with root logic surfaces.
-- `M11.7` validation checkpoint is established at `docs/M11_VALIDATION_CHECKPOINT.md` with Milestone 11 validation accepted on the current repo-real baseline and no additional in-scope bug fix indicated by the latest verified green run.
-- `M11.8` milestone UAT checkpoint is established at `docs/UAT/M11_UAT_REPORT.md` with `M11_UAT Pass`, no evidenced execution deviations, and a preserved green post-UAT validation baseline.
+- `M11.9` closeout is established at `docs/M11_CLOSEOUT_NOTES.md`.
+- Milestone 11 is closed on the repo-real boundary validated at `docs/M11_VALIDATION_CHECKPOINT.md` and accepted at `docs/UAT/M11_UAT_REPORT.md`.
+- Set the next checkpoint only after explicit verification of the post-`M11.9` roadmap successor.
