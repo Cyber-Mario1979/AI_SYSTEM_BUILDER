@@ -1,10 +1,10 @@
 ---
 doc_type: canonical_roadmap_continuation
 canonical_name: ROADMAP_CANONICAL_CONTINUATION_PART_1_PHASES_5_6
-status: DRAFT_FOR_APPROVAL
+status: APPROVAL_READY_SUPPORTING_ARTIFACT
 governs_execution: false
-document_state_mode: forward_direction_draft
-authority: proposed_continuation_to_ROADMAP_CANONICAL
+document_state_mode: continuation_package_support
+authority: supporting_package_to_ROADMAP_CANONICAL_v4
 scope_type: roadmap_extension_part_1
 phase_scope: Phase 5 and Phase 6 only
 post_m11_entry: true
@@ -12,22 +12,58 @@ post_m11_entry: true
 
 # ROADMAP_CANONICAL_CONTINUATION_PART_1_PHASES_5_6
 
+## Role
+
+This document is a supporting continuation-package artifact for the approved post-`M11.9` direction carried by `ROADMAP_CANONICAL.md` v4.
+
+It does not compete with the canonical roadmap.
+It preserves the detailed Part 1 split that packages the immediate post-core continuation in one bounded place.
+
+Execution authority remains with:
+
+1. `ROADMAP_CANONICAL.md`
+2. active roadmap addenda when present
+3. `ARCHITECTURE_GUARDRAILS.md`
+4. repo reality
+5. `PROGRESS_TRACKER.md`
+
+---
+
 ## Purpose
 
-This document is the proposed canonical roadmap continuation for the first post-`M11.9` segment.
-
-It is intentionally limited to:
+This document packages the detailed continuation for:
 
 - **Phase 5 — Core Engine Completion**
 - **Phase 6 — AI Layer**
 
-It is written as `Part 1` only.
+It exists so the approved forward direction can remain split into:
 
-Later roadmap continuation work should package:
+- **Part 1** — detailed Phases 5 and 6
+- **Part 2** — high-level placeholder Phases 7 through 9
 
-- **Part 2** for Phases 7 through 9 at high level / placeholder level only
+This keeps the immediate build direction detailed while preserving later phases at the right maturity level.
 
-This document does not replace `ROADMAP_CANONICAL.md` until explicitly approved and adopted.
+---
+
+## Continuation status note
+
+Canonical roadmap authority is already carried by `ROADMAP_CANONICAL.md` v4.
+
+This file should therefore be read as:
+
+- a packaged support artifact for the approved continuation
+- a detailed forward-direction partition for Phases 5 and 6
+- a non-governing artifact that helps preserve the packaging structure introduced during the post-`M11.9` transition window
+
+---
+
+## Exact first post-`M11.9` checkpoint
+
+The first exact post-`M11.9` checkpoint defined by this continuation package is:
+
+- `M12.1` — Template retrieval and template governance foundation
+
+This is the first explicit checkpoint to be used for tracker re-entry once continuation approval handling is finalized under the active transition gate.
 
 ---
 
@@ -44,24 +80,24 @@ The completed destination-alignment blueprint already made the following future 
 - UI/API must remain downstream adapter/product surfaces
 - cloud/deployment direction must come later, after stable internal boundaries exist
 
-This continuation turns that direction into a concrete proposed checkpoint ladder for the next two phases.
+This continuation turns that direction into a concrete packaged checkpoint ladder for the next two phases.
 
 ---
 
 ## Scope boundary
 
-This continuation governs only the proposed forward direction for:
+This continuation governs only the packaged forward direction for:
 
 - Phase 5
 - Phase 6
 
-It does not yet define the detailed ladders for:
+It does not define the detailed ladders for:
 
 - Phase 7
 - Phase 8
 - Phase 9
 
-Those later phases are intentionally deferred to `Part 2`.
+Those later phases remain intentionally deferred to `Part 2`.
 
 ---
 
