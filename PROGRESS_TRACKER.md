@@ -29,24 +29,25 @@ Milestone 12 — Governed Document Engine
 
 ## Current Approved Slice Family
 
-`M12.1` — Template retrieval and template governance foundation
+`M12.2` — Document request/input contract foundation
 
 ## Latest Completed Checkpoint
 
-`A07.6` — Tracker re-entry and normal execution resumption completed
+`M12.1` — Template retrieval and template governance foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.1` — Template retrieval and template governance foundation
+`M12.2` — Document request/input contract foundation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `524 passed in 44.74s`
+`python -m pytest -q` — `531 passed in 49.44s`
 
 ## Active Notes
 
 - `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
-- The Addendum 07 transition package is now complete through `A07.6`.
-- `A07.5` packaged the approved continuation artifacts and made `M12.1` explicit as the first exact post-`M11.9` checkpoint.
-- Execution control now returns to the normal roadmap ladder.
-- The active build path now starts at `M12.1` — Template retrieval and template governance foundation.
+- Addenda `06` and `07` are now archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
+- `M12.1` established the `asbp.document_engine` foundation package.
+- `M12.1` established governed template identity rules, exact version-pinned template selection, and authoritative governed template retrieval boundaries.
+- `M12.1` explicitly separates authoritative governed templates from supporting non-authoritative template content for governed selection behavior.
+- The active build path now moves to `M12.2` — Document request/input contract foundation.
