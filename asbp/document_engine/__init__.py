@@ -1,5 +1,18 @@
-"""Document-engine foundation package for the M12.1 template-governance baseline."""
+"""Document-engine foundation package for governed document workflows."""
 
+from .document_contracts import (
+    DOCUMENT_CONTRACT_CHECKPOINT_ID,
+    DOCUMENT_OUTPUT_CONTRACT_VERSION,
+    DOCUMENT_REQUEST_CONTRACT_VERSION,
+    EXECUTION_CONTEXT_SOURCE_ROLE,
+    GENERATED_LANGUAGE_OUTPUT_ROLE,
+    SUPPORTED_EXECUTION_CONTEXT_KINDS,
+    build_document_input_contract,
+    build_document_output_contract,
+    build_document_request_contract_baseline,
+    build_document_request_payload,
+    validate_document_request_payload,
+)
 from .template_governance import (
     AUTHORITATIVE_TEMPLATE_SOURCE_ROLE,
     CHECKPOINT_ID,
@@ -18,14 +31,25 @@ from .template_governance import (
 __all__ = [
     "AUTHORITATIVE_TEMPLATE_SOURCE_ROLE",
     "CHECKPOINT_ID",
+    "DOCUMENT_CONTRACT_CHECKPOINT_ID",
+    "DOCUMENT_OUTPUT_CONTRACT_VERSION",
+    "DOCUMENT_REQUEST_CONTRACT_VERSION",
     "EXACT_VERSION_PINNED_SELECTION_MODE",
+    "EXECUTION_CONTEXT_SOURCE_ROLE",
+    "GENERATED_LANGUAGE_OUTPUT_ROLE",
     "GOVERNED_TEMPLATE_ARTIFACT_KIND",
     "NON_AUTHORITATIVE_SUPPORTING_CONTENT_POLICY",
+    "SUPPORTED_EXECUTION_CONTEXT_KINDS",
     "SUPPORTING_TEMPLATE_ARTIFACT_KIND",
     "SUPPORTED_TEMPLATE_ARTIFACT_KINDS",
     "SUPPORTED_TEMPLATE_FAMILIES",
+    "build_document_input_contract",
+    "build_document_output_contract",
+    "build_document_request_contract_baseline",
+    "build_document_request_payload",
     "build_governed_template_retrieval_request",
     "build_template_governance_baseline",
+    "validate_document_request_payload",
     "validate_template_identity",
     "validate_template_retrieval_request",
 ]
