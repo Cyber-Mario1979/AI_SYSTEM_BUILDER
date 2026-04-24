@@ -29,25 +29,25 @@ Milestone 12 — Governed Document Engine
 
 ## Current Approved Slice Family
 
-`M12.2` — Document request/input contract foundation
+`M12.3` — DCF intake, extraction, and structured normalization
 
 ## Latest Completed Checkpoint
 
-`M12.1` — Template retrieval and template governance foundation completed
+`M12.2` — Document request/input contract foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.2` — Document request/input contract foundation
+`M12.3` — DCF intake, extraction, and structured normalization
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `531 passed in 49.44s`
+`python -m pytest -q` — `540 passed in 48.75s`
 
 ## Active Notes
 
 - `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
-- Addenda `06` and `07` are now archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
-- `M12.1` established the `asbp.document_engine` foundation package.
-- `M12.1` established governed template identity rules, exact version-pinned template selection, and authoritative governed template retrieval boundaries.
-- `M12.1` explicitly separates authoritative governed templates from supporting non-authoritative template content for governed selection behavior.
-- The active build path now moves to `M12.2` — Document request/input contract foundation.
+- Addenda `06` and `07` remain archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
+- `M12.1` established the `asbp.document_engine` foundation package and governed template retrieval boundary.
+- `M12.2` established document request, input, and output contract foundations.
+- `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
+- The active build path now moves to `M12.3` — DCF intake, extraction, and structured normalization.
