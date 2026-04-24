@@ -23,25 +23,21 @@ It is updated only when explicitly requested.
 
 Phase 5 — Core Engine Completion
 
-## Current Milestone
-
-Milestone 12 — Governed Document Engine
-
 ## Current Approved Slice Family
 
-`M12.3` — DCF intake, extraction, and structured normalization
+`M12.4` — Controlled AI authoring modes and bounded invention policy
 
 ## Latest Completed Checkpoint
 
-`M12.2` — Document request/input contract foundation completed
+`M12.3` — DCF intake, extraction, and structured normalization completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.3` — DCF intake, extraction, and structured normalization
+`M12.4` — Controlled AI authoring modes and bounded invention policy
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `540 passed in 48.75s`
+`python -m pytest -q` — `548 passed in 47.91s`
 
 ## Active Notes
 
@@ -50,4 +46,5 @@ Milestone 12 — Governed Document Engine
 - `M12.1` established the `asbp.document_engine` foundation package and governed template retrieval boundary.
 - `M12.2` established document request, input, and output contract foundations.
 - `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
-- The active build path now moves to `M12.3` — DCF intake, extraction, and structured normalization.
+- `M12.3` established DCF template lookup, user-filled DCF intake, deterministic field extraction, structured normalization, traceability chain handling, explicit missing-data markers, and fail-closed ambiguous-data behavior.
+- The active build path now moves to `M12.4` — Controlled AI authoring modes and bounded invention policy.
