@@ -26,11 +26,11 @@ Source of truth remains:
 
 - Current phase: **Phase 4 closeout to Phase 5 transition window**
 - Current milestone: **Post-M11 transition under Addendum 07**
-- Current approved slice family: **`A07.3` — README and runtime/operator-document normalization**
-- Latest completed checkpoint: **`A07.2` — Cleanup and polish pass completed**
-- Exact next unfinished checkpoint: **`A07.3` — README and runtime/operator-document normalization**
+- Current approved slice family: **`A07.4` — Public-surface and export-surface audit**
+- Latest completed checkpoint: **`A07.3` — README and runtime/operator-document normalization completed**
+- Exact next unfinished checkpoint: **`A07.4` — Public-surface and export-surface audit**
 - Milestone UAT status: **`PASSED`**
-- Latest verified validation status: **`python -m pytest -q` → `524 passed in 42.83s`**
+- Latest verified validation status: **`python -m pytest -q` → `524 passed in 45.65s`**
 
 ---
 
@@ -42,6 +42,8 @@ This cheat sheet separates two kinds of public surfaces that now coexist in the 
 2. **validated public Python package surfaces** introduced through the M11 boundary
 
 Because the architecture guardrails keep the CLI as an adapter only, not every validated public surface is primarily exposed as an operator-first CLI workflow.
+
+The public Python examples below are curated examples of the package boundary, not an exhaustive export inventory.
 
 ---
 
@@ -524,20 +526,53 @@ from asbp.runtime import (
     build_work_package_prompt_contract_payload,
     build_work_package_llm_handoff_payload,
     build_work_package_generation_request_payload,
-    validate_work_package_candidate_response,
-    evaluate_work_package_candidate_response_attempt,
-    validate_work_package_output_before_acceptance,
-    evaluate_work_package_output_attempt,
 )
+from asbp.state_model import WorkPackageModel
 
-print(build_work_package_runtime_boundary_payload)
-print(build_work_package_prompt_contract_payload)
-print(build_work_package_llm_handoff_payload)
-print(build_work_package_generation_request_payload)
-print(validate_work_package_candidate_response)
-print(evaluate_work_package_candidate_response_attempt)
-print(validate_work_package_output_before_acceptance)
-print(evaluate_work_package_output_attempt)
+work_packages = [
+    WorkPackageModel(
+        wp_id="WP-001",
+        title="Tablet press qualification",
+        status="open",
+    )
+]
+
+print(
+    build_work_package_runtime_boundary_payload(
+        work_packages,
+        [],
+        [],
+        [],
+        wp_id="WP-001",
+    )
+)
+print(
+    build_work_package_prompt_contract_payload(
+        work_packages,
+        [],
+        [],
+        [],
+        wp_id="WP-001",
+    )
+)
+print(
+    build_work_package_llm_handoff_payload(
+        work_packages,
+        [],
+        [],
+        [],
+        wp_id="WP-001",
+    )
+)
+print(
+    build_work_package_generation_request_payload(
+        work_packages,
+        [],
+        [],
+        [],
+        wp_id="WP-001",
+    )
+)
 '@ | python -
 ```
 
@@ -607,6 +642,6 @@ data/state/state.json
 The repo now includes validated runtime package surfaces beyond the older CRUD-style CLI framing. This cheat sheet documents:
 
 - stable CLI surfaces that are already operator-usable
-- public Python package surfaces that are validated and supported
+- curated public Python package surfaces that are validated and supported
 
 It intentionally does not invent or rename additional operator commands that are not yet documented as a stabilized operator contract.

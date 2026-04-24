@@ -60,15 +60,15 @@ The project proves three things simultaneously:
 
 > **Controlled post-M11 transition window under `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md`**
 
-| Tracker field                    | Current value                                                |
-| -------------------------------- | ------------------------------------------------------------ |
-| Current phase                    | Phase 4 closeout to Phase 5 transition window                |
-| Current milestone                | Post-M11 transition under Addendum 07                        |
-| Current approved slice family    | `A07.3` — README and runtime/operator-document normalization |
-| Latest completed checkpoint      | `A07.2` — Cleanup and polish pass completed                  |
-| Exact next unfinished checkpoint | `A07.3` — README and runtime/operator-document normalization |
-| Milestone UAT status             | `PASSED`                                                     |
-| Validation status                | `python -m pytest -q` → `524 passed in 42.83s`               |
+| Tracker field                    | Current value                                                          |
+| -------------------------------- | ---------------------------------------------------------------------- |
+| Current phase                    | Phase 4 closeout to Phase 5 transition window                          |
+| Current milestone                | Post-M11 transition under Addendum 07                                  |
+| Current approved slice family    | `A07.4` — Public-surface and export-surface audit                      |
+| Latest completed checkpoint      | `A07.3` — README and runtime/operator-document normalization completed |
+| Exact next unfinished checkpoint | `A07.4` — Public-surface and export-surface audit                      |
+| Milestone UAT status             | `PASSED`                                                               |
+| Validation status                | `python -m pytest -q` → `524 passed in 45.65s`                         |
 
 **Stable capabilities at this boundary:**
 
@@ -127,23 +127,34 @@ These surfaces cover deterministic state handling, task operations, Work Package
 
 ### Public Python package surfaces
 
+The examples below are **curated examples** of the public Python package boundary, not an exhaustive export inventory.
+
 ```powershell
 @'
 from asbp.versioning import build_version_metadata
 from asbp.retrieval import build_retrieval_architecture_baseline
-from asbp.runtime import (
-    build_work_package_runtime_boundary_payload,
-    build_work_package_prompt_contract_payload,
-    build_work_package_llm_handoff_payload,
-    build_work_package_generation_request_payload,
-)
+from asbp.runtime import build_work_package_runtime_boundary_payload
+from asbp.state_model import WorkPackageModel
+
+work_packages = [
+    WorkPackageModel(
+        wp_id="WP-001",
+        title="Tablet press qualification",
+        status="open",
+    )
+]
 
 print(build_version_metadata())
 print(build_retrieval_architecture_baseline())
-print(build_work_package_runtime_boundary_payload)
-print(build_work_package_prompt_contract_payload)
-print(build_work_package_llm_handoff_payload)
-print(build_work_package_generation_request_payload)
+print(
+    build_work_package_runtime_boundary_payload(
+        work_packages,
+        [],
+        [],
+        [],
+        wp_id="WP-001",
+    )
+)
 '@ | python -
 ```
 
@@ -158,6 +169,7 @@ asbp/                         Application source
 tests/                        Automated validation suite
 docs/                         UAT records, closeout notes, supporting artifacts
 assets/                       Repository presentation assets
+audits/                       Filed audit observation, response, and triage records
 ROADMAP_CANONICAL.md          Canonical direction and checkpoint ladder
 ROADMAP_ADDENDUM_*.md         Active or historical bounded overlays
 PROGRESS_TRACKER.md           Current-position tracker
@@ -234,6 +246,10 @@ python -m asbp collection -h
 ## What comes next
 
 The project is currently in a controlled post-M11 transition window governed by Addendum 07.
+
+The next active transition checkpoint is:
+
+- `A07.4` — Public-surface and export-surface audit
 
 That means the immediate remaining work is not direct Phase 5 implementation yet. The repo is moving through:
 
