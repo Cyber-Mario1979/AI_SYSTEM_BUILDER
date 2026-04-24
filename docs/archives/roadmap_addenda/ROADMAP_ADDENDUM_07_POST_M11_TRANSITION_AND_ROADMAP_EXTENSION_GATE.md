@@ -1,8 +1,8 @@
 ---
 doc_type: roadmap_addendum
 canonical_name: ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md
-status: ACTIVE
-governs_execution: true
+status: COMPLETED_HISTORICAL
+governs_execution: false
 authority: subordinate_to_ROADMAP_CANONICAL
 scope_type: temporary_overlay
 milestone_scope: post-M11 transition window
@@ -14,7 +14,7 @@ supersedes_within_scope: none
 
 ## Status
 
-`ACTIVE`
+`COMPLETED_HISTORICAL`
 
 This addendum governs the project immediately after `M11.9` closeout and before normal checkpoint execution resumes under the next approved canonical-roadmap continuation.
 
