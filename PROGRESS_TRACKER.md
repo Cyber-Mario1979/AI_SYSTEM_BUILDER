@@ -25,15 +25,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.9` — Milestone UAT checkpoint
+`M12.10` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M12.8` — Validation checkpoint completed
+`M12.9` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.9` — Milestone UAT checkpoint
+`M12.10` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -48,7 +48,7 @@ Phase 5 — Core Engine Completion
 - `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
 - `M12.3` established DCF template lookup, user-filled DCF intake, deterministic field extraction, structured normalization, traceability chain handling, explicit missing-data markers, and fail-closed ambiguous-data behavior.
 - `M12.4` established controlled AI authoring modes, bounded invention policy, unrestricted free-drafting rejection controls, generated-output truth boundaries, document-family rule validation, standards/guardrail references, and validation tests.
-- `M12.5` established standards-aware document guardrails, controlled GMP/CQV language rules, assumption-labeling policy, placeholder policy, evidence-versus-inference separation, prohibited language-pattern checks, section-level authoring constraints, and detail-level consistency validation.
+- `M12.5` established standards-aware document guardrails, controlled GMP/CQV language rules, assumption-labeling policy, placeholder policy, evidence-versus-inference separation, prohibited-language checks, section-level authoring constraints, and detail-level consistency validation.
 - `M12.5` implementation commit: `6a7c6b12013d289954d30bb93b029872058890b9` — `engine: add document standards guardrails`.
 - `M12.6` established the governed document artifact lifecycle model using GMP/CQV lifecycle states: `draft`, `in_review`, `in_approval`, optional `training_delivery`, `active`, `superseded`, `expired`, and `archived`.
 - `M12.6` rejects reopened controlled-document behavior; post-active changes require a new version path, while the prior active version becomes `superseded`, or becomes `expired` if not updated before its due/expiry basis.
@@ -57,4 +57,6 @@ Phase 5 — Core Engine Completion
 - `M12.7` preserves task/workflow state as deterministic evaluation output only; it does not directly mutate persisted task or workflow state.
 - `M12.7` implementation commit: `f5b20fa4ea4d48b5289824040e4d036b5747a7a1` — `engine: add document workflow integration`.
 - `M12.8` completed the Milestone 12 validation checkpoint with full validation passing: `python -m pytest -q` — `596 passed in 46.46s`.
-- The active build path now moves to `M12.9` — Milestone UAT checkpoint.
+- `M12.9` completed Milestone 12 UAT evidence with paired CQV-style protocol and report files under `docs/UAT/`.
+- `M12.9` UAT evidence commit: `8de8dd6f6adb6ee2c7de980de0c0f3392ec5e3dd` — `docs: add M12 UAT protocol and report`.
+- The active build path now moves to `M12.10` — Milestone closeout.
