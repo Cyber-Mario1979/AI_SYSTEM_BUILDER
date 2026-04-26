@@ -25,15 +25,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.10` — Milestone closeout
+`M13.1` — Export identity and contract foundation
 
 ## Latest Completed Checkpoint
 
-`M12.9` — Milestone UAT checkpoint completed
+`M12.10` — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.10` — Milestone closeout
+`M13.1` — Export identity and contract foundation
 
 ## Latest Verified Validation Status
 
@@ -59,4 +59,6 @@ Phase 5 — Core Engine Completion
 - `M12.8` completed the Milestone 12 validation checkpoint with full validation passing: `python -m pytest -q` — `596 passed in 46.46s`.
 - `M12.9` completed Milestone 12 UAT evidence with paired CQV-style protocol and report files under `docs/UAT/`.
 - `M12.9` UAT evidence commit: `8de8dd6f6adb6ee2c7de980de0c0f3392ec5e3dd` — `docs: add M12 UAT protocol and report`.
-- The active build path now moves to `M12.10` — Milestone closeout.
+- `M12.10` closed and accepted Milestone 12, freezing the governed document-engine boundary and confirming later export/data/library/AI/UI/cloud work remains outside the closed milestone.
+- `M12.10` closeout commit: `f4e844ba3b86a6257ea57dd3070cc82bc55031c8` — `docs: add M12 closeout notes`.
+- The active build path now moves to `M13.1` — Export identity and contract foundation.
