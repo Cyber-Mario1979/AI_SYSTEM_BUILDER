@@ -1,5 +1,23 @@
 """Document-engine foundation package for governed document workflows."""
 
+from .authoring_controls import (
+    AI_AUTHORING_LAYER_ROLE,
+    AUTHORING_CONTROL_CHECKPOINT_ID,
+    AUTHORING_CONTROL_CONTRACT_VERSION,
+    BOUNDED_INVENTION_POLICY,
+    EXECUTION_TRUTH_REFERENCE_ROLE,
+    GENERATED_OUTPUT_TRUTH_BOUNDARY,
+    MINIMAL_INPUT_SCAFFOLD_GENERATION_MODE,
+    PARTIAL_INPUT_BOUNDED_COMPLETION_MODE,
+    STRONG_STRUCTURED_INPUT_FILL_MODE,
+    SUPPORTED_AUTHORING_MODES,
+    TEMPLATE_TRUTH_REFERENCE_ROLE,
+    UNRESTRICTED_FREE_DRAFTING_POLICY,
+    build_ai_authoring_control_baseline,
+    build_ai_authoring_request_payload,
+    build_authoring_mode_policy,
+    validate_ai_authoring_request_payload,
+)
 from .dcf_intake import (
     AMBIGUOUS_DCF_DATA_POLICY,
     DCF_DOWNSTREAM_OUTPUT_ROLE,
@@ -48,6 +66,22 @@ from .template_governance import (
 )
 
 __all__ = [
+    "AI_AUTHORING_LAYER_ROLE",
+    "AUTHORING_CONTROL_CHECKPOINT_ID",
+    "AUTHORING_CONTROL_CONTRACT_VERSION",
+    "BOUNDED_INVENTION_POLICY",
+    "EXECUTION_TRUTH_REFERENCE_ROLE",
+    "GENERATED_OUTPUT_TRUTH_BOUNDARY",
+    "MINIMAL_INPUT_SCAFFOLD_GENERATION_MODE",
+    "PARTIAL_INPUT_BOUNDED_COMPLETION_MODE",
+    "STRONG_STRUCTURED_INPUT_FILL_MODE",
+    "SUPPORTED_AUTHORING_MODES",
+    "TEMPLATE_TRUTH_REFERENCE_ROLE",
+    "UNRESTRICTED_FREE_DRAFTING_POLICY",
+    "build_ai_authoring_control_baseline",
+    "build_ai_authoring_request_payload",
+    "build_authoring_mode_policy",
+    "validate_ai_authoring_request_payload",
     "AMBIGUOUS_DCF_DATA_POLICY",
     "AUTHORITATIVE_TEMPLATE_SOURCE_ROLE",
     "CHECKPOINT_ID",
