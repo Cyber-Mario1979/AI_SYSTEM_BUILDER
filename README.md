@@ -2,10 +2,6 @@
   <img src="assets/banner.png" alt="AI_SYSTEM_BUILDER Banner"/>
 </p>
 
-<h1 align="center">AI_SYSTEM_BUILDER</h1><p align="center">
-  <img src="assets/banner.png" alt="AI_SYSTEM_BUILDER Banner"/>
-</p>
-
 <h1 align="center">AI_SYSTEM_BUILDER</h1>
 
 <p align="center">
