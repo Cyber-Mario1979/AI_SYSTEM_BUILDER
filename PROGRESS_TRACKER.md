@@ -25,19 +25,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.5` — Standards, language, and evidence guardrails
+`M12.6` — Document artifact lifecycle model
 
 ## Latest Completed Checkpoint
 
-`M12.4` — Controlled AI authoring modes and bounded invention policy completed
+`M12.5` — Standards, language, and evidence guardrails completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.5` — Standards, language, and evidence guardrails
+`M12.6` — Document artifact lifecycle model
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `557 passed in 46.19s`
+`python -m pytest -q` — `569 passed in 43.56s`
 
 ## Active Notes
 
@@ -48,4 +48,6 @@ Phase 5 — Core Engine Completion
 - `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
 - `M12.3` established DCF template lookup, user-filled DCF intake, deterministic field extraction, structured normalization, traceability chain handling, explicit missing-data markers, and fail-closed ambiguous-data behavior.
 - `M12.4` established controlled AI authoring modes, bounded invention policy, unrestricted free-drafting rejection controls, generated-output truth boundaries, document-family rule validation, standards/guardrail references, and validation tests.
-- The active build path now moves to `M12.5` — Standards, language, and evidence guardrails.
+- `M12.5` established standards-aware document guardrails, controlled GMP/CQV language rules, assumption-labeling policy, placeholder policy, evidence-versus-inference separation, prohibited language-pattern checks, section-level authoring constraints, and detail-level consistency validation.
+- `M12.5` implementation commit: `6a7c6b12013d289954d30bb93b029872058890b9` — `engine: add document standards guardrails`.
+- The active build path now moves to `M12.6` — Document artifact lifecycle model.
