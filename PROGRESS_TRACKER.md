@@ -25,19 +25,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.4` — Controlled AI authoring modes and bounded invention policy
+`M12.5` — Standards, language, and evidence guardrails
 
 ## Latest Completed Checkpoint
 
-`M12.3` — DCF intake, extraction, and structured normalization completed
+`M12.4` — Controlled AI authoring modes and bounded invention policy completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.4` — Controlled AI authoring modes and bounded invention policy
+`M12.5` — Standards, language, and evidence guardrails
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `548 passed in 47.91s`
+`python -m pytest -q` — `557 passed in 46.19s`
 
 ## Active Notes
 
@@ -47,4 +47,5 @@ Phase 5 — Core Engine Completion
 - `M12.2` established document request, input, and output contract foundations.
 - `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
 - `M12.3` established DCF template lookup, user-filled DCF intake, deterministic field extraction, structured normalization, traceability chain handling, explicit missing-data markers, and fail-closed ambiguous-data behavior.
-- The active build path now moves to `M12.4` — Controlled AI authoring modes and bounded invention policy.
+- `M12.4` established controlled AI authoring modes, bounded invention policy, unrestricted free-drafting rejection controls, generated-output truth boundaries, document-family rule validation, standards/guardrail references, and validation tests.
+- The active build path now moves to `M12.5` — Standards, language, and evidence guardrails.
