@@ -25,19 +25,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.6` — Document artifact lifecycle model
+`M12.7` — Document lifecycle ↔ task/workflow-state integration
 
 ## Latest Completed Checkpoint
 
-`M12.5` — Standards, language, and evidence guardrails completed
+`M12.6` — Document artifact lifecycle model completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.6` — Document artifact lifecycle model
+`M12.7` — Document lifecycle ↔ task/workflow-state integration
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `569 passed in 43.56s`
+`python -m pytest -q` — `582 passed in 42.98s`
 
 ## Active Notes
 
@@ -50,4 +50,7 @@ Phase 5 — Core Engine Completion
 - `M12.4` established controlled AI authoring modes, bounded invention policy, unrestricted free-drafting rejection controls, generated-output truth boundaries, document-family rule validation, standards/guardrail references, and validation tests.
 - `M12.5` established standards-aware document guardrails, controlled GMP/CQV language rules, assumption-labeling policy, placeholder policy, evidence-versus-inference separation, prohibited language-pattern checks, section-level authoring constraints, and detail-level consistency validation.
 - `M12.5` implementation commit: `6a7c6b12013d289954d30bb93b029872058890b9` — `engine: add document standards guardrails`.
-- The active build path now moves to `M12.6` — Document artifact lifecycle model.
+- `M12.6` established the governed document artifact lifecycle model using GMP/CQV lifecycle states: `draft`, `in_review`, `in_approval`, optional `training_delivery`, `active`, `superseded`, `expired`, and `archived`.
+- `M12.6` rejects reopened controlled-document behavior; post-active changes require a new version path, while the prior active version becomes `superseded`, or becomes `expired` if not updated before its due/expiry basis.
+- `M12.6` implementation commit: `4667966f7348a2c8583222d9544db01d693ec186` — `engine: add document artifact lifecycle model`.
+- The active build path now moves to `M12.7` — Document lifecycle ↔ task/workflow-state integration.
