@@ -25,19 +25,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M12.8` — Validation checkpoint
+`M12.9` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M12.7` — Document lifecycle ↔ task/workflow-state integration completed
+`M12.8` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M12.8` — Validation checkpoint
+`M12.9` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `596 passed in 44.20s`
+`python -m pytest -q` — `596 passed in 46.46s`
 
 ## Active Notes
 
@@ -56,4 +56,5 @@ Phase 5 — Core Engine Completion
 - `M12.7` established deterministic task/document obligation binding, task-closure readiness evaluation, workflow-readiness signals, blocked/satisfied obligation classification, replacement-document requirements for `superseded` and `expired` artifacts, and historical-record-only handling for archived documents.
 - `M12.7` preserves task/workflow state as deterministic evaluation output only; it does not directly mutate persisted task or workflow state.
 - `M12.7` implementation commit: `f5b20fa4ea4d48b5289824040e4d036b5747a7a1` — `engine: add document workflow integration`.
-- The active build path now moves to `M12.8` — Validation checkpoint.
+- `M12.8` completed the Milestone 12 validation checkpoint with full validation passing: `python -m pytest -q` — `596 passed in 46.46s`.
+- The active build path now moves to `M12.9` — Milestone UAT checkpoint.
