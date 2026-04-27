@@ -1,50 +1,40 @@
 ---
 name: Design question
-about: Ask a technical design or architecture question before proposing a change
+about: Ask a bounded architecture, roadmap, or workflow-design question
 title: "design: "
-labels: question, architecture
-assignees: ""
+labels: ["design-question"]
+assignees: []
 ---
 
 ## Question
 
-What design or architecture question do you want to discuss?
+State the design question clearly.
 
 ## Context
 
-Why does this question matter?
+Which part of the project does this affect?
 
-## Related surface
+## Affected boundary
 
-Select any that apply:
+Choose one or more:
 
-- [ ] CLI behavior
-- [ ] Domain logic
-- [ ] State model
-- [ ] Persistence
-- [ ] Validation
-- [ ] Runtime boundary
-- [ ] Retrieval boundary
-- [ ] Documentation/public surface
-- [ ] Roadmap/checkpoint alignment
+- [ ] roadmap/checkpoint order
+- [ ] architecture guardrail
+- [ ] state/persistence behavior
+- [ ] CLI adapter behavior
+- [ ] document/export/runtime boundary
+- [ ] public-surface documentation
+- [ ] testing/validation
+- [ ] unsure
 
 ## Current understanding
 
-What do you think the current design does?
+Describe what you think the current intended behavior or rule is.
 
 ## Proposed direction, if any
 
-If you have a direction in mind, describe it briefly.
+Describe a possible answer or direction.
 
-## Scope check
+## Risk if handled incorrectly
 
-Please confirm:
-
-- [ ] This is a design discussion, not an implementation request.
-- [ ] This should not be treated as approved roadmap change.
-- [ ] This should not be implemented without maintainer approval.
-- [ ] Any resulting change should preserve deterministic behavior and architecture guardrails.
-
-## Notes
-
-Add links, examples, or references if helpful.
+What could drift, break, or become ambiguous?

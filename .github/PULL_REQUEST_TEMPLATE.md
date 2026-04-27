@@ -4,84 +4,54 @@
 
 Describe what this pull request changes.
 
-## Type of change
+## Change type
 
-Select all that apply:
+Choose one:
 
-- [ ] Public-surface documentation only
-- [ ] Internal documentation
-- [ ] Test addition or correction
-- [ ] Bug fix
+- [ ] Code behavior
+- [ ] Tests only
+- [ ] Documentation/public surface only
+- [ ] Roadmap/tracker/governance
+- [ ] Architecture/guardrail
 - [ ] Refactor with no intended behavior change
-- [ ] Behavior change
-- [ ] Architecture-related change
-- [ ] Roadmap/checkpoint-related change
 
-## Scope
+## Scope boundary
 
-What files or areas are affected?
+Explain why this PR belongs in the selected scope.
 
-- 
+For public-surface-only changes, confirm that this PR does not change runtime behavior, roadmap order, validation policy, architecture boundaries, or source-of-truth rules.
 
-## Reason
+## Roadmap / tracker alignment
 
-Why is this change needed?
+State the related checkpoint, milestone, or public-surface package.
+
+If not applicable, write `N/A`.
 
 ## Behavior impact
 
-Select one:
+Does this change runtime or CLI behavior?
 
-- [ ] No behavior change
-- [ ] Behavior changed intentionally
-- [ ] Behavior changed as a bug fix
-- [ ] Not sure / needs review
+- [ ] No
+- [ ] Yes
 
-If behavior changed, explain the change:
-
-```text
-
-```
-
-## Public-surface check
-
-Complete this section if the PR changes public-facing repository surface such as `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue templates, or PR templates.
-
-- [ ] This is public-surface work only.
-- [ ] This does not change roadmap sequence.
-- [ ] This does not change architecture guardrails.
-- [ ] This does not change code behavior.
-- [ ] This does not change validation rules.
-- [ ] Current-state details remain delegated to `PROGRESS_TRACKER.md`.
-
-## Roadmap and guardrails check
-
-- [ ] I checked `PROGRESS_TRACKER.md` for current project position.
-- [ ] I checked `ROADMAP_CANONICAL.md` for roadmap alignment.
-- [ ] I checked `ARCHITECTURE_GUARDRAILS.md` for architecture boundaries.
-- [ ] This PR does not bypass the approved execution path.
-
-If this PR intentionally affects roadmap, architecture, or behavior, explain why:
-
-```text
-
-```
+If yes, describe the behavior change.
 
 ## Validation
 
-Select one:
+Paste the validation run or explain why it is not required.
 
-- [ ] `python -m pytest -q` passed
-- [ ] Tests were not run because this is documentation/public-surface only
-- [ ] Tests were not run for another reason
-
-Validation output or reason:
-
-```text
-
+```powershell
+python -m pytest -q
 ```
 
-## Reviewer notes
+## Documentation impact
 
-Anything the reviewer should pay special attention to?
+List updated documentation files.
 
-- 
+## Checklist
+
+- [ ] The change is narrow and reviewable.
+- [ ] The change does not mix unrelated work.
+- [ ] Source-of-truth roles remain clear.
+- [ ] Public-surface wording does not replace tracker, roadmap, guardrails, code, or tests as authority.
+- [ ] Validation evidence is included or clearly not required.
