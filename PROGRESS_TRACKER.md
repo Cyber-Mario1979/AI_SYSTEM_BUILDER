@@ -25,19 +25,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M13.1` — Export identity and contract foundation
+`M13.2` — Spreadsheet and operational export surfaces
 
 ## Latest Completed Checkpoint
 
-`M12.10` — Milestone closeout completed
+`M13.1` — Export identity and contract foundation completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M13.1` — Export identity and contract foundation
+`M13.2` — Spreadsheet and operational export surfaces
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `596 passed in 46.46s`
+`python -m pytest -q` — `606 passed in 56.14s`
 
 ## Active Notes
 
@@ -45,7 +45,6 @@ Phase 5 — Core Engine Completion
 - Addenda `06` and `07` remain archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
 - `M12.1` established the `asbp.document_engine` foundation package and governed template retrieval boundary.
 - `M12.2` established document request, input, and output contract foundations.
-- `M12.2` binds document requests to governed template identity, execution-context references, family-specific required input data, input contracts, output contracts, and explicit truth-separation rules.
 - `M12.3` established DCF template lookup, user-filled DCF intake, deterministic field extraction, structured normalization, traceability chain handling, explicit missing-data markers, and fail-closed ambiguous-data behavior.
 - `M12.4` established controlled AI authoring modes, bounded invention policy, unrestricted free-drafting rejection controls, generated-output truth boundaries, document-family rule validation, standards/guardrail references, and validation tests.
 - `M12.5` established standards-aware document guardrails, controlled GMP/CQV language rules, assumption-labeling policy, placeholder policy, evidence-versus-inference separation, prohibited-language checks, section-level authoring constraints, and detail-level consistency validation.
@@ -61,4 +60,10 @@ Phase 5 — Core Engine Completion
 - `M12.9` UAT evidence commit: `8de8dd6f6adb6ee2c7de980de0c0f3392ec5e3dd` — `docs: add M12 UAT protocol and report`.
 - `M12.10` closed and accepted Milestone 12, freezing the governed document-engine boundary and confirming later export/data/library/AI/UI/cloud work remains outside the closed milestone.
 - `M12.10` closeout commit: `f4e844ba3b86a6257ea57dd3070cc82bc55031c8` — `docs: add M12 closeout notes`.
-- The active build path now moves to `M13.1` — Export identity and contract foundation.
+- `M13.1` established the `asbp.export_engine` foundation package and governed export identity/request/payload/output contract boundary.
+- `M13.1` defined canonical export families: `spreadsheet_operational`, `gantt_planning`, `dashboard_status`, and `governed_report`.
+- `M13.1` defined export identity/version expectations, supported source-context kinds, family-specific payload requirements, output-kind constraints, prohibited payload fields, and truth-separation rules that keep rendered export output downstream from execution, planning, document, and governed source truth.
+- `M13.1` preserved export-family boundaries as core-engine output contracts, separate from later UI/API delivery surfaces.
+- `M13.1` implementation commit: `bd5248c` — `engine: add export identity and contract foundation`.
+- `M13.1` validation completed with full validation passing: `python -m pytest -q` — `606 passed in 56.14s`.
+- The active build path now moves to `M13.2` — Spreadsheet and operational export surfaces.
