@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M13.4` — Dashboard and status summary exports
+`M13.5` — Reporting export family and detail-level discipline
 
 ## Latest Completed Checkpoint
 
-`M13.3` — Gantt and planning visualization exports completed
+`M13.4` — Dashboard and status summary exports completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M13.4` — Dashboard and status summary exports
+`M13.5` — Reporting export family and detail-level discipline
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `628 passed in 44.93s`
+`python -m pytest -q` — `639 passed in 44.41s`
 
 ## Active Notes
 
@@ -63,4 +63,12 @@ Phase 5 — Core Engine Completion
 - `M13.3` preserved Gantt surfaces as deterministic visualization payload contracts only; chart rendering, image generation, workbook writing, UI/API delivery, and downstream renderer behavior remain outside this checkpoint.
 - `M13.3` implementation commit: `70d6909` — `engine: add Gantt planning export surfaces`.
 - `M13.3` validation completed with full validation passing: `python -m pytest -q` — `628 passed in 44.93s`.
-- The active build path now moves to `M13.4` — Dashboard and status summary exports.
+- `M13.4` established deterministic dashboard and status summary export surfaces under `asbp.export_engine`.
+- `M13.4` defined dashboard snapshot, status summary, KPI summary, and progress summary surface types.
+- `M13.4` defined dashboard status items, KPI metric objects, snapshot basis metadata, visibility fields, output shapes, and snapshot/report/dashboard distinctions.
+- `M13.4` treats KPI as a declared dashboard metric object only; CQV KPI catalog selection, calculation formulas, thresholds, acceptance limits, and interpretation rules remain outside this checkpoint.
+- `M13.4` validates unsupported surface types, unsupported output kinds, unsupported visibility fields, missing status items, duplicate item IDs, invalid progress values, unknown KPI references, and prohibited KPI calculation/threshold fields.
+- `M13.4` preserved dashboard surfaces as deterministic summary payload contracts only; UI rendering, chart rendering, report generation, workbook writing, and downstream renderer behavior remain outside this checkpoint.
+- `M13.4` implementation commit: `39d6eed` — `engine: add dashboard status export surfaces`.
+- `M13.4` validation completed with full validation passing: `python -m pytest -q` — `639 passed in 44.41s`.
+- The active build path now moves to `M13.5` — Reporting export family and detail-level discipline.
