@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M13.3` — Gantt and planning visualization exports
+`M13.4` — Dashboard and status summary exports
 
 ## Latest Completed Checkpoint
 
-`M13.2` — Spreadsheet and operational export surfaces completed
+`M13.3` — Gantt and planning visualization exports completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M13.3` — Gantt and planning visualization exports
+`M13.4` — Dashboard and status summary exports
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `618 passed in 45.96s`
+`python -m pytest -q` — `628 passed in 44.93s`
 
 ## Active Notes
 
@@ -57,4 +57,10 @@ Phase 5 — Core Engine Completion
 - `M13.2` preserved spreadsheet surfaces as deterministic payload/shape contracts only; file rendering, workbook writing, UI/API delivery, and downstream renderer behavior remain outside this checkpoint.
 - `M13.2` implementation commit: `1a2129b` — `engine: add spreadsheet operational export surfaces`.
 - `M13.2` validation completed with full validation passing: `python -m pytest -q` — `618 passed in 45.96s`.
-- The active build path now moves to `M13.3` — Gantt and planning visualization exports.
+- `M13.3` established deterministic Gantt and planning visualization export surfaces under `asbp.export_engine`.
+- `M13.3` defined Gantt planning items, dependency references, timeline basis, grouping modes, visibility fields, dependency types, timescales, and contract-only Gantt timeline payload shape.
+- `M13.3` validates unknown dependency targets, self-dependencies, duplicate dependency references, unsupported grouping modes, unsupported visibility fields, and timeline-basis constraints.
+- `M13.3` preserved Gantt surfaces as deterministic visualization payload contracts only; chart rendering, image generation, workbook writing, UI/API delivery, and downstream renderer behavior remain outside this checkpoint.
+- `M13.3` implementation commit: `70d6909` — `engine: add Gantt planning export surfaces`.
+- `M13.3` validation completed with full validation passing: `python -m pytest -q` — `628 passed in 44.93s`.
+- The active build path now moves to `M13.4` — Dashboard and status summary exports.
