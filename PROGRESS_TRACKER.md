@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M13.8` ? Milestone UAT checkpoint
+`M13.8` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M13.7` ? Validation checkpoint completed
+`M13.7` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M13.8` ? Milestone UAT checkpoint
+`M13.8` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` ? `659 passed in 45.24s`
+`python -m pytest -q` — `659 passed in 45.24s`
 
 ## Active Notes
 
@@ -77,11 +77,10 @@ Phase 5 — Core Engine Completion
 - `M13.5` preserved reporting surfaces as deterministic report payload contracts only; Markdown/DOCX/PDF rendering, AI-written report body generation, UI/API delivery, and downstream renderer behavior remain outside this checkpoint.
 - `M13.5` implementation commit: `b8a8781` — `engine: add reporting export detail discipline`.
 - `M13.5` validation completed with full validation passing: `python -m pytest -q` — `650 passed in 44.72s`.
-- The active build path now moves to `M13.6` — Export invocation and validation behavior.
 - `M13.6` established deterministic export invocation and validation behavior under `asbp.export_engine`.
 - `M13.6` defined approved invocation boundaries, strict validation mode, fail-closed behavior, incomplete-input rejection, generated-artifact metadata validation, and artifact acceptance record rules.
-- `M13.6` implementation commit: `00befc0` ? `engine: add export invocation validation behavior`.
-- `M13.6` validation completed with full validation passing: `python -m pytest -q` ? `659 passed in 45.24s`.
-- `M13.7` validation checkpoint completed with full validation passing: `python -m pytest -q` ? `659 passed in 45.24s`.
+- `M13.6` implementation commit: `00befc0` — `engine: add export invocation validation behavior`.
+- `M13.6` validation completed with full validation passing: `python -m pytest -q` — `659 passed in 45.24s`.
+- `M13.7` validation checkpoint completed with full validation passing: `python -m pytest -q` — `659 passed in 45.24s`.
 - `M13.7` validation evidence recorded in `docs/M13_VALIDATION_CHECKPOINT.md`.
-- The active build path now moves to `M13.8` ? Milestone UAT checkpoint.
+- The active build path now moves to `M13.8` — Milestone UAT checkpoint.
