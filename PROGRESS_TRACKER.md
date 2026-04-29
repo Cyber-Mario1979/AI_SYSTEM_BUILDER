@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.2` — Governed asset identity and version-pinned lookup
+`M14.3` — Calendar and planning-basis resolution family
 
 ## Latest Completed Checkpoint
 
-`M14.1` — Resolver / registry boundary foundation completed
+`M14.2` — Governed asset identity and version-pinned lookup completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.2` — Governed asset identity and version-pinned lookup
+`M14.3` — Calendar and planning-basis resolution family
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `669 passed in 44.84s`
+`python -m pytest -q` — `683 passed in 49.60s`
 
 ## Active Notes
 
@@ -53,4 +53,8 @@ Phase 5 — Core Engine Completion
 - `M14.1` defined approved resolver/registry boundaries, asset-access entry points, CLI-as-adapter policy, source-truth separation, layer-position policy, and prohibited bypass fields.
 - `M14.1` implementation commit: `a604216` — `engine: add resolver registry boundary foundation`.
 - `M14.1` validation completed with full validation passing: `python -m pytest -q` — `669 passed in 44.84s`.
-- The active build path now moves to `M14.2` — Governed asset identity and version-pinned lookup.
+- `M14.2` established governed asset identity and version-pinned lookup under `asbp.resolver_registry.identity`.
+- `M14.2` defined explicit governed asset identity, version pinning, allowed asset families, catalog lookup, and fail-closed rejection of implicit, unversioned, `latest`, or `current` lookup behavior.
+- `M14.2` implementation commit: `9662fad` — `engine: add governed asset identity lookup`.
+- `M14.2` validation completed with full validation passing: `python -m pytest -q` — `683 passed in 49.60s`.
+- The active build path now moves to `M14.3` — Calendar and planning-basis resolution family.
