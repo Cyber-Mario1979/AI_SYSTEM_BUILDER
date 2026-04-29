@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M13.8` — Milestone UAT checkpoint
+`M13.9` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M13.7` — Validation checkpoint completed
+`M13.8` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M13.8` — Milestone UAT checkpoint
+`M13.9` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -68,7 +68,7 @@ Phase 5 — Core Engine Completion
 - `M13.4` defined dashboard status items, KPI metric objects, snapshot basis metadata, visibility fields, output shapes, and snapshot/report/dashboard distinctions.
 - `M13.4` treats KPI as a declared dashboard metric object only; CQV KPI catalog selection, calculation formulas, thresholds, acceptance limits, and interpretation rules remain outside this checkpoint.
 - `M13.4` validates unsupported surface types, unsupported output kinds, unsupported visibility fields, missing status items, duplicate item IDs, invalid progress values, unknown KPI references, and prohibited KPI calculation/threshold fields.
-- `M13.4` preserved dashboard surfaces as deterministic summary payload contracts only; UI rendering, chart rendering, report generation, workbook writing, and downstream renderer behavior remain outside this checkpoint.
+- `M13.4` preserved dashboard surfaces as deterministic summary payload contracts only; UI rendering, chart rendering, report generation, and downstream renderer behavior remain outside this checkpoint.
 - `M13.4` implementation commit: `39d6eed` — `engine: add dashboard status export surfaces`.
 - `M13.4` validation completed with full validation passing: `python -m pytest -q` — `639 passed in 44.41s`.
 - `M13.5` established deterministic reporting export family and detail-level discipline surfaces under `asbp.export_engine`.
@@ -83,4 +83,7 @@ Phase 5 — Core Engine Completion
 - `M13.6` validation completed with full validation passing: `python -m pytest -q` — `659 passed in 45.24s`.
 - `M13.7` validation checkpoint completed with full validation passing: `python -m pytest -q` — `659 passed in 45.24s`.
 - `M13.7` validation evidence recorded in `docs/M13_VALIDATION_CHECKPOINT.md`.
-- The active build path now moves to `M13.8` — Milestone UAT checkpoint.
+- `M13.8` UAT protocol recorded in `docs/UAT/M13_UAT_PROTOCOL.md`.
+- `M13.8` UAT report completed with acceptance decision: `pass`.
+- `M13.8` UAT evidence recorded in `docs/UAT/M13_UAT_REPORT.md`.
+- The active build path now moves to `M13.9` — Milestone closeout.
