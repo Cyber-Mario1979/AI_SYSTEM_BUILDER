@@ -215,4 +215,4 @@ Be respectful, explicit, and technically grounded.
 
 This repository values clarity over noise, determinism over improvisation, and evidence over assumption.
 
-See `CODE_OF_CONDUCT.md` when available.
+See [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).

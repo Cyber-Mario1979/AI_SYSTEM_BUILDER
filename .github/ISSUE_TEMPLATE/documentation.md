@@ -1,41 +1,43 @@
 ---
-name: Documentation improvement
-about: Suggest a correction or clarity improvement for repository documentation
+name: Documentation issue
+about: Report unclear, stale, missing, or misleading documentation
 title: "docs: "
-labels: documentation
-assignees: ""
+labels: ["documentation"]
+assignees: []
 ---
 
 ## Summary
 
-What documentation should be improved?
+What documentation needs attention?
 
-## File or section
+## Location
 
-Examples:
+Link or name the affected file or section.
 
-- `README.md`
-- `CONTRIBUTING.md`
-- `PROGRESS_TRACKER.md`
-- `docs/...`
+## Problem
 
-## Current wording or problem
+Choose one or more:
 
-Describe what is confusing, outdated, incomplete, or incorrect.
+- [ ] unclear wording
+- [ ] stale wording
+- [ ] missing explanation
+- [ ] public-surface drift
+- [ ] command example issue
+- [ ] formatting/readability issue
+- [ ] other
 
-## Suggested improvement
+## Proposed correction
 
-Describe the proposed correction or improvement.
+Describe the requested correction.
 
-## Scope check
+## Behavior impact
 
-Please confirm:
+Does this change code behavior, roadmap order, architecture, validation policy, or runtime behavior?
 
-- [ ] This is documentation/public-surface work.
-- [ ] This does not change code behavior.
-- [ ] This does not change roadmap sequence.
-- [ ] This does not change architecture guardrails.
+- [ ] No, documentation/public-surface only
+- [ ] Yes
+- [ ] Unsure
 
-## Notes
+## Additional context
 
-Add any supporting context.
+Add context if helpful.

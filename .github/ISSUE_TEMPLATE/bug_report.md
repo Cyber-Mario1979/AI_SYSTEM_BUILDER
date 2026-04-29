@@ -1,60 +1,52 @@
 ---
 name: Bug report
-about: Report reproducible behavior that appears incorrect
+about: Report behavior that appears incorrect or non-deterministic
 title: "bug: "
-labels: bug
-assignees: ""
+labels: ["bug"]
+assignees: []
 ---
 
 ## Summary
 
-Describe the behavior that appears incorrect.
+Describe the observed problem clearly.
 
 ## Expected behavior
 
-What did you expect to happen?
+What should have happened?
 
 ## Actual behavior
 
 What happened instead?
 
-## Steps to reproduce
-
-1.
-2.
-3.
-
-## Command or code used
+## Reproduction steps
 
 ```powershell
-# Paste the command or minimal code here
+# Paste the smallest command sequence that reproduces the issue
 ```
 
-## Environment
-
-- OS:
-- Python version:
-- Branch or commit:
-- Installation method:
-
 ## Validation result
-
-Paste the result of:
 
 ```powershell
 python -m pytest -q
 ```
 
-If you did not run tests, explain why.
+Paste the result here.
 
-## Notes
+## Scope classification
 
-Add any relevant logs, screenshots, or context.
+Choose one:
 
-## Scope check
+- [ ] Runtime/code behavior
+- [ ] Test behavior
+- [ ] Documentation/public surface
+- [ ] Roadmap/tracker wording
+- [ ] Architecture/guardrail concern
+- [ ] Unsure
 
-Please confirm:
+## Files or areas affected
 
-- [ ] This issue describes reproducible behavior.
-- [ ] This is not a request to change roadmap direction.
-- [ ] This is not a broad architecture proposal.
+List relevant files, modules, commands, or docs.
+
+## Additional context
+
+Add screenshots, terminal output, or notes if useful.
