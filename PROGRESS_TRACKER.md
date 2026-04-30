@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.3` — Calendar and planning-basis resolution family
+`M14.4` — Authored-source versus deployment-compiled separation
 
 ## Latest Completed Checkpoint
 
-`M14.2` — Governed asset identity and version-pinned lookup completed
+`M14.3` — Calendar and planning-basis resolution family completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.3` — Calendar and planning-basis resolution family
+`M14.4` — Authored-source versus deployment-compiled separation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `683 passed in 49.60s`
+`python -m pytest -q` — `698 passed in 44.75s`
 
 ## Active Notes
 
@@ -57,4 +57,8 @@ Phase 5 — Core Engine Completion
 - `M14.2` defined explicit governed asset identity, version pinning, allowed asset families, catalog lookup, and fail-closed rejection of implicit, unversioned, `latest`, or `current` lookup behavior.
 - `M14.2` implementation commit: `9662fad` — `engine: add governed asset identity lookup`.
 - `M14.2` validation completed with full validation passing: `python -m pytest -q` — `683 passed in 49.60s`.
-- The active build path now moves to `M14.3` — Calendar and planning-basis resolution family.
+- `M14.3` established calendar and planning-basis resolution family contracts under `asbp.resolver_registry.calendar_planning`.
+- `M14.3` defined governed calendar resolution, planning-basis data-resolution expectations, deterministic core-engine input policy, and fail-closed rejection of calendar arithmetic, schedule generation, task duration calculation, rendering, payload loading, and implicit latest/current lookup behavior.
+- `M14.3` implementation commit: `a041888` — `engine: add calendar planning resolution family`.
+- `M14.3` validation completed with full validation passing: `python -m pytest -q` — `698 passed in 44.75s`.
+- The active build path now moves to `M14.4` — Authored-source versus deployment-compiled separation.
