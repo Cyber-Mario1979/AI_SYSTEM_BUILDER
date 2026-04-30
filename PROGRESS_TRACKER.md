@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.4` — Authored-source versus deployment-compiled separation
+`M14.5` — Governed retrieval versus support-retrieval boundary
 
 ## Latest Completed Checkpoint
 
-`M14.3` — Calendar and planning-basis resolution family completed
+`M14.4` — Authored-source versus deployment-compiled separation completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.4` — Authored-source versus deployment-compiled separation
+`M14.5` — Governed retrieval versus support-retrieval boundary
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `698 passed in 44.75s`
+`python -m pytest -q` — `711 passed in 44.68s`
 
 ## Active Notes
 
@@ -61,4 +61,8 @@ Phase 5 — Core Engine Completion
 - `M14.3` defined governed calendar resolution, planning-basis data-resolution expectations, deterministic core-engine input policy, and fail-closed rejection of calendar arithmetic, schedule generation, task duration calculation, rendering, payload loading, and implicit latest/current lookup behavior.
 - `M14.3` implementation commit: `a041888` — `engine: add calendar planning resolution family`.
 - `M14.3` validation completed with full validation passing: `python -m pytest -q` — `698 passed in 44.75s`.
-- The active build path now moves to `M14.4` — Authored-source versus deployment-compiled separation.
+- `M14.4` established authored-source versus deployment-compiled separation under `asbp.resolver_registry.source_compilation`.
+- `M14.4` defined editable authored-source authority, deployment-compiled runtime lookup surfaces, source-to-compiled identity linkage, compiled lookup family allowlisting, and fail-closed rejection of compiled lookup becoming source authority.
+- `M14.4` implementation commit: `e001ace` — `engine: add source compilation separation`.
+- `M14.4` validation completed with full validation passing: `python -m pytest -q` — `711 passed in 44.68s`.
+- The active build path now moves to `M14.5` — Governed retrieval versus support-retrieval boundary.
