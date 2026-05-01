@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.5` — Governed retrieval versus support-retrieval boundary
+`M14.6` — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-`M14.4` — Authored-source versus deployment-compiled separation completed
+`M14.5` — Governed retrieval versus support-retrieval boundary completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.5` — Governed retrieval versus support-retrieval boundary
+`M14.6` — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `711 passed in 44.68s`
+`python -m pytest -q` — `724 passed in 45.24s`
 
 ## Active Notes
 
@@ -65,4 +65,8 @@ Phase 5 — Core Engine Completion
 - `M14.4` defined editable authored-source authority, deployment-compiled runtime lookup surfaces, source-to-compiled identity linkage, compiled lookup family allowlisting, and fail-closed rejection of compiled lookup becoming source authority.
 - `M14.4` implementation commit: `e001ace` — `engine: add source compilation separation`.
 - `M14.4` validation completed with full validation passing: `python -m pytest -q` — `711 passed in 44.68s`.
-- The active build path now moves to `M14.5` — Governed retrieval versus support-retrieval boundary.
+- `M14.5` established governed retrieval versus support-retrieval boundary rules under `asbp.resolver_registry.retrieval_boundary`.
+- `M14.5` defined governed deterministic retrieval as version-pinned and authority-preserving, support retrieval as non-authoritative context only, and fail-closed rejection of support retrieval redefining source truth, execution truth, compiled truth, governed lookup identity, or payload authority.
+- `M14.5` implementation commit: `c66c66f` — `engine: add retrieval boundary rules`.
+- `M14.5` validation completed with full validation passing: `python -m pytest -q` — `724 passed in 45.24s`.
+- The active build path now moves to `M14.6` — Validation checkpoint.
