@@ -190,3 +190,43 @@ __all__ += [
     "validate_deployment_compiled_lookup_record",
     "validate_source_to_compiled_link",
 ]
+
+from .retrieval_boundary import (
+    GOVERNED_DETERMINISTIC_RETRIEVAL_MODE,
+    GOVERNED_RETRIEVAL_ROLE,
+    GOVERNED_RETRIEVAL_SOURCE_AUTHORITY_POLICY,
+    RESOLVER_REGISTRY_RETRIEVAL_BOUNDARY_CHECKPOINT_ID,
+    RESOLVER_REGISTRY_RETRIEVAL_BOUNDARY_CONTRACT_VERSION,
+    RETRIEVAL_BOUNDARY_CONTENT_POLICY,
+    RETRIEVAL_BOUNDARY_FAILURE_POLICY,
+    SUPPORT_RETRIEVAL_AI_COMPATIBILITY_POLICY,
+    SUPPORT_RETRIEVAL_MODE,
+    SUPPORT_RETRIEVAL_ROLE,
+    SUPPORT_RETRIEVAL_SOURCE_AUTHORITY_POLICY,
+    build_governed_retrieval_request_from_compiled_lookup,
+    build_retrieval_boundary_baseline,
+    build_support_retrieval_request,
+    validate_governed_retrieval_request,
+    validate_retrieval_boundary_request,
+    validate_support_retrieval_request,
+)
+
+__all__ += [
+    "GOVERNED_DETERMINISTIC_RETRIEVAL_MODE",
+    "GOVERNED_RETRIEVAL_ROLE",
+    "GOVERNED_RETRIEVAL_SOURCE_AUTHORITY_POLICY",
+    "RESOLVER_REGISTRY_RETRIEVAL_BOUNDARY_CHECKPOINT_ID",
+    "RESOLVER_REGISTRY_RETRIEVAL_BOUNDARY_CONTRACT_VERSION",
+    "RETRIEVAL_BOUNDARY_CONTENT_POLICY",
+    "RETRIEVAL_BOUNDARY_FAILURE_POLICY",
+    "SUPPORT_RETRIEVAL_AI_COMPATIBILITY_POLICY",
+    "SUPPORT_RETRIEVAL_MODE",
+    "SUPPORT_RETRIEVAL_ROLE",
+    "SUPPORT_RETRIEVAL_SOURCE_AUTHORITY_POLICY",
+    "build_governed_retrieval_request_from_compiled_lookup",
+    "build_retrieval_boundary_baseline",
+    "build_support_retrieval_request",
+    "validate_governed_retrieval_request",
+    "validate_retrieval_boundary_request",
+    "validate_support_retrieval_request",
+]
