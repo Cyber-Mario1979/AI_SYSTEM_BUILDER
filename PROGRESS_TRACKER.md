@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.1` — Resolver / registry boundary foundation
+`M15.1` — Library gap analysis and coverage audit
 
 ## Latest Completed Checkpoint
 
-`M13.9` — Milestone closeout completed
+`M14.8` — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.1` — Resolver / registry boundary foundation
+`M15.1` — Library gap analysis and coverage audit
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `659 passed in 45.24s`
+`python -m pytest -q` — `724 passed in 51.47s`
 
 ## Active Notes
 
@@ -49,5 +49,7 @@ Phase 5 — Core Engine Completion
 - `M12` is closed and accepted. Detailed M12 evidence is preserved in M12 implementation commits, M12 validation evidence, M12 UAT evidence, and M12 closeout notes; it is not repeated here.
 - `M13` is closed and accepted. Detailed M13 evidence is preserved in M13 implementation commits, `docs/M13_VALIDATION_CHECKPOINT.md`, `docs/UAT/M13_UAT_PROTOCOL.md`, `docs/UAT/M13_UAT_REPORT.md`, and `docs/M13_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M13` closed on the repo-real `asbp.export_engine` boundary with governed export contracts, spreadsheet/Gantt/dashboard/reporting export surfaces, export invocation validation, generated-artifact metadata validation, and artifact acceptance rules.
-- Latest validation remains: `python -m pytest -q` — `659 passed in 45.24s`.
-- The active build path now moves to `M14.1` — Resolver / registry boundary foundation.
+- `M14` is closed and accepted. Detailed M14 evidence is preserved in M14 implementation commits, `docs/M14_VALIDATION_CHECKPOINT.md`, `docs/UAT/M14_UAT_PROTOCOL.md`, `docs/UAT/M14_UAT_REPORT.md`, and `docs/M14_CLOSEOUT_NOTES.md`; it is not repeated here.
+- `M14` closed on the repo-real `asbp.resolver_registry` boundary with resolver / registry access controls, governed asset identity and version-pinned lookup, calendar/planning-basis resolution contracts, authored-source versus deployment-compiled separation, governed versus support-retrieval separation, validation evidence, and UAT evidence.
+- `M14` also preserved `docs/planning/UI_PRELIMINARY_BOUNDARIES.md` as a future UI/advisory-layer planning guardrail only; it does not authorize frontend implementation or change the active coding roadmap.
+- The active build path now moves to `M15.1` — Library gap analysis and coverage audit.
