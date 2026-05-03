@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.7` — Milestone UAT checkpoint
+`M14.8` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M14.6` — Validation checkpoint completed
+`M14.7` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.7` — Milestone UAT checkpoint
+`M14.8` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -73,4 +73,7 @@ Phase 5 — Core Engine Completion
 - `M14.6` validation evidence is recorded in `docs/M14_VALIDATION_CHECKPOINT.md`.
 - `M14.6` confirmed the Milestone 14 resolver / registry and governed data-layer boundary through M14.1–M14.5.
 - `M14.6` also resolved the `requirements.txt` placeholder into a minimal test dependency reference: `pytest>=8.0,<9.0`.
-- The active build path now moves to `M14.7` — Milestone UAT checkpoint.
+- `M14.7` milestone UAT checkpoint completed and accepted.
+- `M14.7` UAT evidence is recorded in `docs/UAT/M14_UAT_PROTOCOL.md` and `docs/UAT/M14_UAT_REPORT.md`.
+- `M14.7` accepted Milestone 14 as a governed resolver / registry and governed data-layer boundary with no open UAT blockers.
+- The active build path now moves to `M14.8` — Milestone closeout.
