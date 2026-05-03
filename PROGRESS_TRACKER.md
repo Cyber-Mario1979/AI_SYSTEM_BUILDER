@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.1` — Library gap analysis and coverage audit
+`M15.2` — Coverage-pack expansion framework
 
 ## Latest Completed Checkpoint
 
-`M14.8` — Milestone closeout completed
+`M15.1` — Library gap analysis and coverage audit completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.1` — Library gap analysis and coverage audit
+`M15.2` — Coverage-pack expansion framework
 
 ## Latest Verified Validation Status
 
@@ -52,4 +52,6 @@ Phase 5 — Core Engine Completion
 - `M14` is closed and accepted. Detailed M14 evidence is preserved in M14 implementation commits, `docs/M14_VALIDATION_CHECKPOINT.md`, `docs/UAT/M14_UAT_PROTOCOL.md`, `docs/UAT/M14_UAT_REPORT.md`, and `docs/M14_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M14` closed on the repo-real `asbp.resolver_registry` boundary with resolver / registry access controls, governed asset identity and version-pinned lookup, calendar/planning-basis resolution contracts, authored-source versus deployment-compiled separation, governed versus support-retrieval separation, validation evidence, and UAT evidence.
 - `M14` also preserved `docs/planning/UI_PRELIMINARY_BOUNDARIES.md` as a future UI/advisory-layer planning guardrail only; it does not authorize frontend implementation or change the active coding roadmap.
-- The active build path now moves to `M15.1` — Library gap analysis and coverage audit.
+- `M15.1` is completed. Evidence is preserved in `audits/M15_LIBRARY_GAP_ANALYSIS_AND_COVERAGE_AUDIT.md`.
+- `M15.1` found strong governed foundations from M12, M13, and M14, but identified authored-library, coverage-pack, validation, and deployment-compiled gaps requiring M15.2 through M15.7 work.
+- The active build path now moves to `M15.2` — Coverage-pack expansion framework.
