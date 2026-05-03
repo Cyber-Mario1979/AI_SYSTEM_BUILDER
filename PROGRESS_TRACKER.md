@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.1` — Library gap analysis and coverage audit
+`M15.3` — Preset / selector library expansion
 
 ## Latest Completed Checkpoint
 
-`M14.8` — Milestone closeout completed
+`M15.2` — Coverage-pack expansion framework completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.1` — Library gap analysis and coverage audit
+`M15.3` — Preset / selector library expansion
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `724 passed in 51.47s`
+`python -m pytest -q` — `736 passed in 44.41s`
 
 ## Active Notes
 
@@ -52,4 +52,7 @@ Phase 5 — Core Engine Completion
 - `M14` is closed and accepted. Detailed M14 evidence is preserved in M14 implementation commits, `docs/M14_VALIDATION_CHECKPOINT.md`, `docs/UAT/M14_UAT_PROTOCOL.md`, `docs/UAT/M14_UAT_REPORT.md`, and `docs/M14_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M14` closed on the repo-real `asbp.resolver_registry` boundary with resolver / registry access controls, governed asset identity and version-pinned lookup, calendar/planning-basis resolution contracts, authored-source versus deployment-compiled separation, governed versus support-retrieval separation, validation evidence, and UAT evidence.
 - `M14` also preserved `docs/planning/UI_PRELIMINARY_BOUNDARIES.md` as a future UI/advisory-layer planning guardrail only; it does not authorize frontend implementation or change the active coding roadmap.
-- The active build path now moves to `M15.1` — Library gap analysis and coverage audit.
+- `M15.1` is completed. Evidence is preserved in `audits/M15_LIBRARY_GAP_ANALYSIS_AND_COVERAGE_AUDIT.md`.
+- `M15.2` is completed. Evidence is preserved in `docs/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md`, `asbp/governed_library/coverage_pack.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_coverage_pack.py`.
+- `M15.2` established the bounded coverage-pack model, expansion-unit expectations, governed artifact-family coordination rules, authored-source reference rules, deployment-compiled reference rules, and source-to-compiled linkage constraints.
+- The active build path now moves to `M15.3` — Preset / selector library expansion.
