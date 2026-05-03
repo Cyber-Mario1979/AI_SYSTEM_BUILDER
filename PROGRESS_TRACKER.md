@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M14.6` — Validation checkpoint
+`M14.7` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M14.5` — Governed retrieval versus support-retrieval boundary completed
+`M14.6` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M14.6` — Validation checkpoint
+`M14.7` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `724 passed in 45.24s`
+`python -m pytest -q` — `724 passed in 51.47s`
 
 ## Active Notes
 
@@ -69,4 +69,8 @@ Phase 5 — Core Engine Completion
 - `M14.5` defined governed deterministic retrieval as version-pinned and authority-preserving, support retrieval as non-authoritative context only, and fail-closed rejection of support retrieval redefining source truth, execution truth, compiled truth, governed lookup identity, or payload authority.
 - `M14.5` implementation commit: `c66c66f` — `engine: add retrieval boundary rules`.
 - `M14.5` validation completed with full validation passing: `python -m pytest -q` — `724 passed in 45.24s`.
-- The active build path now moves to `M14.6` — Validation checkpoint.
+- `M14.6` validation checkpoint completed with full validation passing: `python -m pytest -q` — `724 passed in 51.47s`.
+- `M14.6` validation evidence is recorded in `docs/M14_VALIDATION_CHECKPOINT.md`.
+- `M14.6` confirmed the Milestone 14 resolver / registry and governed data-layer boundary through M14.1–M14.5.
+- `M14.6` also resolved the `requirements.txt` placeholder into a minimal test dependency reference: `pytest>=8.0,<9.0`.
+- The active build path now moves to `M14.7` — Milestone UAT checkpoint.
