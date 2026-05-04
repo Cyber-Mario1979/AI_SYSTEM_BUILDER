@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.3` — Preset / selector library expansion
+`M15.4` — Task-pool expansion
 
 ## Latest Completed Checkpoint
 
-`M15.2` — Coverage-pack expansion framework completed
+`M15.3` — Preset / selector library expansion completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.3` — Preset / selector library expansion
+`M15.4` — Task-pool expansion
 
 ## Latest Verified Validation Status
 
@@ -55,4 +55,8 @@ Phase 5 — Core Engine Completion
 - `M15.1` is completed. Evidence is preserved in `audits/M15_LIBRARY_GAP_ANALYSIS_AND_COVERAGE_AUDIT.md`.
 - `M15.2` is completed. Evidence is preserved in `docs/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md`, `asbp/governed_library/coverage_pack.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_coverage_pack.py`.
 - `M15.2` established the bounded coverage-pack model, expansion-unit expectations, governed artifact-family coordination rules, authored-source reference rules, deployment-compiled reference rules, and source-to-compiled linkage constraints.
-- The active build path now moves to `M15.3` — Preset / selector library expansion.
+- `M15.3` is completed. Evidence is preserved in `docs/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` and `docs/design_spec/valor_pack_snapshot/expansion/M15_3_SELECTOR_SCOPE_EXPANSION_MAP.yaml`.
+- `M15.3` recorded the expanded selector/scope target before ASBP-native migration, including the `DECOM` scope, the `CSV` computerized-systems domain acronym decision, the rule that `CS` remains the context-selector prefix, the target PE/UT/CR/CSV selector matrix, missing selector records, and CSV decommissioning minimum requirements.
+- `M15.3` confirmed that `RC`, `MILL`, and `BIN_BLENDER` already exist in the current user-facing Process Equipment WP header preset surface.
+- `M15.3` was documentation/specification-only and did not implement task-pool payloads, profile durations, standards bundles, calendars, mapping metadata, deployment compilation, orchestration/service hardening, CLI commands, AI runtime behavior, or direct ASBP runtime migration.
+- The active build path now moves to `M15.4` — Task-pool expansion.
