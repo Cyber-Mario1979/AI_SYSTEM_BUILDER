@@ -1,0 +1,213 @@
+---
+doc_type: selector_scope_expansion_map
+canonical_name: M15_3_SELECTOR_SCOPE_EXPANSION_MAP
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.3
+milestone: M15
+phase: Phase 5 — Core Engine Completion
+purpose: >
+  Records the agreed preset / selector scope expansion map before ASBP-native
+  governed library migration.
+source_role: checkpoint_expansion_spec_candidate
+migration_status: not_migrated
+runtime_status: not_runtime_authority
+
+naming_policy:
+  context_selector_prefix: CS
+  computerized_systems_domain_canonical: CSV
+  legacy_computerized_systems_domain: CS
+  rule: >
+    CS is reserved as the context-selector prefix. Computerized systems should use
+    CSV as the future ASBP-native domain acronym to avoid IDs like CS-CS-E2E.
+  legacy_id_map:
+    - legacy_selector_id: CS-CS-E2E
+      future_canonical_selector_id: CS-CSV-E2E
+
+scope_tokens:
+  - scope: E2E
+    name: End-to-end CQV lifecycle
+    meaning: New build, major project, equipment introduction, or full lifecycle.
+  - scope: PV
+    name: Periodic verification
+    meaning: Periodic verification, periodic review, or periodic reclassification as applicable.
+  - scope: QUAL
+    name: Qualification only
+    meaning: Qualification deliverables only; commissioning is handled separately.
+  - scope: COMM
+    name: Commissioning only
+    meaning: Commissioning deliverables only; qualification deliverables are out of scope.
+  - scope: POST-DEV
+    name: Post deviation
+    meaning: Targeted requalification or retest after deviation.
+  - scope: POST-CHANGE
+    name: Post change
+    meaning: Change-control requalification after controlled modification.
+  - scope: DECOM
+    name: Decommissioning
+    meaning: Controlled retirement, removal, deactivation, or removal from GMP use.
+
+decommissioning_boundary:
+  post_change: Asset continues in use after modification.
+  decom: Asset, system, utility, or area is retired, removed, disabled, or taken out of GMP use.
+
+existing_snapshot_domain_support:
+  PE:
+    domain_name: Process Equipment
+    existing_scopes: [E2E, PV, POST-DEV, POST-CHANGE]
+  UT:
+    domain_name: Utilities
+    existing_scopes: [E2E, QUAL, COMM, POST-DEV, POST-CHANGE]
+  CR:
+    domain_name: Cleanroom
+    existing_scopes: [E2E, PV, QUAL, COMM]
+  CS:
+    domain_name: Computerized Systems legacy acronym
+    existing_scopes: [E2E]
+
+target_domain_support:
+  PE:
+    domain_name: Process Equipment
+    target_scopes: [E2E, PV, QUAL, COMM, POST-DEV, POST-CHANGE, DECOM]
+  UT:
+    domain_name: Utilities
+    target_scopes: [E2E, PV, QUAL, COMM, POST-DEV, POST-CHANGE, DECOM]
+  CR:
+    domain_name: Cleanroom
+    target_scopes: [E2E, PV, QUAL, COMM, POST-DEV, POST-CHANGE, DECOM]
+  CSV:
+    domain_name: Computerized Systems / CSV
+    target_scopes: [E2E, PV, POST-DEV, POST-CHANGE, DECOM]
+    intentionally_deferred_scopes: [QUAL, COMM]
+
+existing_equipment_confirmation:
+  process_equipment_presets_already_present:
+    - wp_id: RC
+      title: Roller Compactor
+    - wp_id: MILL
+      title: Mill
+      family_label: Milling equipment
+    - wp_id: BIN_BLENDER
+      title: Bin Blender
+      family_label: Blending equipment
+
+missing_selector_records:
+  - selector_id: CS-PE-QUAL
+    domain: PE
+    scope: QUAL
+    target_task_pool_ref: TP-PE-QUAL@v1
+    target_profile_ref: PROF-PE-QUAL@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-PE-COMM
+    domain: PE
+    scope: COMM
+    target_task_pool_ref: TP-PE-COMM@v1
+    target_profile_ref: PROF-PE-COMM@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-PE-DECOM
+    domain: PE
+    scope: DECOM
+    target_task_pool_ref: TP-PE-DECOM@v1
+    target_profile_ref: PROF-PE-DECOM@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-UT-PV
+    domain: UT
+    scope: PV
+    target_task_pool_ref: TP-UT-PV@v1
+    target_profile_ref: PROF-UT-PV@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-UT-DECOM
+    domain: UT
+    scope: DECOM
+    target_task_pool_ref: TP-UT-DECOM@v1
+    target_profile_ref: PROF-UT-DECOM@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CR-POST-DEV
+    domain: CR
+    scope: POST-DEV
+    target_task_pool_ref: TP-CR-POST-DEV@v1
+    target_profile_ref: PROF-CR-POST-DEV@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CR-POST-CHANGE
+    domain: CR
+    scope: POST-CHANGE
+    target_task_pool_ref: TP-CR-POST-CHANGE@v1
+    target_profile_ref: PROF-CR-POST-CHANGE@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CR-DECOM
+    domain: CR
+    scope: DECOM
+    target_task_pool_ref: TP-CR-DECOM@v1
+    target_profile_ref: PROF-CR-DECOM@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CSV-E2E
+    domain: CSV
+    scope: E2E
+    target_task_pool_ref: TP-CSV-E2E@v1
+    target_profile_ref: PROF-CSV-E2E@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    note: Canonical replacement for legacy CS-CS-E2E naming.
+    downstream_status: rename_or_mapping_pending_future_migration
+  - selector_id: CS-CSV-PV
+    domain: CSV
+    scope: PV
+    target_task_pool_ref: TP-CSV-PV@v1
+    target_profile_ref: PROF-CSV-PV@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CSV-POST-DEV
+    domain: CSV
+    scope: POST-DEV
+    target_task_pool_ref: TP-CSV-POST-DEV@v1
+    target_profile_ref: PROF-CSV-POST-DEV@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CSV-POST-CHANGE
+    domain: CSV
+    scope: POST-CHANGE
+    target_task_pool_ref: TP-CSV-POST-CHANGE@v1
+    target_profile_ref: PROF-CSV-POST-CHANGE@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+  - selector_id: CS-CSV-DECOM
+    domain: CSV
+    scope: DECOM
+    target_task_pool_ref: TP-CSV-DECOM@v1
+    target_profile_ref: PROF-CSV-DECOM@v1
+    target_calendar_ref: CAL-WORKWEEK@v1
+    minimum_requirements:
+      - system retirement or deactivation scope
+      - GxP impact assessment
+      - data retention or archival decision
+      - user access shutdown or role removal confirmation
+      - interface or integration shutdown check
+      - backup, restore, or final data export evidence where applicable
+      - audit trail or record preservation decision
+      - retirement approval and QA closure
+    downstream_status: task_pool_and_profile_pending_m15_4_m15_5
+
+not_in_scope_for_m15_3:
+  - task_pool_payload_expansion
+  - profile_duration_expansion
+  - standards_bundle_expansion
+  - calendar_expansion
+  - mapping_metadata_expansion
+  - deployment_compile_pipeline
+  - orchestration_service_hardening
+  - cli_command_surface
+  - ai_runtime_behavior
+  - direct_asbp_runtime_migration
+
+next_downstream_checkpoints:
+  M15.4: Task-pool expansion
+  M15.5: Calendar / standards / profile / mapping expansion
+  M15.6: Library validation, freeze, and release discipline
+  M15.7: Orchestration / service hardening on expanded governed assets
