@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.8` — Validation checkpoint
+`M15.9` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M15.7` — Orchestration / service hardening on expanded governed assets completed
+`M15.8` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.8` — Validation checkpoint
+`M15.9` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `750 passed in 42.57s`
+`python -m pytest -q` — `750 passed in 42.44s`
 
 ## Active Notes
 
@@ -79,4 +79,8 @@ Phase 5 — Core Engine Completion
 - `M15.7` introduced governed-library service request shape rules, M15.6 release-manifest preflight dependency, adapter leakage prevention, runtime migration blocking, deployment compilation blocking, support retrieval source-truth blocking, and document/export invocation context preparation rules.
 - `M15.7` preserved service-only preflight behavior and did not implement CLI command surfaces, runtime migration, deployment compiled lookup generation, actual document generation, actual export generation, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
 - `M15.7` validation passed locally with `python -m pytest -q` — `750 passed in 42.57s`.
-- The active build path now moves to `M15.8` — Validation checkpoint.
+- `M15.8` is completed. Evidence is preserved in `docs/M15_VALIDATION_CHECKPOINT.md`.
+- `M15.8` recorded the formal M15 validation checkpoint after completion of M15.1 through M15.7, with validation command `python -m pytest -q`, result `750 passed in 42.44s`, and validation decision `PASS`.
+- `M15.8` confirmed readiness to proceed to `M15.9` — Milestone UAT checkpoint.
+- `M15.8` was validation-evidence-only and did not implement new library scopes, new task pools, new profiles, new standards bundles, new calendar families, new mapping metadata, deployment compiled lookup generation, runtime migration, CLI command surfaces, actual document generation, actual export generation, AI runtime behavior, M15.9 UAT, or M15.10 closeout.
+- The active build path now moves to `M15.9` — Milestone UAT checkpoint.
