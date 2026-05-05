@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.6` — Library validation, freeze, and release discipline
+`M15.7` — Orchestration / service hardening on expanded governed assets
 
 ## Latest Completed Checkpoint
 
-`M15.5` — Calendar / standards / profile / mapping expansion completed
+`M15.6` — Library validation, freeze, and release discipline completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.6` — Library validation, freeze, and release discipline
+`M15.7` — Orchestration / service hardening on expanded governed assets
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `736 passed in 44.41s`
+`python -m pytest -q` — `743 passed in 43.84s`
 
 ## Active Notes
 
@@ -70,4 +70,9 @@ Phase 5 — Core Engine Completion
 - `M15.5` recorded draft standards applicability: `SB-CQV-CORE-EG@v1` as the default core baseline for all PE/UT/CR/CSV coverage, `SB-CLEANROOM-ADDON@v1` for CR coverage, and `SB-CSV-ADDON@v1` for CSV coverage.
 - `M15.5` recorded draft cross-library mapping metadata for selector-to-support mapping, task-to-profile-key mapping, document-obligation mapping, and legacy `CS` to future `CSV` naming.
 - `M15.5` was documentation/specification-only and did not implement deployment compiled lookup, runtime migration, validation/freeze engine, CLI changes, orchestration/service hardening, AI runtime behavior, or final canonical release.
-- The active build path now moves to `M15.6` — Library validation, freeze, and release discipline.
+- `M15.6` is completed. Evidence is preserved in `docs/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_6_LIBRARY_RELEASE_RULES.yaml`, `asbp/governed_library/library_release_validation.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_release_validation.py`.
+- `M15.6` introduced testable structural validity, taxonomy/identity validity, cross-library linkage validity, compiled lookup consistency checks, and freeze/release status expectations for governed library release manifests.
+- `M15.6` enforced version-pinned refs, rejected `latest/current/wildcard` and unversioned refs, preserved `CS` as the context-selector prefix, preserved `CSV` as the computerized-systems domain acronym, and rejected legacy computerized-system `CS-CS`, `TP-CS`, `PROF-CS`, and `PB-CS` refs in future canonical release manifests.
+- `M15.6` preserved `runtime_authority_status = not_runtime_authority` and `deployment_compiled_status = not_compiled`; it did not implement runtime migration, deployment compiled lookup generation, CLI changes, orchestration/service hardening, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
+- `M15.6` validation passed locally with `python -m pytest -q` — `743 passed in 43.84s`.
+- The active build path now moves to `M15.7` — Orchestration / service hardening on expanded governed assets.
