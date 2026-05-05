@@ -1,0 +1,53 @@
+doc_type: ai_context_packaging_rules
+canonical_name: M16_2_CONTEXT_PACKAGING_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M16.2
+milestone: M16
+phase: Phase 6 — AI Layer
+runtime_status: context_packaging_boundary_only
+supported_context_source_families:
+- template_retrieval
+- dcf_extracted_input
+- document_lifecycle_state
+- resolved_library_asset
+- task_workflow_state
+- export_reporting_requirement
+- standards_guardrail_context
+supported_context_source_roles:
+- authoritative_governed_source
+- governed_engine_input
+- governed_contract
+- non_authoritative_support_context
+supported_payload_classifications:
+- structured_input
+- state_snapshot
+- requirement_contract
+- supporting_context
+supported_evidence_statuses:
+- validated
+- partial
+- unavailable
+source_role_policy:
+- every context item must preserve source role clarity
+- support context cannot be promoted into authority
+- context items cannot define execution truth
+- context packages cannot include raw free-form prompts
+document_required_source_families:
+- template_retrieval
+- document_lifecycle_state
+- standards_guardrail_context
+reporting_required_source_families:
+- export_reporting_requirement
+- standards_guardrail_context
+blocked_behaviors:
+- actual_llm_calls
+- prompt_templates
+- generation_modes
+- document_or_report_text_generation
+- output_acceptance
+- retry_fallback_behavior
+- ai_evaluation
+- retrieval_use_governance
+- recommendation_behavior
+- ui_api_behavior
