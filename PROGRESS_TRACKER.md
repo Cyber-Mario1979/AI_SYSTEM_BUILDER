@@ -28,19 +28,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M16.2` — Context packaging from governed engine inputs
+`M16.3` — Controlled generation modes for document/reporting families
 
 ## Latest Completed Checkpoint
 
-`M16.1` — AI runtime boundary for document/reporting jobs completed
+`M16.2` — Context packaging from governed engine inputs completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M16.2` — Context packaging from governed engine inputs
+`M16.3` — Controlled generation modes for document/reporting families
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `760 passed in 42.48s`
+`python -m pytest -q` — `770 passed in 45.30s`
 
 ## Active Notes
 
@@ -62,4 +62,9 @@ Phase 6 — AI Layer
 - `M16.1` confirmed that AI runtime entry is not source truth, execution truth, approval authority, workflow mutation authority, or validation/UAT authority.
 - `M16.1` did not implement actual LLM calls, prompt templates, context packaging, generation modes, output acceptance/retry/fallback behavior, AI evaluation, retrieval-use governance, recommendation behavior, UI/API behavior, runtime document generation, or runtime export generation.
 - `M16.1` validation passed locally with `python -m pytest -q` — `760 passed in 42.48s`.
-- The active build path now moves to `M16.2` — Context packaging from governed engine inputs.
+- `M16.2` is completed. Evidence is preserved in `docs/M16_CONTEXT_PACKAGING.md`, `docs/design_spec/ai_runtime/M16_2_CONTEXT_PACKAGING_RULES.yaml`, `asbp/ai_runtime/context_packaging.py`, `asbp/ai_runtime/__init__.py`, and `tests/test_ai_runtime_context_packaging.py`.
+- `M16.2` introduced the AI context-packaging boundary from governed engine inputs, including context source families, source roles, payload classifications, evidence statuses, required document/reporting context families, and validation rules for context items and context packages.
+- `M16.2` preserved source-role clarity, prevented support context from being promoted into authority, prevented AI context from defining execution truth, and blocked raw/free-form prompts, prompt templates, direct LLM call fields, and state mutation payloads.
+- `M16.2` did not implement actual LLM calls, prompt templates, generation modes, document/report text generation, output acceptance, retry/fallback behavior, AI evaluation, retrieval-use governance, recommendation behavior, or UI/API behavior.
+- `M16.2` validation passed locally with `python -m pytest -q` — `770 passed in 45.30s`.
+- The active build path now moves to `M16.3` — Controlled generation modes for document/reporting families.
