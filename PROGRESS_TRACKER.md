@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.5` — Calendar / standards / profile / mapping expansion
+`M15.6` — Library validation, freeze, and release discipline
 
 ## Latest Completed Checkpoint
 
-`M15.4` — Task-pool expansion completed
+`M15.5` — Calendar / standards / profile / mapping expansion completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.5` — Calendar / standards / profile / mapping expansion
+`M15.6` — Library validation, freeze, and release discipline
 
 ## Latest Verified Validation Status
 
@@ -64,4 +64,10 @@ Phase 5 — Core Engine Completion
 - `M15.4` preserved explicit task-pool source-definition identity, profile-key-only duration references, deterministic `atomic_task_id` dependency wiring, and downstream workflow compatibility.
 - `M15.4` recorded the `TP-CS-E2E@v1` to `TP-CSV-E2E@v1` future canonical mapping while leaving runtime migration pending.
 - `M15.4` was documentation/specification-only and did not implement profile duration values, calendar expansion, standards-bundle expansion, mapping metadata, deployment compiled lookup, task-pool validation/freeze engine, CLI changes, orchestration/service hardening, runtime migration, or AI runtime behavior.
-- The active build path now moves to `M15.5` — Calendar / standards / profile / mapping expansion.
+- `M15.5` is completed. Evidence is preserved in `docs/M15_SUPPORT_LIBRARY_EXPANSION.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_5_SUPPORT_LIBRARY_EXPANSION_MAP.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/profiles/M15_5_PROFILES_DRAFT_v1.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/standards/M15_5_STANDARDS_APPLICABILITY_DRAFT_v1.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/calendars/M15_5_CALENDAR_PLANNING_BASIS_DRAFT_v1.yaml`, and `docs/design_spec/valor_pack_snapshot/expansion/mapping/M15_5_CROSS_LIBRARY_MAPPING_DRAFT_v1.yaml`.
+- `M15.5` recorded 12 draft profile records and 103 draft profile keys linked to the M15.4 draft task-pool records.
+- `M15.5` preserved `CAL-WORKWEEK@v1` as the draft calendar/planning-basis baseline and introduced 12 draft planning-basis records linking selector, task pool, profile, calendar, duration source, and dependency source.
+- `M15.5` recorded draft standards applicability: `SB-CQV-CORE-EG@v1` as the default core baseline for all PE/UT/CR/CSV coverage, `SB-CLEANROOM-ADDON@v1` for CR coverage, and `SB-CSV-ADDON@v1` for CSV coverage.
+- `M15.5` recorded draft cross-library mapping metadata for selector-to-support mapping, task-to-profile-key mapping, document-obligation mapping, and legacy `CS` to future `CSV` naming.
+- `M15.5` was documentation/specification-only and did not implement deployment compiled lookup, runtime migration, validation/freeze engine, CLI changes, orchestration/service hardening, AI runtime behavior, or final canonical release.
+- The active build path now moves to `M15.6` — Library validation, freeze, and release discipline.
