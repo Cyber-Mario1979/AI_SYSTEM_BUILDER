@@ -28,19 +28,19 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.7` — Orchestration / service hardening on expanded governed assets
+`M15.8` — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-`M15.6` — Library validation, freeze, and release discipline completed
+`M15.7` — Orchestration / service hardening on expanded governed assets completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.7` — Orchestration / service hardening on expanded governed assets
+`M15.8` — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `743 passed in 43.84s`
+`python -m pytest -q` — `750 passed in 42.57s`
 
 ## Active Notes
 
@@ -75,4 +75,8 @@ Phase 5 — Core Engine Completion
 - `M15.6` enforced version-pinned refs, rejected `latest/current/wildcard` and unversioned refs, preserved `CS` as the context-selector prefix, preserved `CSV` as the computerized-systems domain acronym, and rejected legacy computerized-system `CS-CS`, `TP-CS`, `PROF-CS`, and `PB-CS` refs in future canonical release manifests.
 - `M15.6` preserved `runtime_authority_status = not_runtime_authority` and `deployment_compiled_status = not_compiled`; it did not implement runtime migration, deployment compiled lookup generation, CLI changes, orchestration/service hardening, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
 - `M15.6` validation passed locally with `python -m pytest -q` — `743 passed in 43.84s`.
-- The active build path now moves to `M15.7` — Orchestration / service hardening on expanded governed assets.
+- `M15.7` is completed. Evidence is preserved in `docs/M15_ORCHESTRATION_SERVICE_HARDENING.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_7_ORCHESTRATION_SERVICE_HARDENING_RULES.yaml`, `asbp/governed_library/service_hardening.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_service_hardening.py`.
+- `M15.7` introduced governed-library service request shape rules, M15.6 release-manifest preflight dependency, adapter leakage prevention, runtime migration blocking, deployment compilation blocking, support retrieval source-truth blocking, and document/export invocation context preparation rules.
+- `M15.7` preserved service-only preflight behavior and did not implement CLI command surfaces, runtime migration, deployment compiled lookup generation, actual document generation, actual export generation, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
+- `M15.7` validation passed locally with `python -m pytest -q` — `750 passed in 42.57s`.
+- The active build path now moves to `M15.8` — Validation checkpoint.
