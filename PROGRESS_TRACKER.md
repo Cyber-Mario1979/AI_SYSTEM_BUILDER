@@ -24,19 +24,19 @@ Keep detailed notes only for the active milestone; once a milestone closes, comp
 
 ## Current Phase
 
-Phase 5 — Core Engine Completion
+Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M15.10` — Milestone closeout
+`M16.1` — AI runtime boundary for document/reporting jobs
 
 ## Latest Completed Checkpoint
 
-`M15.9` — Milestone UAT checkpoint completed
+`M15.10` — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.10` — Milestone closeout
+`M16.1` — AI runtime boundary for document/reporting jobs
 
 ## Latest Verified Validation Status
 
@@ -52,39 +52,9 @@ Phase 5 — Core Engine Completion
 - `M14` is closed and accepted. Detailed M14 evidence is preserved in M14 implementation commits, `docs/M14_VALIDATION_CHECKPOINT.md`, `docs/UAT/M14_UAT_PROTOCOL.md`, `docs/UAT/M14_UAT_REPORT.md`, and `docs/M14_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M14` closed on the repo-real `asbp.resolver_registry` boundary with resolver / registry access controls, governed asset identity and version-pinned lookup, calendar/planning-basis resolution contracts, authored-source versus deployment-compiled separation, governed versus support-retrieval separation, validation evidence, and UAT evidence.
 - `M14` also preserved `docs/planning/UI_PRELIMINARY_BOUNDARIES.md` as a future UI/advisory-layer planning guardrail only; it does not authorize frontend implementation or change the active coding roadmap.
-- `M15.1` is completed. Evidence is preserved in `audits/M15_LIBRARY_GAP_ANALYSIS_AND_COVERAGE_AUDIT.md`.
-- `M15.2` is completed. Evidence is preserved in `docs/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md`, `asbp/governed_library/coverage_pack.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_coverage_pack.py`.
-- `M15.2` established the bounded coverage-pack model, expansion-unit expectations, governed artifact-family coordination rules, authored-source reference rules, deployment-compiled reference rules, and source-to-compiled linkage constraints.
-- `M15.3` is completed. Evidence is preserved in `docs/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` and `docs/design_spec/valor_pack_snapshot/expansion/M15_3_SELECTOR_SCOPE_EXPANSION_MAP.yaml`.
-- `M15.3` recorded the expanded selector/scope target before ASBP-native migration, including the `DECOM` scope, the `CSV` computerized-systems domain acronym decision, the rule that `CS` remains the context-selector prefix, the target PE/UT/CR/CSV selector matrix, missing selector records, and CSV decommissioning minimum requirements.
-- `M15.3` confirmed that `RC`, `MILL`, and `BIN_BLENDER` already exist in the current user-facing Process Equipment WP header preset surface.
-- `M15.3` was documentation/specification-only and did not implement task-pool payloads, profile durations, standards bundles, calendars, mapping metadata, deployment compilation, orchestration/service hardening, CLI commands, AI runtime behavior, or direct ASBP runtime migration.
-- `M15.4` is completed. Evidence is preserved in `docs/M15_TASK_POOL_EXPANSION.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_4_TASK_POOL_EXPANSION_MAP.yaml`, and `docs/design_spec/valor_pack_snapshot/expansion/task_pools/M15_4_TASK_POOLS_DRAFT_v1.yaml`.
-- `M15.4` recorded 12 draft task-pool source definitions and 103 draft task rows for the missing PE/UT/CR/CSV coverage families identified by M15.3.
-- `M15.4` preserved explicit task-pool source-definition identity, profile-key-only duration references, deterministic `atomic_task_id` dependency wiring, and downstream workflow compatibility.
-- `M15.4` recorded the `TP-CS-E2E@v1` to `TP-CSV-E2E@v1` future canonical mapping while leaving runtime migration pending.
-- `M15.4` was documentation/specification-only and did not implement profile duration values, calendar expansion, standards-bundle expansion, mapping metadata, deployment compiled lookup, task-pool validation/freeze engine, CLI changes, orchestration/service hardening, runtime migration, or AI runtime behavior.
-- `M15.5` is completed. Evidence is preserved in `docs/M15_SUPPORT_LIBRARY_EXPANSION.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_5_SUPPORT_LIBRARY_EXPANSION_MAP.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/profiles/M15_5_PROFILES_DRAFT_v1.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/standards/M15_5_STANDARDS_APPLICABILITY_DRAFT_v1.yaml`, `docs/design_spec/valor_pack_snapshot/expansion/calendars/M15_5_CALENDAR_PLANNING_BASIS_DRAFT_v1.yaml`, and `docs/design_spec/valor_pack_snapshot/expansion/mapping/M15_5_CROSS_LIBRARY_MAPPING_DRAFT_v1.yaml`.
-- `M15.5` recorded 12 draft profile records and 103 draft profile keys linked to the M15.4 draft task-pool records.
-- `M15.5` preserved `CAL-WORKWEEK@v1` as the draft calendar/planning-basis baseline and introduced 12 draft planning-basis records linking selector, task pool, profile, calendar, duration source, and dependency source.
-- `M15.5` recorded draft standards applicability: `SB-CQV-CORE-EG@v1` as the default core baseline for all PE/UT/CR/CSV coverage, `SB-CLEANROOM-ADDON@v1` for CR coverage, and `SB-CSV-ADDON@v1` for CSV coverage.
-- `M15.5` recorded draft cross-library mapping metadata for selector-to-support mapping, task-to-profile-key mapping, document-obligation mapping, and legacy `CS` to future `CSV` naming.
-- `M15.5` was documentation/specification-only and did not implement deployment compiled lookup, runtime migration, validation/freeze engine, CLI changes, orchestration/service hardening, AI runtime behavior, or final canonical release.
-- `M15.6` is completed. Evidence is preserved in `docs/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_6_LIBRARY_RELEASE_RULES.yaml`, `asbp/governed_library/library_release_validation.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_release_validation.py`.
-- `M15.6` introduced testable structural validity, taxonomy/identity validity, cross-library linkage validity, compiled lookup consistency checks, and freeze/release status expectations for governed library release manifests.
-- `M15.6` enforced version-pinned refs, rejected `latest/current/wildcard` and unversioned refs, preserved `CS` as the context-selector prefix, preserved `CSV` as the computerized-systems domain acronym, and rejected legacy computerized-system `CS-CS`, `TP-CS`, `PROF-CS`, and `PB-CS` refs in future canonical release manifests.
-- `M15.6` preserved `runtime_authority_status = not_runtime_authority` and `deployment_compiled_status = not_compiled`; it did not implement runtime migration, deployment compiled lookup generation, CLI changes, orchestration/service hardening, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
-- `M15.6` validation passed locally with `python -m pytest -q` — `743 passed in 43.84s`.
-- `M15.7` is completed. Evidence is preserved in `docs/M15_ORCHESTRATION_SERVICE_HARDENING.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_7_ORCHESTRATION_SERVICE_HARDENING_RULES.yaml`, `asbp/governed_library/service_hardening.py`, `asbp/governed_library/__init__.py`, and `tests/test_governed_library_service_hardening.py`.
-- `M15.7` introduced governed-library service request shape rules, M15.6 release-manifest preflight dependency, adapter leakage prevention, runtime migration blocking, deployment compilation blocking, support retrieval source-truth blocking, and document/export invocation context preparation rules.
-- `M15.7` preserved service-only preflight behavior and did not implement CLI command surfaces, runtime migration, deployment compiled lookup generation, actual document generation, actual export generation, AI runtime behavior, M15.8 validation checkpoint closure, M15.9 UAT, or M15.10 closeout.
-- `M15.7` validation passed locally with `python -m pytest -q` — `750 passed in 42.57s`.
-- `M15.8` is completed. Evidence is preserved in `docs/M15_VALIDATION_CHECKPOINT.md`.
-- `M15.8` recorded the formal M15 validation checkpoint after completion of M15.1 through M15.7, with validation command `python -m pytest -q`, result `750 passed in 42.44s`, and validation decision `PASS`.
-- `M15.8` confirmed readiness to proceed to `M15.9` — Milestone UAT checkpoint.
-- `M15.8` was validation-evidence-only and did not implement new library scopes, new task pools, new profiles, new standards bundles, new calendar families, new mapping metadata, deployment compiled lookup generation, runtime migration, CLI command surfaces, actual document generation, actual export generation, AI runtime behavior, M15.9 UAT, or M15.10 closeout.
-- `M15.9` is completed. Evidence is preserved in `docs/UAT/M15_UAT_PROTOCOL.md` and `docs/UAT/M15_UAT_REPORT.md`.
-- `M15.9` recorded UAT status `Complete`, acceptance decision `Pass`, open UAT blockers `None`, and next checkpoint `M15.10` — Milestone closeout.
-- `M15.9` accepted Milestone 15 as a governed library expansion and engine-hardening milestone covering library audit, coverage-pack framework, selector/scope expansion, task-pool expansion, support-library linkage, validation/freeze/release discipline, and service-hardening preflight.
-- `M15.9` confirmed that M15 remains correctly bounded and does not claim runtime migration, deployment-compiled lookup generation, CLI implementation, actual document/export generation, AI runtime behavior, or final Phase 5 closeout.
-- The active build path now moves to `M15.10` — Milestone closeout.
+- `M15` is closed and accepted. Detailed M15 evidence is preserved in `docs/M15_VALIDATION_CHECKPOINT.md`, `docs/UAT/M15_UAT_PROTOCOL.md`, `docs/UAT/M15_UAT_REPORT.md`, and `docs/M15_CLOSEOUT_NOTES.md`; it is not repeated here.
+- `M15` closed on the repo-real `asbp.governed_library` boundary with coverage-pack framework, governed library expansion evidence, release validation/freeze discipline, service-hardening preflight controls, validation evidence, and UAT evidence.
+- `M15.10` closeout records Phase 5 — Core Engine Completion as complete for the approved roadmap scope.
+- Phase 6 — AI Layer is now the active phase.
+- Phase 6 work must remain downstream from deterministic truth, governed retrieval, document/export contracts, governed library boundaries, and runtime/service boundaries.
+- The active build path now moves to `M16.1` — AI runtime boundary for document/reporting jobs.
