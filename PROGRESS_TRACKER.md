@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.4` — Task-pool expansion
+`M15.5` — Calendar / standards / profile / mapping expansion
 
 ## Latest Completed Checkpoint
 
-`M15.3` — Preset / selector library expansion completed
+`M15.4` — Task-pool expansion completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.4` — Task-pool expansion
+`M15.5` — Calendar / standards / profile / mapping expansion
 
 ## Latest Verified Validation Status
 
@@ -59,4 +59,9 @@ Phase 5 — Core Engine Completion
 - `M15.3` recorded the expanded selector/scope target before ASBP-native migration, including the `DECOM` scope, the `CSV` computerized-systems domain acronym decision, the rule that `CS` remains the context-selector prefix, the target PE/UT/CR/CSV selector matrix, missing selector records, and CSV decommissioning minimum requirements.
 - `M15.3` confirmed that `RC`, `MILL`, and `BIN_BLENDER` already exist in the current user-facing Process Equipment WP header preset surface.
 - `M15.3` was documentation/specification-only and did not implement task-pool payloads, profile durations, standards bundles, calendars, mapping metadata, deployment compilation, orchestration/service hardening, CLI commands, AI runtime behavior, or direct ASBP runtime migration.
-- The active build path now moves to `M15.4` — Task-pool expansion.
+- `M15.4` is completed. Evidence is preserved in `docs/M15_TASK_POOL_EXPANSION.md`, `docs/design_spec/valor_pack_snapshot/expansion/M15_4_TASK_POOL_EXPANSION_MAP.yaml`, and `docs/design_spec/valor_pack_snapshot/expansion/task_pools/M15_4_TASK_POOLS_DRAFT_v1.yaml`.
+- `M15.4` recorded 12 draft task-pool source definitions and 103 draft task rows for the missing PE/UT/CR/CSV coverage families identified by M15.3.
+- `M15.4` preserved explicit task-pool source-definition identity, profile-key-only duration references, deterministic `atomic_task_id` dependency wiring, and downstream workflow compatibility.
+- `M15.4` recorded the `TP-CS-E2E@v1` to `TP-CSV-E2E@v1` future canonical mapping while leaving runtime migration pending.
+- `M15.4` was documentation/specification-only and did not implement profile duration values, calendar expansion, standards-bundle expansion, mapping metadata, deployment compiled lookup, task-pool validation/freeze engine, CLI changes, orchestration/service hardening, runtime migration, or AI runtime behavior.
+- The active build path now moves to `M15.5` — Calendar / standards / profile / mapping expansion.
