@@ -1,0 +1,43 @@
+doc_type: library_release_rules
+canonical_name: M15_6_LIBRARY_RELEASE_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.6
+runtime_status: not_runtime_authority
+deployment_compiled_status: not_compiled
+supported_release_statuses:
+- draft_not_runtime_authority
+- validation_candidate
+- freeze_candidate
+- frozen_released
+- rejected
+structural_validity:
+- required release-manifest string fields must be present and non-empty
+- required reference lists must be present and non-empty
+- link records must resolve to declared reference lists
+- task/profile-key mappings must resolve to declared task pools and profiles
+- document-obligation mappings must be non-empty per task pool
+taxonomy_identity_validity:
+- all refs must be version-pinned
+- latest/current/wildcard refs are rejected
+- CS remains the context-selector prefix only
+- CSV is the computerized-systems domain acronym
+- legacy CS-CS, TP-CS, PROF-CS, and PB-CS future-canonical refs are rejected
+cross_library_linkage_validity:
+- selector refs must link to task-pool refs
+- selector refs must link to profile refs
+- selector refs must link to calendar refs
+- selector refs must link to standards-bundle refs
+- selector refs must link to planning-basis refs
+compiled_lookup_consistency:
+- compiled refs must link back to included authored source refs
+- compiled lookup must not become source authority
+- M15.6 does not generate deployment-compiled lookup
+not_in_scope:
+- runtime migration
+- deployment compiled lookup generation
+- cli changes
+- orchestration service hardening
+- ai runtime behavior
+- milestone validation checkpoint closure
+- milestone uat
