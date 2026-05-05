@@ -57,9 +57,9 @@ No file movement is authorized until this map is accepted.
 
 | Current path | Proposed path | Wave | Notes |
 |---|---|---:|---|
-| `docs/M12_CLOSEOUT_NOTES.md` | `docs/milestones/M12/M12_CLOSEOUT_NOTES.md` | 2 | Closed milestone evidence |
-| `docs/UAT/M12_UAT_PROTOCOL.md` | `docs/UAT/M12/M12_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
-| `docs/UAT/M12_UAT_REPORT.md` | `docs/UAT/M12/M12_UAT_REPORT.md` | 2 | UAT evidence grouping |
+| `docs/milestones/M12/M12_CLOSEOUT_NOTES.md` | `docs/milestones/M12/M12_CLOSEOUT_NOTES.md` | 2 | Closed milestone evidence |
+| `docs/UAT/M12/M12_UAT_PROTOCOL.md` | `docs/UAT/M12/M12_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
+| `docs/UAT/M12/M12_UAT_REPORT.md` | `docs/UAT/M12/M12_UAT_REPORT.md` | 2 | UAT evidence grouping |
 
 ---
 
@@ -67,10 +67,10 @@ No file movement is authorized until this map is accepted.
 
 | Current path | Proposed path | Wave | Notes |
 |---|---|---:|---|
-| `docs/M13_VALIDATION_CHECKPOINT.md` | `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
-| `docs/M13_CLOSEOUT_NOTES.md` | `docs/milestones/M13/M13_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
-| `docs/UAT/M13_UAT_PROTOCOL.md` | `docs/UAT/M13/M13_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
-| `docs/UAT/M13_UAT_REPORT.md` | `docs/UAT/M13/M13_UAT_REPORT.md` | 2 | UAT evidence grouping |
+| `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md` | `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
+| `docs/milestones/M13/M13_CLOSEOUT_NOTES.md` | `docs/milestones/M13/M13_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
+| `docs/UAT/M13/M13_UAT_PROTOCOL.md` | `docs/UAT/M13/M13_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
+| `docs/UAT/M13/M13_UAT_REPORT.md` | `docs/UAT/M13/M13_UAT_REPORT.md` | 2 | UAT evidence grouping |
 
 ---
 
@@ -78,10 +78,10 @@ No file movement is authorized until this map is accepted.
 
 | Current path | Proposed path | Wave | Notes |
 |---|---|---:|---|
-| `docs/M14_VALIDATION_CHECKPOINT.md` | `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
-| `docs/M14_CLOSEOUT_NOTES.md` | `docs/milestones/M14/M14_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
-| `docs/UAT/M14_UAT_PROTOCOL.md` | `docs/UAT/M14/M14_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
-| `docs/UAT/M14_UAT_REPORT.md` | `docs/UAT/M14/M14_UAT_REPORT.md` | 2 | UAT evidence grouping |
+| `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md` | `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
+| `docs/milestones/M14/M14_CLOSEOUT_NOTES.md` | `docs/milestones/M14/M14_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
+| `docs/UAT/M14/M14_UAT_PROTOCOL.md` | `docs/UAT/M14/M14_UAT_PROTOCOL.md` | 2 | UAT evidence grouping |
+| `docs/UAT/M14/M14_UAT_REPORT.md` | `docs/UAT/M14/M14_UAT_REPORT.md` | 2 | UAT evidence grouping |
 
 ---
 
@@ -89,14 +89,14 @@ No file movement is authorized until this map is accepted.
 
 | Current path | Proposed path | Wave | Notes |
 |---|---|---:|---|
-| `docs/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md` | `docs/milestones/M15/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md` | 2 | Checkpoint evidence |
-| `docs/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` | `docs/milestones/M15/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` | 2 | Checkpoint evidence |
-| `docs/M15_TASK_POOL_EXPANSION.md` | `docs/milestones/M15/M15_TASK_POOL_EXPANSION.md` | 2 | Checkpoint evidence |
-| `docs/M15_SUPPORT_LIBRARY_EXPANSION.md` | `docs/milestones/M15/M15_SUPPORT_LIBRARY_EXPANSION.md` | 2 | Checkpoint evidence |
-| `docs/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md` | `docs/milestones/M15/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md` | 2 | Checkpoint evidence |
-| `docs/M15_ORCHESTRATION_SERVICE_HARDENING.md` | `docs/milestones/M15/M15_ORCHESTRATION_SERVICE_HARDENING.md` | 2 | Checkpoint evidence |
-| `docs/M15_VALIDATION_CHECKPOINT.md` | `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
-| `docs/M15_CLOSEOUT_NOTES.md` | `docs/milestones/M15/M15_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
+| `docs/milestones/M15/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md` | `docs/milestones/M15/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` | `docs/milestones/M15/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_TASK_POOL_EXPANSION.md` | `docs/milestones/M15/M15_TASK_POOL_EXPANSION.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_SUPPORT_LIBRARY_EXPANSION.md` | `docs/milestones/M15/M15_SUPPORT_LIBRARY_EXPANSION.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md` | `docs/milestones/M15/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_ORCHESTRATION_SERVICE_HARDENING.md` | `docs/milestones/M15/M15_ORCHESTRATION_SERVICE_HARDENING.md` | 2 | Checkpoint evidence |
+| `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md` | `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md` | 2 | Validation evidence |
+| `docs/milestones/M15/M15_CLOSEOUT_NOTES.md` | `docs/milestones/M15/M15_CLOSEOUT_NOTES.md` | 2 | Closeout evidence |
 
 ---
 
@@ -104,8 +104,8 @@ No file movement is authorized until this map is accepted.
 
 | Current path | Proposed path | Wave | Notes |
 |---|---|---:|---|
-| `docs/UAT/M15_UAT_PROTOCOL.md` | `docs/UAT/M15/M15_UAT_PROTOCOL.md` | 2 | UAT protocol |
-| `docs/UAT/M15_UAT_REPORT.md` | `docs/UAT/M15/M15_UAT_REPORT.md` | 2 | UAT report |
+| `docs/UAT/M15/M15_UAT_PROTOCOL.md` | `docs/UAT/M15/M15_UAT_PROTOCOL.md` | 2 | UAT protocol |
+| `docs/UAT/M15/M15_UAT_REPORT.md` | `docs/UAT/M15/M15_UAT_REPORT.md` | 2 | UAT report |
 
 ---
 

@@ -36,7 +36,7 @@ This UAT covers the Milestone 14 implementation boundary through:
 - Latest validation result is green:
   - `python -m pytest -q` — `724 passed in 51.47s`
 - Validation evidence exists at:
-  - `docs/M14_VALIDATION_CHECKPOINT.md`
+  - `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md`
 
 ## UAT Method
 
@@ -109,7 +109,7 @@ Confirm that technical validation supports milestone acceptance.
 
 Expected result:
 
-- `docs/M14_VALIDATION_CHECKPOINT.md` records successful validation.
+- `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md` records successful validation.
 - Latest validation result is:
   - `python -m pytest -q` — `724 passed in 51.47s`
 - No unresolved validation defect is identified for the M14 boundary.
@@ -139,7 +139,7 @@ Allowed UAT decisions:
 
 The executed UAT report must be stored at:
 
-`docs/UAT/M14_UAT_REPORT.md`
+`docs/UAT/M14/M14_UAT_REPORT.md`
 
 ## Recorded On
 

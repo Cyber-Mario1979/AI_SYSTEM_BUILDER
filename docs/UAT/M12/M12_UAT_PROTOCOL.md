@@ -23,7 +23,7 @@ This file is a UAT protocol only.
 
 Execution evidence and the final acceptance decision must be recorded after execution in:
 
-- `docs/UAT/M12_UAT_REPORT.md`
+- `docs/UAT/M12/M12_UAT_REPORT.md`
 
 ## Protocol Status
 

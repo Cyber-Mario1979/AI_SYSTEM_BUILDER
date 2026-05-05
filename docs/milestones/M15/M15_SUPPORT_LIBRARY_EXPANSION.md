@@ -52,7 +52,7 @@ M15.4 defined 12 draft task-pool source definitions and left profile duration va
 
 This package adds:
 
-- `docs/M15_SUPPORT_LIBRARY_EXPANSION.md`
+- `docs/milestones/M15/M15_SUPPORT_LIBRARY_EXPANSION.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_5_SUPPORT_LIBRARY_EXPANSION_MAP.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/profiles/M15_5_PROFILES_DRAFT_v1.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/standards/M15_5_STANDARDS_APPLICABILITY_DRAFT_v1.yaml`

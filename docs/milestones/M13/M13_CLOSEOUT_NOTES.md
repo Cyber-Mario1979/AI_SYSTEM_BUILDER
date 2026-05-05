@@ -24,9 +24,9 @@ Milestone 13 closeout is based on:
 
 - completed `M13.1` through `M13.6` implementation checkpoints
 - completed `M13.7` validation checkpoint
-- recorded `docs/M13_VALIDATION_CHECKPOINT.md`
-- recorded `docs/UAT/M13_UAT_PROTOCOL.md`
-- recorded `docs/UAT/M13_UAT_REPORT.md`
+- recorded `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md`
+- recorded `docs/UAT/M13/M13_UAT_PROTOCOL.md`
+- recorded `docs/UAT/M13/M13_UAT_REPORT.md`
 - validated technical baseline:
   - `python -m pytest -q`
   - recorded result: `659 passed in 45.24s`

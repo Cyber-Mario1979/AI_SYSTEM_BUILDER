@@ -14,7 +14,7 @@ Complete
 
 ## UAT Protocol Reference
 
-`docs/UAT/M14_UAT_PROTOCOL.md`
+`docs/UAT/M14/M14_UAT_PROTOCOL.md`
 
 ## UAT Scope
 
@@ -31,7 +31,7 @@ This UAT covers the Milestone 14 implementation boundary through:
 
 Validation checkpoint evidence:
 
-`docs/M14_VALIDATION_CHECKPOINT.md`
+`docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md`
 
 Latest validation result:
 
@@ -99,7 +99,7 @@ The latest recorded validation result is:
 
 Validation evidence exists at:
 
-`docs/M14_VALIDATION_CHECKPOINT.md`
+`docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md`
 
 ## Acceptance Decision
 

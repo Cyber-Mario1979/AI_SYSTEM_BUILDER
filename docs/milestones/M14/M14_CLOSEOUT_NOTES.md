@@ -24,9 +24,9 @@ Milestone 14 closeout is based on:
 
 - completed `M14.1` through `M14.5` implementation checkpoints
 - completed `M14.6` validation checkpoint
-- recorded `docs/M14_VALIDATION_CHECKPOINT.md`
-- recorded `docs/UAT/M14_UAT_PROTOCOL.md`
-- recorded `docs/UAT/M14_UAT_REPORT.md`
+- recorded `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md`
+- recorded `docs/UAT/M14/M14_UAT_PROTOCOL.md`
+- recorded `docs/UAT/M14/M14_UAT_REPORT.md`
 - validated technical baseline:
   - `python -m pytest -q`
   - recorded result: `724 passed in 51.47s`

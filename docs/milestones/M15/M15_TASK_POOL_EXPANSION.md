@@ -52,7 +52,7 @@ M15.4 uses that accepted selector/scope matrix as input.
 
 This package adds:
 
-- `docs/M15_TASK_POOL_EXPANSION.md`
+- `docs/milestones/M15/M15_TASK_POOL_EXPANSION.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_4_TASK_POOL_EXPANSION_MAP.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/task_pools/M15_4_TASK_POOLS_DRAFT_v1.yaml`
 

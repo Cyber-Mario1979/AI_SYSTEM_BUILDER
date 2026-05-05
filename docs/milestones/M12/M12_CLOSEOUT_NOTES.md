@@ -23,8 +23,8 @@ Milestone 12 closeout is based on:
 
 - completed `M12.1` through `M12.7` implementation checkpoints
 - completed `M12.8` validation checkpoint
-- recorded `docs/UAT/M12_UAT_PROTOCOL.md`
-- recorded `docs/UAT/M12_UAT_REPORT.md`
+- recorded `docs/UAT/M12/M12_UAT_PROTOCOL.md`
+- recorded `docs/UAT/M12/M12_UAT_REPORT.md`
 - validated technical baseline:
   - `python -m pytest -q`
   - recorded result: `596 passed in 46.46s`

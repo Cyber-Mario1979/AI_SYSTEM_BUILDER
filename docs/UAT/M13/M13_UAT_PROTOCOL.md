@@ -37,7 +37,7 @@ This UAT covers the Milestone 13 implementation boundary through:
 - Latest validation result is green:
   - `python -m pytest -q` — `659 passed in 45.24s`
 - Validation evidence exists at:
-  - `docs/M13_VALIDATION_CHECKPOINT.md`
+  - `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md`
 
 ## UAT Method
 
@@ -97,7 +97,7 @@ Confirm that technical validation supports milestone acceptance.
 
 Expected result:
 
-- `docs/M13_VALIDATION_CHECKPOINT.md` records successful validation.
+- `docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md` records successful validation.
 - Latest validation result is `659 passed in 45.24s`.
 
 ## Acceptance Criteria
@@ -125,7 +125,7 @@ Allowed UAT decisions:
 
 The executed UAT report must be stored at:
 
-`docs/UAT/M13_UAT_REPORT.md`
+`docs/UAT/M13/M13_UAT_REPORT.md`
 
 ## Recorded On
 

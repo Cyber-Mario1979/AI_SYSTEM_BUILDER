@@ -14,7 +14,7 @@ Complete
 
 ## UAT Protocol Reference
 
-`docs/UAT/M13_UAT_PROTOCOL.md`
+`docs/UAT/M13/M13_UAT_PROTOCOL.md`
 
 ## UAT Scope
 
@@ -32,7 +32,7 @@ This UAT covers the Milestone 13 implementation boundary through:
 
 Validation checkpoint evidence:
 
-`docs/M13_VALIDATION_CHECKPOINT.md`
+`docs/milestones/M13/M13_VALIDATION_CHECKPOINT.md`
 
 Latest validation result:
 

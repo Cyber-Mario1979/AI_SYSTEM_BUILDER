@@ -31,9 +31,9 @@ Milestone 15 closeout is based on:
 - completed `M15.1` through `M15.7` implementation / checkpoint evidence
 - completed `M15.8` validation checkpoint
 - completed `M15.9` milestone UAT checkpoint
-- recorded `docs/M15_VALIDATION_CHECKPOINT.md`
-- recorded `docs/UAT/M15_UAT_PROTOCOL.md`
-- recorded `docs/UAT/M15_UAT_REPORT.md`
+- recorded `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md`
+- recorded `docs/UAT/M15/M15_UAT_PROTOCOL.md`
+- recorded `docs/UAT/M15/M15_UAT_REPORT.md`
 - validated technical baseline:
   - `python -m pytest -q`
   - recorded result: `750 passed in 42.44s`
@@ -100,8 +100,8 @@ At closeout time, the accepted Milestone 15 boundary provides:
 - governed-library service hardening through `asbp.governed_library.service_hardening`
 - checkpoint evidence under `docs/`
 - expanded draft library and mapping evidence under `docs/design_spec/valor_pack_snapshot/expansion/`
-- validation evidence at `docs/M15_VALIDATION_CHECKPOINT.md`
-- UAT evidence at `docs/UAT/M15_UAT_PROTOCOL.md` and `docs/UAT/M15_UAT_REPORT.md`
+- validation evidence at `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md`
+- UAT evidence at `docs/UAT/M15/M15_UAT_PROTOCOL.md` and `docs/UAT/M15/M15_UAT_REPORT.md`
 
 This milestone closes on governed library expansion and service-hardening behavior.
 

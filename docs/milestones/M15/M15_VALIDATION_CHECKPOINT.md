@@ -59,25 +59,25 @@ This validation checkpoint covers the implemented and documented M15 scope:
 M15 evidence is preserved in:
 
 - `audits/M15_LIBRARY_GAP_ANALYSIS_AND_COVERAGE_AUDIT.md`
-- `docs/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md`
+- `docs/milestones/M15/M15_COVERAGE_PACK_EXPANSION_FRAMEWORK.md`
 - `asbp/governed_library/coverage_pack.py`
 - `tests/test_governed_library_coverage_pack.py`
-- `docs/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md`
+- `docs/milestones/M15/M15_PRESET_SELECTOR_LIBRARY_EXPANSION.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_3_SELECTOR_SCOPE_EXPANSION_MAP.yaml`
-- `docs/M15_TASK_POOL_EXPANSION.md`
+- `docs/milestones/M15/M15_TASK_POOL_EXPANSION.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_4_TASK_POOL_EXPANSION_MAP.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/task_pools/M15_4_TASK_POOLS_DRAFT_v1.yaml`
-- `docs/M15_SUPPORT_LIBRARY_EXPANSION.md`
+- `docs/milestones/M15/M15_SUPPORT_LIBRARY_EXPANSION.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_5_SUPPORT_LIBRARY_EXPANSION_MAP.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/profiles/M15_5_PROFILES_DRAFT_v1.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/standards/M15_5_STANDARDS_APPLICABILITY_DRAFT_v1.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/calendars/M15_5_CALENDAR_PLANNING_BASIS_DRAFT_v1.yaml`
 - `docs/design_spec/valor_pack_snapshot/expansion/mapping/M15_5_CROSS_LIBRARY_MAPPING_DRAFT_v1.yaml`
-- `docs/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md`
+- `docs/milestones/M15/M15_LIBRARY_VALIDATION_FREEZE_RELEASE.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_6_LIBRARY_RELEASE_RULES.yaml`
 - `asbp/governed_library/library_release_validation.py`
 - `tests/test_governed_library_release_validation.py`
-- `docs/M15_ORCHESTRATION_SERVICE_HARDENING.md`
+- `docs/milestones/M15/M15_ORCHESTRATION_SERVICE_HARDENING.md`
 - `docs/design_spec/valor_pack_snapshot/expansion/M15_7_ORCHESTRATION_SERVICE_HARDENING_RULES.yaml`
 - `asbp/governed_library/service_hardening.py`
 - `tests/test_governed_library_service_hardening.py`

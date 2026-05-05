@@ -10,7 +10,7 @@ This file records the execution evidence and final acceptance decision for the M
 
 It is the execution record paired with:
 
-- `docs/UAT/M12_UAT_PROTOCOL.md`
+- `docs/UAT/M12/M12_UAT_PROTOCOL.md`
 
 ## Execution Status
 

@@ -14,7 +14,7 @@ Complete
 
 ## UAT Protocol Reference
 
-`docs/UAT/M15_UAT_PROTOCOL.md`
+`docs/UAT/M15/M15_UAT_PROTOCOL.md`
 
 ## UAT Scope
 
@@ -33,7 +33,7 @@ This UAT covers the Milestone 15 implementation boundary through:
 
 Validation checkpoint evidence:
 
-`docs/M15_VALIDATION_CHECKPOINT.md`
+`docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md`
 
 Latest validation result:
 
@@ -119,7 +119,7 @@ The latest recorded validation result is:
 
 Validation evidence exists at:
 
-`docs/M15_VALIDATION_CHECKPOINT.md`
+`docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md`
 
 ## Acceptance Decision
 
