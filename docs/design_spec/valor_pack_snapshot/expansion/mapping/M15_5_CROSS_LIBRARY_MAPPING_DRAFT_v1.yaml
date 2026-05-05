@@ -1,0 +1,668 @@
+doc_type: cross_library_mapping_draft
+canonical_name: M15_5_CROSS_LIBRARY_MAPPING_DRAFT
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.5
+runtime_status: not_runtime_authority
+selector_to_support_mapping:
+- selector_ref: CS-PE-QUAL@v1
+  domain: PE
+  scope: QUAL
+  task_pool_ref: TP-PE-QUAL@v1
+  profile_ref: PROF-PE-QUAL@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  planning_basis_ref: PB-PE-QUAL@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-PE-COMM@v1
+  domain: PE
+  scope: COMM
+  task_pool_ref: TP-PE-COMM@v1
+  profile_ref: PROF-PE-COMM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  planning_basis_ref: PB-PE-COMM@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-PE-DECOM@v1
+  domain: PE
+  scope: DECOM
+  task_pool_ref: TP-PE-DECOM@v1
+  profile_ref: PROF-PE-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  planning_basis_ref: PB-PE-DECOM@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-UT-PV@v1
+  domain: UT
+  scope: PV
+  task_pool_ref: TP-UT-PV@v1
+  profile_ref: PROF-UT-PV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  planning_basis_ref: PB-UT-PV@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-UT-DECOM@v1
+  domain: UT
+  scope: DECOM
+  task_pool_ref: TP-UT-DECOM@v1
+  profile_ref: PROF-UT-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  planning_basis_ref: PB-UT-DECOM@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CR-POST-DEV@v1
+  domain: CR
+  scope: POST-DEV
+  task_pool_ref: TP-CR-POST-DEV@v1
+  profile_ref: PROF-CR-POST-DEV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  planning_basis_ref: PB-CR-POST-DEV@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CR-POST-CHANGE@v1
+  domain: CR
+  scope: POST-CHANGE
+  task_pool_ref: TP-CR-POST-CHANGE@v1
+  profile_ref: PROF-CR-POST-CHANGE@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  planning_basis_ref: PB-CR-POST-CHANGE@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CR-DECOM@v1
+  domain: CR
+  scope: DECOM
+  task_pool_ref: TP-CR-DECOM@v1
+  profile_ref: PROF-CR-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  planning_basis_ref: PB-CR-DECOM@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CSV-PV@v1
+  domain: CSV
+  scope: PV
+  task_pool_ref: TP-CSV-PV@v1
+  profile_ref: PROF-CSV-PV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  planning_basis_ref: PB-CSV-PV@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CSV-POST-DEV@v1
+  domain: CSV
+  scope: POST-DEV
+  task_pool_ref: TP-CSV-POST-DEV@v1
+  profile_ref: PROF-CSV-POST-DEV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  planning_basis_ref: PB-CSV-POST-DEV@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CSV-POST-CHANGE@v1
+  domain: CSV
+  scope: POST-CHANGE
+  task_pool_ref: TP-CSV-POST-CHANGE@v1
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  planning_basis_ref: PB-CSV-POST-CHANGE@v1
+  status: draft_cross_library_mapping
+- selector_ref: CS-CSV-DECOM@v1
+  domain: CSV
+  scope: DECOM
+  task_pool_ref: TP-CSV-DECOM@v1
+  profile_ref: PROF-CSV-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  planning_basis_ref: PB-CSV-DECOM@v1
+  status: draft_cross_library_mapping
+task_to_profile_key_mapping:
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: SCOPE
+  profile_key: PEQUAL_SCOPE_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: READINESS
+  profile_key: PEQUAL_READINESS_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: QRM
+  profile_key: PEQUAL_QRM_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: RTM
+  profile_key: PEQUAL_RTM_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: IQ
+  profile_key: PEQUAL_IQ_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: OQ
+  profile_key: PEQUAL_OQ_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: PQ
+  profile_key: PEQUAL_PQ_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: REPORT
+  profile_key: PEQUAL_REPORT_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-QUAL@v1
+  task_segment: DEV
+  profile_key: PEQUAL_DEV_DUR
+  profile_ref: PROF-PE-QUAL@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: PLAN
+  profile_key: PECOM_PLAN_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: READINESS
+  profile_key: PECOM_READINESS_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: MECH
+  profile_key: PECOM_MECH_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: INTERFACE
+  profile_key: PECOM_INTERFACE_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: STARTUP
+  profile_key: PECOM_STARTUP_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: SAFETY
+  profile_key: PECOM_SAFETY_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: PUNCH
+  profile_key: PECOM_PUNCH_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-COMM@v1
+  task_segment: TURNOVER
+  profile_key: PECOM_TURNOVER_DUR
+  profile_ref: PROF-PE-COMM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: PLAN
+  profile_key: PEDEC_PLAN_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: IMPACT
+  profile_key: PEDEC_IMPACT_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: DOC
+  profile_key: PEDEC_DOC_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: SAFE
+  profile_key: PEDEC_SAFE_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: ISOLATE
+  profile_key: PEDEC_ISOLATE_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: EXEC
+  profile_key: PEDEC_EXEC_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: VERIFY
+  profile_key: PEDEC_VERIFY_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: ARCHIVE
+  profile_key: PEDEC_ARCHIVE_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-PE-DECOM@v1
+  task_segment: CLOSE
+  profile_key: PEDEC_CLOSE_DUR
+  profile_ref: PROF-PE-DECOM@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: PLAN
+  profile_key: UTPV_PLAN_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: DOC
+  profile_key: UTPV_DOC_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: TREND
+  profile_key: UTPV_TREND_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: READY
+  profile_key: UTPV_READY_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: EXEC
+  profile_key: UTPV_EXEC_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: REPORT
+  profile_key: UTPV_REPORT_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: APPROVAL
+  profile_key: UTPV_APPROVAL_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-PV@v1
+  task_segment: DEV
+  profile_key: UTPV_DEV_DUR
+  profile_ref: PROF-UT-PV@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: PLAN
+  profile_key: UTDEC_PLAN_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: IMPACT
+  profile_key: UTDEC_IMPACT_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: DOC
+  profile_key: UTDEC_DOC_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: SAFE
+  profile_key: UTDEC_SAFE_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: ISOLATE
+  profile_key: UTDEC_ISOLATE_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: EXEC
+  profile_key: UTDEC_EXEC_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: VERIFY
+  profile_key: UTDEC_VERIFY_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: ARCHIVE
+  profile_key: UTDEC_ARCHIVE_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-UT-DECOM@v1
+  task_segment: CLOSE
+  profile_key: UTDEC_CLOSE_DUR
+  profile_ref: PROF-UT-DECOM@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: IMPACT
+  profile_key: CRDEV_IMPACT_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: STATUS
+  profile_key: CRDEV_STATUS_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: REVIEW
+  profile_key: CRDEV_REVIEW_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: MAP
+  profile_key: CRDEV_MAP_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: SCRIPT
+  profile_key: CRDEV_SCRIPT_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: EXEC
+  profile_key: CRDEV_EXEC_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: REPORT
+  profile_key: CRDEV_REPORT_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: RELEASE
+  profile_key: CRDEV_RELEASE_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-DEV@v1
+  task_segment: CAPA
+  profile_key: CRDEV_CAPA_DUR
+  profile_ref: PROF-CR-POST-DEV@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: IMPACT
+  profile_key: CRCHG_IMPACT_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: RISK
+  profile_key: CRCHG_RISK_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: RTM
+  profile_key: CRCHG_RTM_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: SCRIPT
+  profile_key: CRCHG_SCRIPT_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: READY
+  profile_key: CRCHG_READY_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: EXEC
+  profile_key: CRCHG_EXEC_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: REPORT
+  profile_key: CRCHG_REPORT_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  task_segment: RELEASE
+  profile_key: CRCHG_RELEASE_DUR
+  profile_ref: PROF-CR-POST-CHANGE@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: PLAN
+  profile_key: CRDEC_PLAN_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: IMPACT
+  profile_key: CRDEC_IMPACT_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: DOC
+  profile_key: CRDEC_DOC_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: SAFE
+  profile_key: CRDEC_SAFE_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: ISOLATE
+  profile_key: CRDEC_ISOLATE_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: EXEC
+  profile_key: CRDEC_EXEC_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: VERIFY
+  profile_key: CRDEC_VERIFY_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: ARCHIVE
+  profile_key: CRDEC_ARCHIVE_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CR-DECOM@v1
+  task_segment: CLOSE
+  profile_key: CRDEC_CLOSE_DUR
+  profile_ref: PROF-CR-DECOM@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: PLAN
+  profile_key: CSVPV_PLAN_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: DOC
+  profile_key: CSVPV_DOC_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: TREND
+  profile_key: CSVPV_TREND_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: READY
+  profile_key: CSVPV_READY_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: EXEC
+  profile_key: CSVPV_EXEC_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: REPORT
+  profile_key: CSVPV_REPORT_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: APPROVAL
+  profile_key: CSVPV_APPROVAL_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-PV@v1
+  task_segment: DEV
+  profile_key: CSVPV_DEV_DUR
+  profile_ref: PROF-CSV-PV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: IMPACT
+  profile_key: CSVDEV_IMPACT_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: STATUS
+  profile_key: CSVDEV_STATUS_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: REVIEW
+  profile_key: CSVDEV_REVIEW_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: MAP
+  profile_key: CSVDEV_MAP_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: SCRIPT
+  profile_key: CSVDEV_SCRIPT_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: EXEC
+  profile_key: CSVDEV_EXEC_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: REPORT
+  profile_key: CSVDEV_REPORT_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: RELEASE
+  profile_key: CSVDEV_RELEASE_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  task_segment: CAPA
+  profile_key: CSVDEV_CAPA_DUR
+  profile_ref: PROF-CSV-POST-DEV@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: IMPACT
+  profile_key: CSVCHG_IMPACT_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: RISK
+  profile_key: CSVCHG_RISK_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: RTM
+  profile_key: CSVCHG_RTM_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: SCRIPT
+  profile_key: CSVCHG_SCRIPT_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: READY
+  profile_key: CSVCHG_READY_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: EXEC
+  profile_key: CSVCHG_EXEC_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: REPORT
+  profile_key: CSVCHG_REPORT_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  task_segment: RELEASE
+  profile_key: CSVCHG_RELEASE_DUR
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: PLAN
+  profile_key: CSVDEC_PLAN_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: IMPACT
+  profile_key: CSVDEC_IMPACT_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: DOC
+  profile_key: CSVDEC_DOC_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: SAFE
+  profile_key: CSVDEC_SAFE_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: ISOLATE
+  profile_key: CSVDEC_ISOLATE_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: EXEC
+  profile_key: CSVDEC_EXEC_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: VERIFY
+  profile_key: CSVDEC_VERIFY_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: ARCHIVE
+  profile_key: CSVDEC_ARCHIVE_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+- task_pool_ref: TP-CSV-DECOM@v1
+  task_segment: CLOSE
+  profile_key: CSVDEC_CLOSE_DUR
+  profile_ref: PROF-CSV-DECOM@v1
+document_obligation_mapping:
+- task_pool_ref: TP-PE-QUAL@v1
+  domain: PE
+  scope: QUAL
+  document_family_obligations:
+  - IQ/OQ/PQ or protocol addendum
+  - RA
+  - RTM
+  - Report/VSR
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-PE-COMM@v1
+  domain: PE
+  scope: COMM
+  document_family_obligations:
+  - Commissioning evidence
+  - Commissioning plan
+  - Turnover package
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-PE-DECOM@v1
+  domain: PE
+  scope: DECOM
+  document_family_obligations:
+  - Closure approval
+  - Decommissioning plan
+  - Impact assessment
+  - Retirement evidence
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-UT-PV@v1
+  domain: UT
+  scope: PV
+  document_family_obligations:
+  - PV evidence
+  - PV plan
+  - PV report
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-UT-DECOM@v1
+  domain: UT
+  scope: DECOM
+  document_family_obligations:
+  - Closure approval
+  - Decommissioning plan
+  - Impact assessment
+  - Retirement evidence
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CR-POST-DEV@v1
+  domain: CR
+  scope: POST-DEV
+  document_family_obligations:
+  - IQ/OQ/PQ or protocol addendum
+  - RA
+  - RTM
+  - Report/VSR
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  domain: CR
+  scope: POST-CHANGE
+  document_family_obligations:
+  - IQ/OQ/PQ or protocol addendum
+  - RA
+  - RTM
+  - Report/VSR
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CR-DECOM@v1
+  domain: CR
+  scope: DECOM
+  document_family_obligations:
+  - Closure approval
+  - Decommissioning plan
+  - Impact assessment
+  - Retirement evidence
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CSV-PV@v1
+  domain: CSV
+  scope: PV
+  document_family_obligations:
+  - Access/interface review
+  - Data retention / DI evidence
+  - PV evidence
+  - PV plan
+  - PV report
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  domain: CSV
+  scope: POST-DEV
+  document_family_obligations:
+  - Access/interface review
+  - Data retention / DI evidence
+  - IQ/OQ/PQ or protocol addendum
+  - RA
+  - RTM
+  - Report/VSR
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  domain: CSV
+  scope: POST-CHANGE
+  document_family_obligations:
+  - Access/interface review
+  - Data retention / DI evidence
+  - IQ/OQ/PQ or protocol addendum
+  - RA
+  - RTM
+  - Report/VSR
+  status: draft_mapping_metadata_pending_m15_6_validation
+- task_pool_ref: TP-CSV-DECOM@v1
+  domain: CSV
+  scope: DECOM
+  document_family_obligations:
+  - Access/interface review
+  - Closure approval
+  - Data retention / DI evidence
+  - Decommissioning plan
+  - Impact assessment
+  - Retirement evidence
+  status: draft_mapping_metadata_pending_m15_6_validation
+legacy_rename_mapping:
+- legacy_selector_ref: CS-CS-E2E@v1
+  future_selector_ref: CS-CSV-E2E@v1
+- legacy_task_pool_ref: TP-CS-E2E@v1
+  future_task_pool_ref: TP-CSV-E2E@v1
+- legacy_profile_ref: PROF-CS-E2E@v1
+  future_profile_ref: PROF-CSV-E2E@v1

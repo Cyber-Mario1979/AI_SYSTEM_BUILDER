@@ -1,0 +1,122 @@
+doc_type: calendar_planning_basis_draft
+canonical_name: M15_5_CALENDAR_PLANNING_BASIS_DRAFT
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.5
+runtime_status: not_runtime_authority
+calendar_baseline:
+  calendar_ref: CAL-WORKWEEK@v1
+  name: Standard Workweek (Sun-Thu) - Weekend (Fri-Sat)
+  weekend_days:
+  - FRI
+  - SAT
+  source_role: reference to current snapshot calendar baseline; no new calendar family added.
+planning_basis_records:
+- planning_basis_ref: PB-PE-QUAL@v1
+  selector_ref: CS-PE-QUAL@v1
+  task_pool_ref: TP-PE-QUAL@v1
+  profile_ref: PROF-PE-QUAL@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-PE-QUAL@v1
+  dependency_source: TP-PE-QUAL@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-PE-COMM@v1
+  selector_ref: CS-PE-COMM@v1
+  task_pool_ref: TP-PE-COMM@v1
+  profile_ref: PROF-PE-COMM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-PE-COMM@v1
+  dependency_source: TP-PE-COMM@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-PE-DECOM@v1
+  selector_ref: CS-PE-DECOM@v1
+  task_pool_ref: TP-PE-DECOM@v1
+  profile_ref: PROF-PE-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-PE-DECOM@v1
+  dependency_source: TP-PE-DECOM@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-UT-PV@v1
+  selector_ref: CS-UT-PV@v1
+  task_pool_ref: TP-UT-PV@v1
+  profile_ref: PROF-UT-PV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-UT-PV@v1
+  dependency_source: TP-UT-PV@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-UT-DECOM@v1
+  selector_ref: CS-UT-DECOM@v1
+  task_pool_ref: TP-UT-DECOM@v1
+  profile_ref: PROF-UT-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-UT-DECOM@v1
+  dependency_source: TP-UT-DECOM@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CR-POST-DEV@v1
+  selector_ref: CS-CR-POST-DEV@v1
+  task_pool_ref: TP-CR-POST-DEV@v1
+  profile_ref: PROF-CR-POST-DEV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CR-POST-DEV@v1
+  dependency_source: TP-CR-POST-DEV@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CR-POST-CHANGE@v1
+  selector_ref: CS-CR-POST-CHANGE@v1
+  task_pool_ref: TP-CR-POST-CHANGE@v1
+  profile_ref: PROF-CR-POST-CHANGE@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CR-POST-CHANGE@v1
+  dependency_source: TP-CR-POST-CHANGE@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CR-DECOM@v1
+  selector_ref: CS-CR-DECOM@v1
+  task_pool_ref: TP-CR-DECOM@v1
+  profile_ref: PROF-CR-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CR-DECOM@v1
+  dependency_source: TP-CR-DECOM@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CSV-PV@v1
+  selector_ref: CS-CSV-PV@v1
+  task_pool_ref: TP-CSV-PV@v1
+  profile_ref: PROF-CSV-PV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CSV-PV@v1
+  dependency_source: TP-CSV-PV@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CSV-POST-DEV@v1
+  selector_ref: CS-CSV-POST-DEV@v1
+  task_pool_ref: TP-CSV-POST-DEV@v1
+  profile_ref: PROF-CSV-POST-DEV@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CSV-POST-DEV@v1
+  dependency_source: TP-CSV-POST-DEV@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CSV-POST-CHANGE@v1
+  selector_ref: CS-CSV-POST-CHANGE@v1
+  task_pool_ref: TP-CSV-POST-CHANGE@v1
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CSV-POST-CHANGE@v1
+  dependency_source: TP-CSV-POST-CHANGE@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation
+- planning_basis_ref: PB-CSV-DECOM@v1
+  selector_ref: CS-CSV-DECOM@v1
+  task_pool_ref: TP-CSV-DECOM@v1
+  profile_ref: PROF-CSV-DECOM@v1
+  calendar_ref: CAL-WORKWEEK@v1
+  duration_source: PROF-CSV-DECOM@v1
+  dependency_source: TP-CSV-DECOM@v1
+  calendar_policy: Use CAL-WORKWEEK@v1; no new calendar family is introduced in M15.5.
+  status: draft_requires_m15_6_validation

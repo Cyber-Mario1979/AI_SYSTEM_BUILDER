@@ -1,0 +1,115 @@
+doc_type: support_library_expansion_map
+canonical_name: M15_5_SUPPORT_LIBRARY_EXPANSION_MAP
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.5
+milestone: M15
+phase: Phase 5 — Core Engine Completion
+purpose: Coordinates draft profiles, standards applicability, calendar/planning-basis records, and cross-library mapping for M15.5.
+runtime_status: not_runtime_authority
+deployment_compiled_status: not_compiled
+input_checkpoint_refs:
+- M15.3 selector/scope expansion
+- M15.4 task-pool expansion
+profile_records:
+- profile_ref: PROF-PE-QUAL@v1
+  selector_ref: CS-PE-QUAL@v1
+  task_pool_ref: TP-PE-QUAL@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-PE-COMM@v1
+  selector_ref: CS-PE-COMM@v1
+  task_pool_ref: TP-PE-COMM@v1
+  profile_key_count: 8
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-PE-DECOM@v1
+  selector_ref: CS-PE-DECOM@v1
+  task_pool_ref: TP-PE-DECOM@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-UT-PV@v1
+  selector_ref: CS-UT-PV@v1
+  task_pool_ref: TP-UT-PV@v1
+  profile_key_count: 8
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-UT-DECOM@v1
+  selector_ref: CS-UT-DECOM@v1
+  task_pool_ref: TP-UT-DECOM@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CR-POST-DEV@v1
+  selector_ref: CS-CR-POST-DEV@v1
+  task_pool_ref: TP-CR-POST-DEV@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CR-POST-CHANGE@v1
+  selector_ref: CS-CR-POST-CHANGE@v1
+  task_pool_ref: TP-CR-POST-CHANGE@v1
+  profile_key_count: 8
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CR-DECOM@v1
+  selector_ref: CS-CR-DECOM@v1
+  task_pool_ref: TP-CR-DECOM@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CSV-PV@v1
+  selector_ref: CS-CSV-PV@v1
+  task_pool_ref: TP-CSV-PV@v1
+  profile_key_count: 8
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CSV-POST-DEV@v1
+  selector_ref: CS-CSV-POST-DEV@v1
+  task_pool_ref: TP-CSV-POST-DEV@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CSV-POST-CHANGE@v1
+  selector_ref: CS-CSV-POST-CHANGE@v1
+  task_pool_ref: TP-CSV-POST-CHANGE@v1
+  profile_key_count: 8
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+- profile_ref: PROF-CSV-DECOM@v1
+  selector_ref: CS-CSV-DECOM@v1
+  task_pool_ref: TP-CSV-DECOM@v1
+  profile_key_count: 9
+  calendar_ref: CAL-WORKWEEK@v1
+  status: draft_not_runtime_authority
+standards_bundle_policy:
+  core_default: SB-CQV-CORE-EG@v1
+  cleanroom_addon: SB-CLEANROOM-ADDON@v1
+  csv_addon: SB-CSV-ADDON@v1
+  note: Bundle IDs are applicability mappings only until validated/frozen in M15.6.
+calendar_baseline:
+  calendar_ref: CAL-WORKWEEK@v1
+  name: Standard Workweek (Sun-Thu) - Weekend (Fri-Sat)
+  weekend_days:
+  - FRI
+  - SAT
+  source_role: reference to current snapshot calendar baseline; no new calendar family added.
+mapping_file_roles:
+  profiles: draft duration/default records for task-pool profile keys
+  standards: draft standards applicability per domain/scope
+  calendar_planning_basis: draft planning-basis bridge using CAL-WORKWEEK@v1
+  cross_library_mapping: selector/task-pool/profile/calendar/standards/document-obligation linkage
+not_in_scope_for_m15_5:
+- deployment_compiled_lookup
+- runtime_migration
+- validation_freeze_engine
+- cli_changes
+- orchestration_service_hardening
+- ai_runtime_behavior
+- final_canonical_release
+next_downstream_checkpoints:
+  M15.6: Library validation, freeze, and release discipline
+  M15.7: Orchestration / service hardening on expanded governed assets
+  M15.10: Milestone closeout

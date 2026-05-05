@@ -1,0 +1,136 @@
+doc_type: standards_applicability_draft
+canonical_name: M15_5_STANDARDS_APPLICABILITY_DRAFT
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.5
+runtime_status: not_runtime_authority
+bundle_policy:
+  core_default: SB-CQV-CORE-EG@v1
+  cleanroom_addon: SB-CLEANROOM-ADDON@v1
+  csv_addon: SB-CSV-ADDON@v1
+  note: Bundle IDs are applicability mappings only until validated/frozen in M15.6.
+applicability_records:
+- selector_ref: CS-PE-QUAL@v1
+  task_pool_ref: TP-PE-QUAL@v1
+  domain: PE
+  scope: QUAL
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-PE-COMM@v1
+  task_pool_ref: TP-PE-COMM@v1
+  domain: PE
+  scope: COMM
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-PE-DECOM@v1
+  task_pool_ref: TP-PE-DECOM@v1
+  domain: PE
+  scope: DECOM
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-UT-PV@v1
+  task_pool_ref: TP-UT-PV@v1
+  domain: UT
+  scope: PV
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - Cleanroom/HVAC add-on may be added by later mapping when the utility variant is HVAC/classified-area-impacting.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-UT-DECOM@v1
+  task_pool_ref: TP-UT-DECOM@v1
+  domain: UT
+  scope: DECOM
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - Cleanroom/HVAC add-on may be added by later mapping when the utility variant is HVAC/classified-area-impacting.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CR-POST-DEV@v1
+  task_pool_ref: TP-CR-POST-DEV@v1
+  domain: CR
+  scope: POST-DEV
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - Cleanroom add-on applies to cleanroom qualification, verification, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CR-POST-CHANGE@v1
+  task_pool_ref: TP-CR-POST-CHANGE@v1
+  domain: CR
+  scope: POST-CHANGE
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - Cleanroom add-on applies to cleanroom qualification, verification, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CR-DECOM@v1
+  task_pool_ref: TP-CR-DECOM@v1
+  domain: CR
+  scope: DECOM
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CLEANROOM-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - Cleanroom add-on applies to cleanroom qualification, verification, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CSV-PV@v1
+  task_pool_ref: TP-CSV-PV@v1
+  domain: CSV
+  scope: PV
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - CSV add-on applies to computerized-system validation, periodic review, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CSV-POST-DEV@v1
+  task_pool_ref: TP-CSV-POST-DEV@v1
+  domain: CSV
+  scope: POST-DEV
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - CSV add-on applies to computerized-system validation, periodic review, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CSV-POST-CHANGE@v1
+  task_pool_ref: TP-CSV-POST-CHANGE@v1
+  domain: CSV
+  scope: POST-CHANGE
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - CSV add-on applies to computerized-system validation, periodic review, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
+- selector_ref: CS-CSV-DECOM@v1
+  task_pool_ref: TP-CSV-DECOM@v1
+  domain: CSV
+  scope: DECOM
+  default_standards_bundle_refs:
+  - SB-CQV-CORE-EG@v1
+  - SB-CSV-ADDON@v1
+  applicability_rationale:
+  - CQV/GMP core baseline applies to all governed coverage families.
+  - CSV add-on applies to computerized-system validation, periodic review, change, deviation, and decommissioning contexts.
+  status: draft_requires_m15_6_validation
