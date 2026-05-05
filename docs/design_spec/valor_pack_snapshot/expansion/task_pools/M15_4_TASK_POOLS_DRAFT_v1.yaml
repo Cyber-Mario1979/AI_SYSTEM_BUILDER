@@ -1,0 +1,2526 @@
+# M15_4_TASK_POOLS_DRAFT_v1.yaml
+# Draft task-pool source definitions for M15.4.
+# Not runtime authority. Not deployment compiled.
+
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-PE-QUAL_v1.yaml
+library:
+  task_pool_id: TP-PE-QUAL
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for PE QUAL coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-PE-QUAL
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: PE
+    scope: QUAL
+  tasks:
+  - atomic_task_id: PEQUAL-SCOPE
+    name: Qualification scope and strategy confirmation
+    phase: QUAL
+    task_type: SCOPE
+    owner_role_default: CQV Lead
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification scope and strategy confirmation complete
+    duration_ref:
+      profile_key: PEQUAL_SCOPE_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-READINESS
+    name: Qualification readiness review
+    phase: TURNOVER
+    task_type: READINESS_REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification readiness review complete
+    duration_ref:
+      profile_key: PEQUAL_READINESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-SCOPE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-QRM
+    name: Qualification risk assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: CQV / QA
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification risk assessment complete
+    duration_ref:
+      profile_key: PEQUAL_QRM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-RTM
+    name: RTM / requirements traceability update
+    phase: RTM
+    task_type: UPDATE
+    owner_role_default: CQV
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - RTM / requirements traceability update complete
+    duration_ref:
+      profile_key: PEQUAL_RTM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-QRM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-IQ
+    name: IQ protocol and execution package
+    phase: IQ
+    task_type: EXECUTION
+    owner_role_default: Engineering / CQV
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - IQ protocol and execution package complete
+    duration_ref:
+      profile_key: PEQUAL_IQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-RTM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-OQ
+    name: OQ protocol and execution package
+    phase: OQ
+    task_type: EXECUTION
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - OQ protocol and execution package complete
+    duration_ref:
+      profile_key: PEQUAL_OQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-IQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-PQ
+    name: PQ protocol and execution package
+    phase: PQ
+    task_type: EXECUTION
+    owner_role_default: Production / CQV
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - PQ protocol and execution package complete
+    duration_ref:
+      profile_key: PEQUAL_PQ_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-OQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-REPORT
+    name: Qualification report / VSR closeout
+    phase: REPORTING
+    task_type: REPORT
+    owner_role_default: CQV / QA
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification report / VSR closeout complete
+    duration_ref:
+      profile_key: PEQUAL_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-PQ
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEQUAL-DEV
+    name: Deviation record and impact assessment
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - QualificationOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Deviation record and impact assessment complete
+    duration_ref:
+      profile_key: PEQUAL_DEV_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEQUAL-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-PE-COMM_v1.yaml
+library:
+  task_pool_id: TP-PE-COMM
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for PE COMM coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-PE-COMM
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: PE
+    scope: COMM
+  tasks:
+  - atomic_task_id: PECOM-PLAN
+    name: Commissioning plan / execution plan
+    phase: COMM
+    task_type: PLAN
+    owner_role_default: Engineering Lead
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Commissioning plan / execution plan complete
+    duration_ref:
+      profile_key: PECOM_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-READINESS
+    name: Installation / site readiness check
+    phase: COMM
+    task_type: READINESS
+    owner_role_default: Engineering Lead
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Installation / site readiness check complete
+    duration_ref:
+      profile_key: PECOM_READINESS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-MECH
+    name: Mechanical completion walkdown
+    phase: COMM
+    task_type: EXECUTION_MECHANICAL
+    owner_role_default: Engineering / Maintenance
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Mechanical completion walkdown complete
+    duration_ref:
+      profile_key: PECOM_MECH_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-READINESS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-INTERFACE
+    name: Utilities and interface connection check
+    phase: COMM
+    task_type: EXECUTION_INTERFACES
+    owner_role_default: Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Utilities and interface connection check complete
+    duration_ref:
+      profile_key: PECOM_INTERFACE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-MECH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-STARTUP
+    name: Startup and basic functional commissioning
+    phase: COMM
+    task_type: EXECUTION_STARTUP
+    owner_role_default: Engineering / Vendor
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Startup and basic functional commissioning complete
+    duration_ref:
+      profile_key: PECOM_STARTUP_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-INTERFACE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-SAFETY
+    name: Safety and interlock checks
+    phase: COMM
+    task_type: EXECUTION_SAFETY
+    owner_role_default: Engineering / Maintenance
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Safety and interlock checks complete
+    duration_ref:
+      profile_key: PECOM_SAFETY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-STARTUP
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PECOM-PUNCH
+    name: Punch list closure and re-check
+    phase: COMM
+    task_type: CLOSURE
+    owner_role_default: Engineering Lead
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Punch list closure and re-check complete
+    duration_ref:
+      profile_key: PECOM_PUNCH_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-SAFETY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+  - atomic_task_id: PECOM-TURNOVER
+    name: Turnover / commissioning handover
+    phase: TURNOVER
+    task_type: HANDOVER
+    owner_role_default: Engineering Lead
+    applicability_tags:
+    - ProcessEquipment
+    - CommissioningOnly
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Turnover / commissioning handover complete
+    duration_ref:
+      profile_key: PECOM_TURNOVER_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PECOM-PUNCH
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-PE-DECOM_v1.yaml
+library:
+  task_pool_id: TP-PE-DECOM
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for PE DECOM coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-PE-DECOM
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: PE
+    scope: DECOM
+  tasks:
+  - atomic_task_id: PEDEC-PLAN
+    name: Decommissioning plan and scope confirmation
+    phase: DECOM
+    task_type: PLAN
+    owner_role_default: System Owner / Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Decommissioning plan and scope confirmation complete
+    duration_ref:
+      profile_key: PEDEC_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-IMPACT
+    name: GMP impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - GMP impact assessment complete
+    duration_ref:
+      profile_key: PEDEC_IMPACT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-DOC
+    name: Records, validation, maintenance, and status review
+    phase: DECOM
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Records, validation, maintenance, and status review complete
+    duration_ref:
+      profile_key: PEDEC_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-SAFE
+    name: Safe-state readiness and EHS controls
+    phase: DECOM
+    task_type: READINESS
+    owner_role_default: Engineering / EHS
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Safe-state readiness and EHS controls complete
+    duration_ref:
+      profile_key: PEDEC_SAFE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-ISOLATE
+    name: Isolation, disconnection, or access shutdown
+    phase: DECOM
+    task_type: EXECUTION_ISOLATION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Isolation, disconnection, or access shutdown complete
+    duration_ref:
+      profile_key: PEDEC_ISOLATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-SAFE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-EXEC
+    name: Removal, retirement, or deactivation execution
+    phase: DECOM
+    task_type: EXECUTION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Removal, retirement, or deactivation execution complete
+    duration_ref:
+      profile_key: PEDEC_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-ISOLATE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-VERIFY
+    name: Post-decommissioning verification
+    phase: DECOM
+    task_type: VERIFICATION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Post-decommissioning verification complete
+    duration_ref:
+      profile_key: PEDEC_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-ARCHIVE
+    name: Record archive and asset/register update
+    phase: DECOM
+    task_type: DOCUMENT_HANDOVER
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Record archive and asset/register update complete
+    duration_ref:
+      profile_key: PEDEC_ARCHIVE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-VERIFY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: PEDEC-CLOSE
+    name: QA closure and decommissioning approval
+    phase: DECOM
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - ProcessEquipment
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA closure and decommissioning approval complete
+    duration_ref:
+      profile_key: PEDEC_CLOSE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: PEDEC-ARCHIVE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-UT-PV_v1.yaml
+library:
+  task_pool_id: TP-UT-PV
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for UT PV coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-UT-PV
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: UT
+    scope: PV
+  tasks:
+  - atomic_task_id: UTPV-PLAN
+    name: Periodic verification plan / scope definition
+    phase: PV
+    task_type: PLAN
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Periodic verification plan / scope definition complete
+    duration_ref:
+      profile_key: UTPV_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-DOC
+    name: Document, maintenance, calibration, and change review
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Document, maintenance, calibration, and change review complete
+    duration_ref:
+      profile_key: UTPV_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-TREND
+    name: Trend, monitoring, or operational history review
+    phase: PV
+    task_type: REVIEW_TRENDS
+    owner_role_default: System Owner / QA
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Trend, monitoring, or operational history review complete
+    duration_ref:
+      profile_key: UTPV_TREND_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-READY
+    name: Test readiness confirmation
+    phase: PV
+    task_type: READINESS
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Test readiness confirmation complete
+    duration_ref:
+      profile_key: UTPV_READY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-TREND
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-EXEC
+    name: Periodic verification execution
+    phase: PV
+    task_type: EXECUTION
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Periodic verification execution complete
+    duration_ref:
+      profile_key: UTPV_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-READY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-REPORT
+    name: PV report compilation
+    phase: PV
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - PV report compilation complete
+    duration_ref:
+      profile_key: UTPV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-APPROVAL
+    name: QA review / PV approval
+    phase: PV
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA review / PV approval complete
+    duration_ref:
+      profile_key: UTPV_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTPV-DEV
+    name: Deviation record and impact assessment
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Deviation record and impact assessment complete
+    duration_ref:
+      profile_key: UTPV_DEV_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTPV-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-UT-DECOM_v1.yaml
+library:
+  task_pool_id: TP-UT-DECOM
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for UT DECOM coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-UT-DECOM
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: UT
+    scope: DECOM
+  tasks:
+  - atomic_task_id: UTDEC-PLAN
+    name: Decommissioning plan and scope confirmation
+    phase: DECOM
+    task_type: PLAN
+    owner_role_default: System Owner / Engineering
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Decommissioning plan and scope confirmation complete
+    duration_ref:
+      profile_key: UTDEC_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-IMPACT
+    name: GMP impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - GMP impact assessment complete
+    duration_ref:
+      profile_key: UTDEC_IMPACT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-DOC
+    name: Records, validation, maintenance, and status review
+    phase: DECOM
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Records, validation, maintenance, and status review complete
+    duration_ref:
+      profile_key: UTDEC_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-SAFE
+    name: Safe-state readiness and EHS controls
+    phase: DECOM
+    task_type: READINESS
+    owner_role_default: Engineering / EHS
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Safe-state readiness and EHS controls complete
+    duration_ref:
+      profile_key: UTDEC_SAFE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-ISOLATE
+    name: Isolation, disconnection, or access shutdown
+    phase: DECOM
+    task_type: EXECUTION_ISOLATION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Isolation, disconnection, or access shutdown complete
+    duration_ref:
+      profile_key: UTDEC_ISOLATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-SAFE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-EXEC
+    name: Removal, retirement, or deactivation execution
+    phase: DECOM
+    task_type: EXECUTION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Removal, retirement, or deactivation execution complete
+    duration_ref:
+      profile_key: UTDEC_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-ISOLATE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-VERIFY
+    name: Post-decommissioning verification
+    phase: DECOM
+    task_type: VERIFICATION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Post-decommissioning verification complete
+    duration_ref:
+      profile_key: UTDEC_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-ARCHIVE
+    name: Record archive and asset/register update
+    phase: DECOM
+    task_type: DOCUMENT_HANDOVER
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Record archive and asset/register update complete
+    duration_ref:
+      profile_key: UTDEC_ARCHIVE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-VERIFY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: UTDEC-CLOSE
+    name: QA closure and decommissioning approval
+    phase: DECOM
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Utilities
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA closure and decommissioning approval complete
+    duration_ref:
+      profile_key: UTDEC_CLOSE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: UTDEC-ARCHIVE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CR-POST-DEV_v1.yaml
+library:
+  task_pool_id: TP-CR-POST-DEV
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CR POST-DEV coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CR-POST-DEV
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CR
+    scope: POST-DEV
+  tasks:
+  - atomic_task_id: CRDEV-IMPACT
+    name: Deviation impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Deviation impact assessment complete
+    duration_ref:
+      profile_key: CRDEV_IMPACT_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-STATUS
+    name: Asset/system status and containment decision
+    phase: QMS
+    task_type: DISPOSITION
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Asset/system status and containment decision complete
+    duration_ref:
+      profile_key: CRDEV_STATUS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-REVIEW
+    name: Evidence and history review
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Evidence and history review complete
+    duration_ref:
+      profile_key: CRDEV_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-STATUS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-MAP
+    name: Targeted retest matrix / test impact map
+    phase: VERIFICATION
+    task_type: TEST_MAPPING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Targeted retest matrix / test impact map complete
+    duration_ref:
+      profile_key: CRDEV_MAP_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-SCRIPT
+    name: Protocol addendum / targeted retest script
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Protocol addendum / targeted retest script complete
+    duration_ref:
+      profile_key: CRDEV_SCRIPT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-MAP
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-EXEC
+    name: Targeted retest execution
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Targeted retest execution complete
+    duration_ref:
+      profile_key: CRDEV_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-SCRIPT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-REPORT
+    name: Retest report / deviation addendum
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Retest report / deviation addendum complete
+    duration_ref:
+      profile_key: CRDEV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-RELEASE
+    name: QA disposition / release decision
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA disposition / release decision complete
+    duration_ref:
+      profile_key: CRDEV_RELEASE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEV-CAPA
+    name: CAPA record and tracking
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - CAPA record and tracking complete
+    duration_ref:
+      profile_key: CRDEV_CAPA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEV-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CR-POST-CHANGE_v1.yaml
+library:
+  task_pool_id: TP-CR-POST-CHANGE
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CR POST-CHANGE coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CR-POST-CHANGE
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CR
+    scope: POST-CHANGE
+  tasks:
+  - atomic_task_id: CRCHG-IMPACT
+    name: Change impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Change impact assessment complete
+    duration_ref:
+      profile_key: CRCHG_IMPACT_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-RISK
+    name: Risk assessment update
+    phase: QRM
+    task_type: AUTHORING
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Risk assessment update complete
+    duration_ref:
+      profile_key: CRCHG_RISK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-RTM
+    name: Requirements / test matrix delta update
+    phase: RTM
+    task_type: UPDATE
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Requirements / test matrix delta update complete
+    duration_ref:
+      profile_key: CRCHG_RTM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-RISK
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-SCRIPT
+    name: Protocol addendum / delta qualification script
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Protocol addendum / delta qualification script complete
+    duration_ref:
+      profile_key: CRCHG_SCRIPT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-RTM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-READY
+    name: Readiness for delta testing
+    phase: TURNOVER
+    task_type: READINESS_REVIEW
+    owner_role_default: System Owner / CQV
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Readiness for delta testing complete
+    duration_ref:
+      profile_key: CRCHG_READY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-SCRIPT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-EXEC
+    name: Delta verification execution
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Delta verification execution complete
+    duration_ref:
+      profile_key: CRCHG_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-READY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-REPORT
+    name: Qualification report addendum / change verification report
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification report addendum / change verification report complete
+    duration_ref:
+      profile_key: CRCHG_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRCHG-RELEASE
+    name: QA approval / change closure gate
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA approval / change closure gate complete
+    duration_ref:
+      profile_key: CRCHG_RELEASE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRCHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CR-DECOM_v1.yaml
+library:
+  task_pool_id: TP-CR-DECOM
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CR DECOM coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CR-DECOM
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CR
+    scope: DECOM
+  tasks:
+  - atomic_task_id: CRDEC-PLAN
+    name: Decommissioning plan and scope confirmation
+    phase: DECOM
+    task_type: PLAN
+    owner_role_default: System Owner / Engineering
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Decommissioning plan and scope confirmation complete
+    duration_ref:
+      profile_key: CRDEC_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-IMPACT
+    name: GMP impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - GMP impact assessment complete
+    duration_ref:
+      profile_key: CRDEC_IMPACT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-DOC
+    name: Records, validation, maintenance, and status review
+    phase: DECOM
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Records, validation, maintenance, and status review complete
+    duration_ref:
+      profile_key: CRDEC_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-SAFE
+    name: Safe-state readiness and EHS controls
+    phase: DECOM
+    task_type: READINESS
+    owner_role_default: Engineering / EHS
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Safe-state readiness and EHS controls complete
+    duration_ref:
+      profile_key: CRDEC_SAFE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-ISOLATE
+    name: Isolation, disconnection, or access shutdown
+    phase: DECOM
+    task_type: EXECUTION_ISOLATION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Isolation, disconnection, or access shutdown complete
+    duration_ref:
+      profile_key: CRDEC_ISOLATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-SAFE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-EXEC
+    name: Removal, retirement, or deactivation execution
+    phase: DECOM
+    task_type: EXECUTION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Removal, retirement, or deactivation execution complete
+    duration_ref:
+      profile_key: CRDEC_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-ISOLATE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-VERIFY
+    name: Post-decommissioning verification
+    phase: DECOM
+    task_type: VERIFICATION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Post-decommissioning verification complete
+    duration_ref:
+      profile_key: CRDEC_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-ARCHIVE
+    name: Record archive and asset/register update
+    phase: DECOM
+    task_type: DOCUMENT_HANDOVER
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Record archive and asset/register update complete
+    duration_ref:
+      profile_key: CRDEC_ARCHIVE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-VERIFY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CRDEC-CLOSE
+    name: QA closure and decommissioning approval
+    phase: DECOM
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - Cleanroom
+    - Decommissioning
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA closure and decommissioning approval complete
+    duration_ref:
+      profile_key: CRDEC_CLOSE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CRDEC-ARCHIVE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CSV-PV_v1.yaml
+library:
+  task_pool_id: TP-CSV-PV
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CSV PV coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CSV-PV
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CSV
+    scope: PV
+  tasks:
+  - atomic_task_id: CSVPV-PLAN
+    name: Periodic verification plan / scope definition
+    phase: PV
+    task_type: PLAN
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Periodic verification plan / scope definition complete
+    duration_ref:
+      profile_key: CSVPV_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-DOC
+    name: Document, maintenance, calibration, and change review
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Document, maintenance, calibration, and change review complete
+    duration_ref:
+      profile_key: CSVPV_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-TREND
+    name: Trend, monitoring, or operational history review
+    phase: PV
+    task_type: REVIEW_TRENDS
+    owner_role_default: System Owner / QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Trend, monitoring, or operational history review complete
+    duration_ref:
+      profile_key: CSVPV_TREND_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-READY
+    name: Test readiness confirmation
+    phase: PV
+    task_type: READINESS
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Test readiness confirmation complete
+    duration_ref:
+      profile_key: CSVPV_READY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-TREND
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-EXEC
+    name: Periodic verification execution
+    phase: PV
+    task_type: EXECUTION
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Periodic verification execution complete
+    duration_ref:
+      profile_key: CSVPV_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-READY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-REPORT
+    name: PV report compilation
+    phase: PV
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - PV report compilation complete
+    duration_ref:
+      profile_key: CSVPV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-APPROVAL
+    name: QA review / PV approval
+    phase: PV
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA review / PV approval complete
+    duration_ref:
+      profile_key: CSVPV_APPROVAL_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVPV-DEV
+    name: Deviation record and impact assessment
+    phase: QMS
+    task_type: DEVIATION_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PeriodicVerification
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Deviation record and impact assessment complete
+    duration_ref:
+      profile_key: CSVPV_DEV_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVPV-APPROVAL
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CSV-POST-DEV_v1.yaml
+library:
+  task_pool_id: TP-CSV-POST-DEV
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CSV POST-DEV coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CSV-POST-DEV
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CSV
+    scope: POST-DEV
+  tasks:
+  - atomic_task_id: CSVDEV-IMPACT
+    name: Deviation impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Deviation impact assessment complete
+    duration_ref:
+      profile_key: CSVDEV_IMPACT_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-STATUS
+    name: Asset/system status and containment decision
+    phase: QMS
+    task_type: DISPOSITION
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Asset/system status and containment decision complete
+    duration_ref:
+      profile_key: CSVDEV_STATUS_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-REVIEW
+    name: Evidence and history review
+    phase: PV
+    task_type: REVIEW
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Evidence and history review complete
+    duration_ref:
+      profile_key: CSVDEV_REVIEW_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-STATUS
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-MAP
+    name: Targeted retest matrix / test impact map
+    phase: VERIFICATION
+    task_type: TEST_MAPPING
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Targeted retest matrix / test impact map complete
+    duration_ref:
+      profile_key: CSVDEV_MAP_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-REVIEW
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-SCRIPT
+    name: Protocol addendum / targeted retest script
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Protocol addendum / targeted retest script complete
+    duration_ref:
+      profile_key: CSVDEV_SCRIPT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-MAP
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-EXEC
+    name: Targeted retest execution
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Targeted retest execution complete
+    duration_ref:
+      profile_key: CSVDEV_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-SCRIPT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-REPORT
+    name: Retest report / deviation addendum
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Retest report / deviation addendum complete
+    duration_ref:
+      profile_key: CSVDEV_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-RELEASE
+    name: QA disposition / release decision
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA disposition / release decision complete
+    duration_ref:
+      profile_key: CSVDEV_RELEASE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEV-CAPA
+    name: CAPA record and tracking
+    phase: QMS
+    task_type: CAPA_RECORD
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostDeviation
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - CAPA record and tracking complete
+    duration_ref:
+      profile_key: CSVDEV_CAPA_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEV-RELEASE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: true
+      is_event_driven: true
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CSV-POST-CHANGE_v1.yaml
+library:
+  task_pool_id: TP-CSV-POST-CHANGE
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CSV POST-CHANGE coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CSV-POST-CHANGE
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CSV
+    scope: POST-CHANGE
+  tasks:
+  - atomic_task_id: CSVCHG-IMPACT
+    name: Change impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Change impact assessment complete
+    duration_ref:
+      profile_key: CSVCHG_IMPACT_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-RISK
+    name: Risk assessment update
+    phase: QRM
+    task_type: AUTHORING
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Risk assessment update complete
+    duration_ref:
+      profile_key: CSVCHG_RISK_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-RTM
+    name: Requirements / test matrix delta update
+    phase: RTM
+    task_type: UPDATE
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Requirements / test matrix delta update complete
+    duration_ref:
+      profile_key: CSVCHG_RTM_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-RISK
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-SCRIPT
+    name: Protocol addendum / delta qualification script
+    phase: VERIFICATION
+    task_type: AUTHORING
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Protocol addendum / delta qualification script complete
+    duration_ref:
+      profile_key: CSVCHG_SCRIPT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-RTM
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-READY
+    name: Readiness for delta testing
+    phase: TURNOVER
+    task_type: READINESS_REVIEW
+    owner_role_default: System Owner / CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Readiness for delta testing complete
+    duration_ref:
+      profile_key: CSVCHG_READY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-SCRIPT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-EXEC
+    name: Delta verification execution
+    phase: VERIFICATION
+    task_type: EXECUTION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Delta verification execution complete
+    duration_ref:
+      profile_key: CSVCHG_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-READY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-REPORT
+    name: Qualification report addendum / change verification report
+    phase: VERIFICATION
+    task_type: REPORT
+    owner_role_default: CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Qualification report addendum / change verification report complete
+    duration_ref:
+      profile_key: CSVCHG_REPORT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVCHG-RELEASE
+    name: QA approval / change closure gate
+    phase: RELEASE
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - PostChange
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA approval / change closure gate complete
+    duration_ref:
+      profile_key: CSVCHG_RELEASE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVCHG-REPORT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+---
+doc_type: library
+category: task_pool
+status: draft_not_runtime_authority
+checkpoint: M15.4
+source_path: libraries/task_pool/TP-CSV-DECOM_v1.yaml
+library:
+  task_pool_id: TP-CSV-DECOM
+  version: v1
+  revision_date: '2026-05-05'
+  description: Draft atomic task pool for CSV DECOM coverage. Not runtime authority.
+  owner_function: CQV / QA / System Owner
+  integrity:
+    schema_version: m15.4-draft-v1
+    binds_to_profile:
+      profile_id: PROF-CSV-DECOM
+      profile_version: v1
+    source_definition_identity_policy: task_pool_id_plus_version_is_explicit_source_definition_identity
+    runtime_authority_policy: draft_source_definition_not_deployment_runtime_authority
+  governance:
+    change_control_ref: M15.4 design-stage expansion
+    migration_status: not_migrated
+    deployment_compiled_status: not_compiled
+    downstream_profile_status: pending_m15_5
+    downstream_validation_status: pending_m15_6
+  coverage:
+    domain: CSV
+    scope: DECOM
+  tasks:
+  - atomic_task_id: CSVDEC-PLAN
+    name: Decommissioning plan and scope confirmation
+    phase: DECOM
+    task_type: PLAN
+    owner_role_default: System Owner / Engineering
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Decommissioning plan and scope confirmation complete
+    duration_ref:
+      profile_key: CSVDEC_PLAN_DUR
+    dependency_wiring:
+      predecessors: []
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-IMPACT
+    name: GMP impact assessment
+    phase: QRM
+    task_type: IMPACT_ASSESSMENT
+    owner_role_default: QA / CQV
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - GMP impact assessment complete
+    duration_ref:
+      profile_key: CSVDEC_IMPACT_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-PLAN
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-DOC
+    name: Records, validation, maintenance, and status review
+    phase: DECOM
+    task_type: REVIEW
+    owner_role_default: CQV / Engineering
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Records, validation, maintenance, and status review complete
+    duration_ref:
+      profile_key: CSVDEC_DOC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-IMPACT
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-SAFE
+    name: Safe-state readiness and EHS controls
+    phase: DECOM
+    task_type: READINESS
+    owner_role_default: Engineering / EHS
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Safe-state readiness and EHS controls complete
+    duration_ref:
+      profile_key: CSVDEC_SAFE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-DOC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-ISOLATE
+    name: Isolation, disconnection, or access shutdown
+    phase: DECOM
+    task_type: EXECUTION_ISOLATION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Isolation, disconnection, or access shutdown complete
+    duration_ref:
+      profile_key: CSVDEC_ISOLATE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-SAFE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-EXEC
+    name: Removal, retirement, or deactivation execution
+    phase: DECOM
+    task_type: EXECUTION
+    owner_role_default: Engineering / IT
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Removal, retirement, or deactivation execution complete
+    duration_ref:
+      profile_key: CSVDEC_EXEC_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-ISOLATE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-VERIFY
+    name: Post-decommissioning verification
+    phase: DECOM
+    task_type: VERIFICATION
+    owner_role_default: CQV / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Post-decommissioning verification complete
+    duration_ref:
+      profile_key: CSVDEC_VERIFY_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-EXEC
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-ARCHIVE
+    name: Record archive and asset/register update
+    phase: DECOM
+    task_type: DOCUMENT_HANDOVER
+    owner_role_default: QA / System Owner
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - Record archive and asset/register update complete
+    duration_ref:
+      profile_key: CSVDEC_ARCHIVE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-VERIFY
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false
+  - atomic_task_id: CSVDEC-CLOSE
+    name: QA closure and decommissioning approval
+    phase: DECOM
+    task_type: APPROVAL
+    owner_role_default: QA
+    applicability_tags:
+    - CSV
+    - ComputerizedSystem
+    - Decommissioning
+    - DataIntegrity
+    required_inputs:
+    - Required inputs defined by scope and approved plan
+    outputs:
+    - QA closure and decommissioning approval complete
+    duration_ref:
+      profile_key: CSVDEC_CLOSE_DUR
+    dependency_wiring:
+      predecessors:
+      - atomic_task_id: CSVDEC-ARCHIVE
+        dependency_type: FS
+        lag_days: 0
+    flags:
+      is_optional: false

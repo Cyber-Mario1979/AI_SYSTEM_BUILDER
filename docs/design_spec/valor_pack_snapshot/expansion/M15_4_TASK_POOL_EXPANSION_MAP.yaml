@@ -1,0 +1,143 @@
+doc_type: task_pool_expansion_map
+canonical_name: M15_4_TASK_POOL_EXPANSION_MAP
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.4
+milestone: M15
+phase: Phase 5 — Core Engine Completion
+purpose: Records the M15.4 draft task-pool expansion map derived from the accepted M15.3 selector/scope expansion.
+runtime_status: not_runtime_authority
+deployment_compiled_status: not_compiled
+task_pool_identity_policy: task_pool_id_plus_version_is_the_explicit_source_definition_identity
+row_shape_policy:
+  required_task_fields:
+  - atomic_task_id
+  - name
+  - phase
+  - task_type
+  - owner_role_default
+  - applicability_tags
+  - required_inputs
+  - outputs
+  - duration_ref.profile_key
+  - dependency_wiring.predecessors
+  - flags
+  duration_policy: M15.4 uses profile_key references only; no numeric durations are defined in task-pool rows.
+  dependency_policy: Dependencies use atomic_task_id references only and are deterministic.
+  document_obligation_policy: Document obligations are signaled through task names, outputs, phases, and task types; formal document-obligation mapping waits for M15.5 mapping metadata.
+legacy_rename_mapping:
+- legacy_task_pool_ref: TP-CS-E2E@v1
+  future_canonical_task_pool_ref: TP-CSV-E2E@v1
+  status: rename_or_mapping_pending_future_migration
+draft_task_pool_records:
+- task_pool_ref: TP-PE-QUAL@v1
+  domain: PE
+  scope: QUAL
+  profile_ref: PROF-PE-QUAL@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-PE-QUAL_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-PE-COMM@v1
+  domain: PE
+  scope: COMM
+  profile_ref: PROF-PE-COMM@v1
+  task_count: 8
+  draft_source_path: libraries/task_pool/TP-PE-COMM_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-PE-DECOM@v1
+  domain: PE
+  scope: DECOM
+  profile_ref: PROF-PE-DECOM@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-PE-DECOM_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-UT-PV@v1
+  domain: UT
+  scope: PV
+  profile_ref: PROF-UT-PV@v1
+  task_count: 8
+  draft_source_path: libraries/task_pool/TP-UT-PV_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-UT-DECOM@v1
+  domain: UT
+  scope: DECOM
+  profile_ref: PROF-UT-DECOM@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-UT-DECOM_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CR-POST-DEV@v1
+  domain: CR
+  scope: POST-DEV
+  profile_ref: PROF-CR-POST-DEV@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-CR-POST-DEV_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CR-POST-CHANGE@v1
+  domain: CR
+  scope: POST-CHANGE
+  profile_ref: PROF-CR-POST-CHANGE@v1
+  task_count: 8
+  draft_source_path: libraries/task_pool/TP-CR-POST-CHANGE_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CR-DECOM@v1
+  domain: CR
+  scope: DECOM
+  profile_ref: PROF-CR-DECOM@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-CR-DECOM_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CSV-PV@v1
+  domain: CSV
+  scope: PV
+  profile_ref: PROF-CSV-PV@v1
+  task_count: 8
+  draft_source_path: libraries/task_pool/TP-CSV-PV_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CSV-POST-DEV@v1
+  domain: CSV
+  scope: POST-DEV
+  profile_ref: PROF-CSV-POST-DEV@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-CSV-POST-DEV_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CSV-POST-CHANGE@v1
+  domain: CSV
+  scope: POST-CHANGE
+  profile_ref: PROF-CSV-POST-CHANGE@v1
+  task_count: 8
+  draft_source_path: libraries/task_pool/TP-CSV-POST-CHANGE_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+- task_pool_ref: TP-CSV-DECOM@v1
+  domain: CSV
+  scope: DECOM
+  profile_ref: PROF-CSV-DECOM@v1
+  task_count: 9
+  draft_source_path: libraries/task_pool/TP-CSV-DECOM_v1.yaml
+  downstream_profile_status: pending_m15_5
+  downstream_validation_status: pending_m15_6
+not_in_scope_for_m15_4:
+- profile_duration_values
+- calendar_expansion
+- standards_bundle_expansion
+- mapping_metadata_expansion
+- deployment_compiled_lookup
+- task_pool_validation_freeze_engine
+- cli_changes
+- orchestration_service_hardening
+- runtime_migration
+- ai_runtime_behavior
+next_downstream_checkpoints:
+  M15.5: Calendar / standards / profile / mapping expansion
+  M15.6: Library validation, freeze, and release discipline
+  M15.7: Orchestration / service hardening on expanded governed assets
