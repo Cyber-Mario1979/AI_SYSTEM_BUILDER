@@ -28,19 +28,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M16.1` — AI runtime boundary for document/reporting jobs
+`M16.2` — Context packaging from governed engine inputs
 
 ## Latest Completed Checkpoint
 
-`M15.10` — Milestone closeout completed
+`M16.1` — AI runtime boundary for document/reporting jobs completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M16.1` — AI runtime boundary for document/reporting jobs
+`M16.2` — Context packaging from governed engine inputs
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `750 passed in 42.44s`
+`python -m pytest -q` — `760 passed in 42.48s`
 
 ## Active Notes
 
@@ -51,10 +51,15 @@ Phase 6 — AI Layer
 - `M13` closed on the repo-real `asbp.export_engine` boundary with governed export contracts, spreadsheet/Gantt/dashboard/reporting export surfaces, export invocation validation, generated-artifact metadata validation, and artifact acceptance rules.
 - `M14` is closed and accepted. Detailed M14 evidence is preserved in M14 implementation commits, `docs/milestones/M14/M14_VALIDATION_CHECKPOINT.md`, `docs/UAT/M14/M14_UAT_PROTOCOL.md`, `docs/UAT/M14/M14_UAT_REPORT.md`, and `docs/milestones/M14/M14_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M14` closed on the repo-real `asbp.resolver_registry` boundary with resolver / registry access controls, governed asset identity and version-pinned lookup, calendar/planning-basis resolution contracts, authored-source versus deployment-compiled separation, governed versus support-retrieval separation, validation evidence, and UAT evidence.
-- `M14` also preserved `docs/planning/UI_PRELIMINARY_BOUNDARIES.md` as a future UI/advisory-layer planning guardrail only; it does not authorize frontend implementation or change the active coding roadmap.
 - `M15` is closed and accepted. Detailed M15 evidence is preserved in `docs/milestones/M15/M15_VALIDATION_CHECKPOINT.md`, `docs/UAT/M15/M15_UAT_PROTOCOL.md`, `docs/UAT/M15/M15_UAT_REPORT.md`, and `docs/milestones/M15/M15_CLOSEOUT_NOTES.md`; it is not repeated here.
 - `M15` closed on the repo-real `asbp.governed_library` boundary with coverage-pack framework, governed library expansion evidence, release validation/freeze discipline, service-hardening preflight controls, validation evidence, and UAT evidence.
 - `M15.10` closeout records Phase 5 — Core Engine Completion as complete for the approved roadmap scope.
+- Pre-M16 docs cleanup Wave 2 is completed. M12–M15 milestone evidence and UAT records are organized under `docs/milestones/` and `docs/UAT/Mxx/`; roadmap sequence, guardrails, execution governance, Python behavior, CLI behavior, runtime behavior, and AI behavior were not changed.
 - Phase 6 — AI Layer is now the active phase.
 - Phase 6 work must remain downstream from deterministic truth, governed retrieval, document/export contracts, governed library boundaries, and runtime/service boundaries.
-- The active build path now moves to `M16.1` — AI runtime boundary for document/reporting jobs.
+- `M16.1` is completed. Evidence is preserved in `docs/M16_AI_RUNTIME_BOUNDARY.md`, `docs/design_spec/ai_runtime/M16_1_AI_RUNTIME_BOUNDARY_RULES.yaml`, `asbp/ai_runtime/__init__.py`, `asbp/ai_runtime/runtime_boundary.py`, and `tests/test_ai_runtime_boundary.py`.
+- `M16.1` introduced the AI runtime entry boundary for governed document/reporting jobs, including eligible job families, allowed caller boundaries, blocked caller boundaries, model permission profiles, explicit AI permissions, and explicit AI prohibitions.
+- `M16.1` confirmed that AI runtime entry is not source truth, execution truth, approval authority, workflow mutation authority, or validation/UAT authority.
+- `M16.1` did not implement actual LLM calls, prompt templates, context packaging, generation modes, output acceptance/retry/fallback behavior, AI evaluation, retrieval-use governance, recommendation behavior, UI/API behavior, runtime document generation, or runtime export generation.
+- `M16.1` validation passed locally with `python -m pytest -q` — `760 passed in 42.48s`.
+- The active build path now moves to `M16.2` — Context packaging from governed engine inputs.
