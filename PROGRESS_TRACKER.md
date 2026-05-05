@@ -28,15 +28,15 @@ Phase 5 — Core Engine Completion
 
 ## Current Approved Slice Family
 
-`M15.9` — Milestone UAT checkpoint
+`M15.10` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M15.8` — Validation checkpoint completed
+`M15.9` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M15.9` — Milestone UAT checkpoint
+`M15.10` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -83,4 +83,8 @@ Phase 5 — Core Engine Completion
 - `M15.8` recorded the formal M15 validation checkpoint after completion of M15.1 through M15.7, with validation command `python -m pytest -q`, result `750 passed in 42.44s`, and validation decision `PASS`.
 - `M15.8` confirmed readiness to proceed to `M15.9` — Milestone UAT checkpoint.
 - `M15.8` was validation-evidence-only and did not implement new library scopes, new task pools, new profiles, new standards bundles, new calendar families, new mapping metadata, deployment compiled lookup generation, runtime migration, CLI command surfaces, actual document generation, actual export generation, AI runtime behavior, M15.9 UAT, or M15.10 closeout.
-- The active build path now moves to `M15.9` — Milestone UAT checkpoint.
+- `M15.9` is completed. Evidence is preserved in `docs/UAT/M15_UAT_PROTOCOL.md` and `docs/UAT/M15_UAT_REPORT.md`.
+- `M15.9` recorded UAT status `Complete`, acceptance decision `Pass`, open UAT blockers `None`, and next checkpoint `M15.10` — Milestone closeout.
+- `M15.9` accepted Milestone 15 as a governed library expansion and engine-hardening milestone covering library audit, coverage-pack framework, selector/scope expansion, task-pool expansion, support-library linkage, validation/freeze/release discipline, and service-hardening preflight.
+- `M15.9` confirmed that M15 remains correctly bounded and does not claim runtime migration, deployment-compiled lookup generation, CLI implementation, actual document/export generation, AI runtime behavior, or final Phase 5 closeout.
+- The active build path now moves to `M15.10` — Milestone closeout.
