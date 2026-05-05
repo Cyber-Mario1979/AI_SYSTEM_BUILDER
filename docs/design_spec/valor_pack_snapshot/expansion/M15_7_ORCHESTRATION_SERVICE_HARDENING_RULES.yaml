@@ -1,0 +1,48 @@
+doc_type: orchestration_service_hardening_rules
+canonical_name: M15_7_ORCHESTRATION_SERVICE_HARDENING_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M15.7
+runtime_status: not_runtime_authority
+deployment_compiled_status: not_compiled
+supported_operations:
+- validate_library_preflight
+- resolve_governed_asset_context
+- prepare_service_context
+- prepare_document_invocation_context
+- prepare_export_invocation_context
+supported_caller_boundaries:
+- core_service_boundary
+- orchestration_service_boundary
+- document_engine_boundary
+- export_engine_boundary
+blocked_boundaries:
+- cli_adapter
+- ui_adapter
+- ai_runtime
+- direct_filesystem
+preflight_requirements:
+- release manifest must pass M15.6 validation
+- release status must be validation_candidate, freeze_candidate, or frozen_released
+- requested asset refs must be version-pinned
+- requested asset refs must be declared in the validated release manifest
+- support retrieval cannot define source truth
+blocked_behaviors:
+- runtime migration
+- deployment compiled lookup generation
+- direct filesystem lookup
+- adapter-owned lookup
+- AI-owned source truth
+- free-form orchestration mutation
+- actual document generation
+- actual export generation
+not_in_scope:
+- cli command implementation
+- runtime migration
+- deployment compiled lookup generation
+- actual document generation
+- actual export generation
+- ai runtime behavior
+- m15_8 validation checkpoint closure
+- m15_9 uat
+- m15_10 closeout
