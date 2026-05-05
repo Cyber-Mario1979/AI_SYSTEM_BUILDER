@@ -1,0 +1,67 @@
+doc_type: ai_runtime_boundary_rules
+canonical_name: M16_1_AI_RUNTIME_BOUNDARY_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M16.1
+milestone: M16
+phase: Phase 6 — AI Layer
+runtime_status: boundary_definition_only
+supported_job_families:
+- governed_document_job
+- governed_reporting_job
+supported_caller_boundaries:
+- document_engine_boundary
+- export_engine_boundary
+- orchestration_service_boundary
+blocked_caller_boundaries:
+- cli_adapter
+- ui_adapter
+- direct_user_prompt
+- free_form_chat
+- ungoverned_ai_runtime
+supported_model_permission_profiles:
+- controlled_language_drafting
+- bounded_summarization
+- candidate_wording_generation
+allowed_ai_actions:
+- draft_controlled_language
+- summarize_governed_inputs
+- prepare_candidate_wording
+- produce_bounded_document_or_reporting_text
+- return_candidate_output_for_downstream_acceptance
+prohibited_ai_actions:
+- own_source_truth
+- own_execution_truth
+- approve_documents
+- release_tasks
+- mutate_workflow_state
+- replace_template_document_or_export_contracts
+- replace_standards_guardrails
+- replace_validation_or_uat_evidence
+- bypass_governed_retrieval
+- invent_standards_or_evidence
+blocked_runtime_states:
+- missing_engine_truth
+- missing_contract_truth
+- direct_user_prompt_as_source_truth
+- ai_owns_source_truth
+- ai_owns_execution_truth
+- ai_can_mutate_state
+- ai_can_approve_or_release
+- ai_can_bypass_governed_retrieval
+- ai_can_invent_standards
+- ai_can_invent_evidence
+- free_form_generation_requested
+- unrestricted_generation_requested
+not_in_scope:
+- actual_llm_calls
+- prompt_templates
+- context_packaging
+- controlled_generation_modes
+- output_acceptance_retry_or_fallback
+- ai_evaluation
+- retrieval_use_governance
+- recommendation_behavior
+- ui_api_behavior
+- runtime_document_generation
+- runtime_export_generation
