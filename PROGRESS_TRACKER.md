@@ -27,15 +27,15 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M16.5` — Validation checkpoint
+`M16.6` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M16.4` — Output acceptance, bounded retry, and fallback behavior completed
+`M16.5` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M16.5` — Validation checkpoint
+`M16.6` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
@@ -60,4 +60,7 @@ Phase 6 — AI Layer
 - `M16.4` preserved candidate-output-only behavior, fail-closed acceptance, retry limits, fallback/refusal behavior for insufficient evidence or broken contract rules, and downstream state/approval isolation.
 - `M16.4` did not implement actual LLM calls, prompt templates, AI evaluation, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
 - `M16.4` validation passed locally with `python -m pytest -q` — `792 passed in 42.79s`.
-- The active build path now moves to `M16.5` — Validation checkpoint.
+- `M16.5` is completed. Evidence is preserved in `docs/milestones/M16/M16_VALIDATION_CHECKPOINT.md`.
+- `M16.5` recorded the formal M16 validation checkpoint covering `M16.1` through `M16.4`.
+- `M16.5` confirmed validation only and did not implement actual LLM calls, prompt templates, AI evaluation, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, release behavior, milestone UAT, or milestone closeout.
+- The active build path now moves to `M16.6` — Milestone UAT checkpoint.
