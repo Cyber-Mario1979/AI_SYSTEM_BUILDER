@@ -1,0 +1,72 @@
+doc_type: ai_output_acceptance_rules
+canonical_name: M16_4_OUTPUT_ACCEPTANCE_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M16.4
+milestone: M16
+phase: Phase 6 — AI Layer
+runtime_status: output_acceptance_boundary_only
+candidate_output_classifications:
+- candidate_document_language
+- candidate_reporting_language
+supported_output_acceptance_decisions:
+- accept_candidate_output
+- retry_candidate_output
+- fallback_or_refuse_output
+supported_bounded_retry_reasons:
+- contract_rule_failure
+- standards_guardrail_failure
+- evidence_support_failure
+- assumption_labeling_failure
+- placeholder_policy_failure
+- prohibited_output_claim_failure
+supported_fallback_reasons:
+- insufficient_evidence
+- broken_contract
+- retry_limit_reached
+- fail_closed_required
+default_max_retry_attempts: 2
+acceptance_required_true_controls:
+- content_contract_satisfied
+- family_constraints_satisfied
+- standards_guardrails_satisfied
+- evidence_claims_supported
+- assumptions_labeled_when_required
+- placeholders_used_for_missing_truth
+acceptance_required_false_controls:
+- contains_unbounded_invention
+- contains_unverified_standards_claims
+- contains_unverified_evidence_claims
+- contains_execution_truth_claims
+- requests_state_mutation
+- approval_requested
+- release_requested
+- accepted_as_final_output
+- validation_or_uat_truth_claimed
+acceptance_policy:
+- accepted output is candidate output for downstream review only
+- acceptance does not approve or release document/report artifacts
+- acceptance does not mutate workflow state
+- acceptance does not create validation or UAT truth
+- generated document/report text is not carried in the acceptance payload
+bounded_retry_policy:
+- retry is limited
+- retry must preserve the same governed generation mode and contract rules
+- retry must not relax standards, evidence, source-truth, execution-truth, or family constraints
+- retry is not allowed when evidence is unavailable
+- retry is not allowed after retry limit is reached
+fallback_policy:
+- fallback or refusal is required when evidence is insufficient or unavailable
+- fallback or refusal is required when contract rules remain broken after retry limit
+- fallback or refusal is required for fail-closed conditions
+- fallback or refusal must not create source truth or execution truth
+blocked_behaviors:
+- actual_llm_calls
+- prompt_templates
+- document_or_report_text_generation
+- ai_evaluation
+- retrieval_use_governance
+- recommendation_behavior
+- ui_api_behavior
+- workflow_state_mutation
+- document_approval_or_release
