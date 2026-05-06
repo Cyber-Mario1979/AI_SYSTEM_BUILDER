@@ -1,0 +1,67 @@
+doc_type: ai_generation_mode_rules
+canonical_name: M16_3_GENERATION_MODE_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M16.3
+milestone: M16
+phase: Phase 6 — AI Layer
+runtime_status: generation_mode_boundary_only
+supported_document_output_families:
+- urs_document
+- dcf_document
+- protocol_document
+- report_document
+supported_reporting_output_families:
+- status_summary_reporting
+- dashboard_summary_reporting
+- exception_narrative_reporting
+supported_generation_modes:
+- strong_structured_input_fill
+- partial_input_bounded_completion
+- minimal_input_scaffold_generation
+- evidence_bound_report_narrative
+- bounded_report_summary
+generation_modes_by_output_family:
+  urs_document:
+  - strong_structured_input_fill
+  - partial_input_bounded_completion
+  - minimal_input_scaffold_generation
+  dcf_document:
+  - strong_structured_input_fill
+  - partial_input_bounded_completion
+  protocol_document:
+  - strong_structured_input_fill
+  - partial_input_bounded_completion
+  - minimal_input_scaffold_generation
+  report_document:
+  - strong_structured_input_fill
+  - partial_input_bounded_completion
+  - evidence_bound_report_narrative
+  - bounded_report_summary
+  status_summary_reporting:
+  - bounded_report_summary
+  dashboard_summary_reporting:
+  - bounded_report_summary
+  exception_narrative_reporting:
+  - evidence_bound_report_narrative
+standards_awareness_policy:
+- every generation-mode request must declare a version-pinned standards_guardrail_ref
+- standards_guardrail_ref must match a generation-eligible standards_guardrail_context item
+- AI may not invent standards
+- AI may not replace standards guardrails
+bounded_invention_policy:
+- bounded invention is mode-specific
+- bounded invention must remain candidate language only
+- assumptions must be labeled when required by the selected mode
+- placeholders must be used where truth is missing
+- bounded invention cannot create source truth, execution truth, evidence, or standards truth
+blocked_behaviors:
+- actual_llm_calls
+- prompt_templates
+- document_or_report_text_generation
+- output_acceptance
+- retry_fallback_behavior
+- ai_evaluation
+- retrieval_use_governance
+- recommendation_behavior
+- ui_api_behavior
