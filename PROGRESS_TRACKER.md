@@ -28,19 +28,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M16.3` — Controlled generation modes for document/reporting families
+`M16.4` — Output acceptance, bounded retry, and fallback behavior
 
 ## Latest Completed Checkpoint
 
-`M16.2` — Context packaging from governed engine inputs completed
+`M16.3` — Controlled generation modes for document/reporting families completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M16.3` — Controlled generation modes for document/reporting families
+`M16.4` — Output acceptance, bounded retry, and fallback behavior
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `770 passed in 45.30s`
+`python -m pytest -q` — `780 passed in 42.28s`
 
 ## Active Notes
 
@@ -67,4 +67,9 @@ Phase 6 — AI Layer
 - `M16.2` preserved source-role clarity, prevented support context from being promoted into authority, prevented AI context from defining execution truth, and blocked raw/free-form prompts, prompt templates, direct LLM call fields, and state mutation payloads.
 - `M16.2` did not implement actual LLM calls, prompt templates, generation modes, document/report text generation, output acceptance, retry/fallback behavior, AI evaluation, retrieval-use governance, recommendation behavior, or UI/API behavior.
 - `M16.2` validation passed locally with `python -m pytest -q` — `770 passed in 45.30s`.
-- The active build path now moves to `M16.3` — Controlled generation modes for document/reporting families.
+- `M16.3` is completed. Evidence is preserved in `docs/M16_GENERATION_MODES.md`, `docs/design_spec/ai_runtime/M16_3_GENERATION_MODE_RULES.yaml`, `asbp/ai_runtime/generation_modes.py`, `asbp/ai_runtime/__init__.py`, and `tests/test_ai_runtime_generation_modes.py`.
+- `M16.3` introduced controlled generation-mode contracts for governed document/reporting families, including strong-structured-input fill, partial-input bounded completion, minimal-input scaffold generation, evidence-bound summarization, and reporting narrative summary modes.
+- `M16.3` preserved family-specific constraints, standards-aware generation control, context-package consumption discipline, bounded invention policy, and candidate-output-only behavior.
+- `M16.3` did not implement actual LLM calls, prompt templates, document/report text generation, output acceptance, retry/fallback behavior, AI evaluation, retrieval-use governance, recommendation behavior, UI/API behavior, state mutation, approval, or release behavior.
+- `M16.3` validation passed locally with `python -m pytest -q` — `780 passed in 42.28s`.
+- The active build path now moves to `M16.4` — Output acceptance, bounded retry, and fallback behavior.
