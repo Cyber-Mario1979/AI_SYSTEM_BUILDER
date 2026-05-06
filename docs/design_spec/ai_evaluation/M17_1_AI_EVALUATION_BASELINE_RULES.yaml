@@ -1,0 +1,42 @@
+doc_type: ai_evaluation_baseline_rules
+canonical_name: M17_1_AI_EVALUATION_BASELINE_RULES
+status: READY_FOR_REPO_APPLICATION
+governs_execution: false
+checkpoint: M17.1
+milestone: M17
+phase: Phase 6 — AI Layer
+runtime_status: evaluation_baseline_boundary_only
+supported_evaluation_families:
+- document_output_evaluation
+- reporting_output_evaluation
+supported_baseline_evaluation_dimensions:
+- acceptance_decision_consistency
+- candidate_contract_coverage
+- regression_stability
+supported_regression_case_results:
+- regression_case_pass
+- regression_case_fail
+supported_regression_run_results:
+- regression_run_pass
+- regression_run_fail
+baseline_policy:
+- evaluation baseline records measurable contract regression expectations
+- evaluation cases consume validated M16 output acceptance decisions
+- regression harness compares expected acceptance decision to actual validated acceptance decision
+- regression results do not create source truth, execution truth, validation truth, approval truth, or release truth
+blocked_behaviors:
+- actual_llm_calls
+- prompt_templates
+- generated_document_or_report_text
+- quality_gates
+- groundedness_checks
+- evidence_link_checks
+- standards_conformance_checks
+- detail_level_consistency_checks
+- retrieval_use_governance
+- recommendation_behavior
+- ui_api_behavior
+- workflow_state_mutation
+- document_approval_or_release
+next_checkpoint:
+- M17.2_quality_gates_and_groundedness_checks

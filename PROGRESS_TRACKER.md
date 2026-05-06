@@ -27,19 +27,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.1` — AI evaluation baseline and regression harness
+`M17.2` — Quality gates and groundedness checks
 
 ## Latest Completed Checkpoint
 
-`M16.7` — Milestone closeout completed
+`M17.1` — AI evaluation baseline and regression harness completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.1` — AI evaluation baseline and regression harness
+`M17.2` — Quality gates and groundedness checks
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `792 passed in 42.79s`
+`python -m pytest -q` — `801 passed in 46.94s`
 
 ## Active Notes
 
@@ -52,4 +52,8 @@ Phase 6 — AI Layer
 - `M16.7` closeout records the governed AI runtime boundary for document/reporting workflows as frozen for the approved roadmap scope.
 - Phase 6 — AI Layer remains the active phase.
 - Phase 6 work must remain downstream from deterministic truth, governed retrieval, document/export contracts, governed library boundaries, runtime/service boundaries, and the closed M16 AI runtime boundary.
-- The active build path now moves to `M17.1` — AI evaluation baseline and regression harness.
+- `M17.1` is completed. Evidence is preserved in `docs/M17_AI_EVALUATION_BASELINE.md`, `docs/design_spec/ai_evaluation/M17_1_AI_EVALUATION_BASELINE_RULES.yaml`, `asbp/ai_evaluation/evaluation_baseline.py`, `asbp/ai_evaluation/__init__.py`, and `tests/test_ai_evaluation_baseline.py`.
+- `M17.1` introduced the AI evaluation baseline and regression harness for governed M16 output-acceptance decisions.
+- `M17.1` preserved measurable regression expectations for document/reporting families without implementing quality gates, groundedness checks, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
+- `M17.1` validation passed locally with `python -m pytest -q` — `801 passed in 46.94s`.
+- The active build path now moves to `M17.2` — Quality gates and groundedness checks.
