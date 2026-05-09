@@ -19,23 +19,23 @@ This file is a short current-state tracker only.
 It does not store session-by-session diary history.
 
 Closed milestone detail must not be repeated indefinitely.
-Keep detailed notes only for the active milestone; once a milestone closes, compress it to closeout/UAT/validation references.
+Keep detailed notes only for the active transition gate; once a milestone closes, compress it to closeout/UAT/validation references.
 
 ## Current Phase
 
-Phase 6 — AI Layer
+Post-Phase 6 transition / Pre-Phase 7 roadmap expansion gate
 
 ## Current Approved Slice Family
 
-`M18` — AI-Assisted Workflow Expansion
+`Post-M18 / pre-Phase-7 roadmap expansion gate`
 
 ## Latest Completed Checkpoint
 
-`M18.6` — Milestone UAT checkpoint
+`M18.7` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M18.7` — Milestone closeout
+`Post-M18 / pre-Phase-7 roadmap expansion gate` — expand Phase 7 placeholder direction into a detailed executable checkpoint ladder before Phase 7 implementation
 
 ## Latest Verified Validation Status
 
@@ -50,15 +50,11 @@ Phase 6 — AI Layer
 - `M16` is closed and accepted. Detailed M16 evidence is preserved in M16 checkpoint documents, `docs/milestones/M16/M16_VALIDATION_CHECKPOINT.md`, `docs/UAT/M16/M16_UAT_PROTOCOL.md`, `docs/UAT/M16/M16_UAT_REPORT.md`, and `docs/milestones/M16/M16_CLOSEOUT_NOTES.md`.
 - `M17` is closed and accepted. Detailed M17 evidence is preserved in M17 checkpoint documents, `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`, `docs/UAT/M17/M17_UAT_PROTOCOL.md`, `docs/UAT/M17/M17_UAT_REPORT.md`, and `docs/milestones/M17/M17_CLOSEOUT_NOTES.md`.
 - `M17.7` closeout records the AI evaluation and retrieval-use governance boundary as frozen for the approved roadmap scope.
-- The post-M17 / pre-M18 document template/product implementation re-entry decision gate is resolved in `docs/decision_gates/POST_M17_PRE_M18_DOCUMENT_REENTRY_DECISION.md`.
-- Decision: document template/product implementation and actual document generation from expanded governed library content are explicitly deferred beyond `M18`.
-- No roadmap addendum or new milestone is required before `M18.1`.
-- `M18` may proceed, but it must remain bounded to AI-assisted workflow expansion and must not quietly implement document template/product generation.
-- `M18.1` implementation evidence is preserved in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`.
-- `M18.2` implementation evidence is preserved in `docs/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/summarization_reporting.py`, and `tests/test_ai_summarization_reporting.py`.
-- `M18.3` implementation evidence is preserved in `docs/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`, `docs/design_spec/ai_workflow/M18_3_CONTROLLED_RECOMMENDATION_BEHAVIOR_RULES.yaml`, `asbp/ai_workflow/recommendation_behavior.py`, `asbp/ai_workflow/__init__.py`, and `tests/test_ai_recommendation_behavior.py`.
-- `M18.4` implementation evidence is preserved in `docs/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`, `docs/design_spec/ai_workflow/M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.yaml`, `asbp/ai_workflow/workflow_expansion_boundaries.py`, `asbp/ai_workflow/__init__.py`, and `tests/test_ai_workflow_expansion_boundaries.py`.
-- `M18.5` validation evidence is preserved in `docs/milestones/M18/M18_VALIDATION_CHECKPOINT.md`.
+- `M18` is closed and accepted. Detailed M18 evidence is preserved in M18 checkpoint documents, `docs/milestones/M18/M18_VALIDATION_CHECKPOINT.md`, `docs/UAT/M18/M18_UAT_PROTOCOL.md`, `docs/UAT/M18/M18_UAT_REPORT.md`, and `docs/milestones/M18/M18_CLOSEOUT_NOTES.md`.
+- `M18.7` closeout records the AI-assisted workflow expansion boundary as frozen for the approved roadmap scope.
+- Phase 6 — AI Layer is complete for the approved roadmap scope.
 - `M18.5` validation passed locally with `python -m pytest -q` — `885 passed in 42.73s`.
-- `M18.6` UAT evidence is preserved in `docs/UAT/M18/M18_UAT_PROTOCOL.md` and `docs/UAT/M18/M18_UAT_REPORT.md`.
 - `M18.6` UAT acceptance decision: Pass.
+- Phase 7 through Phase 9 remain placeholder-level continuation direction only in `ROADMAP_CANONICAL_CONTINUATION_PART_2_PHASES_7_9.md`.
+- Before Phase 7 enters live execution, the relevant Phase 7 placeholder direction must be expanded into a detailed checkpoint ladder.
+- The next required action is `Post-M18 / pre-Phase-7 roadmap expansion gate`.
