@@ -1,0 +1,164 @@
+doc_type: design_spec
+canonical_name: M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES
+status: IMPLEMENTED_PENDING_VALIDATION
+governs_execution: false
+document_state_mode: design_spec_evidence
+authority: implementation_evidence_only
+checkpoint: M18.4
+milestone: M18
+phase: Phase 6 — AI Layer
+
+workflow_expansion_boundaries_and_refusal_rules:
+  checkpoint: M18.4
+  contract_version: ai-workflow-expansion-boundaries-v1
+  package: asbp.ai_workflow
+  module: asbp.ai_workflow.workflow_expansion_boundaries
+
+  purpose:
+    - Define what AI-assisted workflow expansion is allowed to do.
+    - Define what remains explicitly out of scope.
+    - Define refusal and fallback behavior when requests exceed governed boundaries.
+    - Prevent AI-assisted workflow expansion from becoming uncontrolled agentic behavior.
+
+  boundary_gate_role:
+    value: advisory_workflow_expansion_boundary_gate
+    rule: The workflow-expansion boundary gate may route to bounded advisory assistance only and cannot approve, release, mutate workflow state, execute actions, generate documents, render product outputs, create prompt templates, call an LLM directly, or claim validation truth.
+
+  allowed_request_families:
+    - controlled_review_assistance_request
+    - controlled_summarization_reporting_assistance_request
+    - controlled_recommendation_assistance_request
+    - evidence_source_role_discipline_request
+    - boundary_finding_metadata_request
+    - human_review_handoff_request
+
+  fallback_only_request_families:
+    - insufficient_evidence_fallback_request
+    - non_authoritative_source_fallback_request
+    - missing_contract_context_fallback_request
+
+  out_of_scope_request_families:
+    - approval_or_release_request
+    - workflow_state_mutation_request
+    - action_execution_request
+    - autonomous_agentic_behavior_request
+    - document_generation_request
+    - report_generation_request
+    - product_ready_rendering_request
+    - prompt_template_request
+    - direct_llm_call_request
+    - validation_or_uat_truth_request
+    - ui_api_cloud_productization_request
+
+  source_requirements:
+    source_quality_gate_required: true
+    source_quality_gate_must_pass: true
+    evidence_refs_must_be_inside_source_quality_gate: true
+    source_refs_must_be_inside_source_quality_gate: true
+
+  deterministic_decisions:
+    allowed_request_family: workflow_expansion_allowed
+    fallback_only_request_family: workflow_expansion_fallback_only
+    out_of_scope_request_family: workflow_expansion_refused
+    unsupported_request_family: workflow_expansion_refused
+    out_of_scope_flag_on_allowed_family: workflow_expansion_refused
+
+  supported_refusal_reasons:
+    - approval_or_release_refusal
+    - workflow_state_mutation_refusal
+    - action_execution_refusal
+    - autonomous_agentic_behavior_refusal
+    - document_generation_refusal
+    - report_generation_refusal
+    - product_ready_rendering_refusal
+    - prompt_template_or_direct_llm_refusal
+    - validation_or_uat_truth_refusal
+    - ui_api_cloud_productization_refusal
+    - unsupported_workflow_expansion_family_refusal
+
+  supported_fallback_reasons:
+    - insufficient_evidence_fallback
+    - non_authoritative_source_fallback
+    - missing_contract_context_fallback
+    - human_review_required_fallback
+
+  authority_constraints:
+    advisory_only: true
+    human_review_required: true
+    ai_can_approve: false
+    ai_can_release: false
+    ai_can_mutate_workflow_state: false
+    ai_can_execute_actions: false
+    ai_can_run_autonomously: false
+    ai_can_replace_human_decision: false
+    ai_can_generate_document: false
+    ai_can_generate_report: false
+    ai_can_render_product_ready_output: false
+    ai_can_create_prompt_template: false
+    ai_can_call_llm_directly: false
+    ai_can_claim_validation_or_uat_truth: false
+    ai_can_create_ui_api_cloud_or_saas_behavior: false
+
+  prohibited_payload_fields:
+    - raw_prompt
+    - free_form_prompt
+    - unvalidated_user_prompt
+    - prompt_template
+    - system_prompt
+    - developer_prompt
+    - direct_llm_call
+    - llm_provider
+    - model_name
+    - api_key
+    - generated_document_text
+    - generated_report_text
+    - generated_output_text
+    - generated_recommendation_text
+    - generated_summary_text
+    - document_factory_payload
+    - document_template_payload
+    - document_generation_payload
+    - report_generation_payload
+    - document_renderer_payload
+    - product_ready_document_payload
+    - product_ready_report_payload
+    - export_payload
+    - dashboard_payload
+    - state_mutation_payload
+    - action_execution_payload
+    - autonomous_agent_payload
+    - approval_payload
+    - workflow_release_payload
+    - repository_write_payload
+    - issue_creation_payload
+    - pull_request_creation_payload
+    - ui_api_payload
+    - cloud_deployment_payload
+    - saas_productization_payload
+    - execution_truth_override
+    - source_truth_override
+    - validation_truth_override
+    - standards_truth_override
+
+  deferred_scope_protection:
+    actual_llm_calls_in_scope: false
+    prompt_templates_in_scope: false
+    document_factory_in_scope: false
+    actual_document_generation_in_scope: false
+    actual_report_generation_in_scope: false
+    product_ready_rendering_in_scope: false
+    workflow_state_mutation_in_scope: false
+    action_execution_in_scope: false
+    autonomous_agentic_behavior_in_scope: false
+    approval_or_release_authority_in_scope: false
+    validation_or_uat_truth_in_scope: false
+    ui_api_behavior_in_scope: false
+    cloud_or_saas_productization_in_scope: false
+    m18_validation_checkpoint_in_scope: false
+    m18_uat_checkpoint_in_scope: false
+    m18_closeout_in_scope: false
+
+  validation:
+    expected_command: python -m pytest -q
+    current_status: pending_local_validation
+    recorded_result: pending

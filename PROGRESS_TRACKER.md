@@ -31,15 +31,15 @@ Phase 6 — AI Layer
 
 ## Latest Completed Checkpoint
 
-`M18.3` — Controlled recommendation behavior
+`M18.4` — Workflow-expansion boundaries and refusal rules
 
 ## Exact Next Unfinished Checkpoint
 
-`M18.4` — Workflow-expansion boundaries and refusal rules
+`M18.5` — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `872 passed in 45.13s`
+`python -m pytest -q` — `885 passed in 46.29s`
 
 ## Active Notes
 
@@ -57,4 +57,5 @@ Phase 6 — AI Layer
 - `M18.1` implementation evidence is preserved in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`.
 - `M18.2` implementation evidence is preserved in `docs/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/summarization_reporting.py`, and `tests/test_ai_summarization_reporting.py`.
 - `M18.3` implementation evidence is preserved in `docs/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`, `docs/design_spec/ai_workflow/M18_3_CONTROLLED_RECOMMENDATION_BEHAVIOR_RULES.yaml`, `asbp/ai_workflow/recommendation_behavior.py`, `asbp/ai_workflow/__init__.py`, and `tests/test_ai_recommendation_behavior.py`.
-- `M18.3` validation passed locally with `python -m pytest -q` — `872 passed in 45.13s`.
+- `M18.4` implementation evidence is preserved in `docs/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`, `docs/design_spec/ai_workflow/M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.yaml`, `asbp/ai_workflow/workflow_expansion_boundaries.py`, `asbp/ai_workflow/__init__.py`, and `tests/test_ai_workflow_expansion_boundaries.py`.
+- `M18.4` validation passed locally with `python -m pytest -q` — `885 passed in 46.29s`.
