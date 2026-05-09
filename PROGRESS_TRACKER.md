@@ -27,19 +27,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.2` — Quality gates and groundedness checks
+`M17.3` — Standards-conformance and detail-level consistency checks
 
 ## Latest Completed Checkpoint
 
-`M17.1` — AI evaluation baseline and regression harness completed
+`M17.2` — Quality gates and groundedness checks completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.2` — Quality gates and groundedness checks
+`M17.3` — Standards-conformance and detail-level consistency checks
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `801 passed in 46.94s`
+`python -m pytest -q` — `812 passed in 44.79s`
 
 ## Active Notes
 
@@ -56,4 +56,9 @@ Phase 6 — AI Layer
 - `M17.1` introduced the AI evaluation baseline and regression harness for governed M16 output-acceptance decisions.
 - `M17.1` preserved measurable regression expectations for document/reporting families without implementing quality gates, groundedness checks, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
 - `M17.1` validation passed locally with `python -m pytest -q` — `801 passed in 46.94s`.
-- The active build path now moves to `M17.2` — Quality gates and groundedness checks.
+- `M17.2` is completed. Evidence is preserved in `asbp/ai_evaluation/quality_gates.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_quality_gates.py`, `docs/M17_QUALITY_GATES_AND_GROUNDEDNESS.md`, and `docs/design_spec/ai_evaluation/M17_2_QUALITY_GATES_AND_GROUNDEDNESS_RULES.yaml`.
+- `M17.2` introduced deterministic quality gates, groundedness checks, evidence-link checks, source-role checks, and fail-closed handling for attractive but ungrounded AI output.
+- `M17.2` explicitly does not reopen document template/product implementation, actual document generation from expanded library content, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
+- Document template/product implementation remains deferred to a post-M17, pre-M18 decision gate.
+- `M17.2` validation passed locally with `python -m pytest -q` — `812 passed in 44.79s`.
+- The active build path now moves to `M17.3` — Standards-conformance and detail-level consistency checks.
