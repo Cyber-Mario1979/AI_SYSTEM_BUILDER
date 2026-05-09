@@ -1,0 +1,154 @@
+doc_type: design_spec
+canonical_name: M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES
+status: IMPLEMENTED_PENDING_VALIDATION
+governs_execution: false
+document_state_mode: design_spec_evidence
+authority: implementation_evidence_only
+checkpoint: M18.2
+milestone: M18
+phase: Phase 6 — AI Layer
+
+controlled_summarization_reporting_assistance:
+  checkpoint: M18.2
+  contract_version: ai-controlled-summarization-reporting-v1
+  package: asbp.ai_workflow
+  module: asbp.ai_workflow.summarization_reporting
+
+  purpose:
+    - Define bounded summarization assistance.
+    - Define bounded reporting assistance.
+    - Preserve advisory-only behavior.
+    - Preserve document/report family rules and detail discipline.
+    - Preserve evidence and source-role discipline inherited from M17.
+
+  assistance_role:
+    value: advisory_summarization_reporting_assistance
+    rule: AI summarization/reporting assistance is advisory only and cannot become approval, release, validation, UAT, execution truth, document generation, report generation, or product-ready rendering.
+
+  supported_summary_target_families:
+    - document_artifact_summary_target
+    - reporting_artifact_summary_target
+    - workflow_state_summary_target
+    - ai_output_summary_target
+
+  supported_summarization_modes:
+    - evidence_bound_summarization
+    - contract_aligned_summarization
+    - gap_and_risk_summarization
+
+  supported_reporting_assistance_modes:
+    - status_summary_reporting
+    - detail_discipline_reporting
+    - evidence_trace_reporting
+
+  source_requirements:
+    source_quality_gate_required: true
+    source_quality_gate_must_pass: true
+    evidence_refs_must_be_inside_source_quality_gate: true
+    source_refs_must_be_inside_source_quality_gate: true
+    finding_refs_must_be_inside_request_scope: true
+
+  detail_discipline:
+    preserve_document_family_rules: true
+    preserve_report_family_rules: true
+    preserve_evidence_traceability: true
+    preserve_source_role_discipline: true
+    free_form_summary_text_allowed: false
+    free_form_report_text_allowed: false
+
+  authority_constraints:
+    ai_can_approve: false
+    ai_can_release: false
+    ai_can_mutate_workflow_state: false
+    ai_can_generate_document: false
+    ai_can_generate_report: false
+    ai_can_render_product_ready_report: false
+    ai_can_recommend: false
+    approval_payload_allowed: false
+    workflow_release_payload_allowed: false
+    state_mutation_payload_allowed: false
+    document_generation_payload_allowed: false
+    report_generation_payload_allowed: false
+    product_ready_rendering_payload_allowed: false
+    recommendation_payload_allowed: false
+    validation_or_uat_truth_claim_allowed: false
+
+  prohibited_payload_fields:
+    - raw_prompt
+    - free_form_prompt
+    - unvalidated_user_prompt
+    - prompt_template
+    - system_prompt
+    - developer_prompt
+    - direct_llm_call
+    - llm_provider
+    - model_name
+    - api_key
+    - generated_summary_text
+    - generated_report_text
+    - generated_document_text
+    - generated_output_text
+    - summary_narrative_text
+    - report_body_text
+    - report_markdown
+    - report_pdf_payload
+    - document_factory_payload
+    - document_template_payload
+    - document_generation_payload
+    - report_generation_payload
+    - document_renderer_payload
+    - product_ready_report_payload
+    - export_payload
+    - dashboard_payload
+    - library_architecture_payload
+    - recommendation_payload
+    - state_mutation_payload
+    - approval_payload
+    - workflow_release_payload
+    - execution_truth_override
+    - source_truth_override
+    - validation_truth_override
+    - standards_truth_override
+
+  supported_finding_categories:
+    - summary_contract_alignment_finding
+    - summary_evidence_gap_finding
+    - summary_assumption_labeling_finding
+    - summary_source_role_discipline_finding
+    - reporting_detail_discipline_finding
+    - summary_report_approval_authority_boundary_finding
+    - summary_report_workflow_state_mutation_boundary_finding
+    - summary_report_document_generation_boundary_finding
+    - summary_report_report_generation_boundary_finding
+    - summary_report_product_rendering_boundary_finding
+    - summary_report_recommendation_boundary_finding
+    - summary_report_validation_truth_boundary_finding
+
+  supported_finding_severities:
+    - info
+    - warning
+    - blocking
+
+  supported_assistance_results:
+    - summarization_reporting_assistance_ready
+    - summarization_reporting_assistance_findings_identified
+
+  deterministic_result_rule:
+    no_findings: summarization_reporting_assistance_ready
+    one_or_more_findings: summarization_reporting_assistance_findings_identified
+
+  deferred_scope_protection:
+    document_factory_in_scope: false
+    document_template_product_implementation_in_scope: false
+    actual_document_generation_in_scope: false
+    actual_report_generation_in_scope: false
+    product_ready_document_rendering_in_scope: false
+    product_ready_report_rendering_in_scope: false
+    recommendation_behavior_in_scope: false
+    actual_llm_calls_in_scope: false
+    prompt_templates_in_scope: false
+
+  validation:
+    expected_command: python -m pytest -q
+    current_status: pending_local_validation
+    recorded_result: pending
