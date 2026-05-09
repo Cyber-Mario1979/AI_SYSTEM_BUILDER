@@ -1,0 +1,53 @@
+checkpoint: M17.3
+contract_version: ai-standards-detail-checks-v1
+scope:
+  owns:
+    - standards_conformance_checks
+    - detail_level_consistency_checks
+  consumes:
+    - closed_m12_document_engine_guarded_authoring_payloads
+    - optional_m17_2_quality_gate_results
+  does_not_own:
+    - actual_llm_calls
+    - prompt_templates
+    - raw_generated_text_scoring
+    - document_template_product_implementation
+    - actual_document_generation_from_expanded_library_content
+    - retrieval_use_governance
+    - recommendation_behavior
+    - ui_api_behavior
+    - workflow_state_mutation
+    - document_approval_or_release
+
+results:
+  standards_conformance:
+    pass: standards_conformance_check_pass
+    fail: standards_conformance_check_fail
+  detail_consistency:
+    pass: detail_consistency_check_pass
+    fail: detail_consistency_check_fail
+  combined:
+    pass: standards_detail_check_pass
+    fail: standards_detail_check_fail
+
+standards_conformance_rules:
+  - standards_refs_must_be_version_pinned
+  - section_standards_refs_must_be_version_pinned
+  - section_standards_refs_must_be_declared_in_family_policy
+  - prohibited_language_patterns_fail
+  - document_family_mismatch_fails
+
+detail_consistency_rules:
+  - required_sections_must_be_present
+  - disallowed_sections_fail
+  - duplicate_section_ids_fail
+  - evidence_supported_sections_require_evidence_refs
+  - bounded_inference_sections_require_inference_refs
+  - bounded_inference_sections_require_labeled_assumptions
+  - explicit_assumption_sections_require_labeled_assumptions
+  - placeholder_only_sections_require_explicit_placeholder_markers
+  - document_family_mismatch_fails
+
+template_reentry_policy:
+  decision_gate: post_M17_pre_M18
+  note: document_template_product_implementation_remains_deferred

@@ -27,19 +27,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.3` — Standards-conformance and detail-level consistency checks
+`M17.4` — Retrieval-use rules and source-role discipline
 
 ## Latest Completed Checkpoint
 
-`M17.2` — Quality gates and groundedness checks completed
+`M17.3` — Standards-conformance and detail-level consistency checks completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.3` — Standards-conformance and detail-level consistency checks
+`M17.4` — Retrieval-use rules and source-role discipline
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `812 passed in 44.79s`
+`python -m pytest -q` — `825 passed in 57.29s`
 
 ## Active Notes
 
@@ -61,4 +61,9 @@ Phase 6 — AI Layer
 - `M17.2` explicitly does not reopen document template/product implementation, actual document generation from expanded library content, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
 - Document template/product implementation remains deferred to a post-M17, pre-M18 decision gate.
 - `M17.2` validation passed locally with `python -m pytest -q` — `812 passed in 44.79s`.
-- The active build path now moves to `M17.3` — Standards-conformance and detail-level consistency checks.
+- `M17.3` is completed. Evidence is preserved in `asbp/ai_evaluation/standards_detail_checks.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_standards_detail_checks.py`, `docs/M17_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY.md`, and `docs/design_spec/ai_evaluation/M17_3_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY_RULES.yaml`.
+- `M17.3` introduced deterministic standards-conformance checks and detail-level consistency checks over governed document-engine guardrail payloads.
+- `M17.3` consumes the closed M12 standards/language/evidence guardrail boundary and does not reopen document template/product implementation or actual document generation from expanded library content.
+- `M17.3` explicitly does not implement retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, release behavior, or external clause-by-clause GMP standards judgment.
+- `M17.3` validation passed locally with `python -m pytest -q` — `825 passed in 57.29s`.
+- The active build path now moves to `M17.4` — Retrieval-use rules and source-role discipline.
