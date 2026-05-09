@@ -31,11 +31,11 @@ Phase 6 — AI Layer
 
 ## Latest Completed Checkpoint
 
-`M18.5` — Validation checkpoint
+`M18.6` — Milestone UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M18.6` — Milestone UAT checkpoint
+`M18.7` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -60,3 +60,5 @@ Phase 6 — AI Layer
 - `M18.4` implementation evidence is preserved in `docs/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`, `docs/design_spec/ai_workflow/M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.yaml`, `asbp/ai_workflow/workflow_expansion_boundaries.py`, `asbp/ai_workflow/__init__.py`, and `tests/test_ai_workflow_expansion_boundaries.py`.
 - `M18.5` validation evidence is preserved in `docs/milestones/M18/M18_VALIDATION_CHECKPOINT.md`.
 - `M18.5` validation passed locally with `python -m pytest -q` — `885 passed in 42.73s`.
+- `M18.6` UAT evidence is preserved in `docs/UAT/M18/M18_UAT_PROTOCOL.md` and `docs/UAT/M18/M18_UAT_REPORT.md`.
+- `M18.6` UAT acceptance decision: Pass.
