@@ -27,19 +27,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.4` — Retrieval-use rules and source-role discipline
+`M17.5` — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-`M17.3` — Standards-conformance and detail-level consistency checks completed
+`M17.4` — Retrieval-use rules and source-role discipline completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.4` — Retrieval-use rules and source-role discipline
+`M17.5` — Validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `825 passed in 57.29s`
+`python -m pytest -q` — `835 passed in 50.02s`
 
 ## Active Notes
 
@@ -66,4 +66,9 @@ Phase 6 — AI Layer
 - `M17.3` consumes the closed M12 standards/language/evidence guardrail boundary and does not reopen document template/product implementation or actual document generation from expanded library content.
 - `M17.3` explicitly does not implement retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, release behavior, or external clause-by-clause GMP standards judgment.
 - `M17.3` validation passed locally with `python -m pytest -q` — `825 passed in 57.29s`.
-- The active build path now moves to `M17.4` — Retrieval-use rules and source-role discipline.
+- `M17.4` is completed. Evidence is preserved in `asbp/ai_evaluation/retrieval_use_rules.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_retrieval_use_rules.py`, `docs/M17_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.md`, and `docs/design_spec/ai_evaluation/M17_4_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.yaml`.
+- `M17.4` introduced deterministic retrieval-use rules and source-role discipline checks for AI consumption of governed retrieval and support retrieval.
+- `M17.4` consumes the closed M14.5 governed retrieval/support-retrieval boundary and prevents support retrieval from being promoted into source truth, execution truth, compiled lookup authority, approval truth, release truth, or workflow mutation.
+- `M17.4` explicitly does not implement vector search, embeddings, external web search, asset payload loading, document generation, document template/product implementation, standards/detail checks, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
+- `M17.4` validation passed locally with `python -m pytest -q` — `835 passed in 50.02s`.
+- The active build path now moves to `M17.5` — Validation checkpoint.
