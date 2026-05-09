@@ -27,15 +27,15 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.6` — Milestone UAT checkpoint
+`M17.7` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M17.5` — Validation checkpoint completed
+`M17.6` — Milestone UAT checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.6` — Milestone UAT checkpoint
+`M17.7` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -52,26 +52,10 @@ Phase 6 — AI Layer
 - `M16.7` closeout records the governed AI runtime boundary for document/reporting workflows as frozen for the approved roadmap scope.
 - Phase 6 — AI Layer remains the active phase.
 - Phase 6 work must remain downstream from deterministic truth, governed retrieval, document/export contracts, governed library boundaries, runtime/service boundaries, and the closed M16 AI runtime boundary.
-- `M17.1` is completed. Evidence is preserved in `docs/M17_AI_EVALUATION_BASELINE.md`, `docs/design_spec/ai_evaluation/M17_1_AI_EVALUATION_BASELINE_RULES.yaml`, `asbp/ai_evaluation/evaluation_baseline.py`, `asbp/ai_evaluation/__init__.py`, and `tests/test_ai_evaluation_baseline.py`.
-- `M17.1` introduced the AI evaluation baseline and regression harness for governed M16 output-acceptance decisions.
-- `M17.1` preserved measurable regression expectations for document/reporting families without implementing quality gates, groundedness checks, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
-- `M17.1` validation passed locally with `python -m pytest -q` — `801 passed in 46.94s`.
-- `M17.2` is completed. Evidence is preserved in `asbp/ai_evaluation/quality_gates.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_quality_gates.py`, `docs/M17_QUALITY_GATES_AND_GROUNDEDNESS.md`, and `docs/design_spec/ai_evaluation/M17_2_QUALITY_GATES_AND_GROUNDEDNESS_RULES.yaml`.
-- `M17.2` introduced deterministic quality gates, groundedness checks, evidence-link checks, source-role checks, and fail-closed handling for attractive but ungrounded AI output.
-- `M17.2` explicitly does not reopen document template/product implementation, actual document generation from expanded library content, standards-conformance checks, detail-level consistency checks, retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
+- `M17.1` through `M17.4` implementation checkpoints are completed.
+- `M17.5` validation checkpoint is completed. Evidence is preserved in `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`.
+- `M17.6` milestone UAT checkpoint is completed. Evidence is preserved in `docs/UAT/M17/M17_UAT_PROTOCOL.md` and `docs/UAT/M17/M17_UAT_REPORT.md`.
+- `M17.6` UAT decision is `Pass` with open blockers: `None`.
+- `M17` evidence confirms AI evaluation, quality gates, standards/detail checks, and retrieval-use/source-role discipline remain bounded and deterministic.
 - Document template/product implementation remains deferred to a post-M17, pre-M18 decision gate.
-- `M17.2` validation passed locally with `python -m pytest -q` — `812 passed in 44.79s`.
-- `M17.3` is completed. Evidence is preserved in `asbp/ai_evaluation/standards_detail_checks.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_standards_detail_checks.py`, `docs/M17_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY.md`, and `docs/design_spec/ai_evaluation/M17_3_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY_RULES.yaml`.
-- `M17.3` introduced deterministic standards-conformance checks and detail-level consistency checks over governed document-engine guardrail payloads.
-- `M17.3` consumes the closed M12 standards/language/evidence guardrail boundary and does not reopen document template/product implementation or actual document generation from expanded library content.
-- `M17.3` explicitly does not implement retrieval-use governance, recommendation behavior, UI/API behavior, workflow mutation, approval, release behavior, or external clause-by-clause GMP standards judgment.
-- `M17.3` validation passed locally with `python -m pytest -q` — `825 passed in 57.29s`.
-- `M17.4` is completed. Evidence is preserved in `asbp/ai_evaluation/retrieval_use_rules.py`, `asbp/ai_evaluation/__init__.py`, `tests/test_ai_retrieval_use_rules.py`, `docs/M17_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.md`, and `docs/design_spec/ai_evaluation/M17_4_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.yaml`.
-- `M17.4` introduced deterministic retrieval-use rules and source-role discipline checks for AI consumption of governed retrieval and support retrieval.
-- `M17.4` consumes the closed M14.5 governed retrieval/support-retrieval boundary and prevents support retrieval from being promoted into source truth, execution truth, compiled lookup authority, approval truth, release truth, or workflow mutation.
-- `M17.4` explicitly does not implement vector search, embeddings, external web search, asset payload loading, document generation, document template/product implementation, standards/detail checks, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
-- `M17.4` validation passed locally with `python -m pytest -q` — `835 passed in 50.02s`.
-- `M17.5` is completed. Evidence is preserved in `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`.
-- `M17.5` records formal validation for completed `M17.1` through `M17.4` and adds no new implementation capability.
-- `M17.5` confirms readiness to proceed to `M17.6` — Milestone UAT checkpoint.
-- The active build path now moves to `M17.6` — Milestone UAT checkpoint.
+- The active build path now moves to `M17.7` — Milestone closeout.
