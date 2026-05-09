@@ -31,15 +31,15 @@ Phase 6 — AI Layer
 
 ## Latest Completed Checkpoint
 
-`M18.1` — Controlled review assistance
+`M18.2` — Controlled summarization and reporting assistance
 
 ## Exact Next Unfinished Checkpoint
 
-`M18.2` — Controlled summarization and reporting assistance
+`M18.3` — Controlled recommendation behavior
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `846 passed in 50.01s`
+`python -m pytest -q` — `859 passed in 45.53s`
 
 ## Active Notes
 
@@ -55,4 +55,5 @@ Phase 6 — AI Layer
 - No roadmap addendum or new milestone is required before `M18.1`.
 - `M18` may proceed, but it must remain bounded to AI-assisted workflow expansion and must not quietly implement document template/product generation.
 - `M18.1` implementation evidence is preserved in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`.
-- `M18.1` validation passed locally after merging `origin/main` into the active branch with `python -m pytest -q` — `846 passed in 50.01s`.
+- `M18.2` implementation evidence is preserved in `docs/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/summarization_reporting.py`, and `tests/test_ai_summarization_reporting.py`.
+- `M18.2` validation passed locally with `python -m pytest -q` — `859 passed in 45.53s`.
