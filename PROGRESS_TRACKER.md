@@ -1,4 +1,4 @@
----
+﻿---
 doc_type: progress_tracker
 canonical_name: PROGRESS_TRACKER
 status: ACTIVE
@@ -27,19 +27,19 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-Post-M17 / pre-M18 decision gate — Document template/product implementation re-entry decision
+`M18` — AI-Assisted Workflow Expansion
 
 ## Latest Completed Checkpoint
 
-`M17.7` — Milestone closeout completed
+`M18.1` — Controlled review assistance
 
 ## Exact Next Unfinished Checkpoint
 
-Post-M17 / pre-M18 decision gate — Decide whether document template/product implementation requires a roadmap addendum or a new milestone before `M18.1`
+`M18.2` — Controlled summarization and reporting assistance
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `835 passed in 50.02s`
+`python -m pytest -q` — `846 passed in 50.01s`
 
 ## Active Notes
 
@@ -50,7 +50,9 @@ Post-M17 / pre-M18 decision gate — Decide whether document template/product im
 - `M16` is closed and accepted. Detailed M16 evidence is preserved in M16 checkpoint documents, `docs/milestones/M16/M16_VALIDATION_CHECKPOINT.md`, `docs/UAT/M16/M16_UAT_PROTOCOL.md`, `docs/UAT/M16/M16_UAT_REPORT.md`, and `docs/milestones/M16/M16_CLOSEOUT_NOTES.md`.
 - `M17` is closed and accepted. Detailed M17 evidence is preserved in M17 checkpoint documents, `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`, `docs/UAT/M17/M17_UAT_PROTOCOL.md`, `docs/UAT/M17/M17_UAT_REPORT.md`, and `docs/milestones/M17/M17_CLOSEOUT_NOTES.md`.
 - `M17.7` closeout records the AI evaluation and retrieval-use governance boundary as frozen for the approved roadmap scope.
-- `M17` validation passed locally with `python -m pytest -q` — `835 passed in 50.02s`.
-- `M17` UAT decision is `Pass` with open blockers: `None`.
-- Phase 6 — AI Layer remains active but must not proceed to `M18.1` until the post-M17 / pre-M18 document template/product implementation re-entry decision gate is resolved or explicitly deferred.
-- Document template/product implementation remains deferred to the current post-M17 / pre-M18 decision gate.
+- The post-M17 / pre-M18 document template/product implementation re-entry decision gate is resolved in `docs/decision_gates/POST_M17_PRE_M18_DOCUMENT_REENTRY_DECISION.md`.
+- Decision: document template/product implementation and actual document generation from expanded governed library content are explicitly deferred beyond `M18`.
+- No roadmap addendum or new milestone is required before `M18.1`.
+- `M18` may proceed, but it must remain bounded to AI-assisted workflow expansion and must not quietly implement document template/product generation.
+- `M18.1` implementation evidence is preserved in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`.
+- `M18.1` validation passed locally after merging `origin/main` into the active branch with `python -m pytest -q` — `846 passed in 50.01s`.
