@@ -27,15 +27,15 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.5` — Validation checkpoint
+`M17.6` — Milestone UAT checkpoint
 
 ## Latest Completed Checkpoint
 
-`M17.4` — Retrieval-use rules and source-role discipline completed
+`M17.5` — Validation checkpoint completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.5` — Validation checkpoint
+`M17.6` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
@@ -71,4 +71,7 @@ Phase 6 — AI Layer
 - `M17.4` consumes the closed M14.5 governed retrieval/support-retrieval boundary and prevents support retrieval from being promoted into source truth, execution truth, compiled lookup authority, approval truth, release truth, or workflow mutation.
 - `M17.4` explicitly does not implement vector search, embeddings, external web search, asset payload loading, document generation, document template/product implementation, standards/detail checks, recommendation behavior, UI/API behavior, workflow mutation, approval, or release behavior.
 - `M17.4` validation passed locally with `python -m pytest -q` — `835 passed in 50.02s`.
-- The active build path now moves to `M17.5` — Validation checkpoint.
+- `M17.5` is completed. Evidence is preserved in `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`.
+- `M17.5` records formal validation for completed `M17.1` through `M17.4` and adds no new implementation capability.
+- `M17.5` confirms readiness to proceed to `M17.6` — Milestone UAT checkpoint.
+- The active build path now moves to `M17.6` — Milestone UAT checkpoint.
