@@ -56,3 +56,4 @@ Post-M17 / pre-M18 decision gate — Document template/product implementation ex
 - Decision: document template/product implementation and actual document generation from expanded governed library content are explicitly deferred beyond `M18`.
 - No roadmap addendum or new milestone is required before `M18.1`.
 - `M18` may proceed, but it must remain bounded to AI-assisted workflow expansion and must not quietly implement document template/product generation.
+- `M18.1` implementation evidence has been applied in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`; validation remains pending.
