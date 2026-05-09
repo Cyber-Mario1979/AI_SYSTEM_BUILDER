@@ -1,6 +1,6 @@
 doc_type: design_spec
 canonical_name: M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES
-status: IMPLEMENTED_PENDING_VALIDATION
+status: IMPLEMENTED_VALIDATED
 governs_execution: false
 document_state_mode: design_spec_evidence
 authority: implementation_evidence_only
@@ -114,4 +114,5 @@ controlled_review_assistance:
 
   validation:
     expected_command: python -m pytest -q
-    current_status: pending
+    current_status: passed
+    recorded_result: 846 passed in 42.32s

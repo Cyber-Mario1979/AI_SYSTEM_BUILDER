@@ -1,7 +1,7 @@
 ---
 doc_type: milestone_checkpoint_evidence
 canonical_name: M18_CONTROLLED_REVIEW_ASSISTANCE
-status: IMPLEMENTED_PENDING_VALIDATION
+status: IMPLEMENTED_VALIDATED
 governs_execution: false
 document_state_mode: checkpoint_evidence
 authority: implementation_evidence_only
@@ -153,28 +153,33 @@ Implemented files:
 
 ## Validation Status
 
-Validation is pending.
+Validation passed locally after pulling the branch.
 
-The expected validation command is:
+Validation command:
 
 ```powershell
 python -m pytest -q
 ```
 
-The latest previously recorded validation result remains:
+Recorded validation result:
 
 ```text
-835 passed in 50.02s
+846 passed in 42.32s
 ```
 
-This document must not be used as proof of passing validation until the validation command is run and recorded.
+## Completion Decision
 
-## Next Expected Step
+`M18.1` is complete and validated for the approved controlled review-assistance boundary.
 
-Run validation:
+The checkpoint closes without implementing:
 
-```powershell
-python -m pytest -q
-```
+- document factory behavior
+- actual document generation
+- document template/product implementation
+- library architecture cleanup
+- approval or release authority
+- workflow state mutation
 
-If validation passes, update `PROGRESS_TRACKER.md` to mark `M18.1` complete and set `M18.2` as the exact next unfinished checkpoint.
+## Next Expected Checkpoint
+
+`M18.2` — Controlled summarization and reporting assistance
