@@ -1,0 +1,49 @@
+checkpoint: M17.4
+contract_version: ai-retrieval-use-rules-v1
+title: Retrieval-use rules and source-role discipline
+scope:
+  owned:
+    - ai_retrieval_use_rule_baseline
+    - governed_retrieval_consumption_checks
+    - support_retrieval_consumption_checks
+    - source_role_discipline_checks
+    - support_retrieval_non_authority_enforcement
+  not_owned:
+    - vector_search
+    - embedding_generation
+    - external_web_search
+    - asset_payload_loading
+    - document_generation
+    - document_template_product_implementation
+    - standards_conformance_checks
+    - detail_level_consistency_checks
+    - recommendation_behavior
+    - ui_api_behavior
+    - workflow_state_mutation
+    - document_approval_or_release
+rules:
+  governed_retrieval:
+    must_remain: governed_version_pinned_retrieval_only
+    must_not_use_support_retrieval: true
+    must_not_include_asset_payload: true
+  support_retrieval:
+    must_remain: non_authoritative_support_context_only
+    may_support_ai_context: true
+    must_not_define_source_truth: true
+    must_not_define_execution_truth: true
+    must_not_define_compiled_lookup_authority: true
+    must_not_be_used_as_governed_evidence: true
+fail_closed_on:
+  - unsupported_retrieval_mode
+  - resolver_bypass
+  - source_truth_override
+  - execution_truth_override
+  - support_retrieval_as_source_truth
+  - support_retrieval_as_execution_truth
+  - support_retrieval_as_compiled_lookup_authority
+  - support_retrieval_as_governed_evidence
+  - mixed_governed_support_authority
+  - state_mutation_request
+  - approval_or_release_request
+  - document_generation_request
+  - document_template_implementation_request

@@ -1,0 +1,61 @@
+---
+checkpoint: M17.2
+name: Quality gates and groundedness checks
+contract_version: ai-quality-gates-v1
+status: implementation_package_prepared
+
+scope:
+  in_scope:
+    - quality_gate_result_contract
+    - groundedness_check_result_contract
+    - evidence_link_check
+    - source_role_check
+    - deterministic_quality_gate_pass_fail
+  out_of_scope:
+    - actual_llm_calls
+    - prompt_templates
+    - generated_document_text
+    - generated_report_text
+    - document_template_product_implementation
+    - actual_document_generation_from_expanded_library_content
+    - standards_conformance_checks
+    - detail_level_consistency_checks
+    - retrieval_use_governance
+    - recommendation_behavior
+    - ui_api_behavior
+    - workflow_state_mutation
+    - document_approval_or_release
+
+quality_gate_rule:
+  pass_when_all_pass:
+    - groundedness_check
+    - evidence_link_check
+    - source_role_check
+  fail_when_any_fail:
+    - groundedness_check
+    - evidence_link_check
+    - source_role_check
+
+groundedness_failure_reasons:
+  - source_acceptance_decision_not_accept
+  - unsupported_evidence_claim
+  - unlabeled_assumption
+  - missing_truth_placeholder_not_used
+  - unbounded_invention
+  - unverified_standards_claim
+  - unverified_evidence_claim
+  - execution_truth_claim
+  - state_mutation_request
+  - approval_or_release_request
+  - evidence_ref_not_in_context
+  - evidence_ref_not_generation_eligible
+  - evidence_ref_unavailable
+  - source_ref_not_in_context
+  - non_authoritative_source_used_as_truth
+  - source_can_define_execution_truth
+
+document_template_boundary:
+  decision: defer_to_post_m17_pre_m18_gate
+  rule: M17.2 must not reopen document template implementation.
+  reentry_scope: actual document template/product implementation from expanded governed library content
+...
