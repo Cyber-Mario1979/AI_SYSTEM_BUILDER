@@ -27,15 +27,15 @@ Phase 6 — AI Layer
 
 ## Current Approved Slice Family
 
-`M17.7` — Milestone closeout
+Post-M17 / pre-M18 decision gate — Document template/product implementation re-entry decision
 
 ## Latest Completed Checkpoint
 
-`M17.6` — Milestone UAT checkpoint completed
+`M17.7` — Milestone closeout completed
 
 ## Exact Next Unfinished Checkpoint
 
-`M17.7` — Milestone closeout
+Post-M17 / pre-M18 decision gate — Decide whether document template/product implementation requires a roadmap addendum or a new milestone before `M18.1`
 
 ## Latest Verified Validation Status
 
@@ -48,14 +48,9 @@ Phase 6 — AI Layer
 - `M12`, `M13`, `M14`, and `M15` are closed and accepted; detailed evidence remains preserved in their milestone validation, UAT, and closeout files.
 - `M15.10` closeout records Phase 5 — Core Engine Completion as complete for the approved roadmap scope.
 - `M16` is closed and accepted. Detailed M16 evidence is preserved in M16 checkpoint documents, `docs/milestones/M16/M16_VALIDATION_CHECKPOINT.md`, `docs/UAT/M16/M16_UAT_PROTOCOL.md`, `docs/UAT/M16/M16_UAT_REPORT.md`, and `docs/milestones/M16/M16_CLOSEOUT_NOTES.md`.
-- `M16` closed on the repo-real `asbp.ai_runtime` boundary with AI runtime entry controls, context packaging, controlled generation-mode contracts, output acceptance, bounded retry, fallback/refusal behavior, validation evidence, and UAT evidence.
-- `M16.7` closeout records the governed AI runtime boundary for document/reporting workflows as frozen for the approved roadmap scope.
-- Phase 6 — AI Layer remains the active phase.
-- Phase 6 work must remain downstream from deterministic truth, governed retrieval, document/export contracts, governed library boundaries, runtime/service boundaries, and the closed M16 AI runtime boundary.
-- `M17.1` through `M17.4` implementation checkpoints are completed.
-- `M17.5` validation checkpoint is completed. Evidence is preserved in `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`.
-- `M17.6` milestone UAT checkpoint is completed. Evidence is preserved in `docs/UAT/M17/M17_UAT_PROTOCOL.md` and `docs/UAT/M17/M17_UAT_REPORT.md`.
-- `M17.6` UAT decision is `Pass` with open blockers: `None`.
-- `M17` evidence confirms AI evaluation, quality gates, standards/detail checks, and retrieval-use/source-role discipline remain bounded and deterministic.
-- Document template/product implementation remains deferred to a post-M17, pre-M18 decision gate.
-- The active build path now moves to `M17.7` — Milestone closeout.
+- `M17` is closed and accepted. Detailed M17 evidence is preserved in M17 checkpoint documents, `docs/milestones/M17/M17_VALIDATION_CHECKPOINT.md`, `docs/UAT/M17/M17_UAT_PROTOCOL.md`, `docs/UAT/M17/M17_UAT_REPORT.md`, and `docs/milestones/M17/M17_CLOSEOUT_NOTES.md`.
+- `M17.7` closeout records the AI evaluation and retrieval-use governance boundary as frozen for the approved roadmap scope.
+- `M17` validation passed locally with `python -m pytest -q` — `835 passed in 50.02s`.
+- `M17` UAT decision is `Pass` with open blockers: `None`.
+- Phase 6 — AI Layer remains active but must not proceed to `M18.1` until the post-M17 / pre-M18 document template/product implementation re-entry decision gate is resolved or explicitly deferred.
+- Document template/product implementation remains deferred to the current post-M17 / pre-M18 decision gate.
