@@ -1,0 +1,117 @@
+doc_type: design_spec
+canonical_name: M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES
+status: IMPLEMENTED_PENDING_VALIDATION
+governs_execution: false
+document_state_mode: design_spec_evidence
+authority: implementation_evidence_only
+checkpoint: M18.1
+milestone: M18
+phase: Phase 6 — AI Layer
+
+controlled_review_assistance:
+  checkpoint: M18.1
+  contract_version: ai-controlled-review-assistance-v1
+  package: asbp.ai_workflow
+  module: asbp.ai_workflow.review_assistance
+
+  purpose:
+    - Define bounded AI-assisted review support.
+    - Preserve advisory-only behavior.
+    - Preserve separation from approval, release, and workflow mutation authority.
+    - Preserve evidence and source-role discipline inherited from M17.
+
+  review_role:
+    value: advisory_review_assistance
+    rule: AI review assistance is advisory only and cannot become approval, release, validation, UAT, or execution truth.
+
+  supported_review_target_families:
+    - document_artifact_review_target
+    - reporting_artifact_review_target
+    - workflow_state_review_target
+    - ai_output_review_target
+
+  supported_review_modes:
+    - evidence_bound_review
+    - contract_alignment_review
+    - gap_and_risk_review
+
+  source_requirements:
+    source_quality_gate_required: true
+    source_quality_gate_must_pass: true
+    evidence_refs_must_be_inside_source_quality_gate: true
+    source_refs_must_be_inside_source_quality_gate: true
+    finding_refs_must_be_inside_review_request_scope: true
+
+  authority_constraints:
+    ai_can_approve: false
+    ai_can_release: false
+    ai_can_mutate_workflow_state: false
+    approval_payload_allowed: false
+    workflow_release_payload_allowed: false
+    state_mutation_payload_allowed: false
+    validation_or_uat_truth_claim_allowed: false
+
+  prohibited_payload_fields:
+    - raw_prompt
+    - free_form_prompt
+    - unvalidated_user_prompt
+    - prompt_template
+    - system_prompt
+    - developer_prompt
+    - direct_llm_call
+    - llm_provider
+    - model_name
+    - api_key
+    - generated_document_text
+    - generated_report_text
+    - generated_output_text
+    - document_factory_payload
+    - document_template_payload
+    - document_generation_payload
+    - document_renderer_payload
+    - library_architecture_payload
+    - recommendation_payload
+    - state_mutation_payload
+    - approval_payload
+    - workflow_release_payload
+    - execution_truth_override
+    - source_truth_override
+    - validation_truth_override
+    - standards_truth_override
+
+  supported_review_finding_categories:
+    - contract_alignment_finding
+    - evidence_gap_finding
+    - assumption_labeling_finding
+    - source_role_discipline_finding
+    - approval_authority_boundary_finding
+    - workflow_state_mutation_boundary_finding
+    - document_generation_boundary_finding
+    - document_template_product_boundary_finding
+    - library_architecture_deferred_scope_finding
+
+  supported_review_finding_severities:
+    - info
+    - warning
+    - blocking
+
+  supported_review_assistance_results:
+    - review_assistance_no_findings
+    - review_assistance_findings_identified
+
+  deterministic_result_rule:
+    no_findings: review_assistance_no_findings
+    one_or_more_findings: review_assistance_findings_identified
+
+  deferred_scope_protection:
+    document_factory_in_scope: false
+    document_template_product_implementation_in_scope: false
+    actual_document_generation_in_scope: false
+    product_ready_document_rendering_in_scope: false
+    library_architecture_change_in_scope: false
+    actual_llm_calls_in_scope: false
+    prompt_templates_in_scope: false
+
+  validation:
+    expected_command: python -m pytest -q
+    current_status: pending
