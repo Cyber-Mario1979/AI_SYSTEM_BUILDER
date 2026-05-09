@@ -1,4 +1,4 @@
----
+﻿---
 doc_type: progress_tracker
 canonical_name: PROGRESS_TRACKER
 status: ACTIVE
@@ -39,7 +39,7 @@ Phase 6 — AI Layer
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `846 passed in 42.32s`
+`python -m pytest -q` — `846 passed in 50.01s`
 
 ## Active Notes
 
@@ -55,4 +55,4 @@ Phase 6 — AI Layer
 - No roadmap addendum or new milestone is required before `M18.1`.
 - `M18` may proceed, but it must remain bounded to AI-assisted workflow expansion and must not quietly implement document template/product generation.
 - `M18.1` implementation evidence is preserved in `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`, `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`, `asbp/ai_workflow/`, and `tests/test_ai_review_assistance.py`.
-- `M18.1` validation passed locally after pulling the branch with `python -m pytest -q` — `846 passed in 42.32s`.
+- `M18.1` validation passed locally after merging `origin/main` into the active branch with `python -m pytest -q` — `846 passed in 50.01s`.
