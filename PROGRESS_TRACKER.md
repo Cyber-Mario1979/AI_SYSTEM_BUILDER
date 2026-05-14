@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M19.5` — Minimal API read surfaces
+`M19.6` — Minimal API command/intake surfaces
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.6` — Minimal API command/intake surfaces
+`M19.7` — API validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `931 passed in 47.01s`
+`python -m pytest -q` — `944 passed in 46.94s`
 
 ## Active Notes
 
@@ -71,4 +71,7 @@ Phase 7 — UI and API Layer
 - `M19.5` established minimal read-only API surfaces under `asbp/api/read_surface.py`.
 - `M19.5` added deterministic read responses for governed API metadata surfaces and fail-closed behavior for invalid or unknown read-surface names.
 - `M19.5` validation passed locally with `python -m pytest -q` — `931 passed in 47.01s`.
-- Phase 7 execution continues at `M19.6` — Minimal API command/intake surfaces.
+- `M19.6` established minimal API command/intake surfaces under `asbp/api/command_intake.py`.
+- `M19.6` added deterministic command/intake validation, preview-only behavior, fail-closed unsupported command handling, service-boundary checks, and no direct execution or raw state mutation from API adapters.
+- `M19.6` validation passed locally with `python -m pytest -q` — `944 passed in 46.94s`.
+- Phase 7 execution continues at `M19.7` — API validation checkpoint.
