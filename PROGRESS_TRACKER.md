@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`Post-M18 / pre-Phase-7 roadmap expansion gate`
+`M19.1` — API boundary foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.1` — API boundary foundation
+`M19.2` — Request/response contract foundation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `885 passed in 42.73s`
+`python -m pytest -q` — `889 passed in 45.01s`
 
 ## Active Notes
 
@@ -56,4 +56,7 @@ Phase 7 — UI and API Layer
 - `M18.5` validation passed locally with `python -m pytest -q` — `885 passed in 42.73s`.
 - `M18.6` UAT acceptance decision: Pass.
 - The post-M18 / pre-Phase-7 roadmap expansion gate has expanded the Phase 7 placeholder direction into an executable checkpoint ladder.
-- Phase 7 execution begins at `M19.1` — API boundary foundation.
+- `M19.1` established the API package boundary as `asbp/api/`, with the API layer defined as a downstream adapter over approved service/runtime/core boundaries.
+- `M19.1` added API boundary evidence under `docs/milestones/M19/` and tests confirming adapter-only boundary expectations.
+- `M19.1` validation passed locally with `python -m pytest -q` — `889 passed in 45.01s`.
+- Phase 7 execution continues at `M19.2` — Request/response contract foundation.
