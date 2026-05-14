@@ -15,6 +15,15 @@ from .contracts import (
     build_error_response,
     build_success_response,
 )
+from .safety import (
+    SAFE_API_INTAKE_ACTIONS,
+    UNSAFE_API_INTAKE_ACTIONS,
+    ApiSafetyAction,
+    ApiSafetyDecision,
+    evaluate_api_intake_safety,
+    is_api_intake_action_allowed,
+    normalize_api_intake_action,
+)
 from .service_boundary import (
     ALLOWED_API_DEPENDENCY_TARGETS,
     FORBIDDEN_API_DEPENDENCY_TARGETS,
@@ -34,12 +43,19 @@ __all__ = [
     "ApiRequest",
     "ApiResponse",
     "ApiResult",
+    "ApiSafetyAction",
+    "ApiSafetyDecision",
     "ApiStatus",
     "FORBIDDEN_API_DEPENDENCY_TARGETS",
+    "SAFE_API_INTAKE_ACTIONS",
+    "UNSAFE_API_INTAKE_ACTIONS",
     "build_error_response",
     "build_success_response",
     "evaluate_api_dependency_target",
+    "evaluate_api_intake_safety",
     "get_api_boundary_contract",
     "is_api_dependency_target_allowed",
+    "is_api_intake_action_allowed",
+    "normalize_api_intake_action",
     "normalize_dependency_target",
 ]

@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M19.3` — Service-boundary consumption rules
+`M19.4` — API safety and adapter isolation rules
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.4` — API safety and adapter isolation rules
+`M19.5` — Minimal API read surfaces
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `908 passed in 45.05s`
+`python -m pytest -q` — `919 passed in 45.47s`
 
 ## Active Notes
 
@@ -65,4 +65,7 @@ Phase 7 — UI and API Layer
 - `M19.3` established API service-boundary consumption rules under `asbp/api/service_boundary.py`.
 - `M19.3` added deterministic approval/rejection behavior for API dependency targets and tests confirming raw state/persistence/storage targets are rejected.
 - `M19.3` validation passed locally with `python -m pytest -q` — `908 passed in 45.05s`.
-- Phase 7 execution continues at `M19.4` — API safety and adapter isolation rules.
+- `M19.4` established API safety and adapter isolation rules under `asbp/api/safety.py`.
+- `M19.4` added fail-closed safety behavior for invalid, unknown, command-like, and mutation-like API intake actions.
+- `M19.4` validation passed locally with `python -m pytest -q` — `919 passed in 45.47s`.
+- Phase 7 execution continues at `M19.5` — Minimal API read surfaces.
