@@ -31,11 +31,11 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M19.7` — API validation checkpoint
+`M19.8` — Milestone UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.8` — Milestone UAT checkpoint
+`M19.9` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -77,4 +77,8 @@ Phase 7 — UI and API Layer
 - `M19.7` recorded API validation checkpoint evidence under `docs/milestones/M19/M19_7_API_VALIDATION_CHECKPOINT.md`.
 - `M19.7` validation decision: Pass.
 - `M19.7` confirms the completed M19 API boundary through `M19.6` is ready to proceed to milestone UAT.
-- Phase 7 execution continues at `M19.8` — Milestone UAT checkpoint.
+- `M19.8` recorded M19 UAT protocol and report under `docs/UAT/M19/`.
+- `M19.8` UAT acceptance decision: Pass.
+- `M19.8` confirms the M19 API boundary is understandable, bounded, safe, and ready for milestone closeout.
+- Issue #16 remains a forward roadmap/design concern for model-provider integration and pre-go-live testing, not an M19 blocker.
+- Phase 7 execution continues at `M19.9` — Milestone closeout.
