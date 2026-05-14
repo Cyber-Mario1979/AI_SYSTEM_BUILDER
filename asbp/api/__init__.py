@@ -6,5 +6,24 @@ validation truth, or raw persistence access.
 """
 
 from .boundary import API_BOUNDARY_CONTRACT, get_api_boundary_contract
+from .contracts import (
+    ApiError,
+    ApiRequest,
+    ApiResponse,
+    ApiResult,
+    ApiStatus,
+    build_error_response,
+    build_success_response,
+)
 
-__all__ = ["API_BOUNDARY_CONTRACT", "get_api_boundary_contract"]
+__all__ = [
+    "API_BOUNDARY_CONTRACT",
+    "ApiError",
+    "ApiRequest",
+    "ApiResponse",
+    "ApiResult",
+    "ApiStatus",
+    "build_error_response",
+    "build_success_response",
+    "get_api_boundary_contract",
+]

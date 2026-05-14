@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M19.1` — API boundary foundation
+`M19.2` — Request/response contract foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.2` — Request/response contract foundation
+`M19.3` — Service-boundary consumption rules
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `889 passed in 45.01s`
+`python -m pytest -q` — `899 passed in 45.35s`
 
 ## Active Notes
 
@@ -59,4 +59,7 @@ Phase 7 — UI and API Layer
 - `M19.1` established the API package boundary as `asbp/api/`, with the API layer defined as a downstream adapter over approved service/runtime/core boundaries.
 - `M19.1` added API boundary evidence under `docs/milestones/M19/` and tests confirming adapter-only boundary expectations.
 - `M19.1` validation passed locally with `python -m pytest -q` — `889 passed in 45.01s`.
-- Phase 7 execution continues at `M19.2` — Request/response contract foundation.
+- `M19.2` established deterministic API request, response, error, status, and result contracts under `asbp/api/contracts.py`.
+- `M19.2` added request/response contract evidence under `docs/milestones/M19/` and tests confirming contract determinism.
+- `M19.2` validation passed locally with `python -m pytest -q` — `899 passed in 45.35s`.
+- Phase 7 execution continues at `M19.3` — Service-boundary consumption rules.
