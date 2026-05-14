@@ -15,6 +15,13 @@ from .contracts import (
     build_error_response,
     build_success_response,
 )
+from .read_surface import (
+    SUPPORTED_API_READ_SURFACES,
+    ApiReadSurface,
+    list_api_read_surfaces,
+    normalize_api_read_surface,
+    read_api_surface,
+)
 from .safety import (
     SAFE_API_INTAKE_ACTIONS,
     UNSAFE_API_INTAKE_ACTIONS,
@@ -40,6 +47,7 @@ __all__ = [
     "ApiDependencyDecision",
     "ApiDependencyTarget",
     "ApiError",
+    "ApiReadSurface",
     "ApiRequest",
     "ApiResponse",
     "ApiResult",
@@ -48,6 +56,7 @@ __all__ = [
     "ApiStatus",
     "FORBIDDEN_API_DEPENDENCY_TARGETS",
     "SAFE_API_INTAKE_ACTIONS",
+    "SUPPORTED_API_READ_SURFACES",
     "UNSAFE_API_INTAKE_ACTIONS",
     "build_error_response",
     "build_success_response",
@@ -56,6 +65,9 @@ __all__ = [
     "get_api_boundary_contract",
     "is_api_dependency_target_allowed",
     "is_api_intake_action_allowed",
+    "list_api_read_surfaces",
     "normalize_api_intake_action",
+    "normalize_api_read_surface",
     "normalize_dependency_target",
+    "read_api_surface",
 ]
