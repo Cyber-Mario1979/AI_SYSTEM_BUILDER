@@ -27,15 +27,15 @@ Phase 7 — UI and API Layer
 
 ## Current Approved Slice Family
 
-`M19` — API Boundary Introduction
+`M20` — UI Layer Introduction
 
 ## Latest Completed Checkpoint
 
-`M19.8` — Milestone UAT checkpoint
+`M19.9` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.9` — Milestone closeout
+`M20.1` — UI boundary foundation
 
 ## Latest Verified Validation Status
 
@@ -80,5 +80,8 @@ Phase 7 — UI and API Layer
 - `M19.8` recorded M19 UAT protocol and report under `docs/UAT/M19/`.
 - `M19.8` UAT acceptance decision: Pass.
 - `M19.8` confirms the M19 API boundary is understandable, bounded, safe, and ready for milestone closeout.
+- `M19.9` recorded M19 closeout notes under `docs/milestones/M19/M19_CLOSEOUT_NOTES.md`.
+- `M19.9` closeout decision: Milestone 19 is closed and accepted.
+- `M19.9` freezes the API Boundary Introduction scope for the approved roadmap boundary.
 - Issue #16 remains a forward roadmap/design concern for model-provider integration and pre-go-live testing, not an M19 blocker.
-- Phase 7 execution continues at `M19.9` — Milestone closeout.
+- Phase 7 execution continues at `M20.1` — UI boundary foundation.
