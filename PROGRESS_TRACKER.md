@@ -31,11 +31,11 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M19.6` — Minimal API command/intake surfaces
+`M19.7` — API validation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M19.7` — API validation checkpoint
+`M19.8` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
@@ -74,4 +74,7 @@ Phase 7 — UI and API Layer
 - `M19.6` established minimal API command/intake surfaces under `asbp/api/command_intake.py`.
 - `M19.6` added deterministic command/intake validation, preview-only behavior, fail-closed unsupported command handling, service-boundary checks, and no direct execution or raw state mutation from API adapters.
 - `M19.6` validation passed locally with `python -m pytest -q` — `944 passed in 46.94s`.
-- Phase 7 execution continues at `M19.7` — API validation checkpoint.
+- `M19.7` recorded API validation checkpoint evidence under `docs/milestones/M19/M19_7_API_VALIDATION_CHECKPOINT.md`.
+- `M19.7` validation decision: Pass.
+- `M19.7` confirms the completed M19 API boundary through `M19.6` is ready to proceed to milestone UAT.
+- Phase 7 execution continues at `M19.8` — Milestone UAT checkpoint.
