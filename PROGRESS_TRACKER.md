@@ -31,11 +31,11 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M21.6` — Phase 7 validation checkpoint
+`M21.7` — Phase 7 UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.7` — Phase 7 UAT checkpoint
+`M21.8` — Phase 7 closeout
 
 ## Latest Verified Validation Status
 
@@ -123,7 +123,16 @@ Phase 7 — UI and API Layer
 - `DDR-008` remains a future Phase 8 / Phase 9 productization-readiness gate; M21.6 does not begin Phase 8 or Phase 9.
 - `DDR-009` remains planning-awareness only for M21 external contracts; M21.6 does not close DDR-009.
 - No deferred dependency was closed by M21.6.
+- `M21.7` recorded Phase 7 UAT evidence under `docs/UAT/M21/M21_UAT_PROTOCOL.md` and `docs/UAT/M21/M21_UAT_REPORT.md`.
+- `M21.7` UAT status: Completed.
+- `M21.7` UAT acceptance decision: Pass.
+- `M21.7` confirmed Phase 7 external surfaces are understandable, bounded, safe, and downstream from stable inner layers.
+- `M21.7` did not introduce new UI/API features, Phase 8 work, cloud/deployment behavior, SaaS/productization behavior, standards embedding, document generation, model/provider integration, raw state mutation, or direct persistence access.
+- `M21.7` reviewed the deferred dependency register and did not close any deferred dependency.
+- `DDR-008` remains a future Phase 8 / Phase 9 productization-readiness gate; M21.7 does not begin Phase 8 or Phase 9.
+- `DDR-009` remains planning-awareness only for M21 external contracts; M21.7 does not close DDR-009.
+- No deferred dependency was closed by M21.7.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
 - The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.7` — Phase 7 UAT checkpoint.
+- Phase 7 execution continues next at `M21.8` — Phase 7 closeout.
