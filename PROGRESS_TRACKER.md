@@ -31,11 +31,11 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.7` — UI validation checkpoint
+`M20.8` — Milestone UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.8` — Milestone UAT checkpoint
+`M20.9` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -72,4 +72,7 @@ Phase 7 — UI and API Layer
 - `M20.7` recorded UI validation checkpoint evidence under `docs/milestones/M20/M20_7_UI_VALIDATION_CHECKPOINT.md`.
 - `M20.7` validation decision: Pass.
 - `M20.7` confirms the completed M20 UI Layer Introduction scope through `M20.6` is ready to proceed to milestone UAT.
-- Phase 7 execution continues at `M20.8` — Milestone UAT checkpoint.
+- `M20.8` recorded M20 UAT protocol and report under `docs/UAT/M20/`.
+- `M20.8` UAT acceptance decision: Pass.
+- `M20.8` confirms the M20 UI boundary behavior is understandable, bounded, safe, and ready for milestone closeout.
+- Phase 7 execution continues at `M20.9` — Milestone closeout.
