@@ -1,7 +1,7 @@
 ---
 doc_type: milestone_validation_checkpoint
 canonical_name: M15_VALIDATION_CHECKPOINT
-status: READY_FOR_REPO_APPLICATION
+status: RECORDED
 governs_execution: false
 document_state_mode: validation_evidence
 authority: validation_evidence_only
