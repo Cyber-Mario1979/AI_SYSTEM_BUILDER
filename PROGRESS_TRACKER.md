@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.2` — UI interaction-flow contract foundation
+`M20.3` — Governed workflow visibility surfaces
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.3` — Governed workflow visibility surfaces
+`M20.4` — Document/export/reporting visibility surfaces
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `959 passed in 45.61s`
+`python -m pytest -q` — `969 passed in 45.54s`
 
 ## Active Notes
 
@@ -58,12 +58,12 @@ Phase 7 — UI and API Layer
 - `M19.9` freezes the API Boundary Introduction scope for the approved roadmap boundary.
 - Issue #16 remains a forward roadmap/design concern for model-provider integration and pre-go-live testing, not an M19 blocker.
 - `M20.1` established the UI package boundary as `asbp/ui/`, with the UI layer defined as a downstream product surface and visibility surface over approved API/service boundaries.
-- `M20.1` added UI boundary evidence under `docs/milestones/M20/M20_1_UI_BOUNDARY_FOUNDATION.md`.
-- `M20.1` added tests confirming UI boundary expectations, including display-versus-execution separation and rejection of raw state/persistence/storage imports from UI modules.
 - `M20.1` validation passed locally with `python -m pytest -q` — `949 passed in 44.49s`.
 - `M20.2` established deterministic UI interaction-flow contracts under `asbp/ui/interaction_flow.py`.
-- `M20.2` defined interaction-flow families, user action/intake contract expectations, display-only versus command-capable UI behavior, and error/invalid-state presentation expectations.
-- `M20.2` added UI interaction-flow evidence under `docs/milestones/M20/M20_2_UI_INTERACTION_FLOW_CONTRACT_FOUNDATION.md`.
-- `M20.2` added tests confirming interaction-flow determinism, fail-closed invalid flow handling, display-only no-execution behavior, command-capable API/service validation requirements, and rejection of raw state/persistence/storage imports from UI modules.
 - `M20.2` validation passed locally with `python -m pytest -q` — `959 passed in 45.61s`.
-- Phase 7 execution continues at `M20.3` — Governed workflow visibility surfaces.
+- `M20.3` established deterministic governed workflow visibility surfaces under `asbp/ui/workflow_visibility.py`.
+- `M20.3` defined supported workflow visibility surfaces, deterministic display payload envelopes, display-only behavior, approved source-boundary expectations, and visibility safety rules.
+- `M20.3` added governed workflow visibility evidence under `docs/milestones/M20/M20_3_GOVERNED_WORKFLOW_VISIBILITY_SURFACES.md`.
+- `M20.3` added tests confirming deterministic payload shape, display-only/no-mutation behavior, fail-closed invalid surface handling, workflow visibility interaction-flow alignment, approved source-boundary controls, and rejection of raw state/persistence/storage imports from UI modules.
+- `M20.3` validation passed locally with `python -m pytest -q` — `969 passed in 45.54s`.
+- Phase 7 execution continues at `M20.4` — Document/export/reporting visibility surfaces.
