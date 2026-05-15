@@ -27,15 +27,15 @@ Phase 7 — UI and API Layer
 
 ## Current Approved Slice Family
 
-`M20` — UI Layer Introduction
+`M21` — UI/API Consolidation and Product-Surface Governance
 
 ## Latest Completed Checkpoint
 
-`M20.8` — Milestone UAT checkpoint
+`M20.9` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.9` — Milestone closeout
+`M21.1` — Shared external contract discipline
 
 ## Latest Verified Validation Status
 
@@ -53,26 +53,12 @@ Phase 7 — UI and API Layer
 - Phase 6 — AI Layer is complete for the approved roadmap scope.
 - The post-M18 / pre-Phase-7 roadmap expansion gate expanded the Phase 7 placeholder direction into an executable checkpoint ladder.
 - `M19` is closed and accepted; detailed evidence remains preserved under `docs/milestones/M19/` and `docs/UAT/M19/`.
-- `M19.6` validation passed locally with `python -m pytest -q` — `944 passed in 46.94s`.
-- `M19.8` UAT acceptance decision: Pass.
 - `M19.9` freezes the API Boundary Introduction scope for the approved roadmap boundary.
-- Issue #16 remains a forward roadmap/design concern for model-provider integration and pre-go-live testing, not an M19 blocker.
-- `M20.1` established the UI package boundary as `asbp/ui/`, with the UI layer defined as a downstream product surface and visibility surface over approved API/service boundaries.
-- `M20.1` validation passed locally with `python -m pytest -q` — `949 passed in 44.49s`.
-- `M20.2` established deterministic UI interaction-flow contracts under `asbp/ui/interaction_flow.py`.
-- `M20.2` validation passed locally with `python -m pytest -q` — `959 passed in 45.61s`.
-- `M20.3` established deterministic governed workflow visibility surfaces under `asbp/ui/workflow_visibility.py`.
-- `M20.3` validation passed locally with `python -m pytest -q` — `969 passed in 45.54s`.
-- `M20.4` established deterministic document/export/reporting visibility surfaces under `asbp/ui/document_output_visibility.py`.
-- `M20.4` validation passed locally with `python -m pytest -q` — `981 passed in 45.68s`.
-- `M20.5` established deterministic operator action/intake boundaries under `asbp/ui/operator_intake.py`.
-- `M20.5` validation passed locally with `python -m pytest -q` — `995 passed in 45.52s`.
-- `M20.6` established deterministic UI safety and execution-truth separation under `asbp/ui/safety.py`.
-- `M20.6` validation passed locally with `python -m pytest -q` — `1008 passed in 46.37s`.
-- `M20.7` recorded UI validation checkpoint evidence under `docs/milestones/M20/M20_7_UI_VALIDATION_CHECKPOINT.md`.
+- `M20` is closed and accepted; detailed evidence remains preserved under `docs/milestones/M20/` and `docs/UAT/M20/`.
 - `M20.7` validation decision: Pass.
-- `M20.7` confirms the completed M20 UI Layer Introduction scope through `M20.6` is ready to proceed to milestone UAT.
-- `M20.8` recorded M20 UAT protocol and report under `docs/UAT/M20/`.
+- `M20.7` validation passed locally with `python -m pytest -q` — `1008 passed in 46.37s`.
 - `M20.8` UAT acceptance decision: Pass.
-- `M20.8` confirms the M20 UI boundary behavior is understandable, bounded, safe, and ready for milestone closeout.
-- Phase 7 execution continues at `M20.9` — Milestone closeout.
+- `M20.9` recorded M20 closeout notes under `docs/milestones/M20/M20_CLOSEOUT_NOTES.md`.
+- `M20.9` closeout decision: Milestone 20 is closed and accepted.
+- `M20.9` freezes the UI Layer Introduction scope for the approved roadmap boundary.
+- Phase 7 execution continues at `M21.1` — Shared external contract discipline.
