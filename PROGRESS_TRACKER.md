@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.9` — Milestone closeout
+`M21.1` — Shared external contract discipline
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.1` — Shared external contract discipline
+`M21.2` — UI/API consistency rules
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1008 passed in 46.37s`
+`python -m pytest -q` — `1019 passed in 48.55s`
 
 ## Active Notes
 
@@ -61,7 +61,15 @@ Phase 7 — UI and API Layer
 - `M20.9` recorded M20 closeout notes under `docs/milestones/M20/M20_CLOSEOUT_NOTES.md`.
 - `M20.9` closeout decision: Milestone 20 is closed and accepted.
 - `M20.9` freezes the UI Layer Introduction scope for the approved roadmap boundary.
-- `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` has been introduced as the repo-persistent gate memory for deferred/productization-sensitive dependencies.
+- `M21.1` introduced shared external contract discipline between the completed M19 API boundary and completed M20 UI boundary.
+- `M21.1` added static external-surface contract discipline under `asbp/external_surface/`.
+- `M21.1` added validation coverage in `tests/test_external_surface_contracts.py`.
+- `M21.1` recorded checkpoint evidence under `docs/milestones/M21/M21_1_SHARED_EXTERNAL_CONTRACT_DISCIPLINE.md`.
+- `M21.1` preserves API/UI surfaces as downstream adapter/product surfaces and does not introduce routes, screens, endpoint behavior, command execution, document generation, standards embedding, model/provider integration, deployment, or SaaS/productization behavior.
+- `DDR-009` was considered for M21.1 as planning-awareness only; M21.1 keeps future reference placeholders compatible but does not close DDR-009.
+- No deferred dependency was closed by M21.1.
+- `M21.1` validation passed locally with `python -m pytest -q` — `1019 passed in 48.55s`.
+- `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
-- The active operation pack has been updated in Project Sources to require deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution remains paused for governance/control confirmation and continues next at `M21.1` — Shared external contract discipline when resumed.
+- The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
+- Phase 7 execution continues next at `M21.2` — UI/API consistency rules.
