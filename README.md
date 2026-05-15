@@ -28,6 +28,7 @@ For the current implementation state, validation status, latest completed checkp
 - [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md) — current project position
 - [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md) — canonical roadmap direction
 - [`ARCHITECTURE_GUARDRAILS.md`](ARCHITECTURE_GUARDRAILS.md) — permanent architecture boundaries
+- [`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`](docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md) — deferred/productization-sensitive dependency gate memory
 
 The README intentionally avoids live milestone tables or manual test-count badges so it does not drift behind the repository.
 
@@ -86,7 +87,7 @@ Domain logic belongs in core modules. The CLI should expose behavior without bec
 
 ### 3. Progression is governed, not improvised
 
-The repository uses a canonical roadmap, current-position tracker, architecture guardrails, validation evidence, and closeout discipline to avoid drift.
+The repository uses a canonical roadmap, current-position tracker, architecture guardrails, validation evidence, closeout discipline, and deferred dependency gate memory to avoid drift.
 
 ### 4. Code and tests remain implementation truth
 
@@ -100,6 +101,7 @@ Documentation explains intent and operating context. The codebase and automated 
 asbp/                         Application source
 tests/                        Automated validation suite
 docs/                         UAT records, closeout notes, supporting artifacts
+docs/governance/              Governance registers and dependency gates
 assets/                       Repository presentation assets
 audits/                       Filed audit observations, responses, and triage records
 ROADMAP_CANONICAL.md          Canonical roadmap direction and checkpoint ladder
@@ -123,6 +125,7 @@ This repository separates public explanation, project control, and implementatio
 | `ROADMAP_CANONICAL.md` | Roadmap direction and checkpoint sequence |
 | `ROADMAP_ADDENDUM_*.md` | Bounded overlays for controlled exceptions or transitions |
 | `ARCHITECTURE_GUARDRAILS.md` | Permanent architectural boundaries |
+| `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` | Persistent gate memory for deferred/productization-sensitive dependencies |
 | `asbp/` and `tests/` | Implementation truth and validation evidence |
 
 This separation is intentional. It keeps the README stable while allowing the actual project state to evolve through controlled files.
@@ -172,7 +175,8 @@ Before making a change, read:
 1. [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md)
 2. [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md)
 3. [`ARCHITECTURE_GUARDRAILS.md`](ARCHITECTURE_GUARDRAILS.md)
-4. [`CONTRIBUTING.md`](CONTRIBUTING.md)
+4. [`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`](docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md), when the work touches deferred/productization-sensitive dependencies
+5. [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 For code changes, run the validation suite before opening a pull request:
 
