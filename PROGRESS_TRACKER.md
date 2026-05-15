@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.5` — Operator action/intake boundary
+`M20.6` — UI safety and execution-truth separation
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.6` — UI safety and execution-truth separation
+`M20.7` — UI validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `995 passed in 45.52s`
+`python -m pytest -q` — `1008 passed in 46.37s`
 
 ## Active Notes
 
@@ -66,8 +66,10 @@ Phase 7 — UI and API Layer
 - `M20.4` established deterministic document/export/reporting visibility surfaces under `asbp/ui/document_output_visibility.py`.
 - `M20.4` validation passed locally with `python -m pytest -q` — `981 passed in 45.68s`.
 - `M20.5` established deterministic operator action/intake boundaries under `asbp/ui/operator_intake.py`.
-- `M20.5` defined supported UI operator-intake actions, deterministic intake request and decision envelopes, validation-before-mutation behavior, downstream API/service command boundary requirements, and fail-closed rejection for unsupported or forbidden target boundaries.
-- `M20.5` added operator action/intake boundary evidence under `docs/milestones/M20/M20_5_OPERATOR_ACTION_INTAKE_BOUNDARY.md`.
-- `M20.5` added tests confirming deterministic request/decision shape, preview-only behavior, API/service validation requirements, no direct UI execution, no approval/release expansion, fail-closed invalid action handling, forbidden target-boundary controls, and rejection of raw state/persistence/storage and framework imports from UI modules.
 - `M20.5` validation passed locally with `python -m pytest -q` — `995 passed in 45.52s`.
-- Phase 7 execution continues at `M20.6` — UI safety and execution-truth separation.
+- `M20.6` established deterministic UI safety and execution-truth separation under `asbp/ui/safety.py`.
+- `M20.6` defined supported UI safety checks, execution-truth separation rules, UI safety failure behavior, no-guess behavior for invalid/stale UI states, source/validation/execution-truth rejection, API/service boundary-bypass rejection, and silent/direct mutation rejection.
+- `M20.6` added UI safety and execution-truth separation evidence under `docs/milestones/M20/M20_6_UI_SAFETY_AND_EXECUTION_TRUTH_SEPARATION.md`.
+- `M20.6` added tests confirming deterministic safety decisions, fail-closed stale/invalid/unknown UI state handling, no source-truth/validation-truth/execution-truth authority from UI, API/service boundary-bypass rejection, silent/direct mutation rejection, no-guess behavior, and rejection of raw state/persistence/storage and framework imports from UI modules.
+- `M20.6` validation passed locally with `python -m pytest -q` — `1008 passed in 46.37s`.
+- Phase 7 execution continues at `M20.7` — UI validation checkpoint.
