@@ -61,4 +61,7 @@ Phase 7 — UI and API Layer
 - `M20.9` recorded M20 closeout notes under `docs/milestones/M20/M20_CLOSEOUT_NOTES.md`.
 - `M20.9` closeout decision: Milestone 20 is closed and accepted.
 - `M20.9` freezes the UI Layer Introduction scope for the approved roadmap boundary.
-- Phase 7 execution continues at `M21.1` — Shared external contract discipline.
+- `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` has been introduced as the repo-persistent gate memory for deferred/productization-sensitive dependencies.
+- The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
+- The active operation pack has been updated in Project Sources to require deferred-dependency register checks at session start and relevant planning/implementation triggers.
+- Phase 7 execution remains paused for governance/control confirmation and continues next at `M21.1` — Shared external contract discipline when resumed.
