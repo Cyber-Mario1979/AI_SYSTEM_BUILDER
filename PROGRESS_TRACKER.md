@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M21.1` — Shared external contract discipline
+`M21.2` — UI/API consistency rules
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.2` — UI/API consistency rules
+`M21.3` — Product-surface governance foundation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1019 passed in 48.55s`
+`python -m pytest -q` — `1035 passed in 46.78s`
 
 ## Active Notes
 
@@ -69,7 +69,17 @@ Phase 7 — UI and API Layer
 - `DDR-009` was considered for M21.1 as planning-awareness only; M21.1 keeps future reference placeholders compatible but does not close DDR-009.
 - No deferred dependency was closed by M21.1.
 - `M21.1` validation passed locally with `python -m pytest -q` — `1019 passed in 48.55s`.
+- `M21.2` introduced deterministic UI/API consistency rules for operator-visible state and API response outcomes.
+- `M21.2` added static UI/API consistency rules under `asbp/external_surface/consistency.py`.
+- `M21.2` updated external-surface package exports in `asbp/external_surface/__init__.py`.
+- `M21.2` added validation coverage in `tests/test_external_surface_consistency.py`.
+- `M21.2` recorded checkpoint evidence under `docs/milestones/M21/M21_2_UI_API_CONSISTENCY_RULES.md`.
+- `M21.2` prevents API/UI divergence from governed engine truth and rejects UI/API source-truth, validation-truth, execution-truth, hidden-domain-logic, and service-boundary-bypass claims.
+- `M21.2` preserves API/UI surfaces as downstream adapter/product surfaces and does not introduce routes, screens, endpoint behavior, command execution, document generation, standards embedding, model/provider integration, deployment, or SaaS/productization behavior.
+- `DDR-009` remains planning-awareness only for M21.2; M21.2 does not close DDR-009.
+- No deferred dependency was closed by M21.2.
+- `M21.2` validation passed locally with `python -m pytest -q` — `1035 passed in 46.78s`.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
 - The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.2` — UI/API consistency rules.
+- Phase 7 execution continues next at `M21.3` — Product-surface governance foundation.
