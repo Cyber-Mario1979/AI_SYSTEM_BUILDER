@@ -618,11 +618,13 @@ Phase 7 may close only when:
 - validation and milestone/phase-level UAT evidence exists
 - no unresolved Phase 7 blocker remains
 
-## Active checkpoint after this addendum
+## Historical checkpoint at addendum adoption
 
-After this addendum is applied and tracker is updated, the exact next unfinished checkpoint is:
+When this addendum was first applied and the tracker was initially updated, the exact next unfinished checkpoint was:
 
 `M19.1` — API boundary foundation
+
+The live current checkpoint is recorded in `PROGRESS_TRACKER.md`.
 
 ## Exit condition for this addendum
 
