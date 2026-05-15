@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M21.2` — UI/API consistency rules
+`M21.3` — Product-surface governance foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.3` — Product-surface governance foundation
+`M21.4` — External-surface boundary consolidation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1035 passed in 46.78s`
+`python -m pytest -q` — `1052 passed in 47.04s`
 
 ## Active Notes
 
@@ -79,7 +79,18 @@ Phase 7 — UI and API Layer
 - `DDR-009` remains planning-awareness only for M21.2; M21.2 does not close DDR-009.
 - No deferred dependency was closed by M21.2.
 - `M21.2` validation passed locally with `python -m pytest -q` — `1035 passed in 46.78s`.
+- `M21.3` introduced deterministic product-surface governance foundation rules for external API/UI surfaces.
+- `M21.3` added static product-surface governance rules under `asbp/external_surface/governance.py`.
+- `M21.3` updated external-surface package exports in `asbp/external_surface/__init__.py`.
+- `M21.3` added validation coverage in `tests/test_external_surface_governance.py`.
+- `M21.3` recorded checkpoint evidence under `docs/milestones/M21/M21_3_PRODUCT_SURFACE_GOVERNANCE_FOUNDATION.md`.
+- `M21.3` defines bounded public/consumer-facing, visibility, command/intake, and error/status product-surface discipline without introducing productized behavior.
+- `M21.3` rejects source-truth, validation-truth, execution-truth, hidden-domain-logic, service-boundary-bypass, cloud/deployment, tenant/SaaS, commercial-productization, production endpoint/screen behavior, and uncontrolled agentic behavior.
+- `M21.3` preserves API/UI surfaces as downstream adapter/product surfaces and does not introduce routes, screens, endpoint behavior, command execution, document generation, standards embedding, model/provider integration, deployment, or SaaS/productization behavior.
+- `DDR-009` remains planning-awareness only for M21.3; M21.3 does not close DDR-009.
+- No deferred dependency was closed by M21.3.
+- `M21.3` validation passed locally with `python -m pytest -q` — `1052 passed in 47.04s`.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
 - The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.3` — Product-surface governance foundation.
+- Phase 7 execution continues next at `M21.4` — External-surface boundary consolidation.
