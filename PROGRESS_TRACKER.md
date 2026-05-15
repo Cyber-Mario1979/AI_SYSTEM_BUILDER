@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.3` — Governed workflow visibility surfaces
+`M20.4` — Document/export/reporting visibility surfaces
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.4` — Document/export/reporting visibility surfaces
+`M20.5` — Operator action/intake boundary
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `969 passed in 45.54s`
+`python -m pytest -q` — `981 passed in 45.68s`
 
 ## Active Notes
 
@@ -62,8 +62,10 @@ Phase 7 — UI and API Layer
 - `M20.2` established deterministic UI interaction-flow contracts under `asbp/ui/interaction_flow.py`.
 - `M20.2` validation passed locally with `python -m pytest -q` — `959 passed in 45.61s`.
 - `M20.3` established deterministic governed workflow visibility surfaces under `asbp/ui/workflow_visibility.py`.
-- `M20.3` defined supported workflow visibility surfaces, deterministic display payload envelopes, display-only behavior, approved source-boundary expectations, and visibility safety rules.
-- `M20.3` added governed workflow visibility evidence under `docs/milestones/M20/M20_3_GOVERNED_WORKFLOW_VISIBILITY_SURFACES.md`.
-- `M20.3` added tests confirming deterministic payload shape, display-only/no-mutation behavior, fail-closed invalid surface handling, workflow visibility interaction-flow alignment, approved source-boundary controls, and rejection of raw state/persistence/storage imports from UI modules.
 - `M20.3` validation passed locally with `python -m pytest -q` — `969 passed in 45.54s`.
-- Phase 7 execution continues at `M20.4` — Document/export/reporting visibility surfaces.
+- `M20.4` established deterministic document/export/reporting visibility surfaces under `asbp/ui/document_output_visibility.py`.
+- `M20.4` defined supported output visibility surfaces, deterministic display payload envelopes, display-only/no-generation behavior, approved output source-boundary expectations, and visibility constraints separating display from generation.
+- `M20.4` added document/export/reporting visibility evidence under `docs/milestones/M20/M20_4_DOCUMENT_EXPORT_REPORTING_VISIBILITY_SURFACES.md`.
+- `M20.4` added tests confirming deterministic payload shape, display-only/no-generation behavior, fail-closed invalid output surface handling, existing-output source-boundary controls, and rejection of generation engine, renderer, raw state/persistence/storage, and framework imports from UI modules.
+- `M20.4` validation passed locally with `python -m pytest -q` — `981 passed in 45.68s`.
+- Phase 7 execution continues at `M20.5` — Operator action/intake boundary.
