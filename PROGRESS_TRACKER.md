@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.1` — UI boundary foundation
+`M20.2` — UI interaction-flow contract foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.2` — UI interaction-flow contract foundation
+`M20.3` — Governed workflow visibility surfaces
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `949 passed in 44.49s`
+`python -m pytest -q` — `959 passed in 45.61s`
 
 ## Active Notes
 
@@ -61,4 +61,9 @@ Phase 7 — UI and API Layer
 - `M20.1` added UI boundary evidence under `docs/milestones/M20/M20_1_UI_BOUNDARY_FOUNDATION.md`.
 - `M20.1` added tests confirming UI boundary expectations, including display-versus-execution separation and rejection of raw state/persistence/storage imports from UI modules.
 - `M20.1` validation passed locally with `python -m pytest -q` — `949 passed in 44.49s`.
-- Phase 7 execution continues at `M20.2` — UI interaction-flow contract foundation.
+- `M20.2` established deterministic UI interaction-flow contracts under `asbp/ui/interaction_flow.py`.
+- `M20.2` defined interaction-flow families, user action/intake contract expectations, display-only versus command-capable UI behavior, and error/invalid-state presentation expectations.
+- `M20.2` added UI interaction-flow evidence under `docs/milestones/M20/M20_2_UI_INTERACTION_FLOW_CONTRACT_FOUNDATION.md`.
+- `M20.2` added tests confirming interaction-flow determinism, fail-closed invalid flow handling, display-only no-execution behavior, command-capable API/service validation requirements, and rejection of raw state/persistence/storage imports from UI modules.
+- `M20.2` validation passed locally with `python -m pytest -q` — `959 passed in 45.61s`.
+- Phase 7 execution continues at `M20.3` — Governed workflow visibility surfaces.
