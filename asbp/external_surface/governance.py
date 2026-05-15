@@ -13,10 +13,10 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Iterable
 
+from ._normalization import normalize_labels, normalize_token
 from .consistency import FORBIDDEN_UI_API_CONSISTENCY_BEHAVIORS
 from .contracts import (
     FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS,
-    FORBIDDEN_EXTERNAL_BEHAVIORS,
     ExternalSurfaceChannel,
     ExternalSurfaceRole,
     normalize_external_surface_channel,
@@ -74,25 +74,6 @@ FORBIDDEN_PRODUCT_SURFACE_BEHAVIORS: tuple[str, ...] = (
 )
 
 
-def _normalize_token(value: str) -> str:
-    return value.strip().lower().replace("-", "_").replace(" ", "_")
-
-
-def _normalize_labels(values: Iterable[str], *, field_name: str) -> tuple[str, ...]:
-    if isinstance(values, (str, bytes)):
-        raise TypeError(f"{field_name} must be an iterable of strings")
-
-    normalized: list[str] = []
-
-    for value in values:
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError(f"{field_name} must contain non-empty strings")
-
-        normalized.append(_normalize_token(value))
-
-    return tuple(normalized)
-
-
 def normalize_product_surface_exposure(
     value: ProductSurfaceExposure | str,
 ) -> ProductSurfaceExposure:
@@ -105,7 +86,7 @@ def normalize_product_surface_exposure(
         raise ValueError("product surface exposure must be a non-empty string")
 
     try:
-        return ProductSurfaceExposure(_normalize_token(value))
+        return ProductSurfaceExposure(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported product surface exposure: {value}") from exc
 
@@ -122,7 +103,7 @@ def normalize_product_surface_capability(
         raise ValueError("product surface capability must be a non-empty string")
 
     try:
-        return ProductSurfaceCapability(_normalize_token(value))
+        return ProductSurfaceCapability(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported product surface capability: {value}") from exc
 
@@ -324,11 +305,11 @@ def evaluate_product_surface_governance(
     normalized_exposure = normalize_product_surface_exposure(exposure)
     normalized_capabilities = _normalize_capabilities(capabilities)
 
-    normalized_authority_claims = _normalize_labels(
+    normalized_authority_claims = normalize_labels(
         authority_claims,
         field_name="authority_claims",
     )
-    normalized_behaviors = _normalize_labels(behaviors, field_name="behaviors")
+    normalized_behaviors = normalize_labels(behaviors, field_name="behaviors")
 
     forbidden_claims = set(normalized_authority_claims).intersection(
         FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS

@@ -15,6 +15,8 @@ from typing import Iterable
 from asbp.api import ApiResult, ApiStatus
 from asbp.ui import UiActionIntakeDecisionResult, UiInteractionFlowName, UiInteractionMode
 
+from ._normalization import normalize_labels, normalize_token
+
 
 class ExternalSurfaceChannel(StrEnum):
     """Stable external-surface channel vocabulary."""
@@ -123,10 +125,6 @@ FORBIDDEN_EXTERNAL_BEHAVIORS: tuple[str, ...] = (
 )
 
 
-def _normalize_token(value: str) -> str:
-    return value.strip().lower().replace("-", "_").replace(" ", "_")
-
-
 def normalize_external_surface_channel(
     value: ExternalSurfaceChannel | str,
 ) -> ExternalSurfaceChannel:
@@ -139,7 +137,7 @@ def normalize_external_surface_channel(
         raise ValueError("external surface channel must be a non-empty string")
 
     try:
-        return ExternalSurfaceChannel(_normalize_token(value))
+        return ExternalSurfaceChannel(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported external surface channel: {value}") from exc
 
@@ -156,7 +154,7 @@ def normalize_external_surface_role(
         raise ValueError("external surface role must be a non-empty string")
 
     try:
-        return ExternalSurfaceRole(_normalize_token(value))
+        return ExternalSurfaceRole(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported external surface role: {value}") from exc
 
@@ -173,7 +171,7 @@ def normalize_external_contract_field(
         raise ValueError("external contract field must be a non-empty string")
 
     try:
-        return ExternalContractField(_normalize_token(value))
+        return ExternalContractField(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported external contract field: {value}") from exc
 
@@ -333,8 +331,11 @@ def evaluate_external_contract_compatibility(
     normalize_external_surface_role(role)
     normalized_fields = _normalize_contract_fields(fields)
 
-    normalized_authority_claims = tuple(_normalize_token(claim) for claim in authority_claims)
-    normalized_behaviors = tuple(_normalize_token(behavior) for behavior in behaviors)
+    normalized_authority_claims = normalize_labels(
+        authority_claims,
+        field_name="authority_claims",
+    )
+    normalized_behaviors = normalize_labels(behaviors, field_name="behaviors")
 
     forbidden_claims = set(normalized_authority_claims).intersection(
         FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS

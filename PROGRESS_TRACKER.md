@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M21.3` — Product-surface governance foundation
+`M21.4` — External-surface boundary consolidation
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.4` — External-surface boundary consolidation
+`M21.5` — Validation and acceptance discipline for external surfaces
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1052 passed in 47.04s`
+`python -m pytest -q` — `1059 passed in 44.87s`
 
 ## Active Notes
 
@@ -90,7 +90,18 @@ Phase 7 — UI and API Layer
 - `DDR-009` remains planning-awareness only for M21.3; M21.3 does not close DDR-009.
 - No deferred dependency was closed by M21.3.
 - `M21.3` validation passed locally with `python -m pytest -q` — `1052 passed in 47.04s`.
+- `M21.4` consolidated external-surface boundary handling across shared contract discipline, UI/API consistency, and product-surface governance.
+- `M21.4` added shared internal normalization helpers under `asbp/external_surface/_normalization.py`.
+- `M21.4` added consolidated external-surface boundary evidence under `asbp/external_surface/boundary.py`.
+- `M21.4` updated external-surface package exports in `asbp/external_surface/__init__.py`.
+- `M21.4` reduced avoidable duplicate normalization/helper logic inside the external-surface package without expanding behavior.
+- `M21.4` added validation coverage in `tests/test_external_surface_boundary.py`.
+- `M21.4` recorded checkpoint evidence under `docs/milestones/M21/M21_4_EXTERNAL_SURFACE_BOUNDARY_CONSOLIDATION.md`.
+- `M21.4` preserves inner-layer authority boundaries and does not introduce behavior expansion, hidden refactor outside the external-surface boundary, deployment, or productization work.
+- `DDR-009` remains planning-awareness only for M21.4; M21.4 does not close DDR-009.
+- No deferred dependency was closed by M21.4.
+- `M21.4` validation passed locally with `python -m pytest -q` — `1059 passed in 44.87s`.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
 - The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.4` — External-surface boundary consolidation.
+- Phase 7 execution continues next at `M21.5` — Validation and acceptance discipline for external surfaces.

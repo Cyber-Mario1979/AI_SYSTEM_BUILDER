@@ -6,6 +6,11 @@ raw state access, raw persistence access, deployment behavior, or
 productization behavior.
 """
 
+from .boundary import (
+    EXTERNAL_SURFACE_BOUNDARY_CONTRACT,
+    ExternalSurfaceBoundaryContract,
+    get_external_surface_boundary_contract,
+)
 from .consistency import (
     FORBIDDEN_UI_API_CONSISTENCY_BEHAVIORS,
     SUPPORTED_UI_API_CONSISTENCY_RULES,
@@ -55,6 +60,7 @@ from .governance import (
 )
 
 __all__ = [
+    "EXTERNAL_SURFACE_BOUNDARY_CONTRACT",
     "FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS",
     "FORBIDDEN_EXTERNAL_BEHAVIORS",
     "FORBIDDEN_PRODUCT_SURFACE_BEHAVIORS",
@@ -70,6 +76,7 @@ __all__ = [
     "ExternalContractCompatibilityResult",
     "ExternalContractDiscipline",
     "ExternalContractField",
+    "ExternalSurfaceBoundaryContract",
     "ExternalSurfaceChannel",
     "ExternalSurfaceRole",
     "OperatorVisibleState",
@@ -85,6 +92,7 @@ __all__ = [
     "evaluate_external_contract_compatibility",
     "evaluate_product_surface_governance",
     "evaluate_ui_api_consistency",
+    "get_external_surface_boundary_contract",
     "get_product_surface_governance_rule",
     "get_supported_external_contract_fields",
     "get_ui_api_consistency_rule",

@@ -15,6 +15,7 @@ from typing import Iterable
 from asbp.api import ApiResult, ApiStatus
 from asbp.ui import UiActionIntakeDecisionResult
 
+from ._normalization import normalize_labels, normalize_token
 from .contracts import (
     FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS,
     FORBIDDEN_EXTERNAL_BEHAVIORS,
@@ -52,25 +53,6 @@ FORBIDDEN_UI_API_CONSISTENCY_BEHAVIORS: tuple[str, ...] = (
 )
 
 
-def _normalize_token(value: str) -> str:
-    return value.strip().lower().replace("-", "_").replace(" ", "_")
-
-
-def _normalize_labels(values: Iterable[str], *, field_name: str) -> tuple[str, ...]:
-    if isinstance(values, (str, bytes)):
-        raise TypeError(f"{field_name} must be an iterable of strings")
-
-    normalized: list[str] = []
-
-    for value in values:
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError(f"{field_name} must contain non-empty strings")
-
-        normalized.append(_normalize_token(value))
-
-    return tuple(normalized)
-
-
 def _normalize_api_status(value: ApiStatus | str) -> ApiStatus:
     if isinstance(value, ApiStatus):
         return value
@@ -79,7 +61,7 @@ def _normalize_api_status(value: ApiStatus | str) -> ApiStatus:
         raise ValueError("API status must be a non-empty string")
 
     try:
-        return ApiStatus(_normalize_token(value))
+        return ApiStatus(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported API status: {value}") from exc
 
@@ -92,7 +74,7 @@ def _normalize_api_result(value: ApiResult | str) -> ApiResult:
         raise ValueError("API result must be a non-empty string")
 
     try:
-        return ApiResult(_normalize_token(value))
+        return ApiResult(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported API result: {value}") from exc
 
@@ -107,7 +89,7 @@ def _normalize_ui_decision_result(
         raise ValueError("UI decision result must be a non-empty string")
 
     try:
-        return UiActionIntakeDecisionResult(_normalize_token(value))
+        return UiActionIntakeDecisionResult(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported UI decision result: {value}") from exc
 
@@ -124,7 +106,7 @@ def normalize_operator_visible_state(
         raise ValueError("operator visible state must be a non-empty string")
 
     try:
-        return OperatorVisibleState(_normalize_token(value))
+        return OperatorVisibleState(normalize_token(value))
     except ValueError as exc:
         raise ValueError(f"unsupported operator visible state: {value}") from exc
 
@@ -320,11 +302,11 @@ def evaluate_ui_api_consistency(
     normalized_ui_decision = _normalize_ui_decision_result(ui_decision_result)
     normalized_visible_state = normalize_operator_visible_state(operator_visible_state)
 
-    normalized_authority_claims = _normalize_labels(
+    normalized_authority_claims = normalize_labels(
         authority_claims,
         field_name="authority_claims",
     )
-    normalized_behaviors = _normalize_labels(behaviors, field_name="behaviors")
+    normalized_behaviors = normalize_labels(behaviors, field_name="behaviors")
 
     forbidden_claims = set(normalized_authority_claims).intersection(
         FORBIDDEN_EXTERNAL_AUTHORITY_CLAIMS
