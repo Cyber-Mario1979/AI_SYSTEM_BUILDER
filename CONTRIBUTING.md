@@ -16,6 +16,7 @@ Please read these files first:
 - [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md)
 - [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md)
 - [`ARCHITECTURE_GUARDRAILS.md`](ARCHITECTURE_GUARDRAILS.md)
+- [`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`](docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md), when your change touches deferred/productization-sensitive dependencies
 
 These files define:
 
@@ -23,6 +24,7 @@ These files define:
 - where the project currently is
 - what the next approved checkpoint is
 - which architecture boundaries must not be violated
+- which deferred/productization-sensitive dependencies must not be bypassed
 
 The README is the public overview. It is not the current-state authority.
 
@@ -31,6 +33,7 @@ Use:
 - `PROGRESS_TRACKER.md` for current project position
 - `ROADMAP_CANONICAL.md` for roadmap direction
 - `ARCHITECTURE_GUARDRAILS.md` for architecture boundaries
+- `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` for deferred/productization-sensitive dependency gates
 - code and tests for implementation truth
 
 ---
@@ -68,6 +71,7 @@ Contributions that are likely to be rejected include:
 - architecture shortcuts
 - broad refactors without checkpoint alignment
 - changes that weaken deterministic validation or persistence guarantees
+- productization-sensitive work that bypasses the deferred dependencies register
 
 ---
 
@@ -107,6 +111,7 @@ For most changes, open an issue or discussion first if the change affects:
 - roadmap direction
 - milestone progression
 - validation rules
+- deferred/productization-sensitive dependency gates
 
 When proposing a change, explain:
 
@@ -115,6 +120,7 @@ When proposing a change, explain:
 - whether behavior changes
 - whether tests are needed
 - how it aligns with the roadmap and guardrails
+- whether it touches any deferred/productization-sensitive dependency
 
 Small documentation fixes may go directly to a pull request.
 
@@ -132,6 +138,7 @@ Include:
 - whether the change is public-surface only
 - which tests were run
 - which issue or checkpoint it relates to, if applicable
+- whether it touches the deferred dependencies register, if applicable
 
 If the PR changes behavior, state that clearly.
 
@@ -168,6 +175,7 @@ Before making architectural changes, read:
 - [`ARCHITECTURE_GUARDRAILS.md`](ARCHITECTURE_GUARDRAILS.md)
 - [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md)
 - [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md)
+- [`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`](docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md), when the change touches deferred/productization-sensitive dependencies
 
 ---
 
