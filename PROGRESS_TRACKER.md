@@ -23,28 +23,28 @@ Keep detailed notes only for the active milestone or active transition gate; onc
 
 ## Current Phase
 
-Phase 7 — UI and API Layer
+Post-Phase-7 / Pre-Phase-8 Transition Gate
 
 ## Current Approved Slice Family
 
-`M21` — UI/API Consolidation and Product-Surface Governance
+Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate
 
 ## Latest Completed Checkpoint
 
-`M21.7` — Phase 7 UAT checkpoint
+`M21.8` — Phase 7 closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.8` — Phase 7 closeout
+Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1072 passed in 43.20s`
+`python -m pytest -q` — `1072 passed in 45.18s`
 
 ## Active Notes
 
 - `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
-- `ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` is active and governs Phase 7 checkpoint execution.
+- `ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` governed Phase 7 checkpoint execution through M21.8.
 - Addenda `06` and `07` remain archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
 - `M12`, `M13`, `M14`, and `M15` are closed and accepted; detailed evidence remains preserved in their milestone validation, UAT, and closeout files.
 - `M15.10` closeout records Phase 5 — Core Engine Completion as complete for the approved roadmap scope.
@@ -132,7 +132,18 @@ Phase 7 — UI and API Layer
 - `DDR-008` remains a future Phase 8 / Phase 9 productization-readiness gate; M21.7 does not begin Phase 8 or Phase 9.
 - `DDR-009` remains planning-awareness only for M21 external contracts; M21.7 does not close DDR-009.
 - No deferred dependency was closed by M21.7.
+- `M21.8` recorded M21 and Phase 7 closeout notes under `docs/milestones/M21/M21_CLOSEOUT_NOTES.md`.
+- `M21.8` closeout decision: M21 is closed and accepted.
+- `M21.8` closeout decision: Phase 7 is closed for the approved roadmap scope.
+- `M21.8` freezes the Phase 7 UI/API and external product-surface governance boundary for the approved roadmap scope.
+- `M21.8` final validation passed locally with `python -m pytest -q` — `1072 passed in 45.18s`.
+- `M21.8` did not introduce new UI/API behavior, Phase 8 implementation, cloud/deployment work, SaaS/productization behavior, standards embedding, document generation, model/provider integration, raw state mutation, or direct persistence access.
+- `M21.8` reviewed the deferred dependency register and did not close any deferred dependency.
+- `DDR-001` through `DDR-006` remain deferred/open as applicable for future governed-library, template, standards, document-generation, and product-ready output concerns.
+- `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
+- `DDR-008` remains a required future Phase 8 / Phase 9 productization-readiness gate.
+- `DDR-009` remains planning-awareness only for M21 external contracts and is not closed by Phase 7 closeout.
+- No deferred dependency was closed by M21.8.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
-- The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.8` — Phase 7 closeout.
+- Phase 8 remains placeholder-level direction only and must not begin until the required roadmap expansion and deferred-dependency review gate is completed.
+- The next required action is the Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate.
