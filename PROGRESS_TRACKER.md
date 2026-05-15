@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M21.4` — External-surface boundary consolidation
+`M21.5` — Validation and acceptance discipline for external surfaces
 
 ## Exact Next Unfinished Checkpoint
 
-`M21.5` — Validation and acceptance discipline for external surfaces
+`M21.6` — Phase 7 validation checkpoint
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `1059 passed in 44.87s`
+`python -m pytest -q` — `1072 passed in 45.03s`
 
 ## Active Notes
 
@@ -101,7 +101,18 @@ Phase 7 — UI and API Layer
 - `DDR-009` remains planning-awareness only for M21.4; M21.4 does not close DDR-009.
 - No deferred dependency was closed by M21.4.
 - `M21.4` validation passed locally with `python -m pytest -q` — `1059 passed in 44.87s`.
+- `M21.5` introduced deterministic validation and acceptance discipline for Phase 7 external surfaces.
+- `M21.5` added external-surface acceptance discipline under `asbp/external_surface/acceptance.py`.
+- `M21.5` updated external-surface package exports in `asbp/external_surface/__init__.py`.
+- `M21.5` added validation coverage in `tests/test_external_surface_acceptance.py`.
+- `M21.5` recorded checkpoint evidence under `docs/milestones/M21/M21_5_VALIDATION_AND_ACCEPTANCE_DISCIPLINE.md`.
+- `M21.5` defines validation evidence expectations, UAT evidence expectations, acceptance decision vocabulary, and required evidence before Phase 7 closeout.
+- `M21.5` prepares validation/UAT acceptance discipline only and does not run the Phase 7 validation checkpoint, create the Phase 7 UAT report, enter Phase 8, or introduce cloud/deployment, SaaS, or productization assumptions.
+- `DDR-008` remains a future Phase 8 / Phase 9 productization-readiness gate; M21.5 does not close DDR-008.
+- `DDR-009` remains planning-awareness only for M21.5; M21.5 does not close DDR-009.
+- No deferred dependency was closed by M21.5.
+- `M21.5` validation passed locally with `python -m pytest -q` — `1072 passed in 45.03s`.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - The deferred dependencies register must be checked before work touching productization, Phase 8/Phase 9, document generation, templates, runtime-authoritative libraries, standards citation/embedding, model/provider integration, deployment, SaaS, or pre-go-live readiness.
 - The active operation pack requires deferred-dependency register checks at session start and relevant planning/implementation triggers.
-- Phase 7 execution continues next at `M21.5` — Validation and acceptance discipline for external surfaces.
+- Phase 7 execution continues next at `M21.6` — Phase 7 validation checkpoint.
