@@ -31,15 +31,15 @@ Phase 7 — UI and API Layer
 
 ## Latest Completed Checkpoint
 
-`M20.4` — Document/export/reporting visibility surfaces
+`M20.5` — Operator action/intake boundary
 
 ## Exact Next Unfinished Checkpoint
 
-`M20.5` — Operator action/intake boundary
+`M20.6` — UI safety and execution-truth separation
 
 ## Latest Verified Validation Status
 
-`python -m pytest -q` — `981 passed in 45.68s`
+`python -m pytest -q` — `995 passed in 45.52s`
 
 ## Active Notes
 
@@ -64,8 +64,10 @@ Phase 7 — UI and API Layer
 - `M20.3` established deterministic governed workflow visibility surfaces under `asbp/ui/workflow_visibility.py`.
 - `M20.3` validation passed locally with `python -m pytest -q` — `969 passed in 45.54s`.
 - `M20.4` established deterministic document/export/reporting visibility surfaces under `asbp/ui/document_output_visibility.py`.
-- `M20.4` defined supported output visibility surfaces, deterministic display payload envelopes, display-only/no-generation behavior, approved output source-boundary expectations, and visibility constraints separating display from generation.
-- `M20.4` added document/export/reporting visibility evidence under `docs/milestones/M20/M20_4_DOCUMENT_EXPORT_REPORTING_VISIBILITY_SURFACES.md`.
-- `M20.4` added tests confirming deterministic payload shape, display-only/no-generation behavior, fail-closed invalid output surface handling, existing-output source-boundary controls, and rejection of generation engine, renderer, raw state/persistence/storage, and framework imports from UI modules.
 - `M20.4` validation passed locally with `python -m pytest -q` — `981 passed in 45.68s`.
-- Phase 7 execution continues at `M20.5` — Operator action/intake boundary.
+- `M20.5` established deterministic operator action/intake boundaries under `asbp/ui/operator_intake.py`.
+- `M20.5` defined supported UI operator-intake actions, deterministic intake request and decision envelopes, validation-before-mutation behavior, downstream API/service command boundary requirements, and fail-closed rejection for unsupported or forbidden target boundaries.
+- `M20.5` added operator action/intake boundary evidence under `docs/milestones/M20/M20_5_OPERATOR_ACTION_INTAKE_BOUNDARY.md`.
+- `M20.5` added tests confirming deterministic request/decision shape, preview-only behavior, API/service validation requirements, no direct UI execution, no approval/release expansion, fail-closed invalid action handling, forbidden target-boundary controls, and rejection of raw state/persistence/storage and framework imports from UI modules.
+- `M20.5` validation passed locally with `python -m pytest -q` — `995 passed in 45.52s`.
+- Phase 7 execution continues at `M20.6` — UI safety and execution-truth separation.
