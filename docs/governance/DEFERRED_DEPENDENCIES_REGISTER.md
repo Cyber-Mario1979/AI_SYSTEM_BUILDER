@@ -1,7 +1,7 @@
 ---
 doc_type: governance_register
 canonical_name: DEFERRED_DEPENDENCIES_REGISTER
-status: ACTIVE_PROPOSED
+status: ACTIVE
 governs_execution: true
 document_state_mode: living_governance_register
 authority: deferred_dependency_gate
