@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.8` — Milestone closeout
+`M23.1` — Deployment boundary foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.1` — Deployment boundary foundation
+`M23.2` — Packaging strategy foundation
 
 ## Latest Verified Validation Status
 
@@ -74,4 +74,8 @@ User-provided local validation result for M22:
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
 - `M23` covers Deployment / Packaging / Configuration Boundary.
 - M23 must define deployment packaging and configuration shape over stable system boundaries without turning deployment into productization.
-- The next roadmap-authorized checkpoint is `M23.1` — Deployment boundary foundation.
+- `M23.1` — Deployment boundary foundation is completed as documentation/boundary evidence only.
+- M23.1 evidence is recorded under `docs/milestones/M23/M23_1_DEPLOYMENT_BOUNDARY_FOUNDATION.md`.
+- M23.1 did not introduce deployment implementation, provider-specific production infrastructure, tenant/SaaS behavior, commercial productization, live model/provider integration, standards embedding, product-ready document/report/export generation, raw state access, or domain logic relocation.
+- No deferred dependency was closed by M23.1.
+- The next roadmap-authorized checkpoint is `M23.2` — Packaging strategy foundation.
