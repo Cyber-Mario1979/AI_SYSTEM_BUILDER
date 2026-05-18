@@ -31,17 +31,17 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M23.5` — Governed source assets vs deployable operational surfaces
+`M23.6` — Deployment / packaging validation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.6` — Deployment / packaging validation checkpoint
+`M23.7` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-User-provided local validation result for M22:
+User-provided local validation result for M23.6:
 
-`python -m pytest -q` — `1072 passed in 48.85s`
+`python -m pytest -q` — `1072 passed in 48.43s`
 
 ## Active Notes
 
@@ -96,4 +96,9 @@ User-provided local validation result for M22:
 - M23.5 did not introduce runtime-authoritative library promotion, deployment-compiled lookup implementation, consolidated runtime-authoritative libraries, operational release artifact production, product-ready downloadable packages, commercial distribution assets, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
 - M23.5 explicitly carries `DDR-001` and `DDR-002` forward without closure.
 - No deferred dependency was closed by M23.5.
-- The next roadmap-authorized checkpoint is `M23.6` — Deployment / packaging validation checkpoint.
+- `M23.6` — Deployment / packaging validation checkpoint is completed.
+- M23.6 validation evidence is recorded under `docs/milestones/M23/M23_6_DEPLOYMENT_PACKAGING_VALIDATION_CHECKPOINT.md`.
+- M23.6 validation passed locally with `python -m pytest -q` — `1072 passed in 48.43s`.
+- M23.6 did not introduce new deployment features, production release behavior, Phase 9 work, or milestone closeout.
+- No deferred dependency was closed by M23.6.
+- The next roadmap-authorized checkpoint is `M23.7` — Milestone UAT checkpoint.
