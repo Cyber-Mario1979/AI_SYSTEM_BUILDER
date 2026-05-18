@@ -31,15 +31,15 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.1` — Cloud / compute boundary foundation
+`M22.2` — Runtime placement model
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.2` — Runtime placement model
+`M22.3` — Environment boundary model
 
 ## Latest Verified Validation Status
 
-No new test run recorded for docs-only `M22.1`.
+No new test run recorded for docs-only `M22.2`.
 
 Latest repo-wide verified validation remains:
 
@@ -70,7 +70,12 @@ Latest repo-wide verified validation remains:
 - `M22.1` defines cloud/compute as a downstream placement and operational boundary.
 - `M22.1` does not introduce deployment implementation, provider selection, production infrastructure, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
 - No skeleton package was introduced in `M22.1`.
-- No deferred dependency was closed by `M22.1`.
+- `M22.2` is complete as docs-only runtime placement evidence under `docs/milestones/M22/M22_2_RUNTIME_PLACEMENT_MODEL.md`.
+- `M22.2` defines conceptual runtime placement vocabulary and placement assumptions.
+- `M22.2` separates runtime role from deployment implementation.
+- `M22.2` does not introduce actual deployment, provider-specific infrastructure, environment secrets/config implementation, operational monitoring implementation, productized runtime claims, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
+- No code package, skeleton runtime package, or executable vocabulary validation was introduced in `M22.2`.
+- No deferred dependency was closed by `M22.1` or `M22.2`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -78,8 +83,8 @@ Latest repo-wide verified validation remains:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion or `M22.1`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, or `M22.2`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.2` — Runtime placement model.
+- The next roadmap-authorized checkpoint is `M22.3` — Environment boundary model.
