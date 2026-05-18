@@ -31,15 +31,15 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.4` — Local / development / test / production separation
+`M22.5` — Cloud assumptions and non-assumptions register
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.5` — Cloud assumptions and non-assumptions register
+`M22.6` — Cloud / compute validation checkpoint
 
 ## Latest Verified Validation Status
 
-No new test run recorded for docs-only `M22.4`.
+No new test run recorded for docs-only `M22.5`.
 
 Latest repo-wide verified validation remains:
 
@@ -86,7 +86,14 @@ Latest repo-wide verified validation remains:
 - `M22.4` defines non-production validation evidence rules, local evidence limitations, development evidence limitations, test / validation evidence rules, future production-like revalidation rules, and no-promotion-without-evidence rules.
 - `M22.4` does not introduce production readiness claims, deployment automation, operational release process, tenant/SaaS promotion rules, environment provisioning, secrets management implementation, production configuration, deployment pipeline implementation, SaaS tenant environment design, actual deployment, provider-specific infrastructure, operational monitoring implementation, productized runtime claims, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
 - No code package, skeleton package, environment provisioning file, secrets/config template, deployment automation, release process, tenant/SaaS promotion rule, or executable validation package was introduced in `M22.4`.
-- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, or `M22.4`.
+- `M22.5` is complete as docs-only cloud assumptions and non-assumptions register evidence under `docs/milestones/M22/M22_5_CLOUD_ASSUMPTIONS_REGISTER.md`.
+- `M22.5` creates bounded cloud/compute assumptions, explicit non-assumptions, and deferred cloud/compute decisions.
+- `M22.5` records deferred decisions for provider, hosting model, secrets, CI/CD, observability, operational monitoring, operational release, tenant/SaaS model, product-ready generation/rendering, standards authority/embedding, live model/provider integration, and runtime-authoritative governed-library promotion.
+- `M22.5` aligns with the deferred dependency register without replacing it.
+- `M22.5` does not choose a provider-specific implementation as final, close deferred dependencies without evidence, or silently move productization work into Phase 8.
+- `M22.5` does not introduce provider-specific implementation, hosting model selection, production infrastructure, environment provisioning, secrets management implementation, production configuration, deployment pipeline implementation, CI/CD implementation, operational monitoring implementation, operational release process, tenant/SaaS promotion rules, commercial productization, production readiness claims, go-live readiness claims, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
+- No code package, cloud package, provider-specific file, deployment file, secrets/config template, CI/CD pipeline, observability file, operational release process, SaaS tenant model, or executable validation package was introduced in `M22.5`.
+- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, `M22.4`, or `M22.5`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -94,8 +101,8 @@ Latest repo-wide verified validation remains:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, or `M22.4`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, `M22.4`, or `M22.5`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.5` — Cloud assumptions and non-assumptions register.
+- The next roadmap-authorized checkpoint is `M22.6` — Cloud / compute validation checkpoint.
