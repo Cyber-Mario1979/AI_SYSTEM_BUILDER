@@ -31,13 +31,17 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate
+`M22.1` — Cloud / compute boundary foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.1` — Cloud / compute boundary foundation
+`M22.2` — Runtime placement model
 
 ## Latest Verified Validation Status
+
+No new test run recorded for docs-only `M22.1`.
+
+Latest repo-wide verified validation remains:
 
 `python -m pytest -q` — `1072 passed in 45.18s`
 
@@ -59,12 +63,14 @@ Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate
 - `M21.8` final validation passed locally with `python -m pytest -q` — `1072 passed in 45.18s`.
 - The Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate added `ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md`.
 - The Phase 8 addendum expands the Cloud / Compute Layer placeholder direction into an executable checkpoint ladder.
-- Phase 8 execution begins at `M22.1` — Cloud / compute boundary foundation.
 - `M22` covers Cloud / Compute Foundation.
 - `M23` covers Deployment / Packaging / Configuration Boundary.
 - `M24` covers Operational Hardening and Cloud-Governance Readiness.
-- The deferred dependency register was reviewed during the Phase 8 expansion gate.
-- No deferred dependency was closed by the Phase 8 expansion gate.
+- `M22.1` is complete as docs-only boundary evidence under `docs/milestones/M22/M22_1_CLOUD_COMPUTE_BOUNDARY.md`.
+- `M22.1` defines cloud/compute as a downstream placement and operational boundary.
+- `M22.1` does not introduce deployment implementation, provider selection, production infrastructure, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
+- No skeleton package was introduced in `M22.1`.
+- No deferred dependency was closed by `M22.1`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -72,8 +78,8 @@ Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion or `M22.1`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.1` — Cloud / compute boundary foundation.
+- The next roadmap-authorized checkpoint is `M22.2` — Runtime placement model.
