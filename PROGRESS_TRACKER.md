@@ -27,15 +27,15 @@ Phase 8 — Cloud / Compute Layer
 
 ## Current Approved Slice Family
 
-`M23` — Deployment / Packaging / Configuration Boundary
+`M24` — Operational Hardening and Cloud-Governance Readiness
 
 ## Latest Completed Checkpoint
 
-`M23.7` — Milestone UAT checkpoint
+`M23.8` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.8` — Milestone closeout
+`M24.1` — Operational hardening boundary foundation
 
 ## Latest Verified Validation Status
 
@@ -106,4 +106,17 @@ User-provided local validation result for M23.6:
 - M23 UAT acceptance decision: `Pass`.
 - M23.7 did not introduce new deployment features, production release behavior, Phase 9 work, or milestone closeout.
 - No deferred dependency was closed by M23.7.
-- The next roadmap-authorized checkpoint is `M23.8` — Milestone closeout.
+- `M23.8` — Milestone closeout is completed.
+- M23 closeout notes are recorded under `docs/milestones/M23/M23_CLOSEOUT_NOTES.md`.
+- `M23` — Deployment / Packaging / Configuration Boundary is closed and accepted for the approved roadmap scope.
+- M23 closeout freezes the deployment/packaging/configuration boundary.
+- M23 validation passed locally with `python -m pytest -q` — `1072 passed in 48.43s`.
+- M23 UAT acceptance decision: `Pass`.
+- M23 did not introduce new deployment behavior, production release behavior, Phase 9 work, runtime-authoritative library promotion, deployment-compiled lookup, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
+- No deferred dependency was closed by M23.
+- `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
+- `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
+- `DDR-007` remains watch for future actual model/provider integration and pre-go-live operational testing.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by M23 closeout.
+- `M24` covers Operational Hardening and Cloud-Governance Readiness.
+- The next roadmap-authorized checkpoint is `M24.1` — Operational hardening boundary foundation.
