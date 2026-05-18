@@ -31,15 +31,15 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.2` — Runtime placement model
+`M22.3` — Environment boundary model
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.3` — Environment boundary model
+`M22.4` — Local / development / test / production separation
 
 ## Latest Verified Validation Status
 
-No new test run recorded for docs-only `M22.2`.
+No new test run recorded for docs-only `M22.3`.
 
 Latest repo-wide verified validation remains:
 
@@ -75,7 +75,13 @@ Latest repo-wide verified validation remains:
 - `M22.2` separates runtime role from deployment implementation.
 - `M22.2` does not introduce actual deployment, provider-specific infrastructure, environment secrets/config implementation, operational monitoring implementation, productized runtime claims, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
 - No code package, skeleton runtime package, or executable vocabulary validation was introduced in `M22.2`.
-- No deferred dependency was closed by `M22.1` or `M22.2`.
+- `M22.3` is complete as docs-only environment boundary evidence under `docs/milestones/M22/M22_3_ENVIRONMENT_BOUNDARY_MODEL.md`.
+- `M22.3` defines environment-boundary concepts and governance-level local / development / test / production-like / production roles.
+- `M22.3` defines what may differ by environment and what must not differ by environment.
+- `M22.3` preserves deterministic validation, source-truth, state/persistence, API/UI, and cloud/compute boundary rules across environments.
+- `M22.3` does not introduce environment provisioning, secrets management implementation, production configuration, deployment pipeline implementation, SaaS tenant environment design, actual deployment, provider-specific infrastructure, operational monitoring implementation, productized runtime claims, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
+- No code package, skeleton environment package, provisioning file, secrets/config template, deployment pipeline, or executable environment validation was introduced in `M22.3`.
+- No deferred dependency was closed by `M22.1`, `M22.2`, or `M22.3`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -83,8 +89,8 @@ Latest repo-wide verified validation remains:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, or `M22.2`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, or `M22.3`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.3` — Environment boundary model.
+- The next roadmap-authorized checkpoint is `M22.4` — Local / development / test / production separation.
