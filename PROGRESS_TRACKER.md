@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M23.2` — Packaging strategy foundation
+`M23.3` — Configuration boundary model
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.3` — Configuration boundary model
+`M23.4` — Artifact boundary model
 
 ## Latest Verified Validation Status
 
@@ -83,4 +83,8 @@ User-provided local validation result for M22:
 - M23.2 removed the temporary user-applied M23.1 apply script from the repository branch.
 - M23.2 did not introduce final release packaging, publishing artifacts, installer/distribution behavior, commercial packaging, cloud release process, deployable artifact generation, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
 - No deferred dependency was closed by M23.2.
-- The next roadmap-authorized checkpoint is `M23.3` — Configuration boundary model.
+- `M23.3` — Configuration boundary model is completed as documentation/boundary evidence only.
+- M23.3 evidence is recorded under `docs/milestones/M23/M23_3_CONFIGURATION_BOUNDARY_MODEL.md`.
+- M23.3 did not introduce configuration loading, secrets management implementation, production configuration values, provider-specific environment setup, tenant configuration model, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
+- No deferred dependency was closed by M23.3.
+- The next roadmap-authorized checkpoint is `M23.4` — Artifact boundary model.
