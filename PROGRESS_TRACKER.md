@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M23.6` — Deployment / packaging validation checkpoint
+`M23.7` — Milestone UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.7` — Milestone UAT checkpoint
+`M23.8` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -101,4 +101,9 @@ User-provided local validation result for M23.6:
 - M23.6 validation passed locally with `python -m pytest -q` — `1072 passed in 48.43s`.
 - M23.6 did not introduce new deployment features, production release behavior, Phase 9 work, or milestone closeout.
 - No deferred dependency was closed by M23.6.
-- The next roadmap-authorized checkpoint is `M23.7` — Milestone UAT checkpoint.
+- `M23.7` — Milestone UAT checkpoint is completed.
+- M23 UAT evidence is recorded under `docs/UAT/M23/M23_UAT_PROTOCOL.md` and `docs/UAT/M23/M23_UAT_REPORT.md`.
+- M23 UAT acceptance decision: `Pass`.
+- M23.7 did not introduce new deployment features, production release behavior, Phase 9 work, or milestone closeout.
+- No deferred dependency was closed by M23.7.
+- The next roadmap-authorized checkpoint is `M23.8` — Milestone closeout.
