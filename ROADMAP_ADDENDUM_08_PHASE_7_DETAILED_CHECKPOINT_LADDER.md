@@ -1,10 +1,10 @@
 ---
 doc_type: roadmap_addendum
 canonical_name: ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER
-status: ACTIVE
-governs_execution: true
-document_state_mode: roadmap_overlay
-authority: active_authorized_roadmap_overlay
+status: COMPLETED_HISTORICAL
+governs_execution: false
+document_state_mode: historical_roadmap_overlay
+authority: historical_traceability_only
 source_roadmap: ROADMAP_CANONICAL.md v4
 source_continuation: ROADMAP_CANONICAL_CONTINUATION_PART_2_PHASES_7_9.md
 scope_type: phase_7_checkpoint_ladder_expansion
