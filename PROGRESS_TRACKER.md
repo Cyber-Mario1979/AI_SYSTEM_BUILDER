@@ -31,19 +31,17 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.5` — Cloud assumptions and non-assumptions register
+`M22.6` — Cloud / compute validation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.6` — Cloud / compute validation checkpoint
+`M22.7` — Milestone UAT checkpoint
 
 ## Latest Verified Validation Status
 
-No new test run recorded for docs-only `M22.5`.
+User-provided local validation result:
 
-Latest repo-wide verified validation remains:
-
-`python -m pytest -q` — `1072 passed in 45.18s`
+`python -m pytest -q` — `1072 passed in 48.85s`
 
 ## Active Notes
 
@@ -93,7 +91,11 @@ Latest repo-wide verified validation remains:
 - `M22.5` does not choose a provider-specific implementation as final, close deferred dependencies without evidence, or silently move productization work into Phase 8.
 - `M22.5` does not introduce provider-specific implementation, hosting model selection, production infrastructure, environment provisioning, secrets management implementation, production configuration, deployment pipeline implementation, CI/CD implementation, operational monitoring implementation, operational release process, tenant/SaaS promotion rules, commercial productization, production readiness claims, go-live readiness claims, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
 - No code package, cloud package, provider-specific file, deployment file, secrets/config template, CI/CD pipeline, observability file, operational release process, SaaS tenant model, or executable validation package was introduced in `M22.5`.
-- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, `M22.4`, or `M22.5`.
+- `M22.6` is complete as the cloud / compute validation checkpoint under `docs/milestones/M22/M22_6_CLOUD_COMPUTE_VALIDATION_CHECKPOINT.md`.
+- `M22.6` records user-provided local validation evidence: `python -m pytest -q` — `1072 passed in 48.85s`.
+- `M22.6` validation covers M22.1 through M22.5 cloud/compute foundation evidence.
+- `M22.6` does not introduce new cloud/compute features, deployment implementation, Phase 9 work, or milestone closeout.
+- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, or `M22.6`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -101,8 +103,8 @@ Latest repo-wide verified validation remains:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, `M22.4`, or `M22.5`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, or `M22.6`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.6` — Cloud / compute validation checkpoint.
+- The next roadmap-authorized checkpoint is `M22.7` — Milestone UAT checkpoint.
