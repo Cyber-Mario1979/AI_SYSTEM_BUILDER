@@ -27,50 +27,40 @@ Phase 8 — Cloud / Compute Layer
 
 ## Current Approved Slice Family
 
-`M22` — Cloud / Compute Foundation
+`M23` — Deployment / Packaging / Configuration Boundary
 
 ## Latest Completed Checkpoint
 
-`M22.1` — Cloud / compute boundary foundation
+`M22.8` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.2` — Runtime placement model
+`M23.1` — Deployment boundary foundation
 
 ## Latest Verified Validation Status
 
-No new test run recorded for docs-only `M22.1`.
+User-provided local validation result for M22:
 
-Latest repo-wide verified validation remains:
-
-`python -m pytest -q` — `1072 passed in 45.18s`
+`python -m pytest -q` — `1072 passed in 48.85s`
 
 ## Active Notes
 
 - `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 - `ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` governed Phase 7 checkpoint execution through M21.8.
 - `ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` is active and governs Phase 8 checkpoint execution.
-- Addenda `06` and `07` remain archived under `docs/archives/roadmap_addenda/` and marked `COMPLETED_HISTORICAL`.
-- `M12`, `M13`, `M14`, and `M15` are closed and accepted; detailed evidence remains preserved in their milestone validation, UAT, and closeout files.
-- `M15.10` closeout records Phase 5 — Core Engine Completion as complete for the approved roadmap scope.
-- `M16`, `M17`, and `M18` are closed and accepted; detailed evidence remains preserved in their milestone validation, UAT, and closeout files.
-- `M18.7` closeout records the AI-assisted workflow expansion boundary as frozen for the approved roadmap scope.
-- Phase 6 — AI Layer is complete for the approved roadmap scope.
 - Phase 7 — UI and API Layer is complete for the approved roadmap scope.
-- `M21.8` recorded M21 and Phase 7 closeout notes under `docs/milestones/M21/M21_CLOSEOUT_NOTES.md`.
 - `M21.8` closeout decision: M21 is closed and accepted.
 - `M21.8` closeout decision: Phase 7 is closed for the approved roadmap scope.
 - `M21.8` final validation passed locally with `python -m pytest -q` — `1072 passed in 45.18s`.
-- The Post-Phase-7 / Pre-Phase-8 roadmap expansion and deferred-dependency review gate added `ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md`.
-- The Phase 8 addendum expands the Cloud / Compute Layer placeholder direction into an executable checkpoint ladder.
-- `M22` covers Cloud / Compute Foundation.
-- `M23` covers Deployment / Packaging / Configuration Boundary.
-- `M24` covers Operational Hardening and Cloud-Governance Readiness.
-- `M22.1` is complete as docs-only boundary evidence under `docs/milestones/M22/M22_1_CLOUD_COMPUTE_BOUNDARY.md`.
-- `M22.1` defines cloud/compute as a downstream placement and operational boundary.
-- `M22.1` does not introduce deployment implementation, provider selection, production infrastructure, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
-- No skeleton package was introduced in `M22.1`.
-- No deferred dependency was closed by `M22.1`.
+- `M22` — Cloud / Compute Foundation is closed and accepted for the approved roadmap scope.
+- `M22.8` closeout records the M22 cloud/compute foundation boundary as frozen.
+- M22 closeout notes are recorded under `docs/milestones/M22/M22_CLOSEOUT_NOTES.md`.
+- M22 validation evidence is recorded under `docs/milestones/M22/M22_6_CLOUD_COMPUTE_VALIDATION_CHECKPOINT.md`.
+- M22 validation passed locally with `python -m pytest -q` — `1072 passed in 48.85s`.
+- M22 UAT evidence is recorded under `docs/UAT/M22/M22_UAT_PROTOCOL.md` and `docs/UAT/M22/M22_UAT_REPORT.md`.
+- M22 UAT acceptance decision: `Pass`.
+- M22 did not introduce deployment implementation, provider-specific implementation as final, production infrastructure, tenant/SaaS behavior, commercial productization, live model/provider calls, standards embedding, product-ready document/export/report generation, raw state access, or domain logic relocation.
+- No deferred dependency was closed by M22.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -78,8 +68,10 @@ Latest repo-wide verified validation remains:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion or `M22.1`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion or M22 closeout.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.2` — Runtime placement model.
+- `M23` covers Deployment / Packaging / Configuration Boundary.
+- M23 must define deployment packaging and configuration shape over stable system boundaries without turning deployment into productization.
+- The next roadmap-authorized checkpoint is `M23.1` — Deployment boundary foundation.
