@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M23.4` — Artifact boundary model
+`M23.5` — Governed source assets vs deployable operational surfaces
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.5` — Governed source assets vs deployable operational surfaces
+`M23.6` — Deployment / packaging validation checkpoint
 
 ## Latest Verified Validation Status
 
@@ -91,4 +91,9 @@ User-provided local validation result for M22:
 - M23.4 evidence is recorded under `docs/milestones/M23/M23_4_ARTIFACT_BOUNDARY_MODEL.md`.
 - M23.4 did not introduce operational release artifact production, product-ready downloadable packages, commercial distribution assets, artifact generator implementation, artifact validator implementation, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
 - No deferred dependency was closed by M23.4.
-- The next roadmap-authorized checkpoint is `M23.5` — Governed source assets vs deployable operational surfaces.
+- `M23.5` — Governed source assets vs deployable operational surfaces is completed as documentation/boundary evidence only.
+- M23.5 evidence is recorded under `docs/milestones/M23/M23_5_GOVERNED_SOURCE_ASSETS_VS_DEPLOYABLE_OPERATIONAL_SURFACES.md`.
+- M23.5 did not introduce runtime-authoritative library promotion, deployment-compiled lookup implementation, consolidated runtime-authoritative libraries, operational release artifact production, product-ready downloadable packages, commercial distribution assets, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
+- M23.5 explicitly carries `DDR-001` and `DDR-002` forward without closure.
+- No deferred dependency was closed by M23.5.
+- The next roadmap-authorized checkpoint is `M23.6` — Deployment / packaging validation checkpoint.
