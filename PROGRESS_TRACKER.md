@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M22.6` — Cloud / compute validation checkpoint
+`M22.7` — Milestone UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M22.7` — Milestone UAT checkpoint
+`M22.8` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -95,7 +95,11 @@ User-provided local validation result:
 - `M22.6` records user-provided local validation evidence: `python -m pytest -q` — `1072 passed in 48.85s`.
 - `M22.6` validation covers M22.1 through M22.5 cloud/compute foundation evidence.
 - `M22.6` does not introduce new cloud/compute features, deployment implementation, Phase 9 work, or milestone closeout.
-- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, or `M22.6`.
+- `M22.7` is complete as the M22 milestone UAT checkpoint under `docs/UAT/M22/M22_UAT_PROTOCOL.md` and `docs/UAT/M22/M22_UAT_REPORT.md`.
+- `M22.7` UAT acceptance decision: `Pass`.
+- `M22.7` confirms the M22 cloud/compute boundary behavior is understandable, bounded, and non-productizing.
+- `M22.7` does not introduce new cloud/compute features, deployment implementation, Phase 9 work, or milestone closeout.
+- No deferred dependency was closed by `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, `M22.6`, or `M22.7`.
 - `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
 - `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
 - `DDR-003` remains deferred for product-ready document templates.
@@ -103,8 +107,8 @@ User-provided local validation result:
 - `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
 - `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
 - `DDR-007` remains watch status for future actual model/provider integration and pre-go-live operational testing.
-- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, or `M22.6`.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 ladder expansion, `M22.1`, `M22.2`, `M22.3`, `M22.4`, `M22.5`, `M22.6`, or `M22.7`.
 - `DDR-009` remains watch/planning-awareness for future external contract placeholders.
 - Phase 8 must not introduce tenant/SaaS behavior, commercial productization, standards embedding, product-ready document/export/report generation, or live model/provider integration unless a roadmap-authorized checkpoint and dependency disposition explicitly allow it.
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains the repo-persistent gate memory for deferred/productization-sensitive dependencies.
-- The next roadmap-authorized checkpoint is `M22.7` — Milestone UAT checkpoint.
+- The next roadmap-authorized checkpoint is `M22.8` — Milestone closeout.
