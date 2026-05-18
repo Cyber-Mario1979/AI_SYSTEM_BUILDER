@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M23.3` — Configuration boundary model
+`M23.4` — Artifact boundary model
 
 ## Exact Next Unfinished Checkpoint
 
-`M23.4` — Artifact boundary model
+`M23.5` — Governed source assets vs deployable operational surfaces
 
 ## Latest Verified Validation Status
 
@@ -87,4 +87,8 @@ User-provided local validation result for M22:
 - M23.3 evidence is recorded under `docs/milestones/M23/M23_3_CONFIGURATION_BOUNDARY_MODEL.md`.
 - M23.3 did not introduce configuration loading, secrets management implementation, production configuration values, provider-specific environment setup, tenant configuration model, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
 - No deferred dependency was closed by M23.3.
-- The next roadmap-authorized checkpoint is `M23.4` — Artifact boundary model.
+- `M23.4` — Artifact boundary model is completed as documentation/boundary evidence only.
+- M23.4 evidence is recorded under `docs/milestones/M23/M23_4_ARTIFACT_BOUNDARY_MODEL.md`.
+- M23.4 did not introduce operational release artifact production, product-ready downloadable packages, commercial distribution assets, artifact generator implementation, artifact validator implementation, productization, standards embedding, live model/provider integration, or product-ready document/report/export generation.
+- No deferred dependency was closed by M23.4.
+- The next roadmap-authorized checkpoint is `M23.5` — Governed source assets vs deployable operational surfaces.
