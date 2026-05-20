@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M24.1` — Operational hardening boundary foundation
+`M24.2` — Observability direction foundation
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.2` — Observability direction foundation
+`M24.3` — Runtime health and failure-governance surfaces
 
 ## Latest Verified Validation Status
 
@@ -123,4 +123,8 @@ User-provided local validation result for M23.6:
 - M24.1 evidence is recorded under `docs/milestones/M24/M24_1_OPERATIONAL_HARDENING_BOUNDARY_FOUNDATION.md`.
 - M24.1 did not introduce live operational monitoring implementation, production operation, SaaS operation, uncontrolled agentic operation, live model/provider integration, production release behavior, standards embedding, or product-ready document/report/export generation.
 - No deferred dependency was closed by M24.1.
-- The next roadmap-authorized checkpoint is `M24.2` — Observability direction foundation.
+- `M24.2` — Observability direction foundation is completed as documentation/boundary evidence only.
+- M24.2 evidence is recorded under `docs/milestones/M24/M24_2_OBSERVABILITY_DIRECTION_FOUNDATION.md`.
+- M24.2 did not introduce production monitoring implementation, provider-specific observability tooling, alerting/on-call process implementation, SaaS operational control, live operational monitoring, live model/provider integration, standards embedding, or product-ready document/report/export generation.
+- No deferred dependency was closed by M24.2.
+- The next roadmap-authorized checkpoint is `M24.3` — Runtime health and failure-governance surfaces.
