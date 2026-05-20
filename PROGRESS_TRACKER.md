@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M24.6` — Phase 8 validation checkpoint
+`M24.7` — Phase 8 UAT checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.7` — Phase 8 UAT checkpoint
+`M24.8` — Phase 8 closeout
 
 ## Latest Verified Validation Status
 
@@ -148,4 +148,9 @@ User-provided local validation result for M24.6:
 - M24.6 repository integrity assessment decision: `Pass with no immediate cleanup implementation`.
 - M24.6 did not introduce new operational features, Phase 9 work, cloud/deployment implementation beyond approved Phase 8 boundaries, or phase closeout.
 - No deferred dependency was closed by M24.6.
-- The next roadmap-authorized checkpoint is `M24.7` — Phase 8 UAT checkpoint.
+- `M24.7` — Phase 8 UAT checkpoint is completed.
+- Phase 8 UAT evidence is recorded under `docs/UAT/M24/M24_UAT_PROTOCOL.md` and `docs/UAT/M24/M24_UAT_REPORT.md`.
+- Phase 8 UAT acceptance decision: `Pass`.
+- M24.7 did not introduce new operational features, Phase 9 work, productization, live model/provider integration, standards embedding, or product-ready document/report/export generation.
+- No deferred dependency was closed by M24.7.
+- The next roadmap-authorized checkpoint is `M24.8` — Phase 8 closeout.
