@@ -31,15 +31,15 @@ M25 — SaaS Readiness Assessment
 
 ## Current Approved Slice Family
 
-`M25.1` — Productization boundary assessment
+`M25.2` — Deferred dependency disposition review
 
 ## Latest Completed Checkpoint
 
-`Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate`
+`M25.1` — Productization boundary assessment
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.1` — Productization boundary assessment
+`M25.2` — Deferred dependency disposition review
 
 ## Latest Verified Validation Status
 
@@ -47,7 +47,7 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No validation has been run or claimed for the Phase 9 roadmap expansion addendum because the addendum is governance/planning-only and no executable code change has been verified in this tracker update.
+No validation has been run or claimed for M25.1 because the checkpoint evidence is documentation/governance-only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -57,7 +57,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for Phase 9 entry.
+Aligned for M25.2 planning.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -75,7 +75,7 @@ Aligned for Phase 9 entry.
 
 Relevant and active for Phase 9 / productization readiness.
 
-The Phase 9 addendum does not close any deferred dependency.
+M25.1 does not close any deferred dependency.
 
 The following dependencies remain carried forward and must be dispositioned during Phase 9 work as applicable:
 
@@ -105,6 +105,11 @@ The following dependencies remain carried forward and must be dispositioned duri
 - M25 must complete before M26 begins.
 - M26 must complete before M27 begins.
 - M27 must complete before Phase 9 can close.
-- `M25.1` is the next checkpoint and must remain an assessment/planning checkpoint.
-- `M25.1` may define what productization means for ASBP at this stage, assess the current system boundary after Phase 8 closeout, distinguish product/SaaS readiness from project-governance readiness, identify stable and non-productized layers, document assumptions/non-assumptions, and create M25.1 evidence under `docs/milestones/M25/`.
-- `M25.1` must not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure without evidence.
+- `M25.1` — Productization boundary assessment is completed.
+- M25.1 evidence is recorded under `docs/milestones/M25/M25_1_PRODUCTIZATION_BOUNDARY_ASSESSMENT.md`.
+- M25.1 assessment decision: `Pass — productization boundary assessment may proceed to M25.2 dependency disposition review.`
+- M25.1 established the boundary between assessment readiness and product/SaaS readiness.
+- M25.1 concluded the system is ready for controlled productization assessment but is not yet productized and must not be represented as product/SaaS-ready.
+- M25.1 did not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure.
+- `M25.2` is the next checkpoint and must perform the detailed DDR review for Phase 9 relevance.
+- `M25.2` must classify each applicable dependency as blocker, planned closure path, carry-forward, reclassification candidate, or not applicable.
