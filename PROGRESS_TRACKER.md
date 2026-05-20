@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M24.3` — Runtime health and failure-governance surfaces
+`M24.4` — Operational validation direction
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.4` — Operational validation direction
+`M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition
 
 ## Latest Verified Validation Status
 
@@ -131,4 +131,8 @@ User-provided local validation result for M23.6:
 - M24.3 evidence is recorded under `docs/milestones/M24/M24_3_RUNTIME_HEALTH_AND_FAILURE_GOVERNANCE_SURFACES.md`.
 - M24.3 did not introduce live runtime health implementation, autonomous recovery behavior, production incident automation, uncontrolled agentic behavior, production monitoring, live model/provider integration, standards embedding, or product-ready document/report/export generation.
 - No deferred dependency was closed by M24.3.
-- The next roadmap-authorized checkpoint is `M24.4` — Operational validation direction.
+- `M24.4` — Operational validation direction is completed as documentation/boundary evidence only.
+- M24.4 evidence is recorded under `docs/milestones/M24/M24_4_OPERATIONAL_VALIDATION_DIRECTION.md`.
+- M24.4 did not introduce pre-go-live execution, production readiness claims, live provider/model integration, productization claims, smoke-test implementation, operational validation command implementation, standards embedding, or product-ready document/report/export generation.
+- No deferred dependency was closed by M24.4.
+- The next roadmap-authorized checkpoint is `M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition.
