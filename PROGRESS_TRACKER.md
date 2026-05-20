@@ -23,19 +23,19 @@ Keep detailed notes only for the active milestone or active transition gate; onc
 
 ## Current Phase
 
-Phase 8 — Cloud / Compute Layer
+Post-Phase-8 / Pre-Phase-9 Transition
 
 ## Current Approved Slice Family
 
-`M24` — Operational Hardening and Cloud-Governance Readiness
+`Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate`
 
 ## Latest Completed Checkpoint
 
-`M24.7` — Phase 8 UAT checkpoint
+`M24.8` — Phase 8 closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.8` — Phase 8 closeout
+`Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate`
 
 ## Latest Verified Validation Status
 
@@ -47,7 +47,7 @@ User-provided local validation result for M24.6:
 
 - `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 - `ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` governed Phase 7 checkpoint execution through M21.8.
-- `ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` is active and governs Phase 8 checkpoint execution.
+- `ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` governed Phase 8 checkpoint execution through M24.8 and is now completed historical traceability.
 - Phase 7 — UI and API Layer is complete for the approved roadmap scope.
 - `M21.8` closeout decision: M21 is closed and accepted.
 - `M21.8` closeout decision: Phase 7 is closed for the approved roadmap scope.
@@ -153,4 +153,21 @@ User-provided local validation result for M24.6:
 - Phase 8 UAT acceptance decision: `Pass`.
 - M24.7 did not introduce new operational features, Phase 9 work, productization, live model/provider integration, standards embedding, or product-ready document/report/export generation.
 - No deferred dependency was closed by M24.7.
-- The next roadmap-authorized checkpoint is `M24.8` — Phase 8 closeout.
+- `M24.8` — Phase 8 closeout is completed.
+- Phase 8 closeout notes are recorded under `docs/milestones/M24/M24_PHASE_8_CLOSEOUT_NOTES.md`.
+- Phase 8 is closed and accepted for the approved roadmap scope.
+- Phase 8 closeout freezes the cloud/compute, deployment/packaging/configuration, and operational-hardening/cloud-governance boundary.
+- Phase 8 validation passed locally with `python -m pytest -q` — `1072 passed in 52.80s`.
+- Phase 8 UAT acceptance decision: `Pass`.
+- Phase 8 did not introduce production operation, SaaS/productization behavior, Phase 9 implementation, live model/provider integration, standards embedding, runtime-authoritative library promotion, deployment-compiled lookup, or product-ready document/report/export generation.
+- No deferred dependency was closed by Phase 8.
+- `DDR-001` remains deferred for governed-library runtime promotion / deployment-compiled lookup.
+- `DDR-002` remains deferred for consolidated runtime-authoritative libraries.
+- `DDR-003` remains deferred for product-ready document templates.
+- `DDR-004` remains open and Critical for standards source registry and citation authority.
+- `DDR-005` remains deferred for standards embedding / retrieval index and depends on `DDR-004`.
+- `DDR-006` remains deferred for product-ready document/export/report generation and rendering.
+- `DDR-007` remains watch for future actual model/provider integration and pre-go-live operational testing.
+- `DDR-008` remains watch for Phase 8 / Phase 9 productization-readiness planning and is not closed by Phase 8 closeout.
+- `DDR-009` remains watch/planning-awareness for future external contract placeholders.
+- The next roadmap-authorized action is the `Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate`.
