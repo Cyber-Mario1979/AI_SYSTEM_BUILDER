@@ -31,17 +31,17 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition
+`M24.6` — Phase 8 validation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.6` — Phase 8 validation checkpoint
+`M24.7` — Phase 8 UAT checkpoint
 
 ## Latest Verified Validation Status
 
-User-provided local validation result for M23.6:
+User-provided local validation result for M24.6:
 
-`python -m pytest -q` — `1072 passed in 48.43s`
+`python -m pytest -q` — `1072 passed in 52.80s`
 
 ## Active Notes
 
@@ -141,4 +141,11 @@ User-provided local validation result for M23.6:
 - M24.5 preserved `DDR-007` model/provider integration controls and `DDR-008` Phase 8/9 productization readiness controls.
 - M24.5 did not introduce model/provider integration, SaaS/productization behavior, Phase 9 entry, dependency closure without evidence, pre-go-live execution, standards embedding, or product-ready document/report/export generation.
 - No deferred dependency was closed by M24.5.
-- The next roadmap-authorized checkpoint is `M24.6` — Phase 8 validation checkpoint.
+- `M24.6` — Phase 8 validation checkpoint is completed.
+- M24.6 validation evidence is recorded under `docs/milestones/M24/M24_6_PHASE_8_VALIDATION_CHECKPOINT.md`.
+- M24.6 repository integrity assessment is recorded under `docs/milestones/M24/M24_6_PHASE_8_REPOSITORY_INTEGRITY_ASSESSMENT.md`.
+- M24.6 validation passed locally with `python -m pytest -q` — `1072 passed in 52.80s`.
+- M24.6 repository integrity assessment decision: `Pass with no immediate cleanup implementation`.
+- M24.6 did not introduce new operational features, Phase 9 work, cloud/deployment implementation beyond approved Phase 8 boundaries, or phase closeout.
+- No deferred dependency was closed by M24.6.
+- The next roadmap-authorized checkpoint is `M24.7` — Phase 8 UAT checkpoint.
