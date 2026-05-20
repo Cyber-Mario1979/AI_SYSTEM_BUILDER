@@ -31,11 +31,11 @@ Phase 8 — Cloud / Compute Layer
 
 ## Latest Completed Checkpoint
 
-`M24.4` — Operational validation direction
+`M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition
 
 ## Exact Next Unfinished Checkpoint
 
-`M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition
+`M24.6` — Phase 8 validation checkpoint
 
 ## Latest Verified Validation Status
 
@@ -135,4 +135,10 @@ User-provided local validation result for M23.6:
 - M24.4 evidence is recorded under `docs/milestones/M24/M24_4_OPERATIONAL_VALIDATION_DIRECTION.md`.
 - M24.4 did not introduce pre-go-live execution, production readiness claims, live provider/model integration, productization claims, smoke-test implementation, operational validation command implementation, standards embedding, or product-ready document/report/export generation.
 - No deferred dependency was closed by M24.4.
-- The next roadmap-authorized checkpoint is `M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition.
+- `M24.5` — Pre-go-live readiness boundary and unresolved dependency disposition is completed as documentation/boundary evidence only.
+- M24.5 evidence is recorded under `docs/milestones/M24/M24_5_PRE_GO_LIVE_READINESS_BOUNDARY_AND_DEPENDENCY_DISPOSITION.md`.
+- M24.5 reviewed all registered deferred dependencies for Phase 8 exit impact and did not close or reclassify any dependency.
+- M24.5 preserved `DDR-007` model/provider integration controls and `DDR-008` Phase 8/9 productization readiness controls.
+- M24.5 did not introduce model/provider integration, SaaS/productization behavior, Phase 9 entry, dependency closure without evidence, pre-go-live execution, standards embedding, or product-ready document/report/export generation.
+- No deferred dependency was closed by M24.5.
+- The next roadmap-authorized checkpoint is `M24.6` — Phase 8 validation checkpoint.
