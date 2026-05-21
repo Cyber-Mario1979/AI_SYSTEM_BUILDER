@@ -70,13 +70,23 @@ DDR-004 closure must not be interpreted as any of the following:
 
 Pending, TBD, user-provided, reference-only, or recommendation-only standards records remain controlled candidate records and must follow the limitations in `STANDARDS_SOURCE_REGISTRY.md`.
 
-## 5. Register Update
+## 5. M26 Implementation Placement Lock
+
+DDR-004 closure establishes the standards source registry and citation authority model only.
+
+Any executable implementation that consumes this registry — including citation validation, applicability matching, stricter-requirement resolution, override validation, standards-backed output integration, or standards retrieval/indexing — must be explicitly scoped during `M26.1` and implemented only through a roadmap-authorized M26 dependency-closure checkpoint, most likely `M26.5`, with validation evidence before productized use.
+
+Standards retrieval/indexing remains governed by `DDR-005`.
+
+This placement lock may be changed only by the `M25.5` product boundary decision gate or a later roadmap-authorized decision artifact.
+
+## 6. Register Update
 
 `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` should update `DDR-004` from `Closure Planned` to `Closed`.
 
 The register decision notes should preserve the closure limitation that DDR-004 closes the source/citation authority model only.
 
-## 6. Validation Note
+## 7. Validation Note
 
 No executable validation is required for this closure decision because it is documentation/governance-only and does not alter code, tests, commands, imports, runtime behavior, CLI behavior, or executable contracts.
 
@@ -84,6 +94,6 @@ If later work consumes the registry through executable behavior, validation must
 
 `python -m pytest -q`
 
-## 7. Next Action
+## 8. Next Action
 
-Continue M25.2 with Project Owner review of `DDR-001` and `DDR-002` closure sequencing before moving to document templates, generation/rendering, provider/model integration, standards retrieval, placeholder verification, or Phase 8/9 gate closure.
+Continue M25.2 with the next dependency decision: decide whether `DDR-003` and `DDR-006` are inside Phase 9 productization scope or should be deferred to named checkpoints.

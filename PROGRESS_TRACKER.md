@@ -57,6 +57,8 @@ No executable validation has been run or claimed for the DDR-004 closure decisio
 
 No executable validation has been run or claimed for the DDR-001/002 closure sequencing plan/register/tracker updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No executable validation has been run or claimed for the DDR-001/002 model closure decision and DDR-004 implementation-lock amendment because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -65,7 +67,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for continued M25.2 after DDR-004 closure and DDR-001/002 closure sequencing approval.
+Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, and DDR-004 M26 implementation-lock amendment.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -94,9 +96,11 @@ Current M25.2 review artifacts:
 - `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`
 - `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`
 
-Current DDR-001/002 closure sequencing artifact:
+Completed DDR-001/002 governance/model closure artifacts:
 
 - `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`
+- `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`
+- `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`
 
 Completed DDR-004 closure artifacts:
 
@@ -109,6 +113,7 @@ DDR-004 closure decision:
 - Project Owner approved the amended standards registry evidence on `2026-05-21`.
 - `DDR-004` is closed for standards source registry and citation authority model.
 - Closure does not close `DDR-005`, does not implement standards embedding/retrieval, and does not authorize product-ready standards-backed output outside registry limitations.
+- Executable registry-consumption implementation is M26-scoped unless M25.5 explicitly excludes, defers, or reclassifies it.
 
 DDR-004 standards registry evidence now clarifies:
 
@@ -118,17 +123,18 @@ DDR-004 standards registry evidence now clarifies:
 - post-go-live registry amendments must follow change control, impact assessment, approval, and forward revision
 - historical approved evidence must be corrected or superseded rather than silently overwritten
 
-DDR-001/002 closure sequencing decision:
+DDR-001/002 governance/model closure decision:
 
 - Project Owner approved sequencing `DDR-001` before `DDR-002` while designing both together.
-- `DDR-001` moves to `Closure Planned` for runtime-authoritative governed-library promotion / deployment-compiled lookup.
-- `DDR-002` moves to `Closure Planned` for consolidated runtime-authoritative libraries.
-- Neither dependency is closed; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized library dependence remain blocked until closure evidence exists.
+- `DDR-001` is closed for runtime-authoritative governed-library promotion / deployment-compiled lookup governance model.
+- `DDR-002` is closed for consolidated runtime-authoritative library governance model.
+- Neither closure implements runtime migration, deployment-compiled lookup generation, runtime lookup behavior, or productized library dependence.
+- Runtime-authoritative governed-library implementation is mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
 
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
-- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closure Planned; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required until closure evidence exists.
-- `DDR-002` — Consolidated runtime-authoritative libraries: Closure Planned; productization blocker where product behavior depends on runtime-authoritative library assets until closure evidence exists.
+- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closed for governance/model scope; executable runtime-authoritative lookup, deployment-compiled lookup, and productized governed-library dependence remain M26-scoped before productized use.
+- `DDR-002` — Consolidated runtime-authoritative libraries: Closed for governance/model scope; executable consolidated runtime-authoritative package/layout implementation remains M26-scoped before productized use.
 - `DDR-003` — Product-ready document templates library: Deferred; blocker for actual product-ready document generation or template implementation.
 - `DDR-004` — Standards source registry and citation authority: Closed for the source registry/citation authority model; standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
@@ -170,10 +176,13 @@ The following dependencies remain carried forward and must be dispositioned duri
 - DDR-004 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
 - DDR-004 is closed for standards source registry and citation authority model only.
 - DDR-001/002 closure sequencing evidence is recorded under `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`.
-- DDR-001 has moved from `Deferred` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
-- DDR-002 has moved from `Deferred` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
-- DDR-001 and DDR-002 are not closed yet; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized runtime-authoritative library dependence remain blocked until closure evidence exists.
+- DDR-001/002 runtime library authority model evidence is recorded under `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`.
+- DDR-001/002 closure decision evidence is recorded under `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`.
+- DDR-001 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-002 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-001 and DDR-002 are closed for governance/model scope only; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized runtime-authoritative library dependence remain M26-scoped before productized use.
+- DDR-004 closure decision has been amended to lock executable registry-consumption implementation to M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
 - Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation are no longer blocked by the DDR-004 source/citation authority gap, but remain governed by registry limitations and may remain blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
-- DDR-004 has been closed. DDR-001 and DDR-002 have moved to Closure Planned. No other DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 artifacts.
+- DDR-004, DDR-001, and DDR-002 have been closed for their approved governance/model scopes. No other DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
 - Next expected action: continue M25.2 by deciding whether `DDR-003` / `DDR-006` are inside Phase 9 productization scope or should be deferred to named checkpoints.

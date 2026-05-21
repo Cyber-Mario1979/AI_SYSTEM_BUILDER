@@ -60,8 +60,8 @@ No DDR item may be deferred, invalidated, or reclassified without Project Owner 
 
 | DDR | Current register status | Severity | Productization blocker? | Proposed verdict | Proposed action now | Proposed named gate / checkpoint | Approval required | Notes |
 |---|---:|---:|---:|---|---|---|---|---|
-| `DDR-001` Governed-library runtime promotion / deployment-compiled lookup | Closure Planned | Very High | Yes, until closed | Closure path approved | Create `DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md` and update the register to Closure Planned. Do not implement runtime lookup or deployment compilation yet. | Approved: `M25.DDR-001` before M26 scope lock; implementation closure remains future evidence-gated. | Done for closure path | Closure planning is approved; dependency is not closed. |
-| `DDR-002` Consolidated runtime-authoritative libraries | Closure Planned | Very High | Yes, until closed | Closure path approved | Use the DDR-001 authority path to define consolidated runtime-authoritative library structure. Do not treat draft/scattered expansion evidence as final runtime authority. | Approved: `M25.DDR-002` immediately after `DDR-001`; implementation closure remains future evidence-gated. | Done for closure path | Closure planning is approved; dependency is not closed. |
+| `DDR-001` Governed-library runtime promotion / deployment-compiled lookup | Closed | Very High | No for governance/model gap; executable/productized behavior remains M26-scoped | Closed for governance/model scope | Project Owner approved final runtime library authority model and closure decision. | Closed in `M25.DDR-001`; implementation must be scoped in M26.1 and executed through roadmap-authorized M26 dependency-closure work, most likely M26.5. | Done for governance/model closure | Does not implement runtime lookup, runtime migration, or deployment-compiled lookup generation. |
+| `DDR-002` Consolidated runtime-authoritative libraries | Closed | Very High | No for governance/model gap; executable/productized behavior remains M26-scoped | Closed for governance/model scope | Project Owner approved consolidated runtime-authoritative library model and closure decision. | Closed in `M25.DDR-002`; implementation must be scoped in M26.1 and executed through roadmap-authorized M26 dependency-closure work, most likely M26.5. | Done for governance/model closure | Does not implement consolidated runtime package/layout behavior. |
 | `DDR-003` Product-ready document templates library | Deferred | Very High | Yes | Decision needed | Decide whether product-ready document templates belong inside Phase 9 productization scope. If yes, define a closure checkpoint before any product-ready document generation. If no, defer to named later phase/checkpoint. | Proposed: either `M25.DDR-003` if in Phase 9, or explicit later checkpoint if outside Phase 9. | Yes | This controls CQV document productization. |
 | `DDR-004` Standards source registry and citation authority | Closed | Critical | No for DDR-004 source/citation authority gap; related downstream blockers remain | Closed with repo evidence accepted | Project Owner approved amended standards registry evidence and DDR-004 closure decision. | Closed in `M25.DDR-004`; downstream standards embedding/retrieval remains governed by `DDR-005`. | Done | Closure establishes source registry/citation authority model only; it does not verify/adopt every standard or authorize standards retrieval/product-ready output. |
 | `DDR-005` Standards embedding / retrieval index | Deferred | High | Yes when standards-backed retrieval is productized | Defer behind `DDR-004` with named dependency | Do not action independently until `DDR-004` closure path is approved or completed. Define retrieval/index checkpoint only after source/citation authority exists. | Proposed: `M26.5-DDR-005` or later, after `DDR-004` closure. | Yes | Retrieval/indexing must remain helper behavior, not evidence authority. |
@@ -85,37 +85,39 @@ Closure limitation:
 - This does not implement standards embedding/retrieval.
 - This does not authorize product-ready standards-backed output outside registry limitations.
 
-## 6. Approved DDR-001/002 Sequencing Decision
+## 6. Approved DDR-001/002 Governance/Model Closure Decision
 
-Project Owner approved `DDR-001` / `DDR-002` closure sequencing and closure-path placement on `2026-05-21`.
+Project Owner approved the DDR-001/002 runtime library authority model and closure decision on `2026-05-21`.
 
 Approved result:
 
-- `DDR-001` may be recorded as `Closure Planned`.
-- `DDR-002` may be recorded as `Closure Planned`.
-- `DDR-001` is sequenced before `DDR-002`.
-- `DDR-001` and `DDR-002` should be designed together because the runtime-authority promotion path and consolidated runtime library structure are coupled.
+- `DDR-001` may be recorded as `Closed` for governance/model scope.
+- `DDR-002` may be recorded as `Closed` for governance/model scope.
+- Runtime-authoritative governed-library implementation is mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
+- Implementation must be scoped no later than `M26.1`.
+- Executable implementation should proceed only through roadmap-authorized M26 dependency-closure work, most likely `M26.5`, with validation evidence before productized use.
 
 Closure limitation:
 
-- This does not close `DDR-001`.
-- This does not close `DDR-002`.
 - This does not implement runtime migration.
 - This does not implement deployment-compiled lookup generation.
 - This does not implement runtime lookup behavior.
+- This does not implement consolidated runtime package/layout behavior.
 - This does not authorize productized runtime-authoritative library dependence.
 
-Evidence artifact:
+Evidence artifacts:
 
 - `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`
+- `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`
+- `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`
 
 ## 7. Proposed Review Sequence
 
 The proposed item-by-item review order is:
 
 1. `DDR-004` — completed / closed; use as upstream evidence for later `DDR-005` planning only
-2. `DDR-001` — closure path approved; remains open until runtime promotion / compiled lookup evidence exists
-3. `DDR-002` — closure path approved; remains open until consolidated runtime-authoritative library evidence exists
+2. `DDR-001` — closed for governance/model scope; executable implementation remains M26-scoped
+3. `DDR-002` — closed for governance/model scope; executable implementation remains M26-scoped
 4. `DDR-003` — product-ready document templates library
 5. `DDR-006` — product-ready document/export/report generation and rendering
 6. `DDR-007` — actual model/provider integration and pre-go-live operational testing path
@@ -130,7 +132,7 @@ The following actions are proposed after Project Owner review:
 | Priority | Action | Depends on approval? | Output |
 |---:|---|---:|---|
 | 1 | Record `DDR-004` closure approval and register closure. | Done | `DDR-004` closed for standards source registry/citation authority model. |
-| 2 | Record approved `DDR-001` / `DDR-002` sequencing and closure-path placement. | Done | `DDR-001` and `DDR-002` moved to Closure Planned; neither is closed. |
+| 2 | Record approved `DDR-001` / `DDR-002` governance/model closure. | Done | `DDR-001` and `DDR-002` closed for governance/model scope; executable implementation remains M26-scoped. |
 | 3 | Decide if `DDR-003` and `DDR-006` are inside Phase 9 productization scope. | Yes | Scope decision for product-ready document generation. |
 | 4 | Approve placement of `DDR-007`. | Yes | Named future checkpoint for provider/model integration and pre-go-live testing. |
 | 5 | Verify repo evidence for `DDR-009`. | Yes for closure/reclassification | Evidence-based close/reclassify/repair decision. |
@@ -152,13 +154,13 @@ M26 should not begin while any DDR remains in vague open/deferred/watch state wi
 
 Current decision state:
 
-`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closure planned; remaining DDRs pending disposition`
+`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; remaining DDRs pending disposition`
 
 `DDR-004` is closed by Project Owner approval of the amended standards registry evidence and the DDR-004 closure decision.
 
-`DDR-001` and `DDR-002` have approved closure-path placement and may be recorded as `Closure Planned`.
+`DDR-001` and `DDR-002` have approved governance/model closure evidence and may be recorded as `Closed` for governance/model scope.
 
-No DDR other than `DDR-004` is closed by this document.
+No DDR other than `DDR-004`, `DDR-001`, and `DDR-002` is closed by this document.
 
 No DDR is reclassified by this document.
 
