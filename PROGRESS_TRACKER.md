@@ -51,6 +51,8 @@ No validation has been run or claimed for M25.1 because the checkpoint evidence 
 
 No validation has been run or claimed for the current M25.2 draft evidence artifacts because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No validation has been run or claimed for the DDR-004 standards authority plan or standards registry because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -59,7 +61,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M25.2 review.
+Aligned for continued M25.2 / DDR-004 closure work.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -72,6 +74,8 @@ Aligned for M25.2 review.
 `ARCHITECTURE_GUARDRAILS.md` remains active.
 
 `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers.
+
+`docs/standards/STANDARDS_SOURCE_REGISTRY.md` has been created as DDR-004 closure evidence.
 
 ## Deferred Dependency Gate Status
 
@@ -86,12 +90,17 @@ Current M25.2 review artifacts:
 - `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`
 - `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`
 
+Current DDR-004 closure artifacts:
+
+- `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`
+- `docs/standards/STANDARDS_SOURCE_REGISTRY.md`
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Deferred; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required.
 - `DDR-002` — Consolidated runtime-authoritative libraries: Deferred; productization blocker where product behavior depends on runtime-authoritative library assets.
 - `DDR-003` — Product-ready document templates library: Deferred; blocker for actual product-ready document generation or template implementation.
-- `DDR-004` — Standards source registry and citation authority: Open and Critical; standards-backed advice/output, standards embedding/retrieval, audit-ready citation, and standards-backed generation remain blocked until resolved or formally reclassified.
+- `DDR-004` — Standards source registry and citation authority: Closure Planned; standards-backed advice/output, standards embedding/retrieval, audit-ready citation, and standards-backed generation remain blocked until closure evidence is accepted and the DDR is closed.
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Deferred; blocks product-ready generation/rendering until required boundaries and evidence exist.
 - `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Watch and Critical; live model/provider calls remain blocked until roadmap-authorized path and operational testing evidence exist.
@@ -124,6 +133,11 @@ The following dependencies remain carried forward and must be dispositioned duri
 - M25.2 draft decision evidence is recorded under `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`.
 - M25.2 draft closure planning evidence is recorded under `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`.
 - M25.2 is not complete yet.
-- The Project Owner is currently reviewing `DDR-004` as the first proposed immediate closure action.
+- The Project Owner approved starting with `DDR-004` as the first immediate closure action.
+- DDR-004 closure path evidence is recorded under `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`.
+- DDR-004 standards registry evidence is recorded under `docs/standards/STANDARDS_SOURCE_REGISTRY.md`.
+- DDR-004 has moved from `Open` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-004 is not closed yet.
+- Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation remain blocked until DDR-004 closure evidence is accepted and the DDR is closed.
 - No DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 draft artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
