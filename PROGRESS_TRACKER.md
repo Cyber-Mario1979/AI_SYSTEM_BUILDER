@@ -55,6 +55,8 @@ No validation has been run or claimed for the DDR-004 standards authority plan o
 
 No executable validation has been run or claimed for the DDR-004 closure decision/register/tracker updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No executable validation has been run or claimed for the DDR-001/002 closure sequencing plan/register/tracker updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -63,7 +65,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for continued M25.2 after DDR-004 closure.
+Aligned for continued M25.2 after DDR-004 closure and DDR-001/002 closure sequencing approval.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -92,6 +94,10 @@ Current M25.2 review artifacts:
 - `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`
 - `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`
 
+Current DDR-001/002 closure sequencing artifact:
+
+- `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`
+
 Completed DDR-004 closure artifacts:
 
 - `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`
@@ -112,10 +118,17 @@ DDR-004 standards registry evidence now clarifies:
 - post-go-live registry amendments must follow change control, impact assessment, approval, and forward revision
 - historical approved evidence must be corrected or superseded rather than silently overwritten
 
+DDR-001/002 closure sequencing decision:
+
+- Project Owner approved sequencing `DDR-001` before `DDR-002` while designing both together.
+- `DDR-001` moves to `Closure Planned` for runtime-authoritative governed-library promotion / deployment-compiled lookup.
+- `DDR-002` moves to `Closure Planned` for consolidated runtime-authoritative libraries.
+- Neither dependency is closed; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized library dependence remain blocked until closure evidence exists.
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
-- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Deferred; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required.
-- `DDR-002` — Consolidated runtime-authoritative libraries: Deferred; productization blocker where product behavior depends on runtime-authoritative library assets.
+- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closure Planned; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required until closure evidence exists.
+- `DDR-002` — Consolidated runtime-authoritative libraries: Closure Planned; productization blocker where product behavior depends on runtime-authoritative library assets until closure evidence exists.
 - `DDR-003` — Product-ready document templates library: Deferred; blocker for actual product-ready document generation or template implementation.
 - `DDR-004` — Standards source registry and citation authority: Closed for the source registry/citation authority model; standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
@@ -156,7 +169,11 @@ The following dependencies remain carried forward and must be dispositioned duri
 - DDR-004 standards registry evidence has been amended to address controlled placeholders, verification limitations, registry lifecycle/change-control, and registry versioning.
 - DDR-004 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
 - DDR-004 is closed for standards source registry and citation authority model only.
+- DDR-001/002 closure sequencing evidence is recorded under `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`.
+- DDR-001 has moved from `Deferred` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-002 has moved from `Deferred` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-001 and DDR-002 are not closed yet; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized runtime-authoritative library dependence remain blocked until closure evidence exists.
 - Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation are no longer blocked by the DDR-004 source/citation authority gap, but remain governed by registry limitations and may remain blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
-- DDR-004 has been closed. No other DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 draft artifacts.
+- DDR-004 has been closed. DDR-001 and DDR-002 have moved to Closure Planned. No other DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
-- Next expected action: continue M25.2 by reviewing and approving/revising `DDR-001` / `DDR-002` sequencing and closure-path placement.
+- Next expected action: continue M25.2 by deciding whether `DDR-003` / `DDR-006` are inside Phase 9 productization scope or should be deferred to named checkpoints.

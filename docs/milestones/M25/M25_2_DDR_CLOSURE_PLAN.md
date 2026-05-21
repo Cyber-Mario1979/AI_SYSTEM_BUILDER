@@ -10,7 +10,7 @@ source_disposition_review: docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSI
 checkpoint: M25.2
 milestone: M25 — SaaS Readiness Assessment
 phase: Phase 9 — SaaS Readiness / Productization
-approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED
+approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSURE_PLANNED
 ---
 
 # M25.2 — DDR Closure Plan
@@ -32,7 +32,11 @@ This document remains an in-progress M25.2 closure plan.
 
 DDR-004 closure has been approved by the Project Owner.
 
+DDR-001 and DDR-002 closure-path sequencing has been approved by the Project Owner.
+
 No DDR other than DDR-004 is closed, reclassified, invalidated, or deferred by this plan alone.
+
+DDR-001 and DDR-002 are Closure Planned only; neither dependency is closed by this plan.
 
 ## 2. Control Principle
 
@@ -106,8 +110,8 @@ DDR-008
 | DDR | Proposed current verdict | Immediate action | Depends on | Repo evidence needed | Project Owner input needed | Proposed Phase 9 placement | Exit condition |
 |---|---|---|---|---|---|---|---|
 | `DDR-004` Standards source registry and citation authority | Closed with repo evidence accepted | Completed: standards authority closure checkpoint, registry/citation model, and closure decision evidence prepared. | None. This was the upstream blocker. | `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`; `docs/standards/STANDARDS_SOURCE_REGISTRY.md`; `docs/milestones/M25/DDR_004_CLOSURE_DECISION.md`. Executable tests not required because no executable behavior changed. | Done: Project Owner approved the amended standards registry evidence on 2026-05-21. | Closed under `M25.DDR-004`; downstream standards embedding/retrieval remains governed by `DDR-005`. | Register status moves to `Closed`; closure is limited to the standards source registry and citation authority model. |
-| `DDR-001` Governed-library runtime promotion / deployment-compiled lookup | Create closure path now | Define runtime-authoritative promotion path and deployment-compiled lookup boundary. | None, but should be harmonized with `DDR-002`. | Repo artifact defining promotion path, source roles, compiled lookup target, accepted input/output contracts, validation criteria, and UAT expectations. Implementation/tests needed only if closure requires actual compiled lookup behavior now. | Confirm whether productization needs actual runtime lookup in Phase 9 or only closure design now. Confirm which governed libraries must be promoted first. | Proposed immediate closure checkpoint before M26: `M25.DDR-001` | `Closure Planned` after approved path; `Closed` only after promotion/compiled lookup evidence and validation/UAT where applicable. |
-| `DDR-002` Consolidated runtime-authoritative libraries | Create closure path now | Define consolidated runtime-authoritative library layout and status/version model. | Should follow or pair with `DDR-001`. | Repo artifact defining canonical runtime library layout, included asset families, version/status model, source-role rules, validation expectations, and migration/compile relationship. | Confirm which asset families are in Phase 9 scope: presets, selectors, task pools, profiles, calendars, planning basis, standards bundles, mappings. | Proposed immediate closure checkpoint before M26: `M25.DDR-002` | `Closure Planned` after approved layout; `Closed` only after consolidated package/layout evidence and validation evidence. |
+| `DDR-001` Governed-library runtime promotion / deployment-compiled lookup | Closure Planned | Define runtime-authoritative promotion path and deployment-compiled lookup boundary; keep implementation blocked until later evidence exists. | None, but harmonized with `DDR-002`. | `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`; future closure still requires runtime-authoritative promotion evidence, compiled lookup evidence if implemented, validation evidence, and UAT/acceptance where applicable. | Done for closure path: Project Owner approved design-only closure sequencing and placement. Runtime lookup / deployment compilation need later approval and evidence. | Approved immediate closure-path checkpoint before M26: `M25.DDR-001` | Register can move to `Closure Planned`; `Closed` only after promotion/compiled lookup evidence and validation/UAT where applicable. |
+| `DDR-002` Consolidated runtime-authoritative libraries | Closure Planned | Define consolidated runtime-authoritative library structure using the authority path from `DDR-001`; keep implementation blocked until later evidence exists. | Follows `DDR-001` and remains paired with it. | `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`; future closure still requires consolidated package/layout evidence, source-role rules, version/status model, validation evidence, and UAT/acceptance where applicable. | Done for closure path: Project Owner approved initial asset-family scope from DDR-002 and design-only closure sequencing. Actual migration/consolidation need later approval and evidence. | Approved immediate closure-path checkpoint before M26: `M25.DDR-002` | Register can move to `Closure Planned`; `Closed` only after consolidated package/layout evidence and validation evidence. |
 | `DDR-003` Product-ready document templates library | Decision + closure path if in scope | Decide if product-ready templates are Phase 9 scope. If yes, define template library closure checkpoint. | Depends on productization scope. Later implementation likely depends on `DDR-001`, `DDR-002`, and `DDR-004`. | Template library governance artifact: template IDs, schema binding, lifecycle/versioning rules, source status, review rules, validation expectations. | Confirm whether product-ready CQV document generation is part of Phase 9 or deferred beyond Phase 9. Confirm first template families if in scope. | If in scope: `M25.DDR-003`. If out of scope: defer to named post-M25/M26 checkpoint approved by Project Owner. | `Closure Planned` if in scope and checkpoint approved; `Deferred to named checkpoint` if out of immediate scope; `Closed` only after template library evidence exists. |
 | `DDR-006` Product-ready document/export/report generation and rendering | Decision + dependent closure path | Decide if product-ready generation/rendering is Phase 9 scope. If yes, define generation/rendering closure path after templates/standards/libraries. | Depends on `DDR-003`, `DDR-004`, and relevant readiness from `DDR-001`/`DDR-002`. | Generation boundary, renderer/output contract, template/schema/library/citation readiness evidence, validation and UAT evidence. | Confirm whether product-ready export/report/document rendering is part of Phase 9. Confirm expected output formats if in scope. | Scope decision now in `M25.DDR-006`; implementation closure later after dependencies. | `Deferred to dependent checkpoint` until upstream blockers are closed/planned; `Closed` only after generation/rendering evidence and validation/UAT. |
 | `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Place formally, do not implement now | Define roadmap-authorized placement for provider adapter boundary, smoke tests, and pre-go-live operational test plan. | Independent of document-library chain, but blocked before live AI runtime/product operation. | Decision artifact or roadmap addendum placing provider integration; provider adapter boundary; smoke-test plan; operational test plan; validation/UAT expectations. | Confirm target provider strategy: OpenAI only, provider-agnostic adapter, or delayed provider decision. Confirm whether live model calls are in Phase 9 or later. | Proposed: `M25.DDR-007` placement decision now; execution checkpoint later only if approved. | `Closure Planned` after formal placement; `Closed` only after adapter/test/operational evidence exists. |
@@ -140,25 +144,29 @@ Closure limitation:
 - `DDR-004` closure does not implement standards embedding/retrieval.
 - `DDR-004` closure does not authorize product-ready standards-backed output outside registry limitations.
 
-### Next: `DDR-001` and `DDR-002`
+### Completed closure-path approval: `DDR-001` and `DDR-002`
 
-Reason:
+Approved result:
 
-- They are Very High.
-- They control governed-library runtime authority.
-- They affect productized document generation and deployment-compiled lookup.
-- They are strongly coupled and should be designed together, even if closed separately.
+- `DDR-001` moves to `Closure Planned`.
+- `DDR-002` moves to `Closure Planned`.
+- `DDR-001` is sequenced before `DDR-002`.
+- Both dependencies should be designed together because the runtime authority model and consolidated library structure are coupled.
 
-Immediate closure work should produce:
+Closure limitation:
 
-- runtime-authoritative promotion path
-- consolidated runtime library structure
-- source-role rules
-- version/status model
-- compile/deployment boundary
-- validation criteria
+- `DDR-001` is not closed.
+- `DDR-002` is not closed.
+- runtime migration is not implemented.
+- deployment-compiled lookup generation is not implemented.
+- runtime lookup behavior is not implemented.
+- productized runtime-authoritative library dependence remains blocked until closure evidence exists.
 
-### Then: `DDR-003` and `DDR-006`
+Evidence artifact:
+
+- `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`
+
+### Next: `DDR-003` and `DDR-006`
 
 Reason:
 
@@ -204,8 +212,8 @@ Immediate decision needed:
 | Phase 9 placement | DDRs | Purpose |
 |---|---|---|
 | `M25.DDR-004` | `DDR-004` | Resolve standards source/citation authority before standards-backed output. |
-| `M25.DDR-001` | `DDR-001` | Define runtime-authoritative governed-library promotion path. |
-| `M25.DDR-002` | `DDR-002` | Define consolidated runtime-authoritative library structure. |
+| `M25.DDR-001` | `DDR-001` | Approved closure path for runtime-authoritative governed-library promotion / deployment-compiled lookup. |
+| `M25.DDR-002` | `DDR-002` | Approved closure path for consolidated runtime-authoritative library structure. |
 | `M25.DDR-003-SCOPE` | `DDR-003` | Decide template library scope and closure placement. |
 | `M25.DDR-006-SCOPE` | `DDR-006` | Decide product-ready generation/rendering scope and closure placement. |
 | `M25.DDR-007-PLACEMENT` | `DDR-007` | Place live provider/model integration and pre-go-live path. |
@@ -218,8 +226,8 @@ Immediate decision needed:
 | DDR | Proposed status after Project Owner approves this plan | Reason |
 |---|---|---|
 | `DDR-004` | `Closed` | Project Owner approved the amended standards registry evidence; closure is limited to the source registry/citation authority model. |
-| `DDR-001` | `Closure Planned` | Immediate closure path required and approved. |
-| `DDR-002` | `Closure Planned` | Immediate closure path required and approved. |
+| `DDR-001` | `Closure Planned` | Closure path approved; dependency remains open until runtime-authoritative promotion / compiled lookup evidence and validation/UAT where applicable exist. |
+| `DDR-002` | `Closure Planned` | Closure path approved; dependency remains open until consolidated runtime-authoritative library package/layout evidence and validation/UAT where applicable exist. |
 | `DDR-003` | `Closure Planned` or `Deferred to named checkpoint` | Depends on Project Owner scope decision. |
 | `DDR-006` | `Closure Planned` or `Deferred to named checkpoint` | Depends on Project Owner scope decision and upstream dependencies. |
 | `DDR-007` | `Closure Planned` or `Deferred to named checkpoint` | Depends on provider strategy and Phase 9 ambition. |
@@ -231,16 +239,17 @@ Immediate decision needed:
 
 DDR-004 closure approval is complete.
 
+DDR-001/002 closure-path approval is complete.
+
 Next Project Owner review order:
 
-1. Approve or revise `DDR-001` / `DDR-002` as the next closure actions.
-2. Decide whether `DDR-003` / `DDR-006` are inside Phase 9 productization scope.
-3. Decide placement for `DDR-007`.
-4. Approve evidence verification for `DDR-009`.
-5. Approve closure/reclassification route for `DDR-008`.
-6. Approve named deferral for `DDR-005` behind closed `DDR-004`.
+1. Decide whether `DDR-003` / `DDR-006` are inside Phase 9 productization scope.
+2. Decide placement for `DDR-007`.
+3. Approve evidence verification for `DDR-009`.
+4. Approve closure/reclassification route for `DDR-008`.
+5. Approve named deferral for `DDR-005` behind closed `DDR-004`.
 
-After approval, the next user-applied action should prepare the approved closure-path artifacts for `DDR-001` and `DDR-002`, unless the Project Owner redirects.
+After approval, the next user-applied action should prepare the approved scope decision artifacts for `DDR-003` and `DDR-006`, unless the Project Owner redirects.
 
 ## 12. Validation Note
 
