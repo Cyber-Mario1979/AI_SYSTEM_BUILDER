@@ -53,6 +53,8 @@ No validation has been run or claimed for the current M25.2 draft evidence artif
 
 No validation has been run or claimed for the DDR-004 standards authority plan or standards registry because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No validation has been run or claimed for the latest DDR-004 standards registry amendment because it is documentation/governance-only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -75,7 +77,7 @@ Aligned for continued M25.2 / DDR-004 closure work.
 
 `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers.
 
-`docs/standards/STANDARDS_SOURCE_REGISTRY.md` has been created as DDR-004 closure evidence.
+`docs/standards/STANDARDS_SOURCE_REGISTRY.md` exists as DDR-004 closure evidence and has been amended to clarify controlled placeholders, verification limitations, registry lifecycle/change-control expectations, and registry versioning expectations.
 
 ## Deferred Dependency Gate Status
 
@@ -95,12 +97,20 @@ Current DDR-004 closure artifacts:
 - `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`
 - `docs/standards/STANDARDS_SOURCE_REGISTRY.md`
 
+DDR-004 standards registry evidence now clarifies:
+
+- the registry/citation authority model may be accepted without treating every listed source as fully verified, adopted, clause-mapped, or mandatory
+- pending, TBD, user-provided, reference-only, or recommendation-only records may remain as controlled candidate records
+- such candidate records must not support audit-ready, mandatory, clause-level, productized, or standards-backed output until verified/adopted/approved
+- post-go-live registry amendments must follow change control, impact assessment, approval, and forward revision
+- historical approved evidence must be corrected or superseded rather than silently overwritten
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Deferred; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required.
 - `DDR-002` — Consolidated runtime-authoritative libraries: Deferred; productization blocker where product behavior depends on runtime-authoritative library assets.
 - `DDR-003` — Product-ready document templates library: Deferred; blocker for actual product-ready document generation or template implementation.
-- `DDR-004` — Standards source registry and citation authority: Closure Planned; standards-backed advice/output, standards embedding/retrieval, audit-ready citation, and standards-backed generation remain blocked until closure evidence is accepted and the DDR is closed.
+- `DDR-004` — Standards source registry and citation authority: Closure Planned; standards-backed advice/output, standards embedding/retrieval, audit-ready citation, and standards-backed generation remain blocked until closure evidence is accepted and the DDR is closed in the deferred dependency register.
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Deferred; blocks product-ready generation/rendering until required boundaries and evidence exist.
 - `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Watch and Critical; live model/provider calls remain blocked until roadmap-authorized path and operational testing evidence exist.
@@ -136,8 +146,10 @@ The following dependencies remain carried forward and must be dispositioned duri
 - The Project Owner approved starting with `DDR-004` as the first immediate closure action.
 - DDR-004 closure path evidence is recorded under `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`.
 - DDR-004 standards registry evidence is recorded under `docs/standards/STANDARDS_SOURCE_REGISTRY.md`.
+- DDR-004 standards registry evidence has been amended to address controlled placeholders, verification limitations, registry lifecycle/change-control, and registry versioning.
 - DDR-004 has moved from `Open` to `Closure Planned` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
 - DDR-004 is not closed yet.
-- Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation remain blocked until DDR-004 closure evidence is accepted and the DDR is closed.
+- Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation remain blocked until DDR-004 closure evidence is accepted and the DDR is closed in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
 - No DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 draft artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
+- Next expected action: review whether the amended DDR-004 standards registry evidence is sufficient to close DDR-004, then update `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` if closure is approved.
