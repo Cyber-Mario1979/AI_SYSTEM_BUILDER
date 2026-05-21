@@ -49,6 +49,8 @@ User-provided local validation result for M24.6 / Phase 8:
 
 No validation has been run or claimed for M25.1 because the checkpoint evidence is documentation/governance-only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No validation has been run or claimed for the current M25.2 draft evidence artifacts because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -57,7 +59,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M25.2 planning.
+Aligned for M25.2 review.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -77,7 +79,14 @@ Relevant and active for Phase 9 / productization readiness.
 
 M25.1 does not close any deferred dependency.
 
-The following dependencies remain carried forward and must be dispositioned during Phase 9 work as applicable:
+M25.2 draft evidence has been created for review, but M25.2 is not complete until the Project Owner approves the DDR verdicts and the resulting register/roadmap actions are applied as needed.
+
+Current M25.2 review artifacts:
+
+- `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`
+- `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`
+
+The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Deferred; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required.
 - `DDR-002` — Consolidated runtime-authoritative libraries: Deferred; productization blocker where product behavior depends on runtime-authoritative library assets.
@@ -86,8 +95,8 @@ The following dependencies remain carried forward and must be dispositioned duri
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Deferred; blocks product-ready generation/rendering until required boundaries and evidence exist.
 - `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Watch and Critical; live model/provider calls remain blocked until roadmap-authorized path and operational testing evidence exist.
-- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; addressed by Phase 9 ladder expansion but not closed.
-- `DDR-009` — External contract placeholders for future library/template/standards references: Watch/planning-awareness.
+- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; candidate for closure or reclassification only after M25.2 evidence is approved and the register is updated.
+- `DDR-009` — External contract placeholders for future library/template/standards references: Watch/planning-awareness; requires repo evidence verification before closure or reclassification.
 
 ## Active Notes
 
@@ -111,5 +120,10 @@ The following dependencies remain carried forward and must be dispositioned duri
 - M25.1 established the boundary between assessment readiness and product/SaaS readiness.
 - M25.1 concluded the system is ready for controlled productization assessment but is not yet productized and must not be represented as product/SaaS-ready.
 - M25.1 did not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure.
-- `M25.2` is the next checkpoint and must perform the detailed DDR review for Phase 9 relevance.
-- `M25.2` must classify each applicable dependency as blocker, planned closure path, carry-forward, reclassification candidate, or not applicable.
+- `M25.2` is in progress.
+- M25.2 draft decision evidence is recorded under `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`.
+- M25.2 draft closure planning evidence is recorded under `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`.
+- M25.2 is not complete yet.
+- The Project Owner is currently reviewing `DDR-004` as the first proposed immediate closure action.
+- No DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 draft artifacts.
+- Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
