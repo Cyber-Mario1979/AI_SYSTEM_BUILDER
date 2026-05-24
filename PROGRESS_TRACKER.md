@@ -63,6 +63,8 @@ No executable validation has been run or claimed for the DDR-003 model closure d
 
 No executable validation has been run or claimed for the DDR-007 placement decision and local heavy-use shakedown gate amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No executable validation has been run or claimed for the DDR-005 named deferral amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -71,7 +73,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, DDR-003 governance/model closure, DDR-006 scope/closure-path approval, DDR-007 placement approval with local heavy-use shakedown gate, and M26 implementation-lock amendments.
+Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, DDR-003 governance/model closure, DDR-006 scope/closure-path approval, DDR-007 placement approval with local heavy-use shakedown gate, DDR-005 named deferral to M26.5-DDR-005, and M26 implementation-lock amendments.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -119,6 +121,10 @@ Current DDR-007 placement artifact:
 
 - `docs/milestones/M25/DDR_007_MODEL_PROVIDER_INTEGRATION_AND_LOCAL_SHAKEDOWN_PLACEMENT_DECISION.md`
 
+Current DDR-005 named deferral artifact:
+
+- `docs/milestones/M25/DDR_005_STANDARDS_EMBEDDING_RETRIEVAL_NAMED_DEFERRAL_DECISION.md`
+
 Completed DDR-004 closure artifacts:
 
 - `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`
@@ -165,13 +171,22 @@ DDR-007 placement decision:
 - A local heavy-use / operational shakedown gate is mandatory before SaaS go-live or productized live-provider use.
 - Local/offline model support may be considered later as provider strategy, but it is not assumed by this placement decision.
 
+DDR-005 named deferral decision:
+
+- Project Owner approved named deferral for standards embedding / retrieval index.
+- `DDR-005` remains `Deferred`, but the deferral is now named and checkpoint-bound.
+- `DDR-005` is deferred to `M26.5-DDR-005` under `M26.5 — Product-ready dependency closure path`.
+- `M26.1` must confirm whether standards embedding / retrieval index behavior is inside approved M26 productization scope.
+- No standards embedding, standards retrieval index, or productized standards-backed retrieval is implemented or authorized by this decision.
+- Retrieval/indexing must remain helper behavior and must not become source truth or evidence authority.
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closed for governance/model scope; executable runtime-authoritative lookup, deployment-compiled lookup, and productized governed-library dependence remain M26-scoped before productized use.
 - `DDR-002` — Consolidated runtime-authoritative libraries: Closed for governance/model scope; executable consolidated runtime-authoritative package/layout implementation remains M26-scoped before productized use.
 - `DDR-003` — Product-ready document templates library: Closed for governance/model scope; executable product-ready template implementation remains M26-scoped before productized use.
 - `DDR-004` — Standards source registry and citation authority: Closed for the source registry/citation authority model; standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
-- `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
+- `DDR-005` — Standards embedding / retrieval index: Deferred to named checkpoint `M26.5-DDR-005`; depends on closed `DDR-004`; no standards embedding/retrieval implementation is authorized during M25.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Closure Planned; remains productization-blocking until generation/rendering closure evidence exists or is formally reclassified.
 - `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Closure Planned and Critical for placement only; live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
 - `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; candidate for closure or reclassification only after M25.2 evidence is approved and the register is updated.
@@ -221,6 +236,7 @@ The following dependencies remain carried forward and must be dispositioned duri
 - DDR-006 has moved from `Deferred` to `Closure Planned`.
 - DDR-007 has moved from `Watch` to `Closure Planned` for placement only.
 - DDR-007 adds a mandatory local heavy-use / operational shakedown gate before SaaS go-live or productized live-provider use.
-- No other DDR beyond DDR-004, DDR-001, DDR-002, DDR-003, DDR-006, and DDR-007 has been closed, moved to Closure Planned, reclassified, invalidated, or deferred by the current M25.2 artifacts.
+- DDR-005 remains `Deferred`, but is now deferred to named checkpoint `M26.5-DDR-005`.
+- No other DDR beyond DDR-004, DDR-001, DDR-002, DDR-003, DDR-006, DDR-007, and DDR-005 has been closed, moved to Closure Planned, reclassified, invalidated, or deferred by the current M25.2 artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
-- Next expected action: continue M25.2 by approving named deferral for `DDR-005` behind closed `DDR-004`, then approving `DDR-009` evidence verification, then approving the `DDR-008` closure/reclassification route.
+- Next expected action: continue M25.2 by approving `DDR-009` evidence verification, then approving the `DDR-008` closure/reclassification route.
