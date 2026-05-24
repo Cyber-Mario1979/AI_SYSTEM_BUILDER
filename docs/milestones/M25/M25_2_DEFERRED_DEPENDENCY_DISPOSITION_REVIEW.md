@@ -1,7 +1,7 @@
 ---
 doc_type: milestone_evidence
 canonical_name: M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW
-status: IN_PROGRESS
+status: APPROVED
 governs_execution: false
 document_state_mode: milestone_checkpoint_evidence
 authority: checkpoint_evidence
@@ -10,7 +10,7 @@ source_register: docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md
 checkpoint: M25.2
 milestone: M25 — SaaS Readiness Assessment
 phase: Phase 9 — SaaS Readiness / Productization
-approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED_DDR_007_PLACEMENT_APPROVED_DDR_005_NAMED_DEFERRAL_APPROVED_DDR_009_CLOSED_DDR_009_CLOSED
+approval_state: ALL_M25_2_DDR_VERDICTS_APPROVED_DDR_008_CLOSED
 ---
 
 # M25.2 — Deferred Dependency Disposition Review
@@ -67,7 +67,7 @@ No DDR item may be deferred, invalidated, or reclassified without Project Owner 
 | `DDR-005` Standards embedding / retrieval index | Deferred | High | Yes when standards-backed retrieval is productized | Deferred to named checkpoint | Project Owner approved named deferral after closed `DDR-004`; no standards embedding or retrieval index implementation now. | Approved: `M26.5-DDR-005` under `M26.5 — Product-ready dependency closure path`, after `M26.1` scope lock. | Done for named deferral | Retrieval/indexing must remain helper behavior, not evidence authority. Closure requires future M26 scope, design, evaluation/validation, and acceptance evidence. |
 | `DDR-006` Product-ready document/export/report generation and rendering | Closure Planned | Very High | Yes, until closed or reclassified | Closure path approved | Project Owner approved keeping DDR-006 inside Phase 9 and moving it to Closure Planned. | Approved: `M25.DDR-006-SCOPE`; executable implementation / closure evidence remains M26-scoped, most likely M26.5 after M26.1 scope lock. | Done for scope/closure-path approval | Does not implement product-ready generation/rendering. |
 | `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Closure Planned | Critical | Yes | Closure Planned for placement; no implementation now | Project Owner approved formal placement with a mandatory local heavy-use / operational shakedown gate before SaaS go-live. Do not implement product/SaaS-facing live calls now. | Approved: `M25.DDR-007-PLACEMENT`; execution only in later roadmap-authorized checkpoint after provider adapter boundary, smoke tests, operational test plan, local shakedown protocol/report, validation, and UAT evidence exist. | Done for placement decision | This blocks product/SaaS-facing live model/provider calls, not future controlled local/pilot testing after the required boundary and test plan are authorized. |
-| `DDR-008` Phase 8 / Phase 9 productization readiness gate | Watch | Critical | Yes | Candidate close after M25.2 approval evidence | After this document is approved and committed, update the register to close or reclassify `DDR-008` because Phase 9 expansion and full DDR review evidence will exist. | Proposed: close/reclassify in a follow-up register update after Project Owner approval of this table. | Yes | Not closed by this draft. Candidate closure depends on approved M25.2 evidence. |
+| `DDR-008` Phase 8 / Phase 9 productization readiness gate | Closed | Critical | No for gate-control closure; downstream blockers remain active | Closed for gate-control scope | Project Owner approved closure after Phase 9 detailed ladder, M25.1 boundary assessment, and M25.2 DDR disposition evidence. | Closed: `M25.DDR-008-CLOSE`. | Done for gate-control closure | Closure does not claim product readiness, SaaS readiness, Phase 9 completion, or downstream blocker closure. |
 | `DDR-009` External contract placeholders for future library/template/standards references | Closed | High | No for M21 placeholder compatibility; underlying productized behavior remains governed by related DDRs | Closed for M21 placeholder compatibility evidence | Project Owner approved evidence verification from M21 external contract docs/code/tests. | Closed in `M25.DDR-009-VERIFY`; no productized library/template/standards behavior is implemented or authorized by this closure. | Done for evidence verification | Closes placeholder compatibility watch only. Does not close DDR-001 through DDR-007 or authorize productized placeholder behavior. |
 
 ## 5. Approved DDR-004 Decision
@@ -220,6 +220,32 @@ Evidence artifacts:
 - `tests/test_external_surface_contracts.py`
 - `docs/milestones/M25/DDR_009_EXTERNAL_CONTRACT_PLACEHOLDER_EVIDENCE_VERIFICATION_DECISION.md`
 
+## 7D. Approved DDR-008 Closure Decision
+
+Project Owner approved the `DDR-008` closure decision on `2026-05-24`.
+
+Approved result:
+
+- `DDR-008` may be recorded as `Closed`.
+- Closure is limited to Phase 8 / Phase 9 readiness gate-control scope.
+- Phase 9 has detailed checkpoint authority through `ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md`.
+- M25.1 productization boundary assessment evidence exists.
+- M25.2 DDR disposition evidence exists and records approved outcomes for DDR-001 through DDR-009.
+- The normal Phase 9 route may proceed to `M25.3`.
+
+Closure limitation:
+
+- This does not close Phase 9.
+- This does not close M25 validation, UAT, or closeout.
+- This does not claim product readiness or SaaS readiness.
+- This does not authorize M26 start by itself.
+- This does not close `DDR-005`, `DDR-006`, or `DDR-007`.
+- This does not authorize product-ready generation, standards embedding/retrieval, live model/provider calls, or SaaS go-live.
+
+Evidence artifact:
+
+- `docs/milestones/M25/DDR_008_PHASE_8_9_READINESS_GATE_CLOSURE_DECISION.md`
+
 ## 8. Proposed Review Sequence
 
 The proposed item-by-item review order is:
@@ -232,7 +258,7 @@ The proposed item-by-item review order is:
 6. `DDR-007` — actual model/provider integration and pre-go-live operational testing path
 7. `DDR-005` — named deferral approved to `M26.5-DDR-005` after `DDR-004`
 8. `DDR-009` — completed / closed for M21 external contract placeholder compatibility evidence
-9. `DDR-008` — Phase 8 / Phase 9 productization readiness gate candidate closure/reclassification
+9. `DDR-008` — closed for Phase 8 / Phase 9 readiness gate-control scope
 
 ## 9. Proposed Immediate Action Backlog
 
@@ -246,7 +272,7 @@ The following actions are proposed after Project Owner review:
 | 4 | Record approved placement of `DDR-007`. | Done | `DDR-007` moved to `Closure Planned` for placement only; local heavy-use / operational shakedown gate added before SaaS go-live. |
 | 5 | Record approved named deferral for `DDR-005`. | Done | `DDR-005` deferred to named checkpoint `M26.5-DDR-005`; no standards embedding/retrieval implementation authorized during M25. |
 | 6 | Record approved evidence verification for `DDR-009`. | Done | `DDR-009` closed for M21 external contract placeholder compatibility evidence only. |
-| 7 | Close or reclassify `DDR-008` only after M25.2 evidence is approved. | Yes | Register update with closure/reclassification evidence. |
+| 7 | Record approved closure for `DDR-008`. | Done | `DDR-008` closed for readiness-gate control; downstream blockers remain active under their own DDRs. |
 
 ## 10. M26 Entry Gate Proposed by This Review
 
@@ -264,7 +290,7 @@ M26 should not begin while any DDR remains in vague open/deferred/watch state wi
 
 Current decision state:
 
-`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; DDR-003 closed for governance/model scope; DDR-006 closure planned; DDR-007 placement approved / closure planned; DDR-005 named deferral approved; DDR-009 closed for M21 placeholder compatibility evidence; remaining DDRs pending disposition`
+`M25.2 DDR disposition complete — DDR-004, DDR-001, DDR-002, DDR-003, DDR-009, and DDR-008 closed for their approved scopes; DDR-006 and DDR-007 closure planned; DDR-005 deferred to named checkpoint M26.5-DDR-005`
 
 `DDR-004` is closed by Project Owner approval of the amended standards registry evidence and the DDR-004 closure decision.
 
@@ -292,7 +318,7 @@ This document remains the M25.2 decision-control artifact for the remaining DDR 
 
 ## 12. Validation Note
 
-No executable validation is required for this draft decision document because it is documentation/governance evidence only and does not alter code, tests, commands, imports, runtime behavior, CLI behavior, or executable contracts.
+No executable validation is required for this approved decision document because it is documentation/governance evidence only and does not alter code, tests, commands, imports, runtime behavior, CLI behavior, or executable contracts.
 
 If later work touches executable behavior, validation must be run using:
 

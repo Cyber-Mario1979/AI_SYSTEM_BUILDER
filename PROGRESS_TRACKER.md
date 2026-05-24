@@ -31,15 +31,15 @@ M25 — SaaS Readiness Assessment
 
 ## Current Approved Slice Family
 
-`M25.2` — Deferred dependency disposition review
+`M25.3` — Commercial and packaging readiness assessment
 
 ## Latest Completed Checkpoint
 
-`M25.1` — Productization boundary assessment
+`M25.2` — Deferred dependency disposition review
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.2` — Deferred dependency disposition review
+`M25.3` — Commercial and packaging readiness assessment
 
 ## Latest Verified Validation Status
 
@@ -67,6 +67,8 @@ No executable validation has been run or claimed for the DDR-005 named deferral 
 
 No executable validation has been run or claimed for the DDR-009 evidence verification amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No executable validation has been run or claimed for the DDR-008 readiness gate-control closure amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -75,7 +77,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, DDR-003 governance/model closure, DDR-006 scope/closure-path approval, DDR-007 placement approval with local heavy-use shakedown gate, DDR-005 named deferral to M26.5-DDR-005, DDR-009 evidence verification closure, and M26 implementation-lock amendments.
+Aligned for M25.3 after M25.2 deferred dependency disposition review completion, DDR-008 readiness gate-control closure, DDR-009 evidence verification closure, DDR-005 named deferral to M26.5-DDR-005, DDR-007 placement approval with local heavy-use shakedown gate, DDR-006 scope/closure-path approval, DDR-003 governance/model closure, DDR-001/002 governance/model closure, DDR-004 closure, and M26 implementation-lock amendments.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -97,7 +99,7 @@ Relevant and active for Phase 9 / productization readiness.
 
 M25.1 does not close any deferred dependency.
 
-M25.2 draft evidence has been created for review, but M25.2 is not complete until the Project Owner approves the DDR verdicts and the resulting register/roadmap actions are applied as needed.
+M25.2 deferred dependency disposition evidence has been approved for DDR-001 through DDR-009. M25.2 is complete for the deferred dependency disposition review checkpoint.
 
 Current M25.2 review artifacts:
 
@@ -130,6 +132,10 @@ Current DDR-005 named deferral artifact:
 Current DDR-009 evidence verification artifact:
 
 - `docs/milestones/M25/DDR_009_EXTERNAL_CONTRACT_PLACEHOLDER_EVIDENCE_VERIFICATION_DECISION.md`
+
+Current DDR-008 closure artifact:
+
+- `docs/milestones/M25/DDR_008_PHASE_8_9_READINESS_GATE_CLOSURE_DECISION.md`
 
 Completed DDR-004 closure artifacts:
 
@@ -195,6 +201,14 @@ DDR-009 evidence verification decision:
 - This closure does not implement runtime libraries, product-ready templates, standards embedding/retrieval, citation authority, product-ready generation, or productized placeholder behavior.
 - Underlying productized behavior remains governed by the relevant downstream DDRs and future roadmap-authorized checkpoints.
 
+DDR-008 readiness gate-control closure decision:
+
+- Project Owner approved closure for the Phase 8 / Phase 9 readiness gate-control dependency.
+- `DDR-008` moves from `Watch` to `Closed` for gate-control scope.
+- Closure confirms Phase 9 has detailed checkpoint authority and M25.2 has approved DDR disposition evidence.
+- Closure does not claim product readiness, SaaS readiness, M25 closeout, Phase 9 closeout, M26 start, or downstream blocker closure.
+- `DDR-005`, `DDR-006`, `DDR-007`, and M26-scoped executable implementation dependencies remain governed by their own gates.
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closed for governance/model scope; executable runtime-authoritative lookup, deployment-compiled lookup, and productized governed-library dependence remain M26-scoped before productized use.
@@ -204,7 +218,7 @@ The following dependencies remain carried forward and must be dispositioned duri
 - `DDR-005` — Standards embedding / retrieval index: Deferred to named checkpoint `M26.5-DDR-005`; depends on closed `DDR-004`; no standards embedding/retrieval implementation is authorized during M25.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Closure Planned; remains productization-blocking until generation/rendering closure evidence exists or is formally reclassified.
 - `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Closure Planned and Critical for placement only; live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
-- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; candidate for closure or reclassification only after M25.2 evidence is approved and the register is updated.
+- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Closed for gate-control scope; closure does not claim product readiness, SaaS readiness, Phase 9 completion, or downstream blocker closure.
 - `DDR-009` — External contract placeholders for future library/template/standards references: Closed for M21 placeholder compatibility evidence; underlying productized behavior remains governed by the related DDRs.
 
 ## Active Notes
@@ -229,10 +243,10 @@ The following dependencies remain carried forward and must be dispositioned duri
 - M25.1 established the boundary between assessment readiness and product/SaaS readiness.
 - M25.1 concluded the system is ready for controlled productization assessment but is not yet productized and must not be represented as product/SaaS-ready.
 - M25.1 did not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure.
-- `M25.2` is in progress.
+- `M25.2` — Deferred dependency disposition review is completed.
 - M25.2 draft decision evidence is recorded under `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`.
 - M25.2 draft closure planning evidence is recorded under `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`.
-- M25.2 is not complete yet.
+- M25.2 is complete for deferred dependency disposition review.
 - The Project Owner approved starting with `DDR-004` as the first immediate closure action.
 - DDR-004 closure path evidence is recorded under `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`.
 - DDR-004 standards registry evidence is recorded under `docs/standards/STANDARDS_SOURCE_REGISTRY.md`.
@@ -253,6 +267,7 @@ The following dependencies remain carried forward and must be dispositioned duri
 - DDR-007 adds a mandatory local heavy-use / operational shakedown gate before SaaS go-live or productized live-provider use.
 - DDR-005 remains `Deferred`, but is now deferred to named checkpoint `M26.5-DDR-005`.
 - DDR-009 has moved from `Watch` to `Closed` for M21 external contract placeholder compatibility evidence.
-- No other DDR beyond DDR-004, DDR-001, DDR-002, DDR-003, DDR-006, DDR-007, DDR-005, and DDR-009 has been closed, moved to Closure Planned, reclassified, invalidated, or deferred by the current M25.2 artifacts.
-- Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
-- Next expected action: continue M25.2 by approving the `DDR-008` closure/reclassification route.
+- DDR-008 has moved from `Watch` to `Closed` for Phase 8 / Phase 9 readiness gate-control scope.
+- M25.2 has completed the required DDR disposition review for DDR-001 through DDR-009.
+- Normal Phase 9 route may resume to M25.3 because each DDR item has a Project Owner-approved verdict: closed with repo evidence, closure planned with named gate, or deferred to a named checkpoint.
+- Next expected action: proceed to `M25.3` — Commercial and packaging readiness assessment.
