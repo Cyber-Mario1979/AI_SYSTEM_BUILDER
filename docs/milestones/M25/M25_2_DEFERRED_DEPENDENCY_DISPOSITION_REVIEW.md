@@ -10,7 +10,7 @@ source_register: docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md
 checkpoint: M25.2
 milestone: M25 — SaaS Readiness Assessment
 phase: Phase 9 — SaaS Readiness / Productization
-approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED
+approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED_DDR_007_PLACEMENT_APPROVED
 ---
 
 # M25.2 — Deferred Dependency Disposition Review
@@ -66,7 +66,7 @@ No DDR item may be deferred, invalidated, or reclassified without Project Owner 
 | `DDR-004` Standards source registry and citation authority | Closed | Critical | No for DDR-004 source/citation authority gap; related downstream blockers remain | Closed with repo evidence accepted | Project Owner approved amended standards registry evidence and DDR-004 closure decision. | Closed in `M25.DDR-004`; downstream standards embedding/retrieval remains governed by `DDR-005`. | Done | Closure establishes source registry/citation authority model only; it does not verify/adopt every standard or authorize standards retrieval/product-ready output. |
 | `DDR-005` Standards embedding / retrieval index | Deferred | High | Yes when standards-backed retrieval is productized | Defer behind `DDR-004` with named dependency | Do not action independently until `DDR-004` closure path is approved or completed. Define retrieval/index checkpoint only after source/citation authority exists. | Proposed: `M26.5-DDR-005` or later, after `DDR-004` closure. | Yes | Retrieval/indexing must remain helper behavior, not evidence authority. |
 | `DDR-006` Product-ready document/export/report generation and rendering | Closure Planned | Very High | Yes, until closed or reclassified | Closure path approved | Project Owner approved keeping DDR-006 inside Phase 9 and moving it to Closure Planned. | Approved: `M25.DDR-006-SCOPE`; executable implementation / closure evidence remains M26-scoped, most likely M26.5 after M26.1 scope lock. | Done for scope/closure-path approval | Does not implement product-ready generation/rendering. |
-| `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Watch | Critical | Yes | Create closure path, not implementation now | Define formal placement for live provider/model integration and pre-go-live operational test planning. Do not implement live calls now. | Proposed: `M25.DDR-007` for placement decision; execution only in later roadmap-authorized checkpoint after adapter boundary and operational test plan exist. | Yes | This should remain blocked until provider adapter boundary, smoke tests, operational plan, validation, and UAT path are approved. |
+| `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Closure Planned | Critical | Yes | Closure Planned for placement; no implementation now | Project Owner approved formal placement with a mandatory local heavy-use / operational shakedown gate before SaaS go-live. Do not implement product/SaaS-facing live calls now. | Approved: `M25.DDR-007-PLACEMENT`; execution only in later roadmap-authorized checkpoint after provider adapter boundary, smoke tests, operational test plan, local shakedown protocol/report, validation, and UAT evidence exist. | Done for placement decision | This blocks product/SaaS-facing live model/provider calls, not future controlled local/pilot testing after the required boundary and test plan are authorized. |
 | `DDR-008` Phase 8 / Phase 9 productization readiness gate | Watch | Critical | Yes | Candidate close after M25.2 approval evidence | After this document is approved and committed, update the register to close or reclassify `DDR-008` because Phase 9 expansion and full DDR review evidence will exist. | Proposed: close/reclassify in a follow-up register update after Project Owner approval of this table. | Yes | Not closed by this draft. Candidate closure depends on approved M25.2 evidence. |
 | `DDR-009` External contract placeholders for future library/template/standards references | Watch | High | Indirect | Verify and likely reclassify/close if M21 evidence supports it | Inspect M21 contract docs/tests for placeholder/extension evidence. If evidence exists, close or reclassify as satisfied historical compatibility. If evidence is missing, assign corrective checkpoint. | Proposed: `M25.DDR-009-VERIFY` before M26, unless already proven by repo evidence. | Yes | Requires repo evidence check before closure or invalidation. |
 
@@ -139,6 +139,33 @@ Evidence artifacts:
 - `docs/milestones/M25/DDR_003_CLOSURE_DECISION.md`
 - `docs/milestones/M25/DDR_006_PRODUCT_READY_GENERATION_RENDERING_SCOPE_PLAN.md`
 
+## 7A. Approved DDR-007 Placement Decision
+
+Project Owner approved the `DDR-007` placement decision on `2026-05-24`.
+
+Approved result:
+
+- `DDR-007` may be recorded as `Closure Planned` for placement only.
+- `DDR-007` is formally placed as `M25.DDR-007-PLACEMENT`.
+- Live model/provider implementation is not authorized by this placement decision.
+- Product/SaaS-facing live model/provider calls remain blocked until later roadmap-authorized implementation evidence exists.
+- A local heavy-use / operational shakedown gate is mandatory before SaaS go-live or productized live-provider use.
+- Controlled local/pilot testing may be authorized later, but only after provider adapter boundary, smoke-test planning, operational test planning, and related controls exist.
+- A local/offline model may be considered later as a provider strategy, but it is not assumed by this placement decision.
+
+Closure limitation:
+
+- This does not implement provider integration.
+- This does not implement live model calls.
+- This does not implement local/offline model support.
+- This does not implement smoke tests.
+- This does not execute the local heavy-use shakedown.
+- This does not authorize SaaS go-live.
+
+Evidence artifact:
+
+- `docs/milestones/M25/DDR_007_MODEL_PROVIDER_INTEGRATION_AND_LOCAL_SHAKEDOWN_PLACEMENT_DECISION.md`
+
 ## 8. Proposed Review Sequence
 
 The proposed item-by-item review order is:
@@ -162,7 +189,7 @@ The following actions are proposed after Project Owner review:
 | 1 | Record `DDR-004` closure approval and register closure. | Done | `DDR-004` closed for standards source registry/citation authority model. |
 | 2 | Record approved `DDR-001` / `DDR-002` governance/model closure. | Done | `DDR-001` and `DDR-002` closed for governance/model scope; executable implementation remains M26-scoped. |
 | 3 | Record approved `DDR-003` / `DDR-006` scope decision. | Done | `DDR-003` closed for governance/model scope; `DDR-006` moved to Closure Planned. |
-| 4 | Approve placement of `DDR-007`. | Yes | Named future checkpoint for provider/model integration and pre-go-live testing. |
+| 4 | Record approved placement of `DDR-007`. | Done | `DDR-007` moved to `Closure Planned` for placement only; local heavy-use / operational shakedown gate added before SaaS go-live. |
 | 5 | Verify repo evidence for `DDR-009`. | Yes for closure/reclassification | Evidence-based close/reclassify/repair decision. |
 | 6 | Close or reclassify `DDR-008` only after M25.2 evidence is approved. | Yes | Register update with closure/reclassification evidence. |
 
@@ -182,7 +209,7 @@ M26 should not begin while any DDR remains in vague open/deferred/watch state wi
 
 Current decision state:
 
-`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; DDR-003 closed for governance/model scope; DDR-006 closure planned; remaining DDRs pending disposition`
+`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; DDR-003 closed for governance/model scope; DDR-006 closure planned; DDR-007 placement approved / closure planned; remaining DDRs pending disposition`
 
 `DDR-004` is closed by Project Owner approval of the amended standards registry evidence and the DDR-004 closure decision.
 
@@ -193,6 +220,8 @@ Current decision state:
 `DDR-006` has approved scope/closure-path evidence and may be recorded as `Closure Planned`.
 
 No DDR other than `DDR-004`, `DDR-001`, `DDR-002`, and `DDR-003` is closed by this document.
+
+`DDR-006` and `DDR-007` are not closed; they are recorded as `Closure Planned` for their approved scope/placement decisions.
 
 No DDR is reclassified by this document.
 

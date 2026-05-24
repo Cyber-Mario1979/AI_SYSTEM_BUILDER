@@ -61,6 +61,8 @@ No executable validation has been run or claimed for the DDR-001/002 model closu
 
 No executable validation has been run or claimed for the DDR-003 model closure decision and DDR-006 scope/closure-path updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
+No executable validation has been run or claimed for the DDR-007 placement decision and local heavy-use shakedown gate amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
@@ -69,7 +71,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, DDR-003 governance/model closure, DDR-006 scope/closure-path approval, and M26 implementation-lock amendments.
+Aligned for continued M25.2 after DDR-004 closure, DDR-001/002 governance/model closure, DDR-003 governance/model closure, DDR-006 scope/closure-path approval, DDR-007 placement approval with local heavy-use shakedown gate, and M26 implementation-lock amendments.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -113,6 +115,10 @@ Current DDR-006 scope/closure-path artifact:
 
 - `docs/milestones/M25/DDR_006_PRODUCT_READY_GENERATION_RENDERING_SCOPE_PLAN.md`
 
+Current DDR-007 placement artifact:
+
+- `docs/milestones/M25/DDR_007_MODEL_PROVIDER_INTEGRATION_AND_LOCAL_SHAKEDOWN_PLACEMENT_DECISION.md`
+
 Completed DDR-004 closure artifacts:
 
 - `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`
@@ -150,6 +156,15 @@ DDR-003 / DDR-006 scope decision:
 - Product-ready template implementation and generation/rendering implementation are mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies them.
 - `DDR-006` remains open and productization-blocking until generation boundary, renderer/output contract, template/schema/library/citation readiness, validation, and UAT evidence exist or are formally reclassified.
 
+DDR-007 placement decision:
+
+- Project Owner approved formal placement for actual model/provider integration and pre-go-live operational testing path.
+- `DDR-007` moves to `Closure Planned` for placement only.
+- Live model/provider implementation is not authorized by this placement decision.
+- Product/SaaS-facing live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
+- A local heavy-use / operational shakedown gate is mandatory before SaaS go-live or productized live-provider use.
+- Local/offline model support may be considered later as provider strategy, but it is not assumed by this placement decision.
+
 The following dependencies remain carried forward and must be dispositioned during M25.2 review:
 
 - `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closed for governance/model scope; executable runtime-authoritative lookup, deployment-compiled lookup, and productized governed-library dependence remain M26-scoped before productized use.
@@ -158,7 +173,7 @@ The following dependencies remain carried forward and must be dispositioned duri
 - `DDR-004` — Standards source registry and citation authority: Closed for the source registry/citation authority model; standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
 - `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
 - `DDR-006` — Product-ready document/export/report generation and rendering: Closure Planned; remains productization-blocking until generation/rendering closure evidence exists or is formally reclassified.
-- `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Watch and Critical; live model/provider calls remain blocked until roadmap-authorized path and operational testing evidence exist.
+- `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Closure Planned and Critical for placement only; live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
 - `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; candidate for closure or reclassification only after M25.2 evidence is approved and the register is updated.
 - `DDR-009` — External contract placeholders for future library/template/standards references: Watch/planning-awareness; requires repo evidence verification before closure or reclassification.
 
@@ -204,6 +219,8 @@ The following dependencies remain carried forward and must be dispositioned duri
 - Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation are no longer blocked by the DDR-004 source/citation authority gap, but remain governed by registry limitations and may remain blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
 - DDR-004, DDR-001, DDR-002, and DDR-003 have been closed for their approved governance/model scopes.
 - DDR-006 has moved from `Deferred` to `Closure Planned`.
-- No other DDR has been closed, reclassified, invalidated, or deferred by the current M25.2 artifacts.
+- DDR-007 has moved from `Watch` to `Closure Planned` for placement only.
+- DDR-007 adds a mandatory local heavy-use / operational shakedown gate before SaaS go-live or productized live-provider use.
+- No other DDR beyond DDR-004, DDR-001, DDR-002, DDR-003, DDR-006, and DDR-007 has been closed, moved to Closure Planned, reclassified, invalidated, or deferred by the current M25.2 artifacts.
 - Normal Phase 9 route should not resume until each DDR has a Project Owner-approved verdict: closed with repo evidence, assigned to an immediate closure action, deferred to a named checkpoint, reclassified, invalidated / marked not applicable, or carried forward as a blocker with a named gate.
-- Next expected action: continue M25.2 by deciding placement for `DDR-007` — actual model/provider integration and pre-go-live operational testing path.
+- Next expected action: continue M25.2 by approving named deferral for `DDR-005` behind closed `DDR-004`, then approving `DDR-009` evidence verification, then approving the `DDR-008` closure/reclassification route.

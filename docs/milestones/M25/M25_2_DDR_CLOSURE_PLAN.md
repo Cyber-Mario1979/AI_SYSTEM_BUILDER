@@ -10,7 +10,7 @@ source_disposition_review: docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSI
 checkpoint: M25.2
 milestone: M25 — SaaS Readiness Assessment
 phase: Phase 9 — SaaS Readiness / Productization
-approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED
+approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED_DDR_007_PLACEMENT_APPROVED
 ---
 
 # M25.2 — DDR Closure Plan
@@ -43,6 +43,8 @@ DDR-001 and DDR-002 are closed for governance/model scope only; executable imple
 DDR-003 is closed for governance/model scope only; executable implementation remains M26-scoped.
 
 DDR-006 is Closure Planned only; executable generation/rendering implementation remains M26-scoped.
+
+DDR-007 is Closure Planned for placement only; live provider/model implementation remains blocked until roadmap-authorized adapter, smoke-test, operational-test, local heavy-use shakedown, validation, and UAT evidence exist.
 
 ## 2. Control Principle
 
@@ -83,7 +85,8 @@ DDR-006
 
 DDR-007
   └─ independent of document/template/library closure
-  └─ blocks live model/provider integration and pre-go-live testing
+  └─ closure planned for placement only
+  └─ blocks product/SaaS-facing live model/provider integration until provider boundary, smoke tests, operational test plan, local heavy-use shakedown evidence, validation, and UAT exist
 
 DDR-005
   └─ depends on DDR-004
@@ -120,7 +123,7 @@ DDR-008
 | `DDR-002` Consolidated runtime-authoritative libraries                                    | Closed for governance/model scope                       | Consolidated runtime-authoritative library structure model approved; implementation remains M26-scoped.                                              | Follows `DDR-001` and remains paired with it.                                                                | `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`; `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`; `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`. Future implementation still requires consolidated package/layout evidence, source-role rules, version/status model, validation evidence, and UAT/acceptance where applicable.     | Done for governance/model scope.                                                                                                                                  | Closed under `M25.DDR-002`; executable implementation remains M26-scoped, most likely `M26.5`, after M26.1 scope lock. | Register can move to `Closed` for governance/model scope; executable/productized behavior remains blocked until M26 implementation evidence exists.                    |
 | `DDR-003` Product-ready document templates library | Closed for governance/model scope | Product-ready template library model approved; implementation remains M26-scoped. | Depends on productization scope; implementation later depends on `DDR-001`, `DDR-002`, and `DDR-004` implementation readiness where productized behavior requires it. | `docs/milestones/M25/DDR_003_PRODUCT_READY_TEMPLATE_LIBRARY_MODEL.md`; `docs/milestones/M25/DDR_003_CLOSURE_DECISION.md`. Future implementation still requires template package/layout evidence, template IDs, schema binding, lifecycle/versioning rules, validation evidence, and UAT/acceptance where applicable. | Done for governance/model scope. | Closed under `M25.DDR-003`; executable implementation remains M26-scoped, most likely `M26.5`, after M26.1 scope lock. | Register can move to `Closed` for governance/model scope; executable/productized behavior remains blocked until M26 implementation evidence exists. |
 | `DDR-006` Product-ready document/export/report generation and rendering | Closure Planned | Product-ready generation/rendering remains inside Phase 9; define generation/rendering closure path after templates/standards/libraries. | Depends on `DDR-003`, `DDR-004`, and relevant readiness from `DDR-001`/`DDR-002`. | `docs/milestones/M25/DDR_006_PRODUCT_READY_GENERATION_RENDERING_SCOPE_PLAN.md`. Future closure still requires generation boundary, renderer/output contract, template/schema/library/citation readiness evidence, validation evidence, and UAT/acceptance where applicable. | Done for scope/closure-path approval. | Approved under `M25.DDR-006-SCOPE`; executable implementation remains M26-scoped, most likely `M26.5`, after M26.1 scope lock. | Register can move to `Closure Planned`; `Closed` only after generation/rendering evidence and validation/UAT exist or it is formally reclassified. |
-| `DDR-007` Actual model/provider integration and pre-go-live operational testing path      | Place formally, do not implement now                    | Define roadmap-authorized placement for provider adapter boundary, smoke tests, and pre-go-live operational test plan.                               | Independent of document-library chain, but blocked before live AI runtime/product operation.                 | Decision artifact or roadmap addendum placing provider integration; provider adapter boundary; smoke-test plan; operational test plan; validation/UAT expectations.                                                                                                                                                                                                                         | Confirm target provider strategy: OpenAI only, provider-agnostic adapter, or delayed provider decision. Confirm whether live model calls are in Phase 9 or later. | Proposed: `M25.DDR-007` placement decision now; execution checkpoint later only if approved.                           | `Closure Planned` after formal placement; `Closed` only after adapter/test/operational evidence exists.                                                                |
+| `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Closure Planned for placement only | Formal placement approved; do not implement product/SaaS-facing live calls now. Mandatory local heavy-use / operational shakedown gate added before SaaS go-live. | Independent of document-library chain, but blocked before live AI runtime/product operation. | `docs/milestones/M25/DDR_007_MODEL_PROVIDER_INTEGRATION_AND_LOCAL_SHAKEDOWN_PLACEMENT_DECISION.md`. Future closure still requires provider strategy decision, provider adapter boundary, smoke-test plan/evidence, operational test plan, local shakedown protocol/report, validation evidence, and UAT/acceptance evidence. | Done for placement decision. Provider strategy remains a later scope decision unless M25.5 or M26.1 locks it. | Approved: `M25.DDR-007-PLACEMENT`; execution only in later roadmap-authorized checkpoint. | `Closure Planned` after formal placement; `Closed` only after adapter/test/operational/local-shakedown/validation/UAT evidence exists or after formal reclassification. |
 | `DDR-005` Standards embedding / retrieval index                                           | Defer behind `DDR-004`                                  | Do not implement or design retrieval index until source/citation authority is approved. Define later checkpoint after `DDR-004`.                     | Depends on `DDR-004`.                                                                                        | Retrieval/index design, source registry dependency satisfaction, retrieval-use rules, validation/evaluation evidence.                                                                                                                                                                                                                                                                       | Confirm whether standards retrieval/indexing is needed for Phase 9 productization or later.                                                                       | Proposed: after `DDR-004`, likely `M26.5-DDR-005` or later.                                                            | `Deferred to named checkpoint` after Project Owner approval; `Closed` only after index/retrieval evidence and evaluation exist.                                        |
 | `DDR-009` External contract placeholders for future library/template/standards references | Verify now; likely close/reclassify if evidence exists  | Inspect M21 external contract docs/tests for placeholder or extension-point evidence.                                                                | None.                                                                                                        | M21 contract docs/tests proving placeholders or future references such as `template_id`, `schema_id`, `standards_bundle_ref`, `citation_ref`, `library_version`, or equivalent extension model without pretending dependencies are closed.                                                                                                                                                  | Confirm whether M21 placeholder compatibility still matters for Phase 9 or can be treated as historical satisfied condition.                                      | Proposed: `M25.DDR-009-VERIFY` before M26.                                                                             | `Closed` or `Reclassified` only after repo evidence check and Project Owner approval.                                                                                  |
 | `DDR-008` Phase 8 / Phase 9 productization readiness gate                                 | Candidate closure/reclassification after M25.2 approval | Close or reclassify after Phase 9 expansion + full M25.2 DDR disposition evidence exists and is approved.                                            | Depends on approved M25.2 disposition and closure plan.                                                      | Phase 9 expansion addendum, M25.1 boundary assessment, M25.2 disposition review, this closure plan, and any approved register update.                                                                                                                                                                                                                                                       | Approve that Phase 8/9 readiness gate has been satisfied as a gate-control dependency, while downstream DDRs remain active.                                       | Proposed: follow-up register update after M25.2 approval.                                                              | `Closed` or `Reclassified` only after M25.2 evidence is approved and register is updated.                                                                              |
@@ -199,19 +202,34 @@ Evidence artifacts:
 - `docs/milestones/M25/DDR_003_CLOSURE_DECISION.md`
 - `docs/milestones/M25/DDR_006_PRODUCT_READY_GENERATION_RENDERING_SCOPE_PLAN.md`
 
-### Next: `DDR-007`
+### Completed placement decision: `DDR-007`
 
 Reason:
 
 - `DDR-007` controls actual model/provider integration and pre-go-live operational testing path.
 - It remains Critical and must be placed formally before live model/provider work.
-- It should be decided before `DDR-005`, `DDR-009`, and `DDR-008` completion decisions.
+- Product/SaaS-facing live model/provider calls remain blocked.
+- A local heavy-use / operational shakedown gate is mandatory before SaaS go-live.
 
-Immediate decision needed:
+Approved placement:
 
-- Is live model/provider work inside Phase 9 execution scope or later?
-- Is the provider strategy OpenAI-specific, provider-agnostic, or deferred?
-- What named checkpoint owns provider adapter boundary and pre-go-live operational testing?
+- `DDR-007` is placed as `M25.DDR-007-PLACEMENT`.
+- `DDR-007` moves to `Closure Planned` for placement only.
+- Live model/provider implementation is not authorized by this placement decision.
+- Local/pilot heavy-use testing may be authorized later only after provider adapter boundary, smoke-test plan, and operational test plan exist.
+- A local/offline model may be considered later, but is not assumed by this placement decision.
+
+Evidence artifact:
+
+- `docs/milestones/M25/DDR_007_MODEL_PROVIDER_INTEGRATION_AND_LOCAL_SHAKEDOWN_PLACEMENT_DECISION.md`
+
+### Next after `DDR-007`
+
+Next Project Owner review order:
+
+1. Approve named deferral for `DDR-005` behind closed `DDR-004`.
+2. Approve evidence verification for `DDR-009`.
+3. Approve closure/reclassification route for `DDR-008`.
 
 ## 7. Inputs Needed From Project Owner## 7. Inputs Needed From Project Owner
 
@@ -223,7 +241,7 @@ Immediate decision needed:
 | Runtime library scope   | Which governed library families must become runtime-authoritative first.                                                         | `DDR-001`, `DDR-002`            |
 | Product document scope  | Whether product-ready CQV document generation is inside Phase 9.                                                                 | `DDR-003`, `DDR-006`            |
 | First document families | If document generation is in scope: first templates/documents to support.                                                        | `DDR-003`, `DDR-006`            |
-| Provider strategy       | Whether live model/provider work is OpenAI-specific, provider-agnostic, or deferred.                                             | `DDR-007`                       |
+| Provider strategy       | Whether live model/provider work is OpenAI-specific, provider-agnostic, local/offline-model capable, or deferred; this does not override the mandatory local heavy-use shakedown gate. | `DDR-007`                       |
 | Go-live ambition        | Whether Phase 9 aims for productization design only, internal pilot readiness, or actual product/SaaS readiness.                 | all DDRs                        |
 | Deferral tolerance      | Which DDRs may be deferred to named later checkpoints without blocking M26.                                                      | all DDRs                        |
 
@@ -249,7 +267,7 @@ Immediate decision needed:
 | `M25.DDR-002`           | `DDR-002` | Closed governance/model scope for consolidated runtime-authoritative library structure; implementation remains M26-scoped.                          |
 | `M25.DDR-003`           | `DDR-003` | Closed governance/model scope for product-ready document template library; implementation remains M26-scoped.                                      |
 | `M25.DDR-006-SCOPE`     | `DDR-006` | Approved closure path for product-ready generation/rendering; implementation and closure evidence remain M26-scoped.                              |
-| `M25.DDR-007-PLACEMENT` | `DDR-007` | Place live provider/model integration and pre-go-live path.                                                                                         |
+| `M25.DDR-007-PLACEMENT` | `DDR-007` | Place live provider/model integration and pre-go-live path; require a local heavy-use / operational shakedown gate before SaaS go-live. |
 | `M25.DDR-009-VERIFY`    | `DDR-009` | Verify M21 external contract placeholder evidence.                                                                                                  |
 | `M25.DDR-008-CLOSE`     | `DDR-008` | Close or reclassify Phase 8/9 readiness gate after approved M25.2 evidence.                                                                         |
 | Later after `DDR-004`   | `DDR-005` | Define standards embedding/retrieval index only after source/citation authority exists.                                                             |
@@ -263,7 +281,7 @@ Immediate decision needed:
 | `DDR-002` | `Closed`                                                        | Governance/model scope closed; executable consolidated runtime-authoritative library package/layout implementation remains M26-scoped with validation/UAT where applicable. |
 | `DDR-003` | `Closed`                                                        | Governance/model scope closed; executable product-ready template implementation remains M26-scoped with validation/UAT where applicable.                                  |
 | `DDR-006` | `Closure Planned`                                               | Scope and closure path approved; executable product-ready generation/rendering implementation remains M26-scoped with validation/UAT where applicable.                    |
-| `DDR-007` | `Closure Planned` or `Deferred to named checkpoint`             | Depends on provider strategy and Phase 9 ambition.                                                                                                                          |
+| `DDR-007` | `Closure Planned` | Placement approved only; live implementation remains blocked until provider adapter, smoke-test, operational-test, local-shakedown, validation, and UAT evidence exist or the dependency is formally reclassified. |
 | `DDR-005` | `Deferred to named checkpoint after DDR-004`                    | Dependent on standards source/citation authority.                                                                                                                           |
 | `DDR-009` | `Pending evidence verification` then `Closed` or `Reclassified` | Needs repo evidence check.                                                                                                                                                  |
 | `DDR-008` | `Closed` or `Reclassified`                                      | Candidate after M25.2 evidence approval.                                                                                                                                    |
@@ -274,14 +292,19 @@ DDR-004 closure approval is complete.
 
 DDR-001/002 governance/model closure approval is complete.
 
+DDR-003 governance/model closure approval is complete.
+
+DDR-006 scope/closure-path approval is complete.
+
+DDR-007 placement approval is complete.
+
 Next Project Owner review order:
 
-1. Decide placement for `DDR-007`.
-2. Approve named deferral for `DDR-005` behind closed `DDR-004`.
-3. Approve evidence verification for `DDR-009`.
-4. Approve closure/reclassification route for `DDR-008`.
+1. Approve named deferral for `DDR-005` behind closed `DDR-004`.
+2. Approve evidence verification for `DDR-009`.
+3. Approve closure/reclassification route for `DDR-008`.
 
-After approval, the next user-applied action should prepare the approved placement artifact for `DDR-007`, unless the Project Owner redirects.
+After approval, the next user-applied action should prepare the approved named-deferral artifact or register/tracker amendments for `DDR-005`, unless the Project Owner redirects.
 
 ## 12. Validation Note
 
