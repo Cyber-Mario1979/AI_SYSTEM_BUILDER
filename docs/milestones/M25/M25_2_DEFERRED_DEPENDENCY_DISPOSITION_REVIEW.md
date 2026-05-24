@@ -10,7 +10,7 @@ source_register: docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md
 checkpoint: M25.2
 milestone: M25 — SaaS Readiness Assessment
 phase: Phase 9 — SaaS Readiness / Productization
-approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSURE_PLANNED
+approval_state: PARTIAL_PROJECT_OWNER_APPROVAL_DDR_004_CLOSED_DDR_001_002_CLOSED_DDR_003_CLOSED_DDR_006_CLOSURE_PLANNED
 ---
 
 # M25.2 — Deferred Dependency Disposition Review
@@ -62,10 +62,10 @@ No DDR item may be deferred, invalidated, or reclassified without Project Owner 
 |---|---:|---:|---:|---|---|---|---|---|
 | `DDR-001` Governed-library runtime promotion / deployment-compiled lookup | Closed | Very High | No for governance/model gap; executable/productized behavior remains M26-scoped | Closed for governance/model scope | Project Owner approved final runtime library authority model and closure decision. | Closed in `M25.DDR-001`; implementation must be scoped in M26.1 and executed through roadmap-authorized M26 dependency-closure work, most likely M26.5. | Done for governance/model closure | Does not implement runtime lookup, runtime migration, or deployment-compiled lookup generation. |
 | `DDR-002` Consolidated runtime-authoritative libraries | Closed | Very High | No for governance/model gap; executable/productized behavior remains M26-scoped | Closed for governance/model scope | Project Owner approved consolidated runtime-authoritative library model and closure decision. | Closed in `M25.DDR-002`; implementation must be scoped in M26.1 and executed through roadmap-authorized M26 dependency-closure work, most likely M26.5. | Done for governance/model closure | Does not implement consolidated runtime package/layout behavior. |
-| `DDR-003` Product-ready document templates library | Deferred | Very High | Yes | Decision needed | Decide whether product-ready document templates belong inside Phase 9 productization scope. If yes, define a closure checkpoint before any product-ready document generation. If no, defer to named later phase/checkpoint. | Proposed: either `M25.DDR-003` if in Phase 9, or explicit later checkpoint if outside Phase 9. | Yes | This controls CQV document productization. |
+| `DDR-003` Product-ready document templates library | Closed | Very High | No for governance/model gap; executable/productized behavior remains M26-scoped | Closed for governance/model scope | Project Owner approved product-ready template library governance/model closure. | Closed in `M25.DDR-003`; implementation must be scoped in M26.1 and executed through roadmap-authorized M26 dependency-closure work, most likely M26.5. | Done for governance/model closure | Does not implement product-ready templates, schema-binding validation, template loading/selection, or document generation. |
 | `DDR-004` Standards source registry and citation authority | Closed | Critical | No for DDR-004 source/citation authority gap; related downstream blockers remain | Closed with repo evidence accepted | Project Owner approved amended standards registry evidence and DDR-004 closure decision. | Closed in `M25.DDR-004`; downstream standards embedding/retrieval remains governed by `DDR-005`. | Done | Closure establishes source registry/citation authority model only; it does not verify/adopt every standard or authorize standards retrieval/product-ready output. |
 | `DDR-005` Standards embedding / retrieval index | Deferred | High | Yes when standards-backed retrieval is productized | Defer behind `DDR-004` with named dependency | Do not action independently until `DDR-004` closure path is approved or completed. Define retrieval/index checkpoint only after source/citation authority exists. | Proposed: `M26.5-DDR-005` or later, after `DDR-004` closure. | Yes | Retrieval/indexing must remain helper behavior, not evidence authority. |
-| `DDR-006` Product-ready document/export/report generation and rendering | Deferred | Very High | Yes | Decision needed / create closure path if in Phase 9 | Decide whether product-ready generation/rendering belongs inside Phase 9. If yes, define closure after template, standards, library, schema, and renderer/output boundaries are ready. | Proposed: `M25.DDR-006` for scope decision; implementation closure likely after `DDR-003`, `DDR-004`, and relevant library decisions. | Yes | M20 visibility surfaces must not be mistaken for generation capability. |
+| `DDR-006` Product-ready document/export/report generation and rendering | Closure Planned | Very High | Yes, until closed or reclassified | Closure path approved | Project Owner approved keeping DDR-006 inside Phase 9 and moving it to Closure Planned. | Approved: `M25.DDR-006-SCOPE`; executable implementation / closure evidence remains M26-scoped, most likely M26.5 after M26.1 scope lock. | Done for scope/closure-path approval | Does not implement product-ready generation/rendering. |
 | `DDR-007` Actual model/provider integration and pre-go-live operational testing path | Watch | Critical | Yes | Create closure path, not implementation now | Define formal placement for live provider/model integration and pre-go-live operational test planning. Do not implement live calls now. | Proposed: `M25.DDR-007` for placement decision; execution only in later roadmap-authorized checkpoint after adapter boundary and operational test plan exist. | Yes | This should remain blocked until provider adapter boundary, smoke tests, operational plan, validation, and UAT path are approved. |
 | `DDR-008` Phase 8 / Phase 9 productization readiness gate | Watch | Critical | Yes | Candidate close after M25.2 approval evidence | After this document is approved and committed, update the register to close or reclassify `DDR-008` because Phase 9 expansion and full DDR review evidence will exist. | Proposed: close/reclassify in a follow-up register update after Project Owner approval of this table. | Yes | Not closed by this draft. Candidate closure depends on approved M25.2 evidence. |
 | `DDR-009` External contract placeholders for future library/template/standards references | Watch | High | Indirect | Verify and likely reclassify/close if M21 evidence supports it | Inspect M21 contract docs/tests for placeholder/extension evidence. If evidence exists, close or reclassify as satisfied historical compatibility. If evidence is missing, assign corrective checkpoint. | Proposed: `M25.DDR-009-VERIFY` before M26, unless already proven by repo evidence. | Yes | Requires repo evidence check before closure or invalidation. |
@@ -111,21 +111,49 @@ Evidence artifacts:
 - `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`
 - `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`
 
-## 7. Proposed Review Sequence
+## 7. Approved DDR-003 / DDR-006 Scope Decision
+
+Project Owner approved keeping `DDR-003` and `DDR-006` inside Phase 9 on `2026-05-21`.
+
+Approved result:
+
+- `DDR-003` may be recorded as `Closed` for governance/model scope.
+- `DDR-006` may be recorded as `Closure Planned`.
+- Product-ready template implementation is mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
+- Product-ready generation/rendering implementation is mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
+- Implementation must be scoped no later than `M26.1`.
+- Executable implementation should proceed only through roadmap-authorized M26 dependency-closure work, most likely `M26.5`, with validation evidence before productized use.
+
+Closure limitation:
+
+- This does not implement product-ready templates.
+- This does not implement schema-binding validation.
+- This does not implement template loading or selection.
+- This does not implement product-ready document/export/report generation.
+- This does not implement renderer/output behavior.
+- This does not close `DDR-006`.
+
+Evidence artifacts:
+
+- `docs/milestones/M25/DDR_003_PRODUCT_READY_TEMPLATE_LIBRARY_MODEL.md`
+- `docs/milestones/M25/DDR_003_CLOSURE_DECISION.md`
+- `docs/milestones/M25/DDR_006_PRODUCT_READY_GENERATION_RENDERING_SCOPE_PLAN.md`
+
+## 8. Proposed Review Sequence
 
 The proposed item-by-item review order is:
 
 1. `DDR-004` — completed / closed; use as upstream evidence for later `DDR-005` planning only
 2. `DDR-001` — closed for governance/model scope; executable implementation remains M26-scoped
 3. `DDR-002` — closed for governance/model scope; executable implementation remains M26-scoped
-4. `DDR-003` — product-ready document templates library
-5. `DDR-006` — product-ready document/export/report generation and rendering
+4. `DDR-003` — closed for governance/model scope; executable implementation remains M26-scoped
+5. `DDR-006` — closure path approved; executable implementation remains M26-scoped
 6. `DDR-007` — actual model/provider integration and pre-go-live operational testing path
 7. `DDR-005` — standards embedding / retrieval index, after `DDR-004`
 8. `DDR-009` — external contract placeholder verification
 9. `DDR-008` — Phase 8 / Phase 9 productization readiness gate candidate closure/reclassification
 
-## 8. Proposed Immediate Action Backlog
+## 9. Proposed Immediate Action Backlog
 
 The following actions are proposed after Project Owner review:
 
@@ -133,12 +161,12 @@ The following actions are proposed after Project Owner review:
 |---:|---|---:|---|
 | 1 | Record `DDR-004` closure approval and register closure. | Done | `DDR-004` closed for standards source registry/citation authority model. |
 | 2 | Record approved `DDR-001` / `DDR-002` governance/model closure. | Done | `DDR-001` and `DDR-002` closed for governance/model scope; executable implementation remains M26-scoped. |
-| 3 | Decide if `DDR-003` and `DDR-006` are inside Phase 9 productization scope. | Yes | Scope decision for product-ready document generation. |
+| 3 | Record approved `DDR-003` / `DDR-006` scope decision. | Done | `DDR-003` closed for governance/model scope; `DDR-006` moved to Closure Planned. |
 | 4 | Approve placement of `DDR-007`. | Yes | Named future checkpoint for provider/model integration and pre-go-live testing. |
 | 5 | Verify repo evidence for `DDR-009`. | Yes for closure/reclassification | Evidence-based close/reclassify/repair decision. |
 | 6 | Close or reclassify `DDR-008` only after M25.2 evidence is approved. | Yes | Register update with closure/reclassification evidence. |
 
-## 9. M26 Entry Gate Proposed by This Review
+## 10. M26 Entry Gate Proposed by This Review
 
 M26 should not begin until every DDR item has one of the following Project Owner-approved outcomes:
 
@@ -150,17 +178,21 @@ M26 should not begin until every DDR item has one of the following Project Owner
 
 M26 should not begin while any DDR remains in vague open/deferred/watch state without a named verdict.
 
-## 10. Current M25.2 Decision State
+## 11. Current M25.2 Decision State
 
 Current decision state:
 
-`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; remaining DDRs pending disposition`
+`Partial Project Owner approval recorded — DDR-004 closed; DDR-001/002 closed for governance/model scope; DDR-003 closed for governance/model scope; DDR-006 closure planned; remaining DDRs pending disposition`
 
 `DDR-004` is closed by Project Owner approval of the amended standards registry evidence and the DDR-004 closure decision.
 
 `DDR-001` and `DDR-002` have approved governance/model closure evidence and may be recorded as `Closed` for governance/model scope.
 
-No DDR other than `DDR-004`, `DDR-001`, and `DDR-002` is closed by this document.
+`DDR-003` has approved governance/model closure evidence and may be recorded as `Closed` for governance/model scope.
+
+`DDR-006` has approved scope/closure-path evidence and may be recorded as `Closure Planned`.
+
+No DDR other than `DDR-004`, `DDR-001`, `DDR-002`, and `DDR-003` is closed by this document.
 
 No DDR is reclassified by this document.
 
@@ -170,7 +202,7 @@ No remaining DDR is deferred by this document.
 
 This document remains the M25.2 decision-control artifact for the remaining DDR verdicts.
 
-## 11. Validation Note
+## 12. Validation Note
 
 No executable validation is required for this draft decision document because it is documentation/governance evidence only and does not alter code, tests, commands, imports, runtime behavior, CLI behavior, or executable contracts.
 
