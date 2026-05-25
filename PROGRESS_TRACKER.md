@@ -31,15 +31,15 @@ M25 — SaaS Readiness Assessment
 
 ## Current Approved Slice Family
 
-`M25.3` — Commercial and packaging readiness assessment
+`M25.4` — Operational readiness assessment
 
 ## Latest Completed Checkpoint
 
-`M25.2` — Deferred dependency disposition review
+`M25.3` — Commercial and packaging readiness assessment
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.3` — Commercial and packaging readiness assessment
+`M25.4` — Operational readiness assessment
 
 ## Latest Verified Validation Status
 
@@ -49,25 +49,9 @@ User-provided local validation result for M24.6 / Phase 8:
 
 No validation has been run or claimed for M25.1 because the checkpoint evidence is documentation/governance-only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
-No validation has been run or claimed for the current M25.2 draft evidence artifacts because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.2 deferred dependency disposition evidence and related DDR closure/placement/deferral artifacts because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
-No validation has been run or claimed for the DDR-004 standards authority plan or standards registry because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-004 closure decision/register/tracker updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-001/002 closure sequencing plan/register/tracker updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-001/002 model closure decision and DDR-004 implementation-lock amendment because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-003 model closure decision and DDR-006 scope/closure-path updates because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-007 placement decision and local heavy-use shakedown gate amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-005 named deferral amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-009 evidence verification amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
-
-No executable validation has been run or claimed for the DDR-008 readiness gate-control closure amendments because they are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.3 commercial and packaging readiness assessment evidence because it is documentation/governance-only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -77,7 +61,7 @@ M25 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M25.3 after M25.2 deferred dependency disposition review completion, DDR-008 readiness gate-control closure, DDR-009 evidence verification closure, DDR-005 named deferral to M26.5-DDR-005, DDR-007 placement approval with local heavy-use shakedown gate, DDR-006 scope/closure-path approval, DDR-003 governance/model closure, DDR-001/002 governance/model closure, DDR-004 closure, and M26 implementation-lock amendments.
+Aligned for M25.4 after Project Owner approval of M25.3 commercial and packaging readiness assessment evidence.
 
 `ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
 
@@ -100,6 +84,8 @@ Relevant and active for Phase 9 / productization readiness.
 M25.1 does not close any deferred dependency.
 
 M25.2 deferred dependency disposition evidence has been approved for DDR-001 through DDR-009. M25.2 is complete for the deferred dependency disposition review checkpoint.
+
+M25.3 does not close any deferred dependency.
 
 Current M25.2 review artifacts:
 
@@ -143,83 +129,28 @@ Completed DDR-004 closure artifacts:
 - `docs/standards/STANDARDS_SOURCE_REGISTRY.md`
 - `docs/milestones/M25/DDR_004_CLOSURE_DECISION.md`
 
-DDR-004 closure decision:
+Current carried-forward DDR posture:
 
-- Project Owner approved the amended standards registry evidence on `2026-05-21`.
-- `DDR-004` is closed for standards source registry and citation authority model.
-- Closure does not close `DDR-005`, does not implement standards embedding/retrieval, and does not authorize product-ready standards-backed output outside registry limitations.
-- Executable registry-consumption implementation is M26-scoped unless M25.5 explicitly excludes, defers, or reclassifies it.
+- `DDR-001` — Closed for runtime-authoritative governed-library promotion / deployment-compiled lookup governance model. Executable runtime-authoritative lookup, deployment-compiled lookup, runtime migration, runtime lookup implementation, and productized governed-library dependence remain M26-scoped before productized use.
+- `DDR-002` — Closed for consolidated runtime-authoritative library governance model. Executable consolidated runtime-authoritative package/layout implementation remains M26-scoped before productized use.
+- `DDR-003` — Closed for product-ready document template library governance/model scope. Executable product-ready template implementation remains M26-scoped before productized use.
+- `DDR-004` — Closed for standards source registry and citation authority model. Standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
+- `DDR-005` — Deferred to named checkpoint `M26.5-DDR-005`; depends on closed `DDR-004`; no standards embedding/retrieval implementation is authorized during M25.
+- `DDR-006` — Closure Planned for product-ready document/export/report generation and rendering; remains productization-blocking until generation/rendering closure evidence exists or it is formally reclassified.
+- `DDR-007` — Closure Planned and Critical for placement only; live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
+- `DDR-008` — Closed for Phase 8 / Phase 9 readiness gate-control scope; closure does not claim product readiness, SaaS readiness, Phase 9 completion, or downstream blocker closure.
+- `DDR-009` — Closed for M21 external contract placeholder compatibility evidence; underlying productized behavior remains governed by the related DDRs.
 
-DDR-004 standards registry evidence now clarifies:
+M25.3 commercial and packaging readiness assessment confirms the following productization-facing carry-forward items:
 
-- the registry/citation authority model may be accepted without treating every listed source as fully verified, adopted, clause-mapped, or mandatory
-- pending, TBD, user-provided, reference-only, or recommendation-only records may remain as controlled candidate records
-- such candidate records must not support audit-ready, mandatory, clause-level, productized, or standards-backed output until verified/adopted/approved
-- post-go-live registry amendments must follow change control, impact assessment, approval, and forward revision
-- historical approved evidence must be corrected or superseded rather than silently overwritten
-
-DDR-001/002 governance/model closure decision:
-
-- Project Owner approved sequencing `DDR-001` before `DDR-002` while designing both together.
-- `DDR-001` is closed for runtime-authoritative governed-library promotion / deployment-compiled lookup governance model.
-- `DDR-002` is closed for consolidated runtime-authoritative library governance model.
-- Neither closure implements runtime migration, deployment-compiled lookup generation, runtime lookup behavior, or productized library dependence.
-- Runtime-authoritative governed-library implementation is mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
-
-DDR-003 / DDR-006 scope decision:
-
-- Project Owner approved keeping product-ready CQV document templates and product-ready document/export/report generation/rendering inside Phase 9.
-- `DDR-003` is closed for product-ready document template library governance/model scope.
-- `DDR-006` moves to `Closure Planned` for product-ready generation/rendering.
-- Product-ready template implementation and generation/rendering implementation are mandatory M26 scope unless M25.5 explicitly excludes, defers, or reclassifies them.
-- `DDR-006` remains open and productization-blocking until generation boundary, renderer/output contract, template/schema/library/citation readiness, validation, and UAT evidence exist or are formally reclassified.
-
-DDR-007 placement decision:
-
-- Project Owner approved formal placement for actual model/provider integration and pre-go-live operational testing path.
-- `DDR-007` moves to `Closure Planned` for placement only.
-- Live model/provider implementation is not authorized by this placement decision.
-- Product/SaaS-facing live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
-- A local heavy-use / operational shakedown gate is mandatory before SaaS go-live or productized live-provider use.
-- Local/offline model support may be considered later as provider strategy, but it is not assumed by this placement decision.
-
-DDR-005 named deferral decision:
-
-- Project Owner approved named deferral for standards embedding / retrieval index.
-- `DDR-005` remains `Deferred`, but the deferral is now named and checkpoint-bound.
-- `DDR-005` is deferred to `M26.5-DDR-005` under `M26.5 — Product-ready dependency closure path`.
-- `M26.1` must confirm whether standards embedding / retrieval index behavior is inside approved M26 productization scope.
-- No standards embedding, standards retrieval index, or productized standards-backed retrieval is implemented or authorized by this decision.
-- Retrieval/indexing must remain helper behavior and must not become source truth or evidence authority.
-
-
-DDR-009 evidence verification decision:
-
-- Project Owner approved evidence verification for M21 external contract placeholder compatibility.
-- `DDR-009` is closed for M21 placeholder compatibility evidence.
-- M21 preserved future-reference placeholders for `template_id`, `schema_id`, `standards_bundle_ref`, `citation_ref`, and `library_version`.
-- This closure does not implement runtime libraries, product-ready templates, standards embedding/retrieval, citation authority, product-ready generation, or productized placeholder behavior.
-- Underlying productized behavior remains governed by the relevant downstream DDRs and future roadmap-authorized checkpoints.
-
-DDR-008 readiness gate-control closure decision:
-
-- Project Owner approved closure for the Phase 8 / Phase 9 readiness gate-control dependency.
-- `DDR-008` moves from `Watch` to `Closed` for gate-control scope.
-- Closure confirms Phase 9 has detailed checkpoint authority and M25.2 has approved DDR disposition evidence.
-- Closure does not claim product readiness, SaaS readiness, M25 closeout, Phase 9 closeout, M26 start, or downstream blocker closure.
-- `DDR-005`, `DDR-006`, `DDR-007`, and M26-scoped executable implementation dependencies remain governed by their own gates.
-
-The following dependencies remain carried forward and must be dispositioned during M25.2 review:
-
-- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Closed for governance/model scope; executable runtime-authoritative lookup, deployment-compiled lookup, and productized governed-library dependence remain M26-scoped before productized use.
-- `DDR-002` — Consolidated runtime-authoritative libraries: Closed for governance/model scope; executable consolidated runtime-authoritative package/layout implementation remains M26-scoped before productized use.
-- `DDR-003` — Product-ready document templates library: Closed for governance/model scope; executable product-ready template implementation remains M26-scoped before productized use.
-- `DDR-004` — Standards source registry and citation authority: Closed for the source registry/citation authority model; standards-backed output remains governed by registry limitations and may still be blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
-- `DDR-005` — Standards embedding / retrieval index: Deferred to named checkpoint `M26.5-DDR-005`; depends on closed `DDR-004`; no standards embedding/retrieval implementation is authorized during M25.
-- `DDR-006` — Product-ready document/export/report generation and rendering: Closure Planned; remains productization-blocking until generation/rendering closure evidence exists or is formally reclassified.
-- `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Closure Planned and Critical for placement only; live model/provider calls remain blocked until provider adapter boundary, smoke tests, operational test plan, local heavy-use / operational shakedown evidence, validation evidence, and UAT / acceptance evidence exist or the dependency is formally reclassified.
-- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Closed for gate-control scope; closure does not claim product readiness, SaaS readiness, Phase 9 completion, or downstream blocker closure.
-- `DDR-009` — External contract placeholders for future library/template/standards references: Closed for M21 placeholder compatibility evidence; underlying productized behavior remains governed by the related DDRs.
+- ASBP is public-repository-ready and assessment-ready, but not product-package-ready, commercial-release-ready, or SaaS-ready.
+- GPLv3 remains unchanged during M25.3.
+- Current GPLv3 licensing is recorded as a future productization risk if ASBP moves toward controlled proprietary or commercial/SaaS distribution.
+- License strategy and repository visibility/product-boundary posture should be decided at `M25.5 — Product Boundary Decision Gate`, not during M25.3.
+- Repository visibility remains unchanged during M25.3.
+- Packaging, distribution, security, supportability, release, and product-license gaps are carried forward.
+- No commercial, packaging, installer, SaaS, tenant, pricing, sales, or productized behavior is implemented by M25.3.
+- Deferred dependency gates remain intact.
 
 ## Active Notes
 
@@ -244,30 +175,31 @@ The following dependencies remain carried forward and must be dispositioned duri
 - M25.1 concluded the system is ready for controlled productization assessment but is not yet productized and must not be represented as product/SaaS-ready.
 - M25.1 did not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure.
 - `M25.2` — Deferred dependency disposition review is completed.
-- M25.2 draft decision evidence is recorded under `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`.
-- M25.2 draft closure planning evidence is recorded under `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`.
+- M25.2 evidence is recorded under `docs/milestones/M25/M25_2_DEFERRED_DEPENDENCY_DISPOSITION_REVIEW.md`.
+- M25.2 closure planning evidence is recorded under `docs/milestones/M25/M25_2_DDR_CLOSURE_PLAN.md`.
 - M25.2 is complete for deferred dependency disposition review.
-- The Project Owner approved starting with `DDR-004` as the first immediate closure action.
 - DDR-004 closure path evidence is recorded under `docs/milestones/M25/DDR_004_STANDARDS_SOURCE_REGISTRY_AND_CITATION_AUTHORITY_PLAN.md`.
 - DDR-004 standards registry evidence is recorded under `docs/standards/STANDARDS_SOURCE_REGISTRY.md`.
-- DDR-004 standards registry evidence has been amended to address controlled placeholders, verification limitations, registry lifecycle/change-control, and registry versioning.
-- DDR-004 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
+- DDR-004 closure decision is recorded under `docs/milestones/M25/DDR_004_CLOSURE_DECISION.md`.
 - DDR-004 is closed for standards source registry and citation authority model only.
 - DDR-001/002 closure sequencing evidence is recorded under `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_CLOSURE_PLAN.md`.
 - DDR-001/002 runtime library authority model evidence is recorded under `docs/milestones/M25/DDR_001_002_RUNTIME_LIBRARY_AUTHORITY_MODEL.md`.
 - DDR-001/002 closure decision evidence is recorded under `docs/milestones/M25/DDR_001_002_CLOSURE_DECISION.md`.
-- DDR-001 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
-- DDR-002 has moved from `Closure Planned` to `Closed` in `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`.
 - DDR-001 and DDR-002 are closed for governance/model scope only; runtime migration, deployment-compiled lookup generation, runtime lookup implementation, and productized runtime-authoritative library dependence remain M26-scoped before productized use.
-- DDR-004 closure decision has been amended to lock executable registry-consumption implementation to M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
+- DDR-004 closure decision locks executable registry-consumption implementation to M26 scope unless M25.5 explicitly excludes, defers, or reclassifies it.
 - Standards-backed product output, standards-backed CQV/GMP advice, standards embedding, standards retrieval, audit-ready citation, and standards-backed document generation are no longer blocked by the DDR-004 source/citation authority gap, but remain governed by registry limitations and may remain blocked by `DDR-003`, `DDR-005`, `DDR-006`, `DDR-007`, or source-specific verification/adoption limits.
-- DDR-004, DDR-001, DDR-002, and DDR-003 have been closed for their approved governance/model scopes.
-- DDR-006 has moved from `Deferred` to `Closure Planned`.
-- DDR-007 has moved from `Watch` to `Closure Planned` for placement only.
+- DDR-004, DDR-001, DDR-002, and DDR-003 are closed for their approved governance/model scopes.
+- DDR-006 is `Closure Planned`.
+- DDR-007 is `Closure Planned` for placement only.
 - DDR-007 adds a mandatory local heavy-use / operational shakedown gate before SaaS go-live or productized live-provider use.
 - DDR-005 remains `Deferred`, but is now deferred to named checkpoint `M26.5-DDR-005`.
-- DDR-009 has moved from `Watch` to `Closed` for M21 external contract placeholder compatibility evidence.
-- DDR-008 has moved from `Watch` to `Closed` for Phase 8 / Phase 9 readiness gate-control scope.
-- M25.2 has completed the required DDR disposition review for DDR-001 through DDR-009.
-- Normal Phase 9 route may resume to M25.3 because each DDR item has a Project Owner-approved verdict: closed with repo evidence, closure planned with named gate, or deferred to a named checkpoint.
-- Next expected action: proceed to `M25.3` — Commercial and packaging readiness assessment.
+- DDR-009 is `Closed` for M21 external contract placeholder compatibility evidence.
+- DDR-008 is `Closed` for Phase 8 / Phase 9 readiness gate-control scope.
+- M25.2 completed the required DDR disposition review for DDR-001 through DDR-009.
+- Normal Phase 9 route resumed to M25.3 because each DDR item had a Project Owner-approved verdict: closed with repo evidence, closure planned with named gate, or deferred to a named checkpoint.
+- `M25.3` — Commercial and packaging readiness assessment is completed.
+- M25.3 evidence is recorded under `docs/milestones/M25/M25_3_COMMERCIAL_AND_PACKAGING_READINESS_ASSESSMENT.md`.
+- M25.3 assessment decision: `Pass — commercial and packaging readiness assessment may proceed to M25.4 operational readiness assessment.`
+- M25.3 concluded that ASBP is public-repository-ready and assessment-ready, but not product-package-ready, commercial-release-ready, or SaaS-ready.
+- M25.3 did not implement commercial release behavior, pricing behavior, sales behavior, production packaging, installer or distribution behavior, SaaS subscription behavior, tenant behavior, productized runtime behavior, legal commitments, license change, or repository visibility change.
+- Next expected action: proceed to `M25.4` — Operational readiness assessment.
