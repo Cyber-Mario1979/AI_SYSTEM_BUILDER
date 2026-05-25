@@ -5,301 +5,336 @@ status: ACTIVE_APPROVED
 governs_execution: true
 document_state_mode: state_agnostic
 authority: canonical_strategic_source_of_truth
-version: v4
-supersedes: ROADMAP_CANONICAL v3
+version: v5
+supersedes: ROADMAP_CANONICAL v4
+source_change_control: docs/change_control/ROADMAP_CHANGE_CONTROL_2026-05-25_ROADMAP_V5_LOCAL_CQV_PRODUCT_REDIRECT.md
+change_control_id: RCC-ROADMAP-001
+repository: Cyber-Mario1979/AI_SYSTEM_BUILDER
+source_branch: feature/m25-productization-boundary-assessment
+approval_state: PROJECT_OWNER_APPROVED
+approved_date: 2026-05-25
+application_mode: user_applied_package
+live_repo_write: NO
 ---
 
-# AI Systems Builder Program (ASBP) — Canonical Roadmap v4
+# AI Systems Builder Program (ASBP) — Canonical Roadmap v5
 
-## Full checkpoint-ladder version
+## Approval and Application Notice
 
-## Approval Note
+This file is the Project Owner-approved `ROADMAP_CANONICAL.md` v5 replacement for the local integrated CQV product redirect.
 
-This roadmap v4 is approved and authoritative once adopted in place of v3.
+It becomes the active canonical roadmap when applied to the repository root as `ROADMAP_CANONICAL.md` together with the approved change-control record and tracker alignment package.
 
-It is a real roadmap extension, not a wording-only refresh.
+This roadmap supersedes `ROADMAP_CANONICAL.md` v4 for forward execution direction after repository application.
 
-It preserves the completed deterministic foundation, the completed Milestone 11 closeout, and the established design-readiness direction while extending the canonical roadmap into the next forward phases.
-
-It makes all of the following explicit for post-`M11.9` execution direction:
-
-- core-engine completion comes before broader product-facing growth
-- the document engine is a real governed engine layer
-- export and reporting are core-engine concerns
-- resolver / registry and governed data access come before broader retrieval and before UI/API
-- governed library expansion must become real and structured
-- the AI layer is downstream from the completed core engine
-- UI/API, cloud/compute, and SaaS/productization remain later layers downstream from stable internal boundaries
-
----
-
-## Why v4 exists
-
-Roadmap v4 exists because the project completed `M11.9`, entered a governed post-M11 transition window, and needed the next forward direction to become explicit in the canonical roadmap itself.
-
-The completed destination-alignment blueprint already made the following future direction clear:
-
-- governed source and library expansion must become real
-- document/output capability must not remain a loose side-surface
-- resolver / registry must become explicit before broader retrieval and product expansion
-- AI must remain downstream from governed boundaries
-- UI/API must remain downstream adapter/product surfaces
-- cloud/deployment direction must come later, after stable internal boundaries exist
-
-That direction must now be represented in the roadmap as real canonical phase and milestone structure.
+This roadmap application does not perform cleanup, implementation work, PR/issue creation, live repository writing, or executable validation by itself.
 
 ---
 
-## Purpose
+## 1. Approval Basis and Change-Control Linkage
 
-This roadmap is the strategic direction for ASBP.
+Roadmap v5 exists because the project reached early Phase 9 productization-readiness assessment before the local integrated CQV product core was complete.
 
-It defines:
+The approved change-control direction is:
+
+`Roadmap v5 local integrated CQV product redirect.`
+
+The approved storage/disposition decision for the change-control record is:
+
+`docs/change_control/ROADMAP_CHANGE_CONTROL_2026-05-25_ROADMAP_V5_LOCAL_CQV_PRODUCT_REDIRECT.md`
+
+The approved change-control clarifications are binding for this roadmap:
+
+1. **Cleanup scope is all repository non-code documents.** After v5 is approved and applied, every non-code repository document is subject to inventory and disposition review. Code and tests are excluded unless a future approved work item explicitly reclassifies them.
+2. **Roadmap v5 must be granular and execution-ready.** It must not be a placeholder roadmap whose detailed milestone ladders are deferred until later. Drafting may be chunked for review control, but the approved v5 must consolidate the execution path into one canonical source.
+
+---
+
+## 2. Why v5 Exists
+
+Roadmap v4 correctly established that deterministic layers must precede AI, UI/API, cloud, deployment, and productization. It also correctly kept later Phase 7-9 work downstream from stable internal boundaries.
+
+However, execution later expanded Phase 7, Phase 8, and early Phase 9 through detailed addenda and reached `M25.3 — Commercial and packaging readiness assessment`. That early readiness probe showed that ASBP has a strong deterministic engine and governance foundation, but it is not yet a complete local integrated CQV product.
+
+The product core is incomplete in these areas:
+
+- governed CQV libraries
+- runtime-authoritative presets, selectors, task pools, profiles, calendars, planning basis, and mappings
+- standards source/citation/applicability authority usable by the product
+- complete product-ready document factory / document engine workflow, including rationale/logic, DCF intake, template selection, generation, rendering, lifecycle, and review/approval controls
+- retrieval/indexing only after authoritative sources exist and only where justified
+- AI assistance only above governed context, data, source, and output boundaries
+- local AI model/runtime strategy that can run with the app during controlled heavy-use testing where AI assistance is in scope
+- local usable workflow/UI sufficient for real user trials
+- local validation and user-trial/UAT evidence
+- later productization/SaaS re-entry evidence
+
+Roadmap v5 therefore redirects execution away from premature productization/SaaS readiness and toward a local integrated CQV product build path before any renewed productization or SaaS readiness work.
+
+---
+
+## 3. Purpose
+
+This roadmap defines:
 
 - phase order
 - milestone order
 - milestone intent
 - milestone boundaries
-- canonical checkpoint ladders inside milestones
-- allowed work families inside milestones
-- milestone exit criteria
-- gate policies that govern milestone-to-milestone transition
-- forward system-model direction where it materially affects later milestones
+- detailed checkpoint ladders
+- allowed and not-allowed work
+- milestone entry and exit criteria
+- validation and UAT gates
+- deferred-dependency placement
+- product-core completion gates
+- non-code document cleanup sequencing
+- productization/SaaS re-entry conditions
 
-It does not function as:
+This roadmap does **not** function as:
 
 - a live progress tracker
-- a diary
 - a session log
 - a repo evidence substitute
-- a giant implementation-spec encyclopedia for every local parameter
+- a code implementation specification
+- a cleanup execution package
+- a PR body
+- an issue tracker
+- a license/legal decision
+- a product launch authorization
+
+The tracker records current position. The repo proves implementation reality. The roadmap defines the intended execution ladder.
 
 ---
 
-## Canonical Planning Contract
+## 4. Canonical Authority Contract
 
-### 1) Direction source of truth
+### 4.1 Direction source of truth
 
-The roadmap is the source of truth for:
+After approval and repository application, `ROADMAP_CANONICAL.md` v5 is the single active roadmap authority for:
 
 - phase order
 - milestone order
-- milestone intent
-- milestone boundaries
-- canonical checkpoint order inside each milestone
-- allowed work inside each checkpoint
-- milestone exit criteria
-- gate policies that govern milestone-to-milestone transition
+- checkpoint order
+- roadmap-level scope boundaries
+- milestone entry and exit gates
+- product-core sequencing
+- validation and UAT gate expectations
+- later productization/SaaS re-entry conditions
 
-### 2) Implementation source of truth
+### 4.2 Implementation source of truth
 
-The repository `main` branch is the source of truth for:
+Repo reality is the source of truth for what actually exists:
 
-- what is actually implemented
-- what code exists now
-- what tests exist now
-- what helpers, commands, and contracts are live now
+- code
+- tests
+- package structure
+- commands
+- runtime behavior
+- validation evidence
+- UAT evidence
+- milestone closeout evidence
 
-### 3) Execution evidence source of truth
+The roadmap may define intended future behavior, but it does not prove implementation.
 
-The progress tracker is the source of truth for:
+### 4.3 Progress source of truth
 
+`PROGRESS_TRACKER.md` remains the short current-position pointer only.
+
+It may record:
+
+- current phase
+- current milestone
+- current approved checkpoint family
 - latest completed checkpoint
 - exact next unfinished checkpoint
-- latest explicitly recorded validation result
-- short current-state execution evidence
+- latest verified validation result
+- milestone UAT status
+- repo alignment status
+- relevant deferred-dependency gate status
 
-### 4) State-agnostic rule
+It does not override roadmap direction or repo implementation truth.
 
-The roadmap must remain state-agnostic.
+### 4.4 Architecture source of truth
 
-It must not contain:
+`ARCHITECTURE_GUARDRAILS.md` remains permanent architecture governance.
 
-- current milestone position claims
-- in-progress-now claims
-- latest completed checkpoint claims
-- exact next-session instructions tied to temporary repo state
-- temporary operating rules that are valid only for one current session window
+The following are binding unless changed by approved architecture governance:
 
-The roadmap may define the full checkpoint ladder.
-The tracker records where the project currently sits on that ladder.
+- CLI is an adapter only.
+- New domain behavior must attach through approved core/module boundaries.
+- State and persistence access must go through approved state boundary helpers/modules.
+- If future work requires bypassing those boundaries, implementation pauses for planning before coding.
 
-### 5) Conflict rule
+### 4.5 Deferred-dependency gate truth
 
-If roadmap, tracker, and repo disagree:
+`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active gate memory.
 
-1. roadmap decides intended direction
-2. repo decides actual implementation reality
-3. tracker must be corrected to reflect both
-4. if direction itself needs an exception or temporary overlay, use an addendum explicitly
+It must be checked when work touches:
 
-### 6) Checkpoint-ladder rule
+- productization
+- Phase 8 / Phase 9 / later product phases
+- API / external contract work and UI/API product-surface work
+- document generation/templates/output rendering
+- standards/citation/embedding/retrieval
+- governed library runtime promotion
+- presets/selectors/task pools/profiles/calendars/planning basis/mappings
+- model/provider integration
+- live AI runtime integration
+- deployment, pre-go-live, or operational-readiness work
 
-A session slice may only be created if it clearly maps to a declared roadmap checkpoint or an explicitly active addendum.
+The register does not create roadmap checkpoints by itself. Roadmap v5 places or carries DDR work into explicit milestones.
 
-Every milestone in this roadmap version defines a canonical checkpoint ladder.
-A checkpoint ladder may include:
+### 4.6 Historical evidence role
 
-- main checkpoints such as `M6.1`, `M6.2`, `M6.3`
-- sub-checkpoints such as `M5.6A`, `M5.6B`, `M5.6C`
-- terminal checkpoints such as:
-  - validation checkpoint
-  - milestone UAT checkpoint
-  - milestone closeout
+Completed milestone evidence, UAT records, closeout records, decision gates, addenda, and supporting artifacts preserve traceability.
 
-### 7) Local decision policy
-
-The roadmap defines strategic direction, milestone order, checkpoint order, layer intent, and allowed work.
-
-It does not need to pre-decide every minor implementation parameter in advance.
-
-If a checkpoint contains local design choices that materially affect behavior, user-facing flexibility, regional assumptions, defaults, or contract shape, those choices must be discussed and fixed immediately before implementation of that checkpoint.
-
-Examples may include:
-
-- calendar defaults
-- weekend definition
-- user-amendable planning parameters
-- local default policies
-- bounded contract decisions inside an already-approved checkpoint
-
-Rule:
-
-- if the choice stays inside the checkpoint boundary, do not expand the roadmap unnecessarily
-- discuss the local decision first
-- then implement the checkpoint with that decision made explicitly
-- if the choice changes milestone direction or checkpoint meaning, amend the roadmap instead
+They do not govern future execution unless this roadmap or another approved active authority explicitly says so.
 
 ---
 
-## Addendum / Overlay Policy
+## 5. Addendum and Change-Control Policy
 
-Addenda are temporary authorized overlays on top of the canonical roadmap.
+### 5.1 No-active-addenda default
 
-They are allowed only when a bounded corrective or architectural situation needs explicit temporary governance.
+Roadmap v5 is intended to remove the need for active roadmap addenda for the current redirect path.
 
-Every roadmap addendum must include:
+After v5 approval and application:
 
-- purpose
-- authority relationship to the canonical roadmap
-- exact scope
-- allowed work
-- not-allowed work
-- locked checkpoint if applicable
-- exit condition
-- explicit status
+- `ROADMAP_CANONICAL.md` v5 is the only active roadmap authority.
+- Addenda may remain as historical evidence only.
+- No new active roadmap addendum should be created by default.
+- Temporary overlays are allowed only through explicit change control and only for bounded exceptional situations.
 
-Allowed statuses:
+### 5.2 Roadmap change-control rule
 
-- `ACTIVE`
-- `COMPLETED_HISTORICAL`
-- `ARCHIVED`
+Any future roadmap-direction change must go through change control when it affects:
 
-Rules:
+- phase order
+- milestone order
+- checkpoint order
+- product-core gates
+- validation/UAT gate policy
+- deferred-dependency closure or reclassification
+- productization/SaaS re-entry conditions
+- architecture governance
+- cleanup authority for non-code documents
 
-- only addenda explicitly marked `ACTIVE` may govern execution
-- addenda marked `COMPLETED_HISTORICAL` may remain in the repo for traceability, but they must not govern future sessions
-- addenda that are no longer needed may be archived or removed
-- if a historical addendum remains in the repo, its completed status must be obvious from the file itself or its title
+Minimum roadmap change-control content:
 
----
+- change title and ID
+- reason for change
+- affected roadmap areas
+- affected tracker state
+- affected DDRs
+- affected completed milestone interpretation
+- impact on validation/UAT
+- impact on cleanup and evidence retention
+- risks if changed
+- risks if not changed
+- explicit approval state
+- exact application plan
 
-## Delivery Style
+### 5.3 Post-v5 cleanup gate
 
-- Daily cadence when possible
-- 3–4 hours per day when possible
-- Balanced but structured
-- Build-first learning
-- English-only working material for project artifacts
-- One recommended path at a time
+Cleanup must not happen before v5 approval and application.
 
----
-
-## Roadmap Design Principles
-
-1. Deterministic layers come before AI-assisted layers.
-2. Useful core data models come before orchestration.
-3. Binding context comes before planning.
-4. Planning comes before export/report/document generation.
-5. Work structures come before AI writing contracts.
-6. Validation discipline is preserved at every stage.
-7. The roadmap defines structure and checkpoint order, not live session state.
-8. The tracker records execution evidence; it does not decide strategic direction.
-9. The repo proves implementation reality; it does not replace the roadmap.
-10. Every milestone defines explicit checkpoints and exit criteria.
-11. Future UI and documentation paths may be reserved early, but they must not distort the active build order.
-12. From Milestone 4 onward, milestone transition requires both technical validation and milestone-level UAT evidence.
-13. Work Package is the canonical parent-facing unit from the deterministic CQV-system perspective.
-14. Preset/binding direction, standards bundles, and scope/intent selector logic are roadmap-level concerns, not hidden implementation assumptions.
-15. The system is timestamp-aware by design even before full planning implementation is complete.
-16. None of the deterministic foundation layers cancels the broader AI / UI / production-grade SaaS direction.
-17. Authoritative work-definition sources must be explicitly separated from instantiated execution records.
-18. Preset-driven flow may resolve work from source libraries before execution records are instantiated.
-19. Persisted tasks are execution-state records and must not be treated as the only possible upstream source-of-work model.
-20. Collections govern workflow-state handling over instantiated tasks.
-21. Planning is downstream from committed instantiated tasks, even when the original source-of-work came from task pools or selector-bound libraries.
-22. The manual-first task path remains valid as a lower-automation fallback and must stay compatible with the deterministic execution core.
+After v5 is applied, a dedicated non-code document cleanup lane must inventory and classify every non-code document in the repository before any relocation, archive, supersession, or deletion occurs.
 
 ---
 
-## UAT Gate Policy (active from Milestone 4 onward)
+## 6. Roadmap Design Principles
 
-For Milestone 4 and every milestone after it, the required transition sequence is:
-
-1. implementation checkpoints complete for the milestone boundary being closed
-2. internal validation / tests pass
-3. milestone UAT checkpoint complete
-4. milestone closeout complete
-5. only then may the next milestone begin
-
-Clarification:
-
-- validation / tests confirm technical correctness
-- UAT confirms milestone-level acceptance against intended user-facing or operator-facing behavior
-- historical milestones before Milestone 4 do not require retrospective UAT backfill to preserve transition validity
+1. Deterministic foundations come before AI assistance.
+2. Governed source authority comes before retrieval and productized output.
+3. Runtime-authoritative libraries come before product behavior that depends on them.
+4. Standards source/citation/applicability authority comes before standards-backed product claims.
+5. Product-ready document output requires a complete document factory / document engine workflow, not templates alone.
+6. DCF intake, document logic/rationale, template selection, controlled generation, rendering, lifecycle, and review/approval controls must be governed before product-ready document claims.
+7. Retrieval is a helper, not source authority.
+8. AI assistance operates only above governed context, data, source, and output boundaries.
+9. Local AI model/runtime testing must be explicitly scoped, app-coupled, and controlled before heavy-use AI trial claims.
+10. UI/API are downstream product surfaces, not execution truth.
+11. API and external contracts must remain downstream of approved core/service/runtime boundaries.
+12. Cloud/deployment/productization are downstream of a working local product, not substitutes for one.
+13. Validation and UAT evidence must support milestone closure.
+14. Completed milestones remain closed for their approved scope unless explicitly reopened by change control.
+15. Governance/model closure must never be mistaken for executable/product capability closure.
+16. Cleanup preserves traceability before it improves tidiness.
+17. The local integrated CQV product must be usable locally before productization/SaaS resumes.
+18. Productization re-entry requires product-core completion, validation, user trial/UAT, and owner acceptance.
 
 ---
 
-## UAT Evidence Policy
+## 7. Validation and UAT Policy
 
-From Milestone 4 onward, minimal UAT evidence must be stored in the repository under:
+### 7.1 Validation policy
 
-`docs/UAT/`
+Code-affecting work requires:
 
-The roadmap does not require full protocol packages by default.
-Minimal repo evidence is sufficient unless a richer artifact is intentionally chosen.
+`python -m pytest -q`
 
-Minimum evidence expectation per milestone:
+Do not claim tests passed unless they were actually run and passed in the current environment.
+
+Docs-only work does not require pytest unless it changes:
+
+- executable commands
+- imports
+- package behavior claims
+- code examples that must be verified
+- validation truth
+- runtime contracts
+- CLI behavior
+
+Docs-only governance work still requires document consistency review before approval.
+
+### 7.2 UAT policy
+
+From Milestone 4 onward, milestone transition requires UAT or owner acceptance evidence appropriate to the milestone.
+
+Minimum UAT evidence:
 
 - milestone identifier
-- short scope / coverage statement
-- acceptance decision (`pass`, `conditional pass`, or `fail`)
-- short rationale
+- scope/coverage statement
+- acceptance decision
+- rationale
 - date
-- reference to the latest supporting validation result when applicable
-- signer / reviewer / owner field if used in the project workflow
+- reference to validation evidence when applicable
+- owner/reviewer field when used
 
-Recommended file style:
-
-- one Markdown summary or report per milestone, for example:
-  - `docs/UAT/M4_UAT_Report.md`
-  - `docs/UAT/M5_UAT_REPORT.md`
-
-Rules:
-
-- the tracker may reference UAT status, but the roadmap does not act as the evidence record
-- full UAT packages may be stored externally if desired
-- milestone transition is governed by the existence of adequate UAT evidence, not by the roadmap declaring a live current state
+For the local integrated CQV product path, UAT must include real local workflow trial evidence before productization/SaaS re-entry.
 
 ---
 
-## Phase 1 — Foundations
+## 8. Phase Summary
 
-### Milestone 1 — State CLI Tool v1
+| Phase | Milestones | Status / v5 treatment |
+|---|---|---|
+| Phase 1 — Foundations | M1-M2 | Historical/completed foundation; retained for traceability |
+| Phase 2 — Deterministic System Modeling | M3-M7 | Historical/completed deterministic model; retained for traceability |
+| Phase 3 — AI Runtime Architecture | M8-M10 | Historical/completed runtime/output boundary foundation; retained for traceability |
+| Phase 4 — Professionalization | M11 | Historical/completed professionalization boundary; retained for traceability |
+| Phase 5 — Core Engine Completion | M12-M15 | Historical/completed core-engine/document/export/resolver/library framework; reinterpreted where product capability remains incomplete |
+| Phase 6 — AI Layer | M16-M18 | Historical/completed AI boundary/evaluation/advisory governance; not live/product AI provider integration |
+| Phase 7 — UI and API Layer | M19-M21 | Historical/completed external-surface governance; not complete local usable product UI |
+| Phase 8 — Cloud / Compute Layer | M22-M24 | Historical/completed cloud/deployment/operational boundary planning; not product deployment readiness |
+| Phase 9 — Roadmap Reset and Local Integrated CQV Product Core | M25-M34 | Active future v5 path after approval/application |
+| Phase 10 — Productization / SaaS Re-entry | M35-M38 | Deferred until local product core is validated, trialed, and accepted |
 
-**Goal:** Build a real package-based CLI tool that can evolve into a deterministic system backbone.
+---
 
-#### Canonical checkpoint ladder
+## 9. Historical Foundation Roadmap — Preserved and Not Reopened by Default
+
+This section preserves the completed foundation roadmap at the canonical level without reopening closed milestones.
+
+Detailed historical evidence remains in milestone documents, UAT records, closeout notes, and historical addenda until the comprehensive non-code document cleanup lane classifies them.
+
+### Phase 1 — Foundations
+
+#### Milestone 1 — State CLI Tool v1
+
+Goal: Build a package-based CLI tool capable of evolving into a deterministic system backbone.
+
+Checkpoint ladder:
 
 - `M1.1` Package structure foundation
 - `M1.2` CLI entrypoint foundation
@@ -312,20 +347,13 @@ Rules:
 - `M1.9` In-milestone cleanup and coherence
 - `M1.10` Milestone closeout
 
-#### Exit criteria
+Exit interpretation: package structure, state init/show/update, schema validation, and baseline tests were foundation concerns.
 
-- package-based CLI structure is stable
-- state file init/show/update paths exist
-- schema validation exists
-- baseline tests exist and pass
+#### Milestone 2 — Mini Deterministic Engine
 
----
+Goal: Build a small rule-based task engine without LLM dependency.
 
-### Milestone 2 — Mini Deterministic Engine
-
-**Goal:** Build a small rule-based task engine without LLM dependency.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M2.1` Task entity baseline
 - `M2.2` Deterministic add/list/show surfaces
@@ -338,22 +366,15 @@ Rules:
 - `M2.9` In-milestone cleanup and coherence
 - `M2.10` Milestone closeout
 
-#### Exit criteria
+Exit interpretation: deterministic task mutations, dependency validation, filtering, ordering, and corruption-prevention were foundation concerns.
 
-- deterministic task mutations are stable
-- dependency validation is stable
-- filtering and ordering are deterministic
-- invalid writes are rejected without corrupting state
+### Phase 2 — Deterministic System Modeling
 
----
+#### Milestone 3 — Task Entity Enrichment
 
-## Phase 2 — Deterministic System Modeling
+Goal: Upgrade Task from a minimal record into a useful system entity.
 
-### Milestone 3 — Task Entity Enrichment
-
-**Goal:** Upgrade Task from a minimal operational record into a useful system entity.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M3.1` Title field introduction
 - `M3.2` Description preservation hardening
@@ -366,20 +387,11 @@ Rules:
 - `M3.9` Read-surface consistency and cleanup
 - `M3.10` Milestone closeout
 
-#### Exit criteria
+#### Milestone 4 — Indexing Layer
 
-- enriched fields exist on the model
-- enriched fields are accepted through controlled CLI paths
-- backward compatibility is preserved for older persisted task records
-- validation and save discipline remain intact
+Goal: Introduce explicit indexing surfaces so the system can reference and organize entities deterministically.
 
----
-
-### Milestone 4 — Indexing Layer
-
-**Goal:** Introduce explicit indexing surfaces so the system can reference and organize entities deterministically.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M4.A` Secondary reference foundation
 - `M4.B` Reference resolution expansion
@@ -392,95 +404,11 @@ Rules:
 - `M4.I` Milestone UAT checkpoint
 - `M4.J` Milestone closeout
 
-#### M4.A — Secondary reference foundation
+#### Milestone 5 — Work Package Model
 
-Allowed work:
+Goal: Introduce Work Package as a first-class deterministic entity.
 
-- secondary key introduction
-- normalization rules
-- exact identity vs secondary reference separation
-- read lookup fallback from `task_id` to normalized `task_key`
-
-#### M4.B — Reference resolution expansion
-
-Allowed work:
-
-- extend task reference resolution into existing mutation paths
-- extend reference resolution into dependency inputs
-- keep persisted storage identity on `task_id`
-
-#### M4.C — Safety and validation controls
-
-Allowed work:
-
-- ambiguous reference detection
-- reserved namespace protection
-- persisted-load validation for indexing state
-- deterministic no-guess failure behavior
-
-#### M4.D — Secondary key lifecycle controls
-
-Allowed work:
-
-- set/update secondary key for existing tasks
-- clear/remove secondary key for existing tasks
-- preserve current lookup behavior after mutation or clear
-
-#### M4.E — Index-aware list and filter surfaces
-
-Allowed work:
-
-- list visibility of `task_key`
-- presence filters
-- exact-key filters
-- exact task-reference filters
-- dependency/dependent reference filters
-- deterministic AND logic across filters
-
-#### M4.F — Read-surface consolidation
-
-Allowed work:
-
-- shared helper consolidation for list filters
-- shared helper consolidation for reference views
-- shared helper consolidation for task-read payload preparation
-- shared helper consolidation for reference-visibility option preparation
-- internal refactors that preserve existing CLI contracts exactly
-
-#### M4.G — Milestone closeout and anti-fragmentation
-
-Allowed work:
-
-- consolidate indexing helper architecture
-- remove avoidable duplication inside read/list/indexing flows
-- verify milestone-level coherence
-- define what belongs to Milestone 4 versus what must wait for Milestone 5
-- freeze the indexing contract for downstream entity expansion
-
-#### Not allowed inside Milestone 4
-
-- Work Package entity introduction
-- task-to-work-package association rules
-- collection structures
-- orchestration behaviors outside indexing/read surfaces
-- AI runtime behaviors
-- UI implementation
-
-#### Exit criteria
-
-- identity vs reference separation is stable
-- all current task read/mutation/filter surfaces follow one deterministic reference contract
-- ambiguous and invalid reference states fail deterministically
-- no critical indexing behavior depends on duplicated helper logic scattered across CLI paths
-- the boundary between Indexing Layer and Work Package Model is explicitly frozen
-
----
-
-### Milestone 5 — Work Package Model
-
-**Goal:** Introduce Work Package as a first-class deterministic entity that can hold and organize work.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M5.1` Work package identity foundation
 - `M5.2` Work package schema foundation
@@ -497,141 +425,11 @@ Allowed work:
 - `M5.9` Milestone UAT checkpoint
 - `M5.10` Milestone closeout
 
-#### Allowed work mapping
+#### Milestone 6 — Binding Context and Task Collections
 
-##### `M5.1` — Work package identity foundation
+Goal: Introduce deterministic selector context and bound collections.
 
-Allowed work:
-
-- introduce deterministic WP identifier model
-- define identity uniqueness rules
-- define canonical persisted identity field
-- preserve separation from task indexing identity
-
-##### `M5.2` — Work package schema foundation
-
-Allowed work:
-
-- introduce `WorkPackageModel`
-- define required and optional WP fields
-- define schema-level validation rules
-- define backward-compatible defaults if needed
-
-##### `M5.3` — Work package persistence and validated load/save
-
-Allowed work:
-
-- introduce WP persistence store
-- validated load/save paths
-- persisted structure normalization
-- error handling for missing/invalid WP persistence state
-
-##### `M5.4A` — Work package create surface
-
-Allowed work:
-
-- create CLI/API surface for WP creation
-- deterministic creation rules
-- duplicate-identity rejection
-- creation response contract
-
-##### `M5.4B` — Work package read surface
-
-Allowed work:
-
-- single-WP read/show surface
-- deterministic read failure behavior
-- canonical display payload rules
-
-##### `M5.4C` — Work package list / visibility surface
-
-Allowed work:
-
-- WP list surface
-- deterministic list ordering
-- visibility of key WP fields
-- optional visibility refinements that do not change milestone boundary
-
-##### `M5.5` — Work package update surface
-
-Allowed work:
-
-- update allowed mutable WP fields
-- reject immutable identity mutation unless explicitly supported
-- deterministic update validation
-- update response contract
-
-##### `M5.6A` — Associate task to work package
-
-Allowed work:
-
-- associate task to WP
-- deterministic attach behavior
-- reject invalid attaches deterministically
-
-##### `M5.6B` — Initial membership rules
-
-Allowed work:
-
-- define initial task membership constraints
-- define allowed one-to-one or one-to-many membership policy if applicable
-- define baseline reassignment expectations before detach/reassignment hardening
-- keep membership rules deterministic and explicit
-
-##### `M5.6C` — Task-to-work-package validation and failure behavior
-
-Allowed work:
-
-- membership validation
-- duplicate or conflicting membership rejection
-- dangling-reference prevention
-- persisted-load validation for task/WP relationship state
-
-##### `M5.7` — Work package read/write surface consolidation
-
-Allowed work:
-
-- reduce avoidable duplication inside WP handlers/helpers
-- preserve existing contracts
-- improve internal coherence without expanding milestone boundary
-
-##### `M5.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M5.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 5 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M5.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M5 boundary
-- confirm what belongs to M6 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- WP exists as a validated first-class entity
-- tasks can be associated to WP deterministically
-- WP behavior is clearly separate from task indexing behavior
-
----
-
-### Milestone 6 — Binding Context and Task Collections
-
-**Goal:** Introduce deterministic selector context and bound collections so Work Package-centered CQV flow can move beyond isolated task attachment.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M6.1` Collection identity foundation
 - `M6.2` Collection schema foundation
@@ -651,189 +449,11 @@ Allowed work:
 - `M6.9` Milestone UAT checkpoint
 - `M6.10` Milestone closeout
 
-#### Design direction for Milestone 6
+#### Milestone 7 — Planning Layer
 
-Milestone 6 should be interpreted broadly, not as simple passive task grouping only.
+Goal: Introduce deterministic planning above committed task collections and before output generation.
 
-The collection model should support at least these conceptual states:
-
-- source task pool
-- staged task selection
-- committed task selection
-- iterative refinement after commitment when needed
-
-Selector/binding direction in this milestone should make explicit that downstream deterministic bindings are resolved from context, not from Work Package type alone.
-
-Clarification for v3:
-
-The collection model does not replace authoritative task-definition libraries.
-
-When preset-driven flow is used, selector context may resolve authoritative work-definition sources before execution tasks are instantiated.
-
-Collections remain the deterministic workflow-state layer over instantiated task records after source resolution and instantiation occur.
-
-Manual task entry remains valid in Milestone 6 as a direct execution-record path.
-
-It does not replace preset-driven source resolution, but it remains a legitimate lower-automation operating mode.
-
-#### Allowed work mapping
-
-##### `M6.1` — Collection identity foundation
-
-Allowed work:
-
-- introduce deterministic collection identifier model
-- define identity uniqueness rules
-- define canonical persisted identity field
-- preserve separation from task and work-package identity
-
-##### `M6.2` — Collection schema foundation
-
-Allowed work:
-
-- introduce collection model
-- define required and optional collection fields
-- define schema-level validation rules
-- define defaults if needed
-
-##### `M6.3` — Collection persistence and validated load/save
-
-Allowed work:
-
-- introduce collection persistence store
-- validated load/save paths
-- normalized persisted structure
-- missing/invalid persistence-state handling
-
-##### `M6.4A` — Collection create surface
-
-Allowed work:
-
-- create CLI/API surface for collection creation
-- duplicate-identity rejection
-- deterministic creation response contract
-
-##### `M6.4B` — Collection read surface
-
-Allowed work:
-
-- single-collection read/show surface
-- deterministic read failure behavior
-- canonical display payload rules
-
-##### `M6.4C` — Collection list / visibility surface
-
-Allowed work:
-
-- collection list surface
-- deterministic list ordering
-- key field visibility
-- bounded visibility refinements inside milestone scope
-
-##### `M6.5` — Collection update surface
-
-Allowed work:
-
-- update allowed mutable collection fields
-- deterministic update validation
-- reject disallowed identity mutation unless explicitly supported
-
-##### `M6.6A` — Task-to-collection membership attach rules
-
-Allowed work:
-
-- attach task to collection
-- deterministic attach behavior
-- reject invalid attaches deterministically
-
-##### `M6.6B` — Initial collection membership rules
-
-Allowed work:
-
-- define baseline collection membership constraints
-- define staged vs committed membership expectations where applicable
-- define baseline reassignment or removal expectations before hardening
-
-##### `M6.6C` — Collection membership validation and failure behavior
-
-Allowed work:
-
-- duplicate membership rejection
-- conflicting membership-state rejection where applicable
-- dangling-reference prevention
-- persisted-load validation for task/collection relationship state
-
-##### `M6.7A` — Selector context foundation
-
-Allowed work:
-
-- define selector context fields required for deterministic task-pool selection
-- clarify that selector inputs go beyond Work Package type alone
-- preserve deterministic boundaries between selector context and later planning behavior
-
-##### `M6.7B` — Preset-first binding direction
-
-Allowed work:
-
-- define preset-first deterministic entry as the preferred future path
-- clarify that manual Work Package creation is a lower-automation variant of the same overall flow
-- define preset as a binding seed rather than only a template
-
-##### `M6.7C` — Standards-bundle binding direction
-
-Allowed work:
-
-- define standards bundle as part of deterministic bound context
-- define CQV Core as default baseline bundle
-- define Cleanroom/HVAC and Automation bundles as add-ons when relevant
-- keep bundle binding direction separate from final documentation generation
-
-##### `M6.7D` — Scope / intent selector direction
-
-Allowed work:
-
-- define scope / intent as a first-class selector input
-- clarify that task determination depends on why the object is being touched, not only what the object is
-- preserve deterministic selector behavior across scopes such as end-to-end, qualification-only, commissioning-only, periodic verification, and post-change scenarios
-
-##### `M6.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M6.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 6 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M6.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M6 boundary
-- confirm what belongs to M7 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- collection entities are explicit
-- selector and binding direction is explicit
-- membership rules are deterministic
-- grouping behavior is validated and non-ambiguous
-
----
-
-### Milestone 7 — Planning Layer
-
-**Goal:** Introduce explicit deterministic planning behavior above committed task collections and before export/document generation.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M7.1` Planning entity foundation
 - `M7.2` Planning basis attachment rules
@@ -848,170 +468,13 @@ Allowed work:
 - `M7.9` Milestone UAT checkpoint
 - `M7.10` Milestone closeout
 
-#### Design direction for Milestone 7
+### Phase 3 — AI Runtime Architecture
 
-Planning is a first-class future layer.
-It sits after committed task selection and before export / reporting / documentation.
+#### Milestone 8 — Multi-Entity Coordination
 
-Planning should use:
+Goal: Stabilize deterministic relationships across sources, Work Packages, tasks, collections, planning, and downstream layers.
 
-- user-provided start date
-- durations from planning basis
-- dependencies from task pool / committed task set
-- timestamp-aware sequencing behavior
-
-The roadmap does not pre-decide all local calendar parameters in advance.
-Local planning decisions such as weekend defaults or user-amendable weekend policies should be discussed immediately before the relevant checkpoint implementation under the local decision policy.
-
-Clarification for v3:
-
-Planning consumes committed instantiated task records.
-
-It must not plan directly from task-pool library definitions or other upstream source records without instantiation into the deterministic execution state first.
-
-#### Allowed work mapping
-
-##### `M7.1` — Planning entity foundation
-
-Allowed work:
-
-- introduce planning entity/model foundation
-- define planning identity/state concepts
-- preserve separation from task, Work Package, and collection identity
-
-##### `M7.2` — Planning basis attachment rules
-
-Allowed work:
-
-- define how planning basis attaches to bound context
-- define duration-source expectations
-- preserve deterministic separation between planning basis and generated plan state
-
-##### `M7.3` — Timestamp-aware schedule foundation
-
-Allowed work:
-
-- define timestamp-aware planning direction
-- define start-date semantics
-- define derived sequencing/finish expectations at a foundational level
-
-##### `M7.4` — Calendar model introduction
-
-Allowed work:
-
-- define calendar model expectations for planning
-- define workday/workweek/workmonth model boundaries
-- define how local calendar decisions are handled without bloating the roadmap
-
-##### `M7.5A` — Plan generation baseline
-
-Allowed work:
-
-- generate baseline plan from committed tasks + planning basis + start date
-- preserve deterministic handling of durations and dependencies
-- prevent hidden free-form planning behavior
-
-##### `M7.5B` — Plan review / visibility surfaces
-
-Allowed work:
-
-- show plan state and derived schedule outputs
-- define bounded review surfaces
-- preserve separation between draft/generated plan and committed plan
-
-##### `M7.5C` — Plan commit behavior
-
-Allowed work:
-
-- commit accepted plan state
-- define deterministic commit expectations
-- define post-commit planning state boundaries
-
-##### `M7.6` — Planning validation and failure behavior
-
-Allowed work:
-
-- reject invalid plan-generation states deterministically
-- define bounded failure behavior
-- preserve no-guess handling of inconsistent planning inputs
-
-##### `M7.7` — Planning surface consolidation
-
-Allowed work:
-
-- reduce avoidable duplication across planning handlers/helpers
-- preserve current contracts
-- improve internal coherence without scope expansion
-
-##### `M7.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M7.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 7 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M7.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M7 boundary
-- confirm what belongs to M8 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- planning is explicit as a system layer
-- timestamp-aware planning behavior is introduced deterministically
-- generated and committed plan boundaries are clear
-
----
-
-## Phase 3 — AI Runtime Architecture
-
-### Milestone 8 — Multi-Entity Coordination
-
-**Goal:** Stabilize deterministic relationships across authoritative work sources, Work Package context, instantiated task records, collections, planning context, and future downstream layers before introducing AI runtime behavior.
-
-#### Design direction for Milestone 8
-
-Milestone 8 is where the roadmap must make the source-of-work model fully explicit.
-
-The canonical forward model is:
-
-- user-facing preset selection
-- selector-context resolution
-- authoritative source lookup such as task pool / profile / calendar / standards bundle
-- staged selection where applicable
-- task instantiation into persisted deterministic execution state
-- workflow-state handling over instantiated tasks through collections
-- planning from committed instantiated tasks
-- later downstream runtime and output layers
-
-This milestone does not require source libraries to share the same persisted representation as execution tasks.
-
-It requires only that source authority, instantiation rules, and downstream handoff boundaries are explicit and deterministic.
-
-This milestone must preserve deterministic boundaries between:
-
-- source definition
-- instantiated execution record
-- ownership
-- membership
-- reference
-- derived planning artifact
-
-This milestone must not collapse those layers into one ambiguous task model.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M8.1` Source-of-work and cross-entity relationship foundation
 - `M8.2` Work Package ↔ collection relationship normalization
@@ -1026,129 +489,11 @@ This milestone must not collapse those layers into one ambiguous task model.
 - `M8.9` Milestone UAT checkpoint
 - `M8.10` Milestone closeout
 
-#### Allowed work mapping
+#### Milestone 9 — Hybrid Runtime
 
-##### `M8.1` — Source-of-work and cross-entity relationship foundation
+Goal: Combine deterministic core with a controlled AI writing layer.
 
-Allowed work:
-
-- define the canonical source-of-work path for preset-driven deterministic flow
-- define preset and selector context as upstream binding seeds where applicable
-- define task pools or equivalent bound libraries as authoritative work-definition sources where applicable
-- define persisted `tasks` as instantiated execution records inside system state
-- define the deterministic boundary between source definition and instantiated execution record
-- define the manual-first fallback path as direct task instantiation without prior library resolution
-- define ownership vs membership vs reference distinctions across Work Package, task, collection, and planning layers
-- define how staged selection relates to later instantiated task state
-- define how committed instantiated task state becomes the valid planning input boundary
-- preserve deterministic identity boundaries across source records, instantiated tasks, collections, and plans
-
-##### `M8.2` — Work Package ↔ collection relationship normalization
-
-Allowed work:
-
-- normalize Work Package / collection relationship expectations
-- remove ambiguous relationship states
-- define canonical persisted relationship rules
-
-##### `M8.3` — Task ↔ collection relationship normalization
-
-Allowed work:
-
-- normalize task/collection relationship expectations
-- preserve deterministic grouping rules
-- define canonical persisted relationship rules
-
-##### `M8.4` — Binding-context consistency controls
-
-Allowed work:
-
-- ensure selector, standards bundle, calendar, and planning-basis context remain coherent
-- reject mixed ambiguous bound states
-- preserve deterministic relation between bound context and downstream planning
-
-##### `M8.5A` — Cross-entity read rules
-
-Allowed work:
-
-- define deterministic cross-entity read surfaces
-- define canonical read payload expectations
-- reject ambiguous reads deterministically
-
-##### `M8.5B` — Cross-entity update rules
-
-Allowed work:
-
-- define deterministic cross-entity mutation/update behavior
-- preserve safe write ordering
-- reject invalid cross-entity updates deterministically
-
-##### `M8.5C` — Cross-entity validation and failure behavior
-
-Allowed work:
-
-- relationship validation before save
-- dangling or conflicting reference rejection
-- persisted-load validation for cross-entity state
-- deterministic no-guess failure behavior
-
-##### `M8.6` — Minimal orchestration without LLM dependency
-
-Allowed work:
-
-- minimal orchestration rules that remain deterministic
-- no AI runtime behavior
-- no free-form agentic expansion
-
-##### `M8.7` — Cross-entity surface consolidation
-
-Allowed work:
-
-- reduce avoidable duplication across cross-entity handlers/helpers
-- preserve current contracts
-- improve internal coherence without scope expansion
-
-##### `M8.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M8.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 8 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M8.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M8 boundary
-- confirm what belongs to M9 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- the authoritative source-of-work model is explicit
-- the distinction between source definitions and instantiated execution records is explicit
-- cross-entity contracts are frozen
-- relationship validation exists
-- binding-context consistency is stable
-- planning input boundaries are explicit and deterministic
-- the lower-automation manual path remains compatible with the deterministic execution core
-
----
-
-### Milestone 9 — Hybrid Runtime
-
-**Goal:** Combine deterministic core with a controlled AI writing layer.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M9.1` Runtime boundary definition
 - `M9.2` Prompt contract foundation
@@ -1163,117 +508,11 @@ Allowed work:
 - `M9.9` Milestone UAT checkpoint
 - `M9.10` Milestone closeout
 
-#### Allowed work mapping
+#### Milestone 10 — Runtime-Orchestrated Outputs
 
-##### `M9.1` — Runtime boundary definition
+Goal: Generate useful outputs from deterministic state without collapsing system discipline.
 
-Allowed work:
-
-- define deterministic core vs LLM boundary
-- define what the model may and may not decide
-- preserve deterministic logic outside the model
-
-##### `M9.2` — Prompt contract foundation
-
-Allowed work:
-
-- define bounded prompt contracts
-- define required inputs and expected outputs
-- define prohibited free-form drift at the runtime boundary
-
-##### `M9.3` — Deterministic-to-LLM handoff structure
-
-Allowed work:
-
-- structure validated deterministic inputs for generation
-- preserve traceable handoff discipline
-- keep structured facts separate from prose-generation instructions
-
-##### `M9.4` — Validation loop foundation
-
-Allowed work:
-
-- validate generated output before acceptance
-- reject malformed or contract-breaking output
-- preserve deterministic acceptance rules
-
-##### `M9.5` — Retry / fail behavior rules
-
-Allowed work:
-
-- define bounded retry behavior
-- define fail-closed behavior where appropriate
-- define deterministic fallback expectations
-
-##### `M9.6A` — Controlled generation surface
-
-Allowed work:
-
-- introduce bounded generation surfaces
-- keep generation scope explicit
-- prevent unbounded model-led behavior
-
-##### `M9.6B` — Output acceptance rules
-
-Allowed work:
-
-- define acceptance checks for generated output
-- separate accepted output from rejected output paths
-- preserve system facts vs prose separation
-
-##### `M9.6C` — Failure recovery and retry discipline
-
-Allowed work:
-
-- define recovery behavior after validation failure
-- define retry limits and retry structure
-- preserve deterministic handling of repeated failure
-
-##### `M9.7` — Runtime surface consolidation
-
-Allowed work:
-
-- reduce avoidable duplication inside runtime handlers/helpers
-- preserve existing generation contracts
-- improve internal coherence without milestone expansion
-
-##### `M9.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M9.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 9 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M9.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M9 boundary
-- confirm what belongs to M10 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- deterministic core and AI writing paths are cleanly separated
-- bounded generation contracts exist
-- validation loop exists before accepting AI output
-
----
-
-### Milestone 10 — Runtime-Orchestrated Outputs
-
-**Goal:** Use the hybrid runtime to generate useful outputs from deterministic state without collapsing system discipline.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M10.1` Output target definition
 - `M10.2` Output contract foundation
@@ -1288,119 +527,13 @@ Allowed work:
 - `M10.9` Milestone UAT checkpoint
 - `M10.10` Milestone closeout
 
-#### Allowed work mapping
+### Phase 4 — Professionalization
 
-##### `M10.1` — Output target definition
+#### Milestone 11 — Production-Grade Micro AI System
 
-Allowed work:
+Goal: Build a small but serious end-to-end AI system.
 
-- define bounded output targets
-- define output families within milestone scope
-- keep target boundaries explicit
-
-##### `M10.2` — Output contract foundation
-
-Allowed work:
-
-- define required output contract fields
-- define acceptance shape per output family
-- define prohibited contract drift
-
-##### `M10.3` — Deterministic input-to-output mapping
-
-Allowed work:
-
-- define controlled mapping from validated state to output generation
-- preserve traceable generation flow
-- prevent ambiguous source-of-truth blending
-
-##### `M10.4` — Validation before acceptance
-
-Allowed work:
-
-- validate generated outputs before acceptance
-- reject contract-breaking outputs deterministically
-- preserve safe acceptance discipline
-
-##### `M10.5` — Regeneration / retry structure
-
-Allowed work:
-
-- define regeneration behavior
-- define bounded retry structure
-- preserve deterministic retry rules
-
-##### `M10.6A` — Output family expansion
-
-Allowed work:
-
-- expand bounded output families inside the milestone boundary
-- preserve explicit target definitions
-- avoid unbounded output sprawl
-
-##### `M10.6B` — Output consistency controls
-
-Allowed work:
-
-- preserve consistency across output families
-- align output formatting/contract behavior where applicable
-- reject internally inconsistent output states deterministically
-
-##### `M10.6C` — Output failure handling
-
-Allowed work:
-
-- define deterministic handling of output-generation failures
-- preserve clear accepted vs rejected vs retry-needed states
-- prevent silent bad-output acceptance
-
-##### `M10.7` — Runtime-output consolidation
-
-Allowed work:
-
-- reduce avoidable duplication inside output-generation handlers/helpers
-- preserve current contracts
-- improve internal coherence without scope expansion
-
-##### `M10.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M10.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 10 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M10.10` — Milestone closeout
-
-Allowed work:
-
-- freeze M10 boundary
-- confirm what belongs to M11 and beyond
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- generation targets are explicit
-- output validation exists
-- runtime preserves system facts vs prose separation
-
----
-
-## Phase 4 — Professionalization
-
-### Milestone 11 — Production-Grade Micro AI System
-
-**Goal:** Build a small but serious end-to-end AI system.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M11.1` Production structure baseline
 - `M11.2` Evaluation and regression baseline
@@ -1414,142 +547,13 @@ Allowed work:
 - `M11.8` Milestone UAT checkpoint
 - `M11.9` Milestone closeout
 
-#### Allowed work mapping
+### Phase 5 — Core Engine Completion
 
-##### `M11.1` — Production structure baseline
+Interpretation in v5: Phase 5 created strong governed engine boundaries. It does not prove every local CQV product library, template, or output behavior is product-ready.
 
-Allowed work:
+#### Milestone 12 — Governed Document Engine
 
-- define production-grade repository structure expectations
-- define stable module boundaries
-- define baseline maintainability rules
-
-##### `M11.2` — Evaluation and regression baseline
-
-Allowed work:
-
-- define evaluation mindset and baseline regression checks
-- define what must be revalidated after changes
-- preserve deterministic release-discipline expectations
-
-##### `M11.3` — Versioning discipline
-
-Allowed work:
-
-- define versioning rules
-- define milestone/runtime version update expectations
-- preserve explicit release-state signaling
-
-##### `M11.4` — Retrieval architecture basics
-
-Allowed work:
-
-- define bounded retrieval architecture basics
-- preserve separation between retrieval surfaces and generation surfaces
-- avoid uncontrolled expansion beyond milestone scope
-
-##### `M11.5A` — Runtime control hardening
-
-Allowed work:
-
-- strengthen runtime control behavior
-- strengthen acceptance/rejection boundaries
-- preserve bounded system behavior under normal conditions
-
-##### `M11.5B` — Failure-discipline hardening
-
-Allowed work:
-
-- strengthen deterministic handling of failures
-- prevent silent degradation
-- preserve safe fail behavior
-
-##### `M11.5C` — Maintainability hardening
-
-Allowed work:
-
-- strengthen maintainability-oriented structure
-- reduce avoidable operational ambiguity
-- improve clarity without milestone expansion
-
-##### `M11.6` — Architecture cleanup and consolidation
-
-Allowed work:
-
-- reduce avoidable duplication across mature system surfaces
-- preserve current contracts
-- improve professionalization coherence without changing roadmap phase order
-
-##### `M11.7` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M11.8` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 11 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M11.9` — Milestone closeout
-
-Allowed work:
-
-- freeze M11 boundary
-- finalize milestone closeout notes if used
-- confirm post-roadmap extension readiness if applicable
-
-#### Exit criteria
-
-- regression discipline exists
-- maintainable architecture is visible in the repo
-- evaluation and runtime control practices are established
-
----
-
-## Post-M11 transition note
-
-Immediately after `M11.9`, execution may still be temporarily governed by an active roadmap addendum when a bounded transition gate is required.
-
-At v4 adoption time, the active post-M11 transition overlay is:
-
-- `ROADMAP_ADDENDUM_07_POST_M11_TRANSITION_AND_ROADMAP_EXTENSION_GATE.md`
-
-Rule:
-
-- if an active addendum governs a bounded transition window, execution follows the canonical roadmap plus that active overlay
-- once the active transition addendum completes, normal execution returns fully to the canonical roadmap ladder and the tracker’s explicit next checkpoint
-
----
-
-## Phase 5 — Core Engine Completion
-
-### Phase goal
-
-Finish the inner engine fully before broader AI/UI/cloud/productization expansion.
-
-The enforced order inside this phase is:
-
-1. governed document engine
-2. export and reporting engine
-3. governed data / resolver / registry layer
-4. governed library expansion
-5. orchestration / retrieval / service hardening over the expanded engine
-
-This phase must close the remaining “basic engine” work before broader product-facing growth.
-
----
-
-### Milestone 12 — Governed Document Engine
-
-**Goal:** Turn document generation into a real governed engine layer with template retrieval, DCF intake, controlled AI authoring, and document lifecycle ↔ workflow-state integration.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M12.1` Template retrieval and template governance foundation
 - `M12.2` Document request/input contract foundation
@@ -1562,144 +566,11 @@ This phase must close the remaining “basic engine” work before broader produ
 - `M12.9` Milestone UAT checkpoint
 - `M12.10` Milestone closeout
 
-#### Allowed work mapping
+V5 interpretation: preserved as governed document-engine foundation; product-ready template loading, rendering, and product document generation remain future product-core work unless already proven by repo reality.
 
-##### `M12.1` — Template retrieval and template governance foundation
+#### Milestone 13 — Export and Reporting Engine
 
-Allowed work:
-
-- define template identity and artifact-kind rules
-- define template retrieval as a governed retrieval family
-- define version-pinned template selection rules
-- define authoritative template surfaces versus supporting/non-authoritative content
-- support canonical governed families such as:
-  - URS
-  - DCF
-  - protocol families
-  - report families
-  - other governed document artifacts
-
-##### `M12.2` — Document request/input contract foundation
-
-Allowed work:
-
-- define document job/request model
-- define document input contract
-- define document output contract
-- define document-family-specific required inputs
-- define how document generation attaches to approved core/service/runtime boundaries
-- preserve separation between execution truth, template truth, and generated language output
-
-##### `M12.3` — DCF intake, extraction, and structured normalization
-
-Allowed work:
-
-- retrieve DCF templates through governed lookup
-- ingest user-filled DCF artifacts
-- extract structured fields from DCF content
-- normalize extracted data into bounded document-input structures
-- preserve traceability between:
-  - raw uploaded user content
-  - extracted structured data
-  - downstream generated document output
-- define missing/ambiguous data behavior
-
-##### `M12.4` — Controlled AI authoring modes and bounded invention policy
-
-Allowed work:
-
-- define AI-assisted authoring as a bounded downstream layer inside the document engine
-- define controlled generation modes such as:
-  - strong-structured-input fill
-  - partial-input bounded completion
-  - minimal-input scaffold generation
-- allow bounded invention only when:
-  - governed by guardrails
-  - governed by standards
-  - bounded by document-family rules
-- prevent unrestricted free drafting from becoming execution truth
-
-##### `M12.5` — Standards, language, and evidence guardrails
-
-Allowed work:
-
-- define document-family structure rules
-- define standards-aware phrasing rules
-- define assumption-labeling policy
-- define placeholder policy
-- define evidence-versus-inference separation
-- define prohibited language patterns where needed
-- define section-level authoring constraints
-- define detail-level consistency rules across document families
-
-##### `M12.6` — Document artifact lifecycle model
-
-Allowed work:
-
-- define document artifact states such as:
-  - draft
-  - in_review
-  - approved
-  - finalized
-  - superseded
-  - reopened if explicitly needed
-- define lifecycle transition rules
-- define family-specific lifecycle constraints where needed
-- preserve deterministic lifecycle truth independent of AI phrasing behavior
-
-##### `M12.7` — Document lifecycle ↔ task/workflow-state integration
-
-Allowed work:
-
-- define task ↔ document binding rules
-- define which tasks require which document artifacts
-- define whether closure requires one or multiple finalized document obligations
-- define how document-finalization affects task-state progression
-- define reopen/supersede effects on dependent task/workflow state where applicable
-- define whether document state also affects higher-level readiness / reporting / dashboard signals
-- preserve deterministic state propagation through approved orchestration/service boundaries
-
-##### `M12.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M12.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 12 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M12.10` — Milestone closeout
-
-Allowed work:
-
-- freeze the governed document-engine boundary
-- confirm what belongs to later export/data/library/AI work
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- template retrieval is governed and version-aware
-- document request/input/output contracts are explicit
-- DCF intake and extraction are explicit
-- AI-assisted authoring is bounded and standards-governed
-- documents have explicit lifecycle truth
-- document lifecycle can affect task/workflow state deterministically
-- validation and UAT pass
-
----
-
-### Milestone 13 — Export and Reporting Engine
-
-**Goal:** Turn exports into a real engine layer with explicit export families, contracts, rendering rules, and reporting depth expectations.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M13.1` Export identity and contract foundation
 - `M13.2` Spreadsheet and operational export surfaces
@@ -1711,114 +582,11 @@ Allowed work:
 - `M13.8` Milestone UAT checkpoint
 - `M13.9` Milestone closeout
 
-#### Allowed work mapping
+V5 interpretation: preserved as export/reporting contract foundation; product-ready rendering and distribution remain future product-core work unless proven by repo reality.
 
-##### `M13.1` — Export identity and contract foundation
+#### Milestone 14 — Resolver / Registry and Governed Data Layer
 
-Allowed work:
-
-- define canonical export families
-- define export request contract
-- define export payload contract
-- define export output contract
-- define export identity/versioning expectations
-- define export-family boundaries separate from later UI/API delivery surfaces
-
-##### `M13.2` — Spreadsheet and operational export surfaces
-
-Allowed work:
-
-- define spreadsheet export families
-- define column contracts
-- define row granularity
-- define value/formula policy
-- define operational drop-ready export shapes such as:
-  - Excel-ready
-  - CSV-ready
-  - Microsoft Project drop-ready where approved
-- keep operational exports bounded and deterministic
-
-##### `M13.3` — Gantt and planning visualization exports
-
-Allowed work:
-
-- define Gantt/planning visualization export families
-- define consumed input data
-- define grouping behavior
-- define dependency visibility rules
-- define planning/status visibility rules
-- define export rendering expectations at a governed contract level
-
-##### `M13.4` — Dashboard and status summary exports
-
-Allowed work:
-
-- define dashboard export family
-- define audience-facing summary surfaces
-- define KPI/status/progress visibility boundaries
-- define snapshot/report/dashboard distinctions
-- preserve deterministic input-to-output contract expectations
-
-##### `M13.5` — Reporting export family and detail-level discipline
-
-Allowed work:
-
-- define reporting export families
-- define report structure expectations
-- define evidence-versus-summary rules
-- define narrative depth expectations
-- define detail-level discipline that later phases must inherit
-- prevent later shallow reporting behavior after deep Phase 5 foundations
-
-##### `M13.6` — Export invocation and validation behavior
-
-Allowed work:
-
-- define export invocation through approved service/runtime boundaries
-- define bounded failure behavior
-- define export validation rules
-- define incomplete-input handling
-- define acceptance rules for generated export artifacts
-
-##### `M13.7` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M13.8` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 13 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M13.9` — Milestone closeout
-
-Allowed work:
-
-- freeze export/reporting engine boundary
-- confirm what belongs to later AI/UI/product-facing work
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- export families are explicit
-- spreadsheet, Gantt, dashboard, and reporting outputs are bounded
-- reporting detail expectations are explicit
-- export validation and failure behavior are explicit
-- validation and UAT pass
-
----
-
-### Milestone 14 — Resolver / Registry and Governed Data Layer
-
-**Goal:** Establish the first true post-core executable boundary for governed asset resolution and governed data access.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M14.1` Resolver / registry boundary foundation
 - `M14.2` Governed asset identity and version-pinned lookup
@@ -1829,99 +597,11 @@ Allowed work:
 - `M14.7` Milestone UAT checkpoint
 - `M14.8` Milestone closeout
 
-#### Allowed work mapping
+V5 interpretation: preserved as resolver/source-role foundation; runtime-authoritative CQV product libraries and registry-consuming standards behavior remain future product-core work where not already implemented and validated.
 
-##### `M14.1` — Resolver / registry boundary foundation
+#### Milestone 15 — Governed Library Expansion and Engine Hardening
 
-Allowed work:
-
-- define explicit resolver/registry access boundary
-- define approved asset-access entry points
-- define how resolver/registry attaches above deterministic state/core truth and below broader AI/product surfaces
-- preserve CLI-as-adapter governance
-
-##### `M14.2` — Governed asset identity and version-pinned lookup
-
-Allowed work:
-
-- define canonical governed asset identities
-- define version-pinned lookup rules
-- define governed lookup for assets such as:
-  - templates
-  - presets
-  - task pools
-  - standards bundles
-  - profiles where applicable
-  - mapping metadata
-- preserve deterministic lookup behavior
-
-##### `M14.3` — Calendar and planning-basis resolution family
-
-Allowed work:
-
-- define calendar family resolution
-- define planning-basis data-resolution expectations
-- define new calendar family addition rules where needed
-- preserve separation between resolved calendar truth and later planning/rendering outputs
-
-##### `M14.4` — Authored-source versus deployment-compiled separation
-
-Allowed work:
-
-- define authored-source truth versus deployment-compiled lookup surfaces
-- preserve source-editability versus compiled-runtime lookup roles
-- define allowed compiled lookup families
-- prevent compiled lookup from becoming source authority
-
-##### `M14.5` — Governed retrieval versus support-retrieval boundary
-
-Allowed work:
-
-- define structural distinction between governed deterministic retrieval and broader support/probabilistic retrieval
-- prevent support retrieval from redefining source authority
-- define allowed source-role behavior at the boundary
-- preserve future compatibility with later AI retrieval usage rules
-
-##### `M14.6` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M14.7` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 14 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M14.8` — Milestone closeout
-
-Allowed work:
-
-- freeze governed resolver/registry and data-layer boundary
-- confirm what belongs to later library expansion and AI consumption
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- resolver/registry is explicit
-- governed asset lookup is explicit and version-aware
-- calendar/planning-basis resolution family is explicit
-- authored-source versus compiled separation is explicit
-- governed versus support retrieval roles are explicit
-- validation and UAT pass
-
----
-
-### Milestone 15 — Governed Library Expansion and Engine Hardening
-
-**Goal:** Audit the current governed libraries, define the expansion framework, expand the needed families, and harden orchestration/service behavior over the expanded engine.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M15.1` Library gap analysis and coverage audit
 - `M15.2` Coverage-pack expansion framework
@@ -1934,147 +614,15 @@ Allowed work:
 - `M15.9` Milestone UAT checkpoint
 - `M15.10` Milestone closeout
 
-#### Allowed work mapping
+V5 interpretation: preserved as governed-library framework and hardening foundation; executable runtime-authoritative library promotion, deployment-compiled lookup, complete product task pools, and consolidated product library package/layout remain future product-core work where not already implemented and validated.
 
-##### `M15.1` — Library gap analysis and coverage audit
+### Phase 6 — AI Layer
 
-Allowed work:
+Interpretation in v5: Phase 6 established controlled AI boundary/evaluation/advisory foundations. It does not prove live model/provider integration or product-facing AI assistant readiness.
 
-- audit current preset coverage
-- audit current task-pool coverage
-- audit current calendar coverage
-- audit current standards-bundle coverage
-- audit profile and mapping coverage where applicable
-- identify:
-  - foundation gaps
-  - content gaps
-  - taxonomy gaps
-  - validation gaps
-  - deployment-compiled gaps
-- produce a real governed expansion map
+#### Milestone 16 — AI Runtime for Governed Document and Reporting Workflows
 
-##### `M15.2` — Coverage-pack expansion framework
-
-Allowed work:
-
-- define bounded coverage-pack model
-- define expansion unit expectations
-- define how multiple governed artifact families coordinate inside one pack
-- align expansion framework with library taxonomy and authored-source / compiled separation rules
-
-##### `M15.3` — Preset / selector library expansion
-
-Allowed work:
-
-- add/expand presets and selector definitions
-- preserve selector-context truth as a first-class binding seed
-- avoid hard-coded one-family shortcuts disguised as general design
-
-##### `M15.4` — Task-pool expansion
-
-Allowed work:
-
-- add/expand governed task-pool families
-- preserve explicit source-definition identity
-- preserve deterministic instantiation and downstream workflow compatibility
-
-##### `M15.5` — Calendar / standards / profile / mapping expansion
-
-Allowed work:
-
-- add/expand calendar families
-- add/expand standards bundles
-- add/expand profiles where needed
-- add/expand mapping metadata needed for deterministic resolution
-- preserve coordinated governed growth across related artifact families
-
-##### `M15.6` — Library validation, freeze, and release discipline
-
-Allowed work:
-
-- define structural validity rules
-- define taxonomy/identity validity rules
-- define cross-library linkage validity rules
-- define compiled lookup consistency rules
-- define freeze/release acceptance expectations for governed coverage packs
-
-##### `M15.7` — Orchestration / service hardening on expanded governed assets
-
-Allowed work:
-
-- harden orchestration/service behavior over expanded governed assets
-- preserve mutation ordering and preflight validation through approved boundaries
-- preserve document/export invocation through approved boundaries
-- preserve governed deterministic retrieval versus support retrieval separation
-- prevent adapter leakage and free-form runtime mixing
-
-##### `M15.8` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M15.9` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 15 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M15.10` — Milestone closeout
-
-Allowed work:
-
-- freeze the full Core Engine Completion boundary
-- confirm what belongs to Phase 6 AI-layer work and what must remain later
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- real gap analysis exists
-- expansion framework exists
-- presets, task pools, calendars, standards, and related governed assets are expanded in a structured way
-- library validation/freeze discipline exists
-- orchestration/service behavior is hardened on top of expanded governed assets
-- Phase 5 closes on a stable core-engine boundary
-- validation and UAT pass
-
----
-
-## Phase 5 exit criteria
-
-Phase 5 is complete only when all of the following are true:
-
-- governed document engine is explicit
-- document lifecycle and task/workflow integration are explicit
-- export/reporting engine is explicit
-- governed resolver/registry and governed data layer are explicit
-- library gap analysis and structured expansion are explicit
-- orchestration/service hardening is complete on top of the expanded engine
-- Phase 5 validation passes
-- Phase 5 UAT passes
-- Phase 5 closeout is complete
-
----
-
-## Phase 6 — AI Layer
-
-### Phase goal
-
-Build the AI layer only after the core engine, document/export engine, governed data layer, and governed libraries are stable enough.
-
-AI in this phase must remain downstream from deterministic truth, governed retrieval, document/export contracts, and runtime boundaries.
-
----
-
-### Milestone 16 — AI Runtime for Governed Document and Reporting Workflows
-
-**Goal:** Turn bounded AI assistance into a governed runtime layer over the completed document/export/core-engine boundary.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M16.1` AI runtime boundary for document/reporting jobs
 - `M16.2` Context packaging from governed engine inputs
@@ -2084,87 +632,9 @@ AI in this phase must remain downstream from deterministic truth, governed retri
 - `M16.6` Milestone UAT checkpoint
 - `M16.7` Milestone closeout
 
-#### Allowed work mapping
+#### Milestone 17 — AI Evaluation, Retrieval Use Rules, and Quality Gates
 
-##### `M16.1` — AI runtime boundary for document/reporting jobs
-
-Allowed work:
-
-- define AI runtime entry boundary for governed document/reporting workflows
-- define eligible and blocked runtime states
-- preserve explicit permissions and prohibitions for the model
-- prevent AI runtime from becoming a substitute for missing engine truth
-
-##### `M16.2` — Context packaging from governed engine inputs
-
-Allowed work:
-
-- define how AI runtime packages context from:
-  - template retrieval
-  - DCF/extracted structured input
-  - document lifecycle state
-  - resolved library assets
-  - task/workflow state where applicable
-  - export/reporting requirements
-- preserve source-role clarity across context packaging
-
-##### `M16.3` — Controlled generation modes for document/reporting families
-
-Allowed work:
-
-- define generation modes by document/report family
-- preserve family-specific constraints
-- preserve standards-aware generation control
-- preserve bounded invention policy inherited from Phase 5
-
-##### `M16.4` — Output acceptance, bounded retry, and fallback behavior
-
-Allowed work:
-
-- define AI output acceptance rules for document/reporting families
-- define bounded retry behavior
-- define fallback/refusal behavior where evidence is insufficient or contract rules are broken
-- preserve fail-closed behavior where required
-
-##### `M16.5` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M16.6` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 16 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M16.7` — Milestone closeout
-
-Allowed work:
-
-- freeze governed AI runtime boundary for document/reporting workflows
-- confirm what belongs to later AI evaluation and workflow-expansion work
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- AI runtime boundary is explicit
-- context packaging is explicit
-- controlled generation modes are explicit
-- output acceptance/retry/fallback behavior is explicit
-- validation and UAT pass
-
----
-
-### Milestone 17 — AI Evaluation, Retrieval Use Rules, and Quality Gates
-
-**Goal:** Measure whether AI output is acceptable, grounded, standards-conformant, and detail-consistent rather than merely possible.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M17.1` AI evaluation baseline and regression harness
 - `M17.2` Quality gates and groundedness checks
@@ -2174,82 +644,9 @@ Allowed work:
 - `M17.6` Milestone UAT checkpoint
 - `M17.7` Milestone closeout
 
-#### Allowed work mapping
+#### Milestone 18 — AI-Assisted Workflow Expansion
 
-##### `M17.1` — AI evaluation baseline and regression harness
-
-Allowed work:
-
-- define evaluation baseline for governed AI outputs
-- define regression expectations for document/reporting families
-- preserve measurable quality over time
-
-##### `M17.2` — Quality gates and groundedness checks
-
-Allowed work:
-
-- define quality gates
-- define groundedness checks
-- define evidence-link and source-role checks where applicable
-- prevent attractive but ungrounded output from being treated as acceptable
-
-##### `M17.3` — Standards-conformance and detail-level consistency checks
-
-Allowed work:
-
-- define standards-conformance checks
-- define structure/detail-level consistency checks
-- preserve the deep-detail standard established in Phase 5 and carried through Phase 6
-- prevent later shallow AI outputs after deep engine foundations
-
-##### `M17.4` — Retrieval-use rules and source-role discipline
-
-Allowed work:
-
-- define how AI may consume governed deterministic retrieval
-- define how AI may consume support/non-authoritative retrieval where allowed later
-- preserve source-of-truth role discipline
-- prevent support retrieval from being promoted into execution truth by the model
-
-##### `M17.5` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M17.6` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 17 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M17.7` — Milestone closeout
-
-Allowed work:
-
-- freeze AI evaluation and retrieval-use governance boundary
-- confirm what belongs to later AI-assisted workflow expansion
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- AI evaluation baseline exists
-- quality and groundedness gates exist
-- standards/detail consistency gates exist
-- retrieval-use rules and source-role discipline are explicit
-- validation and UAT pass
-
----
-
-### Milestone 18 — AI-Assisted Workflow Expansion
-
-**Goal:** Expand AI use only after governed document/reporting/runtime/evaluation behavior is stable.
-
-#### Canonical checkpoint ladder
+Checkpoint ladder:
 
 - `M18.1` Controlled review assistance
 - `M18.2` Controlled summarization and reporting assistance
@@ -2259,339 +656,783 @@ Allowed work:
 - `M18.6` Milestone UAT checkpoint
 - `M18.7` Milestone closeout
 
-#### Allowed work mapping
+### Phase 7 — UI and API Layer
 
-##### `M18.1` — Controlled review assistance
-
-Allowed work:
-
-- define AI-assisted review support where bounded and governed
-- preserve separation between assistance and approval authority
-- preserve evidence/source-role discipline
-
-##### `M18.2` — Controlled summarization and reporting assistance
-
-Allowed work:
-
-- define bounded summarization assistance
-- define bounded reporting assistance
-- preserve document/report family rules and detail discipline
-
-##### `M18.3` — Controlled recommendation behavior
-
-Allowed work:
-
-- define bounded recommendation or suggestion behavior where allowed
-- define prohibited recommendation classes where unsafe or out-of-scope
-- preserve governed runtime and retrieval-use constraints
-
-##### `M18.4` — Workflow-expansion boundaries and refusal rules
-
-Allowed work:
-
-- define what AI-assisted workflow expansion is allowed to do
-- define what remains explicitly out of scope
-- define refusal/fallback behavior when requests exceed governed boundaries
-- prevent AI-assisted workflow expansion from becoming uncontrolled agentic behavior
-
-##### `M18.5` — Validation checkpoint
-
-Allowed work:
-
-- full milestone validation pass
-- remaining in-scope bug fixes only
-- validation evidence preparation
-
-##### `M18.6` — Milestone UAT checkpoint
-
-Allowed work:
-
-- minimal UAT evidence for Milestone 18 under `docs/UAT/`
-- acceptance decision and rationale
-- milestone-level operator-facing confirmation
-
-##### `M18.7` — Milestone closeout
-
-Allowed work:
-
-- freeze Phase 6 AI-layer boundary
-- confirm what belongs to later UI/API/cloud/productization phases
-- finalize milestone closeout notes if used
-
-#### Exit criteria
-
-- AI-assisted review/summarization/recommendation behavior is bounded
-- workflow-expansion boundaries and refusal rules are explicit
-- Phase 6 closes without uncontrolled agentic drift
-- validation and UAT pass
-
----
-
-## Phase 6 exit criteria
-
-Phase 6 is complete only when all of the following are true:
-
-- governed AI runtime over the completed core engine is explicit
-- AI evaluation and retrieval-use governance are explicit
-- AI-assisted workflow expansion remains bounded and governed
-- Phase 6 validation passes
-- Phase 6 UAT passes
-- Phase 6 closeout is complete
-
----
-
-## Phase 7 — UI and API Layer
-
-### Phase goal
-
-Introduce downstream user-facing and programmatic product surfaces only after the core engine, governed AI/runtime boundaries, and governed data/retrieval boundaries are stable enough.
-
-These surfaces must remain consumers of stable inner layers.
-
-They must not redefine the internal architecture.
-
-### Placeholder milestone family
+Interpretation in v5: Phase 7 established external API/UI contract and product-surface governance boundaries. It does not prove a complete usable local CQV product UI/workflow.
 
 #### Milestone 19 — API Boundary Introduction
 
-**Placeholder intent**
+Checkpoint family retained by v5:
 
-Introduce the first stable external programmatic surface over the governed core.
-
-**Reserved scope**
-
-- API boundary definition
-- request/response contract families
+- API boundary foundation
+- request/response contract foundation
 - service-boundary consumption rules
-- approval/auth boundary direction if later needed
-- prevention of direct adapter coupling to raw state/storage surfaces
-
-**Reserved anti-drift rule**
-
-The API layer must consume stable service/runtime boundaries and must not become the hidden home of domain logic.
-
----
+- API safety and adapter isolation rules
+- minimal read surfaces
+- minimal command/intake surfaces
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
 #### Milestone 20 — UI Layer Introduction
 
-**Placeholder intent**
+Checkpoint family retained by v5:
 
-Introduce user-facing product surfaces on top of stable internal boundaries.
-
-**Reserved scope**
-
-- UI boundary definition
-- interaction-flow families
-- governed workflow visibility surfaces
-- document/export/reporting visibility families
+- UI boundary foundation
+- interaction-flow foundation
+- workflow visibility surfaces
+- document/export/reporting visibility surfaces
 - review/approval/operator interaction direction
-- separation between UI convenience and execution truth
-
-**Reserved anti-drift rule**
-
-The UI layer must remain downstream from stable inner layers and must not force premature redesign of resolver/orchestration/runtime contracts.
-
----
+- UI safety and adapter isolation rules
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
 #### Milestone 21 — UI/API Consolidation and Product-Surface Governance
 
-**Placeholder intent**
-
-Stabilize the relationship between UI, API, and the governed engine.
-
-**Reserved scope**
+Checkpoint family retained by v5:
 
 - shared external contract discipline
 - product-surface consistency rules
 - external-surface governance
-- bounded surface consolidation
-- validation/UAT/closeout expectations for the phase
+- placeholder compatibility discipline
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
-**Reserved anti-drift rule**
+### Phase 8 — Cloud / Compute Layer
 
-UI/API surface growth must not weaken deterministic truth, governed source roles, or runtime acceptance discipline.
-
-### Phase 7 exit intent
-
-Phase 7 should close only when:
-
-- API and UI boundaries are explicit
-- external product surfaces consume stable inner layers correctly
-- surface governance is explicit
-- validation and milestone UAT pass at the future detailed-ladder stage
-
----
-
-## Phase 8 — Cloud / Compute Layer
-
-### Phase goal
-
-Introduce cloud, compute, deployment, packaging, and operational runtime direction only after stable internal and external product boundaries exist.
-
-Cloud direction must target mature architecture.
-
-It must not shape immature architecture prematurely.
-
-### Placeholder milestone family
+Interpretation in v5: Phase 8 established cloud/compute/deployment/operational boundary planning and governance evidence. It does not prove deployable product packaging, go-live readiness, or SaaS readiness.
 
 #### Milestone 22 — Cloud / Compute Foundation
 
-**Placeholder intent**
+Checkpoint family retained by v5:
 
-Introduce foundational cloud and compute direction for the governed system.
-
-**Reserved scope**
-
-- compute model direction
-- cloud-hosting shape
-- environment-boundary direction
+- cloud/compute boundary foundation
+- environment boundary direction
 - runtime placement assumptions
-- separation between local/dev/test/prod expectations
-
-**Reserved anti-drift rule**
-
-Cloud assumptions must not recenter the architecture around deployment convenience while inner boundaries are still the real design authority.
-
----
+- local/dev/test/prod separation
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
 #### Milestone 23 — Deployment / Packaging / Configuration Boundary
 
-**Placeholder intent**
+Checkpoint family retained by v5:
 
-Define deployment packaging and configuration shape over stable system boundaries.
-
-**Reserved scope**
-
-- packaging strategy
+- deployment packaging boundary
 - configuration versus code/artifact separation
 - environment/config discipline
 - deployment artifact family expectations
-- boundary between governed source assets and deployable operational surfaces
-
-**Reserved anti-drift rule**
-
-Deployment packaging must target stable resolver/service/runtime/product boundaries rather than temporary implementation shortcuts.
-
----
+- source asset versus deployable surface boundary
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
 #### Milestone 24 — Operational Hardening and Cloud-Governance Readiness
 
-**Placeholder intent**
-
-Prepare the system for operational reliability in cloud/compute environments.
-
-**Reserved scope**
+Checkpoint family retained by v5:
 
 - observability direction
 - evaluation hooks
 - operational validation direction
 - runtime health and failure-governance surfaces
 - bounded operational hardening families
-
-**Reserved anti-drift rule**
-
-Operational hardening must extend the governed architecture, not create a second hidden architecture outside the roadmap.
-
-### Phase 8 exit intent
-
-Phase 8 should close only when:
-
-- cloud/compute direction is explicit
-- deployment/config boundaries are explicit
-- operational hardening direction is explicit
-- the cloud/deployment layer still respects all earlier architectural guardrails
-- validation and milestone UAT pass at the future detailed-ladder stage
+- validation checkpoint
+- UAT checkpoint
+- closeout
 
 ---
 
-## Phase 9 — SaaS Readiness / Productization
+## 10. Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 ### Phase goal
 
-Assess and implement what is needed to turn the system into a true product/SaaS offering only after the core engine, AI layer, UI/API layer, and cloud/compute direction are all sufficiently stable.
+Redirect execution from premature productization/SaaS readiness to a local integrated CQV product core that can be used, validated, trialed, and accepted before any productization/SaaS re-entry.
 
-This phase is about productization on top of stable architecture.
+### Phase 9 must include
 
-It is not a substitute for unfinished foundations.
+- canonical roadmap reset
+- comprehensive non-code document cleanup planning and application
+- runtime-authoritative CQV library/source authority
+- presets/selectors/task pools/profiles/calendars/planning basis/mappings
+- standards applicability/citation/runtime consumption where authorized
+- complete product-ready document factory / document engine workflow, including DCF intake, document logic, controlled generation, rendering, lifecycle, and review/approval controls
+- retrieval/indexing only after authoritative sources exist
+- AI assistance only over governed sources and accepted output boundaries
+- local AI model/runtime strategy and controlled app-coupled heavy-use testing where AI assistance is in trial scope
+- local usable workflow/UI
+- integrated validation and user trial/UAT
+- product-core closeout and re-entry gate
 
-### Placeholder milestone family
+### Phase 9 must not include
 
-#### Milestone 25 — SaaS Readiness Assessment
-
-**Placeholder intent**
-
-Evaluate readiness for SaaS/productization against the real system boundary at that future time.
-
-**Reserved scope**
-
-- gap assessment
-- commercial-readiness assessment
-- operational-readiness assessment
-- product-boundary review
-- licensing/packaging/commercial model review where applicable
-- identify what is roadmap-ready versus later-program material
-
-**Reserved anti-drift rule**
-
-The desire to commercialize must not back-drive premature shortcuts into core architecture or governed engine truth.
-
----
-
-#### Milestone 26 — Productization Foundation
-
-**Placeholder intent**
-
-Establish the minimum architectural and operational productization foundations required for a serious SaaS trajectory.
-
-**Reserved scope**
-
-- tenant/boundary direction if later adopted
-- product-governance direction
-- supportability/maintainability direction
-- commercial delivery readiness
-- bounded productization foundations that fit the stabilized system
-
-**Reserved anti-drift rule**
-
-Productization foundations must extend the approved system architecture and must not replace it with product-only shortcuts.
+- product/SaaS launch
+- production deployment
+- tenant/subscription behavior
+- commercial release
+- license change without product-boundary decision
+- repository visibility change without product-boundary decision
+- uncontrolled model/provider integration, including local model runtime, outside the approved M31/M33/M37 path and DDR-007 closure/control path
+- standards embedding/retrieval before DDR-005 authority conditions
+- product-ready document generation before DDR-003/DDR-006 closure evidence
+- cleanup before the v5 approval/application gate
 
 ---
 
-#### Milestone 27 — SaaS / Product Boundary Consolidation
+### Milestone 25 — Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
 
-**Placeholder intent**
+**Goal:** Complete the roadmap direction reset, apply v5, align tracker/DDR placement, and perform controlled non-code document cleanup before build execution resumes.
 
-Stabilize the final product-facing boundary for the first serious SaaS-ready form.
+#### Entry gate
 
-**Reserved scope**
+- `M25.1`, `M25.2`, and `M25.3` early readiness evidence exists.
+- Post-`M25.3` redirect decision is approved.
+- Roadmap change-control direction is approved.
+- Storage/disposition decision for the change-control record is approved.
 
-- product-boundary consolidation
-- operational-commercial handoff readiness
-- final SaaS-boundary governance
-- validation/UAT/closeout expectations for the phase
+#### Checkpoint ladder
 
-**Reserved anti-drift rule**
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M25.1` Productization boundary assessment | Preserve early readiness probe evidence | Retain as evidence; interpret as assessment-only | Treat as product readiness |
+| `M25.2` Deferred dependency disposition review | Preserve DDR disposition and closure-scope evidence | Retain DDR placement evidence; distinguish governance/model closure from executable closure | Close product blockers by assertion |
+| `M25.3` Commercial and packaging readiness assessment | Preserve commercial/packaging assessment | Retain as early evidence; preserve conclusion that ASBP is not product-package/commercial/SaaS ready | Continue to M25.4 operational readiness under archived Addendum 10 |
+| `M25.4` Roadmap change-control record application | Apply approved change-control record to `docs/change_control/` | Add approved record; preserve approval clarifications | Implement build work or cleanup actions |
+| `M25.5` Canonical roadmap v5 approval and application | Approve and apply `ROADMAP_CANONICAL.md` v5 | Replace canonical roadmap with approved v5; preserve source lock in change-control record | Create active addendum instead of v5 |
+| `M25.6` Tracker and DDR alignment after v5 | Align current position to v5 | Update tracker to exact next v5 checkpoint; review DDR placement text | Claim validation not performed |
+| `M25.7` Comprehensive non-code document inventory | Inventory all non-code repo documents | Classify every non-code document; assign disposition candidates | Move/delete/archive files |
+| `M25.8` Cleanup package planning | Prepare approved cleanup package | Propose exact file moves/revisions/archives/deletions; preserve traceability | Apply cleanup before approval |
+| `M25.9` Cleanup package application | Apply only approved cleanup actions | User-applied package or live write only if separately authorized | Modify code/tests or expand cleanup scope silently |
+| `M25.10` Post-cleanup alignment review | Confirm repo authority surfaces are coherent | Check roadmap/tracker/DDR/guardrails/docs index/public surface | Resume build before alignment is complete |
+| `M25.11` Roadmap reset validation checkpoint | Validate docs-only consistency | No pytest unless code/commands/imports/behavior claims changed; document consistency review | Claim executable validation if not run |
+| `M25.12` Roadmap reset UAT / owner acceptance | Accept reset and cleanup lane outcome | Owner acceptance of readiness to resume build | Treat acceptance as product UAT |
+| `M25.13` Milestone closeout | Freeze reset boundary | Close roadmap reset; point tracker to `M26.1` | Resume productization/SaaS |
 
-SaaS consolidation must not erase the governed distinctions that make the system trustworthy in the first place.
+#### Exit criteria
 
-### Phase 9 exit intent
-
-Phase 9 should close only when:
-
-- SaaS/productization readiness has been explicitly assessed
-- productization foundations are explicit
-- product-boundary governance is explicit
-- the resulting product direction still rests on stable earlier layers rather than bypassing them
-- validation and milestone UAT pass at the future detailed-ladder stage
+- Change-control record is repo-retained.
+- `ROADMAP_CANONICAL.md` v5 is approved and applied.
+- Tracker points to the exact first local CQV product-core checkpoint.
+- DDR placement is reviewed for v5 consistency.
+- All non-code documents have been inventoried and dispositioned.
+- Approved cleanup actions, if any, are applied.
+- Final alignment review confirms no active parallel roadmap authority remains.
+- Owner acceptance is recorded.
 
 ---
 
-## Reserved forward-order summary
+### Milestone 26 — CQV Source Authority and Runtime Library Architecture
 
-The intended forward order after Phase 6 remains:
+**Goal:** Convert governed CQV source families from framework/reference foundations into a coherent runtime-authoritative local product source architecture.
 
-1. complete Phase 7 UI/API boundaries
-2. complete Phase 8 cloud/compute/deployment direction
-3. assess and execute Phase 9 SaaS/productization
+#### Entry gate
 
-No later phase may leapfrog unresolved earlier foundations.
+- M25 reset and cleanup closeout complete.
+- Tracker points to `M26.1`.
+- DDR register reviewed.
+
+#### DDR focus
+
+- DDR-001
+- DDR-002
+- DDR-003 dependency awareness
+- DDR-004 dependency awareness
+- DDR-006 dependency awareness
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M26.1` Local product source-boundary scope lock | Define local CQV product MVP source boundary | Decide included CQV asset families; define local product MVP scope; map source roles | Implement content beyond approved boundary |
+| `M26.2` Authoritative source taxonomy | Define source families and identities | CQV libraries, presets, selectors, task pools, profiles, calendars, planning basis, mappings, standards bundles, templates | Treat scattered docs as runtime authority |
+| `M26.3` Runtime-authoritative library package layout | Define package/layout for runtime authority | Source folders, version/status fields, release states, ownership, source/compiled separation | Bypass resolver/source-role rules |
+| `M26.4` Authored-source to compiled-runtime promotion model | Define promotion/compile path | Validation rules, compiled lookup generation expectations, traceability | Make compiled lookup source truth |
+| `M26.5` Library source validation contracts | Define validation schema/contracts | Identity uniqueness, cross-reference checks, status/version validation | Accept unchecked library assets |
+| `M26.6` Product-core source registry model | Define registry for local product source assets | Asset records, versions, applicability, source location, lifecycle state | Collapse registry with tracker or roadmap |
+| `M26.7` Runtime lookup adapter boundary | Define approved runtime lookup access | Resolver-bound access, no raw file lookup from UI/API/AI | Add hidden direct file access |
+| `M26.8` Library authority implementation package | Implement only approved source-authority primitives | User-applied code/docs package; tests where executable | Productize unvalidated content |
+| `M26.9` Validation checkpoint | Validate implementation | `python -m pytest -q` if code changed; source validation evidence | Claim runtime authority without validation |
+| `M26.10` Milestone UAT / owner acceptance | Accept source-authority architecture | Confirm library authority model is usable for next milestones | Treat acceptance as full product UAT |
+| `M26.11` Milestone closeout | Freeze M26 boundary | Record remaining dependencies | Continue to M27 with open source-boundary ambiguity |
+
+#### Exit criteria
+
+- Runtime-authoritative source architecture is explicit.
+- Authored-source versus compiled-runtime roles are controlled.
+- Library package/layout is defined and validated where implemented.
+- Resolver/runtime access boundary is clear.
+- DDR-001 and DDR-002 are either directly addressed for this layer or carried forward with exact remaining closure scope.
+
+---
+
+### Milestone 27 — Presets, Selectors, Task Pools, Profiles, Calendars, Planning Basis, and Mappings
+
+**Goal:** Build the local CQV product’s operational source libraries that determine what work is selected, staged, committed, planned, and executed.
+
+#### Entry gate
+
+- M26 source authority boundary complete.
+- Runtime-authoritative library package/layout exists or is explicitly approved as the target for this milestone.
+
+#### DDR focus
+
+- DDR-001
+- DDR-002
+- DDR-009 awareness for external placeholders
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M27.1` CQV preset family scope | Define initial preset families | Cleanroom, process equipment, utilities, computerized systems, manual fallback | Unlimited preset sprawl |
+| `M27.2` Selector and scope-intent model hardening | Define selector inputs | Type, scope, lifecycle event, risk, standards bundle, user intent | Work selection from WP type alone |
+| `M27.3` Task-pool source model | Define authoritative task-pool records | Atomic task IDs, dependencies, owners/roles, durations, prerequisites, document links | Treat persisted tasks as source library |
+| `M27.4` Profile model | Define profile records | Area/system profiles, cleanroom/HVAC profile, equipment/system profile, qualification profile | Embed one-off local assumptions as universal truth |
+| `M27.5` Calendar and work-time model | Define calendar source records | Workweek, workmonth, holidays, Cairo/local defaults if approved, user-amendable parameters | Hide regional assumptions |
+| `M27.6` Planning basis and duration model | Define duration sources | Duration refs, estimation source, scope rules, task-pool links | Use untraceable durations |
+| `M27.7` Mapping model | Define mapping records | Preset-to-profile, selector-to-task-pool, standard-to-template, task-to-document links | Duplicate logic in UI/API/AI layers |
+| `M27.8` Library content implementation wave 1 | Implement first local product CQV library set | Use M26 package/layout; preserve validation | Product-ready claims before trial |
+| `M27.9` Cross-library validation | Validate relationships | Identity, refs, dependencies, mappings, applicability, duration refs | Accept dangling or ambiguous refs |
+| `M27.10` Stage/commit compatibility check | Confirm source-to-execution path | Source selection → staged tasks → committed tasks → planning input | Plan directly from source definitions without instantiation |
+| `M27.11` Validation checkpoint | Validate executable behavior | `python -m pytest -q` if code changed; library validation report | Skip source validation |
+| `M27.12` Milestone UAT / owner acceptance | Accept library usability | Owner confirms source libraries support local CQV flow | Treat as full product acceptance |
+| `M27.13` Milestone closeout | Freeze library content baseline | Baseline v0.x source libraries | Continue with unresolved core library ambiguity |
+
+#### Exit criteria
+
+- Presets/selectors/task pools/profiles/calendars/planning basis/mappings exist as controlled source families.
+- Source-to-instantiated-execution path is deterministic.
+- Cross-library references validate.
+- Library baseline is accepted for downstream standards/document/UI work.
+
+---
+
+### Milestone 28 — Standards Applicability, Citation, and Runtime Consumption Authority
+
+**Goal:** Make standards source/citation/applicability authority usable by the local product without overclaiming audit-ready or clause-level authority where evidence is incomplete.
+
+#### Entry gate
+
+- M26 source authority boundary complete.
+- M27 relevant standards-bundle mappings are available or scoped.
+- Standards source registry v0.1 exists as approved DDR-004 model evidence.
+
+#### DDR focus
+
+- DDR-004
+- DDR-005 awareness
+- DDR-006 awareness
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M28.1` Standards registry baseline review | Review registry records | Confirm statuses, TBD fields, verification limits, mandatory flags | Treat pending/TBD as verified authority |
+| `M28.2` Applicability engine scope | Define applicability behavior | Scope/system/area/lifecycle/market/company/site triggers | Universal standards application |
+| `M28.3` Citation model implementation scope | Define citation depth behavior | Document, version, section, clause, table-row, requirement-level citations | Fabricate clauses or versions |
+| `M28.4` Standards-bundle binding | Link standards bundles to selectors/profiles/templates | Product source mappings only where authority supports it | Standards bundles as vague labels |
+| `M28.5` Stricter-requirement comparison rule | Implement/define comparison governance | Applicable source comparison, selected stricter rule, override record | Use risk-based reasoning to weaken mandatory requirements silently |
+| `M28.6` Controlled override model | Define override records | Approver, rationale, residual risk, applicability boundary | Override as regulatory equivalence |
+| `M28.7` Local/company/site standards intake | Define user-uploaded/internal standard flow | Draft source record, authority decision, comparison, approval | Treat user-provided local matrix as public regulation |
+| `M28.8` Runtime registry consumption package | Implement registry reading/validation if approved | Validation, parsing, source-status enforcement | Product standards output without tests |
+| `M28.9` Standards-output limitation rules | Define output warning/limitation behavior | Pending/TBD/user-provided limitation statements | Hide limitations in generated output |
+| `M28.10` Validation checkpoint | Validate standards behavior | `python -m pytest -q` if executable behavior changed; standards registry validation | Claim audit-ready output without verified sources |
+| `M28.11` Milestone UAT / owner acceptance | Accept standards authority use | Owner reviews applicability/citation behavior | Treat as regulatory/legal approval |
+| `M28.12` Milestone closeout | Freeze standards authority boundary | Carry DDR-005 if retrieval remains deferred | Start retrieval before authority is ready |
+
+#### Exit criteria
+
+- Standards applicability and citation behavior is controlled.
+- Registry limitations remain visible.
+- Runtime consumption exists only where implemented and validated.
+- DDR-005 remains deferred until retrieval/indexing prerequisites are satisfied.
+
+---
+
+### Milestone 29 — Product-Ready Document Factory, Document Engine Workflow, and Output Rendering
+
+**Goal:** Convert document/template/output foundations into a complete local product-ready document factory / document engine for CQV documents and reports, including document rationale/logic, DCF intake, deterministic template selection, controlled drafting, rendering, lifecycle, traceability, and review/approval workflow.
+
+#### Entry gate
+
+- M26 source authority boundary complete.
+- M27 relevant task/document mappings available.
+- M28 standards applicability/citation behavior available where standards-backed output is required.
+
+#### DDR focus
+
+- DDR-003
+- DDR-006
+- DDR-004/005 awareness where standards-backed output is involved
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M29.1` Product document family scope | Define initial product output families | URS, QP, protocol/report families, DCF where approved | Unlimited document family sprawl |
+| `M29.1A` Document factory workflow and rationale model | Define document-engine logic | DCF path, skip-DCF path, input-to-section rationale, document-family workflow, review/approval flow | Treat templates as the whole document system |
+| `M29.2` Template library implementation | Implement product template records | Template IDs, versions, status, source location, applicability, schema binding | Loose templates without identity/version |
+| `M29.3` Template selection/loading | Implement deterministic template selection | Based on selector/profile/standards/task/document family | AI chooses templates freely |
+| `M29.4` Document input schema binding | Define schema-to-template contracts | Required/optional fields, placeholders, DCF intake/extraction/normalization mapping, missing-data behavior | Generate without input contract |
+| `M29.5` Controlled drafting modes | Define document generation modes | Strong input fill, partial bounded completion, minimal scaffold with placeholders, rationale-bound section drafting | Unbounded invention |
+| `M29.6` Standards-backed output controls | Bind citations/applicability to output | Citation limitations, assumptions, source records | Standards-backed claims from memory |
+| `M29.7` Renderer/output contract | Implement render/export behavior | Markdown/DOCX/PDF/CSV/Excel only where approved; artifact metadata | Claim rendering when only contracts exist |
+| `M29.8` Document lifecycle and workflow integration | Connect output to task/workflow/review state | Draft/review/approved/final/superseded; review/approval obligations; task closure dependencies | Let generated prose mutate truth |
+| `M29.9` Product-ready output validation | Validate output contracts | File existence, schema conformance, citation presence, placeholder policy | Accept malformed output |
+| `M29.10` Trial document generation set | Generate controlled local sample set | Local CQV scenario outputs for review | Release as customer-ready without UAT |
+| `M29.11` Validation checkpoint | Run validation | `python -m pytest -q` if code changed; artifact validation | Skip validation for renderer behavior |
+| `M29.12` Milestone UAT / owner acceptance | Accept document/output layer | Owner reviews generated sample set and limitations | Treat as full product trial acceptance |
+| `M29.13` Milestone closeout | Freeze output baseline | Close or carry DDR-003/006 precisely | Proceed with output gaps hidden |
+
+#### Exit criteria
+
+- Product document factory / document engine workflow is explicit.
+- Product template library is implemented or explicitly scoped.
+- DCF intake and document input-to-output logic are controlled.
+- Template selection/loading is deterministic.
+- Output generation/rendering behavior is validated where implemented.
+- DDR-003 and DDR-006 are closed, partially closed, or carried forward with exact remaining scope.
+
+---
+
+### Milestone 30 — Governed Retrieval and Indexing for Authoritative Product Sources
+
+**Goal:** Add retrieval/indexing only after authoritative sources exist and only where retrieval improves usability without becoming source truth.
+
+#### Entry gate
+
+- M26 source authority boundary complete.
+- M27 product libraries available.
+- M28 standards authority behavior available for standards-related retrieval.
+- M29 output layer dependencies understood.
+
+#### DDR focus
+
+- DDR-005
+- DDR-004 limitations
+- DDR-007 awareness for AI retrieval use
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M30.1` Retrieval justification gate | Decide where retrieval is justified | Standards lookup support, template search, library search, advisory context | Retrieval everywhere by default |
+| `M30.2` Source eligibility model | Define retrievable source classes | Only approved/eligible sources; status-aware inclusion | Index pending/TBD as mandatory authority |
+| `M30.3` Index metadata and traceability | Define index records | Source ID, version, chunk/ref, build date, registry version | Anonymous chunks with no source trace |
+| `M30.4` Retrieval non-authority enforcement | Implement role limits | Retrieval suggests/fetches; registry/source remains authority | Retrieval decides compliance truth |
+| `M30.5` Standards retrieval controls | Implement if approved | Source-status filters, citation fallback, limitation warnings | Clause claims without verified clause data |
+| `M30.6` Library/template retrieval controls | Implement if approved | Asset ID/version filtering, template/library context fetch | Replace deterministic resolver with probabilistic search |
+| `M30.7` Retrieval evaluation harness | Evaluate retrieval usefulness | Recall/precision-style checks, source trace checks, failure cases | Accept retrieval without evaluation |
+| `M30.8` Retrieval-to-AI handoff contract | Define AI consumption boundary | Context packets, citations, limitations, refusal triggers | Raw retrieval dumped into model as truth |
+| `M30.9` Validation checkpoint | Validate retrieval behavior | `python -m pytest -q` if code changed; retrieval evaluation evidence | Skip evaluation |
+| `M30.10` Milestone UAT / owner acceptance | Accept retrieval usefulness | Owner trial of retrieval-supported local workflows | Productize retrieval without acceptance |
+| `M30.11` Milestone closeout | Freeze retrieval boundary | Close/carry DDR-005 precisely | Expand retrieval beyond approved sources |
+
+#### Exit criteria
+
+- Retrieval is justified, bounded, and source-traceable.
+- Retrieval does not override source/citation authority.
+- DDR-005 is closed, partially closed, or carried forward with precise remaining scope.
+
+---
+
+### Milestone 31 — Governed AI Assistance Over Local Product Sources
+
+**Goal:** Provide local-product AI assistance only above governed source, standards, retrieval, document, and output boundaries, with an explicit local AI model/runtime strategy for app-coupled heavy-use testing where AI assistance is included.
+
+#### Entry gate
+
+- M26-M29 foundations available for the assistance scope.
+- M30 retrieval boundary available if AI uses retrieval.
+- DDR-007 reviewed before any provider/live model work.
+
+#### DDR focus
+
+- DDR-007
+- DDR-005 if retrieval used
+- DDR-006 if generated output used
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M31.1` AI assistance scope lock | Decide assistance modes | Advisory Q&A, document drafting support, review support, comparison support, workflow guidance | Uncontrolled agentic execution |
+| `M31.2` Local AI model and provider strategy decision | Decide local/offline/API/provider strategy | Local app-coupled model option, external provider option, constraints, privacy, cost, operational limits | Live/provider/local model calls without approved path |
+| `M31.3` Provider/adapter boundary if approved | Define adapter boundary | No raw provider leakage, no state mutation by model | Direct model calls from core/UI |
+| `M31.4` Context packet contract | Define context inputs | Source IDs, registry version, task/workflow state, retrieval results, limitations | Free-form prompt with untracked facts |
+| `M31.5` Refusal and limitation rules | Define safe refusal | Missing sources, unverified standards, unsupported claims, out-of-scope requests | Model guesses missing compliance truth |
+| `M31.6` Output acceptance and review rules | Define accepted AI outputs | Draft/advisory/review states; human acceptance where needed | AI approval authority |
+| `M31.7` Evaluation and regression harness | Test AI behavior if implemented | Prompt/output contract tests, source-grounding checks, refusal cases | Untested AI behavior |
+| `M31.8` Local AI heavy-use shakedown protocol | Plan app-coupled heavy-use local trial where AI is in scope | Local model runtime scenario, repeated use, metrics, failures, issue capture | Go-live or product AI claim without shakedown |
+| `M31.9` Validation checkpoint | Validate executable integration | `python -m pytest -q` if code changed; evaluation evidence | Claim provider readiness without tests |
+| `M31.10` Milestone UAT / owner acceptance | Accept AI assistance boundary | Owner accepts assistance modes and limitations | Product/SaaS-facing live AI release |
+| `M31.11` Milestone closeout | Freeze AI assistance baseline | Close/carry DDR-007 precisely | Hide operational/provider risks |
+
+#### Exit criteria
+
+- AI assistance scope is bounded.
+- Local AI model/runtime strategy is explicit where app-coupled heavy-use testing includes AI.
+- Provider/model strategy is explicit.
+- Context, refusal, acceptance, and evaluation behavior are controlled.
+- DDR-007 is closed, partially closed, or carried forward with exact remaining scope.
+
+---
+
+### Milestone 32 — Local Usable CQV Workflow/UI MVP
+
+**Goal:** Build a local usable workflow/UI path that lets a real user operate the product core without relying on raw CLI-only internal mechanics.
+
+#### Entry gate
+
+- M26-M29 product-core sources and outputs available for the intended workflow.
+- M31 AI assistance and local AI model/runtime path available only if included in MVP scope.
+
+#### DDR focus
+
+- DDR-009 placeholder compatibility awareness
+- DDR-001/002 source behavior dependencies
+- DDR-006 output behavior dependencies
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M32.1` Local workflow MVP scope lock | Define user journey | Create/select project, bind preset/profile, stage tasks, commit tasks, schedule, generate document/output, review | Full SaaS/admin/tenant scope |
+| `M32.2` UI/runtime surface selection | Decide local surface | CLI-enhanced, local web, desktop-like, or controlled forms | Cloud-first architecture bypass |
+| `M32.3` Operator workflow model | Define workflow states | Project/WP/preset binding, task staging, planning, document generation, review, acceptance | Hidden state mutation from UI |
+| `M32.4` UI-to-core adapter contract | Define adapter boundary | UI consumes services/contracts; no domain logic in UI | UI writes raw state/files |
+| `M32.5` Forms and controlled input surfaces | Build input forms | DCF path, minimal input path, presets/selectors, standards/profile choices | Unvalidated free-form input as truth |
+| `M32.6` Workflow visibility surfaces | Build visibility | WP status, task status, schedule, document lifecycle, source/citation limitations | Misleading readiness indicators |
+| `M32.7` Output review/download surfaces | Build controlled review | Document/export view, artifact metadata, validation limitations | Silent output acceptance |
+| `M32.8` Local workflow error/failure handling | Handle failures safely | Missing inputs, invalid refs, source limitations, validation errors | UI masks failures |
+| `M32.9` End-to-end local scenario implementation | Run one local CQV workflow scenario | Cleanroom/HVAC or approved first scenario | Call it product-ready before trial |
+| `M32.10` Validation checkpoint | Validate local workflow | `python -m pytest -q` if code changed; scenario validation | Skip workflow testing |
+| `M32.11` Milestone UAT / owner acceptance | Accept local MVP usability | Owner confirms local workflow is trial-ready | Treat as commercial readiness |
+| `M32.12` Milestone closeout | Freeze local MVP baseline | Identify remaining trial blockers | Proceed to trial with hidden gaps |
+
+#### Exit criteria
+
+- Local user workflow is usable enough for real trial.
+- UI/workflow surfaces remain downstream adapters.
+- Source, standards, output, and validation limitations are visible to the user.
+
+---
+
+### Milestone 33 — Local Integrated Product Validation, Trial, and UAT
+
+**Goal:** Prove the local integrated CQV product core works in realistic local use before productization/SaaS re-entry.
+
+#### Entry gate
+
+- M32 local workflow MVP accepted as trial-ready.
+- Known DDR blockers are either closed, carried with explicit limitations, or excluded from trial scope.
+
+#### DDR focus
+
+- Full DDR review before product-core acceptance
+- DDR-005/006/007 especially if retrieval/output/AI/local AI model runtime are in trial scope
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M33.1` Trial scope and protocol | Define trial boundaries | Scenario, systems, user role, acceptance criteria, limitations | Trial without scope |
+| `M33.2` Test dataset / scenario pack | Prepare local CQV scenario | Cleanroom/HVAC/equipment/computerized system as approved | Real confidential data without control |
+| `M33.3` End-to-end validation suite | Validate integrated path | Source selection, staging, planning, standards, document factory workflow, UI/API, AI/local model if included | Unit-only confidence for product trial |
+| `M33.4` Trial execution round 1 | Run realistic local workflow | Capture issues, errors, friction, wrong outputs, local AI model behavior where in scope | Ignore observed failures |
+| `M33.5` Issue triage and correction plan | Classify trial findings | Bug/fix/refactor/doc/library/standards/UI/AI issue types | Patch randomly outside roadmap |
+| `M33.6` Corrective implementation package | Apply approved corrections | User-applied code/docs package; tests | Scope creep beyond trial findings |
+| `M33.7` Regression and re-trial | Re-run affected paths | Confirm corrections and no regressions | Close without re-check |
+| `M33.8` Local product UAT report | Produce UAT evidence | Scope, results, limitations, acceptance decision | Productization claim without UAT |
+| `M33.9` Validation checkpoint | Final validation | `python -m pytest -q` if code changed; integrated scenario validation | Claim validation by memory |
+| `M33.10` Owner acceptance gate | Accept/reject local product core | Pass/conditional pass/fail with rationale | Treat conditional pass as full readiness |
+| `M33.11` Milestone closeout | Freeze trial evidence | Define remaining gaps and next gate | Re-enter productization automatically |
+
+#### Exit criteria
+
+- Integrated local product trial evidence exists.
+- Validation results are recorded truthfully.
+- UAT decision is recorded.
+- Remaining limitations are explicit.
+
+---
+
+### Milestone 34 — Local Product-Core Closeout and Productization Re-entry Gate
+
+**Goal:** Decide whether the local integrated CQV product core is complete enough to re-enter productization/SaaS readiness.
+
+#### Entry gate
+
+- M33 local integrated product validation and UAT complete.
+- Full DDR register reviewed.
+- Product-core gaps and trial findings resolved, accepted, or explicitly carried.
+
+#### Checkpoint ladder
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M34.1` Product-core completeness assessment | Assess all core categories | Libraries, standards, document factory/output, retrieval, local AI model/AI assistance, UI/API, validation, UAT | Assume readiness from one scenario only |
+| `M34.2` DDR closure/reclassification review | Review all DDR statuses | Close/reclassify/carry dependencies with evidence | Close dependencies without evidence |
+| `M34.3` Product-core limitation register | Record known limits | Supported scopes, unsupported scopes, source limitations, standards limits | Hide limitations |
+| `M34.4` Release-candidate boundary decision | Decide local RC boundary | Define what is in/out of first productizable form | Expand to SaaS prematurely |
+| `M34.5` Productization re-entry readiness assessment | Decide if Phase 10 may begin | Evidence-based pass/conditional pass/fail | Resume productization automatically |
+| `M34.6` Validation checkpoint | Validate any final changes | `python -m pytest -q` if code changed | Claim closure without validation |
+| `M34.7` Product-core UAT/owner acceptance | Accept product-core closeout | Owner decision with rationale | Treat as commercial launch approval |
+| `M34.8` Phase 9 closeout | Freeze local product-core path | Tracker points to Phase 10 only if approved | Skip re-entry gate |
+
+#### Exit criteria
+
+- Product-core completeness decision exists.
+- DDR statuses are aligned with evidence.
+- Product-core limitations are recorded.
+- Productization/SaaS re-entry is explicitly approved or denied.
+
+---
+
+## 11. Phase 10 — Productization / SaaS Re-entry
+
+### Phase goal
+
+Resume productization only after the local integrated CQV product core has been built, validated, trialed, accepted, and explicitly approved for productization re-entry.
+
+### Phase 10 entry gate
+
+Phase 10 may begin only if all are true:
+
+- M34 closeout approves productization re-entry.
+- Local product core is accepted.
+- DDR blockers are closed, reclassified, or explicitly carried with approved limitations.
+- Product-core limitations are recorded.
+- Owner approves a product boundary decision path.
+
+### Phase 10 must not include
+
+- erasing local product limitations
+- tenant/SaaS behavior before product boundary decision
+- live provider integration unless DDR-007 path is closed/approved
+- commercial release before licensing/support/security/release governance decisions
+- production deployment before operational testing and go/no-go evidence
+
+---
+
+### Milestone 35 — Product Boundary, License, Repository, and Commercial Direction Decision
+
+**Goal:** Decide what ASBP becomes as a product: open-source, proprietary, open-core, split repo, local-only, cloud-ready, SaaS-bound, or another controlled path.
+
+Checkpoint ladder:
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M35.1` Product identity and boundary assessment | Define product vs build project | Product name, audience, supported scope, excluded scope | Commercial claim without boundary |
+| `M35.2` License strategy assessment | Decide license path | GPLv3 continuation, dual license, proprietary future repo, open-core, legal review need | Legal/license change without approval |
+| `M35.3` Repository visibility / split decision | Decide repo structure | Public/private split, future product repo, archive/public docs | Make repo private silently |
+| `M35.4` Commercial model direction | Decide commercial posture | Local product, services, SaaS later, internal tool, open-source | Pricing/sales implementation |
+| `M35.5` Product support boundary | Define support obligations | Bug/security/support channels, SLA/no-SLA policy | Promise unsupported obligations |
+| `M35.6` Validation checkpoint | Validate docs-only consistency | No pytest unless executable claims changed | Claim code validation if not run |
+| `M35.7` Owner acceptance | Approve product boundary | Decision record | Begin packaging without boundary |
+| `M35.8` Milestone closeout | Freeze product boundary | Tracker to M36 if approved | Skip license/support/security decisions |
+
+---
+
+### Milestone 36 — Product Packaging, Release Governance, Security, and Supportability
+
+**Goal:** Make the accepted local product governable as a release candidate.
+
+Checkpoint ladder:
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M36.1` Packaging strategy | Define package/build path | `pyproject.toml`, console script, local install path, versioning | Production package without tests |
+| `M36.2` Release artifact policy | Define release artifacts | Version tags, artifact metadata, release notes, checksums if needed | Ad hoc release files |
+| `M36.3` Security policy | Define vulnerability/security reporting | `SECURITY.md`, contact/process, scope | Claim enterprise security posture |
+| `M36.4` Supportability policy | Define support/maintenance | Issue templates, support boundary, lifecycle policy | SLA without approval |
+| `M36.5` Product documentation package | Build user-facing docs | Install/use guide, limitations, supported scopes | Replace governance docs with marketing |
+| `M36.6` Release validation package | Validate packaged product | Install test, command test, artifact checks, `python -m pytest -q` where code changed | Release without validation |
+| `M36.7` UAT / owner acceptance | Accept packaging/release governance | Owner signoff | Commercial launch |
+| `M36.8` Milestone closeout | Freeze release candidate governance | Record remaining release blockers | Skip operational shakedown |
+
+---
+
+### Milestone 37 — Operational Shakedown, Provider/Deployment Gate, and Go/No-Go Readiness
+
+**Goal:** Decide whether any provider, deployment, operational, or pre-go-live path is safe to pursue.
+
+Checkpoint ladder:
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M37.1` Operational scope lock | Decide local/private/cloud/SaaS operational scope | Scope, environment, users, data sensitivity | Production deployment by default |
+| `M37.2` Provider integration gate | Revisit DDR-007 | Provider boundary, smoke tests, cost/privacy/risk controls | Live calls without approved adapter/test plan |
+| `M37.3` Deployment environment gate | Decide environment path | Local package, internal server, cloud staging, SaaS later | Tenant behavior without SaaS gate |
+| `M37.4` Monitoring and failure handling | Define operational controls | Logs, health checks, failure escalation, rollback | Silent failure |
+| `M37.5` Local heavy-use / operational shakedown | Execute shakedown | Repeated realistic use, issue capture, performance/friction notes | Go-live after single happy path |
+| `M37.6` Corrective action loop | Fix shakedown issues | Prioritized fixes with validation | Hide unresolved issues |
+| `M37.7` Go/no-go evidence pack | Produce readiness evidence | Validation, UAT, issue status, limitations, decision | Launch without go/no-go |
+| `M37.8` UAT / owner acceptance | Accept operational readiness result | Pass/conditional/fail | Treat conditional pass as SaaS-ready |
+| `M37.9` Milestone closeout | Freeze operational gate | Decide M38 entry | Skip unresolved DDR-007 |
+
+---
+
+### Milestone 38 — SaaS / Product Boundary Consolidation
+
+**Goal:** Consolidate the final product/SaaS-facing boundary only after local product, packaging, release governance, and operational readiness gates are satisfied.
+
+Checkpoint ladder:
+
+| Checkpoint | Purpose | Allowed work | Not allowed |
+|---|---|---|---|
+| `M38.1` SaaS suitability reassessment | Decide if SaaS remains valid | Product fit, data/privacy, tenant need, cost, support | SaaS because it sounds commercial |
+| `M38.2` Tenant/customer boundary plan | Define if SaaS approved | Tenant model, customer data separation, access assumptions | Tenant implementation without approval |
+| `M38.3` Compliance and audit boundary | Define compliance limits | Validation package, audit trail needs, standards limitations | Regulated claims without evidence |
+| `M38.4` Commercial release gate | Decide release posture | Release candidate, pilot, private beta, public release, no-go | Full launch by default |
+| `M38.5` Final validation and regression | Validate release boundary | Full tests, scenario checks, documentation checks | Release without regression |
+| `M38.6` Final UAT / owner acceptance | Owner acceptance | Pass/conditional/fail | Skip owner signoff |
+| `M38.7` Phase 10 closeout | Close or pause productization | Record next strategic path | Hide remaining gaps |
+
+---
+
+## 12. DDR Placement Matrix
+
+| DDR | v5 placement | Required interpretation |
+|---|---|---|
+| DDR-001 Governed-library runtime promotion / deployment-compiled lookup | M26, M27 | Closed governance/model evidence does not equal executable runtime-authoritative product library behavior |
+| DDR-002 Consolidated runtime-authoritative libraries | M26, M27 | Product library package/layout must be implemented/validated before productized dependence |
+| DDR-003 Product-ready document templates library | M29 | Governance/model closure does not equal executable product template implementation/loading/selection or complete document factory workflow |
+| DDR-004 Standards source registry and citation authority | M28 | Registry model exists; runtime consumption/verification limits must remain explicit |
+| DDR-005 Standards embedding / retrieval index | M30 | Retrieval remains deferred until authority and applicability prerequisites are ready |
+| DDR-006 Product-ready document/export/report generation/rendering | M29 | Product-ready output requires document factory workflow, generation/rendering contract, implementation, validation, and UAT |
+| DDR-007 Model/provider integration and pre-go-live operational testing | M31, M33, M37 | Live provider/product AI and local app-coupled AI model runtime remain blocked until strategy, boundary, smoke tests, heavy-use shakedown, validation, and acceptance exist |
+| DDR-008 Phase 8/9 readiness gate | M25, M34 | Historical gate-control closure only; not product readiness |
+| DDR-009 External contract placeholders | M27, M32 | API/external contract placeholder compatibility does not authorize productized placeholder-backed behavior |
+
+---
+
+## 13. Non-Code Document Cleanup Policy After v5
+
+### 13.1 Cleanup lane classification
+
+The post-v5 cleanup lane is:
+
+`Comprehensive non-code repository document cleanup`
+
+It is not code cleanup, not tests cleanup, and not implementation refactor.
+
+### 13.2 In-scope documents
+
+Every non-code repository document is in scope for assessment, including:
+
+- root roadmap files
+- roadmap addenda
+- roadmap continuation/support files
+- tracker
+- architecture guardrails
+- governance registers
+- decision gates
+- standards registry and standards support files
+- milestone evidence
+- UAT evidence
+- closeout notes
+- archive files
+- public-surface docs such as README, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY if present
+- GitHub PR and issue templates
+- document approval registers
+- planning/reference/design notes
+- any Markdown/text/YAML documentation file outside code/test runtime behavior
+
+### 13.3 Out-of-scope by default
+
+- source code
+- tests
+- package runtime behavior
+- executable contracts
+- dependencies
+- workflow automation that affects execution
+
+If cleanup discovers code-adjacent changes are required, those must be reclassified into a code/refactor/tests lane before action.
+
+### 13.4 Required disposition categories
+
+Each document must receive one disposition:
+
+| Disposition | Meaning |
+|---|---|
+| Keep active | Retain as active authority/current surface |
+| Keep historical | Retain as traceability/evidence only |
+| Revise | Correct wording/status/links/supersession without changing authority unexpectedly |
+| Relocate | Move to a clearer location while preserving traceability |
+| Archive | Move out of active surface while preserving evidence |
+| Supersede | Replace with a newer controlled version and preserve reference trail |
+| Delete | Remove only if redundant, obsolete, not needed for traceability, and approved |
+
+### 13.5 Cleanup acceptance criteria
+
+Cleanup is complete only when:
+
+- every non-code document has been inventoried
+- each document has a proposed disposition
+- owner approves the disposition matrix
+- approved cleanup package is prepared
+- only approved actions are applied
+- final alignment confirms root authority surfaces are clear
+- tracker, roadmap, DDR, guardrails, docs index, and public surface do not contradict the approved v5 path
+
+---
+
+## 14. First Active Checkpoint After v5 Approval/Application
+
+After this roadmap is approved and applied, the tracker should point to the first not-yet-complete v5 checkpoint.
+
+Expected first active checkpoint after application:
+
+`M25.4 — Roadmap change-control record application`
+
+If the change-control record and roadmap v5 are applied together in one approved package, the tracker may instead point to:
+
+`M25.6 — Tracker and DDR alignment after v5`
+
+If tracker alignment is included in the same approved application package, the tracker may then point to:
+
+`M25.7 — Comprehensive non-code document inventory`
+
+The tracker must record the exact truth based on what was actually applied.
+
+---
+
+## 15. v5 Approval Acceptance Criteria
+
+Roadmap v5 may be approved only if Project Owner confirms that it:
+
+- absorbs the local integrated CQV product redirect
+- replaces active reliance on roadmap addenda for future direction
+- preserves closed milestones for their original scope
+- distinguishes governance/model closure from executable/product closure
+- places DDR-001 through DDR-009 explicitly
+- includes the comprehensive non-code document cleanup lane
+- defines a granular local CQV product build path
+- defines product-core validation and UAT expectations
+- defines productization/SaaS re-entry conditions
+- does not authorize implementation, cleanup, PR/issue creation, license change, or live repo writes by itself
+
+---
+
+## 16. Final v5 Direction Statement
+
+ASBP must not resume normal productization/SaaS readiness execution from archived Addendum 10.
+
+The next strategic path is:
+
+1. complete roadmap reset and non-code document cleanup gates
+2. build local integrated CQV product source authority
+3. implement runtime-authoritative CQV libraries and mappings
+4. implement standards applicability/citation authority where justified
+5. implement a complete product-ready document factory / document engine workflow, including DCF, document logic, template selection, generation, rendering, lifecycle, and review/approval controls
+6. add retrieval only after authoritative sources exist
+7. add AI assistance only over governed sources and accepted boundaries
+8. define and test the local app-coupled AI model/runtime path during controlled heavy-use testing where AI is in scope
+9. build local usable workflow/UI and API/external contract surfaces only as downstream adapters
+10. validate and trial the local product
+11. close product-core readiness
+12. only then decide whether productization/SaaS re-entry is allowed
+
+This is the canonical v5 direction proposed for Project Owner review.
