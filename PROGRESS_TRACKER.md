@@ -31,15 +31,15 @@ M25 — Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
 
 ## Current Approved Slice Family
 
-`M25.7` — Comprehensive non-code document inventory
+`M25.8` — Cleanup package planning
 
 ## Latest Completed Checkpoint
 
-`M25.6` — Tracker and DDR alignment after v5
+`M25.7` — Comprehensive non-code document inventory
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.7` — Comprehensive non-code document inventory
+`M25.8` — Cleanup package planning
 
 ## Latest Verified Validation Status
 
@@ -47,7 +47,7 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, or M25.6 tracker/DDR alignment because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, or M25.7 inventory/classification approval because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -59,11 +59,13 @@ M25 UAT should occur only after the M25 roadmap reset, evidence preservation, tr
 
 ## Repo Alignment Status
 
-Aligned for Project Owner-approved roadmap v5 application and M25.6 tracker/DDR alignment after post-M25.3 productization pause / local integrated CQV product redirect.
+Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, and M25.7 owner-approved non-code document inventory/classification handoff to M25.8.
 
 `ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction after repository application.
 
 `docs/change_control/ROADMAP_CHANGE_CONTROL_2026-05-25_ROADMAP_V5_LOCAL_CQV_PRODUCT_REDIRECT.md` is the approved repo-persistent change-control evidence for the roadmap v5 redirect.
+
+`docs/milestones/M25/M25_7_DECISION_RECORD_CLOSEOUT_NOTE.md` is the repo-persistent decision record for M25.7 inventory/classification approval and M25.8 cleanup-planning handoff.
 
 `ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
 
@@ -105,17 +107,46 @@ Required local product-core areas now placed by roadmap v5 include:
 - local validation and user-trial/UAT evidence
 - later productization/SaaS re-entry evidence
 
+## M25.7 Inventory / Classification Decision
+
+M25.7 is approved and complete for inventory/classification only.
+
+Decision evidence:
+
+- `docs/milestones/M25/M25_7_DECISION_RECORD_CLOSEOUT_NOTE.md`
+- Project Owner approval of the Decision Matrix tab in `Inventory_Analysis_Workbook_with_Decision_Matrix.xlsx`
+
+Approved decision:
+
+`Approved — the Decision Matrix is accepted as the M25.7 owner-approved decision-support basis. M25.7 remains inventory/classification only. No cleanup execution is authorized. Proceed to M25.8 cleanup package planning using file-by-file controlled proposals.`
+
+M25.7 does not authorize:
+
+- moving files
+- deleting files
+- archiving files
+- renaming files
+- rewriting file content
+- changing roadmap authority
+- changing tracker state beyond this approved status alignment
+- changing DDR status, blocker logic, closure scope, or dependency meaning
+- changing standards source/citation authority
+- promoting reference material to runtime authority
+- beginning productization/SaaS execution
+
 ## Deferred Dependency Gate Status
 
 Relevant and active.
 
-No deferred dependency is closed by the productization pause / redirect decision, roadmap v5 application, or M25.6 tracker/DDR alignment alone.
+No deferred dependency is closed by the productization pause / redirect decision, roadmap v5 application, M25.6 tracker/DDR alignment, or M25.7 inventory/classification approval alone.
 
 M25.6 reviewed and aligned `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` to roadmap v5 placement while preserving closure-scope truth, blocker logic, and required future evidence.
 
-The exact next checkpoint is `M25.7` — Comprehensive non-code document inventory.
+M25.7 accepted the inventory/classification decision basis only. It did not close, reopen, reclassify, delete, move, archive, or rewrite DDR records.
 
-`M25.7` is a non-code document inventory checkpoint. It may inspect the DDR register as a document, but it must not close, reopen, reclassify, delete, move, archive, or rewrite DDR records except through a later approved cleanup package.
+The exact next checkpoint is `M25.8` — Cleanup package planning.
+
+`M25.8` may prepare controlled file-by-file cleanup proposals only. Cleanup execution remains blocked until an exact owner-approved package exists.
 
 ## Active Notes
 
@@ -128,6 +159,7 @@ The exact next checkpoint is `M25.7` — Comprehensive non-code document invento
 - `M25.4` — Roadmap change-control record application is completed through the user-applied roadmap v5 application package.
 - `M25.5` — Canonical roadmap v5 approval and application is completed through the user-applied roadmap v5 application package.
 - `M25.6` — Tracker and DDR alignment after v5 is completed through docs/governance-only alignment.
+- `M25.7` — Comprehensive non-code document inventory is completed for inventory/classification approval only.
 - Normal archived Addendum 10 `M25.4` / `M25.5` / `M26` / `M27` productization execution remains paused and superseded for forward direction by roadmap v5.
 - Cleanup execution has not started.
-- The full non-code document cleanup lane begins with `M25.7` — Comprehensive non-code document inventory.
+- The exact next action is `M25.8` — Cleanup package planning, using file-by-file controlled proposals.
