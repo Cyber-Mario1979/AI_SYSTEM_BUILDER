@@ -1,17 +1,17 @@
-﻿---
+---
 doc_type: uat_owner_acceptance_record
 canonical_name: M25_12_ROADMAP_RESET_UAT_OWNER_ACCEPTANCE
 status: APPROVED
 governs_execution: false
 document_state_mode: owner_acceptance_evidence
 authority: project_owner_acceptance_record
-phase: Phase 9 â€” Roadmap Reset and Local Integrated CQV Product Core
-milestone: M25 â€” Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
-checkpoint: M25.12 â€” Roadmap reset UAT / owner acceptance
+phase: Phase 9 - Roadmap Reset and Local Integrated CQV Product Core
+milestone: M25 - Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
+checkpoint: M25.12 - Roadmap reset UAT / owner acceptance
 live_repo_write: NO
 ---
 
-# M25.12 â€” Roadmap Reset UAT / Owner Acceptance
+# M25.12 - Roadmap Reset UAT / Owner Acceptance
 
 ## 1. Purpose
 
@@ -64,11 +64,11 @@ The following evidence supports this acceptance record:
 
 Acceptance decision:
 
-`DRAFT â€” pending Project Owner final acceptance after repository application/review.`
+`Pass - roadmap reset and cleanup lane accepted for M25.12 scope.`
 
 Project Owner approval:
 
-`Pass â€” roadmap reset and cleanup lane accepted for M25.12 scope.`
+`Approved in chat after review.`
 
 ## 5. Acceptance Rationale
 
@@ -132,7 +132,7 @@ No `python -m pytest -q` result is claimed for M25.12 unless separately run by t
 After M25.12 acceptance:
 
 - cleanup execution beyond the approved M25.9 package remains blocked unless separately approved
-- M25 is not yet fully closed until `M25.13 â€” Milestone closeout`
+- M25 is not yet fully closed until `M25.13 - Milestone closeout`
 - local integrated CQV product-core work does not begin until M25 closeout points to `M26.1`
 - productization/SaaS work remains blocked until the later roadmap-authorized productization re-entry gate
 
@@ -140,5 +140,4 @@ After M25.12 acceptance:
 
 After Project Owner approval and repository application of this record, the tracker should be aligned to:
 
-`M25.13 â€” Milestone closeout`
-
+`M25.13 - Milestone closeout`
