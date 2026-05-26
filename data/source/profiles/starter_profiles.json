@@ -1,0 +1,411 @@
+{
+  "library_id": "M27_PROFILE_STARTER_LIBRARY@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-CLEANROOM-HVAC-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cleanroom / HVAC Qualification Profile",
+      "profile_type": "cleanroom_hvac",
+      "related_preset_families": [
+        "PF-CLEANROOM"
+      ],
+      "selector_context_tags": [
+        "cleanroom",
+        "hvac",
+        "area-profile",
+        "qualification"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-E2E-QUALIFICATION"
+      ],
+      "context_fields": [
+        {
+          "field_id": "area_classification",
+          "label": "Area classification / cleanroom grade",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "Grade A",
+            "Grade B",
+            "Grade C",
+            "Grade D",
+            "ISO 5",
+            "ISO 7",
+            "ISO 8"
+          ],
+          "notes": "Classification must be confirmed from site-approved design or user input."
+        },
+        {
+          "field_id": "hvac_system_boundary",
+          "label": "HVAC system and room boundary",
+          "value_status": "human_input_required",
+          "notes": "Room, AHU, terminal filtration, and served-area boundary must be confirmed before execution."
+        },
+        {
+          "field_id": "pressure_cascade_basis",
+          "label": "Pressure cascade / airflow direction basis",
+          "value_status": "human_input_required",
+          "notes": "Pressure regime is site-specific and must not be assumed from profile selection alone."
+        }
+      ],
+      "assumption_controls": [
+        "Cleanroom grade, pressure regime, and airflow basis require human confirmation.",
+        "This profile does not provide standards-backed acceptance criteria.",
+        "Calendar and working-time assumptions are deferred to M27.5."
+      ],
+      "notes": [
+        "Starter source context for cleanroom and HVAC qualification flow selection."
+      ]
+    },
+    {
+      "profile_id": "PROF-PROCESS-EQUIPMENT-GMP-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Process Equipment GMP Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "gmp-impact",
+        "qualification"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-E2E-QUALIFICATION"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment identity and boundary",
+          "value_status": "human_input_required",
+          "notes": "Equipment tag, intended use, and system boundary must be confirmed."
+        },
+        {
+          "field_id": "gmp_impact_context",
+          "label": "GMP impact context",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ],
+          "notes": "Impact category must be confirmed; this starter profile does not decide it automatically."
+        },
+        {
+          "field_id": "utility_interface_context",
+          "label": "Utility and interface context",
+          "value_status": "human_input_required",
+          "notes": "Utilities, controls, data interfaces, and upstream/downstream dependencies require confirmation."
+        }
+      ],
+      "assumption_controls": [
+        "GMP impact and intended use are human-confirmed inputs.",
+        "This profile does not replace URS, QP, risk assessment, or protocol logic.",
+        "Duration and planning basis are deferred to M27.6."
+      ],
+      "notes": [
+        "Starter source context for process equipment qualification selection."
+      ]
+    },
+    {
+      "profile_id": "PROF-QCLAB-EQUIPMENT-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "QC Lab Equipment Qualification / CSV Link Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-QC-LAB-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "qc-lab",
+        "laboratory-equipment",
+        "calibration",
+        "csv-awareness"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-CSV-LINKAGE"
+      ],
+      "context_fields": [
+        {
+          "field_id": "instrument_identity",
+          "label": "Instrument / equipment identity",
+          "value_status": "human_input_required",
+          "notes": "Instrument tag, model, intended method use, and laboratory location must be confirmed."
+        },
+        {
+          "field_id": "calibration_status_context",
+          "label": "Calibration status context",
+          "value_status": "human_input_required",
+          "notes": "Calibration status and calibration procedure availability must be confirmed."
+        },
+        {
+          "field_id": "csv_link_context",
+          "label": "CSV / software linkage context",
+          "value_status": "human_input_required",
+          "notes": "Software, firmware, data integrity, or interface impact must be confirmed before CSV-linked work."
+        }
+      ],
+      "assumption_controls": [
+        "Calibration and CSV linkage are awareness fields, not automatic acceptance decisions.",
+        "This profile does not implement CSV validation behavior.",
+        "Document-template behavior is deferred to M29."
+      ],
+      "notes": [
+        "Starter source context for QC lab equipment qualification and CSV linkage awareness."
+      ]
+    },
+    {
+      "profile_id": "PROF-UTILITIES-GMP-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "GMP Utilities Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "gmp-utility",
+        "qualification"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-E2E-QUALIFICATION"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_identity",
+          "label": "Utility system identity",
+          "value_status": "human_input_required",
+          "notes": "Utility name, boundary, source, distribution, and points of use must be confirmed."
+        },
+        {
+          "field_id": "service_boundary_context",
+          "label": "Service boundary / points of use",
+          "value_status": "human_input_required",
+          "notes": "Distribution loop, branch, point-of-use, or service boundary must be confirmed."
+        },
+        {
+          "field_id": "gmp_use_context",
+          "label": "GMP use context",
+          "value_status": "human_input_required",
+          "notes": "Direct or indirect GMP use must be confirmed before task selection is treated as final."
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries and GMP use are site-specific.",
+        "This profile does not define sampling plans or acceptance criteria.",
+        "Standards-backed utility claims are deferred to M28."
+      ],
+      "notes": [
+        "Starter source context for GMP utility qualification flow selection."
+      ]
+    },
+    {
+      "profile_id": "PROF-COMPUTERIZED-SYSTEM-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Computerized System GxP Context Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-COMPUTERIZED-SYSTEMS"
+      ],
+      "selector_context_tags": [
+        "computerized-system",
+        "gxp",
+        "csv",
+        "data-integrity"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REVIEW"
+      ],
+      "qualification_validation_intents": [
+        "INT-CSV",
+        "INT-GXP-ASSESSMENT",
+        "INT-E2E-QUALIFICATION"
+      ],
+      "context_fields": [
+        {
+          "field_id": "system_identity",
+          "label": "System identity and boundary",
+          "value_status": "human_input_required",
+          "notes": "System name, version, owner, intended use, and interfaces must be confirmed."
+        },
+        {
+          "field_id": "gxp_relevance_context",
+          "label": "GxP relevance context",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "gxp_relevant",
+            "not_gxp_relevant",
+            "to_be_assessed"
+          ],
+          "notes": "GxP relevance must be confirmed before CSV-linked task selection."
+        },
+        {
+          "field_id": "data_integrity_context",
+          "label": "Data integrity / record impact context",
+          "value_status": "human_input_required",
+          "notes": "Record creation, modification, storage, review, or reporting impact must be assessed."
+        }
+      ],
+      "assumption_controls": [
+        "This profile provides CSV/GxP context only; it does not implement model/provider or AI behavior.",
+        "External API/UI placeholder behavior remains governed by DDR-009.",
+        "Standards-backed CSV claims are deferred to M28."
+      ],
+      "notes": [
+        "Starter source context for computerized-system and CSV-aware flow selection."
+      ]
+    },
+    {
+      "profile_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Qualification Strategy Context Profile",
+      "profile_type": "qualification",
+      "related_preset_families": [
+        "PF-CLEANROOM",
+        "PF-PROCESS-EQUIPMENT",
+        "PF-QC-LAB-EQUIPMENT",
+        "PF-UTILITIES",
+        "PF-COMPUTERIZED-SYSTEMS"
+      ],
+      "selector_context_tags": [
+        "qualification-strategy",
+        "iq",
+        "oq",
+        "pq",
+        "risk-based-scope"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-PERIODIC-REQUALIFICATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-E2E-QUALIFICATION",
+        "INT-REQUALIFICATION"
+      ],
+      "context_fields": [
+        {
+          "field_id": "qualification_depth",
+          "label": "Qualification depth / intended execution level",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "iq_only",
+            "iq_oq",
+            "iq_oq_pq",
+            "assessment_only",
+            "to_be_confirmed"
+          ],
+          "notes": "Qualification depth must be confirmed by human decision and applicable governance."
+        },
+        {
+          "field_id": "risk_basis_context",
+          "label": "Risk basis context",
+          "value_status": "human_input_required",
+          "notes": "Risk-based scope requires approved rationale; this profile does not weaken mandatory requirements."
+        },
+        {
+          "field_id": "document_strategy_context",
+          "label": "Document strategy context",
+          "value_status": "future_mapping_expected",
+          "notes": "Document family mapping is expected downstream and does not generate documents in M27.4."
+        }
+      ],
+      "assumption_controls": [
+        "Qualification depth and risk basis require human confirmation.",
+        "This profile does not generate QP, URS, protocol, or report documents.",
+        "Document factory behavior is deferred to M29."
+      ],
+      "notes": [
+        "Cross-family starter source context for qualification strategy selection."
+      ]
+    },
+    {
+      "profile_id": "PROF-MANUAL-FALLBACK-CONTEXT@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual Fallback Context Profile",
+      "profile_type": "manual_fallback",
+      "related_preset_families": [
+        "PF-MANUAL-FALLBACK"
+      ],
+      "selector_context_tags": [
+        "manual-fallback",
+        "insufficient-context",
+        "human-confirmation-required"
+      ],
+      "lifecycle_events": [
+        "LE-CONTEXT-UNKNOWN"
+      ],
+      "qualification_validation_intents": [
+        "INT-MANUAL-ASSESSMENT"
+      ],
+      "context_fields": [
+        {
+          "field_id": "missing_context_summary",
+          "label": "Missing or ambiguous context summary",
+          "value_status": "human_input_required",
+          "notes": "User or reviewer must identify missing context before deterministic selection proceeds."
+        },
+        {
+          "field_id": "manual_decision_basis",
+          "label": "Manual decision basis",
+          "value_status": "human_input_required",
+          "notes": "The basis for choosing a downstream flow must be recorded by a human reviewer."
+        }
+      ],
+      "assumption_controls": [
+        "Fallback profile must not silently select product behavior.",
+        "Human confirmation is required before staging or commitment uses uncertain context.",
+        "This profile is a safety boundary, not a product capability claim."
+      ],
+      "notes": [
+        "Safe starter source context for insufficient or ambiguous CQV inputs."
+      ]
+    }
+  ]
+}

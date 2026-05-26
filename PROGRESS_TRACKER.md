@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.4 — Profile model
+M27.5 — Calendar and work-time model
 
 ## Latest Completed Checkpoint
 
-M27.3 — Task-pool source model
+M27.4 — Profile model
 
 ## Exact Next Unfinished Checkpoint
 
-M27.4 — Profile model
+M27.5 — Calendar and work-time model
 
 ## Latest Verified Validation Status
 
@@ -38,6 +38,8 @@ M27.3 runtime task-pool source model: python -m pytest -q — 1082 passed in 47.
 
 Build/governance balance policy activation was documentation/governance-only. No executable validation was run or required.
 
+M27.4 profile model: python -m pytest -q — 1092 passed in 46.75s.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -46,9 +48,9 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M27.3 runtime task-pool source model completion.
+Aligned for M27.4 profile model completion.
 
-Build/governance balance policy is active before M27.4.
+Build/governance balance policy is active for M27.5 and future M27 work.
 
 M26 evidence:
 
@@ -60,10 +62,15 @@ M27 evidence:
 - docs/milestones/M27/M27_1_CQV_PRESET_FAMILY_SCOPE.md
 - docs/milestones/M27/M27_2_SELECTOR_SCOPE_INTENT_MODEL_HARDENING.md
 - docs/milestones/M27/M27_3_TASK_POOL_SOURCE_MODEL.md
+- docs/milestones/M27/M27_4_PROFILE_MODEL.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
+- asbp/profile_source_model.py
+- asbp/profile_source_store.py
 - data/source/task_pools/starter_task_pools.json
+- data/source/profiles/starter_profiles.json
 - tests/test_task_pool_source_model.py
+- tests/test_profile_source_model.py
 
 Governance policy evidence:
 
@@ -81,8 +88,10 @@ M27.3 does not close, reopen, downgrade, or reclassify any DDR.
 
 Build/governance balance policy does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.4 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.4 starts profile model.
+M27.5 starts calendar and work-time model.
 
-Before M27.4 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M27.5 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
