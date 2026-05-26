@@ -20,7 +20,7 @@ Milestone 10 is closed following:
 
 Milestone 10 closeout is based on:
 
-- recorded `docs/M10_VALIDATION_CHECKPOINT.md`
+- recorded `docs/milestones/M10/M10_VALIDATION_CHECKPOINT.md`
 - recorded `docs/UAT/M10_UAT_PROTOCOL.md`
 - recorded `docs/UAT/M10_UAT_REPORT.md`
 - validated technical baseline

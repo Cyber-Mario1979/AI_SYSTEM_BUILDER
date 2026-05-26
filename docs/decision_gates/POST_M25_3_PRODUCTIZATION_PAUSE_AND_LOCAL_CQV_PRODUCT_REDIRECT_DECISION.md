@@ -6,7 +6,7 @@ governs_execution: true
 document_state_mode: redirect_decision
 authority: project_execution_decision
 source_tracker: PROGRESS_TRACKER.md
-source_addendum: ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md
+source_addendum: docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md
 phase_context: Phase 9 — SaaS Readiness / Productization
 latest_completed_checkpoint: M25.3 — Commercial and packaging readiness assessment
 approval_state: PROJECT_OWNER_APPROVED
@@ -33,7 +33,7 @@ Productization and SaaS readiness execution is paused after `M25.3`.
 
 Normal `M25.4`, `M25.5`, `M26`, and `M27` productization execution must not proceed until the roadmap is reviewed and redirected toward completing a local integrated CQV product.
 
-`ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is archived as early readiness evidence and no longer governs execution.
+`docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is archived as early readiness evidence and no longer governs execution.
 
 ## 3. Reason for Redirect
 
@@ -77,7 +77,7 @@ This decision does not:
 
 ## 6. Impact on Phase 9 / Addendum 10
 
-`ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is archived as early readiness evidence.
+`docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is archived as early readiness evidence.
 
 Archive reason:
 

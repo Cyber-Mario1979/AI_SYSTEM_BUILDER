@@ -55,19 +55,19 @@ This validation checkpoint covers the implemented and documented M17 scope throu
 
 M17 evidence is preserved in:
 
-- `docs/M17_AI_EVALUATION_BASELINE.md`
+- `docs/milestones/M17/M17_AI_EVALUATION_BASELINE.md`
 - `docs/design_spec/ai_evaluation/M17_1_AI_EVALUATION_BASELINE_RULES.yaml`
 - `asbp/ai_evaluation/evaluation_baseline.py`
 - `tests/test_ai_evaluation_baseline.py`
-- `docs/M17_QUALITY_GATES_AND_GROUNDEDNESS.md`
+- `docs/milestones/M17/M17_QUALITY_GATES_AND_GROUNDEDNESS.md`
 - `docs/design_spec/ai_evaluation/M17_2_QUALITY_GATES_AND_GROUNDEDNESS_RULES.yaml`
 - `asbp/ai_evaluation/quality_gates.py`
 - `tests/test_ai_quality_gates.py`
-- `docs/M17_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY.md`
+- `docs/milestones/M17/M17_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY.md`
 - `docs/design_spec/ai_evaluation/M17_3_STANDARDS_CONFORMANCE_AND_DETAIL_CONSISTENCY_RULES.yaml`
 - `asbp/ai_evaluation/standards_detail_checks.py`
 - `tests/test_ai_standards_detail_checks.py`
-- `docs/M17_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.md`
+- `docs/milestones/M17/M17_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.md`
 - `docs/design_spec/ai_evaluation/M17_4_RETRIEVAL_USE_RULES_AND_SOURCE_ROLE_DISCIPLINE.yaml`
 - `asbp/ai_evaluation/retrieval_use_rules.py`
 - `tests/test_ai_retrieval_use_rules.py`

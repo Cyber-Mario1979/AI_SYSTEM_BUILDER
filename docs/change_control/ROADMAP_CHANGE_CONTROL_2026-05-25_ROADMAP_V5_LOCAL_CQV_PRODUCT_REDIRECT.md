@@ -78,7 +78,7 @@ Read-only branch preflight was performed before project-state reading.
 Changed-file families observed versus `main`:
 
 - `PROGRESS_TRACKER.md`
-- `ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md`
+- `docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md`
 - `docs/decision_gates/POST_M25_3_PRODUCTIZATION_PAUSE_AND_LOCAL_CQV_PRODUCT_REDIRECT_DECISION.md`
 - `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`
 - `docs/governance/DOCUMENT_APPROVAL_REGISTER_DRAFT_v0.1_20260521.md`

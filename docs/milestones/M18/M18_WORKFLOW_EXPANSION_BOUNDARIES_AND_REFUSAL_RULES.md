@@ -157,7 +157,7 @@ Implemented files:
 - `asbp/ai_workflow/workflow_expansion_boundaries.py`
 - `tests/test_ai_workflow_expansion_boundaries.py`
 - `docs/design_spec/ai_workflow/M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.yaml`
-- `docs/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`
+- `docs/milestones/M18/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`
 
 ## Validation Status
 

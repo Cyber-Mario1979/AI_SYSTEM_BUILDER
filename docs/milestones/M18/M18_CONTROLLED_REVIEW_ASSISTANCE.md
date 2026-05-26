@@ -149,7 +149,7 @@ Implemented files:
 - `asbp/ai_workflow/review_assistance.py`
 - `tests/test_ai_review_assistance.py`
 - `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`
-- `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`
+- `docs/milestones/M18/M18_CONTROLLED_REVIEW_ASSISTANCE.md`
 
 ## Validation Status
 

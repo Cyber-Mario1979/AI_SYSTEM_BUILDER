@@ -55,19 +55,19 @@ This validation checkpoint covers the implemented and documented M16 scope throu
 
 M16 evidence is preserved in:
 
-- `docs/M16_AI_RUNTIME_BOUNDARY.md`
+- `docs/milestones/M16/M16_AI_RUNTIME_BOUNDARY.md`
 - `docs/design_spec/ai_runtime/M16_1_AI_RUNTIME_BOUNDARY_RULES.yaml`
 - `asbp/ai_runtime/runtime_boundary.py`
 - `tests/test_ai_runtime_boundary.py`
-- `docs/M16_CONTEXT_PACKAGING.md`
+- `docs/milestones/M16/M16_CONTEXT_PACKAGING.md`
 - `docs/design_spec/ai_runtime/M16_2_CONTEXT_PACKAGING_RULES.yaml`
 - `asbp/ai_runtime/context_packaging.py`
 - `tests/test_ai_runtime_context_packaging.py`
-- `docs/M16_GENERATION_MODES.md`
+- `docs/milestones/M16/M16_GENERATION_MODES.md`
 - `docs/design_spec/ai_runtime/M16_3_GENERATION_MODE_RULES.yaml`
 - `asbp/ai_runtime/generation_modes.py`
 - `tests/test_ai_runtime_generation_modes.py`
-- `docs/M16_OUTPUT_ACCEPTANCE.md`
+- `docs/milestones/M16/M16_OUTPUT_ACCEPTANCE.md`
 - `docs/design_spec/ai_runtime/M16_4_OUTPUT_ACCEPTANCE_RULES.yaml`
 - `asbp/ai_runtime/output_acceptance.py`
 - `tests/test_ai_runtime_output_acceptance.py`
