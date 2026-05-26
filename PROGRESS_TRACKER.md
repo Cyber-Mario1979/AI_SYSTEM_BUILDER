@@ -31,15 +31,15 @@ M25 — Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
 
 ## Current Approved Slice Family
 
-`M25.12` — Roadmap reset UAT / owner acceptance
+`M25.13` — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-`M25.11` — Roadmap reset validation checkpoint
+`M25.12` — Roadmap reset UAT / owner acceptance
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.12` — Roadmap reset UAT / owner acceptance
+`M25.13` — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -47,19 +47,19 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval, M25.9 cleanup package application, M25.10 post-cleanup alignment review and targeted correction, or M25.11 roadmap reset validation approval because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval, M25.9 cleanup package application, M25.10 post-cleanup alignment review and targeted correction, M25.11 roadmap reset validation approval, or M25.12 roadmap reset UAT / owner acceptance because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
 
-M25 UAT has not started.
+M25 UAT / owner acceptance completed and accepted for roadmap reset and cleanup lane scope only.
 
-M25 UAT should occur only after the M25 roadmap reset, evidence preservation, tracker/DDR alignment, non-code document cleanup lane, post-cleanup alignment review, and docs-only consistency review are complete.
+M25.12 is not product UAT and does not validate local integrated CQV product readiness, productization readiness, SaaS readiness, live AI/model runtime, product-ready document engine behavior, or deployment readiness.
 
 ## Repo Alignment Status
 
-Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 owner-approved non-code document inventory/classification handoff, M25.8 owner-approved cleanup package planning, M25.9 owner-approved cleanup package application, M25.10 owner-accepted post-cleanup alignment review, and M25.11 owner-approved roadmap reset validation handoff to M25.12.
+Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 owner-approved non-code document inventory/classification handoff, M25.8 owner-approved cleanup package planning, M25.9 owner-approved cleanup package application, M25.10 owner-accepted post-cleanup alignment review, M25.11 owner-approved roadmap reset validation, and M25.12 approved owner acceptance handoff to M25.13.
 
 `ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction after repository application.
 
@@ -228,9 +228,24 @@ Validation conclusion:
 
 M25.11 did not authorize cleanup execution, code/test changes, DDR status changes, standards-authority changes, product-core implementation, productization/SaaS execution, or executable validation claims.
 
-The exact next checkpoint is `M25.12` — Roadmap reset UAT / owner acceptance.
+## M25.12 Roadmap Reset UAT / Owner Acceptance
 
-`M25.12` must capture Project Owner acceptance of the completed roadmap reset and cleanup lane outcome before M25 closeout.
+M25.12 is completed for owner acceptance of the roadmap reset and cleanup lane outcome only.
+
+Decision evidence:
+
+- `docs/UAT/M25/M25_12_ROADMAP_RESET_UAT_OWNER_ACCEPTANCE.md`
+- Project Owner approval in chat and finalized repository record
+
+Acceptance decision:
+
+`Pass - roadmap reset and cleanup lane accepted for M25.12 scope.`
+
+M25.12 is not product UAT and does not authorize product-core implementation, productization/SaaS execution, live AI/model runtime, product-ready document engine behavior, or deployment readiness.
+
+The exact next checkpoint is `M25.13` — Milestone closeout.
+
+`M25.13` must close the M25 roadmap reset milestone and point forward to `M26.1` without resuming productization/SaaS execution.
 
 ## Active Notes
 
@@ -248,6 +263,7 @@ The exact next checkpoint is `M25.12` — Roadmap reset UAT / owner acceptance.
 - `M25.9` — Cleanup package application is completed for the exact owner-approved file-by-file cleanup package scope.
 - `M25.10` — Post-cleanup alignment review is completed for targeted tracker/governance and relocated milestone reference alignment only.
 - `M25.11` — Roadmap reset validation checkpoint is completed for docs/governance consistency validation only.
+- `M25.12` — Roadmap reset UAT / owner acceptance is completed for roadmap reset and cleanup lane acceptance only.
 - Normal archived Addendum 10 `M25.4` / `M25.5` / `M26` / `M27` productization execution remains paused and superseded for forward direction by roadmap v5.
 - Cleanup execution beyond the approved M25.9 package has not started and remains blocked.
-- The exact next action is `M25.12` — Roadmap reset UAT / owner acceptance.
+- The exact next action is `M25.13` — Milestone closeout.
