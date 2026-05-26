@@ -36,6 +36,8 @@ M27.2 is documentation/governance/source-scope only. No executable validation wa
 
 M27.3 runtime task-pool source model: python -m pytest -q — 1082 passed in 47.34s.
 
+Build/governance balance policy activation was documentation/governance-only. No executable validation was run or required.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -45,6 +47,8 @@ M27 UAT has not started.
 ## Repo Alignment Status
 
 Aligned for M27.3 runtime task-pool source model completion.
+
+Build/governance balance policy is active before M27.4.
 
 M26 evidence:
 
@@ -61,6 +65,10 @@ M27 evidence:
 - data/source/task_pools/starter_task_pools.json
 - tests/test_task_pool_source_model.py
 
+Governance policy evidence:
+
+- docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md
+
 ## Deferred Dependency Gate Status
 
 Relevant and active for M27.
@@ -71,6 +79,10 @@ M27.2 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.3 does not close, reopen, downgrade, or reclassify any DDR.
 
+Build/governance balance policy does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
 M27.4 starts profile model.
+
+Before M27.4 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
