@@ -31,15 +31,15 @@ M25 — Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
 
 ## Current Approved Slice Family
 
-`M25.10` — Post-cleanup alignment review
+`M25.11` — Roadmap reset validation checkpoint
 
 ## Latest Completed Checkpoint
 
-`M25.9` — Cleanup package application
+`M25.10` — Post-cleanup alignment review
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.10` — Post-cleanup alignment review
+`M25.11` — Roadmap reset validation checkpoint
 
 ## Latest Verified Validation Status
 
@@ -47,7 +47,7 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval, or M25.9 cleanup package application because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval, M25.9 cleanup package application, or M25.10 post-cleanup alignment review and targeted correction because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -59,7 +59,7 @@ M25 UAT should occur only after the M25 roadmap reset, evidence preservation, tr
 
 ## Repo Alignment Status
 
-Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 owner-approved non-code document inventory/classification handoff, M25.8 owner-approved cleanup package planning, and M25.9 owner-approved cleanup package application handoff to M25.10.
+Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 owner-approved non-code document inventory/classification handoff, M25.8 owner-approved cleanup package planning, M25.9 owner-approved cleanup package application, and M25.10 owner-accepted post-cleanup alignment review handoff to M25.11.
 
 `ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction after repository application.
 
@@ -195,9 +195,27 @@ Applied scope:
 
 M25.9 did not authorize cleanup beyond the approved file-by-file package scope.
 
-The exact next checkpoint is `M25.10` — Post-cleanup alignment review.
+## M25.10 Post-Cleanup Alignment Review
 
-`M25.10` must review and correct only targeted post-cleanup alignment issues, including tracker/governance references and relocated milestone internal references, before M25 may proceed to validation, UAT, and closeout.
+M25.10 is completed for post-cleanup alignment review and targeted correction only.
+
+Decision evidence:
+
+- Project Owner acceptance in chat of M25.10 closure
+- User-applied targeted alignment correction commit on `feature/m25-productization-boundary-assessment`
+
+Applied scope:
+
+- tracker/governance reference alignment
+- archived addenda path references
+- relocated milestone internal references
+- no file moves, deletions, archives, renames, code/test changes, DDR status changes, or standards-authority changes
+
+M25.10 did not authorize additional cleanup execution beyond targeted reference alignment.
+
+The exact next checkpoint is `M25.11` — Roadmap reset validation checkpoint.
+
+`M25.11` must perform docs-only consistency validation for the roadmap reset and cleanup lane before M25 UAT / owner acceptance.
 
 ## Active Notes
 
@@ -213,6 +231,7 @@ The exact next checkpoint is `M25.10` — Post-cleanup alignment review.
 - `M25.7` — Comprehensive non-code document inventory is completed for inventory/classification approval only.
 - `M25.8` — Cleanup package planning is completed for owner-approved file-by-file planning only.
 - `M25.9` — Cleanup package application is completed for the exact owner-approved file-by-file cleanup package scope.
+- `M25.10` — Post-cleanup alignment review is completed for targeted tracker/governance and relocated milestone reference alignment only.
 - Normal archived Addendum 10 `M25.4` / `M25.5` / `M26` / `M27` productization execution remains paused and superseded for forward direction by roadmap v5.
 - Cleanup execution beyond the approved M25.9 package has not started and remains blocked.
-- The exact next action is `M25.10` — Post-cleanup alignment review.
+- The exact next action is `M25.11` — Roadmap reset validation checkpoint.
