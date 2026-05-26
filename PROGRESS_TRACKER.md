@@ -14,21 +14,23 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.1 — CQV source content expansion start
+M27.2 — Selector and scope-intent model hardening
 
 ## Latest Completed Checkpoint
 
-M26.11 — Milestone closeout
+M27.1 — CQV preset family scope
 
 ## Exact Next Unfinished Checkpoint
 
-M27.1 — CQV source content expansion start
+M27.2 — Selector and scope-intent model hardening
 
 ## Latest Verified Validation Status
 
 M24.6 / Phase 8: python -m pytest -q — 1072 passed in 52.80s.
 
 M26 was documentation-only. No executable validation was run or claimed for M26.
+
+M27.1 is documentation/governance/source-scope only. No executable validation was run or claimed for M27.1.
 
 ## Milestone UAT Status
 
@@ -38,17 +40,23 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M26 closeout.
+Aligned for M27.1 completion.
 
 M26 evidence:
 
 - docs/milestones/M26/M26_1_LOCAL_PRODUCT_SOURCE_BOUNDARY_SCOPE_LOCK.md
 - docs/milestones/M26/M26_11_MILESTONE_CLOSEOUT.md
 
+M27 evidence:
+
+- docs/milestones/M27/M27_1_CQV_PRESET_FAMILY_SCOPE.md
+
 ## Deferred Dependency Gate Status
 
 Relevant and active for M27.
 
+M27.1 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27 starts CQV source content expansion.
+M27.2 starts selector and scope-intent model hardening.
