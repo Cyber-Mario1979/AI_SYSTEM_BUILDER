@@ -35,11 +35,13 @@ M26 — CQV Source Authority and Runtime Library Architecture
 
 ## Latest Completed Checkpoint
 
-`M25.13` — Milestone closeout
+`M26.1` — Local product source-boundary scope lock
 
 ## Exact Next Unfinished Checkpoint
 
-`M26.1` — Local product source-boundary scope lock
+Not opened by the latest authorized action.
+
+The latest authorized action was limited to updating the compressed M26.1 authority lock and this tracker status. It explicitly did not continue beyond M26.1.
 
 ## Latest Verified Validation Status
 
@@ -48,6 +50,8 @@ User-provided local validation result for M24.6 / Phase 8:
 `python -m pytest -q` — `1072 passed in 52.80s`
 
 No executable validation has been run or claimed for M25.1 through M25.13 because the M25 roadmap reset, cleanup, validation, UAT, and closeout actions are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, schemas, or executable contracts.
+
+No executable validation has been run or claimed for M26.1 because the compressed M26.1 source-boundary authority lock is a documentation/governance decision artifact only and does not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, schemas, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -63,6 +67,8 @@ M26 UAT has not started.
 
 Aligned for completed M25 roadmap reset, evidence preservation, non-code document cleanup, validation, owner acceptance, and milestone closeout.
 
+Aligned for completed compressed M26.1 local product source-boundary scope lock.
+
 `ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction.
 
 `docs/milestones/M25/M25_13_MILESTONE_CLOSEOUT.md` is the approved closeout evidence for M25.
@@ -73,6 +79,10 @@ Aligned for completed M25 roadmap reset, evidence preservation, non-code documen
 
 `docs/decision_gates/POST_M25_3_PRODUCTIZATION_PAUSE_AND_LOCAL_CQV_PRODUCT_REDIRECT_DECISION.md` remains the productization pause / local CQV product redirect decision.
 
+`docs/milestones/M26/M26_1_LOCAL_PRODUCT_SOURCE_BOUNDARY_SCOPE_LOCK.md` is the active compressed M26 source-boundary authority lock.
+
+The M26.1 artifact locks the included local MVP source families, including CQV Libraries, Task Pools, Profiles, Calendars, Presets, Selectors, Planning Basis, Duration References, Mappings, Standards Bundle references, Document Template family boundaries, Document Factory input boundaries, Export/Report source families, and consumer surfaces.
+
 `docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
 
 `docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
@@ -81,7 +91,7 @@ Aligned for completed M25 roadmap reset, evidence preservation, non-code documen
 
 `ARCHITECTURE_GUARDRAILS.md` remains active.
 
-`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers, including M26 source-authority work.
+`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers.
 
 `docs/standards/STANDARDS_SOURCE_REGISTRY.md` exists as approved DDR-004 closure evidence and defines the controlled standards source registry/citation authority model, including controlled placeholders, verification limitations, registry lifecycle/change-control expectations, and registry versioning expectations.
 
@@ -89,7 +99,7 @@ Aligned for completed M25 roadmap reset, evidence preservation, non-code documen
 
 Productization/SaaS readiness execution remains paused.
 
-M25 closeout does not authorize:
+M25 closeout and M26.1 completion do not authorize:
 
 - product/SaaS launch
 - production deployment
@@ -102,7 +112,7 @@ M25 closeout does not authorize:
 - product-ready document/report/export generation
 - product-core build execution outside the M26 roadmap path
 
-The project now proceeds into the local integrated CQV product-core path under roadmap v5.
+The project continues inside the local integrated CQV product-core path under roadmap v5.
 
 ## Deferred Dependency Gate Status
 
@@ -114,17 +124,11 @@ No DDR status changes are made by M25.13.
 
 No DDR blocker logic is changed by M25.13.
 
-M26.1 touches source authority and governed-library boundary definition. The DDR register must be checked before planning and before any GO action in M26.1.
+M26.1 directly addressed DDR-001 and DDR-002 at boundary level and carried DDR-003, DDR-004, and DDR-006 awareness without unauthorized implementation.
 
-M26 roadmap DDR focus includes:
+M26.1 does not implement runtime migration, deployment-compiled lookup generation, runtime lookup implementation, consolidated library package layout, version/status fields, cross-library validation, product-ready templates, executable standards registry consumption, standards embedding/retrieval, product-ready generation, rendering, export, reporting, artifact metadata, or output acceptance behavior.
 
-- DDR-001
-- DDR-002
-- DDR-003 dependency awareness
-- DDR-004 dependency awareness
-- DDR-006 dependency awareness
-
-M26.1 may define the local CQV product MVP source boundary and map source roles, but it must not implement content beyond the approved boundary.
+M26.1 locks source-family inclusion so CQV source content expansion can proceed without reopening the MVP boundary question when the Project Owner authorizes the next execution step.
 
 ## Active Notes
 
@@ -132,5 +136,6 @@ M26.1 may define the local CQV product MVP source boundary and map source roles,
 - M25 closeout does not resume productization/SaaS.
 - M25 cleanup execution is closed only for the approved M25.9 package scope.
 - Cleanup execution beyond the approved M25.9 package remains blocked unless separately approved.
-- M26 starts the local CQV source authority and runtime library architecture path under roadmap v5.
-- The exact next action is `M26.1` — Local product source-boundary scope lock.
+- M26.1 is completed by `docs/milestones/M26/M26_1_LOCAL_PRODUCT_SOURCE_BOUNDARY_SCOPE_LOCK.md`.
+- The included MVP source-family boundary is locked and must not be reopened unless a formal Project Owner decision changes it.
+- The latest live-write authorization did not continue beyond M26.1.
