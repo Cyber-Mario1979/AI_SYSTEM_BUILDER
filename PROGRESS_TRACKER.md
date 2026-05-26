@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.2 — Selector and scope-intent model hardening
+M27.3 — Task-pool source model
 
 ## Latest Completed Checkpoint
 
-M27.1 — CQV preset family scope
+M27.2 — Selector and scope-intent model hardening
 
 ## Exact Next Unfinished Checkpoint
 
-M27.2 — Selector and scope-intent model hardening
+M27.3 — Task-pool source model
 
 ## Latest Verified Validation Status
 
@@ -32,6 +32,8 @@ M26 was documentation-only. No executable validation was run or claimed for M26.
 
 M27.1 is documentation/governance/source-scope only. No executable validation was run or claimed for M27.1.
 
+M27.2 is documentation/governance/source-scope only. No executable validation was run or claimed for M27.2.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -40,7 +42,7 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M27.1 completion.
+Aligned for M27.2 completion.
 
 M26 evidence:
 
@@ -50,6 +52,7 @@ M26 evidence:
 M27 evidence:
 
 - docs/milestones/M27/M27_1_CQV_PRESET_FAMILY_SCOPE.md
+- docs/milestones/M27/M27_2_SELECTOR_SCOPE_INTENT_MODEL_HARDENING.md
 
 ## Deferred Dependency Gate Status
 
@@ -57,6 +60,8 @@ Relevant and active for M27.
 
 M27.1 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.2 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.2 starts selector and scope-intent model hardening.
+M27.3 starts task-pool source model.
