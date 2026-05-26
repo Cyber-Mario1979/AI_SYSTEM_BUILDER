@@ -19,7 +19,7 @@ Milestone 8 is closed following:
 
 Milestone 8 closeout is based on:
 
-- recorded `docs/M8_VALIDATION_CHECKPOINT.md`
+- recorded `docs/milestones/M8/M8_VALIDATION_CHECKPOINT.md`
 - recorded `docs/UAT/M8_UAT_PROTOCOL.md`
 - recorded `docs/UAT/M8_UAT_REPORT.md`
 - validated technical baseline

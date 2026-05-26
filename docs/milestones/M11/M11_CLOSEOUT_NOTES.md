@@ -21,7 +21,7 @@ Milestone 11 is closed following:
 
 Milestone 11 closeout is based on:
 
-- recorded `docs/M11_VALIDATION_CHECKPOINT.md`
+- recorded `docs/milestones/M11/M11_VALIDATION_CHECKPOINT.md`
 - recorded `docs/UAT/M11_UAT_PROTOCOL.md`
 - recorded `docs/UAT/M11_UAT_REPORT.md`
 - validated technical baseline

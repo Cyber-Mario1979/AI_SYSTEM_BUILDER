@@ -23,23 +23,23 @@ Keep detailed notes only for the active milestone or active transition gate; onc
 
 ## Current Phase
 
-Phase 9 — SaaS Readiness / Productization
+Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M25 — SaaS Readiness Assessment
+M26 — CQV Source Authority and Runtime Library Architecture
 
 ## Current Approved Slice Family
 
-`M25.1` — Productization boundary assessment
+`M26.1` — Local product source-boundary scope lock
 
 ## Latest Completed Checkpoint
 
-`Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate`
+`M25.13` — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.1` — Productization boundary assessment
+`M26.1` — Local product source-boundary scope lock
 
 ## Latest Verified Validation Status
 
@@ -47,64 +47,90 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No validation has been run or claimed for the Phase 9 roadmap expansion addendum because the addendum is governance/planning-only and no executable code change has been verified in this tracker update.
+No executable validation has been run or claimed for M25.1 through M25.13 because the M25 roadmap reset, cleanup, validation, UAT, and closeout actions are documentation/governance-only and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, schemas, or executable contracts.
 
 ## Milestone UAT Status
 
 Phase 8 UAT completed and accepted.
 
-M25 UAT has not started.
+M25 roadmap reset UAT / owner acceptance completed and accepted for roadmap reset and cleanup lane scope only.
+
+M25.12 was not product UAT and does not validate local integrated CQV product readiness, productization readiness, SaaS readiness, live AI/model runtime, product-ready document engine behavior, or deployment readiness.
+
+M26 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for Phase 9 entry.
+Aligned for completed M25 roadmap reset, evidence preservation, non-code document cleanup, validation, owner acceptance, and milestone closeout.
 
-`ROADMAP_CANONICAL.md` v4 remains the active canonical roadmap.
+`ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction.
 
-`ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
+`docs/milestones/M25/M25_13_MILESTONE_CLOSEOUT.md` is the approved closeout evidence for M25.
 
-`ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
+`docs/UAT/M25/M25_12_ROADMAP_RESET_UAT_OWNER_ACCEPTANCE.md` is the approved owner-acceptance record for the M25 roadmap reset and cleanup lane.
 
-`ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is active and governs Phase 9 checkpoint execution.
+`docs/change_control/ROADMAP_CHANGE_CONTROL_2026-05-25_ROADMAP_V5_LOCAL_CQV_PRODUCT_REDIRECT.md` is the approved repo-persistent change-control evidence for the roadmap v5 redirect.
+
+`docs/decision_gates/POST_M25_3_PRODUCTIZATION_PAUSE_AND_LOCAL_CQV_PRODUCT_REDIRECT_DECISION.md` remains the productization pause / local CQV product redirect decision.
+
+`docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_08_PHASE_7_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
+
+`docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_09_PHASE_8_DETAILED_CHECKPOINT_LADDER.md` is completed historical traceability and does not govern execution.
+
+`docs/archives/roadmap_addenda/ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` is archived as early readiness evidence and no longer governs execution.
 
 `ARCHITECTURE_GUARDRAILS.md` remains active.
 
-`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers.
+`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` remains active and must be checked at required triggers, including M26 source-authority work.
+
+`docs/standards/STANDARDS_SOURCE_REGISTRY.md` exists as approved DDR-004 closure evidence and defines the controlled standards source registry/citation authority model, including controlled placeholders, verification limitations, registry lifecycle/change-control expectations, and registry versioning expectations.
+
+## Productization Pause / Redirect Status
+
+Productization/SaaS readiness execution remains paused.
+
+M25 closeout does not authorize:
+
+- product/SaaS launch
+- production deployment
+- commercial release
+- repository visibility change
+- license change
+- live model/provider calls
+- local AI model/runtime heavy-use testing outside roadmap authority
+- standards embedding/retrieval implementation
+- product-ready document/report/export generation
+- product-core build execution outside the M26 roadmap path
+
+The project now proceeds into the local integrated CQV product-core path under roadmap v5.
 
 ## Deferred Dependency Gate Status
 
-Relevant and active for Phase 9 / productization readiness.
+Relevant and active for M26.
 
-The Phase 9 addendum does not close any deferred dependency.
+No deferred dependency is closed by M25 closeout.
 
-The following dependencies remain carried forward and must be dispositioned during Phase 9 work as applicable:
+No DDR status changes are made by M25.13.
 
-- `DDR-001` — Governed-library runtime promotion / deployment-compiled lookup: Deferred; productization blocker where runtime-authoritative governed-library use or deployment-compiled lookup is required.
-- `DDR-002` — Consolidated runtime-authoritative libraries: Deferred; productization blocker where product behavior depends on runtime-authoritative library assets.
-- `DDR-003` — Product-ready document templates library: Deferred; blocker for actual product-ready document generation or template implementation.
-- `DDR-004` — Standards source registry and citation authority: Open and Critical; standards-backed advice/output, standards embedding/retrieval, audit-ready citation, and standards-backed generation remain blocked until resolved or formally reclassified.
-- `DDR-005` — Standards embedding / retrieval index: Deferred; depends on `DDR-004`.
-- `DDR-006` — Product-ready document/export/report generation and rendering: Deferred; blocks product-ready generation/rendering until required boundaries and evidence exist.
-- `DDR-007` — Actual model/provider integration and pre-go-live operational testing path: Watch and Critical; live model/provider calls remain blocked until roadmap-authorized path and operational testing evidence exist.
-- `DDR-008` — Phase 8 / Phase 9 productization readiness gate: Watch; addressed by Phase 9 ladder expansion but not closed.
-- `DDR-009` — External contract placeholders for future library/template/standards references: Watch/planning-awareness.
+No DDR blocker logic is changed by M25.13.
+
+M26.1 touches source authority and governed-library boundary definition. The DDR register must be checked before planning and before any GO action in M26.1.
+
+M26 roadmap DDR focus includes:
+
+- DDR-001
+- DDR-002
+- DDR-003 dependency awareness
+- DDR-004 dependency awareness
+- DDR-006 dependency awareness
+
+M26.1 may define the local CQV product MVP source boundary and map source roles, but it must not implement content beyond the approved boundary.
 
 ## Active Notes
 
-- Phase 8 is closed and accepted for the approved roadmap scope.
-- Phase 8 closeout notes are recorded under `docs/milestones/M24/M24_PHASE_8_CLOSEOUT_NOTES.md`.
-- Phase 8 validation passed locally with `python -m pytest -q` — `1072 passed in 52.80s`.
-- Phase 8 UAT acceptance decision: `Pass`.
-- Phase 8 did not introduce production operation, SaaS/productization behavior, Phase 9 implementation, live model/provider integration, standards embedding, runtime-authoritative library promotion, deployment-compiled lookup, or product-ready document/report/export generation.
-- No deferred dependency was closed by Phase 8.
-- The post-Phase-8 / pre-Phase-9 roadmap expansion and deferred-dependency review gate is complete because `ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER.md` now exists as the active Phase 9 governing overlay.
-- Phase 9 contains three milestone families:
-  - `M25` — SaaS Readiness Assessment
-  - `M26` — Productization Foundation
-  - `M27` — SaaS / Product Boundary Consolidation
-- M25 must complete before M26 begins.
-- M26 must complete before M27 begins.
-- M27 must complete before Phase 9 can close.
-- `M25.1` is the next checkpoint and must remain an assessment/planning checkpoint.
-- `M25.1` may define what productization means for ASBP at this stage, assess the current system boundary after Phase 8 closeout, distinguish product/SaaS readiness from project-governance readiness, identify stable and non-productized layers, document assumptions/non-assumptions, and create M25.1 evidence under `docs/milestones/M25/`.
-- `M25.1` must not implement SaaS behavior, tenant model implementation, commercial release implementation, deployment or hosting implementation, live model/provider calls, standards embedding, product-ready document/export/report generation, or deferred-dependency closure without evidence.
+- M25 is closed for roadmap reset, evidence preservation, and non-code document cleanup gate scope.
+- M25 closeout does not resume productization/SaaS.
+- M25 cleanup execution is closed only for the approved M25.9 package scope.
+- Cleanup execution beyond the approved M25.9 package remains blocked unless separately approved.
+- M26 starts the local CQV source authority and runtime library architecture path under roadmap v5.
+- The exact next action is `M26.1` — Local product source-boundary scope lock.

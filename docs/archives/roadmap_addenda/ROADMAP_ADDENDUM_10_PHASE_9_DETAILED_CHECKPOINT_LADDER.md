@@ -1,18 +1,35 @@
 ---
 doc_type: roadmap_addendum
 canonical_name: ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER
-status: ACTIVE
-governs_execution: true
-document_state_mode: active_roadmap_overlay
-authority: temporary_governing_overlay_to_ROADMAP_CANONICAL_v4
+status: ARCHIVED
+governs_execution: false
+document_state_mode: archived_early_readiness_probe
+authority: historical_traceability_only
 source_roadmap: ROADMAP_CANONICAL.md v4
 source_continuation: ROADMAP_CANONICAL_CONTINUATION_PART_2_PHASES_7_9.md
 scope_type: phase_9_checkpoint_ladder_expansion
 phase_scope: Phase 9 — SaaS Readiness / Productization
 entry_gate: Post-Phase-8 / Pre-Phase-9 roadmap expansion and deferred-dependency review gate
+archive_reason: Sequencing correction after M25.3; productization/SaaS readiness execution paused until local integrated CQV product core is completed and accepted.
+redirect_decision: docs/decision_gates/POST_M25_3_PRODUCTIZATION_PAUSE_AND_LOCAL_CQV_PRODUCT_REDIRECT_DECISION.md
 ---
 
 # ROADMAP_ADDENDUM_10_PHASE_9_DETAILED_CHECKPOINT_LADDER
+
+## Archive / Pause Notice
+
+This addendum is archived as early productization-readiness evidence.
+
+It no longer governs execution.
+
+Normal Phase 9 productization/SaaS readiness execution is paused after `M25.3 — Commercial and packaging readiness assessment` because the local integrated CQV product core is not yet complete.
+
+The next execution action is roadmap review for the local integrated CQV product build path.
+
+Decision evidence:
+
+`docs/decision_gates/POST_M25_3_PRODUCTIZATION_PAUSE_AND_LOCAL_CQV_PRODUCT_REDIRECT_DECISION.md`
+
 
 ## Purpose
 

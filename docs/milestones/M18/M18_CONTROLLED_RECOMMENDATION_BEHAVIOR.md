@@ -187,7 +187,7 @@ Implemented files:
 - `asbp/ai_workflow/recommendation_behavior.py`
 - `tests/test_ai_recommendation_behavior.py`
 - `docs/design_spec/ai_workflow/M18_3_CONTROLLED_RECOMMENDATION_BEHAVIOR_RULES.yaml`
-- `docs/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`
+- `docs/milestones/M18/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`
 
 ## Validation Status
 

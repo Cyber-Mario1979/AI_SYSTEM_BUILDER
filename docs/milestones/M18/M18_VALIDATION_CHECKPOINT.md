@@ -55,19 +55,19 @@ This validation checkpoint covers the implemented and documented M18 scope throu
 
 M18 evidence is preserved in:
 
-- `docs/M18_CONTROLLED_REVIEW_ASSISTANCE.md`
+- `docs/milestones/M18/M18_CONTROLLED_REVIEW_ASSISTANCE.md`
 - `docs/design_spec/ai_workflow/M18_1_CONTROLLED_REVIEW_ASSISTANCE_RULES.yaml`
 - `asbp/ai_workflow/review_assistance.py`
 - `tests/test_ai_review_assistance.py`
-- `docs/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`
+- `docs/milestones/M18/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`
 - `docs/design_spec/ai_workflow/M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES.yaml`
 - `asbp/ai_workflow/summarization_reporting.py`
 - `tests/test_ai_summarization_reporting.py`
-- `docs/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`
+- `docs/milestones/M18/M18_CONTROLLED_RECOMMENDATION_BEHAVIOR.md`
 - `docs/design_spec/ai_workflow/M18_3_CONTROLLED_RECOMMENDATION_BEHAVIOR_RULES.yaml`
 - `asbp/ai_workflow/recommendation_behavior.py`
 - `tests/test_ai_recommendation_behavior.py`
-- `docs/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`
+- `docs/milestones/M18/M18_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.md`
 - `docs/design_spec/ai_workflow/M18_4_WORKFLOW_EXPANSION_BOUNDARIES_AND_REFUSAL_RULES.yaml`
 - `asbp/ai_workflow/workflow_expansion_boundaries.py`
 - `tests/test_ai_workflow_expansion_boundaries.py`

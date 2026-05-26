@@ -19,7 +19,7 @@ Milestone 9 is closed following:
 
 Milestone 9 closeout is based on:
 
-- recorded `docs/M9_VALIDATION_CHECKPOINT.md`
+- recorded `docs/milestones/M9/M9_VALIDATION_CHECKPOINT.md`
 - recorded `docs/UAT/M9_UAT_REPORT.md`
 - validated technical baseline
 - milestone-level UAT acceptance decision of `M9_UAT Pass`

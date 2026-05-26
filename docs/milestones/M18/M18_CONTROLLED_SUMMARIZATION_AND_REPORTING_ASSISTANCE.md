@@ -171,7 +171,7 @@ Implemented files:
 - `asbp/ai_workflow/summarization_reporting.py`
 - `tests/test_ai_summarization_reporting.py`
 - `docs/design_spec/ai_workflow/M18_2_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE_RULES.yaml`
-- `docs/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`
+- `docs/milestones/M18/M18_CONTROLLED_SUMMARIZATION_AND_REPORTING_ASSISTANCE.md`
 
 ## Validation Status
 
