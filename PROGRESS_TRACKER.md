@@ -31,15 +31,15 @@ M25 — Roadmap Reset, Evidence Preservation, and Non-Code Document Cleanup Gate
 
 ## Current Approved Slice Family
 
-`M25.8` — Cleanup package planning
+`M25.9` — Cleanup package application
 
 ## Latest Completed Checkpoint
 
-`M25.7` — Comprehensive non-code document inventory
+`M25.8` — Cleanup package planning
 
 ## Exact Next Unfinished Checkpoint
 
-`M25.8` — Cleanup package planning
+`M25.9` — Cleanup package application
 
 ## Latest Verified Validation Status
 
@@ -47,7 +47,7 @@ User-provided local validation result for M24.6 / Phase 8:
 
 `python -m pytest -q` — `1072 passed in 52.80s`
 
-No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, or M25.7 inventory/classification approval because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
+No executable validation has been run or claimed for M25.1, M25.2, M25.3, the productization pause / redirect decision, the roadmap change-control record, the roadmap v5 application package, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval because these are documentation/governance-only artifacts and do not alter executable code, commands, imports, tests, runtime behavior, CLI behavior, or executable contracts.
 
 ## Milestone UAT Status
 
@@ -59,7 +59,7 @@ M25 UAT should occur only after the M25 roadmap reset, evidence preservation, tr
 
 ## Repo Alignment Status
 
-Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, and M25.7 owner-approved non-code document inventory/classification handoff to M25.8.
+Aligned for Project Owner-approved roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 owner-approved non-code document inventory/classification handoff, and M25.8 owner-approved cleanup package planning handoff to M25.9.
 
 `ROADMAP_CANONICAL.md` v5 is the active canonical roadmap authority for forward execution direction after repository application.
 
@@ -134,19 +134,50 @@ M25.7 does not authorize:
 - promoting reference material to runtime authority
 - beginning productization/SaaS execution
 
+## M25.8 Cleanup Package Planning Decision
+
+M25.8 is approved and complete for cleanup package planning only.
+
+Decision evidence:
+
+- Project Owner approval in chat of the M25.8 cleanup package planning artifact.
+- `ASBP_M25_8_CLEANUP_PACKAGE_PLAN.zip` planning artifact, including Markdown, CSV, JSON, owner approval queue, and manifest.
+
+Approved decision:
+
+`Approved — M25.8 cleanup package planning is accepted as the file-by-file controlled cleanup plan basis. M25.8 remains planning only. Cleanup execution is not performed by M25.8 itself. Proceed to M25.9 cleanup package application only through the exact approved package and controlled user-applied execution path.`
+
+M25.8 does not authorize cleanup beyond the approved file-by-file package scope.
+
+M25.8 does not authorize:
+
+- unplanned file moves
+- unplanned deletions
+- unplanned archiving
+- unplanned renaming
+- unplanned content rewrites
+- code or test changes
+- changing roadmap authority
+- changing DDR status, blocker logic, closure scope, or dependency meaning
+- changing standards source/citation authority
+- promoting reference material to runtime authority
+- beginning productization/SaaS execution
+
 ## Deferred Dependency Gate Status
 
 Relevant and active.
 
-No deferred dependency is closed by the productization pause / redirect decision, roadmap v5 application, M25.6 tracker/DDR alignment, or M25.7 inventory/classification approval alone.
+No deferred dependency is closed by the productization pause / redirect decision, roadmap v5 application, M25.6 tracker/DDR alignment, M25.7 inventory/classification approval, or M25.8 cleanup package planning approval alone.
 
 M25.6 reviewed and aligned `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` to roadmap v5 placement while preserving closure-scope truth, blocker logic, and required future evidence.
 
 M25.7 accepted the inventory/classification decision basis only. It did not close, reopen, reclassify, delete, move, archive, or rewrite DDR records.
 
-The exact next checkpoint is `M25.8` — Cleanup package planning.
+M25.8 accepted the file-by-file cleanup package planning basis only. It did not itself close, reopen, reclassify, delete, move, archive, or rewrite DDR records.
 
-`M25.8` may prepare controlled file-by-file cleanup proposals only. Cleanup execution remains blocked until an exact owner-approved package exists.
+The exact next checkpoint is `M25.9` — Cleanup package application.
+
+`M25.9` may apply only the exact owner-approved cleanup package scope. Any conflict, missing reference update, protected-file impact, or owner-decision hold must stop the affected cleanup action.
 
 ## Active Notes
 
@@ -160,6 +191,7 @@ The exact next checkpoint is `M25.8` — Cleanup package planning.
 - `M25.5` — Canonical roadmap v5 approval and application is completed through the user-applied roadmap v5 application package.
 - `M25.6` — Tracker and DDR alignment after v5 is completed through docs/governance-only alignment.
 - `M25.7` — Comprehensive non-code document inventory is completed for inventory/classification approval only.
+- `M25.8` — Cleanup package planning is completed for owner-approved file-by-file planning only.
 - Normal archived Addendum 10 `M25.4` / `M25.5` / `M26` / `M27` productization execution remains paused and superseded for forward direction by roadmap v5.
 - Cleanup execution has not started.
-- The exact next action is `M25.8` — Cleanup package planning, using file-by-file controlled proposals.
+- The exact next action is `M25.9` — Cleanup package application, limited to the exact owner-approved file-by-file cleanup package scope.
