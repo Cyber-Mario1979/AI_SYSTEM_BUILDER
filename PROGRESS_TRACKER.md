@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.9 — Cross-library validation
+M27.10 — Stage/commit compatibility check
 
 ## Latest Completed Checkpoint
 
-M27.8 — Library content implementation wave 1
+M27.9 — Cross-library validation
 
 ## Exact Next Unfinished Checkpoint
 
-M27.9 — Cross-library validation
+M27.10 — Stage/commit compatibility check
 
 ## Latest Verified Validation Status
 
@@ -48,6 +48,8 @@ M27.7 mapping model: python -m pytest -q — 1131 passed in 52.11s.
 
 M27.8 library content implementation wave 1: python -m pytest -q — 1139 passed in 52.07s.
 
+M27.9 cross-library validation: python -m pytest -q — 1150 passed in 52.19s.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -56,9 +58,9 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M27.8 library content implementation wave 1 completion.
+Aligned for M27.9 cross-library validation completion.
 
-Build/governance balance policy is active for M27.9 and future M27 work.
+Build/governance balance policy is active for M27.10 and future M27 work.
 
 M26 evidence:
 
@@ -75,6 +77,7 @@ M27 evidence:
 - docs/milestones/M27/M27_6_PLANNING_BASIS_AND_DURATION_MODEL.md
 - docs/milestones/M27/M27_7_MAPPING_MODEL.md
 - docs/milestones/M27/M27_8_LIBRARY_CONTENT_IMPLEMENTATION_WAVE_1.md
+- docs/milestones/M27/M27_9_CROSS_LIBRARY_VALIDATION.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
 - asbp/profile_source_model.py
@@ -87,6 +90,8 @@ M27 evidence:
 - asbp/mapping_source_store.py
 - asbp/source_library_baseline_model.py
 - asbp/source_library_baseline_store.py
+- asbp/cross_library_validation_model.py
+- asbp/cross_library_validation.py
 - data/source/task_pools/starter_task_pools.json
 - data/source/profiles/starter_profiles.json
 - data/source/calendars/starter_calendars.json
@@ -99,6 +104,7 @@ M27 evidence:
 - tests/test_planning_basis_source_model.py
 - tests/test_mapping_source_model.py
 - tests/test_source_library_baseline.py
+- tests/test_cross_library_validation.py
 
 Governance policy evidence:
 
@@ -126,8 +132,10 @@ M27.7 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.8 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.9 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.9 starts cross-library validation.
+M27.10 starts stage/commit compatibility check.
 
-Before M27.9 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M27.10 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
