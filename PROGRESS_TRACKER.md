@@ -14,15 +14,15 @@ M28 — Standards Applicability, Citation, and Runtime Consumption Authority
 
 ## Current Approved Slice Family
 
-M28.1 — Standards registry baseline review
+M28.2 — Applicability engine scope
 
 ## Latest Completed Checkpoint
 
-M27.13 — Milestone closeout
+M28.1 — Standards registry baseline review
 
 ## Exact Next Unfinished Checkpoint
 
-M28.1 — Standards registry baseline review
+M28.2 — Applicability engine scope
 
 ## Latest Verified Validation Status
 
@@ -58,6 +58,8 @@ M27.12 milestone UAT / owner acceptance completed for controlled M27 source-libr
 
 M27.13 milestone closeout completed for controlled M27 source-library baseline scope. No new executable validation was run or required for M27.13.
 
+M28.1 standards registry baseline review completed as governance-only source-content review evidence. No executable validation was run or required because M28.1 did not change code, tests, commands, imports, schemas, runtime behavior, CLI behavior, or executable contracts.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -70,11 +72,15 @@ M27 milestone closeout completed for controlled source-library baseline scope.
 
 M27 closeout is not full product acceptance, productization acceptance, SaaS readiness, document factory acceptance, standards/retrieval acceptance, AI/runtime acceptance, UI/API acceptance, or deployment readiness.
 
+M28 milestone acceptance mode: actual UAT required. Owner acceptance alone is not sufficient for M28 closeout.
+
+M28 UAT has not yet been executed. M28 UAT evidence is expected at M28.11 after the approved M28 standards authority/applicability/citation/runtime-consumption scope is ready for UAT.
+
 ## Repo Alignment Status
 
-Aligned for M27 milestone closeout and M28.1 start.
+Aligned for M28.1 completion and M28.2 start.
 
-Build/governance balance policy is active for M28.1 and future M28 work.
+Build/governance balance policy is active for M28.2 and future M28 work.
 
 M26 evidence:
 
@@ -127,6 +133,10 @@ M27 evidence:
 - tests/test_cross_library_validation.py
 - tests/test_stage_commit_compatibility.py
 
+M28 evidence:
+
+- docs/milestones/M28/M28_1_STANDARDS_REGISTRY_BASELINE_REVIEW.md
+
 Governance policy evidence:
 
 - docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md
@@ -165,8 +175,14 @@ M27.13 does not close, reopen, downgrade, or reclassify any DDR.
 
 M28 is relevant to DDR-004, DDR-005 awareness, and DDR-006 awareness. DDR-004 remains closed for its approved standards source/citation authority model scope only. DDR-005 remains deferred for standards embedding/retrieval. DDR-006 remains closure planned for product-ready document/export/report generation and rendering.
 
+M28.1 does not close, reopen, downgrade, or reclassify any DDR. M28.1 confirms that the standards registry v0.1 baseline remains a controlled source/citation authority model with visible pending/TBD/user-provided/reference-only limitations. Runtime registry consumption, productized standards-backed output, audit-ready clause-level citation, standards embedding/retrieval, and product-ready document/export/report generation remain downstream to the approved roadmap checkpoints and DDR gates.
+
 ## Active Notes
 
-M28.1 starts standards registry baseline review.
+M28.1 completed standards registry baseline review.
 
-Before M28.1 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
+M28.2 starts applicability engine scope.
+
+M28 milestone acceptance mode is actual UAT. Owner acceptance alone is not sufficient for M28 closeout.
+
+Before M28.2 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
