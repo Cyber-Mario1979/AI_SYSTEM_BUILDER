@@ -10,19 +10,19 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M27 — CQV Source Content Expansion
+M28 — Standards Applicability, Citation, and Runtime Consumption Authority
 
 ## Current Approved Slice Family
 
-M27.13 — Milestone closeout
+M28.1 — Standards registry baseline review
 
 ## Latest Completed Checkpoint
 
-M27.12 — Milestone UAT / owner acceptance
+M27.13 — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-M27.13 — Milestone closeout
+M28.1 — Standards registry baseline review
 
 ## Latest Verified Validation Status
 
@@ -56,6 +56,8 @@ M27.11 validation checkpoint: python -m pytest -q — 1159 passed in 52.29s.
 
 M27.12 milestone UAT / owner acceptance completed for controlled M27 source-library baseline scope. No new executable validation was run or required for M27.12.
 
+M27.13 milestone closeout completed for controlled M27 source-library baseline scope. No new executable validation was run or required for M27.13.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -64,13 +66,15 @@ M27 validation checkpoint completed.
 
 M27 UAT / owner acceptance completed for controlled source-library baseline scope.
 
-M27.12 is not full product acceptance, productization acceptance, SaaS readiness, document factory acceptance, standards/retrieval acceptance, AI/runtime acceptance, UI/API acceptance, deployment readiness, or milestone closeout.
+M27 milestone closeout completed for controlled source-library baseline scope.
+
+M27 closeout is not full product acceptance, productization acceptance, SaaS readiness, document factory acceptance, standards/retrieval acceptance, AI/runtime acceptance, UI/API acceptance, or deployment readiness.
 
 ## Repo Alignment Status
 
-Aligned for M27.12 milestone UAT / owner acceptance completion.
+Aligned for M27 milestone closeout and M28.1 start.
 
-Build/governance balance policy is active for M27.13 and future M27 work.
+Build/governance balance policy is active for M28.1 and future M28 work.
 
 M26 evidence:
 
@@ -91,6 +95,7 @@ M27 evidence:
 - docs/milestones/M27/M27_10_STAGE_COMMIT_COMPATIBILITY_CHECK.md
 - docs/milestones/M27/M27_11_VALIDATION_CHECKPOINT.md
 - docs/milestones/M27/M27_12_MILESTONE_UAT_OWNER_ACCEPTANCE.md
+- docs/milestones/M27/M27_13_MILESTONE_CLOSEOUT.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
 - asbp/profile_source_model.py
@@ -128,7 +133,7 @@ Governance policy evidence:
 
 ## Deferred Dependency Gate Status
 
-Relevant and active for M27.
+Relevant and active for M28.
 
 M27.1 does not close, reopen, downgrade, or reclassify any DDR.
 
@@ -156,8 +161,12 @@ M27.11 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.12 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.13 does not close, reopen, downgrade, or reclassify any DDR.
+
+M28 is relevant to DDR-004, DDR-005 awareness, and DDR-006 awareness. DDR-004 remains closed for its approved standards source/citation authority model scope only. DDR-005 remains deferred for standards embedding/retrieval. DDR-006 remains closure planned for product-ready document/export/report generation and rendering.
+
 ## Active Notes
 
-M27.13 starts milestone closeout.
+M28.1 starts standards registry baseline review.
 
-Before M27.13 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M28.1 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
