@@ -1,0 +1,292 @@
+{
+  "library_id": "M27_CALENDAR_STARTER_LIBRARY@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "calendars": [
+    {
+      "calendar_id": "CAL-CAIRO-FIVE-DAY-WORKWEEK@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cairo Explicit Starter Five-Day Workweek",
+      "calendar_type": "workweek",
+      "timezone": "Africa/Cairo",
+      "locale_context": "Cairo / Egypt starter local context; explicit assumption only.",
+      "regional_assumption_status": "explicit_starter_assumption",
+      "user_amendable_parameters": [
+        "timezone",
+        "locale_context",
+        "working_days",
+        "start_time",
+        "end_time",
+        "break_minutes",
+        "holiday_rules"
+      ],
+      "working_days": [
+        {
+          "day": "monday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "tuesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "wednesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "thursday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "friday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit starter assumption."
+        },
+        {
+          "day": "saturday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit starter assumption."
+        },
+        {
+          "day": "sunday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        }
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "No public holiday list is verified by this starter calendar."
+        }
+      ],
+      "assumption_controls": [
+        "Cairo/Egypt context is explicit and user-amendable.",
+        "This calendar does not verify Egyptian public holidays.",
+        "This calendar does not generate schedules or durations."
+      ],
+      "notes": [
+        "Starter source calendar for common local five-day workweek planning contexts."
+      ]
+    },
+    {
+      "calendar_id": "CAL-CAIRO-SIX-DAY-WORKWEEK-CANDIDATE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cairo Explicit Starter Six-Day Workweek Candidate",
+      "calendar_type": "workweek",
+      "timezone": "Africa/Cairo",
+      "locale_context": "Cairo / Egypt starter local context; optional candidate only.",
+      "regional_assumption_status": "explicit_starter_assumption",
+      "user_amendable_parameters": [
+        "timezone",
+        "locale_context",
+        "working_days",
+        "start_time",
+        "end_time",
+        "break_minutes",
+        "holiday_rules"
+      ],
+      "working_days": [
+        {
+          "day": "monday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "tuesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "wednesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "thursday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "friday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit starter assumption."
+        },
+        {
+          "day": "saturday",
+          "is_working_day": true,
+          "break_minutes": 30,
+          "start_time": "09:00",
+          "end_time": "15:00"
+        },
+        {
+          "day": "sunday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        }
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "No public holiday list is verified by this starter calendar."
+        }
+      ],
+      "assumption_controls": [
+        "Six-day workweek is a candidate source record, not a universal default.",
+        "Saturday working time is explicit and user-amendable.",
+        "This calendar does not generate schedules or durations."
+      ],
+      "notes": [
+        "Starter source calendar for local contexts where Saturday work may apply."
+      ]
+    },
+    {
+      "calendar_id": "CAL-WORKMONTH-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Generic Workmonth Baseline",
+      "calendar_type": "workmonth",
+      "timezone": "user_defined",
+      "locale_context": "User-defined or site-defined workmonth context.",
+      "regional_assumption_status": "human_confirmation_required",
+      "user_amendable_parameters": [
+        "workmonth_period",
+        "month_start_rule",
+        "month_end_rule",
+        "site_shutdowns",
+        "holiday_rules"
+      ],
+      "workmonth_rules": [
+        {
+          "rule_id": "calendar_month_candidate",
+          "basis": "calendar_month",
+          "description": "Treat the calendar month as the starter workmonth frame unless the user or site defines another period.",
+          "user_amendable": true,
+          "notes": "This is a framing source record only, not a capacity calculation."
+        },
+        {
+          "rule_id": "user_defined_period_allowed",
+          "basis": "user_defined_period",
+          "description": "Allow the user to define a custom workmonth period for local execution.",
+          "user_amendable": true,
+          "notes": "The selected period must be captured before planning behavior relies on it."
+        }
+      ],
+      "assumption_controls": [
+        "Workmonth source records do not calculate capacity.",
+        "Month framing is user-amendable and must be confirmed before planning.",
+        "Duration modeling remains deferred to M27.6."
+      ],
+      "notes": [
+        "Starter source record for workmonth framing."
+      ]
+    },
+    {
+      "calendar_id": "CAL-USER-SUPPLIED-HOLIDAYS@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "User-Supplied Holiday and Shutdown Policy",
+      "calendar_type": "holiday_policy",
+      "timezone": "user_defined",
+      "locale_context": "User-supplied holiday and site-shutdown context.",
+      "regional_assumption_status": "human_confirmation_required",
+      "user_amendable_parameters": [
+        "holiday_dates",
+        "site_shutdown_dates",
+        "holiday_source",
+        "holiday_applicability"
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Holidays must be supplied or confirmed by the user/site before planning relies on them."
+        },
+        {
+          "rule_id": "site_shutdowns_allowed",
+          "scope": "site_shutdowns",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Site shutdowns must be user/site supplied; this record does not infer them."
+        },
+        {
+          "rule_id": "public_holidays_unverified",
+          "scope": "public_holidays_unverified",
+          "source_status": "starter_unverified",
+          "user_amendable": true,
+          "notes": "No official public holiday authority is embedded in M27.5."
+        }
+      ],
+      "assumption_controls": [
+        "This source record does not verify public holidays.",
+        "Holiday behavior remains user/site-confirmed.",
+        "Planning behavior must not silently skip dates from an unverified holiday source."
+      ],
+      "notes": [
+        "Starter source record for explicit holiday and shutdown handling."
+      ]
+    },
+    {
+      "calendar_id": "CAL-MANUAL-FALLBACK-CONTEXT@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual Calendar Fallback Context",
+      "calendar_type": "manual_fallback",
+      "timezone": "human_confirmation_required",
+      "locale_context": "Calendar context is missing, unclear, or not yet approved.",
+      "regional_assumption_status": "human_confirmation_required",
+      "user_amendable_parameters": [
+        "timezone",
+        "working_days",
+        "working_hours",
+        "holidays",
+        "site_shutdowns",
+        "workmonth_basis"
+      ],
+      "assumption_controls": [
+        "Fallback calendar must not silently create a schedule.",
+        "Human confirmation is required before planning relies on calendar data.",
+        "No regional default is applied when calendar context is unclear."
+      ],
+      "notes": [
+        "Safe fallback source record for insufficient calendar context."
+      ]
+    }
+  ]
+}

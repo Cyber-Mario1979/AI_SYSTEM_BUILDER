@@ -1,0 +1,1065 @@
+{
+  "library_id": "M27_TASK_POOL_STARTER_LIBRARY@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-PE-E2E-QUAL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Process Equipment End-to-End Qualification",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "qualification",
+        "end-to-end"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "PE-E2E-SCOPE",
+          "title": "Confirm process equipment qualification scope",
+          "purpose": "Confirm equipment boundary, intended use, GMP impact, and qualification strategy before downstream execution.",
+          "task_type": "SCOPE_CONFIRMATION",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed work package context"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "QP_OR_QUALIFICATION_STRATEGY",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-READINESS",
+          "title": "Review equipment turnover and readiness evidence",
+          "purpose": "Confirm drawings, manuals, calibration status, utilities, and installation prerequisites are available for qualification.",
+          "task_type": "READINESS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Approved or draft scope basis"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_READINESS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "READINESS_CHECKLIST",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-RISK",
+          "title": "Perform process equipment qualification risk review",
+          "purpose": "Identify GMP-critical functions, controls, and test focus areas before protocol execution.",
+          "task_type": "RISK_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Equipment scope and readiness inputs"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-READINESS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "QRM_OR_IMPACT_ASSESSMENT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-IQ",
+          "title": "Prepare and execute process equipment IQ package",
+          "purpose": "Verify installation requirements, equipment identity, utilities, materials, and supporting installation evidence.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Risk review complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-OQ",
+          "title": "Prepare and execute process equipment OQ package",
+          "purpose": "Verify operating functions, alarms/interlocks where applicable, controls, and challenge conditions.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "IQ completed or accepted with approved limitations"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-PQ",
+          "title": "Prepare and execute process equipment PQ package where required",
+          "purpose": "Verify performance under approved process or operational conditions where PQ is in scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "OQ completed",
+            "PQ applicability confirmed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "PE-E2E-CLOSEOUT",
+          "title": "Close process equipment qualification package",
+          "purpose": "Confirm deviations, traceability, summary, acceptance, and release recommendation are addressed.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Execution package complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PE-E2E-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PE_E2E_CLOSEOUT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "QUALIFICATION_SUMMARY_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "QC Lab Equipment Qualification and Calibration Linkage",
+      "preset_family": "PF-QC-LAB-EQUIPMENT",
+      "selector_context_tags": [
+        "qc-lab-equipment",
+        "instrument-qualification",
+        "calibration-linkage"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-CALIBRATION-CYCLE",
+        "LE-PERIODIC",
+        "LE-POST-MALFUNCTION"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-CALIBRATION-LINKAGE",
+        "INT-PERIODIC-VERIFICATION"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "QCLAB-SCOPE",
+          "title": "Confirm QC laboratory equipment scope",
+          "purpose": "Confirm instrument identity, laboratory use, GMP data role, calibration linkage, and qualification boundary.",
+          "task_type": "SCOPE_CONFIRMATION",
+          "owner_role": "QC / CQV",
+          "prerequisites": [
+            "Human-confirmed lab equipment context"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "LAB_EQUIPMENT_QUALIFICATION_PLAN",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-CAL-STATUS",
+          "title": "Confirm calibration and service status",
+          "purpose": "Verify calibration requirements, reference standards, due state, and service readiness before qualification use.",
+          "task_type": "CALIBRATION_REVIEW",
+          "owner_role": "QC / Metrology",
+          "prerequisites": [
+            "Instrument scope defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_CAL_STATUS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CALIBRATION_RECORD_OR_STATUS",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-URS-RISK",
+          "title": "Confirm laboratory instrument requirements and risk basis",
+          "purpose": "Capture intended use, critical functions, data integrity considerations, and test focus areas.",
+          "task_type": "REQUIREMENTS_RISK_REVIEW",
+          "owner_role": "QC / QA / CQV",
+          "prerequisites": [
+            "Calibration status reviewed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-CAL-STATUS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_URS_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS_OR_RISK_ASSESSMENT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-IQOQ",
+          "title": "Prepare and execute laboratory equipment IQ/OQ package",
+          "purpose": "Verify installation and operational performance for the defined laboratory instrument context.",
+          "task_type": "IQ_OQ_EXECUTION",
+          "owner_role": "CQV / QC",
+          "prerequisites": [
+            "Requirements and risk basis confirmed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-URS-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_IQOQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_OQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-CSV-LINK",
+          "title": "Assess computerized-system or software linkage",
+          "purpose": "Identify whether the instrument requires CSV linkage, data-integrity assessment, or separate computerized-system routing.",
+          "task_type": "CSV_LINKAGE_ASSESSMENT",
+          "owner_role": "CSV / QA / QC",
+          "prerequisites": [
+            "Instrument qualification path defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-URS-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_CSV_LINK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CSV_LINKAGE_ASSESSMENT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-CLOSEOUT",
+          "title": "Close QC laboratory equipment qualification package",
+          "purpose": "Confirm qualification evidence, calibration linkage, deviations, and final acceptance status.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QC / QA",
+          "prerequisites": [
+            "IQ/OQ and CSV-linkage assessment complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-IQOQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            },
+            {
+              "atomic_task_id": "QCLAB-CSV-LINK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_CLOSEOUT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "LAB_EQUIPMENT_SUMMARY_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cleanroom and HVAC Qualification",
+      "preset_family": "PF-CLEANROOM",
+      "selector_context_tags": [
+        "cleanroom",
+        "hvac",
+        "area-qualification"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC",
+        "LE-POST-DEVIATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-PERIODIC-VERIFICATION",
+        "INT-POST-CHANGE-QUALIFICATION"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CRHVAC-SCOPE",
+          "title": "Confirm cleanroom/HVAC qualification scope",
+          "purpose": "Confirm area boundary, classification target, HVAC dependency, occupancy state, and qualification approach.",
+          "task_type": "SCOPE_CONFIRMATION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed area/HVAC context"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "AREA_QUALIFICATION_PLAN",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-DESIGN-READINESS",
+          "title": "Review cleanroom/HVAC design and readiness evidence",
+          "purpose": "Confirm drawings, room data, HVAC design basis, filter status, and turnover readiness.",
+          "task_type": "READINESS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Cleanroom/HVAC scope defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_DESIGN_READINESS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DESIGN_AND_TURNOVER_REVIEW",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-INSTALLATION-CHECK",
+          "title": "Verify cleanroom/HVAC installation readiness",
+          "purpose": "Confirm rooms, HVAC components, filters, instruments, and controlled area installation evidence.",
+          "task_type": "INSTALLATION_VERIFICATION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Design and readiness evidence reviewed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-DESIGN-READINESS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_INSTALL_CHECK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_OR_INSTALLATION_CHECK_RECORD",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-OPERATIONAL-TESTS",
+          "title": "Execute cleanroom/HVAC operational qualification tests",
+          "purpose": "Verify airflow, pressure cascade, recovery, alarms, and related operational controls where applicable.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Installation readiness accepted"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-INSTALLATION-CHECK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_OPERATIONAL_TESTS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-ENV-PERFORMANCE",
+          "title": "Execute cleanroom environmental performance qualification where in scope",
+          "purpose": "Verify environmental monitoring, particle, microbiological, or performance evidence where required by scope.",
+          "task_type": "PQ_OR_PERFORMANCE_VERIFICATION",
+          "owner_role": "CQV / QC Microbiology / QA",
+          "prerequisites": [
+            "Operational tests accepted"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-OPERATIONAL-TESTS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_ENV_PERFORMANCE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_OR_ENVIRONMENTAL_QUALIFICATION_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-CLOSEOUT",
+          "title": "Close cleanroom/HVAC qualification package",
+          "purpose": "Confirm deviations, test evidence, classification status, and final qualification conclusion.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Area qualification execution complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-ENV-PERFORMANCE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_CLOSEOUT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "AREA_QUALIFICATION_SUMMARY_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-UTILITIES-QUAL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Utility System Qualification",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "system-qualification"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC",
+        "LE-POST-DEVIATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-PERIODIC-VERIFICATION",
+        "INT-POST-CHANGE-QUALIFICATION"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "UT-SCOPE",
+          "title": "Confirm utility system qualification scope",
+          "purpose": "Confirm utility boundary, generation/distribution scope, user points, GMP impact, and qualification approach.",
+          "task_type": "SCOPE_CONFIRMATION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed utility context"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "UT_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "UTILITY_QUALIFICATION_PLAN",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "UT-DESIGN-READINESS",
+          "title": "Review utility design and turnover readiness",
+          "purpose": "Confirm P&IDs, component lists, control basis, turnover package, and testing readiness.",
+          "task_type": "READINESS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Utility scope defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UT-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UT_DESIGN_READINESS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DESIGN_AND_TURNOVER_REVIEW",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "UT-IQ",
+          "title": "Prepare and execute utility IQ package",
+          "purpose": "Verify utility installation, components, instruments, materials, and turnover evidence.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Design and turnover readiness reviewed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UT-DESIGN-READINESS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UT_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "UT-OQ",
+          "title": "Prepare and execute utility OQ package",
+          "purpose": "Verify utility operation, alarms, controls, operating ranges, and challenge tests where applicable.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "IQ completed or accepted with approved limitations"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UT-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UT_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "UT-PQ-SAMPLING",
+          "title": "Execute utility PQ or sampling-performance verification where required",
+          "purpose": "Verify utility performance, sampling plan, trend expectations, and acceptance where scope requires performance evidence.",
+          "task_type": "PQ_OR_PERFORMANCE_VERIFICATION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "OQ completed",
+            "PQ or sampling applicability confirmed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UT-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UT_PQ_SAMPLING_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_OR_SAMPLING_VERIFICATION_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "UT-CLOSEOUT",
+          "title": "Close utility qualification package",
+          "purpose": "Confirm deviations, qualification evidence, sampling/performance conclusion, and final acceptance status.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Utility qualification execution complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UT-PQ-SAMPLING",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UT_CLOSEOUT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "UTILITY_QUALIFICATION_SUMMARY_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-CSV-BASELINE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Computerized System Validation Baseline",
+      "preset_family": "PF-COMPUTERIZED-SYSTEMS",
+      "selector_context_tags": [
+        "computerized-system",
+        "csv",
+        "gxp-system"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC",
+        "LE-POST-DEVIATION"
+      ],
+      "qualification_validation_intents": [
+        "INT-CSV",
+        "INT-E2E-QUALIFICATION",
+        "INT-PERIODIC-VERIFICATION"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CSV-SCOPE",
+          "title": "Confirm computerized-system validation scope",
+          "purpose": "Confirm system boundary, GxP impact, intended use, interfaces, and validation strategy.",
+          "task_type": "SCOPE_CONFIRMATION",
+          "owner_role": "CSV Lead / System Owner",
+          "prerequisites": [
+            "Human-confirmed computerized-system context"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CSV_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CSV_VALIDATION_PLAN",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-URS-RISK",
+          "title": "Confirm computerized-system requirements and risk basis",
+          "purpose": "Capture intended use, GxP requirements, risk classification, and data integrity considerations.",
+          "task_type": "REQUIREMENTS_RISK_REVIEW",
+          "owner_role": "CSV / QA / System Owner",
+          "prerequisites": [
+            "CSV scope defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_URS_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS_AND_RISK_ASSESSMENT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-SPEC-TRACE",
+          "title": "Confirm specification and traceability basis",
+          "purpose": "Confirm functional/design specification coverage and requirements traceability before testing.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CSV / Automation / QA",
+          "prerequisites": [
+            "Requirements and risk basis confirmed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-URS-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_SPEC_TRACE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "TRACEABILITY_MATRIX",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-TESTING",
+          "title": "Prepare and execute computerized-system test package",
+          "purpose": "Execute approved validation testing such as configuration, functional, security, or intended-use testing as applicable.",
+          "task_type": "VALIDATION_TESTING",
+          "owner_role": "CSV / System Owner",
+          "prerequisites": [
+            "Traceability basis accepted"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-SPEC-TRACE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_TESTING_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CSV_TEST_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-ACCESS-DI",
+          "title": "Verify access, security, and data-integrity controls where applicable",
+          "purpose": "Confirm user access, audit trail, backup/restore, data handling, or security checks where within scope.",
+          "task_type": "CONTROL_VERIFICATION",
+          "owner_role": "CSV / QA / System Owner",
+          "prerequisites": [
+            "Testing route defined"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-SPEC-TRACE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_ACCESS_DI_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "ACCESS_SECURITY_DI_EVIDENCE",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-CLOSEOUT",
+          "title": "Close computerized-system validation package",
+          "purpose": "Confirm deviations, traceability, validation evidence, limitations, and release recommendation.",
+          "task_type": "VALIDATION_CLOSEOUT",
+          "owner_role": "CSV / QA",
+          "prerequisites": [
+            "Validation testing and control verification complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-TESTING",
+              "dependency_type": "FS",
+              "lag_days": 0
+            },
+            {
+              "atomic_task_id": "CSV-ACCESS-DI",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_CLOSEOUT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "VALIDATION_SUMMARY_REPORT",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual Fallback Assessment",
+      "preset_family": "PF-MANUAL-FALLBACK",
+      "selector_context_tags": [
+        "manual-fallback",
+        "assessment",
+        "route-confirmation"
+      ],
+      "lifecycle_events": [
+        "LE-MIXED-OR-OTHER",
+        "LE-ASSESSMENT-ONLY"
+      ],
+      "qualification_validation_intents": [
+        "INT-ASSESSMENT-ONLY",
+        "INT-MIXED-OR-OTHER"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "MF-CONTEXT-CAPTURE",
+          "title": "Capture unsupported or mixed CQV context",
+          "purpose": "Record the asset/system context, scope, lifecycle event, and intent that could not be routed through a specific preset family.",
+          "task_type": "CONTEXT_CAPTURE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Manual fallback selected or required"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "MF_CONTEXT_CAPTURE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "MANUAL_ROUTE_ASSESSMENT_NOTE",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "MF-ROUTE-ASSESSMENT",
+          "title": "Assess candidate CQV route",
+          "purpose": "Compare candidate preset families, scopes, and downstream routes without creating uncontrolled custom preset families.",
+          "task_type": "ROUTE_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Context captured"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-CONTEXT-CAPTURE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_ROUTE_ASSESSMENT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "ROUTE_DECISION_RECORD",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "MF-MANUAL-CONFIRM",
+          "title": "Confirm manual fallback decision",
+          "purpose": "Obtain human confirmation for temporary route, limitation, or future source-library expansion need.",
+          "task_type": "MANUAL_CONFIRMATION",
+          "owner_role": "Project Owner / CQV Lead",
+          "prerequisites": [
+            "Candidate route assessment complete"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-ROUTE-ASSESSMENT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_MANUAL_CONFIRM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "MANUAL_CONFIRMATION_RECORD",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "MF-TEMPORARY-PLAN",
+          "title": "Create temporary bounded CQV work plan if approved",
+          "purpose": "Define a bounded work path that preserves limitations without pretending a mature task pool exists.",
+          "task_type": "TEMPORARY_PLAN",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Manual fallback decision confirmed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-MANUAL-CONFIRM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_TEMPORARY_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "TEMPORARY_WORK_PLAN",
+              "status": "future_expected"
+            }
+          ]
+        },
+        {
+          "atomic_task_id": "MF-REVIEW-DECISION",
+          "title": "Review need for future preset or task-pool expansion",
+          "purpose": "Capture whether the fallback case should trigger later Project Owner decision or source-library expansion.",
+          "task_type": "SOURCE_EXPANSION_REVIEW",
+          "owner_role": "Project Owner / CQV Lead",
+          "prerequisites": [
+            "Temporary plan complete or fallback case closed"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-TEMPORARY-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_REVIEW_DECISION_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "SOURCE_EXPANSION_REVIEW_NOTE",
+              "status": "future_expected"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

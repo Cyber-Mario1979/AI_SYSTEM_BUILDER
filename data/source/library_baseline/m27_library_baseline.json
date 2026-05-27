@@ -1,0 +1,49 @@
+{
+  "baseline_id": "M27_LIBRARY_CONTENT_BASELINE_WAVE_1@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "display_name": "M27 Library Content Implementation Wave 1 Baseline",
+  "source_families": [
+    {
+      "family_id": "task_pools",
+      "library_id": "M27_TASK_POOL_STARTER_LIBRARY@v1",
+      "expected_status": "starter_runtime_source",
+      "source_path": "data/source/task_pools/starter_task_pools.json",
+      "implementation_checkpoint": "M27.3"
+    },
+    {
+      "family_id": "profiles",
+      "library_id": "M27_PROFILE_STARTER_LIBRARY@v1",
+      "expected_status": "starter_runtime_source",
+      "source_path": "data/source/profiles/starter_profiles.json",
+      "implementation_checkpoint": "M27.4"
+    },
+    {
+      "family_id": "calendars",
+      "library_id": "M27_CALENDAR_STARTER_LIBRARY@v1",
+      "expected_status": "starter_runtime_source",
+      "source_path": "data/source/calendars/starter_calendars.json",
+      "implementation_checkpoint": "M27.5"
+    },
+    {
+      "family_id": "planning_basis",
+      "library_id": "M27_PLANNING_BASIS_STARTER_LIBRARY@v1",
+      "expected_status": "starter_runtime_source",
+      "source_path": "data/source/planning_basis/starter_planning_basis.json",
+      "implementation_checkpoint": "M27.6"
+    },
+    {
+      "family_id": "mappings",
+      "library_id": "M27_MAPPING_STARTER_LIBRARY@v1",
+      "expected_status": "starter_runtime_source",
+      "source_path": "data/source/mappings/starter_mappings.json",
+      "implementation_checkpoint": "M27.7"
+    }
+  ],
+  "integration_controls": [
+    "M27.8 integrates the controlled starter source-library baseline.",
+    "M27.8 does not restart source-family governance.",
+    "M27.8 does not claim product-ready execution before trial.",
+    "Future document, standards, template, UI/API, and AI behavior remains later-scoped."
+  ]
+}
