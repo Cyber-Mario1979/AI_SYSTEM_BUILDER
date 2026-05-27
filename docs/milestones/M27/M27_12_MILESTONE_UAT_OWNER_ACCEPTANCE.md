@@ -91,6 +91,50 @@ The following M27 source data files are accepted as the current local CQV baseli
 - `data/source/mappings/starter_mappings.json`
 - `data/source/library_baseline/m27_library_baseline.json`
 
+## Manual UAT / Verification Script and Execution Record
+
+This section strengthens the M27.12 acceptance record by documenting the manual verification steps used for owner acceptance.
+
+Execution type:
+
+    Manual evidence review / owner verification.
+
+Execution date:
+
+    2026-05-28
+
+Executed by:
+
+    Project Owner
+
+Prerequisite evidence:
+
+- M27.11 validation checkpoint exists.
+- Latest M27 validation evidence is recorded as `python -m pytest -q — 1159 passed in 52.29s`.
+- M27.1 through M27.11 checkpoint evidence exists.
+- M27 source-library baseline files are present.
+- M27 acceptance remains limited to the controlled source-library baseline scope.
+
+| UAT ID | Verification step | Evidence reviewed | Expected result | Actual result | Status |
+|---|---|---|---|---|---|
+| M27-UAT-01 | Confirm M27 checkpoint evidence chain exists through validation. | M27.1 through M27.11 evidence records. | Evidence chain exists through M27.11. | Evidence chain confirmed. | PASS |
+| M27-UAT-02 | Confirm M27 accepted source families are identified. | Accepted Scope section. | Task pools, profiles, calendars, planning basis, mappings, baseline, cross-library validation, and stage/commit compatibility are covered. | Required families are covered. | PASS |
+| M27-UAT-03 | Confirm source data baseline is explicitly listed. | Accepted Source Data Baseline section. | All M27 source data baseline files are identified. | Baseline files are identified. | PASS |
+| M27-UAT-04 | Confirm executable validation evidence supports acceptance. | M27.11 validation reference. | Current validation evidence shows passing test suite. | `1159 passed in 52.29s` recorded. | PASS |
+| M27-UAT-05 | Confirm cross-library validation evidence is included in acceptance basis. | M27.9 evidence reference. | Cross-library validation is part of acceptance basis. | M27.9 included. | PASS |
+| M27-UAT-06 | Confirm source-to-execution compatibility evidence is included in acceptance basis. | M27.10 evidence reference. | Stage/commit compatibility is part of acceptance basis. | M27.10 included. | PASS |
+| M27-UAT-07 | Confirm acceptance limitations are explicit. | Acceptance Limitations section. | Acceptance does not overclaim product/document/standards/retrieval/AI/UI/deployment/productization readiness. | Limitations are explicit. | PASS |
+| M27-UAT-08 | Confirm DDR status is not changed by owner acceptance. | DDR Disposition section. | No DDR is closed, reopened, downgraded, or reclassified. | DDR status unchanged. | PASS |
+| M27-UAT-09 | Confirm architecture boundary remains unchanged. | Architecture Boundary section. | No architecture change is introduced; guardrails remain active. | Boundary unchanged. | PASS |
+
+Manual UAT result:
+
+    PASS — accepted with limitations.
+
+Owner acceptance conclusion:
+
+    The M27 controlled source-library baseline is accepted for limited M27 milestone progression and downstream roadmap use, subject to the acceptance limitations below.
+
 ## Acceptance Limitations
 
 This acceptance is limited to M27 source-library baseline usability for downstream roadmap work.
