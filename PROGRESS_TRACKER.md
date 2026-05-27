@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.6 — Planning basis and duration model
+M27.7 — Mapping model
 
 ## Latest Completed Checkpoint
 
-M27.5 — Calendar and work-time model
+M27.6 — Planning basis and duration model
 
 ## Exact Next Unfinished Checkpoint
 
-M27.6 — Planning basis and duration model
+M27.7 — Mapping model
 
 ## Latest Verified Validation Status
 
@@ -42,6 +42,8 @@ M27.4 profile model: python -m pytest -q — 1092 passed in 46.75s.
 
 M27.5 calendar and work-time model: python -m pytest -q — 1105 passed in 53.82s.
 
+M27.6 planning basis and duration model: python -m pytest -q — 1118 passed in 52.05s.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -50,9 +52,9 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M27.5 calendar and work-time model completion.
+Aligned for M27.6 planning basis and duration model completion.
 
-Build/governance balance policy is active for M27.6 and future M27 work.
+Build/governance balance policy is active for M27.7 and future M27 work.
 
 M26 evidence:
 
@@ -66,18 +68,23 @@ M27 evidence:
 - docs/milestones/M27/M27_3_TASK_POOL_SOURCE_MODEL.md
 - docs/milestones/M27/M27_4_PROFILE_MODEL.md
 - docs/milestones/M27/M27_5_CALENDAR_AND_WORK_TIME_MODEL.md
+- docs/milestones/M27/M27_6_PLANNING_BASIS_AND_DURATION_MODEL.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
 - asbp/profile_source_model.py
 - asbp/profile_source_store.py
 - asbp/calendar_source_model.py
 - asbp/calendar_source_store.py
+- asbp/planning_basis_source_model.py
+- asbp/planning_basis_source_store.py
 - data/source/task_pools/starter_task_pools.json
 - data/source/profiles/starter_profiles.json
 - data/source/calendars/starter_calendars.json
+- data/source/planning_basis/starter_planning_basis.json
 - tests/test_task_pool_source_model.py
 - tests/test_profile_source_model.py
 - tests/test_calendar_source_model.py
+- tests/test_planning_basis_source_model.py
 
 Governance policy evidence:
 
@@ -99,8 +106,10 @@ M27.4 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.5 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.6 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.6 starts planning basis and duration model.
+M27.7 starts mapping model.
 
-Before M27.6 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M27.7 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
