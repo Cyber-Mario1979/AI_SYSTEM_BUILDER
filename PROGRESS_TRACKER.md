@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.12 — Milestone UAT / owner acceptance
+M27.13 — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-M27.11 — Validation checkpoint
+M27.12 — Milestone UAT / owner acceptance
 
 ## Exact Next Unfinished Checkpoint
 
-M27.12 — Milestone UAT / owner acceptance
+M27.13 — Milestone closeout
 
 ## Latest Verified Validation Status
 
@@ -54,19 +54,23 @@ M27.10 stage/commit compatibility check: python -m pytest -q — 1159 passed in 
 
 M27.11 validation checkpoint: python -m pytest -q — 1159 passed in 52.29s.
 
+M27.12 milestone UAT / owner acceptance completed for controlled M27 source-library baseline scope. No new executable validation was run or required for M27.12.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
 
 M27 validation checkpoint completed.
 
-M27 UAT has not started.
+M27 UAT / owner acceptance completed for controlled source-library baseline scope.
+
+M27.12 is not full product acceptance, productization acceptance, SaaS readiness, document factory acceptance, standards/retrieval acceptance, AI/runtime acceptance, UI/API acceptance, deployment readiness, or milestone closeout.
 
 ## Repo Alignment Status
 
-Aligned for M27.11 validation checkpoint completion.
+Aligned for M27.12 milestone UAT / owner acceptance completion.
 
-Build/governance balance policy is active for M27.12 and future M27 work.
+Build/governance balance policy is active for M27.13 and future M27 work.
 
 M26 evidence:
 
@@ -86,6 +90,7 @@ M27 evidence:
 - docs/milestones/M27/M27_9_CROSS_LIBRARY_VALIDATION.md
 - docs/milestones/M27/M27_10_STAGE_COMMIT_COMPATIBILITY_CHECK.md
 - docs/milestones/M27/M27_11_VALIDATION_CHECKPOINT.md
+- docs/milestones/M27/M27_12_MILESTONE_UAT_OWNER_ACCEPTANCE.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
 - asbp/profile_source_model.py
@@ -149,8 +154,10 @@ M27.10 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.11 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.12 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.12 starts milestone UAT / owner acceptance.
+M27.13 starts milestone closeout.
 
-Before M27.12 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M27.13 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
