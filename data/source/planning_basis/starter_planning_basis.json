@@ -1,0 +1,1663 @@
+{
+  "library_id": "M27_PLANNING_BASIS_STARTER_LIBRARY@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "duration_sources": [
+    {
+      "duration_ref_id": "PE_E2E_SCOPE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm process equipment qualification scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-SCOPE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_READINESS_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Review equipment turnover and readiness evidence",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-READINESS"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_RISK_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Perform process equipment qualification risk review",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-RISK"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_IQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute process equipment IQ package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 5.0,
+        "max_days": 10.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-IQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_OQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute process equipment OQ package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 5.0,
+        "max_days": 10.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-OQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_PQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute process equipment PQ package where required",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 3.0,
+        "typical_days": 7.0,
+        "max_days": 15.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-PQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "PE_E2E_CLOSEOUT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Close process equipment qualification package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-PE-E2E-QUAL@v1",
+          "atomic_task_id": "PE-E2E-CLOSEOUT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_SCOPE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm QC laboratory equipment scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-SCOPE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_CAL_STATUS_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm calibration and service status",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-CAL-STATUS"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_URS_RISK_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm laboratory instrument requirements and risk basis",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-URS-RISK"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_IQOQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute laboratory equipment IQ/OQ package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 4.0,
+        "max_days": 8.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-IQOQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_CSV_LINK_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Assess computerized-system or software linkage",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 3.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-CSV-LINK"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "QCLAB_CLOSEOUT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Close QC laboratory equipment qualification package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "atomic_task_id": "QCLAB-CLOSEOUT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_SCOPE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm cleanroom/HVAC qualification scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-SCOPE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_DESIGN_READINESS_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Review cleanroom/HVAC design and readiness evidence",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-DESIGN-READINESS"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_INSTALL_CHECK_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Verify cleanroom/HVAC installation readiness",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 4.0,
+        "max_days": 8.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-INSTALLATION-CHECK"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_OPERATIONAL_TESTS_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Execute cleanroom/HVAC operational qualification tests",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 3.0,
+        "typical_days": 6.0,
+        "max_days": 12.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-OPERATIONAL-TESTS"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_ENV_PERFORMANCE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Execute cleanroom environmental performance qualification where in scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 3.0,
+        "typical_days": 7.0,
+        "max_days": 15.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-ENV-PERFORMANCE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CRHVAC_CLOSEOUT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Close cleanroom/HVAC qualification package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "atomic_task_id": "CRHVAC-CLOSEOUT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_SCOPE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm utility system qualification scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-SCOPE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_DESIGN_READINESS_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Review utility design and turnover readiness",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-DESIGN-READINESS"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_IQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute utility IQ package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 5.0,
+        "max_days": 10.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-IQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_OQ_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute utility OQ package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 5.0,
+        "max_days": 10.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-OQ"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_PQ_SAMPLING_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Execute utility PQ or sampling-performance verification where required",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 3.0,
+        "typical_days": 7.0,
+        "max_days": 15.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-PQ-SAMPLING"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "UT_CLOSEOUT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Close utility qualification package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-UTILITIES-QUAL@v1",
+          "atomic_task_id": "UT-CLOSEOUT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_SCOPE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm computerized-system validation scope",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-SCOPE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_URS_RISK_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm computerized-system requirements and risk basis",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-URS-RISK"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_SPEC_TRACE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm specification and traceability basis",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-SPEC-TRACE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_TESTING_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Prepare and execute computerized-system test package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 2.0,
+        "typical_days": 5.0,
+        "max_days": 10.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-TESTING"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_ACCESS_DI_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Verify access, security, and data-integrity controls where applicable",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 5.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-ACCESS-DI"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "CSV_CLOSEOUT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Close computerized-system validation package",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 1.0,
+        "typical_days": 2.0,
+        "max_days": 4.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-CSV-BASELINE@v1",
+          "atomic_task_id": "CSV-CLOSEOUT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "MF_CONTEXT_CAPTURE_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Capture unsupported or mixed CQV context",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.25,
+        "typical_days": 0.5,
+        "max_days": 1.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "atomic_task_id": "MF-CONTEXT-CAPTURE"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "MF_ROUTE_ASSESSMENT_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Assess candidate CQV route",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 2.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "atomic_task_id": "MF-ROUTE-ASSESSMENT"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "MF_MANUAL_CONFIRM_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Confirm manual fallback decision",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.25,
+        "typical_days": 0.5,
+        "max_days": 1.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "atomic_task_id": "MF-MANUAL-CONFIRM"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "MF_TEMPORARY_PLAN_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Create temporary bounded CQV work plan if approved",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.5,
+        "typical_days": 1.0,
+        "max_days": 3.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "atomic_task_id": "MF-TEMPORARY-PLAN"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    },
+    {
+      "duration_ref_id": "MF_REVIEW_DECISION_DUR",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Review need for future preset or task-pool expansion",
+      "estimate_type": "starter_estimate",
+      "estimation_source_status": "starter_baseline",
+      "duration_unit": "working_day",
+      "duration_range": {
+        "min_days": 0.25,
+        "typical_days": 0.5,
+        "max_days": 1.0
+      },
+      "scope_rules": [
+        {
+          "rule_id": "standard_scope_baseline",
+          "scope_complexity": "standard",
+          "condition": "Use only as a starter estimate for a standard local CQV scope after human context confirmation.",
+          "adjustment_guidance": "Reviewer may amend the estimate before planning or scheduling.",
+          "user_amendable": true
+        },
+        {
+          "rule_id": "complex_scope_requires_review",
+          "scope_complexity": "complex",
+          "condition": "Apply when asset complexity, document burden, testing depth, or site readiness increases execution effort.",
+          "adjustment_guidance": "Do not auto-calculate. Escalate for human-confirmed duration adjustment.",
+          "user_amendable": true
+        }
+      ],
+      "calendar_dependency_status": "calendar_aware_no_capacity_calculation",
+      "linked_task_sources": [
+        {
+          "task_pool_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "atomic_task_id": "MF-REVIEW-DECISION"
+        }
+      ],
+      "user_amendable": true,
+      "assumption_controls": [
+        "Starter duration is traceable but not universal truth.",
+        "Human confirmation is required before downstream planning relies on this estimate.",
+        "Calendar awareness does not perform capacity calculation or schedule generation in M27.6."
+      ],
+      "notes": [
+        "Source estimate created to resolve M27.3 task-pool duration_ref_id during M27.6."
+      ]
+    }
+  ]
+}
