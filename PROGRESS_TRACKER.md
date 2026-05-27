@@ -14,15 +14,15 @@ M27 — CQV Source Content Expansion
 
 ## Current Approved Slice Family
 
-M27.10 — Stage/commit compatibility check
+M27.11 — Validation checkpoint
 
 ## Latest Completed Checkpoint
 
-M27.9 — Cross-library validation
+M27.10 — Stage/commit compatibility check
 
 ## Exact Next Unfinished Checkpoint
 
-M27.10 — Stage/commit compatibility check
+M27.11 — Validation checkpoint
 
 ## Latest Verified Validation Status
 
@@ -50,6 +50,8 @@ M27.8 library content implementation wave 1: python -m pytest -q — 1139 passed
 
 M27.9 cross-library validation: python -m pytest -q — 1150 passed in 52.19s.
 
+M27.10 stage/commit compatibility check: python -m pytest -q — 1159 passed in 52.31s.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -58,9 +60,9 @@ M27 UAT has not started.
 
 ## Repo Alignment Status
 
-Aligned for M27.9 cross-library validation completion.
+Aligned for M27.10 stage/commit compatibility check completion.
 
-Build/governance balance policy is active for M27.10 and future M27 work.
+Build/governance balance policy is active for M27.11 and future M27 work.
 
 M26 evidence:
 
@@ -78,6 +80,7 @@ M27 evidence:
 - docs/milestones/M27/M27_7_MAPPING_MODEL.md
 - docs/milestones/M27/M27_8_LIBRARY_CONTENT_IMPLEMENTATION_WAVE_1.md
 - docs/milestones/M27/M27_9_CROSS_LIBRARY_VALIDATION.md
+- docs/milestones/M27/M27_10_STAGE_COMMIT_COMPATIBILITY_CHECK.md
 - asbp/task_pool_source_model.py
 - asbp/task_pool_source_store.py
 - asbp/profile_source_model.py
@@ -92,6 +95,8 @@ M27 evidence:
 - asbp/source_library_baseline_store.py
 - asbp/cross_library_validation_model.py
 - asbp/cross_library_validation.py
+- asbp/stage_commit_compatibility_model.py
+- asbp/stage_commit_compatibility.py
 - data/source/task_pools/starter_task_pools.json
 - data/source/profiles/starter_profiles.json
 - data/source/calendars/starter_calendars.json
@@ -105,6 +110,7 @@ M27 evidence:
 - tests/test_mapping_source_model.py
 - tests/test_source_library_baseline.py
 - tests/test_cross_library_validation.py
+- tests/test_stage_commit_compatibility.py
 
 Governance policy evidence:
 
@@ -134,8 +140,10 @@ M27.8 does not close, reopen, downgrade, or reclassify any DDR.
 
 M27.9 does not close, reopen, downgrade, or reclassify any DDR.
 
+M27.10 does not close, reopen, downgrade, or reclassify any DDR.
+
 ## Active Notes
 
-M27.10 starts stage/commit compatibility check.
+M27.11 starts validation checkpoint.
 
-Before M27.10 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
+Before M27.11 and future work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md so build/content checkpoints include implementation evidence and governance remains mandatory.
