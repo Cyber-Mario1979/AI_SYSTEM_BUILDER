@@ -1,0 +1,655 @@
+{
+  "library_id": "M27_MAPPING_STARTER_LIBRARY@v1",
+  "version": "v1",
+  "status": "starter_runtime_source",
+  "mappings": [
+    {
+      "mapping_id": "MAP-PRESET-CLEANROOM-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cleanroom preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-CLEANROOM",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-CLEANROOM-HVAC-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        },
+        {
+          "reference_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "cleanroom",
+        "profile",
+        "qualification"
+      ],
+      "mapping_controls": [
+        "Mapping records source relationships only.",
+        "Profile selection still requires human-confirmed context before execution."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-PRESET-PE-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Process equipment preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-PROCESS-EQUIPMENT",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-PROCESS-EQUIPMENT-GMP-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        },
+        {
+          "reference_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "process-equipment",
+        "profile",
+        "qualification"
+      ],
+      "mapping_controls": [
+        "Mapping does not decide GMP impact or qualification depth."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-PRESET-QCLAB-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "QC lab equipment preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-QC-LAB-EQUIPMENT",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-QCLAB-EQUIPMENT-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        },
+        {
+          "reference_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "qc-lab-equipment",
+        "profile",
+        "calibration"
+      ],
+      "mapping_controls": [
+        "Mapping does not implement calibration or CSV behavior."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-PRESET-UTILITIES-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Utilities preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-UTILITIES",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-UTILITIES-GMP-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        },
+        {
+          "reference_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "utilities",
+        "profile",
+        "qualification"
+      ],
+      "mapping_controls": [
+        "Mapping does not define sampling plans or acceptance criteria."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-PRESET-CSV-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Computerized systems preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-COMPUTERIZED-SYSTEMS",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-COMPUTERIZED-SYSTEM-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        },
+        {
+          "reference_id": "PROF-QUALIFICATION-STRATEGY-BASELINE@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "computerized-system",
+        "csv",
+        "profile"
+      ],
+      "mapping_controls": [
+        "Mapping does not implement model/provider, AI, or CSV execution behavior."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-PRESET-MANUAL-FALLBACK-TO-PROFILE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual fallback preset to profile mapping",
+      "mapping_kind": "preset_to_profile",
+      "source_refs": [
+        {
+          "reference_id": "PF-MANUAL-FALLBACK",
+          "reference_type": "preset_family",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PROF-MANUAL-FALLBACK-CONTEXT@v1",
+          "reference_type": "profile",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "manual-fallback",
+        "profile"
+      ],
+      "mapping_controls": [
+        "Fallback mapping must not silently select product behavior."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-PE-E2E-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Process equipment E2E selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-PROCESS-EQUIPMENT-INT-E2E-QUALIFICATION",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-PE-E2E-QUAL@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "process-equipment",
+        "e2e-qualification"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-QCLAB-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "QC lab equipment selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-QC-LAB-EQUIPMENT-INT-E2E-QUALIFICATION",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-QCLAB-QUAL-CAL-LINK@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "qc-lab",
+        "calibration-linkage"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-CLEANROOM-HVAC-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cleanroom HVAC selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-CLEANROOM-INT-E2E-QUALIFICATION",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-CLEANROOM-HVAC-QUAL@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "cleanroom",
+        "hvac"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-UTILITIES-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Utilities selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-UTILITIES-INT-E2E-QUALIFICATION",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-UTILITIES-QUAL@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "utilities",
+        "qualification"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-CSV-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Computerized systems selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-COMPUTERIZED-SYSTEMS-INT-CSV",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-CSV-BASELINE@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "computerized-system",
+        "csv"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-SELECTOR-MANUAL-FALLBACK-TO-TASK-POOL@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual fallback selector to task pool",
+      "mapping_kind": "selector_to_task_pool",
+      "source_refs": [
+        {
+          "reference_id": "SEL-PF-MANUAL-FALLBACK-INT-MANUAL-ASSESSMENT",
+          "reference_type": "selector_context",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TP-MANUAL-FALLBACK-ASSESS@v1",
+          "reference_type": "task_pool",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "applicability_tags": [
+        "manual-fallback",
+        "assessment"
+      ],
+      "mapping_controls": [
+        "Mapping resolves source-library relationship only.",
+        "Selector execution and task staging remain outside M27.7."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-PE-SCOPE-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Process equipment scope task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-PE-E2E-QUAL@v1::PE-E2E-SCOPE",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "QP_OR_QUALIFICATION_STRATEGY",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-QCLAB-CSV-LINK-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "QC lab CSV linkage task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-QCLAB-QUAL-CAL-LINK@v1::QCLAB-CSV-LINK",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "CSV_LINKAGE_ASSESSMENT",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-CRHVAC-OQ-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Cleanroom HVAC OQ task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-CLEANROOM-HVAC-QUAL@v1::CRHVAC-OPERATIONAL-TESTS",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "OQ_PROTOCOL_AND_REPORT",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-UT-PQ-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Utility PQ/sampling task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-UTILITIES-QUAL@v1::UT-PQ-SAMPLING",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "PQ_OR_SAMPLING_VERIFICATION_REPORT",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-CSV-TESTING-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "CSV testing task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-CSV-BASELINE@v1::CSV-TESTING",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "CSV_TEST_PROTOCOL_AND_REPORT",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-TASK-MF-ROUTE-TO-DOC@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Manual fallback route assessment task to document expectation",
+      "mapping_kind": "task_to_document",
+      "source_refs": [
+        {
+          "reference_id": "TP-MANUAL-FALLBACK-ASSESS@v1::MF-ROUTE-ASSESSMENT",
+          "reference_type": "atomic_task",
+          "reference_status": "resolved_source"
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "ROUTE_DECISION_RECORD",
+          "reference_type": "document_expectation",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Document factory, template selection, and rendering remain future work."
+        }
+      ],
+      "applicability_tags": [
+        "task-to-document",
+        "future-document-factory"
+      ],
+      "mapping_controls": [
+        "Task-to-document mapping is a source relationship only.",
+        "M27.7 does not generate, render, select, or approve documents."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-STD-CQV-GMP-TO-QP-TEMPLATE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Future CQV GMP standards bundle to qualification plan template mapping",
+      "mapping_kind": "standard_to_template",
+      "source_refs": [
+        {
+          "reference_id": "SB-FUTURE-CQV-GMP@v1",
+          "reference_type": "standard_bundle",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M28",
+          "notes": "Standards applicability and citation authority remain later-scoped."
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+          "reference_type": "template",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Product-ready template implementation remains later-scoped."
+        }
+      ],
+      "applicability_tags": [
+        "standards",
+        "template",
+        "future-expected"
+      ],
+      "mapping_controls": [
+        "This mapping is not standards authority.",
+        "This mapping is not template loading or document generation."
+      ],
+      "notes": []
+    },
+    {
+      "mapping_id": "MAP-STD-CSV-GXP-TO-CSV-TEMPLATE@v1",
+      "version": "v1",
+      "status": "starter_runtime_source",
+      "display_name": "Future CSV/GxP standards bundle to CSV template mapping",
+      "mapping_kind": "standard_to_template",
+      "source_refs": [
+        {
+          "reference_id": "SB-FUTURE-CSV-GXP@v1",
+          "reference_type": "standard_bundle",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M28",
+          "notes": "Executable standards consumption remains later-scoped."
+        }
+      ],
+      "target_refs": [
+        {
+          "reference_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+          "reference_type": "template",
+          "reference_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "notes": "Product-ready CSV template implementation remains later-scoped."
+        }
+      ],
+      "applicability_tags": [
+        "csv",
+        "standards",
+        "template",
+        "future-expected"
+      ],
+      "mapping_controls": [
+        "This mapping does not implement CSV standards citation.",
+        "This mapping does not implement template selection."
+      ],
+      "notes": []
+    }
+  ]
+}
