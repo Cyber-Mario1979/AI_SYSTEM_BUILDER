@@ -1,7 +1,7 @@
 ---
 doc_type: milestone_checkpoint_evidence
 canonical_name: M27_10_STAGE_COMMIT_COMPATIBILITY_CHECK
-status: PENDING_VALIDATION
+status: COMPLETED_VALIDATED
 governs_execution: false
 document_state_mode: checkpoint_evidence
 authority: implementation_evidence_record
@@ -97,6 +97,16 @@ After applying this package, run:
     python -m pytest -q
 
 Do not advance `PROGRESS_TRACKER.md` from M27.10 to M27.11 until the compatibility implementation, tests, and validation evidence are present.
+
+## Validation Reference
+
+This evidence was later covered by the M27.11 validation checkpoint.
+
+Supporting validation reference:
+
+    M27.11 validation checkpoint: python -m pytest -q — 1159 passed in 52.29s
+
+This recovery hygiene correction records validation linkage only. It does not run new validation, add implementation, alter runtime behavior, mutate persisted state, or expand M27.10 beyond the controlled non-mutating compatibility scope.
 
 ## Tracker Movement Rule
 
