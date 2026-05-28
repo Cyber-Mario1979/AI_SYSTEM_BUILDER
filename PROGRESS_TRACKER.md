@@ -26,7 +26,7 @@ M28.1 — Standards registry baseline review
 
 ## Exact Next Recovery Step
 
-Perform CONTROL-RECOVERY-001 document consistency review and recovery verification.
+Prepare CONTROL-RECOVERY-001 archive/closure package according to the active recovery plan archival rule.
 
 ## Exact Next Normal Roadmap Checkpoint
 
@@ -34,7 +34,7 @@ M28.2 — Applicability engine scope
 
 Status: Paused / blocked until CONTROL-RECOVERY-001 is fully implemented, verified, owner-approved, and archived or closed according to its own rule.
 
-After recovery approval, the next allowed normal roadmap action is PLAN M28.2, not GO.
+After recovery archive/closure and final SS, the next allowed normal roadmap action is PLAN M28.2, not GO.
 
 ## Recovery Pause Status
 
@@ -65,15 +65,14 @@ Completed recovery steps:
 - Phase 3 tracker pause/recovery-state truth is recorded in this tracker update.
 - Phase 4 M27 retrospective assessment completed in docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md.
 - Phase 5 M27 evidence hygiene corrections completed for M27.8, M27.9, and M27.10 evidence files.
+- Phase 7 document consistency review and recovery verification completed in docs/governance/control_recovery/CONTROL_RECOVERY_001_DOCUMENT_CONSISTENCY_REVIEW_AND_VERIFICATION.md.
+- Project Owner approval for archive/closure preparation recorded in docs/governance/control_recovery/CONTROL_RECOVERY_001_OWNER_APPROVAL_AND_CLOSURE_PREPARATION.md.
 
 Remaining recovery steps before normal execution may resume:
 
-- confirm or strengthen M28 actual UAT control note if needed;
-- prepare operation-pack replacement package / Project Source update evidence;
-- perform document consistency review and recovery verification;
-- verify no normal roadmap checkpoint advanced during recovery;
-- obtain owner approval for normal roadmap resumption;
-- archive or close CONTROL-RECOVERY-001 according to its archival rule.
+- archive or close CONTROL-RECOVERY-001 according to its archival rule;
+- perform final SS after archive/closure to confirm corrected active state;
+- resume normal roadmap execution only with PLAN M28.2 after final SS confirms recovery closure.
 
 ## Latest Verified Validation Status
 
@@ -121,6 +120,10 @@ CONTROL-RECOVERY-001 M27 retrospective assessment is documentation/governance-on
 
 CONTROL-RECOVERY-001 M27 evidence hygiene corrections are documentation/governance-only. No executable validation was run or required.
 
+CONTROL-RECOVERY-001 document consistency review and recovery verification is documentation/governance-only. No executable validation was run or required.
+
+CONTROL-RECOVERY-001 owner approval / closure preparation record is documentation/governance-only. No executable validation was run or required.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -137,7 +140,9 @@ M28 milestone acceptance mode: actual UAT required. Owner acceptance alone is no
 
 M28 UAT has not yet been executed. M28 UAT evidence is expected at M28.11 after the approved M28 standards authority/applicability/citation/runtime-consumption scope is ready for UAT.
 
-CONTROL-RECOVERY-001 owner approval for normal roadmap resumption has not yet been recorded.
+CONTROL-RECOVERY-001 owner approval for archive/closure preparation has been recorded.
+
+Normal roadmap execution has not resumed yet.
 
 ## Repo Alignment Status
 
@@ -145,7 +150,11 @@ Aligned for M28.1 completion and CONTROL-RECOVERY-001 recovery pause.
 
 Aligned for completed CONTROL-RECOVERY-001 Phase 4 M27 retrospective assessment and Phase 5 M27 evidence hygiene corrections.
 
-Not aligned for normal M28.2 execution until recovery is fully implemented, verified, owner-approved, and archived or closed.
+Aligned for completed CONTROL-RECOVERY-001 document consistency review and recovery verification.
+
+Aligned for Project Owner approval to prepare archive/closure.
+
+Not aligned for normal M28.2 execution until recovery is archived or closed and final SS confirms corrected active state.
 
 M26 evidence:
 
@@ -206,6 +215,8 @@ Recovery governance evidence:
 
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md
+- docs/governance/control_recovery/CONTROL_RECOVERY_001_DOCUMENT_CONSISTENCY_REVIEW_AND_VERIFICATION.md
+- docs/governance/control_recovery/CONTROL_RECOVERY_001_OWNER_APPROVAL_AND_CLOSURE_PREPARATION.md
 - ROADMAP_CANONICAL.md
 - docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md
 - PROGRESS_TRACKER.md
@@ -250,6 +261,8 @@ CONTROL-RECOVERY-001 roadmap, policy, and tracker recovery amendments do not clo
 
 CONTROL-RECOVERY-001 M27 retrospective assessment and M27 evidence hygiene corrections do not close, reopen, downgrade, or reclassify any DDR.
 
+CONTROL-RECOVERY-001 document consistency review, recovery verification, and owner approval / closure preparation record do not close, reopen, downgrade, or reclassify any DDR.
+
 ## Build / Governance Balance Policy Status
 
 Active and strengthened under CONTROL-RECOVERY-001 Phase 2.
@@ -260,10 +273,10 @@ The policy now requires hard-stop controls before PLAN, GO, package generation, 
 
 M28.1 completed standards registry baseline review.
 
-M28.2 is the next normal roadmap checkpoint but is paused / blocked while CONTROL-RECOVERY-001 is active.
+M28.2 is the next normal roadmap checkpoint but remains paused / blocked while CONTROL-RECOVERY-001 is active.
 
 M28 milestone acceptance mode is actual UAT. Owner acceptance alone is not sufficient for M28 closeout.
 
 Before M28.2 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
 
-Next recovery action: perform CONTROL-RECOVERY-001 document consistency review and recovery verification.
+Next recovery action: prepare CONTROL-RECOVERY-001 archive/closure package according to the active recovery plan archival rule.
