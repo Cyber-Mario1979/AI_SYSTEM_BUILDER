@@ -1,7 +1,7 @@
 ---
 doc_type: milestone_checkpoint_evidence
 canonical_name: M27_8_LIBRARY_CONTENT_IMPLEMENTATION_WAVE_1
-status: PENDING_VALIDATION
+status: COMPLETED_VALIDATED
 governs_execution: false
 document_state_mode: checkpoint_evidence
 authority: implementation_evidence_record
@@ -100,6 +100,16 @@ After applying this package, run:
     python -m pytest -q
 
 Do not advance `PROGRESS_TRACKER.md` from M27.8 to M27.9 until the baseline integration model, manifest, helper functions, tests, and validation evidence are present.
+
+## Validation Reference
+
+This evidence was later covered by the M27.11 validation checkpoint.
+
+Supporting validation reference:
+
+    M27.11 validation checkpoint: python -m pytest -q — 1159 passed in 52.29s
+
+This recovery hygiene correction records validation linkage only. It does not run new validation, add implementation, alter runtime behavior, or expand M27.8 beyond the controlled source-library baseline scope.
 
 ## Tracker Movement Rule
 
