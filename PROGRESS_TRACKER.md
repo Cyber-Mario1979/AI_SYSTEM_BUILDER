@@ -14,11 +14,15 @@ M28 — Standards Applicability, Citation, and Runtime Consumption Authority
 
 ## Active Control Recovery Gate
 
-CONTROL-RECOVERY-001 — Roadmap / Governance / Operation-Pack Anti-Drift Repair
+None active.
+
+CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historical evidence remains in the repository.
 
 ## Current Approved Slice Family
 
-CONTROL-RECOVERY-001 — corrective control recovery gate. Normal M28 execution is paused.
+M28.2 — Applicability engine scope planning restart after CONTROL-RECOVERY-001 closure.
+
+Final SS is required before PLAN M28.2.
 
 ## Latest Completed Normal Roadmap Checkpoint
 
@@ -26,53 +30,32 @@ M28.1 — Standards registry baseline review
 
 ## Exact Next Recovery Step
 
-Prepare CONTROL-RECOVERY-001 archive/closure package according to the active recovery plan archival rule.
+None. CONTROL-RECOVERY-001 archive/closure package has been prepared and applied.
 
 ## Exact Next Normal Roadmap Checkpoint
 
-M28.2 — Applicability engine scope
+PLAN M28.2 — Applicability engine scope
 
-Status: Paused / blocked until CONTROL-RECOVERY-001 is fully implemented, verified, owner-approved, and archived or closed according to its own rule.
+Status: Pending final SS confirmation after CONTROL-RECOVERY-001 archive/closure.
 
-After recovery archive/closure and final SS, the next allowed normal roadmap action is PLAN M28.2, not GO.
+The next allowed normal roadmap action after final SS is PLAN M28.2, not GO.
 
-## Recovery Pause Status
+## Recovery Closure Status
 
-Normal ASBP roadmap execution is paused while CONTROL-RECOVERY-001 is active.
+CONTROL-RECOVERY-001 has been archived / closed as an active execution gate.
 
-Blocked while recovery is active:
+Closure package actions completed:
 
-- no M28.2 implementation;
-- no tracker advancement to M28.3;
-- no normal roadmap checkpoint closure;
-- no normal build PR content;
-- no generated apply.py for normal roadmap execution;
-- no product/runtime/code implementation outside the recovery plan;
-- no PR merge;
-- no branch deletion;
-- no issue closure;
-- no release, deployment, productization, or SaaS action.
+- archived former active recovery plan to docs/archives/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md;
+- created closure evidence record at docs/governance/control_recovery/CONTROL_RECOVERY_001_CLOSURE_RECORD.md;
+- removed former active recovery plan from docs/governance/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md;
+- updated this tracker to record recovery closure truth.
 
-Allowed work is recovery-plan work only.
+Post-closure required action:
 
-## Recovery Progress Status
-
-Completed recovery steps:
-
-- Phase 0 pause gate established by repo-side control recovery plan.
-- Phase 1 roadmap recovery controls applied to ROADMAP_CANONICAL.md.
-- Phase 2 build/governance policy hard-stop amendment applied to docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md.
-- Phase 3 tracker pause/recovery-state truth is recorded in this tracker update.
-- Phase 4 M27 retrospective assessment completed in docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md.
-- Phase 5 M27 evidence hygiene corrections completed for M27.8, M27.9, and M27.10 evidence files.
-- Phase 7 document consistency review and recovery verification completed in docs/governance/control_recovery/CONTROL_RECOVERY_001_DOCUMENT_CONSISTENCY_REVIEW_AND_VERIFICATION.md.
-- Project Owner approval for archive/closure preparation recorded in docs/governance/control_recovery/CONTROL_RECOVERY_001_OWNER_APPROVAL_AND_CLOSURE_PREPARATION.md.
-
-Remaining recovery steps before normal execution may resume:
-
-- archive or close CONTROL-RECOVERY-001 according to its archival rule;
-- perform final SS after archive/closure to confirm corrected active state;
-- resume normal roadmap execution only with PLAN M28.2 after final SS confirms recovery closure.
+- perform final SS before any normal roadmap PLAN;
+- if final SS confirms no active control-recovery plan remains, continue with PLAN M28.2;
+- do not use GO for M28.2 until PLAN M28.2 has been completed and accepted.
 
 ## Latest Verified Validation Status
 
@@ -124,6 +107,8 @@ CONTROL-RECOVERY-001 document consistency review and recovery verification is do
 
 CONTROL-RECOVERY-001 owner approval / closure preparation record is documentation/governance-only. No executable validation was run or required.
 
+CONTROL-RECOVERY-001 archive/closure package is documentation/governance-only. No executable validation was run or required.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -140,13 +125,13 @@ M28 milestone acceptance mode: actual UAT required. Owner acceptance alone is no
 
 M28 UAT has not yet been executed. M28 UAT evidence is expected at M28.11 after the approved M28 standards authority/applicability/citation/runtime-consumption scope is ready for UAT.
 
-CONTROL-RECOVERY-001 owner approval for archive/closure preparation has been recorded.
+CONTROL-RECOVERY-001 archive/closure package has been prepared and applied.
 
-Normal roadmap execution has not resumed yet.
+Final SS is required before normal roadmap execution resumes.
 
 ## Repo Alignment Status
 
-Aligned for M28.1 completion and CONTROL-RECOVERY-001 recovery pause.
+Aligned for M28.1 completion.
 
 Aligned for completed CONTROL-RECOVERY-001 Phase 4 M27 retrospective assessment and Phase 5 M27 evidence hygiene corrections.
 
@@ -154,7 +139,9 @@ Aligned for completed CONTROL-RECOVERY-001 document consistency review and recov
 
 Aligned for Project Owner approval to prepare archive/closure.
 
-Not aligned for normal M28.2 execution until recovery is archived or closed and final SS confirms corrected active state.
+Aligned for CONTROL-RECOVERY-001 archive/closure package application.
+
+Pending final SS confirmation before normal M28.2 planning resumes.
 
 M26 evidence:
 
@@ -213,7 +200,8 @@ M28 evidence:
 
 Recovery governance evidence:
 
-- docs/governance/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md
+- docs/archives/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md
+- docs/governance/control_recovery/CONTROL_RECOVERY_001_CLOSURE_RECORD.md
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_DOCUMENT_CONSISTENCY_REVIEW_AND_VERIFICATION.md
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_OWNER_APPROVAL_AND_CLOSURE_PREPARATION.md
@@ -261,7 +249,7 @@ CONTROL-RECOVERY-001 roadmap, policy, and tracker recovery amendments do not clo
 
 CONTROL-RECOVERY-001 M27 retrospective assessment and M27 evidence hygiene corrections do not close, reopen, downgrade, or reclassify any DDR.
 
-CONTROL-RECOVERY-001 document consistency review, recovery verification, and owner approval / closure preparation record do not close, reopen, downgrade, or reclassify any DDR.
+CONTROL-RECOVERY-001 document consistency review, recovery verification, owner approval / closure preparation record, and archive/closure package do not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
@@ -273,10 +261,10 @@ The policy now requires hard-stop controls before PLAN, GO, package generation, 
 
 M28.1 completed standards registry baseline review.
 
-M28.2 is the next normal roadmap checkpoint but remains paused / blocked while CONTROL-RECOVERY-001 is active.
+M28.2 is the next normal roadmap checkpoint. Final SS is required before PLAN M28.2.
 
 M28 milestone acceptance mode is actual UAT. Owner acceptance alone is not sufficient for M28 closeout.
 
 Before M28.2 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
 
-Next recovery action: prepare CONTROL-RECOVERY-001 archive/closure package according to the active recovery plan archival rule.
+Next action: final SS.
