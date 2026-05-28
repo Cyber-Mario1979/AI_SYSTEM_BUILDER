@@ -16,6 +16,10 @@ from asbp.profile_source_store import list_profile_ids
 from asbp.source_library_baseline_store import (
     load_default_source_library_baseline_runtime,
 )
+from asbp.standards_bundle_binding_store import (
+    list_standards_bundle_ids,
+    load_default_standards_bundle_binding_library,
+)
 from asbp.task_pool_source_store import list_task_pool_ids
 
 
@@ -41,11 +45,12 @@ def assert_cross_library_validation_passes(runtime: Any) -> None:
 
 def validate_cross_library_runtime(runtime: Any) -> CrossLibraryValidationResultModel:
     issues: list[CrossLibraryValidationIssueModel] = []
+    standards_bundle_library = load_default_standards_bundle_binding_library()
 
-    _validate_non_empty_libraries(runtime, issues)
+    _validate_non_empty_libraries(runtime, standards_bundle_library, issues)
     _validate_task_dependencies(runtime, issues)
     _validate_duration_refs(runtime, issues)
-    _validate_mapping_references(runtime, issues)
+    _validate_mapping_references(runtime, standards_bundle_library, issues)
     _validate_mapping_applicability(runtime, issues)
 
     return build_validation_result(issues)
@@ -60,6 +65,7 @@ def build_cross_library_validation_issue_id(
 
 def _validate_non_empty_libraries(
     runtime: Any,
+    standards_bundle_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     library_checks = [
@@ -72,6 +78,11 @@ def _validate_non_empty_libraries(
             runtime.planning_basis_library.duration_sources,
         ),
         ("mappings", "mappings", runtime.mapping_library.mappings),
+        (
+            "standards_bundles",
+            "standards bundle bindings",
+            standards_bundle_library.bindings,
+        ),
     ]
 
     for source_family, label, collection in library_checks:
@@ -80,7 +91,7 @@ def _validate_non_empty_libraries(
                 CrossLibraryValidationIssueModel(
                     issue_code="EMPTY_LIBRARY",
                     source_family=source_family,
-                    message=f"M27.9 validation found empty {label} library.",
+                    message=f"M28.4 validation found empty {label} library.",
                     related_ids=[label],
                 )
             )
@@ -143,6 +154,7 @@ def _validate_duration_refs(
 
 def _validate_mapping_references(
     runtime: Any,
+    standards_bundle_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     known_profile_ids = set(list_profile_ids(runtime.profile_library))
@@ -150,6 +162,9 @@ def _validate_mapping_references(
     known_atomic_task_source_ids = _collect_atomic_task_source_ids(runtime)
     known_duration_ref_ids = set(list_duration_ref_ids(runtime.planning_basis_library))
     known_calendar_ids = set(list_calendar_ids(runtime.calendar_library))
+    known_standards_bundle_ids = set(
+        list_standards_bundle_ids(standards_bundle_library)
+    )
 
     for mapping in runtime.mapping_library.mappings:
         for reference in [*mapping.source_refs, *mapping.target_refs]:
@@ -196,9 +211,17 @@ def _validate_mapping_references(
                     message_prefix="Mapping atomic-task reference does not exist",
                     mapping_id=mapping.mapping_id,
                 )
+            elif reference.reference_type == "standard_bundle":
+                _append_missing_reference_issue(
+                    issues=issues,
+                    reference_id=reference.reference_id,
+                    known_ids=known_standards_bundle_ids,
+                    issue_code="DANGLING_STANDARDS_BUNDLE_REF",
+                    message_prefix="Mapping standards-bundle reference does not exist",
+                    mapping_id=mapping.mapping_id,
+                )
             elif reference.reference_type in {
                 "document_expectation",
-                "standard_bundle",
                 "template",
             }:
                 issues.append(
@@ -206,8 +229,9 @@ def _validate_mapping_references(
                         issue_code="RESOLVED_FUTURE_REF",
                         source_family="mappings",
                         message=(
-                            "Document, standard, and template mapping refs "
-                            "must not be resolved authority in M27.9: "
+                            "Document and template mapping refs must not be "
+                            "resolved authority before their roadmap-authorized "
+                            "implementation checkpoints: "
                             f"{reference.reference_id}"
                         ),
                         related_ids=[mapping.mapping_id, reference.reference_id],

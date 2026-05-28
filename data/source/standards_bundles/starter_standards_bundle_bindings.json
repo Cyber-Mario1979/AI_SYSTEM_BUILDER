@@ -1,0 +1,305 @@
+{
+  "library_id": "M28_STANDARDS_BUNDLE_BINDING_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_source_contract",
+  "bindings": [
+    {
+      "bundle_id": "SB-CQV-GMP@v1",
+      "version": "v1",
+      "status": "runtime_facing_source_contract",
+      "display_name": "CQV GMP standards bundle binding",
+      "registry_version": "v0.1",
+      "binding_scope": [
+        "qualification",
+        "validation",
+        "cleanroom",
+        "gmp_documentation",
+        "future_document_factory_context"
+      ],
+      "source_bindings": [
+        {
+          "std_id": "STD-EU-GMP-ANNEX-15",
+          "registry_version": "v0.1",
+          "source_role": "primary_authority_candidate",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "qualification",
+            "validation",
+            "gmp_relevance"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May become mandatory when applicable after verification evidence supports that use."
+          ]
+        },
+        {
+          "std_id": "STD-EU-GMP-CHAPTER-4",
+          "registry_version": "v0.1",
+          "source_role": "primary_authority_candidate",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "gmp_documentation",
+            "document_control",
+            "future_document_factory_context"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May support later M29 document-control logic only after document factory boundaries exist."
+          ]
+        },
+        {
+          "std_id": "STD-ASTM-E2500",
+          "registry_version": "v0.1",
+          "source_role": "supporting_reference",
+          "authority_status": "reference",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "not_mandatory_unless_adopted",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "verification_strategy",
+            "science_risk_based_approach"
+          ],
+          "source_limitations": [
+            "Reference source cannot drive mandatory output unless adopted.",
+            "Version/effective date remains TBD in registry v0.1."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May support strategy framing; it does not weaken mandatory GMP expectations."
+          ]
+        },
+        {
+          "std_id": "STD-ISO-14644",
+          "registry_version": "v0.1",
+          "source_role": "supporting_reference",
+          "authority_status": "reference",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "not_mandatory_unless_adopted",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "cleanroom_classification",
+            "cleanroom_testing_reference"
+          ],
+          "source_limitations": [
+            "Reference source cannot drive mandatory output unless adopted or required.",
+            "Version/effective date remains TBD in registry v0.1."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "Must be compared with GMP/local/site requirements where overlap exists."
+          ]
+        },
+        {
+          "std_id": "STD-LOCAL-CLEANROOM-NONSTERILE",
+          "registry_version": "v0.1",
+          "source_role": "internal_candidate",
+          "authority_status": "tbd",
+          "verification_status": "user_provided",
+          "mandatory_flag": "not_mandatory_until_internal_approval",
+          "allowed_citation_depths": [
+            "table_row",
+            "requirement"
+          ],
+          "applicability_boundaries": [
+            "non_sterile_cleanroom_scope",
+            "local_matrix_candidate",
+            "cleanroom_hvac_context"
+          ],
+          "source_limitations": [
+            "User-provided local matrix is not public regulation.",
+            "Mandatory use is blocked until approved as internal authority."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May remain recommendation-only or become binding internal standard after approval."
+          ]
+        }
+      ],
+      "downstream_consumers": [
+        {
+          "consumer_id": "MAP-STD-CQV-GMP-TO-QP-TEMPLATE@v1",
+          "consumer_type": "mapping_record",
+          "consumer_status": "resolved_mapping_record",
+          "limitation_statement": "Mapping resolves the standards-bundle source only; the template target remains future-scoped to M29."
+        },
+        {
+          "consumer_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+          "consumer_type": "template_future_contract",
+          "consumer_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "limitation_statement": "Product-ready template loading, selection, generation, and rendering remain blocked until M29."
+        }
+      ],
+      "binding_controls": [
+        "This bundle binds standards source IDs to downstream source mappings only.",
+        "Pending, TBD, reference, and user-provided source limitations remain visible.",
+        "This bundle does not create audit-ready, clause-level, product-ready, or mandatory standards output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_execute_runtime_registry_consumption",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_load_or_select_templates",
+        "does_not_generate_product_ready_standards_output"
+      ]
+    },
+    {
+      "bundle_id": "SB-CSV-GXP@v1",
+      "version": "v1",
+      "status": "runtime_facing_source_contract",
+      "display_name": "CSV / GxP standards bundle binding",
+      "registry_version": "v0.1",
+      "binding_scope": [
+        "computerized_system",
+        "electronic_records_or_signatures",
+        "csv",
+        "gmp_documentation",
+        "future_document_factory_context"
+      ],
+      "source_bindings": [
+        {
+          "std_id": "STD-EU-GMP-ANNEX-11",
+          "registry_version": "v0.1",
+          "source_role": "primary_authority_candidate",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "computerized_systems",
+            "csv",
+            "gmp_relevance"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "Applies only when computerized systems are in scope and source evidence supports use."
+          ]
+        },
+        {
+          "std_id": "STD-FDA-21CFR11",
+          "registry_version": "v0.1",
+          "source_role": "primary_authority_candidate",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "electronic_records",
+            "electronic_signatures",
+            "regulatory_market_us"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "Applies only when relevant records/signatures fall under the declared scope."
+          ]
+        },
+        {
+          "std_id": "STD-ISPE-GAMP5",
+          "registry_version": "v0.1",
+          "source_role": "supporting_reference",
+          "authority_status": "reference",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "not_mandatory_unless_adopted",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "computerized_systems_validation",
+            "assurance_strategy"
+          ],
+          "source_limitations": [
+            "Reference source cannot drive mandatory output unless adopted.",
+            "Version/effective date remains TBD in registry v0.1."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May support approach; mandatory status depends on project/company adoption."
+          ]
+        },
+        {
+          "std_id": "STD-EU-GMP-CHAPTER-4",
+          "registry_version": "v0.1",
+          "source_role": "primary_authority_candidate",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "allowed_citation_depths": [
+            "document"
+          ],
+          "applicability_boundaries": [
+            "gmp_documentation",
+            "document_control",
+            "future_document_factory_context"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "supports_mandatory_use": false,
+          "notes": [
+            "May support later document-control linkage only after M29 boundaries exist."
+          ]
+        }
+      ],
+      "downstream_consumers": [
+        {
+          "consumer_id": "MAP-STD-CSV-GXP-TO-CSV-TEMPLATE@v1",
+          "consumer_type": "mapping_record",
+          "consumer_status": "resolved_mapping_record",
+          "limitation_statement": "Mapping resolves the standards-bundle source only; the CSV template target remains future-scoped to M29."
+        },
+        {
+          "consumer_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+          "consumer_type": "template_future_contract",
+          "consumer_status": "future_expected",
+          "resolution_checkpoint": "M29",
+          "limitation_statement": "Product-ready CSV template loading, selection, generation, and rendering remain blocked until M29."
+        }
+      ],
+      "binding_controls": [
+        "This bundle binds standards source IDs to downstream source mappings only.",
+        "Pending, reference, and jurisdiction-specific source limitations remain visible.",
+        "This bundle does not create audit-ready, clause-level, product-ready, or mandatory standards output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_execute_runtime_registry_consumption",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_load_or_select_templates",
+        "does_not_generate_product_ready_standards_output"
+      ]
+    }
+  ]
+}

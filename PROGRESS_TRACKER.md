@@ -20,21 +20,21 @@ CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historica
 
 ## Current Approved Checkpoint Family
 
-M28.4 — Standards-bundle binding
+M28.5 — Stricter-requirement comparison rule
 
 ## Latest Completed Checkpoint
 
-M28.3 — Citation model implementation scope
+M28.4 — Standards-bundle binding
 
 ## Exact Next Unfinished Checkpoint
 
-PLAN M28.4 — Standards-bundle binding
+PLAN M28.5 — Stricter-requirement comparison rule
 
 ## Latest Verified Validation
 
-M28.3 citation model implementation scope:
+M28.4 standards-bundle binding:
 
-python -m pytest -q — 1175 passed in 49.78s
+python -m pytest -q — 1191 passed in 48.21s
 
 ## Milestone UAT Status
 
@@ -44,9 +44,9 @@ M28 requires actual UAT at M28.11. Owner acceptance alone is not sufficient for 
 
 ## Repo Alignment Status
 
-Aligned for completed M28.3 citation model/contract and local validation.
+Aligned for completed M28.4 standards-bundle binding records, mapping/source-contract updates, cross-library validation update, and local validation.
 
-Ready for PLAN M28.4.
+Ready for PLAN M28.5.
 
 ## Relevant DDR Status
 
@@ -58,14 +58,14 @@ DDR-005 remains deferred to M30.
 
 DDR-006 remains closure-planned for M29.
 
-M28.3 does not close, reopen, downgrade, or reclassify any DDR.
+M28.4 does not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M28.4 is hybrid / build-content work and must receive PLAN before GO.
+M28.5 is hybrid / build-content work and must receive PLAN before GO.
 
 ## Next Action
 
-PLAN M28.4
+PLAN M28.5

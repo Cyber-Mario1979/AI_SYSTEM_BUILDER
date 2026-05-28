@@ -35,6 +35,7 @@ def test_default_cross_library_validation_passes():
         "calendars",
         "planning_basis",
         "mappings",
+        "standards_bundles",
     ]
 
 
@@ -98,6 +99,29 @@ def test_validation_detects_dangling_atomic_task_mapping_reference():
     assert "DANGLING_ATOMIC_TASK_REF" in _issue_codes(result)
 
 
+def test_validation_detects_dangling_standards_bundle_mapping_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
+    mapping.source_refs[0].reference_id = "SB-MISSING@v1"
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "failed"
+    assert "DANGLING_STANDARDS_BUNDLE_REF" in _issue_codes(result)
+
+
+def test_validation_accepts_resolved_standards_bundle_mapping_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
+
+    assert mapping.source_refs[0].reference_type == "standard_bundle"
+    assert mapping.source_refs[0].reference_status == "resolved_source"
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "passed"
+
+
 def test_validation_detects_future_reference_without_resolution_checkpoint():
     runtime = load_default_source_library_baseline_runtime()
     mapping = _first_mapping_by_kind(runtime, "task_to_document")
@@ -112,6 +136,18 @@ def test_validation_detects_future_reference_without_resolution_checkpoint():
 def test_validation_detects_resolved_future_document_reference():
     runtime = load_default_source_library_baseline_runtime()
     mapping = _first_mapping_by_kind(runtime, "task_to_document")
+    mapping.target_refs[0].reference_status = "resolved_source"
+    mapping.target_refs[0].resolution_checkpoint = None
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "failed"
+    assert "RESOLVED_FUTURE_REF" in _issue_codes(result)
+
+
+def test_validation_detects_resolved_future_template_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
     mapping.target_refs[0].reference_status = "resolved_source"
     mapping.target_refs[0].resolution_checkpoint = None
 
