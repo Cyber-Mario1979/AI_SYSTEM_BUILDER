@@ -26,7 +26,7 @@ M28.1 — Standards registry baseline review
 
 ## Exact Next Recovery Step
 
-Prepare M27 retrospective assessment record.
+Perform CONTROL-RECOVERY-001 document consistency review and recovery verification.
 
 ## Exact Next Normal Roadmap Checkpoint
 
@@ -63,14 +63,14 @@ Completed recovery steps:
 - Phase 1 roadmap recovery controls applied to ROADMAP_CANONICAL.md.
 - Phase 2 build/governance policy hard-stop amendment applied to docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md.
 - Phase 3 tracker pause/recovery-state truth is recorded in this tracker update.
+- Phase 4 M27 retrospective assessment completed in docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md.
+- Phase 5 M27 evidence hygiene corrections completed for M27.8, M27.9, and M27.10 evidence files.
 
 Remaining recovery steps before normal execution may resume:
 
-- prepare M27 retrospective assessment record;
-- correct or formally defer M27 evidence hygiene if approved;
 - confirm or strengthen M28 actual UAT control note if needed;
 - prepare operation-pack replacement package / Project Source update evidence;
-- perform document consistency review;
+- perform document consistency review and recovery verification;
 - verify no normal roadmap checkpoint advanced during recovery;
 - obtain owner approval for normal roadmap resumption;
 - archive or close CONTROL-RECOVERY-001 according to its archival rule.
@@ -117,6 +117,10 @@ CONTROL-RECOVERY-001 Phase 2 build/governance policy amendment was documentation
 
 CONTROL-RECOVERY-001 tracker pause/recovery-state update is documentation/governance-only. No executable validation was run or required.
 
+CONTROL-RECOVERY-001 M27 retrospective assessment is documentation/governance-only. No executable validation was run or required.
+
+CONTROL-RECOVERY-001 M27 evidence hygiene corrections are documentation/governance-only. No executable validation was run or required.
+
 ## Milestone UAT Status
 
 M26 closeout completed for compressed source-boundary authority scope.
@@ -138,6 +142,8 @@ CONTROL-RECOVERY-001 owner approval for normal roadmap resumption has not yet be
 ## Repo Alignment Status
 
 Aligned for M28.1 completion and CONTROL-RECOVERY-001 recovery pause.
+
+Aligned for completed CONTROL-RECOVERY-001 Phase 4 M27 retrospective assessment and Phase 5 M27 evidence hygiene corrections.
 
 Not aligned for normal M28.2 execution until recovery is fully implemented, verified, owner-approved, and archived or closed.
 
@@ -199,6 +205,7 @@ M28 evidence:
 Recovery governance evidence:
 
 - docs/governance/control_recovery/CONTROL_RECOVERY_001_ROADMAP_GOVERNANCE_OPERATION_PACK_REPAIR.md
+- docs/governance/control_recovery/CONTROL_RECOVERY_001_M27_RETROSPECTIVE_ASSESSMENT.md
 - ROADMAP_CANONICAL.md
 - docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md
 - PROGRESS_TRACKER.md
@@ -241,6 +248,8 @@ M28.1 does not close, reopen, downgrade, or reclassify any DDR. M28.1 confirms t
 
 CONTROL-RECOVERY-001 roadmap, policy, and tracker recovery amendments do not close, reopen, downgrade, or reclassify any DDR.
 
+CONTROL-RECOVERY-001 M27 retrospective assessment and M27 evidence hygiene corrections do not close, reopen, downgrade, or reclassify any DDR.
+
 ## Build / Governance Balance Policy Status
 
 Active and strengthened under CONTROL-RECOVERY-001 Phase 2.
@@ -257,4 +266,4 @@ M28 milestone acceptance mode is actual UAT. Owner acceptance alone is not suffi
 
 Before M28.2 and future M28 work, apply docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md and docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md so standards authority work stays evidence-based and does not overclaim runtime/product readiness.
 
-Next recovery action: prepare M27 retrospective assessment record.
+Next recovery action: perform CONTROL-RECOVERY-001 document consistency review and recovery verification.
