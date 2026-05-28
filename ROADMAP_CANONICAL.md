@@ -303,6 +303,90 @@ Minimum UAT evidence:
 
 For the local integrated CQV product path, UAT must include real local workflow trial evidence before productization/SaaS re-entry.
 
+### 7.3 Checkpoint Execution Mode and Completion-Minimum Control
+
+This section was added under `CONTROL-RECOVERY-001 — Roadmap / Governance / Operation-Pack Anti-Drift Repair`.
+
+It does not reopen completed milestones by itself. It controls active and future execution and may be used to interpret completed evidence truthfully during recovery review.
+
+#### 7.3.1 Execution mode is mandatory
+
+Every active checkpoint from M26 onward must have an explicit execution mode before `PLAN` or `GO`.
+
+Allowed execution modes:
+
+| Execution mode | Meaning |
+|---|---|
+| `Governance-only` | Decision, scope lock, review, acceptance, closeout, or planning artifact only. |
+| `Build/content` | Runtime code, source data, executable model, source library, validator, loader, output, retrieval, AI, UI, or product workflow. |
+| `Hybrid` | Governance boundary plus implementation/source/runtime content. |
+| `Validation` | Validation evidence checkpoint. |
+| `UAT` | Actual user acceptance testing, owner acceptance, or both, explicitly stated. |
+| `Closeout` | Milestone boundary freeze. |
+
+#### 7.3.2 Completion minimum is mandatory
+
+Every active checkpoint from M26 onward must define these fields before execution:
+
+1. execution mode;
+2. required completion artifact;
+3. implementation/source minimum;
+4. validation requirement;
+5. tracker movement rule;
+6. explicit non-implementation claims.
+
+If any field is missing, the checkpoint is ambiguous and must not proceed to `GO`.
+
+#### 7.3.3 Default classification for Phase 9 product-core work
+
+For Phase 9 local integrated CQV product-core work, a checkpoint must not be treated as governance-only merely because its wording says `define`, `scope`, `model`, `review`, `decide`, `assess`, `gate`, `framework`, `authority`, or `behavior`.
+
+If the checkpoint is not explicitly labelled `Governance-only`, `Validation`, `UAT`, or `Closeout`, the default classification is `Hybrid` or `Build/content`.
+
+#### 7.3.4 Ambiguity stop rule
+
+If checkpoint wording is ambiguous, execution stops before `PLAN` or `GO`.
+
+Ambiguous wording includes, but is not limited to:
+
+- `define`
+- `scope`
+- `model`
+- `review`
+- `decide`
+- `assess`
+- `gate`
+- `framework`
+- `authority`
+- `behavior`
+
+These words are allowed in the roadmap, but they must be paired with an explicit execution mode and completion minimum.
+
+#### 7.3.5 Evidence document limitation
+
+A milestone evidence document may support tracker movement only when the checkpoint is explicitly `Governance-only`, `Validation`, `UAT`, or `Closeout`.
+
+For `Hybrid` and `Build/content` checkpoints, a milestone evidence document is not sufficient by itself. Tracker movement requires the required implementation/source minimum and validation evidence where applicable.
+
+#### 7.3.6 `GO` package generation rule
+
+`GO` must not prepare an implementation package, replacement file, tracker update, or `apply.py` until the anti-drift preflight confirms:
+
+- execution mode;
+- completion minimum;
+- DDR impact;
+- architecture boundary;
+- validation requirement;
+- tracker movement rule;
+- explicit non-implementation claims.
+
+#### 7.3.7 M29-M34 pre-execution classification gate
+
+M29 through M34 must not execute until the active checkpoint has been classified with execution mode and completion minimum.
+
+If a future M29-M34 checkpoint table does not yet include these fields, the checkpoint requires a roadmap interpretation or amendment before `PLAN` or `GO`.
+
+
 ---
 
 ## 8. Phase Summary
@@ -926,20 +1010,20 @@ Redirect execution from premature productization/SaaS readiness to a local integ
 
 #### Checkpoint ladder
 
-| Checkpoint | Purpose | Allowed work | Not allowed |
-|---|---|---|---|
-| `M28.1` Standards registry baseline review | Review registry records | Confirm statuses, TBD fields, verification limits, mandatory flags | Treat pending/TBD as verified authority |
-| `M28.2` Applicability engine scope | Define applicability behavior | Scope/system/area/lifecycle/market/company/site triggers | Universal standards application |
-| `M28.3` Citation model implementation scope | Define citation depth behavior | Document, version, section, clause, table-row, requirement-level citations | Fabricate clauses or versions |
-| `M28.4` Standards-bundle binding | Link standards bundles to selectors/profiles/templates | Product source mappings only where authority supports it | Standards bundles as vague labels |
-| `M28.5` Stricter-requirement comparison rule | Implement/define comparison governance | Applicable source comparison, selected stricter rule, override record | Use risk-based reasoning to weaken mandatory requirements silently |
-| `M28.6` Controlled override model | Define override records | Approver, rationale, residual risk, applicability boundary | Override as regulatory equivalence |
-| `M28.7` Local/company/site standards intake | Define user-uploaded/internal standard flow | Draft source record, authority decision, comparison, approval | Treat user-provided local matrix as public regulation |
-| `M28.8` Runtime registry consumption package | Implement registry reading/validation if approved | Validation, parsing, source-status enforcement | Product standards output without tests |
-| `M28.9` Standards-output limitation rules | Define output warning/limitation behavior | Pending/TBD/user-provided limitation statements | Hide limitations in generated output |
-| `M28.10` Validation checkpoint | Validate standards behavior | `python -m pytest -q` if executable behavior changed; standards registry validation | Claim audit-ready output without verified sources |
-| `M28.11` Milestone UAT / owner acceptance | Accept standards authority use | Owner reviews applicability/citation behavior | Treat as regulatory/legal approval |
-| `M28.12` Milestone closeout | Freeze standards authority boundary | Carry DDR-005 if retrieval remains deferred | Start retrieval before authority is ready |
+| Checkpoint | Execution mode | Purpose | Completion minimum | Validation / review requirement | Tracker movement rule | Not allowed |
+|---|---|---|---|---|---|---|
+| `M28.1` Standards registry baseline review | `Governance-only` | Review registry records | Registry baseline review evidence confirming statuses, TBD fields, verification limits, and mandatory flags. | Document consistency review. No executable validation unless code, commands, schemas, runtime behavior, or executable contracts change. | May advance only after the baseline review evidence exists. | Treat pending/TBD as verified authority. |
+| `M28.2` Applicability engine scope | `Hybrid` | Define applicability behavior and the future runtime-facing applicability contract. | Applicability contract/model sufficient to govern later runtime behavior, including trigger taxonomy, input dimensions, applicability decision states, mandatory-use eligibility, limitation propagation, and rejection cases. A narrative evidence file alone is not sufficient. | Document consistency review is required. If code, source contracts, schemas, validators, or executable behavior are added or changed, `python -m pytest -q` is required. | May advance only after the applicability contract/model exists and explicitly records non-implementation limits. | Universal standards application or mandatory use from registry presence alone. |
+| `M28.3` Citation model implementation scope | `Hybrid` | Define citation depth behavior and the future runtime-facing citation contract. | Citation model/contract covering document, version, section, clause, table-row, and requirement-level citation behavior; citation-depth eligibility; missing-clause limitation rules; and no-fabrication guard. A narrative evidence file alone is not sufficient. | Document consistency review is required. If code, source contracts, schemas, validators, or executable behavior are added or changed, `python -m pytest -q` is required. | May advance only after the citation model/contract exists and limitation behavior is explicit. | Fabricate clauses, versions, source text, or regulatory meaning. |
+| `M28.4` Standards-bundle binding | `Hybrid` / `Build/content` | Link standards bundles to selectors, profiles, templates, or source mappings where authority supports it. | Standards-bundle binding records, mapping records, or source-contract updates that identify source IDs, applicability boundaries, authority/verification limits, and downstream consumers. Vague labels are not sufficient. | Source consistency review is required. If source data, schemas, validators, or executable behavior change, `python -m pytest -q` is required. | May advance only after binding artifacts exist and unresolved/pending sources remain visibly limited. | Treat standards bundles as vague labels or universal authority. |
+| `M28.5` Stricter-requirement comparison rule | `Hybrid` / `Build/content` | Define and, where approved, implement comparison governance. | Comparison rule model/contract identifying applicable sources, compared requirements, selected stricter requirement, override path, and limitation behavior. Tests are required if executable comparison behavior is implemented. | Document/source consistency review is required. `python -m pytest -q` is required if executable behavior changes. | May advance only after comparison rule evidence or implementation exists with explicit boundary limits. | Use risk-based reasoning to weaken mandatory requirements silently. |
+| `M28.6` Controlled override model | `Hybrid` | Define controlled override records. | Override model/contract covering approver, rationale, residual risk, applicability boundary, source comparison, decision reference, and limitation statement. Tests are required if executable validation behavior is implemented. | Document/source consistency review is required. `python -m pytest -q` is required if executable behavior changes. | May advance only after override record structure and non-equivalence limits exist. | Treat override as regulatory equivalence or source closure. |
+| `M28.7` Local/company/site standards intake | `Hybrid` | Define user-uploaded/internal standards flow. | Intake model/contract or record flow covering draft source record, authority decision, comparison, approval, limitation handling, and local/company/site/client source status. Tests are required if executable intake behavior is implemented. | Document/source consistency review is required. `python -m pytest -q` is required if executable behavior changes. | May advance only after intake flow artifacts exist and user-provided/internal-source limits are explicit. | Treat user-provided local matrix as public regulation. |
+| `M28.8` Runtime registry consumption package | `Build/content` | Implement registry reading and validation where approved. | Runtime registry reading/parsing/source-status enforcement and related tests, or an explicit owner-approved decision to defer runtime consumption with limitations. | `python -m pytest -q` is required when runtime code, validators, schemas, or executable behavior change. | May advance only after runtime/source implementation and validation evidence exist, or after a formal deferral decision is recorded. | Product standards output without tests. |
+| `M28.9` Standards-output limitation rules | `Hybrid` | Define output warning and limitation behavior. | Limitation contract/model covering pending/TBD/user-provided/reference-only sources, citation-depth limits, registry-version traceability, and visible output warnings. Tests are required if output behavior is executable. | Document/source consistency review is required. `python -m pytest -q` is required if executable behavior changes. | May advance only after limitation behavior is explicit and not hidden from downstream output. | Hide limitations in generated output. |
+| `M28.10` Validation checkpoint | `Validation` | Validate standards behavior. | Standards behavior/source validation evidence, including `python -m pytest -q` if executable behavior changed and standards registry/source consistency validation where applicable. | Validation evidence must be recorded truthfully. | May advance only after required validation evidence exists or unresolved validation state is explicitly recorded. | Claim audit-ready output without verified sources. |
+| `M28.11` Milestone UAT / owner acceptance | `UAT` | Accept standards authority use for the approved M28 scope. | Executed M28 UAT protocol/report covering applicability, citation, limitation visibility, and runtime-consumption boundaries where implemented. Owner acceptance alone is not sufficient for M28 closeout. | UAT evidence is required. Validation reference is required where executable behavior was validated. | May advance only after actual M28 UAT evidence exists and limitations are accepted. | Treat as regulatory/legal approval. |
+| `M28.12` Milestone closeout | `Closeout` | Freeze standards authority boundary. | Closeout record referencing M28 validation, actual UAT, DDR-004 scope, DDR-005 carry-forward if retrieval remains deferred, and DDR-006 awareness. | Document consistency review. No executable validation unless new executable behavior changes. | May advance only after M28.12 closeout record exists and all required carry-forward limitations are explicit. | Start retrieval before authority is ready. |
 
 #### Exit criteria
 
