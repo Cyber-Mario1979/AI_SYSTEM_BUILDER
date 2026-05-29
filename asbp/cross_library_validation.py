@@ -4,9 +4,14 @@ from typing import Any
 
 from asbp.calendar_source_store import list_calendar_ids
 from asbp.cross_library_validation_model import (
+    CheckedFamilyId,
     CrossLibraryValidationIssueModel,
     CrossLibraryValidationResultModel,
     build_validation_result,
+)
+from asbp.document_template_store import (
+    list_document_template_ids,
+    load_default_document_template_library,
 )
 from asbp.planning_basis_source_store import (
     find_missing_task_pool_duration_refs,
@@ -46,11 +51,22 @@ def assert_cross_library_validation_passes(runtime: Any) -> None:
 def validate_cross_library_runtime(runtime: Any) -> CrossLibraryValidationResultModel:
     issues: list[CrossLibraryValidationIssueModel] = []
     standards_bundle_library = load_default_standards_bundle_binding_library()
+    document_template_library = load_default_document_template_library()
 
-    _validate_non_empty_libraries(runtime, standards_bundle_library, issues)
+    _validate_non_empty_libraries(
+        runtime,
+        standards_bundle_library,
+        document_template_library,
+        issues,
+    )
     _validate_task_dependencies(runtime, issues)
     _validate_duration_refs(runtime, issues)
-    _validate_mapping_references(runtime, standards_bundle_library, issues)
+    _validate_mapping_references(
+        runtime,
+        standards_bundle_library,
+        document_template_library,
+        issues,
+    )
     _validate_mapping_applicability(runtime, issues)
 
     return build_validation_result(issues)
@@ -66,6 +82,7 @@ def build_cross_library_validation_issue_id(
 def _validate_non_empty_libraries(
     runtime: Any,
     standards_bundle_library: Any,
+    document_template_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     library_checks = [
@@ -83,6 +100,11 @@ def _validate_non_empty_libraries(
             "standards bundle bindings",
             standards_bundle_library.bindings,
         ),
+        (
+            "document_templates",
+            "document templates",
+            document_template_library.template_records,
+        ),
     ]
 
     for source_family, label, collection in library_checks:
@@ -91,7 +113,7 @@ def _validate_non_empty_libraries(
                 CrossLibraryValidationIssueModel(
                     issue_code="EMPTY_LIBRARY",
                     source_family=source_family,
-                    message=f"M28.4 validation found empty {label} library.",
+                    message=f"Cross-library validation found empty {label} library.",
                     related_ids=[label],
                 )
             )
@@ -155,6 +177,7 @@ def _validate_duration_refs(
 def _validate_mapping_references(
     runtime: Any,
     standards_bundle_library: Any,
+    document_template_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     known_profile_ids = set(list_profile_ids(runtime.profile_library))
@@ -164,6 +187,9 @@ def _validate_mapping_references(
     known_calendar_ids = set(list_calendar_ids(runtime.calendar_library))
     known_standards_bundle_ids = set(
         list_standards_bundle_ids(standards_bundle_library)
+    )
+    known_document_template_ids = set(
+        list_document_template_ids(document_template_library)
     )
 
     for mapping in runtime.mapping_library.mappings:
@@ -220,16 +246,23 @@ def _validate_mapping_references(
                     message_prefix="Mapping standards-bundle reference does not exist",
                     mapping_id=mapping.mapping_id,
                 )
-            elif reference.reference_type in {
-                "document_expectation",
-                "template",
-            }:
+            elif reference.reference_type == "template":
+                _append_missing_reference_issue(
+                    issues=issues,
+                    reference_id=reference.reference_id,
+                    known_ids=known_document_template_ids,
+                    issue_code="DANGLING_TEMPLATE_REF",
+                    message_prefix="Mapping template reference does not exist",
+                    mapping_id=mapping.mapping_id,
+                    source_family="document_templates",
+                )
+            elif reference.reference_type == "document_expectation":
                 issues.append(
                     CrossLibraryValidationIssueModel(
                         issue_code="RESOLVED_FUTURE_REF",
                         source_family="mappings",
                         message=(
-                            "Document and template mapping refs must not be "
+                            "Document expectation mapping refs must not be "
                             "resolved authority before their roadmap-authorized "
                             "implementation checkpoints: "
                             f"{reference.reference_id}"
@@ -297,6 +330,7 @@ def _append_missing_reference_issue(
     issue_code: str,
     message_prefix: str,
     mapping_id: str,
+    source_family: CheckedFamilyId = "mappings",
 ) -> None:
     if reference_id in known_ids:
         return
@@ -304,7 +338,7 @@ def _append_missing_reference_issue(
     issues.append(
         CrossLibraryValidationIssueModel(
             issue_code=issue_code,
-            source_family="mappings",
+            source_family=source_family,
             message=f"{message_prefix}: {reference_id}",
             related_ids=[mapping_id, reference_id],
         )

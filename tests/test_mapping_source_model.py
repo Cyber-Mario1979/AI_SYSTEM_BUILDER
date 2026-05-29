@@ -3,6 +3,10 @@ from copy import deepcopy
 import pytest
 from pydantic import ValidationError
 
+from asbp.document_template_store import (
+    list_document_template_ids,
+    load_default_document_template_library,
+)
 from asbp.mapping_source_model import MappingLibraryModel
 from asbp.mapping_source_store import (
     assert_resolved_references_exist,
@@ -99,14 +103,13 @@ def _minimal_standard_to_template_mapping_payload() -> dict:
             {
                 "reference_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
                 "reference_type": "template",
-                "reference_status": "future_expected",
-                "resolution_checkpoint": "M29",
+                "reference_status": "resolved_source",
             }
         ],
         "applicability_tags": ["standards", "template"],
         "mapping_controls": [
-            "Mapping resolves standards-bundle source only.",
-            "Template target remains future-scoped to M29.",
+            "Mapping resolves standards-bundle source and M29.2 template record only.",
+            "Template loading, selection, generation, and rendering remain later M29 work.",
         ],
     }
 
@@ -163,7 +166,7 @@ def test_default_mapping_task_pool_targets_exist_in_task_pool_source_library():
     )
 
 
-def test_standard_template_mappings_resolve_bundle_sources_only():
+def test_standard_template_mappings_resolve_bundle_and_template_sources():
     library = load_default_mapping_library()
     mapping = get_mapping_by_id(
         library,
@@ -174,8 +177,9 @@ def test_standard_template_mappings_resolve_bundle_sources_only():
     assert mapping.source_refs[0].reference_id == "SB-CQV-GMP@v1"
     assert mapping.source_refs[0].reference_status == "resolved_source"
     assert mapping.source_refs[0].resolution_checkpoint is None
-    assert mapping.target_refs[0].reference_status == "future_expected"
-    assert mapping.target_refs[0].resolution_checkpoint == "M29"
+    assert mapping.target_refs[0].reference_id == "TPL-FUTURE-QUALIFICATION-PLAN@v1"
+    assert mapping.target_refs[0].reference_status == "resolved_source"
+    assert mapping.target_refs[0].resolution_checkpoint is None
 
 
 def test_resolved_standard_bundle_mapping_sources_exist_in_binding_library():
@@ -192,6 +196,23 @@ def test_resolved_standard_bundle_mapping_sources_exist_in_binding_library():
         mapping_library,
         "standard_bundle",
         set(list_standards_bundle_ids(bundle_library)),
+    )
+
+
+def test_resolved_template_mapping_targets_exist_in_template_library():
+    mapping_library = load_default_mapping_library()
+    template_library = load_default_document_template_library()
+
+    assert find_missing_resolved_reference_ids(
+        mapping_library,
+        "template",
+        set(list_document_template_ids(template_library)),
+    ) == []
+
+    assert_resolved_references_exist(
+        mapping_library,
+        "template",
+        set(list_document_template_ids(template_library)),
     )
 
 
@@ -297,18 +318,19 @@ def test_standard_to_template_requires_resolved_standard_bundle_source():
     )
 
 
-def test_standard_to_template_rejects_resolved_template_target_until_m29():
+def test_standard_to_template_requires_resolved_template_target_after_m29_2():
     mapping = _minimal_standard_to_template_mapping_payload()
     mapping["target_refs"][0] = {
         "reference_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
         "reference_type": "template",
-        "reference_status": "resolved_source",
+        "reference_status": "future_expected",
+        "resolution_checkpoint": "M29",
     }
 
     with pytest.raises(ValidationError) as exc_info:
         load_mapping_library_from_payload(_minimal_library_payload(mapping))
 
-    assert "standard_to_template template targets must remain future" in str(
+    assert "template targets must be resolved_source after M29.2" in str(
         exc_info.value
     )
 

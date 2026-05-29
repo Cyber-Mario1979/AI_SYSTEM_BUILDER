@@ -14,6 +14,7 @@ ValidationIssueCode = Literal[
     "DANGLING_TASK_POOL_REF",
     "DANGLING_ATOMIC_TASK_REF",
     "DANGLING_STANDARDS_BUNDLE_REF",
+    "DANGLING_TEMPLATE_REF",
     "RESOLVED_FUTURE_REF",
     "FUTURE_REF_WITHOUT_RESOLUTION",
     "BLANK_APPLICABILITY_TAG",
@@ -26,6 +27,7 @@ CheckedFamilyId = Literal[
     "planning_basis",
     "mappings",
     "standards_bundles",
+    "document_templates",
 ]
 
 
@@ -84,6 +86,7 @@ def build_validation_result(
             "planning_basis",
             "mappings",
             "standards_bundles",
+            "document_templates",
         ],
         issues=issues,
     )

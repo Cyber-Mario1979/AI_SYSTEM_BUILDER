@@ -168,11 +168,11 @@ class MappingSourceModel(BaseModel):
                     )
 
             for reference in self.target_refs:
-                if reference.reference_status == "resolved_source":
+                if reference.reference_status != "resolved_source":
                     raise ValueError(
-                        "standard_to_template template targets must remain future "
-                        f"or placeholder references until M29: "
-                        f"{reference.reference_id}"
+                        "standard_to_template template targets must be "
+                        f"resolved_source after M29.2 template record "
+                        f"implementation: {reference.reference_id}"
                     )
 
 
