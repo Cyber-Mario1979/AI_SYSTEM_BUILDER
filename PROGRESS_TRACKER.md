@@ -24,11 +24,11 @@ M29.1 — Product document family scope
 
 ## Latest Completed Checkpoint
 
-M28.12 — Milestone closeout
+M29.1 Control Check Before PLAN
 
 ## Exact Next Unfinished Checkpoint
 
-CONTROL CHECK BEFORE PLAN M29.1 — Resolve M29.1 execution-control fields before PLAN / GO
+PLAN M29.1 — Product document family scope
 
 ## Latest Verified Validation
 
@@ -44,13 +44,13 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned for completed M28 milestone closeout.
+Aligned for completed M29.1 control-check artifact.
 
-M29.1 is the next roadmap checkpoint, but M29 checkpoint-control fields require resolution before PLAN / GO.
+Ready for PLAN M29.1 using `docs/milestones/M29/M29_1_CONTROL_CHECK_BEFORE_PLAN.md`.
 
 ## Relevant DDR Status
 
-M29 is relevant to DDR-003, DDR-006, and DDR-004 / DDR-005 awareness where standards-backed output is involved.
+M29.1 is relevant to DDR-003, DDR-006, and DDR-004 / DDR-005 awareness where standards-backed output is involved.
 
 DDR-003 remains closed only for the approved governance/model scope until product-ready template implementation and document factory integration evidence exists.
 
@@ -60,14 +60,14 @@ DDR-005 remains deferred to M30.
 
 DDR-006 remains closure-planned / carried forward to M29 for product-ready document/export/report generation and rendering.
 
-M28.12 does not close, reopen, downgrade, or reclassify any DDR.
+M29.1 control check does not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M29.1 cannot proceed to PLAN / GO until execution mode, completion minimum, validation requirement, tracker movement rule, DDR impact, and architecture boundary impact are explicit.
+M29.1 is interpreted as Hybrid / Build-content and must use the control-check execution controls before GO.
 
 ## Next Action
 
-CONTROL CHECK BEFORE PLAN M29.1
+PLAN M29.1
