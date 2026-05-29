@@ -1,14 +1,16 @@
 ---
 doc_type: uat_protocol
 canonical_name: M28_UAT_PROTOCOL
-status: READY_FOR_UAT_EXECUTION
+status: EXECUTED_ACCEPTED
 phase: Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 milestone: M28
 checkpoint: M28.11
 checkpoint_title: Milestone UAT / owner acceptance
 execution_mode: UAT
-application_mode: user_applied_package
-live_repo_write: NO
+application_mode: live_repo_write
+live_repo_write: YES
+reviewer_owner: Project Owner
+uat_date: 2026-05-29
 ---
 
 # M28 — UAT Protocol
@@ -20,6 +22,28 @@ This protocol defines the M28 UAT review for Standards Applicability, Citation, 
 M28 UAT confirms that the implemented standards authority surface is understandable, bounded, validated, and ready for M28.12 closeout review.
 
 This UAT is not implementation work and does not create new standards behavior.
+
+## Execution Status
+
+Protocol status:
+
+`EXECUTED_ACCEPTED`
+
+Reviewer / owner:
+
+`Project Owner`
+
+UAT date:
+
+`2026-05-29`
+
+Acceptance decision:
+
+`Accepted`
+
+Acceptance rationale:
+
+`M28 standards authority scope is accepted as valid and sufficient to move forward, although the UAT format itself is not ideal/preferred.`
 
 ## UAT Scope
 
@@ -52,7 +76,7 @@ The UAT scope covers M28.3 through M28.10 evidence and implemented source-contra
 
 ## Validation Reference
 
-M28 UAT must reference the M28.10 validation result:
+M28 UAT references the M28.10 validation result:
 
 `python -m pytest -q — 1258 passed in 48.01s`
 
@@ -77,43 +101,43 @@ M28 UAT passes only when all criteria below are satisfied:
 
 ## Operator-Facing Review Checklist
 
-| Item | Expected answer |
+| Item | Accepted result |
 |---|---|
-| Is standards applicability behavior controlled? | Yes |
-| Is standards citation behavior controlled? | Yes |
-| Are citation-depth limitations visible? | Yes |
-| Are pending/TBD/user-provided/reference-only source limitations visible? | Yes |
-| Are standards-bundle bindings explicit and not vague labels? | Yes |
-| Does stricter-requirement comparison preserve mandatory applicable requirements? | Yes |
-| Are override records non-equivalence records, not regulatory approval? | Yes |
-| Does local/company/site intake avoid treating uploaded sources as public regulation? | Yes |
-| Does runtime registry consumption use controlled source data only? | Yes |
-| Are standards-output limitations visible and not hidden? | Yes |
-| Is M28.10 validation evidence present? | Yes |
-| Is DDR-005 carried forward to M30? | Yes |
-| Is DDR-006 carried forward to M29? | Yes |
-| Is M28 non-productizing? | Yes |
+| Is standards applicability behavior controlled? | Accepted |
+| Is standards citation behavior controlled? | Accepted |
+| Are citation-depth limitations visible? | Accepted |
+| Are pending/TBD/user-provided/reference-only source limitations visible? | Accepted |
+| Are standards-bundle bindings explicit and not vague labels? | Accepted |
+| Does stricter-requirement comparison preserve mandatory applicable requirements? | Accepted |
+| Are override records non-equivalence records, not regulatory approval? | Accepted |
+| Does local/company/site intake avoid treating uploaded sources as public regulation? | Accepted |
+| Does runtime registry consumption use controlled source data only? | Accepted |
+| Are standards-output limitations visible and not hidden? | Accepted |
+| Is M28.10 validation evidence present? | Accepted |
+| Is DDR-005 carried forward to M30? | Accepted |
+| Is DDR-006 carried forward to M29? | Accepted |
+| Is M28 non-productizing? | Accepted |
 
 ## Not-Allowed Behavior Checklist
 
-The reviewer must confirm that M28 UAT does not accept or introduce:
+The reviewer accepted that M28 UAT does not accept or introduce:
 
-- standards retrieval or embedding
-- product-ready standards output
-- product-ready document generation
-- document rendering, export, or reporting
-- audit-ready clause-level authority for pending/TBD sources
-- public-regulation claims for user-provided/local/internal sources
-- regulatory/legal approval
-- source closure by override
-- UI/API product behavior
-- AI/model/provider behavior
-- deployment, productization, or SaaS readiness
-- M28 closeout before UAT evidence is accepted
+- standards retrieval or embedding;
+- product-ready standards output;
+- product-ready document generation;
+- document rendering, export, or reporting;
+- audit-ready clause-level authority for pending/TBD sources;
+- public-regulation claims for user-provided/local/internal sources;
+- regulatory/legal approval;
+- source closure by override;
+- UI/API product behavior;
+- AI/model/provider behavior;
+- deployment, productization, or SaaS readiness;
+- M28 closeout before UAT evidence is accepted.
 
 ## DDR Carry-Forward Check
 
-M28 UAT must confirm:
+M28 UAT confirms:
 
 - DDR-004 remains closed only for the approved standards source/citation authority model scope.
 - DDR-005 remains deferred to M30 for standards embedding / retrieval index work.
@@ -135,10 +159,10 @@ UAT completion requires:
 
 ## Protocol Decision
 
-Protocol decision: ready for M28 UAT report execution.
+Protocol decision: M28 UAT executed and accepted.
 
 ## Generation Note
 
-Generated as a user-applied local documentation package.
+Finalized using live repository write authorization for this exact action.
 
-Live repository write: `NO`.
+Live repository write: `YES`.
