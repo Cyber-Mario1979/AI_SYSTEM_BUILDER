@@ -20,21 +20,21 @@ CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historica
 
 ## Current Approved Checkpoint Family
 
-M28.8 — Runtime registry consumption package
+M28.9 — Standards-output limitation rules
 
 ## Latest Completed Checkpoint
 
-M28.7 — Local/company/site standards intake
+M28.8 — Runtime registry consumption package
 
 ## Exact Next Unfinished Checkpoint
 
-PLAN M28.8 — Runtime registry consumption package
+PLAN M28.9 — Standards-output limitation rules
 
 ## Latest Verified Validation
 
-M28.7 local/company/site standards intake:
+M28.8 runtime registry consumption package:
 
-python -m pytest -q — 1224 passed in 49.24s
+python -m pytest -q — 1245 passed in 49.37s
 
 ## Milestone UAT Status
 
@@ -44,9 +44,9 @@ M28 requires actual UAT at M28.11. Owner acceptance alone is not sufficient for 
 
 ## Repo Alignment Status
 
-Aligned for completed M28.7 local/company/site standards intake model/contract and local validation.
+Aligned for completed M28.8 runtime registry consumption package and local validation.
 
-Ready for PLAN M28.8.
+Ready for PLAN M28.9.
 
 ## Relevant DDR Status
 
@@ -58,14 +58,14 @@ DDR-005 remains deferred to M30.
 
 DDR-006 remains closure-planned for M29.
 
-M28.7 does not close, reopen, downgrade, or reclassify any DDR.
+M28.8 does not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M28.8 is build/content work and must receive PLAN before GO.
+M28.9 is hybrid work and must receive PLAN before GO.
 
 ## Next Action
 
-PLAN M28.8
+PLAN M28.9
