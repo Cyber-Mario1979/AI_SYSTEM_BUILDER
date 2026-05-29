@@ -18,6 +18,14 @@ None active.
 
 CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historical evidence remains in the repository.
 
+## Active Context Reset CAPA Status
+
+Active.
+
+The old bloated ASBP Project workspace is archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
+
+This CAPA does not advance the roadmap checkpoint and does not claim implementation progress.
+
 ## Current Approved Checkpoint Family
 
 M29.2 — Template library implementation
@@ -56,7 +64,7 @@ docs/milestones/M29/M29_1A_DOCUMENT_FACTORY_WORKFLOW_AND_RATIONALE_MODEL.md
 
 M29.1A is complete for controlled workflow/rationale scope artifact only.
 
-Ready for PLAN M29.2 using ROADMAP_CANONICAL.md M29 checkpoint ladder.
+Ready for PLAN M29.2 using ROADMAP_CANONICAL.md M29 checkpoint ladder, after the active context reset CAPA is respected.
 
 ## Relevant DDR Status
 
@@ -84,6 +92,8 @@ M29.1A was executed as Hybrid / Build-content and completed only by controlled s
 
 M29.2 must be planned under the build/governance balance policy before GO.
 
+M29.2 must produce implementation/source evidence before tracker advancement or closeout. Governance-only or Markdown-only output is not sufficient for M29.2 progress.
+
 ## Next Action
 
-PLAN M29.2
+PLAN M29.2 from a clean bounded execution context only.
