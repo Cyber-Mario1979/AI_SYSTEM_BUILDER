@@ -10,7 +10,7 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M28 — Standards Applicability, Citation, and Runtime Consumption Authority
+M29 — Product-Ready Document Factory, Document Engine Workflow, and Output Rendering
 
 ## Active Control Recovery Gate
 
@@ -20,15 +20,15 @@ CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historica
 
 ## Current Approved Checkpoint Family
 
-M28.12 — Milestone closeout
+M29.1 — Product document family scope
 
 ## Latest Completed Checkpoint
 
-M28.11 — Milestone UAT / owner acceptance
+M28.12 — Milestone closeout
 
 ## Exact Next Unfinished Checkpoint
 
-PLAN M28.12 — Milestone closeout
+CONTROL CHECK BEFORE PLAN M29.1 — Resolve M29.1 execution-control fields before PLAN / GO
 
 ## Latest Verified Validation
 
@@ -44,28 +44,30 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned for completed M28.11 UAT / owner acceptance evidence.
+Aligned for completed M28 milestone closeout.
 
-Ready for PLAN M28.12.
+M29.1 is the next roadmap checkpoint, but M29 checkpoint-control fields require resolution before PLAN / GO.
 
 ## Relevant DDR Status
 
-M28 remains relevant to DDR-004, DDR-005 awareness, and DDR-006 awareness.
+M29 is relevant to DDR-003, DDR-006, and DDR-004 / DDR-005 awareness where standards-backed output is involved.
+
+DDR-003 remains closed only for the approved governance/model scope until product-ready template implementation and document factory integration evidence exists.
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope.
 
 DDR-005 remains deferred to M30.
 
-DDR-006 remains closure-planned for M29.
+DDR-006 remains closure-planned / carried forward to M29 for product-ready document/export/report generation and rendering.
 
-M28.11 does not close, reopen, downgrade, or reclassify any DDR.
+M28.12 does not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M28.12 is closeout work and must receive PLAN before GO.
+M29.1 cannot proceed to PLAN / GO until execution mode, completion minimum, validation requirement, tracker movement rule, DDR impact, and architecture boundary impact are explicit.
 
 ## Next Action
 
-PLAN M28.12
+CONTROL CHECK BEFORE PLAN M29.1
