@@ -1,4 +1,4 @@
-﻿# PROGRESS_TRACKER
+# PROGRESS_TRACKER
 
 ## Project
 
@@ -20,15 +20,15 @@ CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historica
 
 ## Current Approved Checkpoint Family
 
-M28.11 — Milestone UAT / owner acceptance
+M28.12 — Milestone closeout
 
 ## Latest Completed Checkpoint
 
-M28.10 — Validation checkpoint
+M28.11 — Milestone UAT / owner acceptance
 
 ## Exact Next Unfinished Checkpoint
 
-PLAN M28.11 — Milestone UAT / owner acceptance
+PLAN M28.12 — Milestone closeout
 
 ## Latest Verified Validation
 
@@ -38,15 +38,15 @@ python -m pytest -q — 1258 passed in 48.01s
 
 ## Milestone UAT Status
 
-M28 UAT not yet executed.
+M28 UAT executed and accepted.
 
-M28 requires actual UAT at M28.11. Owner acceptance alone is not sufficient for M28 closeout.
+M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned for completed M28.10 validation checkpoint and local validation evidence.
+Aligned for completed M28.11 UAT / owner acceptance evidence.
 
-Ready for PLAN M28.11.
+Ready for PLAN M28.12.
 
 ## Relevant DDR Status
 
@@ -58,14 +58,14 @@ DDR-005 remains deferred to M30.
 
 DDR-006 remains closure-planned for M29.
 
-M28.10 does not close, reopen, downgrade, or reclassify any DDR.
+M28.11 does not close, reopen, downgrade, or reclassify any DDR.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M28.11 is UAT work and must receive PLAN before GO.
+M28.12 is closeout work and must receive PLAN before GO.
 
 ## Next Action
 
-PLAN M28.11
+PLAN M28.12
