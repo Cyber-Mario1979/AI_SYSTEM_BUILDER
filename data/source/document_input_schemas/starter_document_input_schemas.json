@@ -1,0 +1,448 @@
+{
+  "library_id": "M29_DOCUMENT_INPUT_SCHEMA_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_document_input_schema_source",
+  "schema_records": [
+    {
+      "schema_id": "SCHEMA-QUALIFICATION-PLAN@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_input_schema_record",
+      "template_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+      "document_family_id": "DOCF-PLAN-STRATEGY",
+      "document_type": "Qualification Plan",
+      "required_fields": [
+        {
+          "field_id": "project_title",
+          "display_name": "Project title",
+          "requirement_status": "required",
+          "value_type": "string",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "block_until_provided",
+          "normalization_rules": [
+            "trim_whitespace",
+            "collapse_whitespace"
+          ],
+          "source_input_refs": [
+            "user_input.project_title"
+          ],
+          "section_binding_refs": [
+            "section.cover",
+            "section.purpose"
+          ]
+        },
+        {
+          "field_id": "cqv_scope",
+          "display_name": "CQV scope",
+          "requirement_status": "required",
+          "value_type": "text",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "allow_limited_scaffold",
+          "normalization_rules": [
+            "trim_whitespace",
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.cqv_scope"
+          ],
+          "section_binding_refs": [
+            "section.scope",
+            "section.strategy"
+          ]
+        },
+        {
+          "field_id": "system_or_area",
+          "display_name": "System or area",
+          "requirement_status": "required",
+          "value_type": "string",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "trim_whitespace",
+            "collapse_whitespace"
+          ],
+          "source_input_refs": [
+            "user_input.system_or_area"
+          ],
+          "section_binding_refs": [
+            "section.scope",
+            "section.boundaries"
+          ]
+        },
+        {
+          "field_id": "qualification_strategy",
+          "display_name": "Qualification strategy",
+          "requirement_status": "required",
+          "value_type": "text",
+          "applies_to_routes": [
+            "ROUTE-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "allow_visible_placeholder",
+          "normalization_rules": [
+            "trim_whitespace",
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "dcf.qualification_strategy"
+          ],
+          "section_binding_refs": [
+            "section.strategy",
+            "section.lifecycle_approach"
+          ]
+        }
+      ],
+      "optional_fields": [
+        {
+          "field_id": "standards_context",
+          "display_name": "Standards context",
+          "requirement_status": "optional",
+          "value_type": "list",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.standards_context"
+          ],
+          "section_binding_refs": [
+            "section.references",
+            "section.assumptions"
+          ]
+        },
+        {
+          "field_id": "local_constraints",
+          "display_name": "Local constraints",
+          "requirement_status": "optional",
+          "value_type": "list",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "allow_visible_placeholder",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.local_constraints"
+          ],
+          "section_binding_refs": [
+            "section.limitations",
+            "section.assumptions"
+          ]
+        }
+      ],
+      "conditional_fields": [
+        {
+          "field_id": "cleanroom_classification",
+          "display_name": "Cleanroom classification",
+          "requirement_status": "conditional",
+          "value_type": "string",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "trim_whitespace",
+            "collapse_whitespace"
+          ],
+          "source_input_refs": [
+            "user_input.cleanroom_classification"
+          ],
+          "section_binding_refs": [
+            "section.scope",
+            "section.standards_relevance"
+          ],
+          "conditional_reason": "Required when cleanroom or HVAC qualification scope is declared."
+        }
+      ],
+      "dcf_intake_mapping": {
+        "route_ref": "ROUTE-DCF",
+        "field_ids": [
+          "project_title",
+          "cqv_scope",
+          "system_or_area",
+          "qualification_strategy",
+          "standards_context",
+          "local_constraints",
+          "cleanroom_classification"
+        ],
+        "mapping_controls": [
+          "DCF route may collect required, optional, and conditional fields.",
+          "Missing required fields remain visible and must not become hidden assumptions."
+        ]
+      },
+      "skip_dcf_minimum_input_mapping": {
+        "route_ref": "ROUTE-SKIP-DCF",
+        "field_ids": [
+          "project_title",
+          "cqv_scope",
+          "system_or_area"
+        ],
+        "mapping_controls": [
+          "Skip-DCF route requires minimum user intent and scope context.",
+          "Missing strategy details must remain placeholders or review points."
+        ]
+      },
+      "missing_data_controls": [
+        "Missing required fields must block product-ready generation.",
+        "Skip-DCF outputs may only proceed as bounded scaffold or placeholder-aware draft in later checkpoints.",
+        "M29.4 does not generate documents from this schema."
+      ],
+      "schema_controls": [
+        "Schema binds template fields to controlled input expectations only.",
+        "Schema does not perform extraction, drafting, rendering, or approval workflow."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_draft_document_content",
+        "does_not_generate_documents",
+        "does_not_validate_final_document_output",
+        "does_not_render_or_export_documents"
+      ]
+    },
+    {
+      "schema_id": "SCHEMA-CSV-VALIDATION-PLAN@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_input_schema_record",
+      "template_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "document_family_id": "DOCF-PLAN-STRATEGY",
+      "document_type": "CSV Validation Plan",
+      "required_fields": [
+        {
+          "field_id": "project_title",
+          "display_name": "Project title",
+          "requirement_status": "required",
+          "value_type": "string",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "block_until_provided",
+          "normalization_rules": [
+            "trim_whitespace",
+            "collapse_whitespace"
+          ],
+          "source_input_refs": [
+            "user_input.project_title"
+          ],
+          "section_binding_refs": [
+            "section.cover",
+            "section.purpose"
+          ]
+        },
+        {
+          "field_id": "system_name",
+          "display_name": "Computerized system name",
+          "requirement_status": "required",
+          "value_type": "string",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "block_until_provided",
+          "normalization_rules": [
+            "trim_whitespace",
+            "collapse_whitespace"
+          ],
+          "source_input_refs": [
+            "user_input.system_name"
+          ],
+          "section_binding_refs": [
+            "section.scope",
+            "section.system_overview"
+          ]
+        },
+        {
+          "field_id": "intended_use",
+          "display_name": "Intended use",
+          "requirement_status": "required",
+          "value_type": "text",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "allow_limited_scaffold",
+          "normalization_rules": [
+            "trim_whitespace",
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.intended_use"
+          ],
+          "section_binding_refs": [
+            "section.intended_use",
+            "section.gxp_impact"
+          ]
+        },
+        {
+          "field_id": "gxp_impact",
+          "display_name": "GxP impact",
+          "requirement_status": "required",
+          "value_type": "text",
+          "applies_to_routes": [
+            "ROUTE-DCF"
+          ],
+          "placeholder_policy": "placeholder_required_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "dcf.gxp_impact"
+          ],
+          "section_binding_refs": [
+            "section.gxp_impact",
+            "section.validation_approach"
+          ]
+        }
+      ],
+      "optional_fields": [
+        {
+          "field_id": "supplier_documents",
+          "display_name": "Supplier documents",
+          "requirement_status": "optional",
+          "value_type": "list",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "allow_visible_placeholder",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.supplier_documents"
+          ],
+          "section_binding_refs": [
+            "section.references",
+            "section.limitations"
+          ]
+        },
+        {
+          "field_id": "user_roles",
+          "display_name": "User roles",
+          "requirement_status": "optional",
+          "value_type": "list",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.user_roles"
+          ],
+          "section_binding_refs": [
+            "section.roles",
+            "section.access_controls"
+          ]
+        }
+      ],
+      "conditional_fields": [
+        {
+          "field_id": "electronic_records_scope",
+          "display_name": "Electronic records/signatures scope",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "applies_to_routes": [
+            "ROUTE-DCF",
+            "ROUTE-SKIP-DCF"
+          ],
+          "placeholder_policy": "placeholder_allowed_when_missing",
+          "missing_data_behavior": "review_required",
+          "normalization_rules": [
+            "preserve_user_text"
+          ],
+          "source_input_refs": [
+            "user_input.electronic_records_scope"
+          ],
+          "section_binding_refs": [
+            "section.regulatory_relevance",
+            "section.assumptions"
+          ],
+          "conditional_reason": "Required when electronic records or electronic signatures are in the declared CSV scope."
+        }
+      ],
+      "dcf_intake_mapping": {
+        "route_ref": "ROUTE-DCF",
+        "field_ids": [
+          "project_title",
+          "system_name",
+          "intended_use",
+          "gxp_impact",
+          "supplier_documents",
+          "user_roles",
+          "electronic_records_scope"
+        ],
+        "mapping_controls": [
+          "DCF route may collect CSV/GxP impact and system details.",
+          "Missing GxP impact remains visible and blocks product-ready output."
+        ]
+      },
+      "skip_dcf_minimum_input_mapping": {
+        "route_ref": "ROUTE-SKIP-DCF",
+        "field_ids": [
+          "project_title",
+          "system_name",
+          "intended_use"
+        ],
+        "mapping_controls": [
+          "Skip-DCF route requires system identity and intended-use context.",
+          "GxP impact and electronic-records scope must remain placeholders or review points when missing."
+        ]
+      },
+      "missing_data_controls": [
+        "Missing required CSV scope or GxP impact data must block product-ready generation.",
+        "Skip-DCF outputs may only proceed as bounded scaffold or placeholder-aware draft in later checkpoints.",
+        "M29.4 does not generate CSV validation documents from this schema."
+      ],
+      "schema_controls": [
+        "Schema binds CSV validation plan template fields to controlled input expectations only.",
+        "Schema does not perform extraction, drafting, rendering, or approval workflow."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_draft_document_content",
+        "does_not_generate_documents",
+        "does_not_validate_final_document_output",
+        "does_not_render_or_export_documents"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.4 implements controlled document input schema source records only.",
+    "Schema records bind templates to required, optional, and conditional input expectations.",
+    "Schema records do not draft, generate, render, export, or approve documents."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_draft_document_content",
+    "does_not_generate_documents",
+    "does_not_validate_final_document_output",
+    "does_not_render_or_export_documents"
+  ]
+}

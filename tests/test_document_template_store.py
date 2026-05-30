@@ -29,8 +29,9 @@ def test_default_document_template_library_loads_controlled_records():
         "TPL-FUTURE-QUALIFICATION-PLAN@v1",
     )
     assert qualification_plan.document_family_id == "DOCF-PLAN-STRATEGY"
+    assert qualification_plan.schema_binding_status == "schema_bound"
     assert qualification_plan.schema_binding_ref == (
-        "SCHEMA-FUTURE-QUALIFICATION-PLAN@v1"
+        "SCHEMA-QUALIFICATION-PLAN@v1"
     )
 
     csv_plan = get_document_template_by_id(
@@ -38,6 +39,8 @@ def test_default_document_template_library_loads_controlled_records():
         "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
     )
     assert csv_plan.document_type == "CSV Validation Plan"
+    assert csv_plan.schema_binding_status == "schema_bound"
+    assert csv_plan.schema_binding_ref == "SCHEMA-CSV-VALIDATION-PLAN@v1"
 
 
 def test_document_template_family_filter_lists_known_family_records():

@@ -92,22 +92,24 @@ class DocumentTemplateRecordModel(BaseModel):
             )
 
     def _validate_schema_binding_boundary(self) -> None:
-        if (
-            self.schema_binding_status == "schema_bound"
-            and not self.schema_binding_ref.strip()
-        ):
+        if self.schema_binding_status == "schema_binding_pending_m29_4":
+            if not self.schema_binding_ref.startswith("SCHEMA-FUTURE-"):
+                raise ValueError(
+                    "M29.2 pending schema bindings must use SCHEMA-FUTURE-* refs "
+                    f"until M29.4 resolves document input schemas: {self.template_id}"
+                )
+            return
+
+        if self.schema_binding_ref.startswith("SCHEMA-FUTURE-"):
             raise ValueError(
-                "Schema-bound template records require schema_binding_ref: "
+                "M29.4 schema-bound template records must not use SCHEMA-FUTURE refs: "
                 f"{self.template_id}"
             )
 
-        if (
-            self.schema_binding_status == "schema_binding_pending_m29_4"
-            and not self.schema_binding_ref.startswith("SCHEMA-FUTURE-")
-        ):
+        if not self.schema_binding_ref.startswith("SCHEMA-") or "@v" not in self.schema_binding_ref:
             raise ValueError(
-                "M29.2 pending schema bindings must use SCHEMA-FUTURE-* refs "
-                f"until M29.4 resolves document input schemas: {self.template_id}"
+                "Schema-bound template records must use controlled SCHEMA-...@v... refs: "
+                f"{self.template_id} -> {self.schema_binding_ref}"
             )
 
     def _validate_required_non_implementation_claims(self) -> None:

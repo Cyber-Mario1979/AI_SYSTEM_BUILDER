@@ -19,8 +19,8 @@
         "gmp_documentation",
         "m29_template_record"
       ],
-      "schema_binding_status": "schema_binding_pending_m29_4",
-      "schema_binding_ref": "SCHEMA-FUTURE-QUALIFICATION-PLAN@v1",
+      "schema_binding_status": "schema_bound",
+      "schema_binding_ref": "SCHEMA-QUALIFICATION-PLAN@v1",
       "standards_bundle_refs": [
         "SB-CQV-GMP@v1"
       ],
@@ -29,9 +29,9 @@
         "ROUTE-SKIP-DCF"
       ],
       "template_controls": [
-        "Template record establishes identity, version, status, source location, applicability, and future schema-binding reference only.",
-        "Template selection and loading remain M29.3.",
-        "Full document input schema binding remains M29.4.",
+        "Template record establishes identity, version, status, source location, applicability, and schema-binding reference.",
+        "Template selection and loading are implemented separately by M29.3.",
+        "Document input schema binding is resolved through M29.4 document input schema source records.",
         "Generation, rendering, lifecycle, and review/approval behavior remain later M29 checkpoints."
       ],
       "explicit_non_implementation_claims": [
@@ -57,8 +57,8 @@
         "electronic_records",
         "m29_template_record"
       ],
-      "schema_binding_status": "schema_binding_pending_m29_4",
-      "schema_binding_ref": "SCHEMA-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "schema_binding_status": "schema_bound",
+      "schema_binding_ref": "SCHEMA-CSV-VALIDATION-PLAN@v1",
       "standards_bundle_refs": [
         "SB-CSV-GXP@v1"
       ],
@@ -67,9 +67,9 @@
         "ROUTE-SKIP-DCF"
       ],
       "template_controls": [
-        "Template record establishes identity, version, status, source location, applicability, and future schema-binding reference only.",
-        "Template selection and loading remain M29.3.",
-        "Full document input schema binding remains M29.4.",
+        "Template record establishes identity, version, status, source location, applicability, and schema-binding reference.",
+        "Template selection and loading are implemented separately by M29.3.",
+        "Document input schema binding is resolved through M29.4 document input schema source records.",
         "Generation, rendering, lifecycle, and review/approval behavior remain later M29 checkpoints."
       ],
       "explicit_non_implementation_claims": [
@@ -81,9 +81,10 @@
     }
   ],
   "library_controls": [
-    "M29.2 implements controlled template source records only.",
-    "Template records may resolve mapping references without authorizing template selection, loading, document generation, rendering, lifecycle workflow, or product-ready output.",
-    "Full input schema binding remains governed by M29.4."
+    "M29.2 implements controlled template source records.",
+    "M29.3 implements deterministic template selection/loading separately from the template source records.",
+    "M29.4 binds template records to controlled document input schema source records.",
+    "Template records do not generate, render, export, or approve documents."
   ],
   "explicit_non_implementation_claims": [
     "does_not_select_or_load_templates",
