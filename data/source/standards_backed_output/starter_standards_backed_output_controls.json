@@ -1,0 +1,169 @@
+{
+  "library_id": "M29_STANDARDS_BACKED_OUTPUT_LIBRARY@v1",
+  "version": "v1",
+  "status": "standards_backed_output_control_packet",
+  "control_packets": [
+    {
+      "control_packet_id": "STDOUT-QUALIFICATION-PLAN-CONTROLS@v1",
+      "version": "v1",
+      "status": "standards_backed_output_control_packet",
+      "draft_id": "DRAFT-QUALIFICATION-PLAN-CONTROLS@v1",
+      "template_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+      "schema_id": "SCHEMA-QUALIFICATION-PLAN@v1",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "source_controls": [
+        {
+          "std_id": "STD-EU-GMP-ANNEX-15",
+          "registry_version": "v0.1",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "version_or_effective_date": "TBD",
+          "requested_citation_depth": "document",
+          "rendered_citation_depth": "document",
+          "available_citation_depths": [
+            "document"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "limitation_statements": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "assumption_records": [
+            "Source control references registry metadata only."
+          ],
+          "warning_text": "Visible standards source/citation limitation applies.",
+          "warning_visibility": "visible",
+          "source_record_ref": "SB-CQV-GMP@v1::STD-EU-GMP-ANNEX-15"
+        }
+      ],
+      "section_controls": [
+        {
+          "section_id": "section.strategy",
+          "standards_relevance": "standards_relevant",
+          "standards_source_refs": [
+            "STD-EU-GMP-ANNEX-15"
+          ],
+          "citation_limitation_statements": [
+            "Version/effective date remains TBD in registry v0.1."
+          ],
+          "assumption_records": [
+            "Section standards control does not generate final standards-backed prose."
+          ],
+          "reviewer_attention_points": [
+            "Review visible source limits before downstream rendering."
+          ]
+        }
+      ],
+      "output_warning_text": "Standards-backed output controls include visible source/citation limitations; final output remains non-product-ready.",
+      "output_warning_visibility": "visible",
+      "output_limitation_summary": [
+        "Version/effective date remains TBD in registry v0.1.",
+        "Section/clause citation is not allowed until source evidence is verified."
+      ],
+      "assumption_records": [
+        "M29.6 controls standards-backed output boundaries only."
+      ],
+      "reviewer_attention_points": [
+        "Confirm source status before downstream document rendering."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_hide_source_or_citation_limitations"
+      ]
+    },
+    {
+      "control_packet_id": "STDOUT-CSV-VALIDATION-PLAN-CONTROLS@v1",
+      "version": "v1",
+      "status": "standards_backed_output_control_packet",
+      "draft_id": "DRAFT-CSV-VALIDATION-PLAN-CONTROLS@v1",
+      "template_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "schema_id": "SCHEMA-CSV-VALIDATION-PLAN@v1",
+      "standards_bundle_refs": [
+        "SB-CSV-GXP@v1"
+      ],
+      "source_controls": [
+        {
+          "std_id": "STD-EU-GMP-ANNEX-11",
+          "registry_version": "v0.1",
+          "authority_status": "authoritative",
+          "verification_status": "pending_verification",
+          "mandatory_flag": "mandatory_when_applicable",
+          "version_or_effective_date": "TBD",
+          "requested_citation_depth": "document",
+          "rendered_citation_depth": "document",
+          "available_citation_depths": [
+            "document"
+          ],
+          "source_limitations": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "limitation_statements": [
+            "Version/effective date remains TBD in registry v0.1.",
+            "Section/clause citation is not allowed until source evidence is verified."
+          ],
+          "assumption_records": [
+            "Source control references registry metadata only."
+          ],
+          "warning_text": "Visible standards source/citation limitation applies.",
+          "warning_visibility": "visible",
+          "source_record_ref": "SB-CSV-GXP@v1::STD-EU-GMP-ANNEX-11"
+        }
+      ],
+      "section_controls": [
+        {
+          "section_id": "section.csv_strategy",
+          "standards_relevance": "standards_relevant",
+          "standards_source_refs": [
+            "STD-EU-GMP-ANNEX-11"
+          ],
+          "citation_limitation_statements": [
+            "Version/effective date remains TBD in registry v0.1."
+          ],
+          "assumption_records": [
+            "Section standards control does not generate final standards-backed prose."
+          ],
+          "reviewer_attention_points": [
+            "Review visible source limits before downstream rendering."
+          ]
+        }
+      ],
+      "output_warning_text": "Standards-backed output controls include visible source/citation limitations; final output remains non-product-ready.",
+      "output_warning_visibility": "visible",
+      "output_limitation_summary": [
+        "Version/effective date remains TBD in registry v0.1.",
+        "Section/clause citation is not allowed until source evidence is verified."
+      ],
+      "assumption_records": [
+        "M29.6 controls standards-backed output boundaries only."
+      ],
+      "reviewer_attention_points": [
+        "Confirm source status before downstream document rendering."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_hide_source_or_citation_limitations"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.6 source records control standards-backed output boundaries only.",
+    "These records do not generate, render, export, retrieve, or embed standards."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_product_ready_documents",
+    "does_not_render_or_export_documents",
+    "does_not_implement_standards_retrieval_or_embedding",
+    "does_not_hide_source_or_citation_limitations"
+  ]
+}
