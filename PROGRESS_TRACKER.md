@@ -44,11 +44,31 @@ M29.10 continued the CAPA build-first correction by creating controlled trial do
 
 M29.11 completed the validation checkpoint by confirming clean local repo state and full executable validation before tracker movement.
 
+M29.12 owner acceptance is blocked by Project Owner decision pending CQV content-library completion remediation.
+
 The CAPA remains active until the Project Owner accepts that the control is working.
 
 ## Current Approved Checkpoint Family
 
 M29.12 — Milestone UAT / owner acceptance
+
+Status: BLOCKED.
+
+Blocker:
+
+M29.12 CQV Content Library Completion Blocker
+
+Blocker evidence:
+
+docs/governance/uat_blockers/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_BLOCKER.md
+
+Related evidence:
+
+docs/gap_assessments/M29_CQV_CONTENT_LIBRARY_GAP_ASSESSMENT.md
+
+docs/remediation/M29_CQV_CONTENT_LIBRARY_COMPLETION_REMEDIATION_PLAN.md
+
+docs/change_control/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_ROADMAP_DECISION_NOTE.md
 
 ## Latest Completed Checkpoint
 
@@ -56,7 +76,15 @@ M29.11 — Validation checkpoint
 
 ## Exact Next Unfinished Checkpoint
 
-PLAN M29.12 — Milestone UAT / owner acceptance
+M29.12 — Milestone UAT / owner acceptance
+
+Current state: BLOCKED.
+
+Exact next allowed work:
+
+PLAN CQV content-library remediation wave 1 — coverage matrix and MVP scope lock.
+
+This remediation work is not M29.12 acceptance and is not M29.13 closeout.
 
 ## Latest Verified Validation
 
@@ -74,7 +102,11 @@ M29.11 validated the implemented M29 document/output layer from M29.2 through M2
 
 M29 UAT not reached.
 
-M29.12 is the next checkpoint for milestone UAT / owner acceptance.
+M29.12 is blocked pending CQV content-library completion remediation.
+
+The Project Owner did not accept M29.12 UAT because the repo currently proves a validated deterministic document/output engine chain plus starter/baseline content, not full MVP CQV content-library completion.
+
+M29.12 UAT may resume only after the blocker is closed or explicitly carried forward by owner-approved decision.
 
 Latest completed milestone UAT remains M28 UAT executed and accepted.
 
@@ -82,11 +114,15 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after M29.11 validation checkpoint evidence application and tracker update.
+Aligned locally after M29.11 validation checkpoint evidence and M29.12 CQV content-library blocker/remediation evidence.
 
-M29.11 is complete for validation checkpoint scope only.
+M29.11 remains the latest completed checkpoint.
 
-Ready for PLAN M29.12 using ROADMAP_CANONICAL.md M29 checkpoint ladder, after the active context reset CAPA is respected.
+M29.12 remains the active checkpoint but is blocked.
+
+M29.13 closeout is blocked.
+
+Ready for PLAN CQV content-library remediation wave 1 — coverage matrix and MVP scope lock — from a clean bounded execution context only.
 
 ## Relevant DDR Status
 
@@ -94,21 +130,19 @@ M29.11 directly touched DDR-006 because it validated the implemented M29 documen
 
 M29.11 provides validation evidence for the M29 document/output chain, including M29.2 through M29.10 implementation coverage and full executable validation.
 
-DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains M29.12 and milestone closeout remains M29.13.
+DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked at M29.12 and milestone closeout remains blocked at M29.13.
 
-M29.11 directly continued DDR-003 and DDR-004 awareness because validation confirmed that the document factory/output chain preserves template/schema/drafting/rendering/standards-backed controls, placeholder policy, citation/limitation visibility, source-truth boundaries, and non-release/non-UAT claims.
+M29.12 blocker directly affects DDR-003 and DDR-006 because the Project Owner found that the implemented source/content layer is still starter/baseline depth and not full MVP CQV content-library completion.
 
-DDR-003 is not fully closed for product-ready document factory behavior. UAT and closeout remain later M29 checkpoints.
+DDR-003 is not fully closed for product-ready document factory behavior. The product template/content library and document factory content depth require remediation before M29.12 owner acceptance.
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope.
 
 DDR-005 remains deferred to M30.
 
-M29.11 did not implement standards embedding or retrieval.
+M29.12 remediation must continue DDR-003, DDR-004, DDR-005, and DDR-006 awareness.
 
-M29.12 directly continues DDR-006 because milestone UAT / owner acceptance must evaluate the validated document/output layer before closeout.
-
-M29.12 must continue DDR-003 and DDR-004 awareness because owner acceptance must review limitations, source-truth boundaries, placeholder policy, citation/limitation visibility, and non-release/non-SaaS claims.
+The next remediation work must not claim product-ready CQV content-library completion until source assets, validation evidence, and owner acceptance support that claim.
 
 ## Build / Governance Balance Policy Status
 
@@ -116,12 +150,36 @@ Active.
 
 M29.11 was executed as Validation and completed by clean local repo confirmation plus full executable validation evidence.
 
-M29.11 was not closed by Markdown-only or governance-only output.
+M29.12 is UAT execution mode, but UAT acceptance is blocked.
 
-M29.12 must be planned under the build/governance balance policy before GO.
+The remediation package was documentation-only and recorded the blocker, gap assessment, remediation plan, and roadmap decision note.
 
-M29.12 must produce UAT / owner acceptance evidence before tracker advancement or closeout. Governance-only or Markdown-only output is not sufficient for M29.12 progress.
+The next remediation wave must be planned under the build/governance balance policy.
+
+If the next remediation wave changes source JSON, models, validators, stores, tests, mappings, schemas, template records, task pools, profiles, calendars, planning basis, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
+
+## Blocked Actions
+
+Do not accept M29.12 UAT.
+
+Do not advance to M29.13.
+
+Do not close M29.
+
+Do not claim full CQV content-library completion.
+
+Do not claim full product-ready document factory completion.
+
+Do not claim productization, deployment, commercial release, or SaaS readiness.
+
+## Allowed Next Work
+
+Allowed next work is CQV content-library remediation only, starting with:
+
+PLAN CQV content-library remediation wave 1 — coverage matrix and MVP scope lock.
+
+This should define the approved MVP CQV scope, required source families, required document families, minimum real template coverage, schema/DCF coverage, task pool coverage, standards linkage, validation requirements, and return-to-UAT criteria.
 
 ## Next Action
 
-PLAN M29.12 from a clean bounded execution context only.
+PLAN CQV content-library remediation wave 1 — coverage matrix and MVP scope lock.
