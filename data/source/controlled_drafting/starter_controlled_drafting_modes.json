@@ -1,0 +1,122 @@
+{
+  "library_id": "M29_CONTROLLED_DRAFTING_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_controlled_drafting_source",
+  "drafting_modes": [
+    {
+      "drafting_mode_id": "DRAFTMODE-STRONG-INPUT-FILL@v1",
+      "version": "v1",
+      "status": "runtime_facing_controlled_drafting_mode",
+      "drafting_mode": "strong_input_fill",
+      "display_name": "Strong input fill",
+      "supported_template_ids": [
+        "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+        "TPL-FUTURE-CSV-VALIDATION-PLAN@v1"
+      ],
+      "supported_schema_ids": [
+        "SCHEMA-QUALIFICATION-PLAN@v1",
+        "SCHEMA-CSV-VALIDATION-PLAN@v1"
+      ],
+      "mode_controls": [
+        "Drafting mode may produce controlled draft packets only.",
+        "Missing inputs must remain visible and must not become hidden assumptions.",
+        "No product-ready generation, rendering, export, standards-backed output controls, lifecycle mutation, or review-state mutation is implemented."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_apply_standards_backed_output_controls",
+        "does_not_mutate_lifecycle_or_review_state"
+      ]
+    },
+    {
+      "drafting_mode_id": "DRAFTMODE-PARTIAL-BOUNDED-COMPLETION@v1",
+      "version": "v1",
+      "status": "runtime_facing_controlled_drafting_mode",
+      "drafting_mode": "partial_bounded_completion",
+      "display_name": "Partial bounded completion",
+      "supported_template_ids": [
+        "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+        "TPL-FUTURE-CSV-VALIDATION-PLAN@v1"
+      ],
+      "supported_schema_ids": [
+        "SCHEMA-QUALIFICATION-PLAN@v1",
+        "SCHEMA-CSV-VALIDATION-PLAN@v1"
+      ],
+      "mode_controls": [
+        "Drafting mode may produce controlled draft packets only.",
+        "Missing inputs must remain visible and must not become hidden assumptions.",
+        "No product-ready generation, rendering, export, standards-backed output controls, lifecycle mutation, or review-state mutation is implemented."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_apply_standards_backed_output_controls",
+        "does_not_mutate_lifecycle_or_review_state"
+      ]
+    },
+    {
+      "drafting_mode_id": "DRAFTMODE-MINIMAL-SCAFFOLD-PLACEHOLDERS@v1",
+      "version": "v1",
+      "status": "runtime_facing_controlled_drafting_mode",
+      "drafting_mode": "minimal_scaffold_with_placeholders",
+      "display_name": "Minimal scaffold with placeholders",
+      "supported_template_ids": [
+        "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+        "TPL-FUTURE-CSV-VALIDATION-PLAN@v1"
+      ],
+      "supported_schema_ids": [
+        "SCHEMA-QUALIFICATION-PLAN@v1",
+        "SCHEMA-CSV-VALIDATION-PLAN@v1"
+      ],
+      "mode_controls": [
+        "Drafting mode may produce controlled draft packets only.",
+        "Missing inputs must remain visible and must not become hidden assumptions.",
+        "No product-ready generation, rendering, export, standards-backed output controls, lifecycle mutation, or review-state mutation is implemented."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_apply_standards_backed_output_controls",
+        "does_not_mutate_lifecycle_or_review_state"
+      ]
+    },
+    {
+      "drafting_mode_id": "DRAFTMODE-RATIONALE-BOUND-SECTION-DRAFTING@v1",
+      "version": "v1",
+      "status": "runtime_facing_controlled_drafting_mode",
+      "drafting_mode": "rationale_bound_section_drafting",
+      "display_name": "Rationale-bound section drafting",
+      "supported_template_ids": [
+        "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+        "TPL-FUTURE-CSV-VALIDATION-PLAN@v1"
+      ],
+      "supported_schema_ids": [
+        "SCHEMA-QUALIFICATION-PLAN@v1",
+        "SCHEMA-CSV-VALIDATION-PLAN@v1"
+      ],
+      "mode_controls": [
+        "Drafting mode may produce controlled draft packets only.",
+        "Missing inputs must remain visible and must not become hidden assumptions.",
+        "No product-ready generation, rendering, export, standards-backed output controls, lifecycle mutation, or review-state mutation is implemented."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_product_ready_documents",
+        "does_not_render_or_export_documents",
+        "does_not_apply_standards_backed_output_controls",
+        "does_not_mutate_lifecycle_or_review_state"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.5 implements controlled drafting mode source records only.",
+    "Controlled drafting produces bounded draft packets, not product-ready documents.",
+    "Rendering, export, standards-backed output controls, lifecycle workflow, and UAT remain later M29 checkpoints."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_create_product_ready_documents",
+    "does_not_render_or_export_documents",
+    "does_not_apply_standards_backed_output_controls",
+    "does_not_mutate_lifecycle_or_review_state"
+  ]
+}
