@@ -1,0 +1,139 @@
+{
+  "library_id": "M29_DOCUMENT_LIFECYCLE_RULE_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_document_lifecycle_rule_source",
+  "lifecycle_rules": [
+    {
+      "rule_id": "LIFERULE-M29-DOCUMENT-WORKFLOW@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_lifecycle_rule",
+      "allowed_states": [
+        "draft",
+        "in_review",
+        "approved_ready",
+        "final_ready",
+        "superseded"
+      ],
+      "allowed_transitions": [
+        {
+          "from_state": "draft",
+          "to_state": "in_review",
+          "transition_controls": [
+            "Draft artifacts may enter review only as controlled lifecycle records."
+          ]
+        },
+        {
+          "from_state": "in_review",
+          "to_state": "approved_ready",
+          "transition_controls": [
+            "Approved-ready state requires review obligations to be resolved."
+          ]
+        },
+        {
+          "from_state": "approved_ready",
+          "to_state": "final_ready",
+          "transition_controls": [
+            "Final-ready state requires approval obligations and task closure dependencies to be resolved."
+          ]
+        },
+        {
+          "from_state": "draft",
+          "to_state": "superseded",
+          "transition_controls": [
+            "Supersession must identify the replacement lifecycle record."
+          ]
+        },
+        {
+          "from_state": "in_review",
+          "to_state": "superseded",
+          "transition_controls": [
+            "Supersession must identify the replacement lifecycle record."
+          ]
+        },
+        {
+          "from_state": "approved_ready",
+          "to_state": "superseded",
+          "transition_controls": [
+            "Supersession must identify the replacement lifecycle record."
+          ]
+        },
+        {
+          "from_state": "final_ready",
+          "to_state": "superseded",
+          "transition_controls": [
+            "Supersession must identify the replacement lifecycle record."
+          ]
+        }
+      ],
+      "required_review_obligations": [
+        {
+          "obligation_id": "OBL-TECHNICAL-REVIEW@v1",
+          "obligation_type": "technical_review",
+          "description": "Technical review confirms scope, placeholders, limitations, and reviewer attention points remain visible.",
+          "required": true,
+          "resolved": false,
+          "source_ref": "M29.8.review_obligations"
+        },
+        {
+          "obligation_id": "OBL-QUALITY-REVIEW@v1",
+          "obligation_type": "quality_review",
+          "description": "Quality review confirms controlled output limitations are preserved before approval readiness.",
+          "required": true,
+          "resolved": false,
+          "source_ref": "M29.8.review_obligations"
+        }
+      ],
+      "required_approval_obligations": [
+        {
+          "obligation_id": "OBL-APPROVAL-READINESS@v1",
+          "obligation_type": "approval_readiness",
+          "description": "Approval readiness confirms the lifecycle record is prepared for downstream review but does not create signatures or QMS approval.",
+          "required": true,
+          "resolved": false,
+          "source_ref": "M29.8.approval_readiness"
+        }
+      ],
+      "required_task_closure_dependencies": [
+        {
+          "obligation_id": "OBL-TASK-CLOSURE-DEPENDENCIES@v1",
+          "obligation_type": "task_closure_dependency",
+          "description": "Task closure dependencies must be resolved before final-ready state.",
+          "required": true,
+          "resolved": false,
+          "source_ref": "M29.8.task_closure_dependencies"
+        }
+      ],
+      "supersession_controls": [
+        "Superseded lifecycle records must identify the replacement lifecycle record.",
+        "Supersession does not delete or rewrite historical renderer artifacts."
+      ],
+      "limitation_carry_forward_controls": [
+        "Placeholder presence must carry forward from renderer metadata.",
+        "Limitation presence must carry forward from renderer metadata.",
+        "Standards warning presence must carry forward from renderer metadata."
+      ],
+      "rule_controls": [
+        "Generated prose cannot mutate lifecycle truth.",
+        "M29.8 lifecycle state is a controlled record layer over renderer artifact metadata only.",
+        "No electronic signatures, eQMS approval, product release, or deployment are implemented."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_qms_approval_records",
+        "does_not_create_electronic_signatures",
+        "does_not_validate_product_ready_output",
+        "does_not_release_or_deploy_documents"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.8 implements lifecycle/workflow integration rules only.",
+    "Lifecycle records preserve renderer metadata and limitations without making product-ready claims.",
+    "Electronic signatures, QMS approval, output validation, UAT, release, deployment, productization, and SaaS readiness remain out of scope."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_create_qms_approval_records",
+    "does_not_create_electronic_signatures",
+    "does_not_validate_product_ready_output",
+    "does_not_release_or_deploy_documents"
+  ]
+}
