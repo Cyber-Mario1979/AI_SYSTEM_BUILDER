@@ -1,0 +1,104 @@
+{
+  "library_id": "M29_OUTPUT_VALIDATION_RULE_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_output_validation_rule_source",
+  "validation_rules": [
+    {
+      "rule_id": "OUTVALRULE-MARKDOWN-ARTIFACT@v1",
+      "version": "v1",
+      "status": "runtime_facing_output_validation_rule",
+      "supported_formats": [
+        "markdown"
+      ],
+      "allowed_lifecycle_states": [
+        "draft",
+        "in_review",
+        "approved_ready",
+        "final_ready"
+      ],
+      "required_checks": [
+        "artifact_content_presence",
+        "metadata_alignment",
+        "schema_conformance_reference",
+        "citation_or_standards_warning_presence",
+        "placeholder_policy",
+        "limitation_visibility",
+        "lifecycle_state_eligibility",
+        "no_approval_or_release_claim"
+      ],
+      "metadata_controls": [
+        "Renderer metadata must align with lifecycle record source references.",
+        "Artifact content must remain non-empty before downstream trial generation."
+      ],
+      "placeholder_policy_controls": [
+        "When renderer metadata indicates placeholders, rendered content must visibly declare placeholder presence."
+      ],
+      "limitation_visibility_controls": [
+        "When renderer metadata indicates limitations, rendered content must visibly preserve limitation statements."
+      ],
+      "standards_warning_controls": [
+        "When standards warnings are indicated by metadata, rendered content must visibly preserve standards warning language."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_uat_acceptance",
+        "does_not_approve_sign_or_release_documents",
+        "does_not_generate_trial_document_sets",
+        "does_not_deploy_or_productize_outputs"
+      ]
+    },
+    {
+      "rule_id": "OUTVALRULE-CSV-SUMMARY-ARTIFACT@v1",
+      "version": "v1",
+      "status": "runtime_facing_output_validation_rule",
+      "supported_formats": [
+        "csv_summary"
+      ],
+      "allowed_lifecycle_states": [
+        "draft",
+        "in_review",
+        "approved_ready",
+        "final_ready"
+      ],
+      "required_checks": [
+        "artifact_content_presence",
+        "metadata_alignment",
+        "schema_conformance_reference",
+        "citation_or_standards_warning_presence",
+        "placeholder_policy",
+        "limitation_visibility",
+        "lifecycle_state_eligibility",
+        "no_approval_or_release_claim"
+      ],
+      "metadata_controls": [
+        "CSV summary metadata rows must align with lifecycle record source references.",
+        "CSV summary output must remain non-empty before downstream trial generation."
+      ],
+      "placeholder_policy_controls": [
+        "When renderer metadata indicates placeholders, CSV summary content must visibly preserve placeholder metadata."
+      ],
+      "limitation_visibility_controls": [
+        "When renderer metadata indicates limitations, CSV summary content must visibly preserve limitation metadata."
+      ],
+      "standards_warning_controls": [
+        "When standards warnings are indicated by metadata, CSV summary content must visibly preserve standards warning metadata."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_uat_acceptance",
+        "does_not_approve_sign_or_release_documents",
+        "does_not_generate_trial_document_sets",
+        "does_not_deploy_or_productize_outputs"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.9 validates controlled renderer output contracts only.",
+    "M29.9 does not generate trial document sets, create UAT acceptance, approve records, sign records, release records, deploy outputs, productize outputs, or create SaaS readiness.",
+    "Output validation must preserve visible placeholders, limitations, standards warnings, and lifecycle source truth."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_create_uat_acceptance",
+    "does_not_approve_sign_or_release_documents",
+    "does_not_generate_trial_document_sets",
+    "does_not_deploy_or_productize_outputs"
+  ]
+}
