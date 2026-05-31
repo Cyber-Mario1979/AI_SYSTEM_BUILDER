@@ -1,0 +1,3768 @@
+{
+  "library_id": "M29_DOCUMENT_TEMPLATE_BODY_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_template_body_source",
+  "source_authority": "owner_reviewed_structure_reference_only",
+  "body_records": [
+    {
+      "body_id": "TBODY-CCF@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "CCF",
+      "display_name": "Change Control Form",
+      "template_body_kind": "form_template",
+      "output_role": "change_control",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CHANGE-SUMMARY",
+          "title": "Change summary",
+          "purpose": "Define change title, reason, trigger, affected area/system/equipment, and requested implementation window.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPACT-ASSESSMENT",
+          "title": "Initial impact assessment",
+          "purpose": "Record GMP, validation, documentation, safety, utility, CSV, and training impact screening.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPLEMENTATION-PLAN",
+          "title": "Implementation and verification plan",
+          "purpose": "Define implementation actions, affected documents, required CQV deliverables, and verification route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DISPOSITION",
+          "title": "Review and disposition",
+          "purpose": "Record review decisions, conditions, open items, and required follow-up without creating final approval authority.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-CHANGE-IMPACT",
+          "title": "Change impact screening",
+          "columns": [
+            "Impact Area",
+            "Impact? (Y/N/TBD)",
+            "Rationale",
+            "Required Action"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-VMP@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "VMP",
+      "display_name": "Validation Master Plan",
+      "template_body_kind": "authored_template",
+      "output_role": "planning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T1_VMP_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Define validation strategy, lifecycle approach, and documentation requirements.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-VALIDATION-STRATEGY",
+          "title": "Validation strategy",
+          "purpose": "Describe lifecycle, risk management, and document deliverables.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ROLES",
+          "title": "Roles and responsibilities",
+          "purpose": "Define project, owner, CQV, QA, engineering, production, QC, vendor roles.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DELIVERABLES",
+          "title": "Validation deliverables",
+          "purpose": "List the planned validation deliverables and their relationship to the lifecycle.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-ROLES",
+          "title": "Roles and responsibilities",
+          "columns": [
+            "Role",
+            "Responsibility"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-SIA@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "SIA",
+      "display_name": "System Impact Assessment",
+      "template_body_kind": "form_template",
+      "output_role": "risk",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SYSTEM-DESCRIPTION",
+          "title": "System / asset description",
+          "purpose": "Describe system, asset, boundary, process use, utilities, data, and GMP relevance.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPACT-QUESTIONS",
+          "title": "Impact assessment questions",
+          "purpose": "Evaluate direct/indirect/no-impact classification and affected CQV routes.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CLASSIFICATION",
+          "title": "Impact classification and rationale",
+          "purpose": "Record final impact classification with rationale and required downstream deliverables.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ROUTING",
+          "title": "CQV routing decision",
+          "purpose": "Map the impact result to URS, RA/FMEA, DQ, commissioning, qualification, CSV, or decommissioning routes.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-SIA-QUESTIONS",
+          "title": "Impact assessment questions",
+          "columns": [
+            "Question",
+            "Answer",
+            "Rationale",
+            "Required Follow-up"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-URS@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "URS",
+      "display_name": "User Requirements Specification",
+      "template_body_kind": "authored_template",
+      "output_role": "requirements",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T4_URS_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Define purpose, intended use, regulatory/business drivers, in-scope and out-of-scope boundaries.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ROLES",
+          "title": "Roles and responsibilities",
+          "purpose": "Define user/process owner, engineering, automation/CSV, EHS/SHE, quality, project roles.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SYSTEM-DESCRIPTION",
+          "title": "System description",
+          "purpose": "Describe system, interfaces, main functions, operating environment, and support systems.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-FUNCTIONAL-REQS",
+          "title": "Functional requirements",
+          "purpose": "Capture user functional requirements with priority and verification route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DESIGN-MATERIALS",
+          "title": "Design and materials requirements",
+          "purpose": "Capture design, materials, cleaning, safety, and maintainability requirements.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-UTILITIES-CSV-SHE",
+          "title": "Utilities, computerized systems, safety, health and environment requirements",
+          "purpose": "Capture utility, CSV/data integrity, SHE, maintenance, support, and documentation requirements.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ACCEPTANCE-TRACEABILITY",
+          "title": "Acceptance and traceability",
+          "purpose": "Define acceptance expectations and RTM linkage.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-URS-REQS",
+          "title": "URS requirements",
+          "columns": [
+            "URS Ref",
+            "Requirement",
+            "Priority",
+            "Verification Route",
+            "Traceability Notes"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-VENDOR-DOC-EXTRACTION-SOURCE@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+      "display_name": "Vendor Document Extraction Source",
+      "template_body_kind": "data_extraction_plan",
+      "output_role": "external_source",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-VENDOR-DOC-REGISTER",
+          "title": "Vendor document register",
+          "purpose": "List vendor/OEM documents such as FDS, SDS, manuals, drawings, datasheets, certificates, and service reports.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-EXTRACTION-FIELDS",
+          "title": "Extraction fields",
+          "purpose": "Define fields extracted from vendor docs for RTM, DQ, IQ, OQ, PQ, commissioning, and closeout use.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TRACEABILITY-FEED",
+          "title": "Traceability feed",
+          "purpose": "Map extracted vendor information to URS, DQ, RTM, test documents, and VSR references.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-VENDOR-EXTRACTION",
+          "title": "Vendor document extraction matrix",
+          "columns": [
+            "Vendor Doc Ref",
+            "Extracted Item",
+            "Target Document",
+            "Traceability Ref",
+            "Review Status"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-RA-FMEA@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "RA_FMEA",
+      "display_name": "Risk Assessment / FMEA",
+      "template_body_kind": "authored_template",
+      "output_role": "risk",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T3_Risk_Assessment_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Define risk assessment scope for GMP compliance, product quality, data integrity, and validated state.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-METHOD",
+          "title": "Risk method",
+          "purpose": "Define FMEA or approved risk method, scoring scales, and decision rules.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-FMEA",
+          "title": "Risk assessment table",
+          "purpose": "Capture function/requirement, failure mode, effect, severity, occurrence, detection, RPN, mitigation, and test linkage.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ACTIONS",
+          "title": "Mitigation actions and testing focus",
+          "purpose": "Define required mitigations and downstream test/document expectations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-FMEA",
+          "title": "FMEA table",
+          "columns": [
+            "Step / URS Ref",
+            "Requirement / Function",
+            "Failure Mode",
+            "Potential Effect",
+            "S",
+            "O",
+            "D",
+            "RPN",
+            "Mitigation",
+            "Test Link"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-URS-DEVIATION-LIST@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "URS_DEVIATION_LIST",
+      "display_name": "URS Deviation List",
+      "template_body_kind": "form_template",
+      "output_role": "requirements",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATION-REGISTER",
+          "title": "URS deviation register",
+          "purpose": "Capture deviations from URS requirements, source, rationale, status, and owner.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPACT-DISPOSITION",
+          "title": "Impact and disposition",
+          "purpose": "Assess impact on design, risk, DQ, RTM, IQ/OQ/PQ, CSV, and VSR.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TRACEABILITY-UPDATES",
+          "title": "Traceability update requirements",
+          "purpose": "Define RTM and affected document updates driven by URS deviations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-URS-DEVIATIONS",
+          "title": "URS deviation list",
+          "columns": [
+            "URS Ref",
+            "Deviation",
+            "Impact",
+            "Disposition",
+            "Required Update",
+            "Owner",
+            "Status"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-RTM@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "RTM",
+      "display_name": "Requirements Traceability Matrix",
+      "template_body_kind": "matrix_template",
+      "output_role": "traceability",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T5_RTM_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TRACEABILITY-MATRIX",
+          "title": "Traceability matrix",
+          "purpose": "Trace URS requirements through RA/FMEA, DQ, IQ, OQ, PQ, deviations, CAPA, and VSR.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TRACEABILITY-GAPS",
+          "title": "Traceability gaps and resolution",
+          "purpose": "Capture missing links, unresolved requirements, deviations, and closure route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-RTM",
+          "title": "Requirements traceability matrix",
+          "columns": [
+            "URS ID",
+            "Requirement",
+            "Risk Ref",
+            "DQ",
+            "IQ",
+            "OQ",
+            "PQ",
+            "Deviation/CAPA",
+            "VSR",
+            "Decision"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-DQ@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "DQ",
+      "display_name": "Design Qualification / Design Review",
+      "template_body_kind": "authored_template",
+      "output_role": "design",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T6_DQ_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Verify proposed design meets URS, risk, standards, and approved design basis.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ROLES",
+          "title": "Roles and responsibilities",
+          "purpose": "Define owner, engineering, CQV, QA, supplier review responsibilities.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DESIGN-COMPLIANCE",
+          "title": "Design compliance matrix",
+          "purpose": "Map URS/design requirements to vendor/design responses and compliance evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATIONS",
+          "title": "Design deviations and resolutions",
+          "purpose": "Capture deviations, open items, required updates, and downstream impact.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-DQ-COMPLIANCE",
+          "title": "Design compliance matrix",
+          "columns": [
+            "URS ID",
+            "Requirement",
+            "Design Response",
+            "Compliance",
+            "Evidence / Comments"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-CP@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "CP",
+      "display_name": "Commissioning Plan",
+      "template_body_kind": "authored_template",
+      "output_role": "commissioning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T13_Commissioning_Plan_Template_V1_0_0"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Define commissioning strategy, boundaries, responsibilities, and deliverables.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-COMMISSIONING-QUALIFICATION-BOUNDARY",
+          "title": "Commissioning and qualification boundary",
+          "purpose": "Define what commissioning verifies and what remains IQ/OQ/PQ qualification scope.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SYSTEM-SUMMARY",
+          "title": "System summary",
+          "purpose": "Capture system/equipment, area, scope, utilities, interfaces, and vendor/OEM context.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-STRATEGY",
+          "title": "Commissioning strategy",
+          "purpose": "Define sequence from readiness to start-up, punch-list, and handover.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DELIVERABLES",
+          "title": "Commissioning deliverables",
+          "purpose": "List deliverables, owners, status, and references.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-COMMISSIONING-DELIVERABLES",
+          "title": "Commissioning deliverables",
+          "columns": [
+            "Deliverable",
+            "Owner",
+            "Status / Reference"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-QP@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "QP",
+      "display_name": "Qualification Plan",
+      "template_body_kind": "authored_template",
+      "output_role": "planning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Define qualification purpose, asset scope, lifecycle route, and boundaries.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-QUALIFICATION-STRATEGY",
+          "title": "Qualification strategy",
+          "purpose": "Define DQ/IQ/OQ/PQ applicability, commissioning interface, risk basis, and document set.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DELIVERABLES",
+          "title": "Qualification deliverables",
+          "purpose": "List planned documents, dependencies, expected owners, and acceptance route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ACCEPTANCE-LIMITATIONS",
+          "title": "Acceptance criteria and limitations",
+          "purpose": "State acceptance criteria, known limitations, open assumptions, and owner review points.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-QP-DELIVERABLES",
+          "title": "Qualification deliverables",
+          "columns": [
+            "Deliverable",
+            "Lifecycle Stage",
+            "Owner",
+            "Required?",
+            "Status / Notes"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-FAT-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "FAT_PROTOCOL_REPORT",
+      "display_name": "FAT Protocol / Report Reference Plan",
+      "template_body_kind": "external_reference_plan",
+      "output_role": "commissioning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-FAT-SCOPE",
+          "title": "FAT scope and vendor responsibility",
+          "purpose": "State FAT is vendor-provided where applicable and define expected evidence use.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-FAT-REVIEW",
+          "title": "FAT review and findings",
+          "purpose": "Capture FAT references, results summary, exceptions, and required carry-forward actions.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-FAT-TRACEABILITY",
+          "title": "FAT traceability use",
+          "purpose": "Define how FAT evidence feeds DQ, commissioning, RTM, IQ/OQ, or VSR.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-FAT-REVIEW",
+          "title": "FAT review matrix",
+          "columns": [
+            "FAT Ref",
+            "Test / Check",
+            "Result",
+            "Exception",
+            "Carry-forward Action"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-A0-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "A0_CERTIFICATE",
+      "display_name": "A0 Certificate \u2014 FAT Completion",
+      "template_body_kind": "certificate_record_plan",
+      "output_role": "certificate",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CERTIFICATE-BASIS",
+          "title": "Certificate basis",
+          "purpose": "Record FAT completion certificate basis, scope, equipment applicability, and supporting evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CERTIFICATE-DISPOSITION",
+          "title": "Disposition and carry-forward",
+          "purpose": "Record acceptance, conditions, and required downstream checks.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-A0-CERT",
+          "title": "A0 certificate record",
+          "columns": [
+            "Field",
+            "Value",
+            "Evidence / Notes"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-CTOP@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "CTOP",
+      "display_name": "Construction Turnover Package",
+      "template_body_kind": "checklist_template",
+      "output_role": "commissioning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TURNOVER-SCOPE",
+          "title": "Construction turnover scope",
+          "purpose": "Define turnover scope, system boundaries, mechanical completion status, and readiness basis.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-TURNOVER-CONTENTS",
+          "title": "Turnover package contents",
+          "purpose": "List required drawings, punch list, certificates, utility evidence, and installation records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-OPEN-ITEMS",
+          "title": "Open items and punch list",
+          "purpose": "Capture punch-list items, impact, owner, due date, and handover disposition.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-CTOP-CONTENTS",
+          "title": "CTOP contents",
+          "columns": [
+            "Item",
+            "Required?",
+            "Available?",
+            "Reference",
+            "Open Item?"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-A1-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "A1_CERTIFICATE",
+      "display_name": "A1 Certificate \u2014 Mechanical Completion",
+      "template_body_kind": "certificate_record_plan",
+      "output_role": "certificate",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-MC-BASIS",
+          "title": "Mechanical completion basis",
+          "purpose": "Record mechanical completion scope, inspection basis, exceptions, and evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-MC-DISPOSITION",
+          "title": "Disposition and transfer status",
+          "purpose": "State conditions for transfer to commissioning and unresolved items.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-A1-CERT",
+          "title": "A1 certificate record",
+          "columns": [
+            "Field",
+            "Value",
+            "Evidence / Notes"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-SAT-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "SAT_PROTOCOL_REPORT",
+      "display_name": "SAT Protocol / Report Reference Plan",
+      "template_body_kind": "external_reference_plan",
+      "output_role": "commissioning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SAT-SCOPE",
+          "title": "SAT scope and vendor/site responsibility",
+          "purpose": "State SAT is vendor/site-provided where applicable and define evidence use.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SAT-REVIEW",
+          "title": "SAT review and findings",
+          "purpose": "Capture SAT references, results summary, exceptions, and required carry-forward actions.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-SAT-TRACEABILITY",
+          "title": "SAT traceability use",
+          "purpose": "Define how SAT evidence feeds commissioning, RTM, IQ/OQ, or VSR.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-SAT-REVIEW",
+          "title": "SAT review matrix",
+          "columns": [
+            "SAT Ref",
+            "Test / Check",
+            "Result",
+            "Exception",
+            "Carry-forward Action"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-CR@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "CR",
+      "display_name": "Commissioning Report",
+      "template_body_kind": "report_template",
+      "output_role": "commissioning",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T15_Commissioning_Report_Template_V1_0_0"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Summarize commissioning activities, results, open items, and handover readiness.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-EXECUTED-ACTIVITIES",
+          "title": "Executed commissioning activities",
+          "purpose": "Summarize installation/mechanical completion, utility readiness, start-up, dry checks, and interface checks.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-OPEN-ITEMS",
+          "title": "Deviations, open items, and punch list status",
+          "purpose": "Summarize residual deficiencies, impact, owner, due date, and status.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HANDOVER",
+          "title": "Handover readiness statement",
+          "purpose": "State readiness for transfer to qualification/operations with conditions and limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-CR-ACTIVITIES",
+          "title": "Executed commissioning activities",
+          "columns": [
+            "Activity",
+            "Reference",
+            "Result Summary",
+            "Status"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-A2-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "A2_CERTIFICATE",
+      "display_name": "A2 Certificate \u2014 Commissioning Completion",
+      "template_body_kind": "certificate_record_plan",
+      "output_role": "certificate",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-COMMISSIONING-COMPLETION-BASIS",
+          "title": "Commissioning completion basis",
+          "purpose": "Record commissioning completion evidence, residual open items, and turnover readiness.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-COMMISSIONING-COMPLETION-DISPOSITION",
+          "title": "Disposition and next lifecycle stage",
+          "purpose": "State conditions for transfer to qualification/operations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-A2-CERT",
+          "title": "A2 certificate record",
+          "columns": [
+            "Field",
+            "Value",
+            "Evidence / Notes"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-IQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "IQ_PROTOCOL_REPORT",
+      "display_name": "IQ Protocol and Report",
+      "template_body_kind": "protocol_template",
+      "output_role": "qualification",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T7_IQ_Protocol_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Verify installation against design, vendor, and approved requirements.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PREREQUISITES",
+          "title": "Prerequisites and references",
+          "purpose": "Identify URS, DQ, drawings, manuals, certificates, calibration, and turnover inputs.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-INSTALLATION-CHECKS",
+          "title": "Installation checklist / tests",
+          "purpose": "Record installation checks, method, result, evidence, and pass/fail.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATIONS",
+          "title": "Deviations and open items",
+          "purpose": "Capture nonconformances, impact, corrective actions, and acceptance route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-IQ-CHECKS",
+          "title": "Installation checklist",
+          "columns": [
+            "Item",
+            "Requirement",
+            "Verification Method",
+            "Result",
+            "Pass/Fail"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-OQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "OQ_PROTOCOL_REPORT",
+      "display_name": "OQ Protocol and Report",
+      "template_body_kind": "protocol_template",
+      "output_role": "qualification",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T8_OQ_Protocol_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Verify operational performance, critical functions, alarms/interlocks, ranges, and data integrity.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PREREQUISITES",
+          "title": "Prerequisites and references",
+          "purpose": "Identify URS, DQ, IQ, risk assessment, calibration, and readiness inputs.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-OQ-TEST-MATRIX",
+          "title": "Operational test matrix",
+          "purpose": "Record test objective, method, acceptance criteria, records, and result.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATIONS",
+          "title": "Deviations and open items",
+          "purpose": "Capture deviations, impact, corrective actions, and acceptance route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-OQ-TESTS",
+          "title": "OQ test matrix",
+          "columns": [
+            "Test ID",
+            "Objective",
+            "Method",
+            "Acceptance Criteria",
+            "Records",
+            "Result"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-PQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "PQ_PROTOCOL_REPORT",
+      "display_name": "PQ Protocol and Report",
+      "template_body_kind": "protocol_template",
+      "output_role": "qualification",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T9_PQ_Protocol_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Demonstrate consistent performance under routine or approved challenge conditions.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PREREQUISITES",
+          "title": "Prerequisites and references",
+          "purpose": "Identify URS, RA, DQ, IQ, OQ, process/batch/sampling readiness, and acceptance basis.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PQ-TEST-MATRIX",
+          "title": "Performance test matrix",
+          "purpose": "Record runs, conditions, method, acceptance criteria, evidence, and result.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATIONS",
+          "title": "Deviations and open items",
+          "purpose": "Capture deviations, impact, corrective actions, and acceptance route.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-PQ-TESTS",
+          "title": "PQ test matrix",
+          "columns": [
+            "Test ID",
+            "Objective",
+            "Method",
+            "Acceptance Criteria",
+            "Records",
+            "Result"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-DEVIATION-INCIDENT-REPORT@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "DEVIATION_INCIDENT_REPORT",
+      "display_name": "Deviation / Incident Report",
+      "template_body_kind": "form_template",
+      "output_role": "deviation_capa",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T11_Deviation_Record_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATION-SUMMARY",
+          "title": "Deviation summary",
+          "purpose": "Describe what happened, where, when, related protocol/test, and criticality.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CONTAINMENT",
+          "title": "Immediate actions / containment",
+          "purpose": "Record immediate actions and evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPACT",
+          "title": "Impact assessment",
+          "purpose": "Assess product quality, patient safety, GMP compliance, data integrity, and validated state.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ROOT-CAUSE",
+          "title": "Investigation and root cause",
+          "purpose": "Capture investigation method, findings, root cause, and evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DISPOSITION-CAPA",
+          "title": "Disposition and CAPA requirement",
+          "purpose": "Record decision, QA disposition, additional testing, CAPA requirement, and document impact.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-DEV-IMPACT",
+          "title": "Deviation impact assessment",
+          "columns": [
+            "Impact Domain",
+            "Impact? (Y/N)",
+            "Rationale",
+            "Follow-up"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-CAPA-CLOSURE-FORM@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "CAPA_CLOSURE_FORM",
+      "display_name": "CAPA Closure Form",
+      "template_body_kind": "form_template",
+      "output_role": "deviation_capa",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T12_CAPA_Record_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CAPA-SUMMARY",
+          "title": "CAPA summary",
+          "purpose": "Record CAPA source, area/system, problem statement, priority, and target closure.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-RCA",
+          "title": "Root cause analysis",
+          "purpose": "Capture RCA method, root cause, contributing factors, and evidence.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-ACTIONS",
+          "title": "Corrective and preventive actions",
+          "purpose": "Record actions, owners, due dates, evidence, and status.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-EFFECTIVENESS",
+          "title": "Effectiveness check and closure",
+          "purpose": "Define effectiveness checks, results, residual risk, and QA disposition.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-CAPA-ACTIONS",
+          "title": "CAPA action plan",
+          "columns": [
+            "Action ID",
+            "Action",
+            "Owner",
+            "Due Date",
+            "Evidence",
+            "Status"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-VSR@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "VSR",
+      "display_name": "Validation Summary Report",
+      "template_body_kind": "report_template",
+      "output_role": "closeout",
+      "priority": "P0",
+      "mvp_status": "must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "ARCH_BUNDLE_DocumentTemplates_v1.md::T10_VSR_Template_V1_0_1"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-PURPOSE-SCOPE",
+          "title": "Purpose and scope",
+          "purpose": "Summarize validation lifecycle outcomes and support final validation disposition.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-LIFECYCLE-SUMMARY",
+          "title": "Validation lifecycle summary",
+          "purpose": "Summarize URS, RA, DQ, IQ, OQ, PQ, deviations, CAPA, and traceability status.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DEVIATIONS-CAPA",
+          "title": "Deviations and corrective actions",
+          "purpose": "Summarize deviations, impact, CAPA, closure, and residual risk.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CONCLUSION",
+          "title": "Conclusion and recommendation",
+          "purpose": "State qualification/validation disposition and conditions without creating release authority by itself.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-VSR-SUMMARY",
+          "title": "Validation lifecycle summary",
+          "columns": [
+            "Lifecycle Stage",
+            "Document Ref",
+            "Outcome",
+            "Open Items",
+            "Disposition"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "body_id": "TBODY-DECOMMISSIONING-DOCUMENT-SET@v1",
+      "version": "v1",
+      "status": "mvp_template_body_record",
+      "document_ref": "DECOMMISSIONING_DOCUMENT_SET",
+      "display_name": "Decommissioning Document Set",
+      "template_body_kind": "authored_template",
+      "output_role": "decommissioning",
+      "priority": "P0",
+      "mvp_status": "conditional_must_have",
+      "linked_template_id": null,
+      "linked_schema_id": null,
+      "source_structure_references": [
+        "owner_must_have_document_list"
+      ],
+      "owner_review_required": true,
+      "sections": [
+        {
+          "section_id": "SEC-FRONT-MATTER",
+          "title": "Front matter and document control",
+          "purpose": "Capture document identity, status, version, role fields, source references, and visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "document_metadata_table",
+            "signature_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-DECOMMISSIONING-SCOPE",
+          "title": "Decommissioning scope and trigger",
+          "purpose": "Define decommissioning trigger, affected asset/system, boundary, and reason.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-IMPACT-ASSESSMENT",
+          "title": "Decommissioning impact assessment",
+          "purpose": "Assess product, GMP, data, utilities, records, calibration, validation state, and EH&S impact.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-RETENTION-DISPOSITION",
+          "title": "Data/evidence retention and asset disposition",
+          "purpose": "Define records retention, data export/archive, asset isolation, disposal, and inventory updates.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-CLOSURE",
+          "title": "Decommissioning closure",
+          "purpose": "Record completion evidence, residual actions, and closure statement.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "narrative",
+            "table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-REFERENCES",
+          "title": "References",
+          "purpose": "List applicable internal/project references and standards/guidance references with visible limitations.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "reference_list"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        },
+        {
+          "section_id": "SEC-HISTORY-APPROVAL",
+          "title": "Document history and approval placeholders",
+          "purpose": "Preserve revision history and approval placeholders without creating signed or approved records.",
+          "requirement_status": "required",
+          "expected_content_types": [
+            "history_table",
+            "approval_table"
+          ],
+          "source_input_refs": [],
+          "downstream_refs": [],
+          "section_controls": [
+            "Section content must preserve missing inputs as TBD or visible review points.",
+            "Section does not create approval, release, or UAT acceptance by itself."
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TBL-DECOMMISSIONING-IMPACT",
+          "title": "Decommissioning impact matrix",
+          "columns": [
+            "Area",
+            "Impact",
+            "Required Action",
+            "Owner",
+            "Closure Evidence"
+          ]
+        }
+      ],
+      "template_controls": [
+        "Wave 4 provides controlled template body / section-plan source assets only.",
+        "Template body records may guide later document generation but do not generate, approve, sign, release, or render documents.",
+        "Missing inputs must remain visible as TBD, TBD (User), placeholders, or review points until Wave 5 schema/DCF binding resolves them.",
+        "Structure was adapted from owner-provided examples where available; examples are not runtime authority by themselves."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_signed_or_approved_records",
+        "does_not_replace_human_review",
+        "does_not_claim_product_release"
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 4 provides MVP document template body / section-plan source assets only.",
+    "Owner-provided examples are used as structure references only and are not treated as uncontrolled runtime truth.",
+    "Template body records do not generate documents, sign records, approve records, release records, or close M29.12.",
+    "Wave 4 does not accept, approve, or close M29.12 UAT.",
+    "Wave 5 is still required to bind schemas, DCF intake, skip-DCF minimum inputs, fields, and missing-data behavior."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_create_signed_or_approved_records",
+    "does_not_replace_human_review",
+    "does_not_claim_product_release"
+  ]
+}
