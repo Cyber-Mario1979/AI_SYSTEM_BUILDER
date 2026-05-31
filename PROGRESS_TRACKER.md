@@ -46,37 +46,58 @@ The CAPA remains active until the Project Owner accepts that the control is work
 
 Gate ID: ASBP-AEG-M30-001
 Applies to: M30.1 — Retrieval justification gate
-Gate status: BLOCKED
+Gate status: PASS
 
-Reason:
-M30.1 is not yet classified with the explicit checkpoint-control fields required by `ROADMAP_CANONICAL.md` and `docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md`.
+Evidence basis:
+Project Owner decision recorded during M30.1 gate correction:
+
+    Owner decision: M30.1 is Hybrid. Do not reclassify it. Proceed only from this classification.
+
+Checkpoint-control classification:
+M30.1 is classified as Hybrid.
+
+Required completion artifact:
+M30.1 planning must produce a controlled Hybrid decision/source-control plan for the retrieval justification gate.
+
+Implementation/source minimum:
+M30.1 does not implement retrieval runtime behavior. M30.1 must define the source-control and decision boundary for where retrieval is justified, where retrieval is rejected, how retrieval remains non-authoritative, and how DDR-005 boundaries are preserved before later M30 implementation checkpoints.
+
+Validation requirement:
+No executable validation is required for this gate correction or for M30.1 planning unless code, tests, commands, imports, schemas, runtime behavior, validators, loaders, executable contracts, or source/runtime files are changed. Document consistency review is required.
+
+Tracker movement rule:
+This gate correction does not advance the tracker and does not complete M30.1. Tracker movement from M30.1 remains blocked until the accepted M30.1 plan and required M30.1 decision/source-control evidence exist.
+
+DDR impact:
+DDR-005 directly applies. DDR-005 remains open/deferred for M30 retrieval/indexing decisions. DDR-004 limitations apply where standards-backed retrieval is discussed. DDR-007 awareness applies only if M30.1 planning proposes retrieval-to-AI handoff or AI retrieval use.
+
+Architecture impact:
+No architecture/runtime impact is created by this gate correction. Architecture boundary impact must be addressed during M30.1 planning if later M30 work may touch source contracts, loaders, validators, state, CLI, UI/API, AI/runtime, deployment, or product behavior.
 
 Allowed assistant actions:
 
 - `SS`
 - `STATUS`
 - `NEXT`
-- `CLASSIFY M30.1` only
-- Prepare a controlled roadmap interpretation / checkpoint-control amendment for M30.1 only when explicitly requested
+- normal `PLAN M30.1` from Hybrid classification only
 
 Blocked assistant actions:
 
-- normal `PLAN M30.1`
+- reclassifying M30.1
 - `GO`
 - `UPT` / tracker advancement
 - checkpoint evidence drafting
 - implementation packages / `apply.py`
 - PR / ISSUE content that implies M30.1 progress or completion
 - retrieval implementation
+- indexing implementation
+- embeddings implementation
 - standards embedding
 - live standards lookup
 - retrieval-backed source authority
 - AI/model/provider behavior
 - UI/API behavior
 - deployment, release, productization, SaaS readiness, or customer-ready output
-
-Unblock condition:
-Project Owner accepts a repo-side M30.1 checkpoint-control classification that explicitly states execution mode, required completion artifact, implementation/source minimum, validation requirement, tracker movement rule, DDR impact, architecture impact where relevant, and explicit non-implementation claims.
 
 This gate is a traffic-light control only. It does not start M30 implementation and does not close, advance, or validate M30.1.
 
