@@ -12,7 +12,7 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN M30.7 ONLY.
+Status: READY FOR GO M30.7 BOUNDED RETRIEVAL EVALUATION HARNESS ONLY.
 
 M30 retrieval/indexing implementation has started only through bounded deterministic retrieval slices:
 
@@ -32,13 +32,15 @@ M30.5 has completed as bounded implementation with validation evidence.
 
 M30.6 has completed as bounded implementation with validation evidence.
 
+M30.7 has completed as PLAN-only implementation-gate evidence.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M30.7 — Retrieval evaluation harness
+GO M30.7 — Retrieval evaluation harness
 ```
 
-This is PLAN only, not GO.
+This GO is limited to deterministic retrieval evaluation helpers for recall/precision-style checks, source trace checks, and failure-case checks over existing bounded in-memory retrieval controls.
 
 The post-M29 full repository index prerequisite is complete and merged.
 
@@ -90,6 +92,8 @@ M30.5 completed as bounded implementation with executable validation evidence.
 
 M30.6 completed as bounded implementation with executable validation evidence.
 
+M30.7 completed as PLAN-only implementation-gate evidence.
+
 The CAPA remains active until the Project Owner accepts that the control is working after qualifying future execution.
 
 ## Active Assistant Execution Gate
@@ -98,50 +102,59 @@ Gate ID: ASBP-AEG-M30-007
 
 Applies to: M30.7 — Retrieval evaluation harness
 
-Gate status: READY FOR PLAN ONLY
+Gate status: READY FOR GO — BOUNDED RETRIEVAL EVALUATION HARNESS ONLY
 
-Prior M30.6 gate result:
-
-```text
-M30.6 — Library/template retrieval controls completed as bounded implementation with validation evidence.
-```
-
-M30.7 may proceed as PLAN only, not GO.
-
-Required M30.7 planning output:
+Prior M30.7 gate result:
 
 ```text
-Controlled checkpoint plan for retrieval evaluation harness.
+M30.7 — Retrieval evaluation harness completed as PLAN-only implementation-gate evidence.
 ```
 
-M30.7 planning must define or confirm:
+M30.7 may proceed to GO only for the bounded implementation slice defined below.
 
-- execution mode;
-- required completion artifact;
-- implementation/source minimum;
-- evaluation scope;
-- source trace checks;
-- failure cases;
-- validation requirement;
-- tracker movement rule;
-- explicit non-implementation claims.
+Required M30.7 implementation output:
 
-M30.7 planning must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
+```text
+Deterministic retrieval evaluation helpers for recall/precision-style checks, source trace checks, and failure-case checks over existing bounded retrieval controls.
+```
 
-M30.7 planning must evaluate, not broaden, the bounded retrieval controls delivered in M30.4 through M30.6.
+Allowed M30.7 implementation scope:
 
-Tracker movement from M30.7 remains blocked until the accepted M30.7 plan and required evidence exist.
+- create `asbp/retrieval/evaluation.py`;
+- add tests under `tests/test_retrieval_evaluation_harness.py`;
+- optionally update `asbp/retrieval/__init__.py` for exports;
+- define evaluation case/result models;
+- evaluate retrieval results without mutating retrieval indexes or source data;
+- calculate deterministic expected-source recall, missing-source count, forbidden-source count, and trace completeness signals;
+- detect missing source ID/path/version/chunk refs;
+- detect missing helper-only / non-authoritative flags;
+- support M30.4 base retrieval results, M30.5 standards retrieval results, and M30.6 asset retrieval results without broadening their behavior.
+
+Blocked in M30.7:
+
+- tracker advancement from M30.7 before implementation and validation evidence exists;
+- broad M30 retrieval/indexing implementation beyond the bounded M30.7 evaluation slice;
+- embeddings implementation;
+- vector store implementation;
+- live source lookup;
+- retrieval ranking changes outside evaluation helpers;
+- retrieval-backed source authority;
+- AI/model/provider behavior;
+- UI/API behavior;
+- deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
+
+Tracker movement from M30.7 remains blocked until bounded implementation evidence and validation evidence exist.
 
 ## Current Approved Checkpoint Family
 
 M30.7 — Retrieval evaluation harness.
 
-Status: READY FOR PLAN ONLY.
+Status: READY FOR GO — BOUNDED RETRIEVAL EVALUATION HARNESS ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M30.7 — Retrieval evaluation harness
+GO M30.7 — Retrieval evaluation harness
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -149,13 +162,25 @@ PLAN M30.7 — Retrieval evaluation harness
 Latest completed roadmap checkpoint:
 
 ```text
-M30.6 — Library/template retrieval controls
+M30.7 — Retrieval evaluation harness
 ```
 
 Completion type:
 
 ```text
-Bounded implementation with validation evidence
+PLAN-only implementation-gate evidence
+```
+
+M30.7 plan evidence:
+
+```text
+docs/milestones/M30/M30_7_RETRIEVAL_EVALUATION_HARNESS_PLAN.md
+```
+
+M30.7 merge evidence:
+
+```text
+PR #53 — docs: plan M30.7 retrieval evaluation harness
 ```
 
 M30.6 implementation evidence:
@@ -172,64 +197,16 @@ M30.6 validation evidence:
 python -m pytest -q — 1499 passed in 48.57s
 ```
 
-M30.6 merge evidence:
-
-```text
-PR #50 — tracker: correct M30.6 plan landing state
-PR #51 — feat: add M30.6 asset retrieval controls
-```
-
-M30.6 plan evidence:
-
-```text
-docs/milestones/M30/M30_6_LIBRARY_TEMPLATE_RETRIEVAL_CONTROLS_PLAN.md
-```
-
-M30.5 implementation evidence:
-
-```text
-asbp/retrieval/standards.py
-asbp/retrieval/__init__.py
-tests/test_standards_retrieval_controls.py
-```
-
 M30.5 validation evidence:
 
 ```text
 python -m pytest -q — 1492 passed in 48.49s
 ```
 
-M30.4 implementation evidence:
-
-```text
-asbp/retrieval/models.py
-asbp/retrieval/search.py
-asbp/retrieval/__init__.py
-tests/test_retrieval_non_authority_skeleton.py
-```
-
 M30.4 validation evidence:
 
 ```text
 python -m pytest -q — 1485 passed in 50.37s
-```
-
-M30.3 completion evidence:
-
-```text
-docs/milestones/M30/M30_3_INDEX_METADATA_AND_TRACEABILITY_PLAN.md
-```
-
-M30.2 completion evidence:
-
-```text
-docs/milestones/M30/M30_2_SOURCE_ELIGIBILITY_MODEL.md
-```
-
-M30.1 completion evidence:
-
-```text
-docs/milestones/M30/M30_1_RETRIEVAL_JUSTIFICATION_GATE_PLAN.md
 ```
 
 Latest completed control/recovery evidence:
@@ -260,32 +237,34 @@ Latest completed control/recovery evidence:
 | M30.6 library/template retrieval controls plan       | Completed / merged in PR #48                      |
 | M30.6 tracker correction                             | Completed / merged in PR #50                      |
 | M30.6 asset retrieval controls implementation        | Completed / merged in PR #51                      |
-| M30.6 tracker alignment                              | In review / current tracker action                |
+| M30.6 tracker alignment                              | Completed / merged in PR #52                      |
+| M30.7 retrieval evaluation harness plan              | Completed / merged in PR #53                      |
+| M30.7 tracker correction                             | In review / current tracker action                |
 
 ## Exact Next Unfinished Work
 
-PLAN M30.7 — Retrieval evaluation harness.
+GO M30.7 — Retrieval evaluation harness.
 
 Current state:
 
 ```text
-READY FOR PLAN ONLY / GO BLOCKED
+READY FOR BOUNDED IMPLEMENTATION / TRACKER ADVANCEMENT BLOCKED
 ```
 
 Allowed current work:
 
 ```text
-PLAN M30.7 only.
+GO M30.7 bounded retrieval evaluation harness only.
 ```
 
 Blocked until separately authorized:
 
-- GO;
 - tracker advancement from M30.7;
 - broad M30 retrieval/indexing implementation beyond accepted checkpoint scope;
 - embeddings implementation;
 - vector store implementation;
 - live source lookup;
+- retrieval ranking changes outside evaluation helpers;
 - retrieval-backed source authority;
 - AI/model/provider behavior;
 - UI/API behavior;
@@ -303,46 +282,14 @@ Validation scope:
 
 M30.6 asset retrieval controls plus existing test suite.
 
-Latest implementation evidence:
+Latest checkpoint review evidence:
 
+- PR #53 added M30.7 retrieval evaluation harness implementation-gate plan.
+- PR #52 recorded M30.6 asset retrieval controls completion and validation evidence.
 - PR #51 added M30.6 bounded library/template asset retrieval controls.
 - PR #50 corrected tracker state and opened bounded GO M30.6 before PR #51 was merged.
 
-Previous executable validation:
-
-```text
-python -m pytest -q — 1492 passed in 48.49s
-```
-
-Previous validation scope:
-
-M30.5 standards retrieval controls plus existing test suite.
-
-Earlier executable validation:
-
-```text
-python -m pytest -q — 1485 passed in 50.37s
-```
-
-Earlier validation scope:
-
-M30.4 bounded retrieval skeleton plus existing test suite.
-
-Latest recovery review evidence:
-
-- CONTROL-RECOVERY-002 Phase 1 evidence matrix merged in PR #33.
-- CONTROL-RECOVERY-002 Phase 2 claim quarantine review merged in PR #34.
-- CONTROL-RECOVERY-002 Phase 3 rebaseline decision merged in PR #35.
-- CONTROL-RECOVERY-002 Phase 3A tracker alignment merged in PR #36.
-- CONTROL-RECOVERY-002 closure preparation merged in PR #37.
-- CONTROL-RECOVERY-002 closure record merged in PR #38.
-- CONTROL-RECOVERY-002 final tracker alignment merged in PR #39.
-
-Latest repository-index review evidence:
-
-Post-M29 full repository index completion gate was merged in PR #30.
-
-This M30.6 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-run validation evidence.
+This M30.7 tracker correction does not require executable validation because it changes only tracker/governance state and records already-merged planning evidence.
 
 ## Milestone UAT Status
 
@@ -410,7 +357,11 @@ PR #50 corrected M30.6 tracker state and opened bounded GO M30.6.
 
 PR #51 added M30.6 bounded library/template asset retrieval controls implementation and tests.
 
-This tracker update records M30.6 bounded implementation completion and validation evidence. It sets PLAN M30.7 as the next work. It does not start M30.7, does not authorize GO, and does not authorize embeddings, vector stores, AI, UI/API, productization, or release behavior.
+PR #52 recorded M30.6 bounded implementation completion and validation evidence.
+
+PR #53 added the M30.7 retrieval evaluation harness plan.
+
+This tracker correction records M30.7 PLAN-only implementation-gate completion and sets GO M30.7 as the next work. It does not start M30.7 implementation, does not authorize broad retrieval/indexing, and does not authorize embeddings, vector stores, AI, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -433,13 +384,13 @@ The full repository index does not start M30, implement retrieval, implement sta
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, or M30.6.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, or M30.7.
 
-DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation did not close DDR-005 by itself. M30.5 standards retrieval controls did not close DDR-005 by itself. M30.6 asset retrieval controls did not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.6.
+DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation did not close DDR-005 by itself. M30.5 standards retrieval controls did not close DDR-005 by itself. M30.6 asset retrieval controls did not close DDR-005 by itself. M30.7 plan does not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.7.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
-DDR-007 awareness applies if M30 implementation proposes any retrieval-to-AI handoff or AI retrieval use. M30.6 asset retrieval controls did not implement retrieval-to-AI handoff, model/provider integration, local AI runtime integration, app-coupled heavy-use testing, or pre-go-live execution.
+DDR-007 awareness applies if M30 implementation proposes any retrieval-to-AI handoff or AI retrieval use. M30.7 plan does not implement retrieval-to-AI handoff, model/provider integration, local AI runtime integration, app-coupled heavy-use testing, or pre-go-live execution.
 
 ## Build / Governance Balance Policy Status
 
@@ -451,19 +402,19 @@ CONTROL-RECOVERY-002 preserved valid implementation evidence from M27-M29 for it
 
 M30.4, M30.5, and M30.6 satisfied bounded build/content requirements by creating code and tests, then recording executable validation evidence.
 
-M30.7 planning must define evaluation expectations before additional evaluation implementation begins.
+M30.7 GO must satisfy the build/content requirement by creating code and tests, then recording executable validation evidence.
 
 ## Blocked Actions
 
-Do not start M30.7 implementation before PLAN M30.7 is completed and accepted under the build/governance anti-drift gate.
+Do not claim M30.7 implementation completion before bounded implementation evidence and validation evidence exist.
 
-Do not implement retrieval evaluation harness before roadmap-authorized M30.7 GO and required DDR-005 controls.
+Do not implement retrieval evaluation beyond deterministic checks over existing bounded retrieval controls.
 
-Do not implement retrieval beyond accepted deterministic in-memory keyword/metadata skeleton, standards retrieval controls, and bounded M30.6 asset retrieval controls without a later accepted gate.
+Do not implement retrieval beyond accepted deterministic in-memory keyword/metadata skeleton, standards retrieval controls, asset retrieval controls, and bounded M30.7 evaluation helpers without a later accepted gate.
 
-Do not implement embeddings, vector stores, live source lookup, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, AI/model/provider behavior, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+Do not implement embeddings, vector stores, live source lookup, retrieval ranking changes outside evaluation helpers, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, AI/model/provider behavior, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, or M30.6.
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, or M30.7.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -474,11 +425,9 @@ Do not claim full product-ready document factory completion.
 Allowed next work is:
 
 ```text
-PLAN M30.7 — Retrieval evaluation harness
+GO M30.7 — bounded retrieval evaluation harness
 ```
-
-PLAN only. GO and implementation remain blocked.
 
 ## Next Action
 
-PLAN M30.7 — Retrieval evaluation harness.
+GO M30.7 — bounded retrieval evaluation harness.
