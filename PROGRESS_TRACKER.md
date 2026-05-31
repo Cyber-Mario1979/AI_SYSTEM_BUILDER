@@ -12,7 +12,7 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN M30.9 ONLY.
+Status: READY FOR PLAN M30.10 ONLY.
 
 M30 retrieval/indexing implementation has started only through bounded deterministic retrieval slices:
 
@@ -38,10 +38,12 @@ M30.7 has completed as bounded implementation with validation evidence.
 
 M30.8 has completed as bounded implementation with validation evidence.
 
+M30.9 has completed as validation checkpoint evidence.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M30.9 — Validation checkpoint
+PLAN M30.10 — Milestone UAT / owner acceptance
 ```
 
 This is PLAN only, not GO.
@@ -100,58 +102,58 @@ M30.7 completed as bounded implementation with executable validation evidence.
 
 M30.8 completed as bounded implementation with executable validation evidence.
 
+M30.9 completed as validation checkpoint evidence.
+
 The CAPA remains active until the Project Owner accepts that the control is working after qualifying future execution.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M30-009
+Gate ID: ASBP-AEG-M30-010
 
-Applies to: M30.9 — Validation checkpoint
+Applies to: M30.10 — Milestone UAT / owner acceptance
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M30.8 gate result:
+Prior M30.9 gate result:
 
 ```text
-M30.8 — Retrieval-to-AI handoff contract completed as bounded implementation with validation evidence.
+M30.9 — Validation checkpoint completed as validation evidence.
 ```
 
-M30.9 may proceed as PLAN only, not GO.
+M30.10 may proceed as PLAN only, not GO.
 
-Required M30.9 planning output:
+Required M30.10 planning output:
 
 ```text
-Controlled checkpoint plan for retrieval validation evidence.
+Controlled checkpoint plan for milestone UAT / owner acceptance.
 ```
 
-M30.9 planning must define or confirm:
+M30.10 planning must define or confirm:
 
 - execution mode;
-- required completion artifact;
-- validation command/evidence minimum;
-- retrieval evaluation evidence scope;
-- source trace checks;
-- non-authority checks;
-- AI handoff contract checks;
+- required owner acceptance artifact;
+- UAT scope;
+- retrieval-supported local workflow trial scope;
+- evidence to review before acceptance;
 - DDR-005 impact;
 - DDR-007 impact;
 - tracker movement rule;
-- explicit non-implementation claims.
+- explicit non-productization claims.
 
-M30.9 planning must validate the bounded retrieval behavior implemented in M30.4 through M30.8. It must not broaden retrieval, implement embeddings/vector stores/live lookup, or implement AI/model/provider behavior.
+M30.10 planning must preserve that M30 retrieval remains bounded, helper-only, source-traceable, non-authoritative, and not productized.
 
-Tracker movement from M30.9 remains blocked until the accepted M30.9 plan and required evidence exist.
+Tracker movement from M30.10 remains blocked until the accepted M30.10 plan and required owner acceptance evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M30.9 — Validation checkpoint.
+M30.10 — Milestone UAT / owner acceptance.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M30.9 — Validation checkpoint
+PLAN M30.10 — Milestone UAT / owner acceptance
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -159,13 +161,33 @@ PLAN M30.9 — Validation checkpoint
 Latest completed roadmap checkpoint:
 
 ```text
-M30.8 — Retrieval-to-AI handoff contract
+M30.9 — Validation checkpoint
 ```
 
 Completion type:
 
 ```text
-Bounded implementation with validation evidence
+Validation checkpoint evidence
+```
+
+M30.9 evidence:
+
+```text
+docs/milestones/M30/M30_9_VALIDATION_CHECKPOINT_PLAN.md
+docs/milestones/M30/M30_9_VALIDATION_CHECKPOINT_EVIDENCE.md
+```
+
+M30.9 validation evidence:
+
+```text
+python -m pytest -q — 1517 passed in 46.67s
+```
+
+M30.9 merge evidence:
+
+```text
+PR #61 — docs: plan M30.9 validation checkpoint
+PR #62 — docs: record M30.9 validation checkpoint evidence
 ```
 
 M30.8 implementation evidence:
@@ -180,27 +202,6 @@ M30.8 validation evidence:
 
 ```text
 python -m pytest -q — 1508 passed in 47.91s
-```
-
-M30.8 merge evidence:
-
-```text
-PR #58 — tracker: correct M30.8 plan landing state
-PR #59 — feat: add M30.8 retrieval AI handoff contract
-```
-
-M30.8 plan evidence:
-
-```text
-docs/milestones/M30/M30_8_RETRIEVAL_TO_AI_HANDOFF_CONTRACT_PLAN.md
-```
-
-M30.7 implementation evidence:
-
-```text
-asbp/retrieval/evaluation.py
-asbp/retrieval/__init__.py
-tests/test_retrieval_evaluation_harness.py
 ```
 
 M30.7 validation evidence:
@@ -263,11 +264,14 @@ Latest completed control/recovery evidence:
 | M30.8 retrieval-to-AI handoff contract plan          | Completed / merged in PR #57                      |
 | M30.8 tracker correction                             | Completed / merged in PR #58                      |
 | M30.8 retrieval-to-AI handoff contract implementation| Completed / merged in PR #59                      |
-| M30.8 tracker alignment                              | In review / current tracker action                |
+| M30.8 tracker alignment                              | Completed / merged in PR #60                      |
+| M30.9 validation checkpoint plan                     | Completed / merged in PR #61                      |
+| M30.9 validation checkpoint evidence                 | Completed / merged in PR #62                      |
+| M30.9 tracker alignment                              | In review / current tracker action                |
 
 ## Exact Next Unfinished Work
 
-PLAN M30.9 — Validation checkpoint.
+PLAN M30.10 — Milestone UAT / owner acceptance.
 
 Current state:
 
@@ -278,13 +282,13 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M30.9 only.
+PLAN M30.10 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M30.9;
+- tracker advancement from M30.10;
 - broad M30 retrieval/indexing implementation beyond accepted checkpoint scope;
 - AI/model/provider calls;
 - local AI runtime integration;
@@ -303,39 +307,39 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1508 passed in 47.91s
+python -m pytest -q — 1517 passed in 46.67s
 ```
 
 Validation scope:
 
-M30.8 retrieval-to-AI handoff contract helpers plus existing test suite.
+M30.9 validation checkpoint for bounded retrieval behavior from M30.4 through M30.8 plus existing test suite.
 
-Latest implementation evidence:
+Latest validation evidence:
 
-- PR #59 added M30.8 bounded retrieval-to-AI handoff contract helpers.
-- PR #58 corrected tracker state and opened bounded GO M30.8 before PR #59 was merged.
+- PR #62 recorded M30.9 validation checkpoint evidence.
+- PR #61 accepted the M30.9 validation checkpoint plan.
 
 Previous executable validation:
+
+```text
+python -m pytest -q — 1508 passed in 47.91s
+```
+
+Previous validation scope:
+
+M30.8 retrieval-to-AI handoff contract helpers plus existing test suite.
+
+Earlier executable validation:
 
 ```text
 python -m pytest -q — 1508 passed in 49.85s
 ```
 
-Previous validation scope:
+Earlier validation scope:
 
 M30.7 retrieval evaluation harness plus existing test suite.
 
-Earlier executable validation:
-
-```text
-python -m pytest -q — 1499 passed in 48.57s
-```
-
-Earlier validation scope:
-
-M30.6 asset retrieval controls plus existing test suite.
-
-This M30.8 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-run validation evidence.
+This M30.9 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-run validation evidence.
 
 ## Milestone UAT Status
 
@@ -351,7 +355,7 @@ Acceptance does not claim productization, deployment, release, commercial readin
 
 M30 UAT has not started.
 
-M30.10 remains the future retrieval usefulness UAT / owner acceptance checkpoint.
+M30.10 is the future retrieval usefulness UAT / owner acceptance checkpoint.
 
 Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
@@ -419,7 +423,13 @@ PR #58 corrected M30.8 tracker state and opened bounded GO M30.8.
 
 PR #59 added M30.8 bounded retrieval-to-AI handoff contract helpers and tests.
 
-This tracker update records M30.8 bounded implementation completion and validation evidence. It sets PLAN M30.9 as the next work. It does not start M30.9, does not authorize GO, and does not authorize embeddings, vector stores, AI/model/provider calls, local AI runtime, UI/API, productization, or release behavior.
+PR #60 recorded M30.8 bounded implementation completion and validation evidence.
+
+PR #61 added the M30.9 validation checkpoint plan.
+
+PR #62 recorded M30.9 validation checkpoint evidence.
+
+This tracker update records M30.9 validation checkpoint completion and validation evidence. It sets PLAN M30.10 as the next work. It does not start M30.10, does not authorize GO, and does not authorize embeddings, vector stores, AI/model/provider calls, local AI runtime, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -442,13 +452,13 @@ The full repository index does not start M30, implement retrieval, implement sta
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, or M30.8.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, M30.8, or M30.9.
 
-DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation did not close DDR-005 by itself. M30.5 standards retrieval controls did not close DDR-005 by itself. M30.6 asset retrieval controls did not close DDR-005 by itself. M30.7 retrieval evaluation harness did not close DDR-005 by itself. M30.8 retrieval-to-AI handoff contract helpers did not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.8.
+DDR-005 remains deferred to M30 closeout. M30.9 strengthens validation evidence for bounded retrieval behavior, but it does not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.9.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
-DDR-007 applies directly. M30.8 implemented only bounded handoff contract helpers and did not implement model/provider integration, local AI runtime integration, app-coupled heavy-use testing, prompt execution, or pre-go-live execution.
+DDR-007 remains active/awareness/closure-planned. M30.9 validates that M30.8 implemented only deterministic handoff contract helpers and did not implement model/provider integration, local AI runtime integration, app-coupled heavy-use testing, prompt execution, or pre-go-live execution.
 
 ## Build / Governance Balance Policy Status
 
@@ -460,19 +470,21 @@ CONTROL-RECOVERY-002 preserved valid implementation evidence from M27-M29 for it
 
 M30.4, M30.5, M30.6, M30.7, and M30.8 satisfied bounded build/content requirements by creating code and tests, then recording executable validation evidence.
 
-M30.9 planning must define the validation checkpoint before any M30.9 validation closure claim begins.
+M30.9 satisfied the validation checkpoint by recording executable validation evidence and bounded retrieval validation scope.
+
+M30.10 planning must define UAT / owner acceptance expectations before any M30.10 acceptance claim begins.
 
 ## Blocked Actions
 
-Do not start M30.9 validation closure before PLAN M30.9 is completed and accepted under the build/governance anti-drift gate.
+Do not start M30.10 owner acceptance before PLAN M30.10 is completed and accepted under the build/governance anti-drift gate.
 
-Do not implement or claim new retrieval capabilities under M30.9 unless the accepted M30.9 plan explicitly authorizes a narrow validation-supporting change.
+Do not implement or claim new retrieval capabilities under M30.10 unless the accepted M30.10 plan explicitly authorizes a narrow UAT-supporting action.
 
 Do not implement retrieval beyond accepted deterministic in-memory keyword/metadata skeleton, standards retrieval controls, asset retrieval controls, evaluation helpers, and bounded M30.8 handoff contract helpers without a later accepted gate.
 
 Do not implement AI/model/provider calls, local AI runtime integration, app-coupled heavy-use testing, prompt execution, raw retrieval-to-model truth injection, embeddings, vector stores, live source lookup, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, or M30.8.
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, M30.8, or M30.9.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -483,11 +495,11 @@ Do not claim full product-ready document factory completion.
 Allowed next work is:
 
 ```text
-PLAN M30.9 — Validation checkpoint
+PLAN M30.10 — Milestone UAT / owner acceptance
 ```
 
 PLAN only. GO and implementation remain blocked.
 
 ## Next Action
 
-PLAN M30.9 — Validation checkpoint.
+PLAN M30.10 — Milestone UAT / owner acceptance.
