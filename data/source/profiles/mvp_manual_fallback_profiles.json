@@ -1,0 +1,67 @@
+{
+  "library_id": "M29_WAVE3_MANUAL_FALLBACK_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-MANUAL-FALLBACK-CONTEXT@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Manual Fallback / Unsupported Scope Profile",
+      "profile_type": "manual_fallback",
+      "related_preset_families": [
+        "PF-MANUAL-FALLBACK"
+      ],
+      "selector_context_tags": [
+        "manual-fallback",
+        "unsupported-scope",
+        "human-confirmation",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-CONTEXT-UNKNOWN",
+        "LE-MIXED-OR-OTHER"
+      ],
+      "qualification_validation_intents": [
+        "INT-MANUAL-ASSESSMENT"
+      ],
+      "context_fields": [
+        {
+          "field_id": "missing_context_summary",
+          "label": "Missing or ambiguous context summary",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "candidate_route",
+          "label": "Candidate route",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "owner_decision_required",
+          "label": "Owner decision required",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "yes",
+            "no"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Fallback remains safety route only; it must not silently replace missing mature content libraries."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP manual fallback profile source record."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

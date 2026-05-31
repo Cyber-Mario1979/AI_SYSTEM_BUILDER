@@ -1,0 +1,95 @@
+{
+  "library_id": "M29_WAVE3_DECOMMISSIONING_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-DECOMMISSIONING-ROUTE@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Decommissioning Lifecycle Route Profile",
+      "profile_type": "decommissioning",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT",
+        "PF-UTILITIES",
+        "PF-CLEANROOM",
+        "PF-COMPUTERIZED-SYSTEMS",
+        "PF-QC-LAB-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "decommissioning",
+        "retirement",
+        "lifecycle-route",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "context_fields": [
+        {
+          "field_id": "decommissioning_trigger",
+          "label": "Decommissioning trigger",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "asset_or_system_scope",
+          "label": "Asset/system/area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "data_retention_impact",
+          "label": "Data/evidence retention impact",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "records_retained",
+            "records_migrated",
+            "not_applicable",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "utility_or_system_isolation",
+          "label": "Utility/system isolation relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "required",
+            "not_required",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "regulatory_documentation_impact",
+          "label": "Regulatory/GMP documentation impact",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Decommissioning route is P0 by owner decision; exact document set remains to be finalized before closure."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP decommissioning profile source record."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

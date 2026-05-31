@@ -1,0 +1,96 @@
+{
+  "library_id": "M29_WAVE3_CSV_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-CSV-GXP-SYSTEM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Computerized System Validation Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-COMPUTERIZED-SYSTEMS"
+      ],
+      "selector_context_tags": [
+        "csv",
+        "computerized-system",
+        "gxp",
+        "data-integrity",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REVIEW",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-CSV",
+        "INT-GXP-ASSESSMENT",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "system_identity",
+          "label": "System identity / version",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gxp_relevance",
+          "label": "GxP relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "gxp_relevant",
+            "not_gxp_relevant",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "data_integrity_relevance",
+          "label": "Data integrity relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "records_created",
+            "records_modified",
+            "records_reported",
+            "no_record_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_status",
+          "label": "Vendor FDS/SDS/document status",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "CSV profile supports context and mapping only; it does not authorize live system release, e-signatures, or productized AI/provider behavior."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP CSV profile source record."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

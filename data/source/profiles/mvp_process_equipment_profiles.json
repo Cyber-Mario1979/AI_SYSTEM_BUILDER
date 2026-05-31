@@ -1,0 +1,777 @@
+{
+  "library_id": "M29_WAVE3_PROCESS_EQUIPMENT_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-PE-TABCOMP@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Tablet Compression Machine Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "tablet-compression-machine",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Tablet Compression Machine"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-PANCOAT@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Pan Coater Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "pan-coater",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Pan Coater"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-CAPFILL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Capsule Filling Machine Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "capsule-filling-machine",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Capsule Filling Machine"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-BINBLEND@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Bin Blender Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "bin-blender",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Bin Blender"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-VERTGRAN@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Vertical Granulator Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "vertical-granulator",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Vertical Granulator"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-FBD@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Fluid Bed Dryer Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "fluid-bed-dryer",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Fluid Bed Dryer"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-ROLLCOMP@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Roller Compactor Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "roller-compactor",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Roller Compactor"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-BLISTER@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Blister Line Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "blister-line",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Blister Line"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-TABSORT@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Tablet Sorter Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "tablet-sorter",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Tablet Sorter"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-PE-MILL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Mill Qualification Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-PROCESS-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "process-equipment",
+        "mill",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "equipment_archetype",
+          "label": "Equipment archetype",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Mill"
+        },
+        {
+          "field_id": "equipment_identity",
+          "label": "Equipment tag / identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "intended_use",
+          "label": "Intended use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "gmp_impact",
+          "label": "GMP impact classification",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "direct_impact",
+            "indirect_impact",
+            "no_impact",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "vendor_doc_availability",
+          "label": "Vendor document availability",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "available",
+            "partial",
+            "missing",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Equipment-specific intended use, GMP impact, vendor document status, and DQ/FAT/SAT applicability require user/site confirmation.",
+        "Profile is a source record for task/profile/mapping selection only."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP profile library for process equipment archetype coverage."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

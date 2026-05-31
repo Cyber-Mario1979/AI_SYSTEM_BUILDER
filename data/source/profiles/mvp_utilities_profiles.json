@@ -1,0 +1,747 @@
+{
+  "library_id": "M29_WAVE3_UTILITIES_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-UTIL-COMPRESSED-AIR@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Compressed Air System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "compressed-air-system",
+        "detailed-p0",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Compressed Air System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: detailed_p0.",
+          "value": "detailed_p0"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-PURIFIED-WATER@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Purified / Refined Water System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "purified-refined-water-system",
+        "detailed-p0",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Purified / Refined Water System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: detailed_p0.",
+          "value": "detailed_p0"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-HVAC-SYSTEM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP HVAC System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "hvac-system",
+        "detailed-p0",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "HVAC System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: detailed_p0.",
+          "value": "detailed_p0"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-CHILLED-WATER@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Chilled Water System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "chilled-water-system",
+        "detailed-p0",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Chilled Water System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: detailed_p0.",
+          "value": "detailed_p0"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-STEAM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Steam System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "steam-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Steam System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-HOT-WATER@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Hot Water System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "hot-water-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Hot Water System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-VACUUM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Vacuum System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "vacuum-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Vacuum System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-NITROGEN@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Nitrogen System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "nitrogen-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Nitrogen System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-DRAINAGE@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Drainage System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "drainage-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Drainage System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    },
+    {
+      "profile_id": "PROF-MVP-UTIL-ELECTRICAL-POWER@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Electrical Power System Qualification Profile",
+      "profile_type": "area_system",
+      "related_preset_families": [
+        "PF-UTILITIES"
+      ],
+      "selector_context_tags": [
+        "utilities",
+        "electrical-power-system",
+        "general-first",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "utility_system_type",
+          "label": "Utility system type",
+          "value_status": "starter_default",
+          "notes": "Fixed by this profile.",
+          "value": "Electrical Power System"
+        },
+        {
+          "field_id": "service_boundary",
+          "label": "Service boundary / distribution scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "point_of_use_scope",
+          "label": "Point-of-use / served area scope",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "sampling_or_performance_relevance",
+          "label": "Sampling or performance verification relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "sampling_required",
+            "performance_verification_required",
+            "not_applicable",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "utility_priority_tier",
+          "label": "Wave 1 priority tier",
+          "value_status": "starter_default",
+          "notes": "Wave 1 tier: general_first.",
+          "value": "general_first"
+        }
+      ],
+      "assumption_controls": [
+        "Utility boundaries, sampling/performance route, and GMP impact require user/site confirmation.",
+        "Detailed P0 utilities require stronger downstream template/schema coverage than general-first utilities."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP profile library for detailed P0 and general-first utility systems."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}
