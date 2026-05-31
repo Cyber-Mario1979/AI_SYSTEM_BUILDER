@@ -1,9 +1,9 @@
 """Retrieval boundary package.
 
 This package preserves the earlier M11.4 retrieval architecture boundary helpers
-and exposes the M30.4 bounded retrieval skeleton API.
+and exposes the M30.4/M30.5 bounded retrieval APIs.
 
-M30.4 retrieval remains deterministic, helper-only, non-authoritative, and
+Retrieval remains deterministic, helper-only, non-authoritative, and
 source-traceable. It does not implement embeddings, vector stores, live lookup,
 AI/model/provider behavior, or UI/API behavior.
 """
@@ -20,6 +20,7 @@ from .contracts import (
 )
 from .models import RetrievalIndexRecord, RetrievalQuery, RetrievalResult
 from .search import InMemoryRetrievalIndex
+from .standards import StandardsRetrievalControls, StandardsRetrievalResult
 
 __all__ = [
     "GOVERNED_DETERMINISTIC_RETRIEVAL_MODE",
@@ -34,4 +35,6 @@ __all__ = [
     "RetrievalIndexRecord",
     "RetrievalQuery",
     "RetrievalResult",
+    "StandardsRetrievalControls",
+    "StandardsRetrievalResult",
 ]
