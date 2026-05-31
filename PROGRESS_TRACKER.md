@@ -42,6 +42,44 @@ The post-M29 full repository index control package was completed and merged befo
 
 The CAPA remains active until the Project Owner accepts that the control is working.
 
+## Active Assistant Execution Gate
+
+Gate ID: ASBP-AEG-M30-001
+Applies to: M30.1 — Retrieval justification gate
+Gate status: BLOCKED
+
+Reason:
+M30.1 is not yet classified with the explicit checkpoint-control fields required by `ROADMAP_CANONICAL.md` and `docs/governance/BUILD_GOVERNANCE_BALANCE_POLICY.md`.
+
+Allowed assistant actions:
+
+- `SS`
+- `STATUS`
+- `NEXT`
+- `CLASSIFY M30.1` only
+- Prepare a controlled roadmap interpretation / checkpoint-control amendment for M30.1 only when explicitly requested
+
+Blocked assistant actions:
+
+- normal `PLAN M30.1`
+- `GO`
+- `UPT` / tracker advancement
+- checkpoint evidence drafting
+- implementation packages / `apply.py`
+- PR / ISSUE content that implies M30.1 progress or completion
+- retrieval implementation
+- standards embedding
+- live standards lookup
+- retrieval-backed source authority
+- AI/model/provider behavior
+- UI/API behavior
+- deployment, release, productization, SaaS readiness, or customer-ready output
+
+Unblock condition:
+Project Owner accepts a repo-side M30.1 checkpoint-control classification that explicitly states execution mode, required completion artifact, implementation/source minimum, validation requirement, tracker movement rule, DDR impact, architecture impact where relevant, and explicit non-implementation claims.
+
+This gate is a traffic-light control only. It does not start M30 implementation and does not close, advance, or validate M30.1.
+
 ## Current Approved Checkpoint Family
 
 M30.1 — Retrieval justification gate
