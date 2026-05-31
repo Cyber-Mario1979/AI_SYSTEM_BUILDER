@@ -1,7 +1,7 @@
 """Retrieval boundary package.
 
 This package preserves the earlier M11.4 retrieval architecture boundary helpers
-and exposes the M30.4/M30.5/M30.6 bounded retrieval APIs.
+and exposes the M30.4/M30.5/M30.6/M30.7 bounded retrieval APIs.
 
 Retrieval remains deterministic, helper-only, non-authoritative, and
 source-traceable. It does not implement embeddings, vector stores, live lookup,
@@ -19,6 +19,13 @@ from .contracts import (
     build_retrieval_architecture_baseline,
     validate_retrieval_request,
 )
+from .evaluation import (
+    RetrievalEvaluationCase,
+    RetrievalEvaluationHarness,
+    RetrievalEvaluationIssue,
+    RetrievalEvaluationResult,
+    evaluate_retrieval_results,
+)
 from .models import RetrievalIndexRecord, RetrievalQuery, RetrievalResult
 from .search import InMemoryRetrievalIndex
 from .standards import StandardsRetrievalControls, StandardsRetrievalResult
@@ -35,9 +42,14 @@ __all__ = [
     "AssetRetrievalControls",
     "AssetRetrievalResult",
     "InMemoryRetrievalIndex",
+    "RetrievalEvaluationCase",
+    "RetrievalEvaluationHarness",
+    "RetrievalEvaluationIssue",
+    "RetrievalEvaluationResult",
     "RetrievalIndexRecord",
     "RetrievalQuery",
     "RetrievalResult",
     "StandardsRetrievalControls",
     "StandardsRetrievalResult",
+    "evaluate_retrieval_results",
 ]
