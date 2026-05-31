@@ -12,9 +12,9 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN M30.4 ONLY.
+Status: READY FOR GO M30.4 BOUNDED RETRIEVAL SKELETON ONLY.
 
-M30 retrieval/indexing implementation has not started.
+M30 retrieval/indexing implementation has not started yet on `main`, but the active gate now permits the first tightly bounded implementation slice for M30.4.
 
 M30.1 has completed as PLAN-only decision/source-control evidence.
 
@@ -25,10 +25,10 @@ M30.3 has completed as Hybrid planning/source-control evidence.
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M30.4 — Retrieval non-authority enforcement
+GO M30.4 — Retrieval non-authority enforcement
 ```
 
-This is PLAN only, not GO.
+This GO is limited to a minimal deterministic retrieval skeleton only.
 
 The post-M29 full repository index prerequisite is complete and merged.
 
@@ -82,7 +82,7 @@ Gate ID: ASBP-AEG-M30-004
 
 Applies to: M30.4 — Retrieval non-authority enforcement
 
-Gate status: READY FOR PLAN ONLY
+Gate status: READY FOR GO — BOUNDED RETRIEVAL SKELETON ONLY
 
 Prior M30.3 gate result:
 
@@ -90,46 +90,57 @@ Prior M30.3 gate result:
 M30.3 — Index metadata and traceability completed as Hybrid planning/source-control evidence.
 ```
 
-M30.4 may proceed as PLAN only, not GO.
+M30.4 may proceed to GO only for the bounded implementation slice defined below.
 
-Required M30.4 planning output:
+Required M30.4 implementation output:
 
 ```text
-Controlled checkpoint plan for retrieval non-authority enforcement.
+A minimal deterministic retrieval skeleton that enforces helper-only, non-authoritative, source-traceable behavior.
 ```
 
-M30.4 planning must define or confirm:
+Allowed M30.4 implementation scope:
 
-- execution mode;
-- required completion artifact;
-- implementation/source minimum;
-- governance boundary;
-- DDR-005 impact;
-- DDR-004 limitation impact;
-- DDR-007 awareness if retrieval-to-AI handoff is touched;
-- architecture boundary impact;
-- validation requirement;
-- tracker movement rule;
-- explicit non-implementation claims.
+- create an `asbp/retrieval/` package;
+- define retrieval/index record models or dataclasses;
+- implement in-memory keyword/metadata search only;
+- implement source eligibility enforcement from provided records;
+- return source trace metadata with every result;
+- expose helper-only / non-authoritative result flags;
+- fail closed when required metadata is missing;
+- reject pending/TBD/reference-only material as mandatory authority;
+- add tests proving non-authority, source traceability, eligibility filtering, and fail-closed behavior.
 
-M30.4 planning must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
+Blocked in M30.4:
 
-M30.4 planning must preserve the M30.2 source eligibility model: only approved/eligible/status-aware sources may be considered for later retrieval/indexing, and pending/TBD material must not become mandatory authority.
+- embeddings;
+- vector store;
+- external search service;
+- live standards lookup;
+- source registry mutation;
+- retrieval-backed source authority;
+- AI/model/provider behavior;
+- UI/API behavior;
+- tracker advancement from M30.4 before implementation and validation evidence exists;
+- deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
 
-M30.4 planning must preserve the M30.3 index metadata and traceability contract: future retrieval/index records require source ID/path, version/status, authority role, eligibility decision, chunk/ref, build metadata, and limitation traceability.
+M30.4 must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
 
-Tracker movement from M30.4 remains blocked until the accepted M30.4 plan and required evidence exist.
+M30.4 must preserve the M30.2 source eligibility model: only approved/eligible/status-aware sources may be considered for retrieval/indexing, and pending/TBD material must not become mandatory authority.
+
+M30.4 must preserve the M30.3 index metadata and traceability contract: retrieval/index records require source ID/path, version/status, authority role, eligibility decision, chunk/ref, build metadata, and limitation traceability.
+
+Tracker movement from M30.4 remains blocked until bounded implementation evidence and validation evidence exist.
 
 ## Current Approved Checkpoint Family
 
 M30.4 — Retrieval non-authority enforcement.
 
-Status: READY FOR PLAN ONLY.
+Status: READY FOR GO — BOUNDED RETRIEVAL SKELETON ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M30.4 — Retrieval non-authority enforcement
+GO M30.4 — Retrieval non-authority enforcement
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -188,32 +199,31 @@ Latest completed control/recovery evidence:
 | M30.2 source eligibility model                       | Completed / user-applied planning-source evidence |
 | M30.2 tracker alignment                              | Completed / current tracker baseline              |
 | M30.3 index metadata and traceability plan           | Completed / user-applied planning-source evidence |
+| M30.4 bounded implementation gate correction         | In review / current tracker action                |
 
 ## Exact Next Unfinished Work
 
-PLAN M30.4 — Retrieval non-authority enforcement.
+GO M30.4 — Retrieval non-authority enforcement.
 
 Current state:
 
 ```text
-READY FOR PLAN ONLY / GO BLOCKED
+READY FOR BOUNDED IMPLEMENTATION / TRACKER ADVANCEMENT BLOCKED
 ```
 
 Allowed current work:
 
 ```text
-PLAN M30.4 only.
+GO M30.4 bounded retrieval skeleton only.
 ```
 
 Blocked until separately authorized:
 
-- GO;
 - tracker advancement from M30.4;
-- M30 retrieval/indexing implementation;
-- retrieval implementation;
-- indexing implementation;
+- broad M30 retrieval/indexing implementation beyond the bounded skeleton;
 - embeddings implementation;
-- standards-backed live lookup;
+- vector store implementation;
+- live standards lookup;
 - retrieval-backed source authority;
 - AI/model/provider behavior;
 - UI/API behavior;
@@ -256,7 +266,11 @@ git status -sb — clean working tree on feature/m28-3-citation-model-contract
 python -m pytest -q — 1416 passed in 44.97s
 ```
 
-This M30.3 tracker alignment does not require executable validation because it changes only tracker/governance state.
+M30.4 bounded implementation requires executable validation:
+
+```text
+python -m pytest -q
+```
 
 ## Milestone UAT Status
 
@@ -304,7 +318,9 @@ PR #41 recorded M30.1 PLAN-only completion and set PLAN M30.2 as the next work.
 
 The current tracker baseline recorded M30.2 Hybrid planning/source-control completion and set PLAN M30.3 as the next work.
 
-This tracker update records M30.3 Hybrid planning/source-control completion and sets PLAN M30.4 as the next work. It does not start M30.4, does not authorize GO, and does not implement retrieval/indexing/embedding.
+The current tracker baseline recorded M30.3 Hybrid planning/source-control completion and set PLAN M30.4 as the next work.
+
+This tracker update corrects M30.4 from PLAN-only to bounded implementation GO. It does not complete M30.4, does not advance tracker beyond M30.4, and does not authorize embeddings, vector stores, AI, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -329,11 +345,11 @@ DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It r
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, or M30.3.
 
-DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.2 supplies source-eligibility planning/source-control evidence only. M30.3 supplies index metadata and traceability planning/source-control evidence only. No retrieval, embedding, live lookup, indexing implementation, vector store, chunk generation, or retrieval-backed source authority is implemented by the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, or M30.3.
+DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation does not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is authorized by this gate correction.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
-DDR-007 awareness applies if M30 planning proposes any retrieval-to-AI handoff or AI retrieval use. Model/provider integration, local AI runtime integration, app-coupled heavy-use testing, and pre-go-live execution remain blocked until roadmap-authorized strategy, boundary, tests, validation, and acceptance evidence exist.
+DDR-007 awareness applies if M30 implementation proposes any retrieval-to-AI handoff or AI retrieval use. M30.4 bounded skeleton must not implement retrieval-to-AI handoff, model/provider integration, local AI runtime integration, app-coupled heavy-use testing, or pre-go-live execution.
 
 ## Build / Governance Balance Policy Status
 
@@ -343,34 +359,30 @@ Governance defines the boundary. Implementation proves progress. Validation prov
 
 CONTROL-RECOVERY-002 preserved valid implementation evidence from M27-M29 for its limited scope while preventing governance or milestone evidence from being overread as product/customer/SaaS/release/deployment readiness.
 
-M30.4 planning must include an anti-drift gate with execution mode, implementation minimum, governance boundary, validation evidence required, tracker movement rule, DDR impact, architecture boundary impact where relevant, and explicit non-implementation claims.
+M30.4 bounded implementation must include code/source evidence and tests. Documentation alone is not enough.
 
 ## Blocked Actions
 
-Do not start M30 implementation before M30.4 and later checkpoint plans are completed and accepted under the build/governance anti-drift gate.
+Do not claim M30.4 completion before bounded implementation evidence and validation evidence exist.
 
-Do not implement retrieval before roadmap-authorized M30 implementation checkpoints and required DDR-005 controls.
+Do not implement retrieval beyond deterministic in-memory keyword/metadata skeleton behavior.
 
-Do not implement indexing before roadmap-authorized controls define traceability, metadata, eligibility, non-authority enforcement, and validation expectations.
+Do not implement embeddings, vector stores, live standards lookup, retrieval-backed source authority, AI/model/provider behavior, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1 plan, M30.2 source eligibility model, or M30.3 metadata/traceability plan.
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, or M30.4 bounded skeleton.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
 Do not claim full product-ready document factory completion.
-
-Do not claim productization, deployment, commercial release, or SaaS readiness.
 
 ## Allowed Next Work
 
 Allowed next work is:
 
 ```text
-PLAN M30.4 — Retrieval non-authority enforcement
+GO M30.4 — bounded retrieval non-authority enforcement skeleton
 ```
-
-PLAN only. GO and implementation remain blocked.
 
 ## Next Action
 
-PLAN M30.4 — Retrieval non-authority enforcement.
+GO M30.4 — bounded retrieval non-authority enforcement skeleton.
