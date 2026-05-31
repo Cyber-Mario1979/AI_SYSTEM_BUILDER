@@ -1,13 +1,21 @@
 """Retrieval boundary package.
 
 This package preserves the earlier M11.4 retrieval architecture boundary helpers
-and exposes the M30.4/M30.5/M30.6/M30.7 bounded retrieval APIs.
+and exposes the M30.4/M30.5/M30.6/M30.7/M30.8 bounded retrieval APIs.
 
 Retrieval remains deterministic, helper-only, non-authoritative, and
 source-traceable. It does not implement embeddings, vector stores, live lookup,
 AI/model/provider behavior, or UI/API behavior.
 """
 
+from .ai_handoff import (
+    AIHandoffBuildResult,
+    AIHandoffContextItem,
+    AIHandoffContextPacket,
+    AIHandoffContract,
+    AIHandoffRefusal,
+    build_ai_handoff_packet,
+)
 from .assets import AssetRetrievalControls, AssetRetrievalResult
 from .contracts import (
     GOVERNED_DETERMINISTIC_RETRIEVAL_MODE,
@@ -39,6 +47,11 @@ __all__ = [
     "build_probabilistic_search_retrieval_request",
     "build_retrieval_architecture_baseline",
     "validate_retrieval_request",
+    "AIHandoffBuildResult",
+    "AIHandoffContextItem",
+    "AIHandoffContextPacket",
+    "AIHandoffContract",
+    "AIHandoffRefusal",
     "AssetRetrievalControls",
     "AssetRetrievalResult",
     "InMemoryRetrievalIndex",
@@ -51,5 +64,6 @@ __all__ = [
     "RetrievalResult",
     "StandardsRetrievalControls",
     "StandardsRetrievalResult",
+    "build_ai_handoff_packet",
     "evaluate_retrieval_results",
 ]
