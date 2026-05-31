@@ -12,16 +12,18 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN M30.2 ONLY.
+Status: READY FOR PLAN M30.3 ONLY.
 
-M30 implementation has not started.
+M30 retrieval/indexing implementation has not started.
 
 M30.1 has completed as PLAN-only decision/source-control evidence.
+
+M30.2 has completed as Hybrid planning/source-control evidence.
 
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M30.2 — Source eligibility model
+PLAN M30.3 — Index metadata and traceability
 ```
 
 This is PLAN only, not GO.
@@ -66,29 +68,33 @@ CONTROL-RECOVERY-002 completed recovery containment and closed with re-entry con
 
 M30.1 completed as PLAN-only decision/source-control evidence.
 
+M30.2 completed as Hybrid planning/source-control evidence.
+
 The CAPA remains active until the Project Owner accepts that the control is working after qualifying future execution.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M30-002
-Applies to: M30.2 — Source eligibility model
+Gate ID: ASBP-AEG-M30-003
+
+Applies to: M30.3 — Index metadata and traceability
+
 Gate status: READY FOR PLAN ONLY
 
-Prior M30.1 gate result:
+Prior M30.2 gate result:
 
 ```text
-M30.1 — Retrieval justification gate completed as PLAN-only decision/source-control evidence.
+M30.2 — Source eligibility model completed as Hybrid planning/source-control evidence.
 ```
 
-M30.2 may proceed as PLAN only, not GO.
+M30.3 may proceed as PLAN only, not GO.
 
-Required M30.2 planning output:
+Required M30.3 planning output:
 
 ```text
-Controlled checkpoint plan for the source eligibility model.
+Controlled checkpoint plan for index metadata and traceability.
 ```
 
-M30.2 planning must define or confirm:
+M30.3 planning must define or confirm:
 
 - execution mode;
 - required completion artifact;
@@ -97,24 +103,27 @@ M30.2 planning must define or confirm:
 - DDR-005 impact;
 - DDR-004 limitation impact;
 - DDR-007 awareness if retrieval-to-AI handoff is touched;
+- architecture boundary impact;
 - validation requirement;
 - tracker movement rule;
 - explicit non-implementation claims.
 
-M30.2 planning must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
+M30.3 planning must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
 
-Tracker movement from M30.2 remains blocked until the accepted M30.2 plan and required evidence exist.
+M30.3 planning must preserve the M30.2 source eligibility model: only approved/eligible/status-aware sources may be considered for later retrieval/indexing, and pending/TBD material must not become mandatory authority.
+
+Tracker movement from M30.3 remains blocked until the accepted M30.3 plan and required evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M30.2 — Source eligibility model.
+M30.3 — Index metadata and traceability.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M30.2 — Source eligibility model
+PLAN M30.3 — Index metadata and traceability
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -122,13 +131,19 @@ PLAN M30.2 — Source eligibility model
 Latest completed roadmap checkpoint:
 
 ```text
-M30.1 — Retrieval justification gate
+M30.2 — Source eligibility model
 ```
 
 Completion type:
 
 ```text
-PLAN-only decision/source-control evidence
+Hybrid planning/source-control evidence
+```
+
+M30.2 completion evidence:
+
+```text
+docs/milestones/M30/M30_2_SOURCE_ELIGIBILITY_MODEL.md
 ```
 
 M30.1 completion evidence:
@@ -145,23 +160,24 @@ PR #40 — docs: plan M30.1 retrieval justification gate
 
 Latest completed control/recovery evidence:
 
-| Evidence | Status |
-|---|---|
-| Post-M29 full repository index before M30 | Completed / merged in PR #30 |
-| CONTROL-RECOVERY-002 Phase 0 gate opening | Completed / merged in PR #32 |
-| CONTROL-RECOVERY-002 Phase 1 evidence matrix | Completed / merged in PR #33 |
-| CONTROL-RECOVERY-002 Phase 2 claim quarantine review | Completed / merged in PR #34 |
-| CONTROL-RECOVERY-002 Phase 3 rebaseline decision | Completed / merged in PR #35 |
-| CONTROL-RECOVERY-002 Phase 3A tracker alignment | Completed / merged in PR #36 |
-| CONTROL-RECOVERY-002 closure preparation | Completed / merged in PR #37 |
-| CONTROL-RECOVERY-002 closure record | Completed / merged in PR #38 |
-| CONTROL-RECOVERY-002 final tracker alignment | Completed / merged in PR #39 |
-| M30.1 retrieval justification gate plan | Completed / merged in PR #40 |
-| M30.1 tracker alignment | In review / current tracker action |
+| Evidence                                             | Status                                            |
+| ---------------------------------------------------- | ------------------------------------------------- |
+| Post-M29 full repository index before M30            | Completed / merged in PR #30                      |
+| CONTROL-RECOVERY-002 Phase 0 gate opening            | Completed / merged in PR #32                      |
+| CONTROL-RECOVERY-002 Phase 1 evidence matrix         | Completed / merged in PR #33                      |
+| CONTROL-RECOVERY-002 Phase 2 claim quarantine review | Completed / merged in PR #34                      |
+| CONTROL-RECOVERY-002 Phase 3 rebaseline decision     | Completed / merged in PR #35                      |
+| CONTROL-RECOVERY-002 Phase 3A tracker alignment      | Completed / merged in PR #36                      |
+| CONTROL-RECOVERY-002 closure preparation             | Completed / merged in PR #37                      |
+| CONTROL-RECOVERY-002 closure record                  | Completed / merged in PR #38                      |
+| CONTROL-RECOVERY-002 final tracker alignment         | Completed / merged in PR #39                      |
+| M30.1 retrieval justification gate plan              | Completed / merged in PR #40                      |
+| M30.1 tracker alignment                              | Completed / current tracker baseline              |
+| M30.2 source eligibility model                       | Completed / user-applied planning-source evidence |
 
 ## Exact Next Unfinished Work
 
-PLAN M30.2 — Source eligibility model.
+PLAN M30.3 — Index metadata and traceability.
 
 Current state:
 
@@ -172,14 +188,14 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M30.2 only.
+PLAN M30.3 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M30.2;
-- M30 implementation;
+- tracker advancement from M30.3;
+- M30 retrieval/indexing implementation;
 - retrieval implementation;
 - indexing implementation;
 - embeddings implementation;
@@ -194,6 +210,7 @@ Blocked until separately authorized:
 Latest checkpoint review evidence:
 
 - M30.1 retrieval justification gate plan merged in PR #40.
+- M30.2 source eligibility model prepared as Hybrid planning/source-control evidence and user-applied.
 
 Latest recovery review evidence:
 
@@ -209,7 +226,7 @@ Latest repository-index review evidence:
 
 Post-M29 full repository index completion gate was merged in PR #30.
 
-No `python -m pytest -q` validation was required for the full repository index package, CONTROL-RECOVERY-002 packages, or M30.1 plan because those packages changed only documentation/governance/tracker evidence files.
+No `python -m pytest -q` validation was required for the full repository index package, CONTROL-RECOVERY-002 packages, M30.1 plan, M30.1 tracker alignment, or M30.2 source eligibility model because those packages changed only documentation/governance/tracker evidence files.
 
 Latest executable validation remains:
 
@@ -224,7 +241,7 @@ git status -sb — clean working tree on feature/m28-3-citation-model-contract
 python -m pytest -q — 1416 passed in 44.97s
 ```
 
-This M30.1 tracker alignment does not require executable validation because it changes only tracker/governance state.
+This M30.2 tracker alignment does not require executable validation because it changes only tracker/governance state.
 
 ## Milestone UAT Status
 
@@ -268,7 +285,9 @@ PR #39 recorded CONTROL-RECOVERY-002 closure in the tracker and re-opened PLAN M
 
 PR #40 added the M30.1 retrieval justification gate plan.
 
-This tracker update records M30.1 PLAN-only completion and sets PLAN M30.2 as the next work. It does not start M30.2, does not authorize GO, and does not implement retrieval/indexing/embedding.
+PR #41 recorded M30.1 PLAN-only completion and set PLAN M30.2 as the next work.
+
+This tracker update records M30.2 Hybrid planning/source-control completion and sets PLAN M30.3 as the next work. It does not start M30.3, does not authorize GO, and does not implement retrieval/indexing/embedding.
 
 ## Repository Index Control Status
 
@@ -291,9 +310,9 @@ The full repository index does not start M30, implement retrieval, implement sta
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, or M30.1.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, or M30.2.
 
-DDR-005 remains deferred to M30. M30.1 did not close DDR-005. No retrieval, embedding, live lookup, or retrieval-backed source authority is implemented by the repository index, CONTROL-RECOVERY-002, or M30.1.
+DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.2 supplies source-eligibility planning/source-control evidence only. No retrieval, embedding, live lookup, indexing implementation, or retrieval-backed source authority is implemented by the repository index, CONTROL-RECOVERY-002, M30.1, or M30.2.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
@@ -307,15 +326,17 @@ Governance defines the boundary. Implementation proves progress. Validation prov
 
 CONTROL-RECOVERY-002 preserved valid implementation evidence from M27-M29 for its limited scope while preventing governance or milestone evidence from being overread as product/customer/SaaS/release/deployment readiness.
 
-M30.2 planning must include an anti-drift gate with execution mode, implementation minimum, governance boundary, validation evidence required, tracker movement rule, DDR impact, architecture boundary impact where relevant, and explicit non-implementation claims.
+M30.3 planning must include an anti-drift gate with execution mode, implementation minimum, governance boundary, validation evidence required, tracker movement rule, DDR impact, architecture boundary impact where relevant, and explicit non-implementation claims.
 
 ## Blocked Actions
 
-Do not start M30 implementation before M30.2 and later checkpoint plans are completed and accepted under the build/governance anti-drift gate.
+Do not start M30 implementation before M30.3 and later checkpoint plans are completed and accepted under the build/governance anti-drift gate.
 
 Do not implement retrieval before roadmap-authorized M30 implementation checkpoints and required DDR-005 controls.
 
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, or M30.1 plan.
+Do not implement indexing before M30.3 and later roadmap-authorized controls define traceability, metadata, eligibility, and validation expectations.
+
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1 plan, or M30.2 source eligibility model.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -328,11 +349,11 @@ Do not claim productization, deployment, commercial release, or SaaS readiness.
 Allowed next work is:
 
 ```text
-PLAN M30.2 — Source eligibility model
+PLAN M30.3 — Index metadata and traceability
 ```
 
 PLAN only. GO and implementation remain blocked.
 
 ## Next Action
 
-PLAN M30.2 — Source eligibility model.
+PLAN M30.3 — Index metadata and traceability.
