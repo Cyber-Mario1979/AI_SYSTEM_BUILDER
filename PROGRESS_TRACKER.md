@@ -12,7 +12,7 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN M30.8 ONLY.
+Status: READY FOR GO M30.8 BOUNDED RETRIEVAL-TO-AI HANDOFF CONTRACT ONLY.
 
 M30 retrieval/indexing implementation has started only through bounded deterministic retrieval slices:
 
@@ -35,13 +35,15 @@ M30.6 has completed as bounded implementation with validation evidence.
 
 M30.7 has completed as bounded implementation with validation evidence.
 
+M30.8 has completed as PLAN-only implementation-gate evidence.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M30.8 — Retrieval-to-AI handoff contract
+GO M30.8 — Retrieval-to-AI handoff contract
 ```
 
-This is PLAN only, not GO.
+This GO is limited to deterministic context-packet contract helpers that transform already-evaluated retrieval outputs into bounded, citation-bearing, limitation-visible, refusal-aware packets for future AI use.
 
 The post-M29 full repository index prerequisite is complete and merged.
 
@@ -95,6 +97,8 @@ M30.6 completed as bounded implementation with executable validation evidence.
 
 M30.7 completed as bounded implementation with executable validation evidence.
 
+M30.8 completed as PLAN-only implementation-gate evidence.
+
 The CAPA remains active until the Project Owner accepts that the control is working after qualifying future execution.
 
 ## Active Assistant Execution Gate
@@ -103,51 +107,63 @@ Gate ID: ASBP-AEG-M30-008
 
 Applies to: M30.8 — Retrieval-to-AI handoff contract
 
-Gate status: READY FOR PLAN ONLY
+Gate status: READY FOR GO — BOUNDED RETRIEVAL-TO-AI HANDOFF CONTRACT ONLY
 
-Prior M30.7 gate result:
-
-```text
-M30.7 — Retrieval evaluation harness completed as bounded implementation with validation evidence.
-```
-
-M30.8 may proceed as PLAN only, not GO.
-
-Required M30.8 planning output:
+Prior M30.8 gate result:
 
 ```text
-Controlled checkpoint plan for retrieval-to-AI handoff contract.
+M30.8 — Retrieval-to-AI handoff contract completed as PLAN-only implementation-gate evidence.
 ```
 
-M30.8 planning must define or confirm:
+M30.8 may proceed to GO only for the bounded implementation slice defined below.
 
-- execution mode;
-- required completion artifact;
-- implementation/source minimum;
-- context packet boundary;
-- citation/limitation handling;
-- refusal triggers;
-- DDR-007 impact;
-- validation requirement;
-- tracker movement rule;
-- explicit non-implementation claims.
+Required M30.8 implementation output:
 
-M30.8 planning must preserve the M30.1 decision that retrieval is helper-only, source-traceable, and non-authoritative.
+```text
+Deterministic context-packet contract helpers that transform already-evaluated retrieval outputs into bounded, citation-bearing, limitation-visible, refusal-aware packets for future AI use.
+```
 
-M30.8 planning must not implement model/provider behavior, AI runtime behavior, or raw retrieval-to-model truth injection.
+Allowed M30.8 implementation scope:
 
-Tracker movement from M30.8 remains blocked until the accepted M30.8 plan and required evidence exist.
+- create `asbp/retrieval/ai_handoff.py`;
+- add tests under `tests/test_retrieval_ai_handoff_contract.py`;
+- optionally update `asbp/retrieval/__init__.py` for exports;
+- define context packet and refusal models;
+- require retrieval evaluation evidence before packet creation;
+- include source IDs, source paths, source versions, chunk refs, and citation strings where available;
+- include retrieval-result limitations and handoff-level limitations;
+- preserve helper-only / non-authoritative status;
+- define refusal triggers for failed evaluation, missing source trace, forbidden sources, missing limitations, or attempts to pass raw retrieval as truth;
+- expose deterministic helpers only, with no model calls and no provider/runtime integration.
+
+Blocked in M30.8:
+
+- tracker advancement from M30.8 before implementation and validation evidence exists;
+- broad M30 retrieval/indexing implementation beyond the bounded M30.8 contract slice;
+- AI/model/provider calls;
+- local AI runtime integration;
+- app-coupled heavy-use testing;
+- prompt execution;
+- raw retrieval-to-model truth injection;
+- embeddings implementation;
+- vector store implementation;
+- live source lookup;
+- retrieval-backed source authority;
+- UI/API behavior;
+- deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
+
+Tracker movement from M30.8 remains blocked until bounded implementation evidence and validation evidence exist.
 
 ## Current Approved Checkpoint Family
 
 M30.8 — Retrieval-to-AI handoff contract.
 
-Status: READY FOR PLAN ONLY.
+Status: READY FOR GO — BOUNDED RETRIEVAL-TO-AI HANDOFF CONTRACT ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M30.8 — Retrieval-to-AI handoff contract
+GO M30.8 — Retrieval-to-AI handoff contract
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -155,13 +171,25 @@ PLAN M30.8 — Retrieval-to-AI handoff contract
 Latest completed roadmap checkpoint:
 
 ```text
-M30.7 — Retrieval evaluation harness
+M30.8 — Retrieval-to-AI handoff contract
 ```
 
 Completion type:
 
 ```text
-Bounded implementation with validation evidence
+PLAN-only implementation-gate evidence
+```
+
+M30.8 plan evidence:
+
+```text
+docs/milestones/M30/M30_8_RETRIEVAL_TO_AI_HANDOFF_CONTRACT_PLAN.md
+```
+
+M30.8 merge evidence:
+
+```text
+PR #57 — docs: plan M30.8 retrieval to AI handoff contract
 ```
 
 M30.7 implementation evidence:
@@ -183,20 +211,6 @@ M30.7 merge evidence:
 ```text
 PR #54 — tracker: correct M30.7 plan landing state
 PR #55 — feat: add M30.7 retrieval evaluation harness
-```
-
-M30.7 plan evidence:
-
-```text
-docs/milestones/M30/M30_7_RETRIEVAL_EVALUATION_HARNESS_PLAN.md
-```
-
-M30.6 implementation evidence:
-
-```text
-asbp/retrieval/assets.py
-asbp/retrieval/__init__.py
-tests/test_asset_retrieval_controls.py
 ```
 
 M30.6 validation evidence:
@@ -249,37 +263,40 @@ Latest completed control/recovery evidence:
 | M30.7 retrieval evaluation harness plan              | Completed / merged in PR #53                      |
 | M30.7 tracker correction                             | Completed / merged in PR #54                      |
 | M30.7 retrieval evaluation harness implementation    | Completed / merged in PR #55                      |
-| M30.7 tracker alignment                              | In review / current tracker action                |
+| M30.7 tracker alignment                              | Completed / merged in PR #56                      |
+| M30.8 retrieval-to-AI handoff contract plan          | Completed / merged in PR #57                      |
+| M30.8 tracker correction                             | In review / current tracker action                |
 
 ## Exact Next Unfinished Work
 
-PLAN M30.8 — Retrieval-to-AI handoff contract.
+GO M30.8 — Retrieval-to-AI handoff contract.
 
 Current state:
 
 ```text
-READY FOR PLAN ONLY / GO BLOCKED
+READY FOR BOUNDED IMPLEMENTATION / TRACKER ADVANCEMENT BLOCKED
 ```
 
 Allowed current work:
 
 ```text
-PLAN M30.8 only.
+GO M30.8 bounded retrieval-to-AI handoff contract helpers only.
 ```
 
 Blocked until separately authorized:
 
-- GO;
 - tracker advancement from M30.8;
 - broad M30 retrieval/indexing implementation beyond accepted checkpoint scope;
+- AI/model/provider calls;
+- local AI runtime integration;
+- app-coupled heavy-use testing;
+- prompt execution;
+- raw retrieval-to-model truth injection;
 - embeddings implementation;
 - vector store implementation;
 - live source lookup;
-- retrieval ranking changes outside evaluation helpers;
 - retrieval-backed source authority;
-- AI/model/provider behavior;
 - UI/API behavior;
-- raw retrieval dumped into a model as truth;
 - deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
 
 ## Latest Verified Validation / Review Evidence
@@ -294,32 +311,14 @@ Validation scope:
 
 M30.7 retrieval evaluation harness plus existing test suite.
 
-Latest implementation evidence:
+Latest checkpoint review evidence:
 
+- PR #57 added M30.8 retrieval-to-AI handoff contract implementation-gate plan.
+- PR #56 recorded M30.7 retrieval evaluation harness completion and validation evidence.
 - PR #55 added M30.7 bounded retrieval evaluation harness.
 - PR #54 corrected tracker state and opened bounded GO M30.7 before PR #55 was merged.
 
-Previous executable validation:
-
-```text
-python -m pytest -q — 1499 passed in 48.57s
-```
-
-Previous validation scope:
-
-M30.6 asset retrieval controls plus existing test suite.
-
-Earlier executable validation:
-
-```text
-python -m pytest -q — 1492 passed in 48.49s
-```
-
-Earlier validation scope:
-
-M30.5 standards retrieval controls plus existing test suite.
-
-This M30.7 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-run validation evidence.
+This M30.8 tracker correction does not require executable validation because it changes only tracker/governance state and records already-merged planning evidence.
 
 ## Milestone UAT Status
 
@@ -395,7 +394,11 @@ PR #54 corrected M30.7 tracker state and opened bounded GO M30.7.
 
 PR #55 added M30.7 bounded retrieval evaluation harness implementation and tests.
 
-This tracker update records M30.7 bounded implementation completion and validation evidence. It sets PLAN M30.8 as the next work. It does not start M30.8, does not authorize GO, and does not authorize embeddings, vector stores, AI, UI/API, productization, or release behavior.
+PR #56 recorded M30.7 bounded implementation completion and validation evidence.
+
+PR #57 added the M30.8 retrieval-to-AI handoff contract plan.
+
+This tracker correction records M30.8 PLAN-only implementation-gate completion and sets GO M30.8 as the next work. It does not start M30.8 implementation, does not authorize broad retrieval/indexing, and does not authorize AI/model/provider calls, local AI runtime, raw retrieval-to-model truth injection, embeddings, vector stores, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -418,13 +421,13 @@ The full repository index does not start M30, implement retrieval, implement sta
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, or M30.7.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, or M30.8.
 
-DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation did not close DDR-005 by itself. M30.5 standards retrieval controls did not close DDR-005 by itself. M30.6 asset retrieval controls did not close DDR-005 by itself. M30.7 retrieval evaluation harness did not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.7.
+DDR-005 remains deferred to M30. M30.1 did not close DDR-005. M30.2 did not close DDR-005. M30.3 did not close DDR-005. M30.4 bounded implementation did not close DDR-005 by itself. M30.5 standards retrieval controls did not close DDR-005 by itself. M30.6 asset retrieval controls did not close DDR-005 by itself. M30.7 retrieval evaluation harness did not close DDR-005 by itself. M30.8 plan does not close DDR-005 by itself. No standards embedding, live lookup, vector store, embeddings, or retrieval-backed source authority is implemented or authorized by M30.8.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
-DDR-007 awareness applies if M30 implementation proposes any retrieval-to-AI handoff or AI retrieval use. M30.7 retrieval evaluation harness did not implement retrieval-to-AI handoff, model/provider integration, local AI runtime integration, app-coupled heavy-use testing, or pre-go-live execution.
+DDR-007 applies directly. M30.8 plan authorizes only a bounded handoff contract and does not implement model/provider integration, local AI runtime integration, app-coupled heavy-use testing, prompt execution, or pre-go-live execution.
 
 ## Build / Governance Balance Policy Status
 
@@ -436,19 +439,19 @@ CONTROL-RECOVERY-002 preserved valid implementation evidence from M27-M29 for it
 
 M30.4, M30.5, M30.6, and M30.7 satisfied bounded build/content requirements by creating code and tests, then recording executable validation evidence.
 
-M30.8 planning must define the AI handoff boundary before any retrieval-to-AI contract implementation begins.
+M30.8 GO must satisfy the build/content requirement by creating code and tests, then recording executable validation evidence.
 
 ## Blocked Actions
 
-Do not start M30.8 implementation before PLAN M30.8 is completed and accepted under the build/governance anti-drift gate.
+Do not claim M30.8 implementation completion before bounded implementation evidence and validation evidence exist.
 
-Do not implement retrieval-to-AI handoff before roadmap-authorized M30.8 GO and required DDR-007 controls.
+Do not implement retrieval-to-AI handoff beyond deterministic context-packet contract helpers.
 
-Do not implement retrieval beyond accepted deterministic in-memory keyword/metadata skeleton, standards retrieval controls, asset retrieval controls, and bounded M30.7 evaluation helpers without a later accepted gate.
+Do not implement retrieval beyond accepted deterministic in-memory keyword/metadata skeleton, standards retrieval controls, asset retrieval controls, evaluation helpers, and bounded M30.8 handoff contract helpers without a later accepted gate.
 
-Do not implement embeddings, vector stores, live source lookup, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, AI/model/provider behavior, UI/API behavior, raw retrieval-to-model truth injection, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+Do not implement AI/model/provider calls, local AI runtime integration, app-coupled heavy-use testing, prompt execution, raw retrieval-to-model truth injection, embeddings, vector stores, live source lookup, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, or M30.7.
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30.1, M30.2, M30.3, M30.4, M30.5, M30.6, M30.7, or M30.8.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -459,11 +462,9 @@ Do not claim full product-ready document factory completion.
 Allowed next work is:
 
 ```text
-PLAN M30.8 — Retrieval-to-AI handoff contract
+GO M30.8 — bounded retrieval-to-AI handoff contract helpers
 ```
-
-PLAN only. GO and implementation remain blocked.
 
 ## Next Action
 
-PLAN M30.8 — Retrieval-to-AI handoff contract.
+GO M30.8 — bounded retrieval-to-AI handoff contract helpers.
