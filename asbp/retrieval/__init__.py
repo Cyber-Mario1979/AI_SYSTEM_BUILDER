@@ -1,5 +1,12 @@
-# asbp/retrieval/__init__.py
-"""Retrieval boundary package for the M11.4 retrieval-architecture-basics checkpoint."""
+"""Retrieval boundary package.
+
+This package preserves the earlier M11.4 retrieval architecture boundary helpers
+and exposes the M30.4 bounded retrieval skeleton API.
+
+M30.4 retrieval remains deterministic, helper-only, non-authoritative, and
+source-traceable. It does not implement embeddings, vector stores, live lookup,
+AI/model/provider behavior, or UI/API behavior.
+"""
 
 from .contracts import (
     GOVERNED_DETERMINISTIC_RETRIEVAL_MODE,
@@ -11,6 +18,8 @@ from .contracts import (
     build_retrieval_architecture_baseline,
     validate_retrieval_request,
 )
+from .models import RetrievalIndexRecord, RetrievalQuery, RetrievalResult
+from .search import InMemoryRetrievalIndex
 
 __all__ = [
     "GOVERNED_DETERMINISTIC_RETRIEVAL_MODE",
@@ -21,4 +30,8 @@ __all__ = [
     "build_probabilistic_search_retrieval_request",
     "build_retrieval_architecture_baseline",
     "validate_retrieval_request",
+    "InMemoryRetrievalIndex",
+    "RetrievalIndexRecord",
+    "RetrievalQuery",
+    "RetrievalResult",
 ]
