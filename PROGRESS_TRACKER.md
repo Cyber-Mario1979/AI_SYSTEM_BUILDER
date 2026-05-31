@@ -56,6 +56,8 @@ CQV content-library remediation Wave 4 completed MVP document template body / se
 
 CQV content-library remediation Wave 5 completed URS-only DCF intake, downstream document dependency contracts, vendor-document extraction source contracts, and validation.
 
+CQV content-library remediation Wave 6 completed MVP standards/document applicability, citation policy source assets, and validation.
+
 After the remediation plan is completely finished, the next required control action is a full repository index before returning to UAT or further build continuation.
 
 The CAPA remains active until the Project Owner accepts that the control is working.
@@ -96,19 +98,23 @@ Current state: BLOCKED.
 
 Exact next allowed work:
 
-PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
+PLAN CQV content-library remediation wave 7 — trial scenario expansion.
 
 This remediation work is not M29.12 acceptance and is not M29.13 closeout.
 
 ## Latest Verified Validation
 
-CQV content-library remediation Wave 5 — URS DCF intake and downstream document dependency contracts:
+CQV content-library remediation Wave 6 — standards/citation expansion where approved:
+
+python -m pytest -q — 1471 passed in 45.17s
+
+Validation was run locally by the Project Owner after applying the Wave 6 standards/citation package and Wave 6 validation fix package.
+
+Wave 6 changed standards/document applicability models/stores, MVP document standards applicability source JSON, MVP document citation policy source JSON, tests, and remediation evidence.
+
+Previous CQV content-library remediation Wave 5 validation:
 
 python -m pytest -q — 1461 passed in 45.60s
-
-Validation was run locally by the Project Owner after applying the corrected Wave 5 URS DCF / downstream dependency package and Wave 5 validation fix package.
-
-Wave 5 changed document input dependency models/stores, URS-only DCF intake catalog source JSON, downstream document dependency contract source JSON, vendor-document extraction source JSON, tests, and remediation evidence.
 
 Previous CQV content-library remediation Wave 4 validation:
 
@@ -148,7 +154,7 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 5 URS-only DCF intake and downstream document dependency contract implementation and validation.
+Aligned locally after Wave 6 standards/citation applicability implementation and validation.
 
 M29.11 remains the latest completed roadmap checkpoint.
 
@@ -156,7 +162,7 @@ M29.12 remains the active checkpoint but is blocked.
 
 M29.13 closeout is blocked.
 
-Ready for PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved — from a clean bounded execution context only.
+Ready for PLAN CQV content-library remediation wave 7 — trial scenario expansion — from a clean bounded execution context only.
 
 After the remediation plan is fully completed, do not return directly to M29.12 UAT or further build continuation before preparing a full repository index.
 
@@ -220,6 +226,18 @@ python -m pytest -q — 1461 passed in 45.60s
 
 Wave 6 — Standards/citation expansion where approved:
 
+Completed.
+
+Evidence:
+
+docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_WAVE_6_STANDARDS_CITATION_EXPANSION.md
+
+Validation:
+
+python -m pytest -q — 1471 passed in 45.17s
+
+Wave 7 — Trial scenario expansion:
+
 Next.
 
 Post-remediation control action:
@@ -248,15 +266,19 @@ Wave 5 directly touched DDR-003 and DDR-006 because it corrected the document in
 
 Wave 5 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because document input dependencies rely on governed source libraries, standards limitations, deferred retrieval boundaries, and external/adopted document-source constraints.
 
-DDR-003 is not fully closed for product-ready document factory behavior. Standards/citation expansion, trial scenarios, validation, repo indexing, and owner acceptance still require remediation/control before M29.12 owner acceptance.
+Wave 6 directly touched DDR-004 and DDR-006 because it expanded standards/document applicability and citation policy source assets for MVP document families while preserving approved standards-source limitations.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope.
+Wave 6 also continued DDR-003, DDR-005, and DDR-009 awareness because standards/citation policy supports later document rendering/output behavior, retrieval remains deferred, and external/product-surface claims remain blocked.
 
-DDR-005 remains deferred to M30.
+DDR-003 is not fully closed for product-ready document factory behavior. Trial scenarios, validation, repo indexing, and owner acceptance still require remediation/control before M29.12 owner acceptance.
+
+DDR-004 remains closed only for the approved standards source/citation authority model scope. Wave 6 did not upgrade source authority beyond approved evidence.
+
+DDR-005 remains deferred to M30. Wave 6 did not implement standards embedding or retrieval.
 
 DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked at M29.12 and milestone closeout remains blocked at M29.13.
 
-Wave 6 must continue DDR-003, DDR-004, DDR-005, DDR-006, and DDR-009 awareness.
+Wave 7 must continue DDR-003, DDR-004, DDR-005, DDR-006, and DDR-009 awareness.
 
 The next remediation work must not claim product-ready CQV content-library completion until source assets, validation evidence, repo index evidence, and owner acceptance support that claim.
 
@@ -286,9 +308,13 @@ Wave 5 was Build/content and completed by implementation/source evidence plus va
 
 Wave 5 was not closed by Markdown-only or governance-only output.
 
-Wave 6 must be planned under the build/governance balance policy.
+Wave 6 was Build/content and completed by implementation/source evidence plus validation.
 
-If Wave 6 changes source JSON, models, validators, stores, tests, standards/citation records, applicability rules, source-limitations, loaders, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
+Wave 6 was not closed by Markdown-only or governance-only output.
+
+Wave 7 must be planned under the build/governance balance policy.
+
+If Wave 7 changes source JSON, models, validators, stores, tests, trial scenario records, output-validation expectations, loaders, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
 
 ## Blocked Actions
 
@@ -312,10 +338,10 @@ Do not claim productization, deployment, commercial release, or SaaS readiness.
 
 Allowed next work is CQV content-library remediation only, continuing with:
 
-PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
+PLAN CQV content-library remediation wave 7 — trial scenario expansion.
 
-Wave 6 should expand standards/citation applicability only where approved, preserve limitations, avoid standards retrieval/embedding, and avoid unsupported clause-level or mandatory-use claims.
+Wave 7 should expand realistic local trial scenarios using the MVP content-library chain while preserving output-validation, local-review-only, non-UAT, non-release, and non-productization boundaries.
 
 ## Next Action
 
-PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
+PLAN CQV content-library remediation wave 7 — trial scenario expansion.
