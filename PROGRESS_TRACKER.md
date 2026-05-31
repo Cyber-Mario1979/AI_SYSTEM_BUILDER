@@ -12,15 +12,57 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources
 
-Status: READY FOR PLAN ONLY.
+Status: PAUSED BY CONTROL-RECOVERY-002.
 
 M30 implementation has not started.
+
+Normal `PLAN M30.1 — Retrieval justification gate` is preserved as the next normal roadmap checkpoint, but it is paused until CONTROL-RECOVERY-002 exits by accepted closeout or explicit Project Owner recovery decision.
 
 The post-M29 full repository index prerequisite is complete and merged.
 
 ## Active Control Recovery Gate
 
-None active.
+CONTROL-RECOVERY-002 — M23-to-M30 Drift Audit and Rebaseline.
+
+Status: ACTIVE.
+
+Governing file:
+
+```text
+docs/governance/control_recovery/CONTROL_RECOVERY_002_M23_TO_M30_DRIFT_AUDIT_AND_REBASELINE.md
+```
+
+Recovery-state evidence merged so far:
+
+1. CONTROL-RECOVERY-002 Phase 0 — recovery gate opening.
+2. CONTROL-RECOVERY-002 Phase 1 — M23-to-M30 evidence matrix.
+3. CONTROL-RECOVERY-002 Phase 2 — claim quarantine review.
+4. CONTROL-RECOVERY-002 Phase 3 — tracker and authority rebaseline decision.
+
+Current recovery action:
+
+```text
+CONTROL-RECOVERY-002 Phase 3A — Tracker recovery-state alignment
+```
+
+Allowed next recovery work after this tracker alignment is reviewed and accepted:
+
+```text
+CONTROL-RECOVERY-002 Phase 5 — Recovery closeout preparation
+```
+
+Blocked while CONTROL-RECOVERY-002 is active:
+
+- normal `PLAN M30.1`;
+- `GO` for any normal roadmap checkpoint;
+- tracker advancement as normal roadmap progress;
+- checkpoint evidence implying M30.1 progress or completion;
+- retrieval, indexing, or embeddings implementation;
+- standards-backed live lookup;
+- retrieval-backed source authority;
+- AI/model/provider behavior;
+- UI/API behavior;
+- deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
 
 CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historical evidence remains in the repository.
 
@@ -38,166 +80,127 @@ M29.12 UAT / owner acceptance was accepted by the Project Owner with clarificati
 
 M29.13 milestone closeout completed M29 with carry-forward limitations.
 
-The post-M29 full repository index control package was completed and merged before M30 planning.
+The post-M29 full repository index control package was completed and merged before CONTROL-RECOVERY-002.
 
-The CAPA remains active until the Project Owner accepts that the control is working.
+The CAPA remains active until the Project Owner accepts that the control is working after qualifying future execution.
 
 ## Active Assistant Execution Gate
 
 Gate ID: ASBP-AEG-M30-001
 Applies to: M30.1 — Retrieval justification gate
-Gate status: PASS
+Gate status: PAUSED BY CONTROL-RECOVERY-002
 
-Evidence basis:
-Project Owner decision recorded during M30.1 gate correction:
+Prior M30.1 gate state before CONTROL-RECOVERY-002:
 
-    Owner decision: M30.1 is Hybrid. Do not reclassify it. Proceed only from this classification.
+```text
+PASS for normal PLAN M30.1 only, from Hybrid classification only.
+```
 
-Checkpoint-control classification:
-M30.1 is classified as Hybrid.
+Current effect:
 
-Required completion artifact:
-M30.1 planning must produce a controlled Hybrid decision/source-control plan for the retrieval justification gate.
+CONTROL-RECOVERY-002 supersedes the prior M30.1 planning permission while the recovery gate is active. Normal M30.1 planning must not resume until CONTROL-RECOVERY-002 exits by accepted closeout or explicit Project Owner recovery decision.
 
-Implementation/source minimum:
-M30.1 does not implement retrieval runtime behavior. M30.1 must define the source-control and decision boundary for where retrieval is justified, where retrieval is rejected, how retrieval remains non-authoritative, and how DDR-005 boundaries are preserved before later M30 implementation checkpoints.
+Preserved M30.1 classification for later re-entry:
 
-Validation requirement:
-No executable validation is required for this gate correction or for M30.1 planning unless code, tests, commands, imports, schemas, runtime behavior, validators, loaders, executable contracts, or source/runtime files are changed. Document consistency review is required.
+```text
+M30.1 is Hybrid.
+```
 
-Tracker movement rule:
-This gate correction does not advance the tracker and does not complete M30.1. Tracker movement from M30.1 remains blocked until the accepted M30.1 plan and required M30.1 decision/source-control evidence exist.
-
-DDR impact:
-DDR-005 directly applies. DDR-005 remains open/deferred for M30 retrieval/indexing decisions. DDR-004 limitations apply where standards-backed retrieval is discussed. DDR-007 awareness applies only if M30.1 planning proposes retrieval-to-AI handoff or AI retrieval use.
-
-Architecture impact:
-No architecture/runtime impact is created by this gate correction. Architecture boundary impact must be addressed during M30.1 planning if later M30 work may touch source contracts, loaders, validators, state, CLI, UI/API, AI/runtime, deployment, or product behavior.
-
-Allowed assistant actions:
-
-- `SS`
-- `STATUS`
-- `NEXT`
-- normal `PLAN M30.1` from Hybrid classification only
-
-Blocked assistant actions:
-
-- reclassifying M30.1
-- `GO`
-- `UPT` / tracker advancement
-- checkpoint evidence drafting
-- implementation packages / `apply.py`
-- PR / ISSUE content that implies M30.1 progress or completion
-- retrieval implementation
-- indexing implementation
-- embeddings implementation
-- standards embedding
-- live standards lookup
-- retrieval-backed source authority
-- AI/model/provider behavior
-- UI/API behavior
-- deployment, release, productization, SaaS readiness, or customer-ready output
-
-This gate is a traffic-light control only. It does not start M30 implementation and does not close, advance, or validate M30.1.
+After recovery exit, M30.1 may resume as planning only, not implementation, and must preserve DDR-005, DDR-004 limitations, DDR-007 awareness, source authority, and non-authoritative retrieval boundaries.
 
 ## Current Approved Checkpoint Family
 
-M30.1 — Retrieval justification gate
+CONTROL-RECOVERY-002 — M23-to-M30 Drift Audit and Rebaseline.
 
-Status: READY FOR PLAN.
+Status: ACTIVE RECOVERY ONLY.
 
-This is the first M30 checkpoint planning target after completion of the post-M29 full repository index control action.
+Normal roadmap checkpoint paused by recovery gate:
 
-M30.1 planning must preserve the build/governance anti-drift gate before any implementation or tracker advancement.
-
-If execution mode, completion minimum, validation requirement, tracker movement rule, DDR impact, or explicit non-implementation claims cannot be stated from active repo authority during PLAN, execution must stop for roadmap interpretation or controlled amendment before GO.
+```text
+PLAN M30.1 — Retrieval justification gate
+```
 
 ## Latest Completed Checkpoint / Control Action
 
 Latest completed roadmap checkpoint:
 
+```text
 M29.13 — Milestone closeout
+```
 
 Closeout status:
 
+```text
 CLOSED WITH CARRY-FORWARD LIMITATIONS
+```
 
-Latest completed control action:
+Latest completed control/recovery evidence:
 
-Post-M29 full repository index before M30
+| Evidence | Status |
+|---|---|
+| Post-M29 full repository index before M30 | Completed / merged in PR #30 |
+| CONTROL-RECOVERY-002 Phase 0 gate opening | Completed / merged in PR #32 |
+| CONTROL-RECOVERY-002 Phase 1 evidence matrix | Completed / merged in PR #33 |
+| CONTROL-RECOVERY-002 Phase 2 claim quarantine review | Completed / merged in PR #34 |
+| CONTROL-RECOVERY-002 Phase 3 rebaseline decision | Completed / merged in PR #35 |
+| CONTROL-RECOVERY-002 Phase 3A tracker alignment | In review / current recovery action |
 
-Completion status:
+## Exact Next Unfinished Work
 
-COMPLETED / MERGED
-
-PR evidence:
-
-PR #30 — docs: add full repository index before M30
-
-Merged completion evidence:
-
-docs/repo_index/FULL_REPOSITORY_INDEX.md
-
-docs/repo_index/FULL_REPOSITORY_INDEX.csv
-
-docs/repo_index/FULL_REPOSITORY_TREE.md
-
-docs/repo_index/FULL_REPOSITORY_INDEX_COMPLETION_GATE.md
-
-Full repository index coverage recorded in the completion gate:
-
-| Area    | Count | Status  |
-| ------- | ----: | ------- |
-| root    |     9 | Covered |
-| .github |     4 | Covered |
-| asbp    |   182 | Covered |
-| data    |    41 | Covered |
-| tests   |   149 | Covered |
-| docs    |   325 | Covered |
-
-Existing docs-only index evidence remains historical/supporting evidence and is not cleanup, deletion, archive, move, rename, promotion, or canonicalization evidence by itself.
-
-## Exact Next Unfinished Checkpoint
-
-PLAN M30.1 — Retrieval justification gate
+CONTROL-RECOVERY-002 Phase 3A — Tracker recovery-state alignment.
 
 Current state:
 
-READY FOR PLAN.
+```text
+ACTIVE RECOVERY / NORMAL M30.1 PAUSED
+```
 
-Allowed next work:
+Allowed current work:
 
-PLAN M30.1 only.
+```text
+Review and accept tracker recovery-state alignment.
+```
 
-M30.1 planning may decide where retrieval is justified and where it is not justified.
+Allowed next recovery work after acceptance:
 
-M30.1 planning must not implement retrieval, standards embedding, live standards lookup, retrieval-backed source authority, AI/model/provider behavior, UI/API behavior, deployment, release, productization, SaaS readiness, or customer-ready output.
+```text
+CONTROL-RECOVERY-002 Phase 5 — Recovery closeout preparation
+```
+
+Normal next checkpoint preserved but paused:
+
+```text
+PLAN M30.1 — Retrieval justification gate
+```
 
 ## Latest Verified Validation / Review Evidence
+
+Latest recovery review evidence:
+
+- CONTROL-RECOVERY-002 Phase 1 evidence matrix merged in PR #33.
+- CONTROL-RECOVERY-002 Phase 2 claim quarantine review merged in PR #34.
+- CONTROL-RECOVERY-002 Phase 3 rebaseline decision merged in PR #35.
 
 Latest repository-index review evidence:
 
 Post-M29 full repository index completion gate was merged in PR #30.
 
-No `python -m pytest -q` validation was required for the full repository index package because the package changed only Markdown/CSV repository-index evidence files and did not modify executable files, imports, tests, commands, validators, loaders, schemas, runtime behavior, or source-library behavior.
+No `python -m pytest -q` validation was required for the full repository index package or CONTROL-RECOVERY-002 Phase 0 through Phase 3 because those packages changed only documentation/governance evidence files.
 
 Latest executable validation remains:
 
-CQV content-library remediation Wave 8 — validation and remediation completion gate:
-
-    python -m pytest -q — 1479 passed in 52.36s
-
-Validation was run locally by the Project Owner after Wave 7 trial scenario coverage implementation and tracker advancement.
-
-Wave 8 did not change code or source JSON before validation. Wave 8 records the validation and remediation completion gate after Wave 1 through Wave 7 remediation implementation.
+```text
+CQV content-library remediation Wave 8 — python -m pytest -q — 1479 passed in 52.36s
+```
 
 Previous M29.11 validation checkpoint:
 
-    git status -sb — clean working tree on feature/m28-3-citation-model-contract
-    python -m pytest -q — 1416 passed in 44.97s
+```text
+git status -sb — clean working tree on feature/m28-3-citation-model-contract
+python -m pytest -q — 1416 passed in 44.97s
+```
 
-M29.11 validated the implemented M29 document/output layer from M29.2 through M29.10, including template records, deterministic template selection/loading, document input schema binding, controlled drafting, standards-backed output controls, renderer/output behavior, lifecycle/workflow integration, output validation, and controlled trial document generation.
+CONTROL-RECOVERY-002 Phase 3A does not require executable validation because it changes only tracker/governance state.
 
 ## Milestone UAT Status
 
@@ -223,11 +226,15 @@ PR #29 was squash merged into main and brought the M28 standards-authority and M
 
 PR #30 was squash merged into main and brought the full repository index control package into main.
 
-After this tracker update is applied and merged, re-align from main before starting PLAN M30.1.
+PR #32 opened CONTROL-RECOVERY-002.
 
-Current branch cleanup status before this tracker update:
+PR #33 added the CONTROL-RECOVERY-002 evidence matrix.
 
-Local and remote branch noise was cleared after PR #29 merge, leaving main / origin/main only.
+PR #34 added the CONTROL-RECOVERY-002 claim quarantine review.
+
+PR #35 added the CONTROL-RECOVERY-002 rebaseline decision.
+
+This tracker update is recovery-state alignment only. It does not advance normal roadmap progress and does not start M30.1.
 
 ## Repository Index Control Status
 
@@ -237,75 +244,46 @@ COMPLETED.
 
 Evidence:
 
-docs/repo_index/FULL_REPOSITORY_INDEX.md
-
-docs/repo_index/FULL_REPOSITORY_INDEX.csv
-
-docs/repo_index/FULL_REPOSITORY_TREE.md
-
-docs/repo_index/FULL_REPOSITORY_INDEX_COMPLETION_GATE.md
+- `docs/repo_index/FULL_REPOSITORY_INDEX.md`
+- `docs/repo_index/FULL_REPOSITORY_INDEX.csv`
+- `docs/repo_index/FULL_REPOSITORY_TREE.md`
+- `docs/repo_index/FULL_REPOSITORY_INDEX_COMPLETION_GATE.md`
 
 The full repository index was generated from tracked repository files.
 
-The full repository index does not:
-
-- start M30;
-- implement retrieval;
-- implement standards embedding;
-- implement standards-backed live lookup;
-- change runtime behavior;
-- change source-library behavior;
-- authorize productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output;
-- delete, archive, move, rename, promote, or canonicalize repository files;
-- close DDR-005.
+The full repository index does not start M30, implement retrieval, implement standards embedding, change runtime behavior, change source-library behavior, authorize productization, or close DDR-005.
 
 ## Relevant DDR Status
 
-DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It is not erased as a downstream productization concern. Any claim of full product-ready document factory behavior beyond the accepted M29 milestone scope remains governed by later roadmap gates and limitations.
+DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. M29.13 and the full repository index do not upgrade standards authority, source verification, clause-level claims, mandatory-use claims, or standards-backed product claims.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, or CONTROL-RECOVERY-002.
 
-DDR-005 remains deferred to M30. The full repository index does not implement standards retrieval, embedding, live lookup, or retrieval-backed source authority. DDR-005 remains open for M30 retrieval/indexing control decisions.
+DDR-005 remains deferred to M30. No retrieval, embedding, live lookup, or retrieval-backed source authority is implemented by the repository index or CONTROL-RECOVERY-002.
 
 DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
-DDR-007 awareness applies if M30 planning proposes any retrieval-to-AI handoff or AI retrieval use. Model/provider integration, local AI runtime integration, app-coupled heavy-use testing, and pre-go-live execution remain blocked until their roadmap-authorized strategy, boundary, tests, validation, and acceptance evidence exist.
-
-The next work must not claim product-ready CQV content-library completion beyond the accepted M29 milestone UAT scope.
+DDR-007 awareness applies if later M30 planning proposes any retrieval-to-AI handoff or AI retrieval use. Model/provider integration, local AI runtime integration, app-coupled heavy-use testing, and pre-go-live execution remain blocked until roadmap-authorized strategy, boundary, tests, validation, and acceptance evidence exist.
 
 ## Build / Governance Balance Policy Status
 
 Active.
 
-M29.11 was executed as Validation and completed by clean local repo confirmation plus full executable validation evidence.
+Governance defines the boundary. Implementation proves progress. Validation proves truth.
 
-M29.12 was UAT execution mode and was accepted with clarifications by Project Owner decision.
+CONTROL-RECOVERY-002 preserves valid implementation evidence from M27-M29 for its limited scope while preventing governance or milestone evidence from being overread as product/customer/SaaS/release/deployment readiness.
 
-M29.13 was Closeout / governance mode and closes M29 with carry-forward limitations.
-
-CQV content-library remediation Wave 1 was governance-only and completed the revised coverage matrix / MVP scope lock only.
-
-CQV content-library remediation Waves 2 through 7 were Build/content and completed by implementation/source evidence plus validation.
-
-CQV content-library remediation Wave 8 was Validation / remediation completion gate and completed by full executable validation evidence plus remediation completion evidence.
-
-Docs folder index Pass 1 and docs/reference review were governance/index review evidence only and were not product build or UAT acceptance.
-
-Post-M29 full repository index before M30 was Governance-only / repository-index control and completed by repository-index evidence merged in PR #30.
-
-The full repository index was not closed by runtime/source implementation and must not be represented as runtime/source implementation.
-
-M30.1 planning must include an anti-drift gate with execution mode, implementation minimum, governance boundary, validation evidence required, tracker movement rule, DDR impact, architecture boundary impact where relevant, and explicit non-implementation claims.
+Future M30.1 planning, after recovery exit, must include an anti-drift gate with execution mode, implementation minimum, governance boundary, validation evidence required, tracker movement rule, DDR impact, architecture boundary impact where relevant, and explicit non-implementation claims.
 
 ## Blocked Actions
+
+Do not resume normal M30.1 planning while CONTROL-RECOVERY-002 is active.
 
 Do not start M30 implementation before PLAN M30.1 is completed and accepted under the build/governance anti-drift gate.
 
 Do not implement retrieval before roadmap-authorized M30 implementation checkpoints and required DDR-005 controls.
 
-Do not implement standards retrieval or embedding before M30 authorization and DDR-005 control handling.
-
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index alone.
+Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index or recovery documents.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -313,16 +291,22 @@ Do not claim full product-ready document factory completion.
 
 Do not claim productization, deployment, commercial release, or SaaS readiness.
 
-Do not delete, archive, rename, move, or promote repository files based only on index/review candidates.
-
 ## Allowed Next Work
 
-Allowed next work is:
+Allowed current work is:
 
-PLAN M30.1 — Retrieval justification gate
+```text
+Review and accept CONTROL-RECOVERY-002 Phase 3A tracker recovery-state alignment.
+```
 
-This planning action must determine where retrieval is justified and where it is not justified, while preserving source authority and DDR-005 boundaries.
+Allowed next recovery work after Phase 3A acceptance:
+
+```text
+CONTROL-RECOVERY-002 Phase 5 — Recovery closeout preparation
+```
+
+Normal roadmap work remains paused until recovery exit.
 
 ## Next Action
 
-PLAN M30.1 — Retrieval justification gate
+CONTROL-RECOVERY-002 Phase 3A — Tracker recovery-state alignment review.
