@@ -44,7 +44,7 @@ M29.10 continued the CAPA build-first correction by creating controlled trial do
 
 M29.11 completed the validation checkpoint by confirming clean local repo state and full executable validation before tracker movement.
 
-M29.12 owner acceptance is blocked by Project Owner decision pending CQV content-library completion remediation.
+M29.12 owner acceptance is blocked by Project Owner decision pending UAT / owner acceptance review.
 
 CQV content-library remediation Wave 1 completed the revised coverage matrix and MVP scope lock.
 
@@ -62,7 +62,11 @@ CQV content-library remediation Wave 7 completed MVP trial scenario coverage sou
 
 CQV content-library remediation Wave 8 completed full remediation validation and recorded the remediation completion gate.
 
-After the remediation plan is completely finished, the next required control action is a full repository index before returning to UAT or further build continuation.
+Docs folder index Pass 1 was created as partial repository index progress.
+
+Docs reference folder review decision record was created as partial repository index review progress.
+
+The Project Owner approved a sequence-control decision to return to M29.12 UAT / owner acceptance review before completing the remaining full repository index, while preserving the full repository index requirement after M29.12 UAT and before M30.
 
 The CAPA remains active until the Project Owner accepts that the control is working.
 
@@ -70,7 +74,7 @@ The CAPA remains active until the Project Owner accepts that the control is work
 
 M29.12 — Milestone UAT / owner acceptance
 
-Status: BLOCKED.
+Status: BLOCKED PENDING UAT REVIEW.
 
 Blocker:
 
@@ -94,6 +98,18 @@ docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_REPO_INDEX_HANDOFF.md
 
 docs/change_control/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_ROADMAP_DECISION_NOTE.md
 
+docs/change_control/M29_12_UAT_RETURN_SEQUENCE_DECISION.md
+
+Repository index / review evidence:
+
+docs/repo_index/DOCS_FOLDER_INDEX.md
+
+docs/repo_index/DOCS_CLEANUP_REVIEW_LIST.md
+
+docs/repo_index/DOCS_PROMOTION_CANDIDATES.md
+
+docs/repo_index/DOCS_REFERENCE_REVIEW_DECISIONS.md
+
 ## Latest Completed Checkpoint
 
 M29.11 — Validation checkpoint
@@ -102,13 +118,13 @@ M29.11 — Validation checkpoint
 
 M29.12 — Milestone UAT / owner acceptance
 
-Current state: BLOCKED.
+Current state: BLOCKED PENDING UAT REVIEW.
 
 Exact next allowed work:
 
-PLAN full repository index.
+PLAN M29.12 UAT return / owner acceptance review.
 
-This control action is not M29.12 acceptance, not M29.13 closeout, and not further build continuation.
+This control action is not M29.12 acceptance by itself, not M29.13 closeout, and not M30 start.
 
 ## Latest Verified Validation
 
@@ -117,8 +133,6 @@ CQV content-library remediation Wave 8 — validation and remediation completion
 python -m pytest -q — 1479 passed in 52.36s
 
 Validation was run locally by the Project Owner after Wave 7 trial scenario coverage implementation and tracker advancement.
-
-The Project Owner did not provide `git status -sb` in the Wave 8 validation output. Working tree status must be checked before committing Wave 8 evidence.
 
 Wave 8 did not change code or source JSON before validation. Wave 8 records the validation and remediation completion gate after Wave 1 through Wave 7 remediation implementation.
 
@@ -158,13 +172,17 @@ M29.11 validated the implemented M29 document/output layer from M29.2 through M2
 
 M29 UAT not reached.
 
-M29.12 is blocked pending CQV content-library completion remediation completion review, full repository index, and owner decision.
+M29.12 is blocked pending UAT / owner acceptance review.
 
-The Project Owner did not accept M29.12 UAT because the repo previously proved a validated deterministic document/output engine chain plus starter/baseline content, not full MVP CQV content-library completion.
+The Project Owner did not accept M29.12 UAT earlier because the repo previously proved a validated deterministic document/output engine chain plus starter/baseline content, not full MVP CQV content-library completion.
 
 CQV content-library remediation Wave 1 through Wave 8 are now recorded as completed after validation.
 
-M29.12 UAT may resume only after the required full repo index is prepared and the Project Owner explicitly accepts that UAT may resume or approves carry-forward.
+The Project Owner approved returning to M29.12 UAT review before completing the remaining full repository index.
+
+M29.12 UAT may be accepted only after explicit Project Owner acceptance.
+
+Full repository index remains required after M29.12 UAT and before M30, unless the Project Owner explicitly approves a carry-forward decision.
 
 Latest completed milestone UAT remains M28 UAT executed and accepted.
 
@@ -172,17 +190,17 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 8 validation and remediation completion gate evidence application, subject to final local `git status -sb` confirmation before commit.
+Aligned locally after Wave 8 validation and remediation completion gate evidence application, docs folder index Pass 1, docs/reference review decision, and M29.12 UAT return sequence decision, subject to final local `git status -sb` confirmation before commit.
 
 M29.11 remains the latest completed roadmap checkpoint.
 
-M29.12 remains the active checkpoint but is blocked.
+M29.12 remains the active checkpoint but is blocked pending UAT review.
 
 M29.13 closeout is blocked.
 
-Ready for PLAN full repository index from a clean bounded execution context only.
+Ready for PLAN M29.12 UAT return / owner acceptance review from a clean bounded execution context only.
 
-Do not return directly to M29.12 UAT or further build continuation before preparing the full repository index.
+Do not start M30 before completing the full repository index or recording an explicit owner-approved carry-forward decision.
 
 ## Remediation Progress Status
 
@@ -278,9 +296,31 @@ Validation:
 
 python -m pytest -q — 1479 passed in 52.36s
 
-Post-remediation control action:
+Repository index control progress:
 
-Full repo index before returning to UAT or further build continuation.
+Docs folder index Pass 1 completed.
+
+Evidence:
+
+docs/repo_index/DOCS_FOLDER_INDEX.md
+
+docs/repo_index/DOCS_FOLDER_TREE.md
+
+docs/repo_index/DOCS_CLEANUP_REVIEW_LIST.md
+
+docs/repo_index/DOCS_PROMOTION_CANDIDATES.md
+
+docs/repo_index/DOCS_INDEX_GENERATION_NOTES.md
+
+Docs reference review completed.
+
+Evidence:
+
+docs/repo_index/DOCS_REFERENCE_REVIEW_DECISIONS.md
+
+Remaining index requirement:
+
+Full repository index after M29.12 UAT and before M30.
 
 ## Relevant DDR Status
 
@@ -314,15 +354,17 @@ Wave 7 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness 
 
 Wave 8 directly touched DDR-003 and DDR-006 because it validated the completed remediation chain while preserving the blocked M29.12 UAT state.
 
-DDR-003 is not fully closed for product-ready document factory behavior. Repo indexing and owner acceptance still require control before M29.12 owner acceptance.
+DDR-003 is not fully closed for product-ready document factory behavior. M29.12 UAT review, owner acceptance, and later closeout evidence are still required before closure can be considered.
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope. Remediation did not upgrade standards source authority beyond approved evidence.
 
 DDR-005 remains deferred to M30. Remediation did not implement standards embedding or retrieval.
 
-DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked at M29.12 and milestone closeout remains blocked at M29.13.
+DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked pending UAT review and milestone closeout remains blocked at M29.13.
 
-The next work must not claim product-ready CQV content-library completion until repo index evidence and owner acceptance support that claim.
+Full repository index remains required before M30.
+
+The next work must not claim product-ready CQV content-library completion until owner acceptance supports that claim.
 
 ## Build / Governance Balance Policy Status
 
@@ -330,7 +372,7 @@ Active.
 
 M29.11 was executed as Validation and completed by clean local repo confirmation plus full executable validation evidence.
 
-M29.12 is UAT execution mode, but UAT acceptance is blocked.
+M29.12 is UAT execution mode, but UAT acceptance is blocked pending UAT review.
 
 Wave 1 was governance-only and completed the revised coverage matrix / MVP scope lock only.
 
@@ -360,34 +402,36 @@ Wave 7 was not closed by Markdown-only or governance-only output.
 
 Wave 8 was Validation / remediation completion gate and completed by full executable validation evidence plus remediation completion evidence.
 
-Full repository index must be planned next before UAT return or further build continuation.
+Docs folder index Pass 1 and docs/reference review are governance/index review evidence only and are not product build or UAT acceptance.
+
+M29.12 UAT return sequence decision is governance/sequence-control only and is not UAT acceptance.
 
 ## Blocked Actions
 
-Do not accept M29.12 UAT.
+Do not accept M29.12 UAT without explicit Project Owner acceptance.
 
 Do not advance to M29.13.
 
 Do not close M29.
 
-Do not claim full CQV content-library completion until repo index and owner acceptance support that claim.
+Do not start M30 before the full repository index is completed or explicitly carried forward by Project Owner decision.
+
+Do not claim full CQV content-library completion until owner acceptance supports that claim.
 
 Do not claim full product-ready document factory completion.
 
-Do not return to UAT immediately after remediation completion before preparing a full repository index.
-
-Do not return to further build continuation after remediation completion before preparing a full repository index.
-
 Do not claim productization, deployment, commercial release, or SaaS readiness.
+
+Do not delete, archive, rename, move, or promote repository files based only on index/review candidates.
 
 ## Allowed Next Work
 
 Allowed next work is:
 
-PLAN full repository index.
+PLAN M29.12 UAT return / owner acceptance review.
 
-The full repository index must list repo files/documents with serial, path, type/family, and brief content summary before the project returns to UAT or further build continuation.
+This work must review whether M29.12 UAT can now be accepted after remediation completion.
 
 ## Next Action
 
-PLAN full repository index.
+PLAN M29.12 UAT return / owner acceptance review.
