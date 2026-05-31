@@ -60,6 +60,8 @@ CQV content-library remediation Wave 6 completed MVP standards/document applicab
 
 CQV content-library remediation Wave 7 completed MVP trial scenario coverage source assets and validation.
 
+CQV content-library remediation Wave 8 completed full remediation validation and recorded the remediation completion gate.
+
 After the remediation plan is completely finished, the next required control action is a full repository index before returning to UAT or further build continuation.
 
 The CAPA remains active until the Project Owner accepts that the control is working.
@@ -86,6 +88,10 @@ docs/remediation/M29_CQV_CONTENT_LIBRARY_COMPLETION_REMEDIATION_PLAN.md
 
 docs/remediation/M29_CQV_CONTENT_LIBRARY_COVERAGE_MATRIX.md
 
+docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_WAVE_8_VALIDATION_COMPLETION_GATE.md
+
+docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_REPO_INDEX_HANDOFF.md
+
 docs/change_control/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_ROADMAP_DECISION_NOTE.md
 
 ## Latest Completed Checkpoint
@@ -100,19 +106,25 @@ Current state: BLOCKED.
 
 Exact next allowed work:
 
-PLAN CQV content-library remediation wave 8 — validation and remediation completion gate.
+PLAN full repository index.
 
-This remediation work is not M29.12 acceptance and is not M29.13 closeout.
+This control action is not M29.12 acceptance, not M29.13 closeout, and not further build continuation.
 
 ## Latest Verified Validation
 
-CQV content-library remediation Wave 7 — trial scenario expansion:
+CQV content-library remediation Wave 8 — validation and remediation completion gate:
+
+python -m pytest -q — 1479 passed in 52.36s
+
+Validation was run locally by the Project Owner after Wave 7 trial scenario coverage implementation and tracker advancement.
+
+The Project Owner did not provide `git status -sb` in the Wave 8 validation output. Working tree status must be checked before committing Wave 8 evidence.
+
+Wave 8 did not change code or source JSON before validation. Wave 8 records the validation and remediation completion gate after Wave 1 through Wave 7 remediation implementation.
+
+Previous CQV content-library remediation Wave 7 validation:
 
 python -m pytest -q — 1479 passed in 52.39s
-
-Validation was run locally by the Project Owner after applying the Wave 7 trial scenario coverage package.
-
-Wave 7 changed trial scenario coverage models/stores, MVP trial scenario coverage source JSON, tests, and remediation evidence.
 
 Previous CQV content-library remediation Wave 6 validation:
 
@@ -146,13 +158,13 @@ M29.11 validated the implemented M29 document/output layer from M29.2 through M2
 
 M29 UAT not reached.
 
-M29.12 is blocked pending CQV content-library completion remediation.
+M29.12 is blocked pending CQV content-library completion remediation completion review, full repository index, and owner decision.
 
 The Project Owner did not accept M29.12 UAT because the repo previously proved a validated deterministic document/output engine chain plus starter/baseline content, not full MVP CQV content-library completion.
 
-M29.12 UAT may resume only after the blocker is closed or explicitly carried forward by owner-approved decision.
+CQV content-library remediation Wave 1 through Wave 8 are now recorded as completed after validation.
 
-After the remediation plan is completely finished, the Project Owner requires a full repo index before returning to UAT or further build continuation.
+M29.12 UAT may resume only after the required full repo index is prepared and the Project Owner explicitly accepts that UAT may resume or approves carry-forward.
 
 Latest completed milestone UAT remains M28 UAT executed and accepted.
 
@@ -160,7 +172,7 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 7 trial scenario coverage implementation and validation.
+Aligned locally after Wave 8 validation and remediation completion gate evidence application, subject to final local `git status -sb` confirmation before commit.
 
 M29.11 remains the latest completed roadmap checkpoint.
 
@@ -168,9 +180,9 @@ M29.12 remains the active checkpoint but is blocked.
 
 M29.13 closeout is blocked.
 
-Ready for PLAN CQV content-library remediation wave 8 — validation and remediation completion gate — from a clean bounded execution context only.
+Ready for PLAN full repository index from a clean bounded execution context only.
 
-After the remediation plan is fully completed, do not return directly to M29.12 UAT or further build continuation before preparing a full repository index.
+Do not return directly to M29.12 UAT or further build continuation before preparing the full repository index.
 
 ## Remediation Progress Status
 
@@ -256,7 +268,15 @@ python -m pytest -q — 1479 passed in 52.39s
 
 Wave 8 — Validation and remediation completion gate:
 
-Next.
+Completed.
+
+Evidence:
+
+docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_WAVE_8_VALIDATION_COMPLETION_GATE.md
+
+Validation:
+
+python -m pytest -q — 1479 passed in 52.36s
 
 Post-remediation control action:
 
@@ -292,17 +312,17 @@ Wave 7 directly touched DDR-003 and DDR-006 because it expanded MVP trial scenar
 
 Wave 7 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because trial scenario coverage depends on governed source libraries, standards/citation limitations, deferred retrieval boundaries, and external/adopted document-source constraints.
 
-DDR-003 is not fully closed for product-ready document factory behavior. Wave 8 validation/remediation completion, repo indexing, and owner acceptance still require control before M29.12 owner acceptance.
+Wave 8 directly touched DDR-003 and DDR-006 because it validated the completed remediation chain while preserving the blocked M29.12 UAT state.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. Wave 7 did not upgrade standards source authority beyond approved evidence.
+DDR-003 is not fully closed for product-ready document factory behavior. Repo indexing and owner acceptance still require control before M29.12 owner acceptance.
 
-DDR-005 remains deferred to M30. Wave 7 did not implement standards embedding or retrieval.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. Remediation did not upgrade standards source authority beyond approved evidence.
+
+DDR-005 remains deferred to M30. Remediation did not implement standards embedding or retrieval.
 
 DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked at M29.12 and milestone closeout remains blocked at M29.13.
 
-Wave 8 must continue DDR-003, DDR-004, DDR-005, DDR-006, and DDR-009 awareness.
-
-The next remediation work must not claim product-ready CQV content-library completion until source assets, validation evidence, repo index evidence, and owner acceptance support that claim.
+The next work must not claim product-ready CQV content-library completion until repo index evidence and owner acceptance support that claim.
 
 ## Build / Governance Balance Policy Status
 
@@ -338,9 +358,9 @@ Wave 7 was Build/content and completed by implementation/source evidence plus va
 
 Wave 7 was not closed by Markdown-only or governance-only output.
 
-Wave 8 must be planned under the build/governance balance policy.
+Wave 8 was Validation / remediation completion gate and completed by full executable validation evidence plus remediation completion evidence.
 
-If Wave 8 changes source JSON, models, validators, stores, tests, output-validation expectations, remediation closure evidence, loaders, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
+Full repository index must be planned next before UAT return or further build continuation.
 
 ## Blocked Actions
 
@@ -350,7 +370,7 @@ Do not advance to M29.13.
 
 Do not close M29.
 
-Do not claim full CQV content-library completion.
+Do not claim full CQV content-library completion until repo index and owner acceptance support that claim.
 
 Do not claim full product-ready document factory completion.
 
@@ -362,12 +382,12 @@ Do not claim productization, deployment, commercial release, or SaaS readiness.
 
 ## Allowed Next Work
 
-Allowed next work is CQV content-library remediation only, continuing with:
+Allowed next work is:
 
-PLAN CQV content-library remediation wave 8 — validation and remediation completion gate.
+PLAN full repository index.
 
-Wave 8 should validate the full remediation chain, record remediation completion/carry-forward status, preserve M29.12 blocked state until repo index and owner decision, and prepare the handoff to the required full repo index.
+The full repository index must list repo files/documents with serial, path, type/family, and brief content summary before the project returns to UAT or further build continuation.
 
 ## Next Action
 
-PLAN CQV content-library remediation wave 8 — validation and remediation completion gate.
+PLAN full repository index.
