@@ -1,0 +1,913 @@
+{
+  "policy_library_id": "M29_DOCUMENT_CITATION_POLICY_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_document_citation_policy_source",
+  "policies": [
+    {
+      "policy_id": "CITPOL-CCF@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "CCF",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-VMP@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "VMP",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-SIA@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "SIA",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-URS@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "URS",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-VENDOR-DOCS@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "VENDOR_DOCS",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-RA-FMEA@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "RA_FMEA",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-URS-DEVIATION-LIST@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "URS_DEVIATION_LIST",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-RTM@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "RTM",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-DQ@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "DQ",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-CP@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "CP",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-QP@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "QP",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-FAT-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "FAT_PROTOCOL_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-A0-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "A0_CERTIFICATE",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-CTOP@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "CTOP",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-A1-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "A1_CERTIFICATE",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-SAT-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "SAT_PROTOCOL_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "External/adopted document references may be cited or extracted only as source references.",
+        "No ASBP standards-backed output authority is created for this document."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-CR@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "CR",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-A2-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "A2_CERTIFICATE",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-IQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "IQ_PROTOCOL_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-OQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "OQ_PROTOCOL_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-PQ-PROTOCOL-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "PQ_PROTOCOL_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-DEVIATION-INCIDENT-REPORT@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "DEVIATION_INCIDENT_REPORT",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-CAPA-CLOSURE-FORM@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "CAPA_CLOSURE_FORM",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-VSR@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "VSR",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "policy_id": "CITPOL-DECOMMISSIONING-DOCUMENT-SET@v1",
+      "version": "v1",
+      "status": "runtime_facing_document_citation_policy_record",
+      "document_ref": "DECOMMISSIONING_DOCUMENT_SET",
+      "citation_mode": "visible_limitation_required",
+      "default_citation_depth": "document",
+      "permitted_citation_depths": [
+        "document"
+      ],
+      "blocked_citation_depths": [
+        "version",
+        "section",
+        "clause",
+        "table_row",
+        "requirement"
+      ],
+      "limitation_statement_required": true,
+      "source_text_storage_allowed": false,
+      "retrieval_or_embedding_allowed": false,
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "policy_controls": [
+        "Document-level citation is the only permitted Wave 6 standards citation depth.",
+        "Section, clause, table-row, requirement, and version-level citation remain blocked unless future verified source evidence is approved.",
+        "Citation limitations must remain visible in downstream output."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    }
+  ],
+  "policy_library_controls": [
+    "Wave 6 citation policy is document-level only unless future verified source evidence supports deeper citation.",
+    "Citation policy does not store source text, retrieve standards, or embed standards.",
+    "Citation policy does not authorize mandatory-use, audit-ready, release, UAT, deployment, productization, or SaaS claims."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_embed_controlled_standards_text",
+    "does_not_implement_standards_retrieval_or_embedding",
+    "does_not_generate_product_ready_standards_output",
+    "does_not_claim_audit_ready_output",
+    "does_not_accept_uat",
+    "does_not_claim_product_release"
+  ]
+}

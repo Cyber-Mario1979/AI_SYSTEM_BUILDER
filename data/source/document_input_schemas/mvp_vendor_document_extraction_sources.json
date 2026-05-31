@@ -1,0 +1,167 @@
+{
+  "library_id": "M29_VENDOR_DOCUMENT_EXTRACTION_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_runtime_source",
+  "vendor_sources": [
+    {
+      "source_id": "VENDOR-SOURCE-FDS@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "vendor_document_type": "FDS",
+      "display_name": "Functional Design Specification",
+      "extraction_targets": [
+        "RTM",
+        "DQ",
+        "OQ_PROTOCOL_REPORT"
+      ],
+      "extraction_fields": [
+        "function list",
+        "control philosophy",
+        "alarm logic",
+        "sequence description",
+        "interface list"
+      ],
+      "extraction_controls": [
+        "Vendor documents are extraction sources only.",
+        "Extracted values require review before downstream use.",
+        "No vendor document is treated as an ASBP-authored template."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "source_id": "VENDOR-SOURCE-SDS@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "vendor_document_type": "SDS",
+      "display_name": "Software / System Design Specification",
+      "extraction_targets": [
+        "RTM",
+        "DQ",
+        "OQ_PROTOCOL_REPORT",
+        "CSV"
+      ],
+      "extraction_fields": [
+        "software modules",
+        "configuration items",
+        "security model",
+        "audit trail design",
+        "data storage"
+      ],
+      "extraction_controls": [
+        "Vendor documents are extraction sources only.",
+        "Extracted values require review before downstream use.",
+        "No vendor document is treated as an ASBP-authored template."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "source_id": "VENDOR-SOURCE-PID@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "vendor_document_type": "P_AND_ID",
+      "display_name": "P&ID / process drawings",
+      "extraction_targets": [
+        "DQ",
+        "IQ_PROTOCOL_REPORT",
+        "OQ_PROTOCOL_REPORT"
+      ],
+      "extraction_fields": [
+        "equipment tags",
+        "instrument tags",
+        "utility connections",
+        "flow path",
+        "valves and components"
+      ],
+      "extraction_controls": [
+        "Vendor documents are extraction sources only.",
+        "Extracted values require review before downstream use.",
+        "No vendor document is treated as an ASBP-authored template."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "source_id": "VENDOR-SOURCE-MANUAL@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "vendor_document_type": "MANUAL",
+      "display_name": "Vendor manuals",
+      "extraction_targets": [
+        "URS",
+        "DQ",
+        "IQ_PROTOCOL_REPORT",
+        "OQ_PROTOCOL_REPORT",
+        "PQ_PROTOCOL_REPORT"
+      ],
+      "extraction_fields": [
+        "installation requirements",
+        "operation instructions",
+        "maintenance requirements",
+        "safety requirements"
+      ],
+      "extraction_controls": [
+        "Vendor documents are extraction sources only.",
+        "Extracted values require review before downstream use.",
+        "No vendor document is treated as an ASBP-authored template."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "source_id": "VENDOR-SOURCE-CERTIFICATE@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "vendor_document_type": "CERTIFICATE",
+      "display_name": "Vendor certificates",
+      "extraction_targets": [
+        "IQ_PROTOCOL_REPORT",
+        "VSR"
+      ],
+      "extraction_fields": [
+        "material certificates",
+        "calibration certificates",
+        "FAT completion certificates",
+        "quality certificates"
+      ],
+      "extraction_controls": [
+        "Vendor documents are extraction sources only.",
+        "Extracted values require review before downstream use.",
+        "No vendor document is treated as an ASBP-authored template."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    }
+  ],
+  "library_controls": [
+    "Vendor docs are extraction sources, not DCFs and not ASBP-authored templates.",
+    "Vendor extraction supports RTM, DQ, IQ/OQ/PQ, and VSR dependencies where applicable."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_create_uat_acceptance",
+    "does_not_approve_release_or_productize",
+    "does_not_replace_human_review"
+  ]
+}

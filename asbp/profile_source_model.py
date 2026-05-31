@@ -14,13 +14,14 @@ PresetFamilyId = Literal[
     "PF-MANUAL-FALLBACK",
 ]
 
-ProfileSourceStatus = Literal["starter_runtime_source"]
+ProfileSourceStatus = Literal["starter_runtime_source", "mvp_remediation_source"]
 ProfileType = Literal[
     "area_system",
     "cleanroom_hvac",
     "equipment_system",
     "qualification",
     "manual_fallback",
+    "decommissioning",
 ]
 ProfileContextFieldStatus = Literal[
     "human_input_required",
@@ -33,10 +34,7 @@ ProfileContextFieldStatus = Literal[
 class ProfileContextFieldModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    field_id: str = Field(
-        min_length=1,
-        pattern=r"^[a-z0-9]+(?:_[a-z0-9]+)*$",
-    )
+    field_id: str = Field(min_length=1, pattern=r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
     label: str = Field(min_length=1)
     value_status: ProfileContextFieldStatus
     value: str | None = Field(default=None, min_length=1)
@@ -58,23 +56,18 @@ class ProfileContextFieldModel(BaseModel):
                 "starter_default profile context field requires value: "
                 f"{self.field_id}"
             )
-
         if self.value_status == "not_applicable" and self.value is not None:
             raise ValueError(
                 "not_applicable profile context field cannot include value: "
                 f"{self.field_id}"
             )
-
         return self
 
 
 class ProfileSourceModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    profile_id: str = Field(
-        min_length=1,
-        pattern=r"^PROF-[A-Z0-9-]+@v[0-9]+$",
-    )
+    profile_id: str = Field(min_length=1, pattern=r"^PROF-[A-Z0-9-]+@v[0-9]+$")
     version: str = Field(min_length=1, pattern=r"^v[0-9]+$")
     status: ProfileSourceStatus = "starter_runtime_source"
     display_name: str = Field(min_length=1)
@@ -104,15 +97,12 @@ class ProfileSourceModel(BaseModel):
     @model_validator(mode="after")
     def validate_profile_context_field_identity(self):
         field_ids: set[str] = set()
-
         for context_field in self.context_fields:
             if context_field.field_id in field_ids:
                 raise ValueError(
-                    f"Duplicate profile context field_id is not allowed: "
-                    f"{context_field.field_id}"
+                    f"Duplicate profile context field_id is not allowed: {context_field.field_id}"
                 )
             field_ids.add(context_field.field_id)
-
         return self
 
 
@@ -123,17 +113,14 @@ class ProfileLibraryModel(BaseModel):
     version: str = Field(min_length=1, pattern=r"^v[0-9]+$")
     status: ProfileSourceStatus = "starter_runtime_source"
     profiles: list[ProfileSourceModel] = Field(min_length=1)
+    library_controls: list[str] = Field(default_factory=list)
+    explicit_non_implementation_claims: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_unique_profile_ids(self):
         profile_ids: set[str] = set()
-
         for profile in self.profiles:
             if profile.profile_id in profile_ids:
-                raise ValueError(
-                    f"Duplicate profile_id is not allowed: "
-                    f"{profile.profile_id}"
-                )
+                raise ValueError(f"Duplicate profile_id is not allowed: {profile.profile_id}")
             profile_ids.add(profile.profile_id)
-
         return self

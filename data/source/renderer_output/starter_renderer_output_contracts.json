@@ -1,0 +1,26 @@
+{
+  "contract_id": "M29_RENDERER_OUTPUT_CONTRACT@v1",
+  "version": "v1",
+  "status": "runtime_facing_renderer_output_contract",
+  "supported_formats": [
+    "markdown",
+    "csv_summary"
+  ],
+  "blocked_formats": [
+    "docx",
+    "pdf",
+    "excel"
+  ],
+  "metadata_controls": [
+    "M29.7 renders deterministic Markdown and CSV summary artifacts only.",
+    "Renderer metadata must preserve source draft, template, schema, and standards control packet identity.",
+    "Visible placeholders, limitations, and standards warnings must not be hidden.",
+    "DOCX, PDF, and Excel remain blocked until explicitly implemented and validated."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_create_product_ready_documents",
+    "does_not_mutate_lifecycle_or_review_state",
+    "does_not_create_signed_or_approved_records",
+    "does_not_call_ai_or_retrieve_standards"
+  ]
+}

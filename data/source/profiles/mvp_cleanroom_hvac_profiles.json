@@ -1,0 +1,105 @@
+{
+  "library_id": "M29_WAVE3_CLEANROOM_HVAC_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-CLEANROOM-HVAC@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Cleanroom / HVAC Qualification Profile",
+      "profile_type": "cleanroom_hvac",
+      "related_preset_families": [
+        "PF-CLEANROOM"
+      ],
+      "selector_context_tags": [
+        "cleanroom",
+        "hvac",
+        "ems",
+        "bms",
+        "area-qualification",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "area_classification",
+          "label": "Area classification / grade",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "Grade A",
+            "Grade B",
+            "Grade C",
+            "Grade D",
+            "ISO 5",
+            "ISO 7",
+            "ISO 8",
+            "site_defined"
+          ]
+        },
+        {
+          "field_id": "room_boundary",
+          "label": "Room / suite boundary",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "hvac_boundary",
+          "label": "HVAC/AHU/terminal filter boundary",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "ems_bms_relevance",
+          "label": "EMS/BMS supporting system relevance",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "ems_relevant",
+            "bms_relevant",
+            "both_relevant",
+            "not_relevant",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "qualification_lifecycle",
+          "label": "Qualification lifecycle route",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "new_installation",
+            "post_change",
+            "periodic_requalification",
+            "decommissioning"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Room grade, pressure regime, airflow direction, EMS/BMS relevance, and acceptance basis require user/site confirmation.",
+        "Profile supports source selection only; it does not create standards-backed acceptance criteria or document output."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP profile library for Cleanroom/HVAC coverage only."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

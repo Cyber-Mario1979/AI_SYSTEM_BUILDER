@@ -1,0 +1,3828 @@
+{
+  "library_id": "M29_WAVE2_PROCESS_EQUIPMENT_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-PE-TABCOMP-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Tablet Compression Machine Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "tablet-compression-machine",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Tablet Compression Machine",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "TABCOMP-CCF",
+          "title": "Capture Tablet Compression Machine change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Tablet Compression Machine.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "QP",
+              "status": "future_expected",
+              "notes": "Wave 2 validation fix: qualification plan expectation is explicitly represented at task-pool level; template/body/schema implementation remains Wave 4/Wave 5."
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-URS",
+          "title": "Confirm Tablet Compression Machine URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Tablet Compression Machine.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-RISK",
+          "title": "Perform Tablet Compression Machine RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Tablet Compression Machine.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-RTM",
+          "title": "Establish Tablet Compression Machine RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Tablet Compression Machine.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-DQ",
+          "title": "Perform Tablet Compression Machine DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Tablet Compression Machine.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Tablet Compression Machine",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Tablet Compression Machine.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-IQ",
+          "title": "Prepare and execute Tablet Compression Machine IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Tablet Compression Machine.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-OQ",
+          "title": "Prepare and execute Tablet Compression Machine OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Tablet Compression Machine.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-PQ",
+          "title": "Prepare and execute Tablet Compression Machine PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Tablet Compression Machine.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABCOMP-CLOSE",
+          "title": "Close Tablet Compression Machine qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Tablet Compression Machine.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABCOMP-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABCOMP_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-PANCOAT-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Pan Coater Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "pan-coater",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Pan Coater",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "PANCOAT-CCF",
+          "title": "Capture Pan Coater change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Pan Coater.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-URS",
+          "title": "Confirm Pan Coater URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Pan Coater.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-RISK",
+          "title": "Perform Pan Coater RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Pan Coater.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-RTM",
+          "title": "Establish Pan Coater RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Pan Coater.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-DQ",
+          "title": "Perform Pan Coater DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Pan Coater.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Pan Coater",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Pan Coater.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-IQ",
+          "title": "Prepare and execute Pan Coater IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Pan Coater.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-OQ",
+          "title": "Prepare and execute Pan Coater OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Pan Coater.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-PQ",
+          "title": "Prepare and execute Pan Coater PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Pan Coater.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PANCOAT-CLOSE",
+          "title": "Close Pan Coater qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Pan Coater.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PANCOAT-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PANCOAT_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-CAPFILL-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Capsule Filling Machine Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "capsule-filling-machine",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Capsule Filling Machine",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CAPFILL-CCF",
+          "title": "Capture Capsule Filling Machine change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Capsule Filling Machine.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-URS",
+          "title": "Confirm Capsule Filling Machine URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Capsule Filling Machine.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-RISK",
+          "title": "Perform Capsule Filling Machine RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Capsule Filling Machine.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-RTM",
+          "title": "Establish Capsule Filling Machine RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Capsule Filling Machine.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-DQ",
+          "title": "Perform Capsule Filling Machine DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Capsule Filling Machine.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Capsule Filling Machine",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Capsule Filling Machine.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-IQ",
+          "title": "Prepare and execute Capsule Filling Machine IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Capsule Filling Machine.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-OQ",
+          "title": "Prepare and execute Capsule Filling Machine OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Capsule Filling Machine.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-PQ",
+          "title": "Prepare and execute Capsule Filling Machine PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Capsule Filling Machine.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CAPFILL-CLOSE",
+          "title": "Close Capsule Filling Machine qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Capsule Filling Machine.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CAPFILL-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CAPFILL_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-BINBLEND-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Bin Blender Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "bin-blender",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Bin Blender",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "BINBLEND-CCF",
+          "title": "Capture Bin Blender change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Bin Blender.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-URS",
+          "title": "Confirm Bin Blender URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Bin Blender.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-RISK",
+          "title": "Perform Bin Blender RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Bin Blender.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-RTM",
+          "title": "Establish Bin Blender RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Bin Blender.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-DQ",
+          "title": "Perform Bin Blender DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Bin Blender.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Bin Blender",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Bin Blender.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-IQ",
+          "title": "Prepare and execute Bin Blender IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Bin Blender.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-OQ",
+          "title": "Prepare and execute Bin Blender OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Bin Blender.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-PQ",
+          "title": "Prepare and execute Bin Blender PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Bin Blender.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BINBLEND-CLOSE",
+          "title": "Close Bin Blender qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Bin Blender.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BINBLEND-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BINBLEND_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-VERTGRAN-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Vertical Granulator Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "vertical-granulator",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Vertical Granulator",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "VERTGRAN-CCF",
+          "title": "Capture Vertical Granulator change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Vertical Granulator.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-URS",
+          "title": "Confirm Vertical Granulator URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Vertical Granulator.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-RISK",
+          "title": "Perform Vertical Granulator RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Vertical Granulator.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-RTM",
+          "title": "Establish Vertical Granulator RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Vertical Granulator.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-DQ",
+          "title": "Perform Vertical Granulator DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Vertical Granulator.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Vertical Granulator",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Vertical Granulator.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-IQ",
+          "title": "Prepare and execute Vertical Granulator IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Vertical Granulator.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-OQ",
+          "title": "Prepare and execute Vertical Granulator OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Vertical Granulator.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-PQ",
+          "title": "Prepare and execute Vertical Granulator PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Vertical Granulator.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VERTGRAN-CLOSE",
+          "title": "Close Vertical Granulator qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Vertical Granulator.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VERTGRAN-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VERTGRAN_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-FBD-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Fluid Bed Dryer Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "fluid-bed-dryer",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Fluid Bed Dryer",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "FBD-CCF",
+          "title": "Capture Fluid Bed Dryer change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Fluid Bed Dryer.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "FBD_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-URS",
+          "title": "Confirm Fluid Bed Dryer URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Fluid Bed Dryer.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-RISK",
+          "title": "Perform Fluid Bed Dryer RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Fluid Bed Dryer.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-RTM",
+          "title": "Establish Fluid Bed Dryer RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Fluid Bed Dryer.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-DQ",
+          "title": "Perform Fluid Bed Dryer DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Fluid Bed Dryer.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Fluid Bed Dryer",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Fluid Bed Dryer.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-IQ",
+          "title": "Prepare and execute Fluid Bed Dryer IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Fluid Bed Dryer.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-OQ",
+          "title": "Prepare and execute Fluid Bed Dryer OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Fluid Bed Dryer.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-PQ",
+          "title": "Prepare and execute Fluid Bed Dryer PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Fluid Bed Dryer.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "FBD-CLOSE",
+          "title": "Close Fluid Bed Dryer qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Fluid Bed Dryer.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "FBD-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "FBD_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-ROLLCOMP-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Roller Compactor Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "roller-compactor",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Roller Compactor",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "ROLLCOMP-CCF",
+          "title": "Capture Roller Compactor change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Roller Compactor.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-URS",
+          "title": "Confirm Roller Compactor URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Roller Compactor.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-RISK",
+          "title": "Perform Roller Compactor RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Roller Compactor.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-RTM",
+          "title": "Establish Roller Compactor RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Roller Compactor.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-DQ",
+          "title": "Perform Roller Compactor DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Roller Compactor.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Roller Compactor",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Roller Compactor.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-IQ",
+          "title": "Prepare and execute Roller Compactor IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Roller Compactor.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-OQ",
+          "title": "Prepare and execute Roller Compactor OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Roller Compactor.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-PQ",
+          "title": "Prepare and execute Roller Compactor PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Roller Compactor.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ROLLCOMP-CLOSE",
+          "title": "Close Roller Compactor qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Roller Compactor.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ROLLCOMP-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ROLLCOMP_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-BLISTER-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Blister Line Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "blister-line",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Blister Line",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "BLISTER-CCF",
+          "title": "Capture Blister Line change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Blister Line.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-URS",
+          "title": "Confirm Blister Line URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Blister Line.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-RISK",
+          "title": "Perform Blister Line RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Blister Line.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-RTM",
+          "title": "Establish Blister Line RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Blister Line.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-DQ",
+          "title": "Perform Blister Line DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Blister Line.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Blister Line",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Blister Line.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-IQ",
+          "title": "Prepare and execute Blister Line IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Blister Line.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-OQ",
+          "title": "Prepare and execute Blister Line OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Blister Line.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-PQ",
+          "title": "Prepare and execute Blister Line PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Blister Line.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "BLISTER-CLOSE",
+          "title": "Close Blister Line qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Blister Line.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "BLISTER-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "BLISTER_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-TABSORT-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Tablet Sorter Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "tablet-sorter",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Tablet Sorter",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "TABSORT-CCF",
+          "title": "Capture Tablet Sorter change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Tablet Sorter.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-URS",
+          "title": "Confirm Tablet Sorter URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Tablet Sorter.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-RISK",
+          "title": "Perform Tablet Sorter RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Tablet Sorter.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-RTM",
+          "title": "Establish Tablet Sorter RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Tablet Sorter.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-DQ",
+          "title": "Perform Tablet Sorter DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Tablet Sorter.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Tablet Sorter",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Tablet Sorter.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-IQ",
+          "title": "Prepare and execute Tablet Sorter IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Tablet Sorter.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-OQ",
+          "title": "Prepare and execute Tablet Sorter OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Tablet Sorter.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-PQ",
+          "title": "Prepare and execute Tablet Sorter PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Tablet Sorter.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "TABSORT-CLOSE",
+          "title": "Close Tablet Sorter qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Tablet Sorter.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "TABSORT-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "TABSORT_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-PE-MILL-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Mill Qualification Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "mill",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-RELOCATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "process_equipment",
+      "asset_archetype": "Mill",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "MILL-CCF",
+          "title": "Capture Mill change and scope context",
+          "purpose": "Capture CCF/change context, asset boundary, intended use, lifecycle route, and qualification path for Mill.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "MILL_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-URS",
+          "title": "Confirm Mill URS and vendor document basis",
+          "purpose": "Confirm user requirements, vendor documents, FDS/SDS where applicable, and data needed for RTM for Mill.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-RISK",
+          "title": "Perform Mill RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical functions, risk controls, and testing depth for Mill.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-RTM",
+          "title": "Establish Mill RTM basis",
+          "purpose": "Map URS/vendor/specification expectations to verification evidence and qualification testing for Mill.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-DQ",
+          "title": "Perform Mill DQ or design review",
+          "purpose": "Confirm design/specification suitability, vendor design evidence, and design qualification readiness for Mill.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-COMM",
+          "title": "Plan commissioning / FAT / SAT route for Mill",
+          "purpose": "Confirm CP, FAT/SAT applicability, commissioning certificates, and turnover expectations for Mill.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "FAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A0_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SAT_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-IQ",
+          "title": "Prepare and execute Mill IQ",
+          "purpose": "Verify installation, components, utilities/interfaces, calibration, materials, and installation evidence for Mill.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-OQ",
+          "title": "Prepare and execute Mill OQ",
+          "purpose": "Verify operating functions, controls, alarms/interlocks, recipes/settings where applicable, and challenge conditions for Mill.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-PQ",
+          "title": "Prepare and execute Mill PQ where applicable",
+          "purpose": "Verify performance under approved product/process or operational conditions where PQ is in scope for Mill.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / Production / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MILL-CLOSE",
+          "title": "Close Mill qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Mill.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MILL-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MILL_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

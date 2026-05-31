@@ -35,6 +35,9 @@ def test_default_cross_library_validation_passes():
         "calendars",
         "planning_basis",
         "mappings",
+        "standards_bundles",
+        "document_templates",
+        "document_input_schemas",
     ]
 
 
@@ -51,9 +54,9 @@ def test_cross_library_validation_issue_id_is_deterministic():
 
 def test_validation_detects_missing_duration_ref_coverage():
     runtime = load_default_source_library_baseline_runtime()
-    runtime.task_pool_library.task_pools[0].tasks[
+    runtime.task_pool_library.task_pools[
         0
-    ].duration_ref.duration_ref_id = "MISSING_DURATION_REF_DUR"
+    ].tasks[0].duration_ref.duration_ref_id = "MISSING_DURATION_REF_DUR"
 
     result = validate_cross_library_runtime(runtime)
 
@@ -98,6 +101,42 @@ def test_validation_detects_dangling_atomic_task_mapping_reference():
     assert "DANGLING_ATOMIC_TASK_REF" in _issue_codes(result)
 
 
+def test_validation_detects_dangling_standards_bundle_mapping_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
+    mapping.source_refs[0].reference_id = "SB-MISSING@v1"
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "failed"
+    assert "DANGLING_STANDARDS_BUNDLE_REF" in _issue_codes(result)
+
+
+def test_validation_detects_dangling_template_mapping_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
+    mapping.target_refs[0].reference_id = "TPL-MISSING@v1"
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "failed"
+    assert "DANGLING_TEMPLATE_REF" in _issue_codes(result)
+
+
+def test_validation_accepts_resolved_standards_bundle_and_template_mapping_reference():
+    runtime = load_default_source_library_baseline_runtime()
+    mapping = _first_mapping_by_kind(runtime, "standard_to_template")
+
+    assert mapping.source_refs[0].reference_type == "standard_bundle"
+    assert mapping.source_refs[0].reference_status == "resolved_source"
+    assert mapping.target_refs[0].reference_type == "template"
+    assert mapping.target_refs[0].reference_status == "resolved_source"
+
+    result = validate_cross_library_runtime(runtime)
+
+    assert result.status == "passed"
+
+
 def test_validation_detects_future_reference_without_resolution_checkpoint():
     runtime = load_default_source_library_baseline_runtime()
     mapping = _first_mapping_by_kind(runtime, "task_to_document")
@@ -129,6 +168,62 @@ def test_validation_detects_empty_calendar_library():
 
     assert result.status == "failed"
     assert "EMPTY_LIBRARY" in _issue_codes(result)
+
+
+def test_validation_detects_unbound_template_schema_ref(monkeypatch):
+    from asbp.document_template_store import load_default_document_template_library
+
+    template_library = load_default_document_template_library()
+    template_library.template_records[0].schema_binding_status = (
+        "schema_binding_pending_m29_4"
+    )
+    template_library.template_records[0].schema_binding_ref = (
+        "SCHEMA-FUTURE-QUALIFICATION-PLAN@v1"
+    )
+
+    monkeypatch.setattr(
+        "asbp.cross_library_validation.load_default_document_template_library",
+        lambda: template_library,
+    )
+
+    result = validate_default_cross_library_baseline()
+
+    assert result.status == "failed"
+    assert "UNBOUND_TEMPLATE_SCHEMA_REF" in _issue_codes(result)
+
+
+def test_validation_detects_dangling_document_input_schema_ref(monkeypatch):
+    from asbp.document_template_store import load_default_document_template_library
+
+    template_library = load_default_document_template_library()
+    template_library.template_records[0].schema_binding_ref = "SCHEMA-MISSING@v1"
+
+    monkeypatch.setattr(
+        "asbp.cross_library_validation.load_default_document_template_library",
+        lambda: template_library,
+    )
+
+    result = validate_default_cross_library_baseline()
+
+    assert result.status == "failed"
+    assert "DANGLING_DOCUMENT_INPUT_SCHEMA_REF" in _issue_codes(result)
+
+
+def test_validation_detects_schema_template_mismatch(monkeypatch):
+    from asbp.document_input_schema_store import load_default_document_input_schema_library
+
+    schema_library = load_default_document_input_schema_library()
+    schema_library.schema_records[0].document_type = "Wrong Document Type"
+
+    monkeypatch.setattr(
+        "asbp.cross_library_validation.load_default_document_input_schema_library",
+        lambda: schema_library,
+    )
+
+    result = validate_default_cross_library_baseline()
+
+    assert result.status == "failed"
+    assert "SCHEMA_TEMPLATE_MISMATCH" in _issue_codes(result)
 
 
 def test_validation_assertion_raises_clear_error_on_failure():

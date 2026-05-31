@@ -1,0 +1,3498 @@
+{
+  "library_id": "M29_WAVE2_UTILITIES_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-UTIL-COMPRESSED-AIR-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Compressed Air System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "compressed-air-system",
+        "detailed_p0",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Compressed Air System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "COMPRESSEDAIR-CCF",
+          "title": "Capture Compressed Air System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Compressed Air System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "QP",
+              "status": "future_expected",
+              "notes": "Wave 2 validation fix: qualification plan expectation is explicitly represented at task-pool level; template/body/schema implementation remains Wave 4/Wave 5."
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-URS",
+          "title": "Confirm Compressed Air System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Compressed Air System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-RISK",
+          "title": "Perform Compressed Air System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Compressed Air System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-DQ",
+          "title": "Perform Compressed Air System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Compressed Air System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-COMM",
+          "title": "Plan commissioning and turnover for Compressed Air System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Compressed Air System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-IQ",
+          "title": "Prepare and execute Compressed Air System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Compressed Air System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-OQ",
+          "title": "Prepare and execute Compressed Air System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Compressed Air System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-PQ",
+          "title": "Prepare and execute Compressed Air System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Compressed Air System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPRESSEDAIR-CLOSE",
+          "title": "Close Compressed Air System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Compressed Air System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPRESSEDAIR-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPRESSED_AIR_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-PURIFIED-WATER-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Purified / Refined Water System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "purified-refined-water-system",
+        "detailed_p0",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Purified / Refined Water System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "PURIFIEDWATER-CCF",
+          "title": "Capture Purified / Refined Water System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Purified / Refined Water System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-URS",
+          "title": "Confirm Purified / Refined Water System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Purified / Refined Water System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-RISK",
+          "title": "Perform Purified / Refined Water System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Purified / Refined Water System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-DQ",
+          "title": "Perform Purified / Refined Water System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Purified / Refined Water System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-COMM",
+          "title": "Plan commissioning and turnover for Purified / Refined Water System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Purified / Refined Water System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-IQ",
+          "title": "Prepare and execute Purified / Refined Water System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Purified / Refined Water System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-OQ",
+          "title": "Prepare and execute Purified / Refined Water System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Purified / Refined Water System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-PQ",
+          "title": "Prepare and execute Purified / Refined Water System PQ/performance verification where applicable",
+          "purpose": "Verify performance, sampling points, trend expectations, and acceptance basis for Purified / Refined Water System; sampling must not be treated as later by default for P0 water scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PURIFIEDWATER-CLOSE",
+          "title": "Close Purified / Refined Water System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Purified / Refined Water System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PURIFIEDWATER-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PURIFIED_WATER_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-HVAC-SYSTEM-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP HVAC System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "hvac-system",
+        "detailed_p0",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "HVAC System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "HVACSYSTEM-CCF",
+          "title": "Capture HVAC System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for HVAC System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-URS",
+          "title": "Confirm HVAC System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for HVAC System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-RISK",
+          "title": "Perform HVAC System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for HVAC System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-DQ",
+          "title": "Perform HVAC System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for HVAC System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-COMM",
+          "title": "Plan commissioning and turnover for HVAC System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for HVAC System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-IQ",
+          "title": "Prepare and execute HVAC System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for HVAC System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-OQ",
+          "title": "Prepare and execute HVAC System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for HVAC System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-PQ",
+          "title": "Prepare and execute HVAC System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for HVAC System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HVACSYSTEM-CLOSE",
+          "title": "Close HVAC System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for HVAC System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HVACSYSTEM-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HVAC_SYSTEM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-CHILLED-WATER-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Chilled Water System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "chilled-water-system",
+        "detailed_p0",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Chilled Water System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CHILLEDWATER-CCF",
+          "title": "Capture Chilled Water System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Chilled Water System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-URS",
+          "title": "Confirm Chilled Water System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Chilled Water System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-RISK",
+          "title": "Perform Chilled Water System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Chilled Water System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-DQ",
+          "title": "Perform Chilled Water System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Chilled Water System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-COMM",
+          "title": "Plan commissioning and turnover for Chilled Water System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Chilled Water System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-IQ",
+          "title": "Prepare and execute Chilled Water System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Chilled Water System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-OQ",
+          "title": "Prepare and execute Chilled Water System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Chilled Water System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-PQ",
+          "title": "Prepare and execute Chilled Water System PQ/performance verification where applicable",
+          "purpose": "Verify performance, sampling points, trend expectations, and acceptance basis for Chilled Water System; sampling must not be treated as later by default for P0 water scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CHILLEDWATER-CLOSE",
+          "title": "Close Chilled Water System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Chilled Water System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CHILLEDWATER-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CHILLED_WATER_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-STEAM-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Steam System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "steam-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Steam System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "STEAM-CCF",
+          "title": "Capture Steam System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Steam System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-URS",
+          "title": "Confirm Steam System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Steam System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-RISK",
+          "title": "Perform Steam System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Steam System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-DQ",
+          "title": "Perform Steam System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Steam System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-COMM",
+          "title": "Plan commissioning and turnover for Steam System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Steam System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-IQ",
+          "title": "Prepare and execute Steam System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Steam System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-OQ",
+          "title": "Prepare and execute Steam System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Steam System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-PQ",
+          "title": "Prepare and execute Steam System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Steam System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "STEAM-CLOSE",
+          "title": "Close Steam System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Steam System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "STEAM-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "STEAM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-HOT-WATER-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Hot Water System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "hot-water-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Hot Water System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "HOTWATER-CCF",
+          "title": "Capture Hot Water System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Hot Water System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-URS",
+          "title": "Confirm Hot Water System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Hot Water System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-RISK",
+          "title": "Perform Hot Water System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Hot Water System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-DQ",
+          "title": "Perform Hot Water System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Hot Water System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-COMM",
+          "title": "Plan commissioning and turnover for Hot Water System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Hot Water System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-IQ",
+          "title": "Prepare and execute Hot Water System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Hot Water System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-OQ",
+          "title": "Prepare and execute Hot Water System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Hot Water System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-PQ",
+          "title": "Prepare and execute Hot Water System PQ/performance verification where applicable",
+          "purpose": "Verify performance, sampling points, trend expectations, and acceptance basis for Hot Water System; sampling must not be treated as later by default for P0 water scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "HOTWATER-CLOSE",
+          "title": "Close Hot Water System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Hot Water System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "HOTWATER-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "HOT_WATER_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-VACUUM-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Vacuum System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "vacuum-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Vacuum System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "VACUUM-CCF",
+          "title": "Capture Vacuum System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Vacuum System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-URS",
+          "title": "Confirm Vacuum System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Vacuum System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-RISK",
+          "title": "Perform Vacuum System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Vacuum System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-DQ",
+          "title": "Perform Vacuum System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Vacuum System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-COMM",
+          "title": "Plan commissioning and turnover for Vacuum System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Vacuum System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-IQ",
+          "title": "Prepare and execute Vacuum System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Vacuum System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-OQ",
+          "title": "Prepare and execute Vacuum System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Vacuum System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-PQ",
+          "title": "Prepare and execute Vacuum System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Vacuum System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "VACUUM-CLOSE",
+          "title": "Close Vacuum System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Vacuum System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "VACUUM-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "VACUUM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-NITROGEN-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Nitrogen System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "nitrogen-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Nitrogen System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "NITROGEN-CCF",
+          "title": "Capture Nitrogen System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Nitrogen System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-URS",
+          "title": "Confirm Nitrogen System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Nitrogen System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-RISK",
+          "title": "Perform Nitrogen System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Nitrogen System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-DQ",
+          "title": "Perform Nitrogen System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Nitrogen System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-COMM",
+          "title": "Plan commissioning and turnover for Nitrogen System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Nitrogen System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-IQ",
+          "title": "Prepare and execute Nitrogen System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Nitrogen System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-OQ",
+          "title": "Prepare and execute Nitrogen System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Nitrogen System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-PQ",
+          "title": "Prepare and execute Nitrogen System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Nitrogen System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "NITROGEN-CLOSE",
+          "title": "Close Nitrogen System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Nitrogen System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "NITROGEN-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "NITROGEN_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-DRAINAGE-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Drainage System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "drainage-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Drainage System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "DRAINAGE-CCF",
+          "title": "Capture Drainage System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Drainage System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-URS",
+          "title": "Confirm Drainage System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Drainage System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-RISK",
+          "title": "Perform Drainage System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Drainage System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-DQ",
+          "title": "Perform Drainage System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Drainage System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-COMM",
+          "title": "Plan commissioning and turnover for Drainage System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Drainage System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-IQ",
+          "title": "Prepare and execute Drainage System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Drainage System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-OQ",
+          "title": "Prepare and execute Drainage System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Drainage System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-PQ",
+          "title": "Prepare and execute Drainage System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Drainage System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "DRAINAGE-CLOSE",
+          "title": "Close Drainage System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Drainage System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "DRAINAGE-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "DRAINAGE_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTIL-ELECTRICAL-POWER-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Electrical Power System Qualification Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "electrical-power-system",
+        "general_first",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "utilities",
+      "utility_system": "Electrical Power System",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "ELECTRICALPOWER-CCF",
+          "title": "Capture Electrical Power System change and scope context",
+          "purpose": "Capture CCF/change context, utility boundary, GMP use, lifecycle route, and qualification path for Electrical Power System.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-URS",
+          "title": "Confirm Electrical Power System requirements and design basis",
+          "purpose": "Confirm user requirements, design basis, points of use/interface, vendor/engineering documents, and utility performance expectations for Electrical Power System.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-RISK",
+          "title": "Perform Electrical Power System RA/FMEA and impact assessment",
+          "purpose": "Assess GMP impact, critical quality attributes, utility criticality, and testing/sampling depth for Electrical Power System.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-DQ",
+          "title": "Perform Electrical Power System DQ or design review",
+          "purpose": "Confirm design suitability, capacity, distribution/interface expectations, and design qualification readiness for Electrical Power System.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-COMM",
+          "title": "Plan commissioning and turnover for Electrical Power System",
+          "purpose": "Confirm CP, CTOP/A1/A2 or commissioning turnover evidence where applicable for Electrical Power System.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_COMM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CR",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A2_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-IQ",
+          "title": "Prepare and execute Electrical Power System IQ",
+          "purpose": "Verify installation, components, instruments, calibration, materials, distribution/interface evidence, and turnover readiness for Electrical Power System.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-COMM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-OQ",
+          "title": "Prepare and execute Electrical Power System OQ",
+          "purpose": "Verify operating ranges, alarms, controls, performance boundaries, and challenge conditions for Electrical Power System.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-PQ",
+          "title": "Prepare and execute Electrical Power System PQ/performance verification where applicable",
+          "purpose": "Verify performance or operational evidence where scope requires for Electrical Power System.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "ELECTRICALPOWER-CLOSE",
+          "title": "Close Electrical Power System qualification package",
+          "purpose": "Confirm deviations, CAPA, RTM, summary conclusions, and VSR readiness for Electrical Power System.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "ELECTRICALPOWER-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "ELECTRICAL_POWER_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

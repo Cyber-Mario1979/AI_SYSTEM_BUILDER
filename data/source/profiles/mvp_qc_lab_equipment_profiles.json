@@ -1,0 +1,98 @@
+{
+  "library_id": "M29_WAVE3_QC_LAB_EQUIPMENT_PROFILE_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "profiles": [
+    {
+      "profile_id": "PROF-MVP-QC-LAB-EQUIPMENT@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP QC Laboratory Equipment Qualification / Calibration Linkage Profile",
+      "profile_type": "equipment_system",
+      "related_preset_families": [
+        "PF-QC-LAB-EQUIPMENT"
+      ],
+      "selector_context_tags": [
+        "qc-lab-equipment",
+        "calibration",
+        "csv-linkage",
+        "mvp-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-CSV-LINKAGE",
+        "INT-DECOMMISSIONING"
+      ],
+      "context_fields": [
+        {
+          "field_id": "instrument_identity",
+          "label": "Instrument / equipment identity",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "method_or_use_context",
+          "label": "Method or intended laboratory use",
+          "value_status": "human_input_required"
+        },
+        {
+          "field_id": "calibration_status",
+          "label": "Calibration status",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "current",
+            "due",
+            "overdue",
+            "not_required",
+            "to_be_confirmed"
+          ]
+        },
+        {
+          "field_id": "csv_linkage",
+          "label": "CSV/software linkage",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "csv_relevant",
+            "firmware_only",
+            "not_relevant",
+            "to_be_assessed"
+          ]
+        },
+        {
+          "field_id": "performance_verification_need",
+          "label": "Performance verification need",
+          "value_status": "human_input_required",
+          "allowed_values": [
+            "required",
+            "not_required",
+            "to_be_confirmed"
+          ]
+        }
+      ],
+      "assumption_controls": [
+        "Lab equipment is P0 by owner decision; calibration and CSV linkage must remain visible until confirmed."
+      ],
+      "notes": [
+        "Wave 3 MVP remediation profile source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP QC lab equipment profile source record."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

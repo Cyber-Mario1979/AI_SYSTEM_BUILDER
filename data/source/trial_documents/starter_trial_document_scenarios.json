@@ -1,0 +1,78 @@
+{
+  "library_id": "M29_TRIAL_DOCUMENT_SCENARIO_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_trial_document_scenario_source",
+  "scenarios": [
+    {
+      "scenario_id": "TRIAL-QP-LOCAL-CQV@v1",
+      "version": "v1",
+      "status": "runtime_facing_trial_document_scenario_record",
+      "display_name": "Local CQV qualification plan trial scenario",
+      "template_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+      "drafting_mode_id": "DRAFTMODE-MINIMAL-SCAFFOLD-PLACEHOLDERS@v1",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "input_values": {
+        "project_title": "Local CQV Qualification Plan Trial",
+        "cqv_scope": "Controlled local qualification planning trial for a CQV system"
+      },
+      "intake_route_ref": "ROUTE-SKIP-DCF",
+      "output_formats": [
+        "markdown",
+        "csv_summary"
+      ],
+      "scenario_controls": [
+        "Trial scenario uses the validated M29 document/output chain.",
+        "Trial scenario is local review evidence only and must not be treated as release or UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_uat_acceptance",
+        "does_not_release_or_deploy_documents",
+        "does_not_create_customer_ready_output",
+        "does_not_create_qms_approval_records"
+      ]
+    },
+    {
+      "scenario_id": "TRIAL-CSV-LOCAL-CQV@v1",
+      "version": "v1",
+      "status": "runtime_facing_trial_document_scenario_record",
+      "display_name": "Local CSV validation plan trial scenario",
+      "template_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "drafting_mode_id": "DRAFTMODE-MINIMAL-SCAFFOLD-PLACEHOLDERS@v1",
+      "standards_bundle_refs": [
+        "SB-CSV-GXP@v1"
+      ],
+      "input_values": {
+        "project_title": "Local CSV Validation Plan Trial",
+        "system_name": "Controlled CSV trial system"
+      },
+      "intake_route_ref": "ROUTE-SKIP-DCF",
+      "output_formats": [
+        "markdown",
+        "csv_summary"
+      ],
+      "scenario_controls": [
+        "Trial scenario uses the validated M29 document/output chain.",
+        "Trial scenario is local review evidence only and must not be treated as release or UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_create_uat_acceptance",
+        "does_not_release_or_deploy_documents",
+        "does_not_create_customer_ready_output",
+        "does_not_create_qms_approval_records"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.10 trial document scenarios generate controlled local sample sets only.",
+    "Trial scenarios require output validation to pass before trial sample records are created.",
+    "Trial scenarios do not create UAT acceptance, approval records, release, deployment, productization, or SaaS readiness."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_create_uat_acceptance",
+    "does_not_release_or_deploy_documents",
+    "does_not_create_customer_ready_output",
+    "does_not_create_qms_approval_records"
+  ]
+}

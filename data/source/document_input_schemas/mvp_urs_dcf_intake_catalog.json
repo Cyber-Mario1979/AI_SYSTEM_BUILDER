@@ -1,0 +1,1492 @@
+{
+  "catalog_id": "M29_URS_DCF_INTAKE_CATALOG@v1",
+  "version": "v1",
+  "status": "mvp_runtime_source",
+  "dcf_records": [
+    {
+      "dcf_id": "DCF-URS-CLEANROOM-HVAC@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "domain": "cleanroom_hvac",
+      "display_name": "URS DCF \u2014 Cleanroom / HVAC",
+      "source_file_name": "VALOR_DCF_Cleanroom_v1.docx",
+      "target_document_ref": "URS",
+      "target_template_body_ref": "TPLBODY-URS@v1",
+      "supported_asset_scope": [
+        "Cleanroom rooms and controlled areas",
+        "HVAC supporting systems where room/HVAC context applies",
+        "EMS/BMS supporting systems where relevant"
+      ],
+      "field_groups": [
+        {
+          "group_id": "room_profile",
+          "display_name": "Room and system profile",
+          "source_section_label": "1. Room and system profile",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "environmental_quality",
+          "display_name": "Environmental quality attributes",
+          "source_section_label": "2. Environmental quality attributes",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "environmental_controls",
+          "display_name": "Environmental control parameters",
+          "source_section_label": "3. Environmental control parameters",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "operation_monitoring",
+          "display_name": "Room operation, cleaning, and monitoring",
+          "source_section_label": "4. Room operation, cleaning, and monitoring",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "safety_data_integrity",
+          "display_name": "Safety, interlocks, and data integrity",
+          "source_section_label": "5. Safety, interlocks, and data integrity",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "field_id": "site_facility",
+          "display_name": "Site / Facility",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_system_description"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "building_level",
+          "display_name": "Building / Level",
+          "group_id": "room_profile",
+          "requirement_status": "optional",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "rooms_in_scope",
+          "display_name": "Rooms in scope",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "list",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_system_description"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "room_function_per_room",
+          "display_name": "Room function per room",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_functional_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "room_classification_grade",
+          "display_name": "Room classification / grade per room",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_facility_environment"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "operating_model",
+          "display_name": "Operating model",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "pressure_cascade_concept",
+          "display_name": "Pressure cascade concept",
+          "group_id": "room_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_facility_environment",
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "temperature_setpoints_ranges",
+          "display_name": "Temperature setpoints / ranges",
+          "group_id": "environmental_controls",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "rh_setpoints_ranges",
+          "display_name": "RH setpoints / ranges",
+          "group_id": "environmental_controls",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "air_change_rate_requirement",
+          "display_name": "Air change rate requirement",
+          "group_id": "environmental_controls",
+          "requirement_status": "conditional",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "recovery_time_requirement",
+          "display_name": "Recovery time requirement",
+          "group_id": "environmental_controls",
+          "requirement_status": "conditional",
+          "value_type": "number",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_acceptance_criteria"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cqa_register",
+          "display_name": "CQA register",
+          "group_id": "environmental_quality",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_quality_attributes",
+            "section.urs_acceptance_criteria"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cpp_register",
+          "display_name": "CPP register",
+          "group_id": "environmental_controls",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "monitoring_points",
+          "display_name": "Temperature / RH monitoring points",
+          "group_id": "operation_monitoring",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_monitoring_controls"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "particle_monitoring_requirement",
+          "display_name": "Particle monitoring requirement",
+          "group_id": "operation_monitoring",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_monitoring_controls"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "microbial_monitoring_requirement",
+          "display_name": "Microbial monitoring requirement",
+          "group_id": "operation_monitoring",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_monitoring_controls"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cleaning_frequency",
+          "display_name": "Cleaning frequency per room",
+          "group_id": "operation_monitoring",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_cleaning_hygiene"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "gowning_flow_constraints",
+          "display_name": "Gowning / personnel flow constraints",
+          "group_id": "operation_monitoring",
+          "requirement_status": "optional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_operational_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "material_flow_airlock_requirements",
+          "display_name": "Material flow / airlock requirements",
+          "group_id": "operation_monitoring",
+          "requirement_status": "optional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_operational_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "door_interlocks_airlock_logic",
+          "display_name": "Door interlocks or airlock logic",
+          "group_id": "safety_data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_safety",
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "ems_integration",
+          "display_name": "EMS integration",
+          "group_id": "safety_data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_computerized_systems"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "data_retention_period",
+          "display_name": "Data retention period",
+          "group_id": "safety_data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        }
+      ],
+      "dcf_controls": [
+        "This DCF feeds URS only.",
+        "Downstream DQ/IQ/OQ/PQ/VSR use URS-derived and evidence-derived dependencies, not separate DCFs."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "dcf_id": "DCF-URS-PROCESS-EQUIPMENT@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "domain": "process_equipment",
+      "display_name": "URS DCF \u2014 Process Equipment",
+      "source_file_name": "VALOR_DCF_Process_Equipment_v1.docx",
+      "target_document_ref": "URS",
+      "target_template_body_ref": "TPLBODY-URS@v1",
+      "supported_asset_scope": [
+        "Tablet Compression Machine",
+        "Pan Coater",
+        "Capsule Filling Machine",
+        "Bin Blender",
+        "Vertical Granulator",
+        "Fluid Bed Dryer",
+        "Roller Compactor",
+        "Blister Line",
+        "Tablet Sorter",
+        "Mill"
+      ],
+      "field_groups": [
+        {
+          "group_id": "equipment_profile",
+          "display_name": "System profile",
+          "source_section_label": "1. System profile",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "cqa",
+          "display_name": "Critical quality attributes",
+          "source_section_label": "2. Critical quality attributes",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "cpp",
+          "display_name": "Critical process parameters",
+          "source_section_label": "3. Critical process parameters",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "utilities_environment",
+          "display_name": "Utilities and environment",
+          "source_section_label": "4. Utilities and environment",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "cleaning_hygiene",
+          "display_name": "Cleaning and hygiene",
+          "source_section_label": "5. Cleaning and hygiene",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "safety_interlocks",
+          "display_name": "Safety and interlocks",
+          "source_section_label": "6. Safety and interlocks",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "automation_data",
+          "display_name": "Automation and data integrity",
+          "source_section_label": "7. Automation and data integrity",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "preset_supplements",
+          "display_name": "Preset-specific supplements",
+          "source_section_label": "8. Preset-specific supplements",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "field_id": "selected_equipment_archetype",
+          "display_name": "Selected equipment archetype",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_system_description"
+          ],
+          "extraction_notes": [
+            "Supported archetypes include Tablet Compression Machine, Pan Coater, Capsule Filling Machine, Bin Blender, Vertical Granulator, Fluid Bed Dryer, Roller Compactor, Blister Line, Tablet Sorter, and Mill."
+          ]
+        },
+        {
+          "field_id": "site_facility",
+          "display_name": "Site / Facility",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "area_suite",
+          "display_name": "Area / Suite",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "room_id_name",
+          "display_name": "Room ID / name",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "gmp_classification_grade",
+          "display_name": "GMP classification / grade",
+          "group_id": "equipment_profile",
+          "requirement_status": "conditional",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "intended_use",
+          "display_name": "Intended use",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_purpose",
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "product_formulation_identifier",
+          "display_name": "Product / formulation identifier",
+          "group_id": "equipment_profile",
+          "requirement_status": "optional",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "batch_size_typical",
+          "display_name": "Batch size typical",
+          "group_id": "equipment_profile",
+          "requirement_status": "conditional",
+          "value_type": "number",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "operating_model",
+          "display_name": "Operating model",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "interfaces_boundaries",
+          "display_name": "Interfaces / boundaries",
+          "group_id": "equipment_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "rated_throughput_speed",
+          "display_name": "Rated throughput / speed",
+          "group_id": "equipment_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_functional_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cqa_register",
+          "display_name": "CQA register",
+          "group_id": "cqa",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_quality_attributes"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cpp_register",
+          "display_name": "CPP register",
+          "group_id": "cpp",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "electrical_power",
+          "display_name": "Electrical power",
+          "group_id": "utilities_environment",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "compressed_air",
+          "display_name": "Compressed air",
+          "group_id": "utilities_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "vacuum_dust_extraction",
+          "display_name": "Vacuum / dust extraction",
+          "group_id": "utilities_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "room_temperature_range",
+          "display_name": "Room temperature range",
+          "group_id": "utilities_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_facility_environment"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "room_rh_range",
+          "display_name": "Room RH range",
+          "group_id": "utilities_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_facility_environment"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cleaning_method",
+          "display_name": "Cleaning method",
+          "group_id": "cleaning_hygiene",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_cleaning_hygiene"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cleaning_acceptance_basis",
+          "display_name": "Rinse / residue acceptance criteria",
+          "group_id": "cleaning_hygiene",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_cleaning_hygiene",
+            "section.urs_acceptance_criteria"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "guarding_door_interlocks",
+          "display_name": "Guarding / door interlocks",
+          "group_id": "safety_interlocks",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_safety"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "emergency_stop_philosophy",
+          "display_name": "Emergency stop philosophy",
+          "group_id": "safety_interlocks",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_safety"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "user_roles_access_control",
+          "display_name": "User roles and access control",
+          "group_id": "automation_data",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_computerized_systems",
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "audit_trail",
+          "display_name": "Audit trail",
+          "group_id": "automation_data",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "batch_run_report_contents",
+          "display_name": "Batch / run report contents",
+          "group_id": "automation_data",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        }
+      ],
+      "dcf_controls": [
+        "This DCF feeds URS only for process equipment archetypes.",
+        "Vertical Granulator is the correct human-readable archetype name.",
+        "Uploaded preset codes are not runtime authority in this DCF catalog."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "dcf_id": "DCF-URS-UTILITIES@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "domain": "utilities",
+      "display_name": "URS DCF \u2014 Utilities",
+      "source_file_name": "VALOR_DCF_Utilities_v1.docx",
+      "target_document_ref": "URS",
+      "target_template_body_ref": "TPLBODY-URS@v1",
+      "supported_asset_scope": [
+        "Compressed Air System",
+        "Purified / Refined Water System",
+        "HVAC System",
+        "Chilled Water System",
+        "Steam System general-first",
+        "Hot Water System general-first",
+        "Vacuum System general-first",
+        "Nitrogen System general-first",
+        "Drainage System general-first",
+        "Electrical Power System general-first"
+      ],
+      "field_groups": [
+        {
+          "group_id": "utility_profile",
+          "display_name": "System profile",
+          "source_section_label": "1. System profile",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "cqa",
+          "display_name": "Critical quality attributes",
+          "source_section_label": "2. Critical quality attributes",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "cpp",
+          "display_name": "Critical process parameters",
+          "source_section_label": "3. Critical process parameters",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "interfaces_environment",
+          "display_name": "Interfaces and environment",
+          "source_section_label": "4. Interfaces and environment",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "maintenance_hygiene",
+          "display_name": "Cleaning, hygiene, and maintenance",
+          "source_section_label": "5. Cleaning, hygiene, and maintenance",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "safety_interlocks",
+          "display_name": "Safety and interlocks",
+          "source_section_label": "6. Safety and interlocks",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "automation_data",
+          "display_name": "Automation and data integrity",
+          "source_section_label": "7. Automation and data integrity",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "utility_supplements",
+          "display_name": "Utility-specific supplements",
+          "source_section_label": "8. Utility-specific supplements",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "field_id": "selected_utility_system",
+          "display_name": "Selected utility system",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_system_description"
+          ],
+          "extraction_notes": [
+            "Detailed P0 systems: Compressed Air System, Purified / Refined Water System, HVAC System, Chilled Water System."
+          ]
+        },
+        {
+          "field_id": "site_facility",
+          "display_name": "Site / Facility",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "area_serving_scope",
+          "display_name": "Area / serving scope",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "system_boundaries",
+          "display_name": "System boundaries",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "operating_model",
+          "display_name": "Operating model",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "critical_users_points_of_use",
+          "display_name": "Critical users / points of use",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "list",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_quality_attributes"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "regulatory_classification",
+          "display_name": "Regulatory classification",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "generation_source_equipment",
+          "display_name": "Generation source / equipment",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "storage_capacity_buffer",
+          "display_name": "Storage capacity / buffer",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "distribution_concept",
+          "display_name": "Distribution concept",
+          "group_id": "utility_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "redundancy_philosophy",
+          "display_name": "Redundancy philosophy",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "design_capacity",
+          "display_name": "Design capacity",
+          "group_id": "utility_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cqa_register",
+          "display_name": "CQA register",
+          "group_id": "cqa",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_quality_attributes"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cpp_register",
+          "display_name": "CPP register",
+          "group_id": "cpp",
+          "requirement_status": "required",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_critical_parameters"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "electrical_power",
+          "display_name": "Electrical power",
+          "group_id": "interfaces_environment",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cooling_heating_interface",
+          "display_name": "Cooling / heating interface",
+          "group_id": "interfaces_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "drain_management",
+          "display_name": "Drain management",
+          "group_id": "interfaces_environment",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_utilities"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "sampling_port_cleanliness",
+          "display_name": "Sampling port cleanliness / handling",
+          "group_id": "maintenance_hygiene",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_quality_attributes",
+            "section.urs_acceptance_criteria"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "sanitization_regeneration_approach",
+          "display_name": "Sanitization or regeneration approach",
+          "group_id": "maintenance_hygiene",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "filter_membrane_change_requirements",
+          "display_name": "Filter / membrane change requirements",
+          "group_id": "maintenance_hygiene",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "pressure_relief_overpressure",
+          "display_name": "Pressure relief / overpressure protection",
+          "group_id": "safety_interlocks",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_safety"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "utility_failure_alarms",
+          "display_name": "Utility failure alarms and escalation",
+          "group_id": "safety_interlocks",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_safety",
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "trend_data_logging",
+          "display_name": "Trend / data logging requirements",
+          "group_id": "automation_data",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "bms_ems_historian_integration",
+          "display_name": "Historian / BMS / EMS integration",
+          "group_id": "automation_data",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_computerized_systems"
+          ],
+          "extraction_notes": []
+        }
+      ],
+      "dcf_controls": [
+        "This DCF feeds URS only for utility systems.",
+        "Detailed P0 utilities must not push purified water sampling/performance logic to later by default.",
+        "General-first utilities remain visible but can be expanded later by owner decision."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    },
+    {
+      "dcf_id": "DCF-URS-COMPUTERIZED-SYSTEMS@v1",
+      "version": "v1",
+      "status": "mvp_runtime_source",
+      "domain": "computerized_systems",
+      "display_name": "URS DCF \u2014 Computerized Systems",
+      "source_file_name": "VALOR_DCF_Computerized_Systems_v1.docx",
+      "target_document_ref": "URS",
+      "target_template_body_ref": "TPLBODY-URS@v1",
+      "supported_asset_scope": [
+        "BMS",
+        "EMS",
+        "CSV / GxP computerized system route where owner-approved"
+      ],
+      "field_groups": [
+        {
+          "group_id": "system_profile",
+          "display_name": "System profile",
+          "source_section_label": "1. System profile",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "quality_performance",
+          "display_name": "Critical quality / performance attributes",
+          "source_section_label": "2. Critical quality / performance attributes",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "configuration_controls",
+          "display_name": "Controlled parameters and configuration points",
+          "source_section_label": "3. Controlled parameters and configuration points",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "infrastructure",
+          "display_name": "Infrastructure and operational requirements",
+          "source_section_label": "4. Infrastructure and operational requirements",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "data_integrity",
+          "display_name": "Data integrity and compliance controls",
+          "source_section_label": "5. Data integrity and compliance controls",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        },
+        {
+          "group_id": "system_supplements",
+          "display_name": "System-specific supplements",
+          "source_section_label": "6. System-specific supplements",
+          "group_controls": [
+            "Source structure is taken from uploaded DCF examples for URS intake only."
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "field_id": "selected_system_family",
+          "display_name": "Selected system family",
+          "group_id": "system_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope",
+            "section.urs_system_description"
+          ],
+          "extraction_notes": [
+            "Uploaded DCF includes BMS and EMS as system choices."
+          ]
+        },
+        {
+          "field_id": "system_name_identifier",
+          "display_name": "System name / identifier",
+          "group_id": "system_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "scope_of_control_monitoring",
+          "display_name": "Scope of control / monitoring",
+          "group_id": "system_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "gxp_impact",
+          "display_name": "GxP impact",
+          "group_id": "system_profile",
+          "requirement_status": "required",
+          "value_type": "string",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_gxp_impact"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "users_roles",
+          "display_name": "Users / roles",
+          "group_id": "system_profile",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_roles"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "areas_assets_monitored_controlled",
+          "display_name": "Areas / assets monitored or controlled",
+          "group_id": "system_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "parameters_monitored",
+          "display_name": "Parameters monitored",
+          "group_id": "system_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_functional_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "sampling_intervals_scan_rates",
+          "display_name": "Sampling intervals / scan rates",
+          "group_id": "system_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "alarm_setpoints_critical_events",
+          "display_name": "Alarm setpoints / critical events",
+          "group_id": "system_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_functional_requirements",
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "interfaces",
+          "display_name": "Interfaces",
+          "group_id": "system_profile",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_interfaces"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "hosting_infrastructure",
+          "display_name": "Hosting / infrastructure",
+          "group_id": "infrastructure",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_infrastructure"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "network_cybersecurity_boundary",
+          "display_name": "Network / cybersecurity boundary",
+          "group_id": "infrastructure",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_infrastructure"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cqa_register",
+          "display_name": "CQA register",
+          "group_id": "quality_performance",
+          "requirement_status": "conditional",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_quality_attributes"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "cpp_control_item_register",
+          "display_name": "CPP / control item register",
+          "group_id": "configuration_controls",
+          "requirement_status": "conditional",
+          "value_type": "table",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_functional_requirements"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "time_synchronization",
+          "display_name": "Time synchronization",
+          "group_id": "infrastructure",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "disaster_recovery",
+          "display_name": "Disaster recovery",
+          "group_id": "infrastructure",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "electronic_records_compliance",
+          "display_name": "Electronic records compliance",
+          "group_id": "data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "audit_trail_requirements",
+          "display_name": "Audit trail requirements",
+          "group_id": "data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "access_control_requirements",
+          "display_name": "Access control requirements",
+          "group_id": "data_integrity",
+          "requirement_status": "required",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "backup_restore_testing",
+          "display_name": "Backup / restore testing",
+          "group_id": "data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_data_integrity"
+          ],
+          "extraction_notes": []
+        },
+        {
+          "field_id": "periodic_review_expectation",
+          "display_name": "Periodic review expectation",
+          "group_id": "data_integrity",
+          "requirement_status": "conditional",
+          "value_type": "text",
+          "source_table_label": "DCF table",
+          "target_urs_section_refs": [
+            "section.urs_scope"
+          ],
+          "extraction_notes": []
+        }
+      ],
+      "dcf_controls": [
+        "This DCF feeds URS only for computerized systems.",
+        "BMS/EMS may also support room/HVAC/utility contexts but this catalog keeps DCF use URS-bound.",
+        "CSV downstream validation documents derive from URS and evidence contracts rather than separate DCFs."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_create_uat_acceptance",
+        "does_not_approve_release_or_productize",
+        "does_not_replace_human_review"
+      ]
+    }
+  ],
+  "catalog_controls": [
+    "Wave 5 treats DCF intake as URS-only input collection.",
+    "Downstream documents derive from URS and other controlled evidence, not separate DCFs.",
+    "DCF source files are used as structure references only until converted to controlled repo source records."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_create_uat_acceptance",
+    "does_not_approve_release_or_productize",
+    "does_not_replace_human_review"
+  ]
+}

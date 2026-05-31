@@ -13,8 +13,10 @@ PresetFamilyId = Literal[
     "PF-COMPUTERIZED-SYSTEMS",
     "PF-MANUAL-FALLBACK",
 ]
-
-TaskPoolSourceStatus = Literal["starter_runtime_source"]
+TaskPoolSourceStatus = Literal[
+    "starter_runtime_source",
+    "mvp_remediation_source",
+]
 TaskDependencyType = Literal["FS"]
 DocumentExpectationStatus = Literal[
     "future_expected",
@@ -95,11 +97,19 @@ class TaskPoolSourceModel(BaseModel):
     lifecycle_events: list[str] = Field(min_length=1)
     qualification_validation_intents: list[str] = Field(min_length=1)
     tasks: list[AtomicTaskSourceModel] = Field(min_length=1)
+    domain: str | None = Field(default=None, min_length=1)
+    asset_archetype: str | None = Field(default=None, min_length=1)
+    utility_system: str | None = Field(default=None, min_length=1)
+    lifecycle_route: str | None = Field(default=None, min_length=1)
+    source_limitations: list[str] = Field(default_factory=list)
+    explicit_non_implementation_claims: list[str] = Field(default_factory=list)
 
     @field_validator(
         "selector_context_tags",
         "lifecycle_events",
         "qualification_validation_intents",
+        "source_limitations",
+        "explicit_non_implementation_claims",
     )
     @classmethod
     def validate_no_blank_context_values(cls, values: list[str]) -> list[str]:
@@ -144,6 +154,16 @@ class TaskPoolLibraryModel(BaseModel):
     version: str = Field(min_length=1, pattern=r"^v[0-9]+$")
     status: TaskPoolSourceStatus = "starter_runtime_source"
     task_pools: list[TaskPoolSourceModel] = Field(min_length=1)
+    library_controls: list[str] = Field(default_factory=list)
+    explicit_non_implementation_claims: list[str] = Field(default_factory=list)
+
+    @field_validator("library_controls", "explicit_non_implementation_claims")
+    @classmethod
+    def validate_no_blank_library_values(cls, values: list[str]) -> list[str]:
+        for value in values:
+            if not value.strip():
+                raise ValueError("Blank task-pool library value is not allowed")
+        return values
 
     @model_validator(mode="after")
     def validate_unique_task_pool_ids(self):

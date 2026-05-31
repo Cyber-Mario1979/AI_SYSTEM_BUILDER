@@ -1,0 +1,366 @@
+{
+  "library_id": "M29_WAVE2_QC_LAB_EQUIPMENT_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-QCLAB-EQUIPMENT-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP QC Laboratory Equipment Qualification and Calibration Linkage Task Pool",
+      "preset_family": "PF-QC-LAB-EQUIPMENT",
+      "selector_context_tags": [
+        "qc-lab-equipment",
+        "laboratory-equipment",
+        "calibration",
+        "csv-linkage",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-CALIBRATION-CYCLE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-POST-MALFUNCTION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ",
+        "INT-CALIBRATION-LINKAGE",
+        "INT-CSV-LINKAGE"
+      ],
+      "domain": "qc_lab_equipment",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "QCLAB-CCF",
+          "title": "Capture QC lab equipment change and scope context",
+          "purpose": "Capture change/control context, instrument identity, lab use, GMP data role, calibration linkage, lifecycle route, and qualification boundary.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "QC / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "QP",
+              "status": "future_expected",
+              "notes": "Wave 2 validation fix: qualification plan expectation is explicitly represented at task-pool level; template/body/schema implementation remains Wave 4/Wave 5."
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-CAL",
+          "title": "Confirm calibration and service status",
+          "purpose": "Verify calibration status, calibration procedure availability, service readiness, and reference standard needs before qualification use.",
+          "task_type": "CALIBRATION_REVIEW",
+          "owner_role": "QC / Metrology",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_CAL_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CALIBRATION_RECORD_OR_STATUS",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-URS",
+          "title": "Confirm lab equipment requirements and vendor document basis",
+          "purpose": "Capture intended use, method use, URS/requirements basis, vendor documents, and instrument specification inputs for RTM.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "QC / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-CAL",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-RISK",
+          "title": "Perform lab equipment RA/FMEA and CSV linkage assessment",
+          "purpose": "Assess GMP impact, data integrity role, calibration impact, CSV/software linkage, and testing depth.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "QC / QA / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CSV_LINKAGE_ASSESSMENT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-RTM",
+          "title": "Establish lab equipment RTM basis",
+          "purpose": "Map URS/vendor/specification requirements to IQ/OQ/PQ or verification evidence.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CQV / QC / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-DQ",
+          "title": "Perform lab equipment DQ or design/specification review",
+          "purpose": "Confirm design/specification suitability, vendor evidence, calibration requirements, and readiness for qualification.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "CQV / QC / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-IQOQ",
+          "title": "Prepare and execute lab equipment IQ/OQ package",
+          "purpose": "Verify installation and operational performance for the defined instrument context.",
+          "task_type": "IQ_OQ_EXECUTION",
+          "owner_role": "CQV / QC",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_IQOQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-PQ",
+          "title": "Prepare and execute lab equipment PQ/performance verification where applicable",
+          "purpose": "Verify method/use performance or periodic verification where PQ/performance evidence is in scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-IQOQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLAB-CLOSE",
+          "title": "Close QC lab equipment qualification package",
+          "purpose": "Confirm qualification evidence, calibration linkage, CSV linkage outcome, deviations/CAPA, and VSR readiness.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QC / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLAB-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLAB_MVP_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

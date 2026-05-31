@@ -1,0 +1,95 @@
+{
+  "library_id": "M29_DOCUMENT_TEMPLATE_LIBRARY@v1",
+  "version": "v1",
+  "status": "runtime_facing_template_source",
+  "template_records": [
+    {
+      "template_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
+      "version": "v1",
+      "status": "runtime_facing_template_record",
+      "lifecycle_status": "active",
+      "display_name": "Qualification plan starter template record",
+      "document_family_id": "DOCF-PLAN-STRATEGY",
+      "document_type": "Qualification Plan",
+      "source_location": "data/source/document_templates/starter_document_templates.json::TPL-FUTURE-QUALIFICATION-PLAN@v1",
+      "applicability": [
+        "qualification",
+        "validation",
+        "cqv_strategy",
+        "gmp_documentation",
+        "m29_template_record"
+      ],
+      "schema_binding_status": "schema_bound",
+      "schema_binding_ref": "SCHEMA-QUALIFICATION-PLAN@v1",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "intake_route_refs": [
+        "ROUTE-DCF",
+        "ROUTE-SKIP-DCF"
+      ],
+      "template_controls": [
+        "Template record establishes identity, version, status, source location, applicability, and schema-binding reference.",
+        "Template selection and loading are implemented separately by M29.3.",
+        "Document input schema binding is resolved through M29.4 document input schema source records.",
+        "Generation, rendering, lifecycle, and review/approval behavior remain later M29 checkpoints."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_select_or_load_templates",
+        "does_not_generate_documents",
+        "does_not_validate_document_input_schemas",
+        "does_not_render_or_export_documents"
+      ]
+    },
+    {
+      "template_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "version": "v1",
+      "status": "runtime_facing_template_record",
+      "lifecycle_status": "active",
+      "display_name": "CSV validation plan starter template record",
+      "document_family_id": "DOCF-PLAN-STRATEGY",
+      "document_type": "CSV Validation Plan",
+      "source_location": "data/source/document_templates/starter_document_templates.json::TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
+      "applicability": [
+        "computerized_system",
+        "csv",
+        "gxp",
+        "electronic_records",
+        "m29_template_record"
+      ],
+      "schema_binding_status": "schema_bound",
+      "schema_binding_ref": "SCHEMA-CSV-VALIDATION-PLAN@v1",
+      "standards_bundle_refs": [
+        "SB-CSV-GXP@v1"
+      ],
+      "intake_route_refs": [
+        "ROUTE-DCF",
+        "ROUTE-SKIP-DCF"
+      ],
+      "template_controls": [
+        "Template record establishes identity, version, status, source location, applicability, and schema-binding reference.",
+        "Template selection and loading are implemented separately by M29.3.",
+        "Document input schema binding is resolved through M29.4 document input schema source records.",
+        "Generation, rendering, lifecycle, and review/approval behavior remain later M29 checkpoints."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_select_or_load_templates",
+        "does_not_generate_documents",
+        "does_not_validate_document_input_schemas",
+        "does_not_render_or_export_documents"
+      ]
+    }
+  ],
+  "library_controls": [
+    "M29.2 implements controlled template source records.",
+    "M29.3 implements deterministic template selection/loading separately from the template source records.",
+    "M29.4 binds template records to controlled document input schema source records.",
+    "Template records do not generate, render, export, or approve documents."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_select_or_load_templates",
+    "does_not_generate_documents",
+    "does_not_validate_document_input_schemas",
+    "does_not_render_or_export_documents"
+  ]
+}

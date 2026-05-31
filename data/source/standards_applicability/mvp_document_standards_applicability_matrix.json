@@ -1,0 +1,1011 @@
+{
+  "matrix_id": "M29_DOCUMENT_STANDARDS_APPLICABILITY_MATRIX@v1",
+  "version": "v1",
+  "status": "runtime_facing_document_standards_applicability_source",
+  "document_records": [
+    {
+      "document_ref": "CCF",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Ccf",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "VMP",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Vmp",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "SIA",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Sia",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "URS",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Urs",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "VENDOR_DOCS",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Vendor Docs",
+      "source_mode": "vendor_document_extraction_source",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "RA_FMEA",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Ra Fmea",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "URS_DEVIATION_LIST",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Urs Deviation List",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "RTM",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Rtm",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "DQ",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Dq",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "CP",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Cp",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "QP",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Qp",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "FAT_PROTOCOL_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Fat Protocol Report",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "A0_CERTIFICATE",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "A0 Certificate",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "CTOP",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Ctop",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "A1_CERTIFICATE",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "A1 Certificate",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "SAT_PROTOCOL_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Sat Protocol Report",
+      "source_mode": "external_or_adopted_document",
+      "applicability_status": "external_or_adopted_source_control",
+      "standards_bundle_refs": [],
+      "std_ids": [],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "This document is external, adopted, or vendor-provided in Wave 6.",
+        "ASBP may reference or extract from this source only where downstream contracts allow it.",
+        "Wave 6 does not make this document an ASBP-authored standards-backed template."
+      ],
+      "applicability_rationale": "External/adopted documents are controlled as references or extraction sources, not as ASBP-generated standards-backed outputs.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "CR",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Cr",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "A2_CERTIFICATE",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "A2 Certificate",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "IQ_PROTOCOL_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Iq Protocol Report",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "OQ_PROTOCOL_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Oq Protocol Report",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "PQ_PROTOCOL_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Pq Protocol Report",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1",
+        "SB-CSV-GXP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5",
+        "STD-EU-GMP-ANNEX-11",
+        "STD-FDA-21CFR11"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "DEVIATION_INCIDENT_REPORT",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Deviation Incident Report",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ICH-Q9",
+        "STD-ICH-Q10"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "Version/effective-date and clause-level verification are not asserted.",
+        "Site SOP and QMS authority remain user/site supplied where applicable."
+      ],
+      "applicability_rationale": "Quality event documents need GMP documentation and QRM traceability without pretending ASBP owns site QMS disposition.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "CAPA_CLOSURE_FORM",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Capa Closure Form",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ICH-Q9",
+        "STD-ICH-Q10"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "Version/effective-date and clause-level verification are not asserted.",
+        "Site SOP and QMS authority remain user/site supplied where applicable."
+      ],
+      "applicability_rationale": "Quality event documents need GMP documentation and QRM traceability without pretending ASBP owns site QMS disposition.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "VSR",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Vsr",
+      "source_mode": "asbp_owned_template_body",
+      "applicability_status": "limited_support_with_visible_limitations",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9",
+        "STD-ISPE-GAMP5"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    },
+    {
+      "document_ref": "DECOMMISSIONING_DOCUMENT_SET",
+      "version": "v1",
+      "status": "runtime_facing_document_standards_applicability_record",
+      "document_type": "Decommissioning Document Set",
+      "source_mode": "lifecycle_route_placeholder",
+      "applicability_status": "future_verified_support_required",
+      "standards_bundle_refs": [
+        "SB-CQV-GMP@v1"
+      ],
+      "std_ids": [
+        "STD-EU-GMP-ANNEX-15",
+        "STD-EU-GMP-CHAPTER-4",
+        "STD-ASTM-E2500",
+        "STD-ICH-Q9"
+      ],
+      "allowed_citation_depths": [
+        "document"
+      ],
+      "visible_limitation_statements": [
+        "Standards support is document-level traceability only in Wave 6.",
+        "No section, clause, table-row, or requirement-level public-source citation is asserted without verified source evidence.",
+        "Reference standards do not become mandatory unless adopted by project/site authority.",
+        "Pending/TBD source limitations must remain visible in downstream output."
+      ],
+      "applicability_rationale": "MVP document needs standards traceability and limitation propagation before later standards-backed output use.",
+      "downstream_use_limits": [
+        "May guide later standards-backed output only with visible limitations.",
+        "Does not authorize UAT acceptance, release, deployment, productization, or SaaS readiness."
+      ],
+      "mandatory_use_allowed": false,
+      "audit_ready_claimed": false,
+      "explicit_non_implementation_claims": [
+        "does_not_embed_controlled_standards_text",
+        "does_not_implement_standards_retrieval_or_embedding",
+        "does_not_generate_product_ready_standards_output",
+        "does_not_claim_audit_ready_output",
+        "does_not_accept_uat",
+        "does_not_claim_product_release"
+      ]
+    }
+  ],
+  "matrix_controls": [
+    "Wave 6 maps MVP documents to standards applicability and citation boundaries only.",
+    "Document-level traceability is allowed where source limitations remain visible.",
+    "Wave 6 does not verify public regulatory meaning, embed standards text, implement retrieval, or claim audit-ready output.",
+    "Pending, TBD, reference, and user-provided standards limitations must remain visible."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_embed_controlled_standards_text",
+    "does_not_implement_standards_retrieval_or_embedding",
+    "does_not_generate_product_ready_standards_output",
+    "does_not_claim_audit_ready_output",
+    "does_not_accept_uat",
+    "does_not_claim_product_release"
+  ]
+}

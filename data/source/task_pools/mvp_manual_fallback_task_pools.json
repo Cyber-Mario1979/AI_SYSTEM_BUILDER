@@ -1,0 +1,211 @@
+{
+  "library_id": "M29_WAVE2_MANUAL_FALLBACK_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-MANUAL-FALLBACK-ASSESS@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Manual Fallback / Unsupported Scope Routing Task Pool",
+      "preset_family": "PF-MANUAL-FALLBACK",
+      "selector_context_tags": [
+        "manual-fallback",
+        "unsupported-scope",
+        "source-expansion-review",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-MIXED-OR-OTHER",
+        "LE-ASSESSMENT-ONLY",
+        "LE-CONTEXT-UNKNOWN"
+      ],
+      "qualification_validation_intents": [
+        "INT-ASSESSMENT-ONLY",
+        "INT-MIXED-OR-OTHER",
+        "INT-SOURCE-EXPANSION-REVIEW"
+      ],
+      "domain": "manual_fallback",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "MF-CAPTURE",
+          "title": "Capture unsupported or mixed CQV context",
+          "purpose": "Record asset/system context, scope, lifecycle event, missing source-library coverage, and candidate routes.",
+          "task_type": "CONTEXT_CAPTURE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "MF_MVP_CAPTURE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "ROUTE_DECISION_RECORD",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MF-ASSESS",
+          "title": "Assess candidate route and library gap",
+          "purpose": "Compare candidate preset families, lifecycle routes, document needs, and source-library expansion needs.",
+          "task_type": "ROUTE_ASSESSMENT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-CAPTURE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_MVP_ASSESS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "ROUTE_DECISION_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MF-CONFIRM",
+          "title": "Confirm manual fallback decision",
+          "purpose": "Obtain Project Owner or CQV lead confirmation for temporary route, limitation, or source-library expansion need.",
+          "task_type": "MANUAL_CONFIRMATION",
+          "owner_role": "Project Owner / CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-ASSESS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_MVP_CONFIRM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "MANUAL_CONFIRMATION_RECORD",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MF-PLAN",
+          "title": "Create temporary bounded CQV work plan if approved",
+          "purpose": "Define a bounded work path that preserves limitations without pretending a mature task pool exists.",
+          "task_type": "TEMPORARY_PLAN",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-CONFIRM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_MVP_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "TEMPORARY_WORK_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "MF-REVIEW",
+          "title": "Review future source-library expansion need",
+          "purpose": "Capture whether the fallback case should trigger future source-library expansion, template/schema work, or standards review.",
+          "task_type": "SOURCE_EXPANSION_REVIEW",
+          "owner_role": "Project Owner / CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "MF-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "MF_MVP_REVIEW_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "SOURCE_EXPANSION_REVIEW_RECORD",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

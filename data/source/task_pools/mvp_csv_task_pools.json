@@ -1,0 +1,324 @@
+{
+  "library_id": "M29_WAVE2_CSV_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-CSV-VALIDATION@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Computerized System Validation Task Pool",
+      "preset_family": "PF-COMPUTERIZED-SYSTEMS",
+      "selector_context_tags": [
+        "computerized-system",
+        "csv",
+        "gxp",
+        "data-integrity",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REVIEW",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-CSV",
+        "INT-GXP-ASSESSMENT",
+        "INT-E2E-QUALIFICATION"
+      ],
+      "domain": "computerized_system_validation",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CSV-CCF",
+          "title": "Capture computerized system change and validation scope",
+          "purpose": "Capture change/control context, system boundary, lifecycle event, and validation route.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CSV Lead / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-URS",
+          "title": "Confirm CSV URS and intended use",
+          "purpose": "Confirm system intended use, GxP relevance, user roles, interfaces, supplier documents, and requirements basis.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CSV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-RISK",
+          "title": "Perform CSV RA/FMEA and GxP/data-integrity impact assessment",
+          "purpose": "Assess GxP impact, data integrity, electronic records/signatures scope, and risk-based testing depth.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CSV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-RTM",
+          "title": "Establish CSV RTM basis",
+          "purpose": "Map URS/vendor/FDS/SDS/specification requirements to tests and validation evidence.",
+          "task_type": "TRACEABILITY_REVIEW",
+          "owner_role": "CSV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_RTM_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "URS_DEVIATION_LIST",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-VP",
+          "title": "Prepare CSV validation plan",
+          "purpose": "Define validation approach, deliverables, roles, acceptance route, deviations/CAPA handling, and report path.",
+          "task_type": "VALIDATION_PLANNING",
+          "owner_role": "CSV Lead / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-RTM",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_VP_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CSV_VALIDATION_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VMP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-TEST",
+          "title": "Prepare and execute CSV test protocol/report",
+          "purpose": "Execute approved configuration, functional, security, data integrity, or intended-use testing as applicable.",
+          "task_type": "VALIDATION_TESTING",
+          "owner_role": "CSV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-VP",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_TEST_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CSV_TEST_PROTOCOL_AND_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-ACCESS",
+          "title": "Verify access/security/data-integrity controls",
+          "purpose": "Verify user access, audit trail, backup/restore, security, and data handling controls where in scope.",
+          "task_type": "CONTROL_VERIFICATION",
+          "owner_role": "CSV / QA / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-TEST",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_ACCESS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "ACCESS_SECURITY_DI_EVIDENCE",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CSV-CLOSE",
+          "title": "Close computerized system validation package",
+          "purpose": "Confirm deviations, CAPA, RTM, validation evidence, limitations, and VSR readiness.",
+          "task_type": "VALIDATION_CLOSEOUT",
+          "owner_role": "CSV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CSV-ACCESS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CSV_MVP_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

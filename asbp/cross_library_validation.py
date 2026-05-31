@@ -4,9 +4,20 @@ from typing import Any
 
 from asbp.calendar_source_store import list_calendar_ids
 from asbp.cross_library_validation_model import (
+    CheckedFamilyId,
     CrossLibraryValidationIssueModel,
     CrossLibraryValidationResultModel,
     build_validation_result,
+)
+from asbp.document_input_schema_binding import assert_schema_matches_template
+from asbp.document_input_schema_store import (
+    list_document_input_schema_ids,
+    load_default_document_input_schema_library,
+)
+from asbp.document_template_store import (
+    get_document_template_by_id,
+    list_document_template_ids,
+    load_default_document_template_library,
 )
 from asbp.planning_basis_source_store import (
     find_missing_task_pool_duration_refs,
@@ -15,6 +26,10 @@ from asbp.planning_basis_source_store import (
 from asbp.profile_source_store import list_profile_ids
 from asbp.source_library_baseline_store import (
     load_default_source_library_baseline_runtime,
+)
+from asbp.standards_bundle_binding_store import (
+    list_standards_bundle_ids,
+    load_default_standards_bundle_binding_library,
 )
 from asbp.task_pool_source_store import list_task_pool_ids
 
@@ -41,11 +56,30 @@ def assert_cross_library_validation_passes(runtime: Any) -> None:
 
 def validate_cross_library_runtime(runtime: Any) -> CrossLibraryValidationResultModel:
     issues: list[CrossLibraryValidationIssueModel] = []
+    standards_bundle_library = load_default_standards_bundle_binding_library()
+    document_template_library = load_default_document_template_library()
+    document_input_schema_library = load_default_document_input_schema_library()
 
-    _validate_non_empty_libraries(runtime, issues)
+    _validate_non_empty_libraries(
+        runtime,
+        standards_bundle_library,
+        document_template_library,
+        document_input_schema_library,
+        issues,
+    )
     _validate_task_dependencies(runtime, issues)
     _validate_duration_refs(runtime, issues)
-    _validate_mapping_references(runtime, issues)
+    _validate_mapping_references(
+        runtime,
+        standards_bundle_library,
+        document_template_library,
+        issues,
+    )
+    _validate_template_schema_bindings(
+        document_template_library,
+        document_input_schema_library,
+        issues,
+    )
     _validate_mapping_applicability(runtime, issues)
 
     return build_validation_result(issues)
@@ -60,6 +94,9 @@ def build_cross_library_validation_issue_id(
 
 def _validate_non_empty_libraries(
     runtime: Any,
+    standards_bundle_library: Any,
+    document_template_library: Any,
+    document_input_schema_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     library_checks = [
@@ -72,6 +109,21 @@ def _validate_non_empty_libraries(
             runtime.planning_basis_library.duration_sources,
         ),
         ("mappings", "mappings", runtime.mapping_library.mappings),
+        (
+            "standards_bundles",
+            "standards bundle bindings",
+            standards_bundle_library.bindings,
+        ),
+        (
+            "document_templates",
+            "document templates",
+            document_template_library.template_records,
+        ),
+        (
+            "document_input_schemas",
+            "document input schemas",
+            document_input_schema_library.schema_records,
+        ),
     ]
 
     for source_family, label, collection in library_checks:
@@ -80,7 +132,7 @@ def _validate_non_empty_libraries(
                 CrossLibraryValidationIssueModel(
                     issue_code="EMPTY_LIBRARY",
                     source_family=source_family,
-                    message=f"M27.9 validation found empty {label} library.",
+                    message=f"Cross-library validation found empty {label} library.",
                     related_ids=[label],
                 )
             )
@@ -143,6 +195,8 @@ def _validate_duration_refs(
 
 def _validate_mapping_references(
     runtime: Any,
+    standards_bundle_library: Any,
+    document_template_library: Any,
     issues: list[CrossLibraryValidationIssueModel],
 ) -> None:
     known_profile_ids = set(list_profile_ids(runtime.profile_library))
@@ -150,6 +204,12 @@ def _validate_mapping_references(
     known_atomic_task_source_ids = _collect_atomic_task_source_ids(runtime)
     known_duration_ref_ids = set(list_duration_ref_ids(runtime.planning_basis_library))
     known_calendar_ids = set(list_calendar_ids(runtime.calendar_library))
+    known_standards_bundle_ids = set(
+        list_standards_bundle_ids(standards_bundle_library)
+    )
+    known_document_template_ids = set(
+        list_document_template_ids(document_template_library)
+    )
 
     for mapping in runtime.mapping_library.mappings:
         for reference in [*mapping.source_refs, *mapping.target_refs]:
@@ -196,18 +256,34 @@ def _validate_mapping_references(
                     message_prefix="Mapping atomic-task reference does not exist",
                     mapping_id=mapping.mapping_id,
                 )
-            elif reference.reference_type in {
-                "document_expectation",
-                "standard_bundle",
-                "template",
-            }:
+            elif reference.reference_type == "standard_bundle":
+                _append_missing_reference_issue(
+                    issues=issues,
+                    reference_id=reference.reference_id,
+                    known_ids=known_standards_bundle_ids,
+                    issue_code="DANGLING_STANDARDS_BUNDLE_REF",
+                    message_prefix="Mapping standards-bundle reference does not exist",
+                    mapping_id=mapping.mapping_id,
+                )
+            elif reference.reference_type == "template":
+                _append_missing_reference_issue(
+                    issues=issues,
+                    reference_id=reference.reference_id,
+                    known_ids=known_document_template_ids,
+                    issue_code="DANGLING_TEMPLATE_REF",
+                    message_prefix="Mapping template reference does not exist",
+                    mapping_id=mapping.mapping_id,
+                    source_family="document_templates",
+                )
+            elif reference.reference_type == "document_expectation":
                 issues.append(
                     CrossLibraryValidationIssueModel(
                         issue_code="RESOLVED_FUTURE_REF",
                         source_family="mappings",
                         message=(
-                            "Document, standard, and template mapping refs "
-                            "must not be resolved authority in M27.9: "
+                            "Document expectation mapping refs must not be "
+                            "resolved authority before their roadmap-authorized "
+                            "implementation checkpoints: "
                             f"{reference.reference_id}"
                         ),
                         related_ids=[mapping.mapping_id, reference.reference_id],
@@ -231,6 +307,96 @@ def _validate_mapping_references(
                     message_prefix="Mapping duration reference does not exist",
                     mapping_id=mapping.mapping_id,
                 )
+
+
+def _validate_template_schema_bindings(
+    document_template_library: Any,
+    document_input_schema_library: Any,
+    issues: list[CrossLibraryValidationIssueModel],
+) -> None:
+    known_schema_ids = set(
+        list_document_input_schema_ids(document_input_schema_library)
+    )
+    known_template_ids = set(
+        list_document_template_ids(document_template_library)
+    )
+
+    for template in document_template_library.template_records:
+        if template.schema_binding_status != "schema_bound":
+            issues.append(
+                CrossLibraryValidationIssueModel(
+                    issue_code="UNBOUND_TEMPLATE_SCHEMA_REF",
+                    source_family="document_templates",
+                    message=(
+                        "Template record must be schema-bound after M29.4: "
+                        f"{template.template_id}"
+                    ),
+                    related_ids=[template.template_id, template.schema_binding_ref],
+                )
+            )
+            continue
+
+        if template.schema_binding_ref not in known_schema_ids:
+            issues.append(
+                CrossLibraryValidationIssueModel(
+                    issue_code="DANGLING_DOCUMENT_INPUT_SCHEMA_REF",
+                    source_family="document_input_schemas",
+                    message=(
+                        "Template schema_binding_ref does not exist in document "
+                        f"input schema library: {template.schema_binding_ref}"
+                    ),
+                    related_ids=[template.template_id, template.schema_binding_ref],
+                )
+            )
+            continue
+
+        try:
+            schema = next(
+                schema
+                for schema in document_input_schema_library.schema_records
+                if schema.schema_id == template.schema_binding_ref
+            )
+            assert_schema_matches_template(schema, template)
+        except ValueError as exc:
+            issues.append(
+                CrossLibraryValidationIssueModel(
+                    issue_code="SCHEMA_TEMPLATE_MISMATCH",
+                    source_family="document_input_schemas",
+                    message=str(exc),
+                    related_ids=[template.template_id, template.schema_binding_ref],
+                )
+            )
+
+    for schema in document_input_schema_library.schema_records:
+        if schema.template_id not in known_template_ids:
+            issues.append(
+                CrossLibraryValidationIssueModel(
+                    issue_code="DANGLING_TEMPLATE_REF",
+                    source_family="document_input_schemas",
+                    message=(
+                        "Document input schema template_id does not exist in "
+                        f"document template library: {schema.template_id}"
+                    ),
+                    related_ids=[schema.schema_id, schema.template_id],
+                )
+            )
+            continue
+
+        try:
+            template = get_document_template_by_id(
+                document_template_library,
+                schema.template_id,
+            )
+            assert_schema_matches_template(schema, template)
+        except ValueError as exc:
+            issues.append(
+                CrossLibraryValidationIssueModel(
+                    issue_code="SCHEMA_TEMPLATE_MISMATCH",
+                    source_family="document_input_schemas",
+                    message=str(exc),
+                    related_ids=[schema.schema_id, schema.template_id],
+                )
+            )
 
 
 def _validate_mapping_applicability(
@@ -273,6 +439,7 @@ def _append_missing_reference_issue(
     issue_code: str,
     message_prefix: str,
     mapping_id: str,
+    source_family: CheckedFamilyId = "mappings",
 ) -> None:
     if reference_id in known_ids:
         return
@@ -280,7 +447,7 @@ def _append_missing_reference_issue(
     issues.append(
         CrossLibraryValidationIssueModel(
             issue_code=issue_code,
-            source_family="mappings",
+            source_family=source_family,
             message=f"{message_prefix}: {reference_id}",
             related_ids=[mapping_id, reference_id],
         )

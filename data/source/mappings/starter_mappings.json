@@ -588,30 +588,30 @@
       "mapping_kind": "standard_to_template",
       "source_refs": [
         {
-          "reference_id": "SB-FUTURE-CQV-GMP@v1",
+          "reference_id": "SB-CQV-GMP@v1",
           "reference_type": "standard_bundle",
-          "reference_status": "future_expected",
-          "resolution_checkpoint": "M28",
-          "notes": "Standards applicability and citation authority remain later-scoped."
+          "reference_status": "resolved_source",
+          "notes": "Resolved by M28.4 standards-bundle binding source contract; not product-ready output authority."
         }
       ],
       "target_refs": [
         {
           "reference_id": "TPL-FUTURE-QUALIFICATION-PLAN@v1",
           "reference_type": "template",
-          "reference_status": "future_expected",
-          "resolution_checkpoint": "M29",
-          "notes": "Product-ready template implementation remains later-scoped."
+          "reference_status": "resolved_source",
+          "notes": "Template record resolved by M29.2; template loading, selection, generation, and rendering remain later M29 work."
         }
       ],
       "applicability_tags": [
         "standards",
         "template",
-        "future-expected"
+        "future-expected",
+        "standard-bundle-binding"
       ],
       "mapping_controls": [
-        "This mapping is not standards authority.",
-        "This mapping is not template loading or document generation."
+        "This mapping resolves the standards-bundle source through M28.4 binding records.",
+        "This mapping resolves the template target only as an M29.2 controlled template source record.",
+        "This mapping does not load templates, select templates, generate documents, or create product-ready standards output."
       ],
       "notes": []
     },
@@ -623,31 +623,31 @@
       "mapping_kind": "standard_to_template",
       "source_refs": [
         {
-          "reference_id": "SB-FUTURE-CSV-GXP@v1",
+          "reference_id": "SB-CSV-GXP@v1",
           "reference_type": "standard_bundle",
-          "reference_status": "future_expected",
-          "resolution_checkpoint": "M28",
-          "notes": "Executable standards consumption remains later-scoped."
+          "reference_status": "resolved_source",
+          "notes": "Resolved by M28.4 standards-bundle binding source contract; not product-ready output authority."
         }
       ],
       "target_refs": [
         {
           "reference_id": "TPL-FUTURE-CSV-VALIDATION-PLAN@v1",
           "reference_type": "template",
-          "reference_status": "future_expected",
-          "resolution_checkpoint": "M29",
-          "notes": "Product-ready CSV template implementation remains later-scoped."
+          "reference_status": "resolved_source",
+          "notes": "Template record resolved by M29.2; template loading, selection, generation, and rendering remain later M29 work."
         }
       ],
       "applicability_tags": [
         "csv",
         "standards",
         "template",
-        "future-expected"
+        "future-expected",
+        "standard-bundle-binding"
       ],
       "mapping_controls": [
-        "This mapping does not implement CSV standards citation.",
-        "This mapping does not implement template selection."
+        "This mapping resolves the standards-bundle source through M28.4 binding records.",
+        "This mapping resolves the template target only as an M29.2 controlled template source record.",
+        "This mapping does not load templates, select templates, generate documents, or create product-ready standards output."
       ],
       "notes": []
     }

@@ -1,0 +1,234 @@
+{
+  "library_id": "M29_WAVE3_MVP_CALENDAR_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "calendars": [
+    {
+      "calendar_id": "CAL-MVP-CAIRO-FIVE-DAY-WORKWEEK@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Cairo Five-Day Workweek",
+      "calendar_type": "workweek",
+      "timezone": "Africa/Cairo",
+      "locale_context": "Cairo / Egypt MVP local context; explicit user-amendable assumption only.",
+      "regional_assumption_status": "explicit_starter_assumption",
+      "user_amendable_parameters": [
+        "timezone",
+        "working_days",
+        "start_time",
+        "end_time",
+        "break_minutes",
+        "holiday_rules",
+        "site_shutdowns"
+      ],
+      "working_days": [
+        {
+          "day": "monday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "tuesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "wednesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "thursday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "friday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit MVP assumption."
+        },
+        {
+          "day": "saturday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit MVP assumption."
+        },
+        {
+          "day": "sunday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        }
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Holidays must be supplied or confirmed by the user/site before planning relies on them."
+        }
+      ],
+      "assumption_controls": [
+        "Calendar is a visible planning assumption, not universal truth.",
+        "No public holiday authority is embedded.",
+        "User/site confirmation is required before schedule commitment."
+      ],
+      "notes": [
+        "Wave 3 MVP calendar source record."
+      ]
+    },
+    {
+      "calendar_id": "CAL-MVP-CAIRO-SIX-DAY-WORKWEEK@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Cairo Six-Day Workweek Candidate",
+      "calendar_type": "workweek",
+      "timezone": "Africa/Cairo",
+      "locale_context": "Cairo / Egypt MVP local context; optional candidate only.",
+      "regional_assumption_status": "explicit_starter_assumption",
+      "user_amendable_parameters": [
+        "timezone",
+        "working_days",
+        "start_time",
+        "end_time",
+        "break_minutes",
+        "holiday_rules",
+        "site_shutdowns"
+      ],
+      "working_days": [
+        {
+          "day": "monday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "tuesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "wednesday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "thursday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        {
+          "day": "friday",
+          "is_working_day": false,
+          "break_minutes": 0,
+          "notes": "Non-working day in this explicit MVP assumption."
+        },
+        {
+          "day": "saturday",
+          "is_working_day": true,
+          "break_minutes": 30,
+          "start_time": "09:00",
+          "end_time": "15:00"
+        },
+        {
+          "day": "sunday",
+          "is_working_day": true,
+          "break_minutes": 60,
+          "start_time": "09:00",
+          "end_time": "17:00"
+        }
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Holidays must be supplied or confirmed by the user/site before planning relies on them."
+        }
+      ],
+      "assumption_controls": [
+        "Six-day workweek is a visible candidate source record, not a universal default.",
+        "Saturday working time is explicit and user-amendable.",
+        "No public holiday authority is embedded."
+      ],
+      "notes": [
+        "Wave 3 MVP calendar source record."
+      ]
+    },
+    {
+      "calendar_id": "CAL-MVP-SITE-HOLIDAY-SHUTDOWN-POLICY@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Site Holiday and Shutdown Policy",
+      "calendar_type": "holiday_policy",
+      "timezone": "user_defined",
+      "locale_context": "User/site supplied holiday and shutdown context.",
+      "regional_assumption_status": "human_confirmation_required",
+      "user_amendable_parameters": [
+        "holiday_dates",
+        "site_shutdown_dates",
+        "holiday_source",
+        "holiday_applicability"
+      ],
+      "holiday_rules": [
+        {
+          "rule_id": "user_supplied_holidays_required",
+          "scope": "user_supplied_holidays",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Holidays must be supplied or confirmed before planning relies on them."
+        },
+        {
+          "rule_id": "site_shutdowns_allowed",
+          "scope": "site_shutdowns",
+          "source_status": "human_input_required",
+          "user_amendable": true,
+          "notes": "Site shutdowns must be supplied or confirmed before planning relies on them."
+        },
+        {
+          "rule_id": "public_holidays_unverified",
+          "scope": "public_holidays_unverified",
+          "source_status": "starter_unverified",
+          "user_amendable": true,
+          "notes": "No official public holiday authority is embedded in Wave 3."
+        }
+      ],
+      "assumption_controls": [
+        "Holiday and shutdown behavior remains user/site-confirmed.",
+        "Planning behavior must not silently skip dates from unverified holiday data."
+      ],
+      "notes": [
+        "Wave 3 MVP holiday/shutdown source record."
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 3 MVP calendar source records keep planning assumptions visible and user/site-confirmable."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_accept_m29_12_uat",
+    "does_not_close_m29",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}
