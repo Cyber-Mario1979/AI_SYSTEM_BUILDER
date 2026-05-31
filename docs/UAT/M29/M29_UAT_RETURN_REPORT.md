@@ -1,25 +1,24 @@
 ---
 doc_type: uat_return_report
 canonical_name: M29_UAT_RETURN_REPORT
-status: READY_FOR_OWNER_DECISION_WITH_CLARIFICATIONS
+status: ACCEPTED_WITH_CLARIFICATIONS
 phase: Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 milestone_context: M29
 checkpoint_context: M29.12 — Milestone UAT / owner acceptance
-execution_mode: UAT review / owner acceptance preparation
+execution_mode: UAT review / owner acceptance
 application_mode: user_applied_package
 live_repo_write: NO
-tracker_movement: NO
-m29_12_acceptance: NOT_ACCEPTED
-m29_13_closeout: BLOCKED
+tracker_movement: YES_AFTER_APPLICATION
+m29_12_acceptance: ACCEPTED_WITH_CLARIFICATIONS
+m29_13_closeout: NEXT_CHECKPOINT
+acceptance_date: 2026-05-31
 ---
 
 # M29 UAT Return Report
 
 ## Purpose
 
-This report summarizes the M29.12 UAT return evidence after CQV content-library remediation Waves 1 through 8.
-
-This report is prepared for Project Owner decision. It does not accept UAT by itself.
+This report summarizes the accepted M29.12 UAT return evidence after CQV content-library remediation Waves 1 through 8.
 
 ## UAT Return Summary
 
@@ -48,19 +47,17 @@ Latest validation result:
 
 | Review item | Status | Notes |
 |---|---|---|
-| Original M29.12 blocker addressed for milestone UAT review | Ready for owner decision | Remediation Waves 1–8 completed and validated |
-| MVP CQV content-library baseline expanded beyond starter-only source set | Ready for owner decision | Task pools, profiles, planning/mappings, templates, input dependencies, standards/citation, and trial scenario coverage were expanded |
-| URS DCF logic corrected | Ready for owner decision | DCF is URS-only; downstream documents depend on URS and other controlled sources |
-| Standards/citation limitations preserved | Ready for owner decision | No retrieval/embedding or unsupported clause/mandatory claims |
-| Trial scenarios expanded | Ready for owner decision | Coverage layer added for local review only |
-| Full repository index | Deferred by owner sequence decision | Must occur after M29.12 UAT and before M30, unless explicitly carried forward |
-| Productization/deployment/SaaS readiness | Not claimed | Remains blocked until M34 / Phase 10 / M35-M38 roadmap gates |
+| Original M29.12 blocker addressed for milestone UAT review | Accepted | Remediation Waves 1–8 completed and validated |
+| MVP CQV content-library baseline expanded beyond starter-only source set | Accepted | Task pools, profiles, planning/mappings, templates, input dependencies, standards/citation, and trial scenario coverage were expanded |
+| URS DCF logic corrected | Accepted | DCF is URS-only; downstream documents depend on URS and other controlled sources |
+| Standards/citation limitations preserved | Accepted with carry-forward | No retrieval/embedding or unsupported clause/mandatory claims |
+| Trial scenarios expanded | Accepted | Coverage layer added for local review only |
+| Full repository index | Accepted carry-forward | Must occur after M29.12 UAT and before M30, unless explicitly carried forward |
+| Productization/deployment/SaaS readiness | Not claimed / blocked | Remains blocked until M34 / Phase 10 / M35-M38 roadmap gates |
 | Standards retrieval/embedding | Not implemented / deferred | Remains deferred to M30 governed retrieval and indexing |
-| M29.13 closeout | Blocked | May be planned only after M29.12 UAT acceptance |
+| M29.13 closeout | Next checkpoint | May be planned after this acceptance is committed |
 
-## Clarifications Required Before Acceptance
-
-The Project Owner raised three clarification concerns before acceptance.
+## Clarifications Accepted
 
 ### 1. Productization, deployment, release, and SaaS readiness remain blocked
 
@@ -89,18 +86,32 @@ No full roadmap amendment is required before M29.12 UAT acceptance because the o
 
 However:
 
-- M29.13 remains the next checkpoint only after M29.12 UAT acceptance.
+- M29.13 is the next checkpoint after M29.12 UAT acceptance.
 - full repository index remains required before M30 unless explicitly carried forward;
 - M30 remains blocked until tracker/index/carry-forward controls allow it;
 - cleanup, archiving, promotion, deletion, or canonicalization remain separate owner-approved work.
 
+## Project Owner Acceptance Decision
+
+Project Owner decision:
+
+`Accepted with clarifications`
+
+Decision command recorded in chat:
+
+`ACCEPT M29.12 UAT WITH CLARIFICATIONS`
+
+Acceptance date:
+
+`2026-05-31`
+
 ## Remaining Limitations / Carry-Forward
 
-The following remain true even if M29.12 UAT is accepted:
+The following remain true after M29.12 UAT acceptance:
 
 - Acceptance is milestone UAT only.
 - M29 closeout is not automatic.
-- M29.13 remains the next checkpoint after UAT acceptance.
+- M29.13 is the next checkpoint after UAT acceptance.
 - Full repository index remains required before M30.
 - Repo cleanup/promotion decisions are not authorized by this UAT.
 - Productization, deployment, release, and SaaS readiness remain blocked.
@@ -108,26 +119,11 @@ The following remain true even if M29.12 UAT is accepted:
 - Further work must continue under roadmap/tracker control.
 - M30 cannot start until the full repository index is completed or explicitly carried forward by Project Owner decision.
 
-## Owner Acceptance Decision Field
-
-Project Owner decision:
-
-- [ ] Accepted
-- [ ] Rejected
-- [ ] Accepted with carry-forward limitations
-- [ ] Paused / no decision
-
-Decision statement:
-
-`TBD — Project Owner must explicitly provide acceptance/rejection in chat or repo evidence.`
-
 ## Explicit Non-Implementation Claims
 
 This report does not:
 
-- accept M29.12 UAT without Project Owner decision;
-- close M29.12;
-- advance to M29.13;
+- advance to M29.13 by itself;
 - close M29;
 - complete the full repository index;
 - authorize cleanup, deletion, archiving, promotion, or canonicalization;

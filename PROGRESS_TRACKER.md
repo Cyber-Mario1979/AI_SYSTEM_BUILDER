@@ -44,7 +44,7 @@ M29.10 continued the CAPA build-first correction by creating controlled trial do
 
 M29.11 completed the validation checkpoint by confirming clean local repo state and full executable validation before tracker movement.
 
-M29.12 owner acceptance is blocked by Project Owner decision pending UAT / owner acceptance review.
+M29.12 UAT / owner acceptance was accepted by the Project Owner with clarifications.
 
 CQV content-library remediation Wave 1 completed the revised coverage matrix and MVP scope lock.
 
@@ -68,21 +68,35 @@ Docs reference folder review decision record was created as partial repository i
 
 The Project Owner approved a sequence-control decision to return to M29.12 UAT / owner acceptance review before completing the remaining full repository index, while preserving the full repository index requirement after M29.12 UAT and before M30.
 
+The Project Owner accepted M29.12 UAT with clarifications.
+
 The CAPA remains active until the Project Owner accepts that the control is working.
 
 ## Current Approved Checkpoint Family
 
-M29.12 — Milestone UAT / owner acceptance
+M29.13 — Milestone closeout
 
-Status: BLOCKED PENDING UAT REVIEW.
+Status: READY FOR PLAN.
 
-Blocker:
+M29.12 UAT accepted with clarifications.
+
+Closed / accepted blocker:
 
 M29.12 CQV Content Library Completion Blocker
 
-Blocker evidence:
+Blocker closure evidence:
 
 docs/governance/uat_blockers/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_BLOCKER.md
+
+UAT acceptance evidence:
+
+docs/UAT/M29/M29_UAT_RETURN_PROTOCOL.md
+
+docs/UAT/M29/M29_UAT_RETURN_REPORT.md
+
+docs/milestones/M29/M29_12_MILESTONE_UAT_OWNER_ACCEPTANCE.md
+
+docs/change_control/M29_12_UAT_ACCEPTANCE_CLARIFICATIONS.md
 
 Related evidence:
 
@@ -112,19 +126,23 @@ docs/repo_index/DOCS_REFERENCE_REVIEW_DECISIONS.md
 
 ## Latest Completed Checkpoint
 
-M29.11 — Validation checkpoint
+M29.12 — Milestone UAT / owner acceptance
+
+Acceptance status:
+
+ACCEPTED WITH CLARIFICATIONS
 
 ## Exact Next Unfinished Checkpoint
 
-M29.12 — Milestone UAT / owner acceptance
+M29.13 — Milestone closeout
 
-Current state: BLOCKED PENDING UAT REVIEW.
+Current state: READY FOR PLAN.
 
 Exact next allowed work:
 
-PLAN M29.12 UAT return / owner acceptance review.
+PLAN M29.13 milestone closeout.
 
-This control action is not M29.12 acceptance by itself, not M29.13 closeout, and not M30 start.
+This control action is not M30 start, not productization, not deployment, not release, and not SaaS readiness.
 
 ## Latest Verified Validation
 
@@ -170,35 +188,39 @@ M29.11 validated the implemented M29 document/output layer from M29.2 through M2
 
 ## Milestone UAT Status
 
-M29 UAT not reached.
+M29 UAT accepted with clarifications.
 
-M29.12 is blocked pending UAT / owner acceptance review.
+M29.12 was accepted by Project Owner decision:
 
-The Project Owner did not accept M29.12 UAT earlier because the repo previously proved a validated deterministic document/output engine chain plus starter/baseline content, not full MVP CQV content-library completion.
+ACCEPT M29.12 UAT WITH CLARIFICATIONS
 
-CQV content-library remediation Wave 1 through Wave 8 are now recorded as completed after validation.
+Acceptance scope:
 
-The Project Owner approved returning to M29.12 UAT review before completing the remaining full repository index.
+Milestone UAT only.
 
-M29.12 UAT may be accepted only after explicit Project Owner acceptance.
+Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, or customer-ready output.
 
-Full repository index remains required after M29.12 UAT and before M30, unless the Project Owner explicitly approves a carry-forward decision.
+Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
-Latest completed milestone UAT remains M28 UAT executed and accepted.
+Standards retrieval / embedding remains deferred to M30.
+
+Full repository index remains required after M29.12 UAT and before M30, unless explicitly carried forward by Project Owner decision.
+
+Latest completed milestone UAT is now M29.12 UAT accepted with clarifications.
+
+Previous milestone UAT:
 
 M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 8 validation and remediation completion gate evidence application, docs folder index Pass 1, docs/reference review decision, and M29.12 UAT return sequence decision, subject to final local `git status -sb` confirmation before commit.
+Aligned locally after Wave 8 validation and remediation completion gate evidence application, docs folder index Pass 1, docs/reference review decision, M29.12 UAT return sequence decision, clarification record, and M29.12 UAT acceptance with clarifications, subject to final local `git status -sb` confirmation before commit.
 
-M29.11 remains the latest completed roadmap checkpoint.
+M29.12 is now the latest completed roadmap checkpoint.
 
-M29.12 remains the active checkpoint but is blocked pending UAT review.
+M29.13 is the active next checkpoint.
 
-M29.13 closeout is blocked.
-
-Ready for PLAN M29.12 UAT return / owner acceptance review from a clean bounded execution context only.
+M29.13 closeout is ready for PLAN.
 
 Do not start M30 before completing the full repository index or recording an explicit owner-approved carry-forward decision.
 
@@ -326,45 +348,19 @@ Full repository index after M29.12 UAT and before M30.
 
 M29.11 directly touched DDR-006 because it validated the implemented M29 document/output layer before UAT or closeout.
 
-M29.12 blocker directly affects DDR-003 and DDR-006 because the Project Owner found that the implemented source/content layer was starter/baseline depth and not full MVP CQV content-library completion.
+M29.12 acceptance with clarifications carries forward DDR-003 and DDR-006 limitations truthfully for milestone UAT only.
 
-Wave 2 directly touched DDR-001 and DDR-002 because it expanded governed task-pool source assets as part of the MVP CQV content-library remediation path.
+DDR-003 is not automatically closed for full product-ready document factory behavior by M29.12 milestone UAT acceptance.
 
-Wave 2 also continued DDR-003 and DDR-006 awareness because expanded task pools carry controlled document expectations that feed later document template, schema, rendering, validation, and UAT work.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. M29.12 UAT acceptance does not upgrade standards source authority.
 
-Wave 3 directly touched DDR-001 and DDR-002 because it expanded governed profile, calendar, planning-basis, and mapping source assets as part of the MVP CQV content-library remediation path.
+DDR-005 remains deferred to M30. M29.12 UAT acceptance does not implement standards embedding or retrieval.
 
-Wave 3 also continued DDR-003, DDR-006, and DDR-009 awareness because MVP mappings and planning/source context support later document template, schema, rendering, validation, external-placeholder, and UAT work.
-
-Wave 4 directly touched DDR-003 and DDR-006 because it implemented MVP document template body / section-plan source assets needed before product-ready document factory acceptance.
-
-Wave 4 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because document templates depend on governed source libraries, standards limitations, deferred retrieval boundaries, and external placeholder constraints.
-
-Wave 5 directly touched DDR-003 and DDR-006 because it corrected the document input model around URS-only DCF intake and downstream document dependency contracts.
-
-Wave 5 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because document input dependencies rely on governed source libraries, standards limitations, deferred retrieval boundaries, and external/adopted document-source constraints.
-
-Wave 6 directly touched DDR-004 and DDR-006 because it expanded standards/document applicability and citation policy source assets for MVP document families while preserving approved standards-source limitations.
-
-Wave 6 also continued DDR-003, DDR-005, and DDR-009 awareness because standards/citation policy supports later document rendering/output behavior, retrieval remains deferred, and external/product-surface claims remain blocked.
-
-Wave 7 directly touched DDR-003 and DDR-006 because it expanded MVP trial scenario coverage across the content-library chain while preserving local-review-only, non-UAT, non-release, and non-productization boundaries.
-
-Wave 7 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because trial scenario coverage depends on governed source libraries, standards/citation limitations, deferred retrieval boundaries, and external/adopted document-source constraints.
-
-Wave 8 directly touched DDR-003 and DDR-006 because it validated the completed remediation chain while preserving the blocked M29.12 UAT state.
-
-DDR-003 is not fully closed for product-ready document factory behavior. M29.12 UAT review, owner acceptance, and later closeout evidence are still required before closure can be considered.
-
-DDR-004 remains closed only for the approved standards source/citation authority model scope. Remediation did not upgrade standards source authority beyond approved evidence.
-
-DDR-005 remains deferred to M30. Remediation did not implement standards embedding or retrieval.
-
-DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked pending UAT review and milestone closeout remains blocked at M29.13.
+DDR-006 remains not fully closed for product-ready document/export/report generation and rendering beyond the accepted M29 milestone UAT scope. M29.13 closeout must state remaining limits truthfully.
 
 Full repository index remains required before M30.
 
-The next work must not claim product-ready CQV content-library completion until owner acceptance supports that claim.
+The next work must not claim product-ready CQV content-library completion beyond the accepted milestone UAT scope.
 
 ## Build / Governance Balance Policy Status
 
@@ -372,7 +368,7 @@ Active.
 
 M29.11 was executed as Validation and completed by clean local repo confirmation plus full executable validation evidence.
 
-M29.12 is UAT execution mode, but UAT acceptance is blocked pending UAT review.
+M29.12 was UAT execution mode and was accepted with clarifications by Project Owner decision.
 
 Wave 1 was governance-only and completed the revised coverage matrix / MVP scope lock only.
 
@@ -404,23 +400,19 @@ Wave 8 was Validation / remediation completion gate and completed by full execut
 
 Docs folder index Pass 1 and docs/reference review are governance/index review evidence only and are not product build or UAT acceptance.
 
-M29.12 UAT return sequence decision is governance/sequence-control only and is not UAT acceptance.
+M29.12 UAT return sequence decision and clarification decision are governance/sequence-control/UAT-boundary records.
 
 ## Blocked Actions
 
-Do not accept M29.12 UAT without explicit Project Owner acceptance.
+Do not advance to M30 before the full repository index is completed or explicitly carried forward by Project Owner decision.
 
-Do not advance to M29.13.
-
-Do not close M29.
-
-Do not start M30 before the full repository index is completed or explicitly carried forward by Project Owner decision.
-
-Do not claim full CQV content-library completion until owner acceptance supports that claim.
+Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
 Do not claim full product-ready document factory completion.
 
 Do not claim productization, deployment, commercial release, or SaaS readiness.
+
+Do not implement standards retrieval or embedding before M30 authorization.
 
 Do not delete, archive, rename, move, or promote repository files based only on index/review candidates.
 
@@ -428,10 +420,10 @@ Do not delete, archive, rename, move, or promote repository files based only on 
 
 Allowed next work is:
 
-PLAN M29.12 UAT return / owner acceptance review.
+PLAN M29.13 milestone closeout.
 
-This work must review whether M29.12 UAT can now be accepted after remediation completion.
+M29.13 must close M29 truthfully, preserve carry-forward limits, and preserve the full repository index requirement before M30.
 
 ## Next Action
 
-PLAN M29.12 UAT return / owner acceptance review.
+PLAN M29.13 milestone closeout.
