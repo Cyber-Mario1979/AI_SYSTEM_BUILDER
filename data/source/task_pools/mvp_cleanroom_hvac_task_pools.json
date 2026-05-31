@@ -1,0 +1,362 @@
+{
+  "library_id": "M29_WAVE2_CLEANROOM_HVAC_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-CLEANROOM-HVAC-QUAL@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Cleanroom / HVAC Qualification Task Pool",
+      "preset_family": "PF-CLEANROOM",
+      "selector_context_tags": [
+        "cleanroom",
+        "hvac",
+        "qualification",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-NEW-INSTALLATION",
+        "LE-MODIFICATION-POST-CHANGE",
+        "LE-PERIODIC-REQUALIFICATION",
+        "LE-DECOMMISSIONING-AWARE"
+      ],
+      "qualification_validation_intents": [
+        "INT-E2E-QUALIFICATION",
+        "INT-IQ",
+        "INT-OQ",
+        "INT-PQ"
+      ],
+      "domain": "cleanroom_hvac",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CRHVAC-CCF",
+          "title": "Capture cleanroom/HVAC change and scope context",
+          "purpose": "Capture change/control context, served areas, room classification intent, HVAC boundary, and qualification route.",
+          "task_type": "CHANGE_SCOPE",
+          "owner_role": "CQV Lead",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_CCF_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "QP",
+              "status": "future_expected",
+              "notes": "Wave 2 validation fix: qualification plan expectation is explicitly represented at task-pool level; template/body/schema implementation remains Wave 4/Wave 5."
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-URS",
+          "title": "Confirm room/HVAC user requirements and design basis",
+          "purpose": "Confirm URS/design basis, classification expectations, pressure cascade, airflow, EMS/BMS interfaces, and local constraints.",
+          "task_type": "REQUIREMENTS_REVIEW",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-CCF",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_URS_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "URS",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-RISK",
+          "title": "Perform cleanroom/HVAC risk and impact assessment",
+          "purpose": "Assess GMP impact, contamination control relevance, HVAC criticality, monitoring impact, and qualification depth.",
+          "task_type": "RISK_ASSESSMENT",
+          "owner_role": "CQV / QA / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-URS",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_RISK_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-DQ",
+          "title": "Perform cleanroom/HVAC DQ or design review",
+          "purpose": "Verify design basis, room data, HVAC design, pressure/airflow philosophy, monitoring interface, and design readiness.",
+          "task_type": "DESIGN_QUALIFICATION",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-RISK",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_DQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DQ",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "RTM",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-CP",
+          "title": "Define commissioning and turnover plan",
+          "purpose": "Define commissioning prerequisites, CTOP/A1/A2 expectations where construction route applies, and readiness checks.",
+          "task_type": "COMMISSIONING_PLANNING",
+          "owner_role": "Engineering / CQV",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-DQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_CP_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CTOP",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "A1_CERTIFICATE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-IQ",
+          "title": "Prepare and execute cleanroom/HVAC IQ",
+          "purpose": "Verify installation evidence, room/HVAC components, filters, instrumentation, calibration, and turnover evidence.",
+          "task_type": "IQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-CP",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_IQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "IQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-OQ",
+          "title": "Prepare and execute cleanroom/HVAC OQ",
+          "purpose": "Verify airflow, pressure cascade, recovery, alarms/interlocks, EMS/BMS monitoring interface, and operating controls.",
+          "task_type": "OQ_EXECUTION",
+          "owner_role": "CQV / Engineering",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-IQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_OQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "OQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-PQ",
+          "title": "Prepare and execute environmental performance/PQ",
+          "purpose": "Verify particle, microbiological, environmental performance, or local performance evidence where in scope.",
+          "task_type": "PQ_EXECUTION",
+          "owner_role": "CQV / QC Microbiology / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-OQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_PQ_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "PQ_PROTOCOL_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CRHVAC-CLOSE",
+          "title": "Close cleanroom/HVAC qualification package",
+          "purpose": "Close deviations/CAPA, traceability, qualification conclusions, and validation summary report readiness.",
+          "task_type": "QUALIFICATION_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CRHVAC-PQ",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CRHVAC_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

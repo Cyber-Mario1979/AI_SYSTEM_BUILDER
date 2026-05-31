@@ -1,0 +1,1038 @@
+{
+  "library_id": "M29_WAVE2_DECOMMISSIONING_TASK_POOL_LIBRARY@v1",
+  "version": "v1",
+  "status": "mvp_remediation_source",
+  "task_pools": [
+    {
+      "task_pool_id": "TP-MVP-PROCESSEQUIP-DECOM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Process Equipment Decommissioning Task Pool",
+      "preset_family": "PF-PROCESS-EQUIPMENT",
+      "selector_context_tags": [
+        "process-equipment",
+        "decommissioning",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "domain": "decommissioning",
+      "lifecycle_route": "Process Equipment Decommissioning",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "PROCESSEQUIP-SCOPE",
+          "title": "Confirm Process Equipment Decommissioning scope and trigger",
+          "purpose": "Confirm decommissioning trigger, boundary, impacted systems/assets, records, and controlled route.",
+          "task_type": "DECOMMISSIONING_SCOPE",
+          "owner_role": "CQV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "PROCESSEQUIP_DECOM_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PROCESSEQUIP-IMPACT",
+          "title": "Assess Process Equipment Decommissioning impact and retention requirements",
+          "purpose": "Assess GMP impact, data/record retention, utility/process/system isolation, and documentation impact.",
+          "task_type": "IMPACT_ASSESSMENT",
+          "owner_role": "QA / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PROCESSEQUIP-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PROCESSEQUIP_DECOM_IMPACT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PROCESSEQUIP-PLAN",
+          "title": "Prepare Process Equipment Decommissioning decommissioning plan",
+          "purpose": "Define safe decommissioning activities, prerequisites, dependencies, evidence, deviations/CAPA route, and acceptance path.",
+          "task_type": "DECOMMISSIONING_PLANNING",
+          "owner_role": "CQV / Engineering / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PROCESSEQUIP-IMPACT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PROCESSEQUIP_DECOM_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PROCESSEQUIP-EXEC",
+          "title": "Execute Process Equipment Decommissioning decommissioning checks",
+          "purpose": "Confirm isolation/retirement checks, evidence capture, data/record handling, and documentation updates.",
+          "task_type": "DECOMMISSIONING_EXECUTION",
+          "owner_role": "Engineering / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PROCESSEQUIP-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PROCESSEQUIP_DECOM_EXEC_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_CHECK_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "PROCESSEQUIP-CLOSE",
+          "title": "Close Process Equipment Decommissioning decommissioning package",
+          "purpose": "Confirm deviations/CAPA, retained records, final status, and decommissioning summary/closure record.",
+          "task_type": "DECOMMISSIONING_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "PROCESSEQUIP-EXEC",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "PROCESSEQUIP_DECOM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DECOMMISSIONING_SUMMARY_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-UTILITYSYSTE-DECOM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Utility System Decommissioning Task Pool",
+      "preset_family": "PF-UTILITIES",
+      "selector_context_tags": [
+        "utilities",
+        "decommissioning",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "domain": "decommissioning",
+      "lifecycle_route": "Utility System Decommissioning",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "UTILITYSYSTE-SCOPE",
+          "title": "Confirm Utility System Decommissioning scope and trigger",
+          "purpose": "Confirm decommissioning trigger, boundary, impacted systems/assets, records, and controlled route.",
+          "task_type": "DECOMMISSIONING_SCOPE",
+          "owner_role": "CQV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "UTILITYSYSTE_DECOM_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "UTILITYSYSTE-IMPACT",
+          "title": "Assess Utility System Decommissioning impact and retention requirements",
+          "purpose": "Assess GMP impact, data/record retention, utility/process/system isolation, and documentation impact.",
+          "task_type": "IMPACT_ASSESSMENT",
+          "owner_role": "QA / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UTILITYSYSTE-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UTILITYSYSTE_DECOM_IMPACT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "UTILITYSYSTE-PLAN",
+          "title": "Prepare Utility System Decommissioning decommissioning plan",
+          "purpose": "Define safe decommissioning activities, prerequisites, dependencies, evidence, deviations/CAPA route, and acceptance path.",
+          "task_type": "DECOMMISSIONING_PLANNING",
+          "owner_role": "CQV / Engineering / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UTILITYSYSTE-IMPACT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UTILITYSYSTE_DECOM_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "UTILITYSYSTE-EXEC",
+          "title": "Execute Utility System Decommissioning decommissioning checks",
+          "purpose": "Confirm isolation/retirement checks, evidence capture, data/record handling, and documentation updates.",
+          "task_type": "DECOMMISSIONING_EXECUTION",
+          "owner_role": "Engineering / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UTILITYSYSTE-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UTILITYSYSTE_DECOM_EXEC_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_CHECK_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "UTILITYSYSTE-CLOSE",
+          "title": "Close Utility System Decommissioning decommissioning package",
+          "purpose": "Confirm deviations/CAPA, retained records, final status, and decommissioning summary/closure record.",
+          "task_type": "DECOMMISSIONING_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "UTILITYSYSTE-EXEC",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "UTILITYSYSTE_DECOM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DECOMMISSIONING_SUMMARY_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-CLEANROOMHVA-DECOM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Cleanroom / HVAC Decommissioning Task Pool",
+      "preset_family": "PF-CLEANROOM",
+      "selector_context_tags": [
+        "cleanroom-hvac",
+        "decommissioning",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "domain": "decommissioning",
+      "lifecycle_route": "Cleanroom / HVAC Decommissioning",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "CLEANROOMHVA-SCOPE",
+          "title": "Confirm Cleanroom / HVAC Decommissioning scope and trigger",
+          "purpose": "Confirm decommissioning trigger, boundary, impacted systems/assets, records, and controlled route.",
+          "task_type": "DECOMMISSIONING_SCOPE",
+          "owner_role": "CQV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "CLEANROOMHVA_DECOM_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CLEANROOMHVA-IMPACT",
+          "title": "Assess Cleanroom / HVAC Decommissioning impact and retention requirements",
+          "purpose": "Assess GMP impact, data/record retention, utility/process/system isolation, and documentation impact.",
+          "task_type": "IMPACT_ASSESSMENT",
+          "owner_role": "QA / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CLEANROOMHVA-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CLEANROOMHVA_DECOM_IMPACT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CLEANROOMHVA-PLAN",
+          "title": "Prepare Cleanroom / HVAC Decommissioning decommissioning plan",
+          "purpose": "Define safe decommissioning activities, prerequisites, dependencies, evidence, deviations/CAPA route, and acceptance path.",
+          "task_type": "DECOMMISSIONING_PLANNING",
+          "owner_role": "CQV / Engineering / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CLEANROOMHVA-IMPACT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CLEANROOMHVA_DECOM_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CLEANROOMHVA-EXEC",
+          "title": "Execute Cleanroom / HVAC Decommissioning decommissioning checks",
+          "purpose": "Confirm isolation/retirement checks, evidence capture, data/record handling, and documentation updates.",
+          "task_type": "DECOMMISSIONING_EXECUTION",
+          "owner_role": "Engineering / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CLEANROOMHVA-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CLEANROOMHVA_DECOM_EXEC_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_CHECK_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "CLEANROOMHVA-CLOSE",
+          "title": "Close Cleanroom / HVAC Decommissioning decommissioning package",
+          "purpose": "Confirm deviations/CAPA, retained records, final status, and decommissioning summary/closure record.",
+          "task_type": "DECOMMISSIONING_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "CLEANROOMHVA-EXEC",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "CLEANROOMHVA_DECOM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DECOMMISSIONING_SUMMARY_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-COMPUTERIZED-DECOM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP Computerized System Decommissioning Task Pool",
+      "preset_family": "PF-COMPUTERIZED-SYSTEMS",
+      "selector_context_tags": [
+        "csv",
+        "decommissioning",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "domain": "decommissioning",
+      "lifecycle_route": "Computerized System Decommissioning",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "COMPUTERIZED-SCOPE",
+          "title": "Confirm Computerized System Decommissioning scope and trigger",
+          "purpose": "Confirm decommissioning trigger, boundary, impacted systems/assets, records, and controlled route.",
+          "task_type": "DECOMMISSIONING_SCOPE",
+          "owner_role": "CQV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "COMPUTERIZED_DECOM_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPUTERIZED-IMPACT",
+          "title": "Assess Computerized System Decommissioning impact and retention requirements",
+          "purpose": "Assess GMP impact, data/record retention, utility/process/system isolation, and documentation impact.",
+          "task_type": "IMPACT_ASSESSMENT",
+          "owner_role": "QA / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPUTERIZED-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPUTERIZED_DECOM_IMPACT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPUTERIZED-PLAN",
+          "title": "Prepare Computerized System Decommissioning decommissioning plan",
+          "purpose": "Define safe decommissioning activities, prerequisites, dependencies, evidence, deviations/CAPA route, and acceptance path.",
+          "task_type": "DECOMMISSIONING_PLANNING",
+          "owner_role": "CQV / Engineering / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPUTERIZED-IMPACT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPUTERIZED_DECOM_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPUTERIZED-EXEC",
+          "title": "Execute Computerized System Decommissioning decommissioning checks",
+          "purpose": "Confirm isolation/retirement checks, evidence capture, data/record handling, and documentation updates.",
+          "task_type": "DECOMMISSIONING_EXECUTION",
+          "owner_role": "Engineering / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPUTERIZED-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPUTERIZED_DECOM_EXEC_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_CHECK_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "COMPUTERIZED-CLOSE",
+          "title": "Close Computerized System Decommissioning decommissioning package",
+          "purpose": "Confirm deviations/CAPA, retained records, final status, and decommissioning summary/closure record.",
+          "task_type": "DECOMMISSIONING_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "COMPUTERIZED-EXEC",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "COMPUTERIZED_DECOM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DECOMMISSIONING_SUMMARY_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    },
+    {
+      "task_pool_id": "TP-MVP-QCLABEQUIPME-DECOM@v1",
+      "version": "v1",
+      "status": "mvp_remediation_source",
+      "display_name": "MVP QC Lab Equipment Decommissioning Task Pool",
+      "preset_family": "PF-QC-LAB-EQUIPMENT",
+      "selector_context_tags": [
+        "qc-lab-equipment",
+        "decommissioning",
+        "mvp-content-remediation"
+      ],
+      "lifecycle_events": [
+        "LE-DECOMMISSIONING",
+        "LE-RETIREMENT",
+        "LE-REPLACEMENT"
+      ],
+      "qualification_validation_intents": [
+        "INT-DECOMMISSIONING",
+        "INT-IMPACT-ASSESSMENT"
+      ],
+      "domain": "decommissioning",
+      "lifecycle_route": "QC Lab Equipment Decommissioning",
+      "source_limitations": [
+        "Wave 2 expands task-pool source content only.",
+        "Duration references are provisional and require Wave 3 planning-basis coverage.",
+        "Document expectations require Wave 4 template bodies and Wave 5 schema/DCF coverage before product-ready output.",
+        "Task-pool source records do not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+      ],
+      "explicit_non_implementation_claims": [
+        "does_not_generate_documents",
+        "does_not_approve_release_or_uat_acceptance",
+        "does_not_implement_templates_or_schemas",
+        "does_not_productize_or_deploy_outputs",
+        "does_not_authorize_productization",
+        "does_not_authorize_deployment",
+        "does_not_authorize_saas_readiness"
+      ],
+      "tasks": [
+        {
+          "atomic_task_id": "QCLABEQUIPME-SCOPE",
+          "title": "Confirm QC Lab Equipment Decommissioning scope and trigger",
+          "purpose": "Confirm decommissioning trigger, boundary, impacted systems/assets, records, and controlled route.",
+          "task_type": "DECOMMISSIONING_SCOPE",
+          "owner_role": "CQV / System Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [],
+          "duration_ref": {
+            "duration_ref_id": "QCLABEQUIPME_DECOM_SCOPE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CCF",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "SIA",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLABEQUIPME-IMPACT",
+          "title": "Assess QC Lab Equipment Decommissioning impact and retention requirements",
+          "purpose": "Assess GMP impact, data/record retention, utility/process/system isolation, and documentation impact.",
+          "task_type": "IMPACT_ASSESSMENT",
+          "owner_role": "QA / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLABEQUIPME-SCOPE",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLABEQUIPME_DECOM_IMPACT_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "RA_FMEA",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VENDOR_DOC_EXTRACTION_SOURCE",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLABEQUIPME-PLAN",
+          "title": "Prepare QC Lab Equipment Decommissioning decommissioning plan",
+          "purpose": "Define safe decommissioning activities, prerequisites, dependencies, evidence, deviations/CAPA route, and acceptance path.",
+          "task_type": "DECOMMISSIONING_PLANNING",
+          "owner_role": "CQV / Engineering / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLABEQUIPME-IMPACT",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLABEQUIPME_DECOM_PLAN_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_PLAN",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "CP",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLABEQUIPME-EXEC",
+          "title": "Execute QC Lab Equipment Decommissioning decommissioning checks",
+          "purpose": "Confirm isolation/retirement checks, evidence capture, data/record handling, and documentation updates.",
+          "task_type": "DECOMMISSIONING_EXECUTION",
+          "owner_role": "Engineering / CQV / Owner",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLABEQUIPME-PLAN",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLABEQUIPME_DECOM_EXEC_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "DECOMMISSIONING_CHECK_RECORD",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DEVIATION_INCIDENT_REPORT",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        },
+        {
+          "atomic_task_id": "QCLABEQUIPME-CLOSE",
+          "title": "Close QC Lab Equipment Decommissioning decommissioning package",
+          "purpose": "Confirm deviations/CAPA, retained records, final status, and decommissioning summary/closure record.",
+          "task_type": "DECOMMISSIONING_CLOSEOUT",
+          "owner_role": "CQV / QA",
+          "prerequisites": [
+            "Human-confirmed scope and applicable lifecycle route"
+          ],
+          "dependencies": [
+            {
+              "atomic_task_id": "QCLABEQUIPME-EXEC",
+              "dependency_type": "FS",
+              "lag_days": 0
+            }
+          ],
+          "duration_ref": {
+            "duration_ref_id": "QCLABEQUIPME_DECOM_CLOSE_DUR"
+          },
+          "document_expectations": [
+            {
+              "document_ref": "CAPA_CLOSURE_FORM",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "DECOMMISSIONING_SUMMARY_REPORT",
+              "status": "future_expected"
+            },
+            {
+              "document_ref": "VSR",
+              "status": "future_expected"
+            }
+          ],
+          "notes": [
+            "Wave 2 task-pool expansion source record; not a document generator."
+          ]
+        }
+      ]
+    }
+  ],
+  "library_controls": [
+    "Wave 2 expands task-pool source records only.",
+    "Document expectations remain controlled references for later template/schema waves.",
+    "Duration references are provisional until Wave 3 planning-basis expansion resolves them.",
+    "This library does not generate documents, approve records, release outputs, or accept M29.12 UAT.",
+    "This library does not authorize productization, deployment, SaaS readiness, customer-ready release, or M29.12 UAT acceptance."
+  ],
+  "explicit_non_implementation_claims": [
+    "does_not_generate_documents",
+    "does_not_approve_release_or_uat_acceptance",
+    "does_not_implement_templates_or_schemas",
+    "does_not_productize_or_deploy_outputs",
+    "does_not_authorize_productization",
+    "does_not_authorize_deployment",
+    "does_not_authorize_saas_readiness"
+  ]
+}

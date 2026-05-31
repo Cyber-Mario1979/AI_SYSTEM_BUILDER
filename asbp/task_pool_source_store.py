@@ -10,13 +10,24 @@ from asbp.task_pool_source_model import (
 )
 
 
-DEFAULT_TASK_POOL_SOURCE_PATH = (
+TASK_POOL_SOURCE_DIR = (
     Path(__file__).resolve().parents[1]
     / "data"
     / "source"
     / "task_pools"
-    / "starter_task_pools.json"
 )
+
+DEFAULT_TASK_POOL_SOURCE_PATH = TASK_POOL_SOURCE_DIR / "starter_task_pools.json"
+
+MVP_TASK_POOL_SOURCE_PATHS = [
+    TASK_POOL_SOURCE_DIR / "mvp_cleanroom_hvac_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_process_equipment_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_utilities_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_csv_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_qc_lab_equipment_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_decommissioning_task_pools.json",
+    TASK_POOL_SOURCE_DIR / "mvp_manual_fallback_task_pools.json",
+]
 
 
 def load_task_pool_library_from_payload(payload: dict) -> TaskPoolLibraryModel:
@@ -35,6 +46,13 @@ def load_task_pool_library_from_path(path: Path) -> TaskPoolLibraryModel:
 
 def load_default_task_pool_library() -> TaskPoolLibraryModel:
     return load_task_pool_library_from_path(DEFAULT_TASK_POOL_SOURCE_PATH)
+
+
+def load_mvp_task_pool_libraries() -> list[TaskPoolLibraryModel]:
+    return [
+        load_task_pool_library_from_path(path)
+        for path in MVP_TASK_POOL_SOURCE_PATHS
+    ]
 
 
 def list_task_pool_ids(library: TaskPoolLibraryModel) -> list[str]:
