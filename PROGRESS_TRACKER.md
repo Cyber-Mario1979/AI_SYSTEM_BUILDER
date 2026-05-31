@@ -10,7 +10,7 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M29 — Product-Ready Document Factory, Document Engine Workflow, and Output Rendering
+M29 — Completed / Post-M29 repository index control before M30
 
 ## Active Control Recovery Gate
 
@@ -46,6 +46,8 @@ M29.11 completed the validation checkpoint by confirming clean local repo state 
 
 M29.12 UAT / owner acceptance was accepted by the Project Owner with clarifications.
 
+M29.13 milestone closeout completed M29 with carry-forward limitations.
+
 CQV content-library remediation Wave 1 completed the revised coverage matrix and MVP scope lock.
 
 CQV content-library remediation Wave 2 completed MVP task-pool expansion source assets and validation.
@@ -70,25 +72,23 @@ The Project Owner approved a sequence-control decision to return to M29.12 UAT /
 
 The Project Owner accepted M29.12 UAT with clarifications.
 
+M29.13 closeout preserved the full repository index requirement before M30.
+
 The CAPA remains active until the Project Owner accepts that the control is working.
 
 ## Current Approved Checkpoint Family
 
-M29.13 — Milestone closeout
+Post-M29 repository index control before M30.
 
-Status: READY FOR PLAN.
+Status: REQUIRED BEFORE M30.
 
-M29.12 UAT accepted with clarifications.
+M29.13 milestone closeout completed with carry-forward limitations.
 
-Closed / accepted blocker:
+M29 closeout evidence:
 
-M29.12 CQV Content Library Completion Blocker
+docs/milestones/M29/M29_13_MILESTONE_CLOSEOUT.md
 
-Blocker closure evidence:
-
-docs/governance/uat_blockers/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_BLOCKER.md
-
-UAT acceptance evidence:
+M29.12 UAT acceptance evidence:
 
 docs/UAT/M29/M29_UAT_RETURN_PROTOCOL.md
 
@@ -98,7 +98,11 @@ docs/milestones/M29/M29_12_MILESTONE_UAT_OWNER_ACCEPTANCE.md
 
 docs/change_control/M29_12_UAT_ACCEPTANCE_CLARIFICATIONS.md
 
-Related evidence:
+Closed / accepted blocker:
+
+docs/governance/uat_blockers/M29_12_CQV_CONTENT_LIBRARY_COMPLETION_BLOCKER.md
+
+Related remediation evidence:
 
 docs/gap_assessments/M29_CQV_CONTENT_LIBRARY_GAP_ASSESSMENT.md
 
@@ -126,21 +130,21 @@ docs/repo_index/DOCS_REFERENCE_REVIEW_DECISIONS.md
 
 ## Latest Completed Checkpoint
 
-M29.12 — Milestone UAT / owner acceptance
+M29.13 — Milestone closeout
 
-Acceptance status:
+Closeout status:
 
-ACCEPTED WITH CLARIFICATIONS
+CLOSED WITH CARRY-FORWARD LIMITATIONS
 
 ## Exact Next Unfinished Checkpoint
 
-M29.13 — Milestone closeout
+Post-M29 full repository index before M30.
 
-Current state: READY FOR PLAN.
+Current state: REQUIRED BEFORE M30.
 
 Exact next allowed work:
 
-PLAN M29.13 milestone closeout.
+PLAN full repository index.
 
 This control action is not M30 start, not productization, not deployment, not release, and not SaaS readiness.
 
@@ -206,7 +210,9 @@ Standards retrieval / embedding remains deferred to M30.
 
 Full repository index remains required after M29.12 UAT and before M30, unless explicitly carried forward by Project Owner decision.
 
-Latest completed milestone UAT is now M29.12 UAT accepted with clarifications.
+M29.13 closeout completed M29 with carry-forward limitations.
+
+Latest completed milestone UAT is M29.12 UAT accepted with clarifications.
 
 Previous milestone UAT:
 
@@ -214,13 +220,15 @@ M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 8 validation and remediation completion gate evidence application, docs folder index Pass 1, docs/reference review decision, M29.12 UAT return sequence decision, clarification record, and M29.12 UAT acceptance with clarifications, subject to final local `git status -sb` confirmation before commit.
+Aligned locally after M29.13 milestone closeout application, subject to final local `git status -sb` confirmation before commit.
 
-M29.12 is now the latest completed roadmap checkpoint.
+M29.13 is now the latest completed roadmap checkpoint.
 
-M29.13 is the active next checkpoint.
+M29 is closed with carry-forward limitations.
 
-M29.13 closeout is ready for PLAN.
+M30 is not active.
+
+Next required control action is full repository index before M30.
 
 Do not start M30 before completing the full repository index or recording an explicit owner-approved carry-forward decision.
 
@@ -342,25 +350,23 @@ docs/repo_index/DOCS_REFERENCE_REVIEW_DECISIONS.md
 
 Remaining index requirement:
 
-Full repository index after M29.12 UAT and before M30.
+Full repository index before M30.
 
 ## Relevant DDR Status
 
-M29.11 directly touched DDR-006 because it validated the implemented M29 document/output layer before UAT or closeout.
+M29.13 closes M29 with carry-forward limitations.
 
-M29.12 acceptance with clarifications carries forward DDR-003 and DDR-006 limitations truthfully for milestone UAT only.
+DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It is not erased as a downstream productization concern. Any claim of full product-ready document factory behavior beyond the accepted M29 milestone scope remains governed by later roadmap gates and limitations.
 
-DDR-003 is not automatically closed for full product-ready document factory behavior by M29.12 milestone UAT acceptance.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. M29.13 does not upgrade standards authority, source verification, clause-level claims, mandatory-use claims, or standards-backed product claims.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. M29.12 UAT acceptance does not upgrade standards source authority.
+DDR-005 remains deferred to M30. M29.13 does not implement standards retrieval, embedding, live lookup, or retrieval-backed source authority.
 
-DDR-005 remains deferred to M30. M29.12 UAT acceptance does not implement standards embedding or retrieval.
-
-DDR-006 remains not fully closed for product-ready document/export/report generation and rendering beyond the accepted M29 milestone UAT scope. M29.13 closeout must state remaining limits truthfully.
+DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, or customer-ready output.
 
 Full repository index remains required before M30.
 
-The next work must not claim product-ready CQV content-library completion beyond the accepted milestone UAT scope.
+The next work must not claim product-ready CQV content-library completion beyond the accepted M29 milestone UAT scope.
 
 ## Build / Governance Balance Policy Status
 
@@ -369,6 +375,8 @@ Active.
 M29.11 was executed as Validation and completed by clean local repo confirmation plus full executable validation evidence.
 
 M29.12 was UAT execution mode and was accepted with clarifications by Project Owner decision.
+
+M29.13 was Closeout / governance mode and closes M29 with carry-forward limitations.
 
 Wave 1 was governance-only and completed the revised coverage matrix / MVP scope lock only.
 
@@ -404,7 +412,7 @@ M29.12 UAT return sequence decision and clarification decision are governance/se
 
 ## Blocked Actions
 
-Do not advance to M30 before the full repository index is completed or explicitly carried forward by Project Owner decision.
+Do not start M30 before the full repository index is completed or explicitly carried forward by Project Owner decision.
 
 Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
 
@@ -420,10 +428,10 @@ Do not delete, archive, rename, move, or promote repository files based only on 
 
 Allowed next work is:
 
-PLAN M29.13 milestone closeout.
+PLAN full repository index.
 
-M29.13 must close M29 truthfully, preserve carry-forward limits, and preserve the full repository index requirement before M30.
+The full repository index must be completed before M30 unless explicitly carried forward by Project Owner decision.
 
 ## Next Action
 
-PLAN M29.13 milestone closeout.
+PLAN full repository index.
