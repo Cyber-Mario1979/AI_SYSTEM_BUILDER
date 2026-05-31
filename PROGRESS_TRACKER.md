@@ -54,6 +54,10 @@ CQV content-library remediation Wave 3 completed MVP profiles, calendars, planni
 
 CQV content-library remediation Wave 4 completed MVP document template body / section-plan source assets and validation.
 
+CQV content-library remediation Wave 5 completed URS-only DCF intake, downstream document dependency contracts, vendor-document extraction source contracts, and validation.
+
+After the remediation plan is completely finished, the next required control action is a full repository index before returning to UAT or further build continuation.
+
 The CAPA remains active until the Project Owner accepts that the control is working.
 
 ## Current Approved Checkpoint Family
@@ -92,19 +96,23 @@ Current state: BLOCKED.
 
 Exact next allowed work:
 
-PLAN CQV content-library remediation wave 5 — document input schema and DCF expansion.
+PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
 
 This remediation work is not M29.12 acceptance and is not M29.13 closeout.
 
 ## Latest Verified Validation
 
-CQV content-library remediation Wave 4 — document template body expansion:
+CQV content-library remediation Wave 5 — URS DCF intake and downstream document dependency contracts:
+
+python -m pytest -q — 1461 passed in 45.60s
+
+Validation was run locally by the Project Owner after applying the corrected Wave 5 URS DCF / downstream dependency package and Wave 5 validation fix package.
+
+Wave 5 changed document input dependency models/stores, URS-only DCF intake catalog source JSON, downstream document dependency contract source JSON, vendor-document extraction source JSON, tests, and remediation evidence.
+
+Previous CQV content-library remediation Wave 4 validation:
 
 python -m pytest -q — 1447 passed in 45.66s
-
-Validation was run locally by the Project Owner after applying the Wave 4 document template body package and Wave 4 validation fix package.
-
-Wave 4 changed document template body source models/stores, MVP document template body source JSON, tests, and remediation evidence.
 
 Previous CQV content-library remediation Wave 3 validation:
 
@@ -132,13 +140,15 @@ The Project Owner did not accept M29.12 UAT because the repo previously proved a
 
 M29.12 UAT may resume only after the blocker is closed or explicitly carried forward by owner-approved decision.
 
+After the remediation plan is completely finished, the Project Owner requires a full repo index before returning to UAT or further build continuation.
+
 Latest completed milestone UAT remains M28 UAT executed and accepted.
 
 M28.11 UAT report accepted by Project Owner on 2026-05-29.
 
 ## Repo Alignment Status
 
-Aligned locally after Wave 4 document template body expansion implementation and validation.
+Aligned locally after Wave 5 URS-only DCF intake and downstream document dependency contract implementation and validation.
 
 M29.11 remains the latest completed roadmap checkpoint.
 
@@ -146,7 +156,9 @@ M29.12 remains the active checkpoint but is blocked.
 
 M29.13 closeout is blocked.
 
-Ready for PLAN CQV content-library remediation wave 5 — document input schema and DCF expansion — from a clean bounded execution context only.
+Ready for PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved — from a clean bounded execution context only.
+
+After the remediation plan is fully completed, do not return directly to M29.12 UAT or further build continuation before preparing a full repository index.
 
 ## Remediation Progress Status
 
@@ -194,9 +206,25 @@ Validation:
 
 python -m pytest -q — 1447 passed in 45.66s
 
-Wave 5 — Document input schema and DCF expansion:
+Wave 5 — URS DCF intake and downstream document dependency contracts:
+
+Completed.
+
+Evidence:
+
+docs/remediation/M29_CQV_CONTENT_LIBRARY_REMEDIATION_WAVE_5_DOCUMENT_INPUT_SCHEMA_DCF_EXPANSION.md
+
+Validation:
+
+python -m pytest -q — 1461 passed in 45.60s
+
+Wave 6 — Standards/citation expansion where approved:
 
 Next.
+
+Post-remediation control action:
+
+Full repo index before returning to UAT or further build continuation.
 
 ## Relevant DDR Status
 
@@ -216,7 +244,11 @@ Wave 4 directly touched DDR-003 and DDR-006 because it implemented MVP document 
 
 Wave 4 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because document templates depend on governed source libraries, standards limitations, deferred retrieval boundaries, and external placeholder constraints.
 
-DDR-003 is not fully closed for product-ready document factory behavior. Document input schemas, DCF/minimum-input mappings, standards/citation expansion, trial scenarios, validation, and owner acceptance still require remediation before M29.12 owner acceptance.
+Wave 5 directly touched DDR-003 and DDR-006 because it corrected the document input model around URS-only DCF intake and downstream document dependency contracts.
+
+Wave 5 also continued DDR-001, DDR-002, DDR-004, DDR-005, and DDR-009 awareness because document input dependencies rely on governed source libraries, standards limitations, deferred retrieval boundaries, and external/adopted document-source constraints.
+
+DDR-003 is not fully closed for product-ready document factory behavior. Standards/citation expansion, trial scenarios, validation, repo indexing, and owner acceptance still require remediation/control before M29.12 owner acceptance.
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope.
 
@@ -224,9 +256,9 @@ DDR-005 remains deferred to M30.
 
 DDR-006 is not fully closed for product-ready document/export/report generation and rendering. M29 UAT remains blocked at M29.12 and milestone closeout remains blocked at M29.13.
 
-Wave 5 must continue DDR-001, DDR-002, DDR-003, DDR-004, DDR-005, DDR-006, and DDR-009 awareness.
+Wave 6 must continue DDR-003, DDR-004, DDR-005, DDR-006, and DDR-009 awareness.
 
-The next remediation work must not claim product-ready CQV content-library completion until source assets, validation evidence, and owner acceptance support that claim.
+The next remediation work must not claim product-ready CQV content-library completion until source assets, validation evidence, repo index evidence, and owner acceptance support that claim.
 
 ## Build / Governance Balance Policy Status
 
@@ -250,9 +282,13 @@ Wave 4 was Build/content and completed by implementation/source evidence plus va
 
 Wave 4 was not closed by Markdown-only or governance-only output.
 
-Wave 5 must be planned under the build/governance balance policy.
+Wave 5 was Build/content and completed by implementation/source evidence plus validation.
 
-If Wave 5 changes source JSON, models, validators, stores, tests, schema records, DCF mappings, template-section field bindings, loaders, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
+Wave 5 was not closed by Markdown-only or governance-only output.
+
+Wave 6 must be planned under the build/governance balance policy.
+
+If Wave 6 changes source JSON, models, validators, stores, tests, standards/citation records, applicability rules, source-limitations, loaders, or executable behavior, then implementation/source evidence and python -m pytest -q validation are required before any tracker movement.
 
 ## Blocked Actions
 
@@ -266,16 +302,20 @@ Do not claim full CQV content-library completion.
 
 Do not claim full product-ready document factory completion.
 
+Do not return to UAT immediately after remediation completion before preparing a full repository index.
+
+Do not return to further build continuation after remediation completion before preparing a full repository index.
+
 Do not claim productization, deployment, commercial release, or SaaS readiness.
 
 ## Allowed Next Work
 
 Allowed next work is CQV content-library remediation only, continuing with:
 
-PLAN CQV content-library remediation wave 5 — document input schema and DCF expansion.
+PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
 
-Wave 5 should expand document input schemas, DCF paths, skip-DCF minimum-input mappings, field/section bindings, missing-data controls, and validation coverage needed to support the MVP document template body / section-plan source assets.
+Wave 6 should expand standards/citation applicability only where approved, preserve limitations, avoid standards retrieval/embedding, and avoid unsupported clause-level or mandatory-use claims.
 
 ## Next Action
 
-PLAN CQV content-library remediation wave 5 — document input schema and DCF expansion.
+PLAN CQV content-library remediation wave 6 — standards/citation expansion where approved.
