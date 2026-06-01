@@ -12,18 +12,19 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M31 — Governed AI Assistance Over Local Product Sources
 
-Status: READY FOR PLAN M31.5 ONLY.
+Status: READY FOR PLAN M31.6 ONLY.
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
 
 M30 closed with bounded retrieval boundary frozen and limitations carried forward.
 
-M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, and context-packet evidence:
+M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, context-packet, and refusal/limitation evidence:
 
 - M31.1 AI assistance boundary confirmation.
 - M31.2 Local AI model and provider strategy decision.
 - M31.3 Provider/adapter boundary scaffolding.
 - M31.4 Context packet contract scaffolding.
+- M31.5 Refusal and limitation rule scaffolding.
 
 M31.1 completed as boundary confirmation evidence.
 
@@ -33,10 +34,12 @@ M31.3 completed as hybrid boundary scaffolding evidence with local validation.
 
 M31.4 completed as hybrid context packet contract evidence with local validation.
 
+M31.5 completed as hybrid refusal/limitation rule evidence with local validation.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M31.5 — Refusal and limitation rules
+PLAN M31.6 — Output acceptance and review rules
 ```
 
 This is PLAN only, not GO.
@@ -89,63 +92,66 @@ M31.3 completed provider-neutral adapter boundary scaffolding and tests while ke
 
 M31.4 completed provider-facing context packet contract scaffolding and tests while keeping free-form prompt facts, raw retrieval-to-model truth injection, provider/model execution, prompt execution, and productization blocked.
 
+M31.5 completed refusal and limitation rule scaffolding and tests while keeping model/provider execution, prompt execution, generated output acceptance, AI approval authority, state mutation, productization, and release behavior blocked.
+
 The CAPA remains active through M31 because governed AI assistance has higher drift risk.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M31-005
+Gate ID: ASBP-AEG-M31-006
 
-Applies to: M31.5 — Refusal and limitation rules
+Applies to: M31.6 — Output acceptance and review rules
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M31.4 gate result:
+Prior M31.5 gate result:
 
 ```text
-M31.4 — Context packet contract completed as hybrid context packet contract evidence with local validation.
+M31.5 — Refusal and limitation rules completed as hybrid refusal/limitation rule evidence with local validation.
 ```
 
-M31.5 may proceed as PLAN only, not GO.
+M31.6 may proceed as PLAN only, not GO.
 
-Required M31.5 planning output:
+Required M31.6 planning output:
 
 ```text
-Controlled checkpoint plan for refusal and limitation rules.
+Controlled checkpoint plan for output acceptance and review rules.
 ```
 
-M31.5 planning must define or confirm:
+M31.6 planning must define or confirm:
 
 - execution mode;
-- whether M31.5 is governance-only, hybrid, or build/content;
-- required refusal/limitation artifact;
-- missing source refusal rules;
-- unverified standards refusal rules;
-- unsupported claim refusal rules;
-- out-of-scope request refusal rules;
-- limitation propagation from context packets;
-- provider-adapter boundary dependency;
+- whether M31.6 is governance-only, hybrid, or build/content;
+- required output acceptance/review artifact;
+- accepted AI output states;
+- draft/advisory/review-bound output rules;
+- human acceptance requirements;
+- no AI approval authority rule;
+- generated output acceptance limits;
+- refusal/limitation dependency;
 - context packet dependency;
-- output acceptance dependency;
+- provider-adapter boundary dependency;
 - evaluation/validation dependency;
-- DDR-005, DDR-006, and DDR-007 impact;
+- DDR-006 and DDR-007 impact;
+- DDR-005 impact where retrieval-supported output is touched;
 - CAPA continuation controls;
 - tracker movement rule;
 - explicit non-productization claims.
 
-M31.5 planning must preserve that M31.4 created context packet contract scaffolding only. It did not authorize real provider calls, local model inference, prompt execution, API key handling, provider SDK integration, app-coupled heavy-use testing, generated output acceptance, or production AI behavior.
+M31.6 planning must preserve that M31.5 created refusal/limitation rule scaffolding only. It did not authorize real provider calls, local model inference, prompt execution, API key handling, provider SDK integration, app-coupled heavy-use testing, generated output acceptance, or production AI behavior.
 
-Tracker movement from M31.5 remains blocked until the accepted M31.5 plan and required refusal/limitation evidence exist.
+Tracker movement from M31.6 remains blocked until the accepted M31.6 plan and required output acceptance/review evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M31.5 — Refusal and limitation rules.
+M31.6 — Output acceptance and review rules.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M31.5 — Refusal and limitation rules
+PLAN M31.6 — Output acceptance and review rules
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -153,16 +159,61 @@ PLAN M31.5 — Refusal and limitation rules
 Latest completed roadmap checkpoint:
 
 ```text
-M31.4 — Context packet contract
+M31.5 — Refusal and limitation rules
 ```
 
 Completion type:
 
 ```text
-Hybrid context packet contract + validation evidence
+Hybrid refusal/limitation rule scaffolding + validation evidence
 ```
 
-M31.4 evidence:
+M31.5 evidence:
+
+```text
+docs/milestones/M31/M31_5_REFUSAL_LIMITATION_RULES_PLAN.md
+docs/milestones/M31/M31_5_REFUSAL_LIMITATION_RULES.md
+asbp/ai_runtime/refusal_rules.py
+tests/test_ai_refusal_limitation_rules.py
+```
+
+M31.5 refusal/limitation status:
+
+```text
+REFUSAL AND LIMITATION RULE SCAFFOLDING COMPLETED; PROVIDER/MODEL EXECUTION, PROMPT EXECUTION, GENERATED OUTPUT ACCEPTANCE, AI APPROVAL AUTHORITY, STATE MUTATION, AND PRODUCTIZATION REMAIN BLOCKED.
+```
+
+M31.5 merge evidence:
+
+```text
+PR #79 — feat: add M31.5 refusal limitation rule scaffolding
+```
+
+M31.5 local validation evidence:
+
+```text
+python -m pytest tests/test_ai_refusal_limitation_rules.py -q — 10 passed in 0.06s
+python -m pytest -q — 1543 passed in 45.15s
+```
+
+M31.5 carried-forward limits:
+
+```text
+No real provider calls.
+No local model inference.
+No prompt execution.
+No API key handling.
+No provider SDK integration.
+No generated output acceptance.
+No AI approval authority.
+No model-owned state mutation.
+No app-coupled heavy-use testing.
+No raw retrieval-to-model truth injection.
+No tracker movement beyond this alignment.
+No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+```
+
+Prior M31.4 evidence:
 
 ```text
 docs/milestones/M31/M31_4_CONTEXT_PACKET_CONTRACT_PLAN.md
@@ -188,21 +239,6 @@ M31.4 local validation evidence:
 ```text
 python -m pytest tests/test_ai_context_packet_contract.py -q — 8 passed in 0.04s
 python -m pytest -q — 1533 passed in 45.54s
-```
-
-M31.4 carried-forward limits:
-
-```text
-No real provider calls.
-No local model inference.
-No prompt execution.
-No API key handling.
-No provider SDK integration.
-No generated output acceptance.
-No app-coupled heavy-use testing.
-No raw retrieval-to-model truth injection.
-No tracker movement beyond this alignment.
-No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 ```
 
 Prior M31.3 evidence:
@@ -313,16 +349,16 @@ CAPA — PARTIALLY SATISFIED; KEEP ACTIVE THROUGH M31 ENTRY
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1533 passed in 45.54s
+python -m pytest -q — 1543 passed in 45.15s
 ```
 
 Validation scope:
 
-Full test suite after M31.4 provider-facing context packet contract scaffolding and tests from PR #77.
+Full test suite after M31.5 refusal and limitation rule scaffolding and tests from PR #79.
 
 ## Exact Next Unfinished Work
 
-PLAN M31.5 — Refusal and limitation rules.
+PLAN M31.6 — Output acceptance and review rules.
 
 Current state:
 
@@ -333,14 +369,14 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M31.5 only.
+PLAN M31.6 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M31.5;
-- refusal/limitation implementation beyond accepted M31.5 scope;
+- tracker advancement from M31.6;
+- output acceptance implementation beyond accepted M31.6 scope;
 - real provider adapter implementation;
 - AI/model/provider calls;
 - local AI runtime integration;
@@ -353,7 +389,9 @@ Blocked until separately authorized:
 - vector store implementation;
 - live source lookup;
 - retrieval-backed source authority;
-- generated output acceptance;
+- generated output acceptance beyond accepted M31.6 scope;
+- AI approval authority;
+- model-owned state mutation;
 - UI/API behavior;
 - deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
 
@@ -362,17 +400,18 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1533 passed in 45.54s
+python -m pytest -q — 1543 passed in 45.15s
 ```
 
 Latest focused M31 validation:
 
 ```text
-python -m pytest tests/test_ai_context_packet_contract.py -q — 8 passed in 0.04s
+python -m pytest tests/test_ai_refusal_limitation_rules.py -q — 10 passed in 0.06s
 ```
 
 Latest M31 evidence:
 
+- PR #79 recorded M31.5 refusal and limitation rule scaffolding and tests.
 - PR #77 recorded M31.4 context packet contract scaffolding and tests.
 - PR #75 recorded M31.3 provider adapter boundary scaffolding and tests.
 - PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
@@ -384,7 +423,7 @@ Latest closeout evidence:
 - PR #68 recorded M30.11 milestone closeout evidence.
 - PR #67 accepted the M30.11 milestone closeout plan.
 
-This M31.4 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already-accepted and locally validated M31.4 evidence.
+This M31.5 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already-accepted and locally validated M31.5 evidence.
 
 ## Milestone UAT Status
 
@@ -408,7 +447,9 @@ M31.3 completed provider-neutral adapter boundary scaffolding only.
 
 M31.4 completed provider-facing context packet contract scaffolding only.
 
-M31.5 is the next PLAN-only checkpoint.
+M31.5 completed refusal and limitation rule scaffolding only.
+
+M31.6 is the next PLAN-only checkpoint.
 
 Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
@@ -432,7 +473,9 @@ PR #75 recorded M31.3 provider adapter boundary scaffolding and tests.
 
 PR #77 recorded M31.4 context packet contract scaffolding and tests.
 
-This tracker update records M31.4 context packet contract completion and sets PLAN M31.5 as the next work. It does not start M31.5, does not authorize GO, and does not authorize real provider calls, local AI runtime, prompt execution, generated output acceptance, UI/API, productization, or release behavior.
+PR #79 recorded M31.5 refusal and limitation rule scaffolding and tests.
+
+This tracker update records M31.5 refusal and limitation rule completion and sets PLAN M31.6 as the next work. It does not start M31.6, does not authorize GO, and does not authorize real provider calls, local AI runtime, prompt execution, generated output acceptance, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -455,10 +498,10 @@ The full repository index does not start retrieval, implement standards embeddin
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, M31.3, or M31.4.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, M31.3, M31.4, or M31.5.
 
-DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.4 added context packet controls that keep retrieval support-only and block raw retrieval dumps.
+DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.4 added context packet controls that keep retrieval support-only and block raw retrieval dumps. M31.5 added refusal/limitation controls that require support-only retrieval to refuse, limit, or request source evidence instead of becoming source/compliance truth.
 
-DDR-006 remains relevant for generated output. M31 work must not claim generated output acceptance or document factory readiness unless later output acceptance rules and required evidence exist.
+DDR-006 remains relevant for generated output. M31 work must not claim generated output acceptance or document factory readiness unless later output acceptance rules and required evidence exist. M31.5 blocks generated output acceptance and preserves M31.6 as the next acceptance-rule checkpoint.
 
-DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, and M31.4 created context packet scaffolding, but none of these checkpoints close DDR-007 or authorize model/provider/runtime execution.
+DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, M31.4 created context packet scaffolding, and M31.5 created refusal/limitation scaffolding, but none of these checkpoints close DDR-007 or authorize model/provider/runtime execution.
