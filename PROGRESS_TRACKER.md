@@ -12,25 +12,28 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M31 — Governed AI Assistance Over Local Product Sources
 
-Status: READY FOR PLAN M31.3 ONLY.
+Status: READY FOR PLAN M31.4 ONLY.
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
 
 M30 closed with bounded retrieval boundary frozen and limitations carried forward.
 
-M31 has started through accepted boundary and strategy-decision evidence:
+M31 has started through accepted boundary, strategy-decision, and provider-adapter-boundary evidence:
 
 - M31.1 AI assistance boundary confirmation.
 - M31.2 Local AI model and provider strategy decision.
+- M31.3 Provider/adapter boundary scaffolding.
 
 M31.1 completed as boundary confirmation evidence.
 
 M31.2 completed as strategy-decision evidence.
 
+M31.3 completed as hybrid boundary scaffolding evidence with local validation.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M31.3 — Provider/adapter boundary if approved
+PLAN M31.4 — Context packet contract
 ```
 
 This is PLAN only, not GO.
@@ -79,65 +82,67 @@ M31.1 completed AI assistance boundary confirmation and kept model/provider/runt
 
 M31.2 completed local AI model/provider strategy decision evidence and selected a staged local-first / offline-preferred hybrid strategy while keeping model/provider/runtime behavior blocked.
 
+M31.3 completed provider-neutral adapter boundary scaffolding and tests while keeping real provider calls, local model inference, prompt execution, API key handling, provider SDK integration, app-coupled heavy-use testing, and productization blocked.
+
 The CAPA remains active through M31 because governed AI assistance has higher drift risk.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M31-003
+Gate ID: ASBP-AEG-M31-004
 
-Applies to: M31.3 — Provider/adapter boundary if approved
+Applies to: M31.4 — Context packet contract
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M31.2 gate result:
+Prior M31.3 gate result:
 
 ```text
-M31.2 — Local AI model and provider strategy decision completed as strategy-decision evidence.
+M31.3 — Provider/adapter boundary if approved completed as hybrid boundary scaffolding evidence with local validation.
 ```
 
-M31.3 may proceed as PLAN only, not GO.
+M31.4 may proceed as PLAN only, not GO.
 
-Required M31.3 planning output:
+Required M31.4 planning output:
 
 ```text
-Controlled checkpoint plan for provider/adapter boundary if approved.
+Controlled checkpoint plan for context packet contract.
 ```
 
-M31.3 planning must define or confirm:
+M31.4 planning must define or confirm:
 
 - execution mode;
-- whether M31.3 is governance-only, hybrid, or build/content;
-- required boundary artifact;
-- whether an adapter boundary is approved for later implementation;
-- provider-neutral boundary rules;
-- local/offline runtime boundary rules;
-- no raw provider leakage rule;
-- no state mutation by model rule;
-- no direct model calls from core/UI rule;
-- context-packet dependency;
+- whether M31.4 is governance-only, hybrid, or build/content;
+- required context-packet artifact;
+- source IDs and source-version requirements;
+- standards registry/version handling where standards context is used;
+- task/workflow state inclusion rules;
+- retrieval result inclusion rules if retrieval is used;
+- limitation visibility rules;
+- no free-form prompt with untracked facts rule;
+- no raw retrieval-to-model truth injection rule;
+- provider-adapter boundary dependency;
 - refusal/limitation dependency;
 - output acceptance dependency;
 - evaluation/validation dependency;
-- DDR-007 impact;
-- DDR-005 and DDR-006 impact if retrieval or generated output is touched;
+- DDR-005, DDR-006, and DDR-007 impact;
 - CAPA continuation controls;
 - tracker movement rule;
 - explicit non-productization claims.
 
-M31.3 planning must preserve that M31.2 selected a staged local-first / offline-preferred hybrid strategy only at strategy level. It did not authorize model calls, provider calls, adapter implementation, local runtime integration, prompt execution, or app-coupled heavy-use testing.
+M31.4 planning must preserve that M31.3 created provider-neutral adapter boundary scaffolding only. It did not authorize real provider calls, local model inference, prompt execution, API key handling, provider SDK integration, app-coupled heavy-use testing, or production AI behavior.
 
-Tracker movement from M31.3 remains blocked until the accepted M31.3 plan and required boundary evidence exist.
+Tracker movement from M31.4 remains blocked until the accepted M31.4 plan and required context-packet evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M31.3 — Provider/adapter boundary if approved.
+M31.4 — Context packet contract.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M31.3 — Provider/adapter boundary if approved
+PLAN M31.4 — Context packet contract
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -145,16 +150,59 @@ PLAN M31.3 — Provider/adapter boundary if approved
 Latest completed roadmap checkpoint:
 
 ```text
-M31.2 — Local AI model and provider strategy decision
+M31.3 — Provider/adapter boundary if approved
 ```
 
 Completion type:
 
 ```text
-Strategy-decision evidence
+Hybrid boundary scaffolding + validation evidence
 ```
 
-M31.2 evidence:
+M31.3 evidence:
+
+```text
+docs/milestones/M31/M31_3_PROVIDER_ADAPTER_BOUNDARY_PLAN.md
+docs/milestones/M31/M31_3_PROVIDER_ADAPTER_BOUNDARY.md
+asbp/ai_runtime/provider_contracts.py
+asbp/ai_runtime/provider_adapter.py
+asbp/ai_runtime/provider_registry.py
+tests/test_ai_provider_adapter_boundary.py
+```
+
+M31.3 boundary status:
+
+```text
+PROVIDER-NEUTRAL ADAPTER BOUNDARY SCAFFOLDING COMPLETED; REAL PROVIDER/MODEL EXECUTION REMAINS BLOCKED.
+```
+
+M31.3 merge evidence:
+
+```text
+PR #75 — feat: add M31.3 provider adapter boundary scaffolding
+```
+
+M31.3 local validation evidence:
+
+```text
+python -m pytest tests/test_ai_provider_adapter_boundary.py -q — 8 passed in 0.07s
+python -m pytest -q — 1525 passed in 47.24s
+```
+
+M31.3 carried-forward limits:
+
+```text
+No real provider calls.
+No local model inference.
+No prompt execution.
+No API key handling.
+No provider SDK integration.
+No app-coupled heavy-use testing.
+No tracker movement beyond this alignment.
+No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+```
+
+Prior M31.2 evidence:
 
 ```text
 docs/milestones/M31/M31_2_LOCAL_AI_MODEL_PROVIDER_STRATEGY_DECISION.md
@@ -176,18 +224,6 @@ M31.2 merge evidence:
 
 ```text
 PR #73 — docs: record M31.2 local AI model provider strategy decision
-```
-
-M31.2 carried-forward limits:
-
-```text
-No model/provider calls.
-No local AI runtime integration.
-No provider adapter implementation.
-No prompt execution.
-No app-coupled heavy-use testing.
-No tracker movement beyond this alignment.
-No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 ```
 
 Prior M31.1 evidence:
@@ -244,16 +280,16 @@ CAPA — PARTIALLY SATISFIED; KEEP ACTIVE THROUGH M31 ENTRY
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1517 passed in 46.67s
+python -m pytest -q — 1525 passed in 47.24s
 ```
 
 Validation scope:
 
-M30.9 validation checkpoint for bounded retrieval behavior from M30.4 through M30.8 plus existing test suite.
+Full test suite after M31.3 provider-neutral adapter boundary scaffolding and tests from PR #75.
 
 ## Exact Next Unfinished Work
 
-PLAN M31.3 — Provider/adapter boundary if approved.
+PLAN M31.4 — Context packet contract.
 
 Current state:
 
@@ -264,14 +300,15 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M31.3 only.
+PLAN M31.4 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M31.3;
-- provider adapter implementation;
+- tracker advancement from M31.4;
+- context packet implementation beyond accepted M31.4 scope;
+- real provider adapter implementation;
 - AI/model/provider calls;
 - local AI runtime integration;
 - prompt execution;
@@ -291,11 +328,18 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1517 passed in 46.67s
+python -m pytest -q — 1525 passed in 47.24s
+```
+
+Latest focused M31 validation:
+
+```text
+python -m pytest tests/test_ai_provider_adapter_boundary.py -q — 8 passed in 0.07s
 ```
 
 Latest M31 evidence:
 
+- PR #75 recorded M31.3 provider adapter boundary scaffolding and tests.
 - PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
 - PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
 - PR #70 accepted the M31.1 boundary confirmation plan.
@@ -305,7 +349,7 @@ Latest closeout evidence:
 - PR #68 recorded M30.11 milestone closeout evidence.
 - PR #67 accepted the M30.11 milestone closeout plan.
 
-This M31.2 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-accepted strategy-decision evidence.
+This M31.3 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already-accepted and locally validated M31.3 evidence.
 
 ## Milestone UAT Status
 
@@ -325,7 +369,9 @@ M31.1 completed boundary confirmation evidence only.
 
 M31.2 completed strategy-decision evidence only.
 
-M31.3 is the next PLAN-only checkpoint.
+M31.3 completed provider-neutral adapter boundary scaffolding only.
+
+M31.4 is the next PLAN-only checkpoint.
 
 Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
@@ -345,7 +391,9 @@ PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
 
 PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
 
-This tracker update records M31.2 strategy-decision completion and sets PLAN M31.3 as the next work. It does not start M31.3, does not authorize GO, and does not authorize AI/model/provider calls, local AI runtime, provider adapters, prompt execution, UI/API, productization, or release behavior.
+PR #75 recorded M31.3 provider adapter boundary scaffolding and tests.
+
+This tracker update records M31.3 boundary scaffolding completion and sets PLAN M31.4 as the next work. It does not start M31.4, does not authorize GO, and does not authorize real provider calls, local AI runtime, prompt execution, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -368,10 +416,10 @@ The full repository index does not start retrieval, implement standards embeddin
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, or M31.2.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, or M31.3.
 
 DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
 DDR-006 remains relevant for generated output. M31 work must not claim generated output acceptance or document factory readiness unless later output acceptance rules and required evidence exist.
 
-DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, but did not close DDR-007 and did not authorize model/provider/runtime implementation.
+DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, and M31.3 created provider-neutral adapter boundary scaffolding, but neither checkpoint closes DDR-007 or authorizes model/provider/runtime execution.
