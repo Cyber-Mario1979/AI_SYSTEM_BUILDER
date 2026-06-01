@@ -12,22 +12,25 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M31 — Governed AI Assistance Over Local Product Sources
 
-Status: READY FOR PLAN M31.2 ONLY.
+Status: READY FOR PLAN M31.3 ONLY.
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
 
 M30 closed with bounded retrieval boundary frozen and limitations carried forward.
 
-M31 has started only through boundary confirmation evidence:
+M31 has started through accepted boundary and strategy-decision evidence:
 
 - M31.1 AI assistance boundary confirmation.
+- M31.2 Local AI model and provider strategy decision.
 
 M31.1 completed as boundary confirmation evidence.
+
+M31.2 completed as strategy-decision evidence.
 
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M31.2 — Local AI model and provider strategy decision
+PLAN M31.3 — Provider/adapter boundary if approved
 ```
 
 This is PLAN only, not GO.
@@ -54,7 +57,7 @@ M30.1 re-entry condition was satisfied by the accepted M30.1 PLAN-only decision/
 
 ## Active Context Reset CAPA Status
 
-Partially satisfied; keep active through M31 entry.
+Partially satisfied; keep active through M31.
 
 The old bloated ASBP Project workspace remains archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
 
@@ -74,58 +77,67 @@ M30 completed with retrieval boundary frozen, DDR-005 partially closed, DDR-007 
 
 M31.1 completed AI assistance boundary confirmation and kept model/provider/runtime behavior blocked.
 
-The CAPA remains active through M31 entry because governed AI assistance has higher drift risk.
+M31.2 completed local AI model/provider strategy decision evidence and selected a staged local-first / offline-preferred hybrid strategy while keeping model/provider/runtime behavior blocked.
+
+The CAPA remains active through M31 because governed AI assistance has higher drift risk.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M31-002
+Gate ID: ASBP-AEG-M31-003
 
-Applies to: M31.2 — Local AI model and provider strategy decision
+Applies to: M31.3 — Provider/adapter boundary if approved
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M31.1 gate result:
+Prior M31.2 gate result:
 
 ```text
-M31.1 — AI assistance boundary confirmation completed as boundary evidence.
+M31.2 — Local AI model and provider strategy decision completed as strategy-decision evidence.
 ```
 
-M31.2 may proceed as PLAN only, not GO.
+M31.3 may proceed as PLAN only, not GO.
 
-Required M31.2 planning output:
+Required M31.3 planning output:
 
 ```text
-Controlled checkpoint plan for local AI model and provider strategy decision.
+Controlled checkpoint plan for provider/adapter boundary if approved.
 ```
 
-M31.2 planning must define or confirm:
+M31.3 planning must define or confirm:
 
 - execution mode;
-- required decision artifact;
-- local/offline/API/provider options to evaluate;
-- privacy constraints;
-- cost constraints;
-- operational limits;
-- model/provider/runtime exclusion or authorization structure;
+- whether M31.3 is governance-only, hybrid, or build/content;
+- required boundary artifact;
+- whether an adapter boundary is approved for later implementation;
+- provider-neutral boundary rules;
+- local/offline runtime boundary rules;
+- no raw provider leakage rule;
+- no state mutation by model rule;
+- no direct model calls from core/UI rule;
+- context-packet dependency;
+- refusal/limitation dependency;
+- output acceptance dependency;
+- evaluation/validation dependency;
 - DDR-007 impact;
+- DDR-005 and DDR-006 impact if retrieval or generated output is touched;
 - CAPA continuation controls;
 - tracker movement rule;
 - explicit non-productization claims.
 
-M31.2 planning must preserve that M31.1 confirmed allowed assistance modes only as candidate support modes, not implemented AI behavior.
+M31.3 planning must preserve that M31.2 selected a staged local-first / offline-preferred hybrid strategy only at strategy level. It did not authorize model calls, provider calls, adapter implementation, local runtime integration, prompt execution, or app-coupled heavy-use testing.
 
-Tracker movement from M31.2 remains blocked until the accepted M31.2 plan and required decision evidence exist.
+Tracker movement from M31.3 remains blocked until the accepted M31.3 plan and required boundary evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M31.2 — Local AI model and provider strategy decision.
+M31.3 — Provider/adapter boundary if approved.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M31.2 — Local AI model and provider strategy decision
+PLAN M31.3 — Provider/adapter boundary if approved
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -133,16 +145,52 @@ PLAN M31.2 — Local AI model and provider strategy decision
 Latest completed roadmap checkpoint:
 
 ```text
-M31.1 — Entry gate / AI assistance boundary confirmation
+M31.2 — Local AI model and provider strategy decision
 ```
 
 Completion type:
 
 ```text
-Boundary confirmation evidence
+Strategy-decision evidence
 ```
 
-M31.1 evidence:
+M31.2 evidence:
+
+```text
+docs/milestones/M31/M31_2_LOCAL_AI_MODEL_PROVIDER_STRATEGY_DECISION.md
+```
+
+M31.2 strategy status:
+
+```text
+STAGED LOCAL-FIRST / OFFLINE-PREFERRED HYBRID STRATEGY SELECTED FOR LATER GATED AI ASSISTANCE WORK.
+```
+
+M31.2 selected strategy:
+
+```text
+staged local-first / offline-preferred hybrid strategy
+```
+
+M31.2 merge evidence:
+
+```text
+PR #73 — docs: record M31.2 local AI model provider strategy decision
+```
+
+M31.2 carried-forward limits:
+
+```text
+No model/provider calls.
+No local AI runtime integration.
+No provider adapter implementation.
+No prompt execution.
+No app-coupled heavy-use testing.
+No tracker movement beyond this alignment.
+No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+```
+
+Prior M31.1 evidence:
 
 ```text
 docs/milestones/M31/M31_1_AI_ASSISTANCE_BOUNDARY_CONFIRMATION_PLAN.md
@@ -205,7 +253,7 @@ M30.9 validation checkpoint for bounded retrieval behavior from M30.4 through M3
 
 ## Exact Next Unfinished Work
 
-PLAN M31.2 — Local AI model and provider strategy decision.
+PLAN M31.3 — Provider/adapter boundary if approved.
 
 Current state:
 
@@ -216,17 +264,16 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M31.2 only.
+PLAN M31.3 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M31.2;
-- broad M31 AI-assistance implementation beyond accepted checkpoint scope;
+- tracker advancement from M31.3;
+- provider adapter implementation;
 - AI/model/provider calls;
 - local AI runtime integration;
-- provider adapter code;
 - prompt execution;
 - agentic execution;
 - autonomous repo mutation;
@@ -247,8 +294,9 @@ Latest executable validation:
 python -m pytest -q — 1517 passed in 46.67s
 ```
 
-Latest boundary evidence:
+Latest M31 evidence:
 
+- PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
 - PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
 - PR #70 accepted the M31.1 boundary confirmation plan.
 
@@ -257,7 +305,7 @@ Latest closeout evidence:
 - PR #68 recorded M30.11 milestone closeout evidence.
 - PR #67 accepted the M30.11 milestone closeout plan.
 
-This M31.1 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-accepted boundary confirmation evidence.
+This M31.2 tracker alignment does not require executable validation because it changes only tracker/governance state and records already-accepted strategy-decision evidence.
 
 ## Milestone UAT Status
 
@@ -275,7 +323,9 @@ M30 is closed with bounded retrieval boundary frozen and limitations carried for
 
 M31.1 completed boundary confirmation evidence only.
 
-M31.2 is the next PLAN-only checkpoint.
+M31.2 completed strategy-decision evidence only.
+
+M31.3 is the next PLAN-only checkpoint.
 
 Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
@@ -293,7 +343,9 @@ PR #70 added the M31.1 AI assistance boundary confirmation plan.
 
 PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
 
-This tracker update records M31.1 boundary confirmation completion and sets PLAN M31.2 as the next work. It does not start M31.2, does not authorize GO, and does not authorize AI/model/provider calls, local AI runtime, provider adapters, prompt execution, UI/API, productization, or release behavior.
+PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
+
+This tracker update records M31.2 strategy-decision completion and sets PLAN M31.3 as the next work. It does not start M31.3, does not authorize GO, and does not authorize AI/model/provider calls, local AI runtime, provider adapters, prompt execution, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -316,48 +368,10 @@ The full repository index does not start retrieval, implement standards embeddin
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, or M31.1.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, or M31.2.
 
-DDR-005 is partially closed. Closed only for the bounded deterministic retrieval-control scope delivered in M30.4 through M30.9 and accepted in M30.10. Remaining scope is carried forward for embeddings, vector store, live source lookup, external search, retrieval ranking expansion, retrieval-backed source authority, standards-backed clause-level authority, broader retrieval architecture, production retrieval operations, and UI/API retrieval integration.
+DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
-DDR-006 is accepted for the M29 milestone UAT baseline with clarifications. It is not closed for productization, deployment, commercial release, SaaS readiness, customer-ready output, or M31 generated-output acceptance rules.
+DDR-006 remains relevant for generated output. M31 work must not claim generated output acceptance or document factory readiness unless later output acceptance rules and required evidence exist.
 
-DDR-007 remains active/awareness/closure-planned for future AI runtime, model/provider integration, local AI strategy, app-coupled heavy-use testing, prompt execution, and pre-go-live execution. M31.1 confirmed candidate AI assistance modes but did not implement AI runtime behavior.
-
-## Build / Governance Balance Policy Status
-
-Active.
-
-Governance defines the boundary. Implementation proves progress. Validation proves truth. Owner acceptance proves bounded usefulness. Closeout freezes scope and records remaining risk.
-
-M31.1 satisfied the AI assistance boundary entry gate by recording allowed candidate modes and blocked behaviors.
-
-M31.2 planning must define local AI model/provider strategy expectations before any model/provider/runtime claim begins.
-
-## Blocked Actions
-
-Do not start M31.2 execution beyond planning before PLAN M31.2 is completed and accepted under the build/governance anti-drift gate.
-
-Do not implement or claim AI assistance capabilities under M31.2 unless the accepted M31.2 plan explicitly authorizes a narrow decision or evidence action.
-
-Do not implement AI/model/provider calls, local AI runtime integration, provider adapter code, prompt execution, agentic execution, autonomous repo mutation, app-coupled heavy-use testing, raw retrieval-to-model truth injection, embeddings, vector stores, live source lookup, retrieval-backed source authority, deterministic resolver replacement, template-selection replacement, source-library authority replacement, UI/API behavior, productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
-
-Do not claim standards-backed retrieval, live lookup, or retrieval-backed source authority from the repository index, recovery documents, M30, or M31.1.
-
-Do not claim full product-ready CQV content-library completion beyond M29 milestone UAT scope.
-
-Do not claim full product-ready document factory completion.
-
-## Allowed Next Work
-
-Allowed next work is:
-
-```text
-PLAN M31.2 — Local AI model and provider strategy decision
-```
-
-PLAN only. GO and implementation remain blocked.
-
-## Next Action
-
-PLAN M31.2 — Local AI model and provider strategy decision.
+DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, but did not close DDR-007 and did not authorize model/provider/runtime implementation.
