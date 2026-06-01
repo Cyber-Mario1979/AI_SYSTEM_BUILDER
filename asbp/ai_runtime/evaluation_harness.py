@@ -6,7 +6,7 @@ from typing import Any
 
 from asbp.ai_runtime.context_packets import validate_ai_context_packet
 from asbp.ai_runtime.output_acceptance import (
-    AI_OUTPUT_REVIEW_ACCEPTANCE_STATUS_VALIDATED,
+    AI_OUTPUT_REVIEW_STATUS_VALIDATED,
     validate_ai_output_review_decision,
 )
 from asbp.ai_runtime.provider_contracts import (
@@ -69,6 +69,14 @@ _REQUIRED_EVALUATION_RESULT_STRING_FIELDS = (
     "contract_version",
     "evaluation_result_id",
     "evaluation_status",
+    "context_packet_id",
+    "refusal_decision_id",
+    "refusal_limitation_status",
+    "output_review_decision_id",
+    "output_review_status",
+    "provider_boundary_status",
+    "provider_execution_status",
+    "provider_smoke_status",
 )
 
 _REQUIRED_SMOKE_REQUEST_STRING_FIELDS = (
@@ -343,7 +351,7 @@ def build_ai_evaluation_regression_result(
         "refusal_decision_id": str(refusal_decision["refusal_decision_id"]),
         "refusal_limitation_status": str(refusal_decision["refusal_limitation_status"]),
         "output_review_decision_id": str(output_review_decision["review_decision_id"]),
-        "output_acceptance_status": str(output_review_decision["output_acceptance_status"]),
+        "output_review_status": str(output_review_decision["output_review_status"]),
         "provider_boundary_status": str(provider_boundary_request["boundary_status"]),
         "provider_execution_status": str(
             provider_boundary_request["provider_execution_status"]
@@ -405,8 +413,8 @@ def validate_ai_evaluation_regression_result(result: dict[str, object]) -> None:
     )
     _validate_expected_exact_value(
         result,
-        field_name="output_acceptance_status",
-        expected_value=AI_OUTPUT_REVIEW_ACCEPTANCE_STATUS_VALIDATED,
+        field_name="output_review_status",
+        expected_value=AI_OUTPUT_REVIEW_STATUS_VALIDATED,
         error_prefix="AI evaluation regression result",
     )
     _validate_expected_exact_value(
