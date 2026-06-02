@@ -4,6 +4,21 @@
 
 AI_SYSTEM_BUILDER
 
+## Tracker Role
+
+This file is the current-position pointer for ASBP.
+
+It does not override:
+
+- `ROADMAP_CANONICAL.md`
+- `ARCHITECTURE_GUARDRAILS.md`
+- `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`
+- repo reality from code, tests, source data, validation evidence, UAT evidence, and closeout evidence
+
+If this tracker conflicts with the canonical roadmap, architecture guardrails, DDR, or repo reality, execution must stop before PLAN or GO until the conflict is resolved.
+
+---
+
 ## Current Phase
 
 Phase 9 — Full Local Integrated CQV Product Core
@@ -12,21 +27,52 @@ Phase 9 — Full Local Integrated CQV Product Core
 
 M32 — Full Local Usable Product Workflow/UI
 
-Status: READY FOR PLAN M32.1 ONLY.
+Status:
 
-M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
+```text
+READY FOR PLAN M32.1 ONLY
+```
 
-M31 — Governed AI Assistance, Runtime Shakedown, and Human Observation is closed.
-
-M31 closed with a conditional local/offline AI assistance baseline.
-
-Normal next roadmap checkpoint is:
+Normal next roadmap checkpoint:
 
 ```text
 PLAN M32.1 — Full local workflow scope lock
 ```
 
 This is PLAN only, not GO.
+
+---
+
+## Active Roadmap Authority
+
+Canonical roadmap:
+
+```text
+ROADMAP_CANONICAL.md v7
+```
+
+Roadmap v7 status:
+
+```text
+ACTIVE_AFTER_MERGE
+```
+
+Roadmap v7 merge evidence:
+
+```text
+PR #100 — docs: promote roadmap v7 deliverable controls
+Merge commit: 9e5d54c01c43c8c11f1013882aa581912bc9542c
+```
+
+Roadmap v7 effect:
+
+- makes `Required deliverable / completion minimum` explicit inside remaining checkpoint tables;
+- prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
+- keeps cleanup as a parallel support lane only, not M32 checkpoint progress;
+- preserves `PLAN M32.1` as the next active action;
+- does not implement M32, move the tracker, run validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
+
+---
 
 ## Active Control Recovery Gate
 
@@ -42,21 +88,37 @@ CONTROL-RECOVERY-002 closure file:
 docs/governance/control_recovery/CONTROL_RECOVERY_002_CLOSURE_RECORD.md
 ```
 
+---
+
 ## Active Context Reset CAPA Status
 
 Carry into M32 entry planning as controlled-context discipline for UI/workflow and AI surfacing decisions.
 
 The old bloated ASBP Project workspace remains archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
 
-M32 should not rely on old bloated chat history as proof of live project state.
+M32 must not rely on old bloated chat history as proof of live project state.
+
+---
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M32-001
+Gate ID:
 
-Applies to: M32.1 — Full local workflow scope lock
+```text
+ASBP-AEG-M32-001
+```
 
-Gate status: READY FOR PLAN ONLY
+Applies to:
+
+```text
+M32.1 — Full local workflow scope lock
+```
+
+Gate status:
+
+```text
+READY FOR PLAN ONLY
+```
 
 Prior M31.12 gate result:
 
@@ -77,6 +139,7 @@ M32.1 planning must define or confirm:
 - local product workflow scope;
 - intended user journey;
 - included product functions;
+- excluded product functions;
 - whether AI assistance is included in M32 local workflow;
 - if AI is included, how M31 bounded local/offline draft-support limits apply;
 - how UI/workflow surfaces prevent unvalidated free-form input as truth;
@@ -85,15 +148,21 @@ M32.1 planning must define or confirm:
 - DDR-001, DDR-002, DDR-005, DDR-006, DDR-007, and DDR-009 carry-forward impact as applicable;
 - validation/review requirements;
 - tracker movement rule;
-- explicit non-SaaS, non-cloud-first, non-commercialization, non-release, and non-customer-ready claims.
+- explicit non-SaaS, non-cloud-first, non-commercialization, non-release, non-deployment, and non-customer-ready claims.
 
 Tracker movement from M32.1 remains blocked until an accepted M32.1 plan exists.
+
+---
 
 ## Current Approved Checkpoint Family
 
 M32.1 — Full local workflow scope lock.
 
-Status: READY FOR PLAN ONLY.
+Status:
+
+```text
+READY FOR PLAN ONLY
+```
 
 Normal roadmap checkpoint:
 
@@ -101,7 +170,33 @@ Normal roadmap checkpoint:
 PLAN M32.1 — Full local workflow scope lock
 ```
 
-## Latest Completed Checkpoint / Control Action
+Required deliverable / completion minimum from Roadmap v7:
+
+```text
+Scope record defining local user journey, included/excluded functions, project creation/selection, preset/profile binding, task staging, planning, document/output flow, review gates, source selection, AI inclusion decision, limitations, and acceptance criteria.
+```
+
+Validation / review requirement:
+
+```text
+Document consistency review.
+```
+
+Tracker movement rule:
+
+```text
+May advance only after accepted M32.1 scope record exists.
+```
+
+Not allowed:
+
+```text
+Treating scope record as implemented UI/workflow; SaaS/admin/tenant scope.
+```
+
+---
+
+## Latest Completed Roadmap Checkpoint
 
 Latest completed roadmap checkpoint:
 
@@ -165,59 +260,35 @@ M31 closeout boundary:
 M31 did not add new runtime behavior, provider behavior, UI/API behavior, deployment behavior, commercial-launch behavior, or customer-ready behavior.
 ```
 
-Prior M31.11 evidence:
+---
+
+## Latest Control Action After M31 Closeout
+
+Latest control action:
 
 ```text
-docs/milestones/M31/M31_11_AI_ASSISTANCE_UAT_OWNER_ACCEPTANCE_PLAN.md
-docs/milestones/M31/M31_11_AI_ASSISTANCE_UAT_OWNER_ACCEPTANCE.md
+Roadmap v7 required-deliverable control alignment
 ```
 
-M31.11 owner acceptance decision:
+Evidence:
 
 ```text
-CONDITIONAL ACCEPTANCE — bounded local/offline AI assistance baseline accepted for carry-forward into the local product path, with strict limitations.
+PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
-Prior M31.10-A evidence:
+Interpretation:
 
 ```text
-asbp/ai_runtime/ollama_adapter.py
-tests/test_ai_ollama_adapter_smoke_contract.py
-docs/milestones/M31/M31_10A_BOUNDED_APP_COUPLED_OLLAMA_ADAPTER_SMOKE_PLAN.md
-docs/milestones/M31/M31_10A_BOUNDED_APP_COUPLED_OLLAMA_ADAPTER_SMOKE.md
+Roadmap v7 changed roadmap/control wording only. It did not move the project beyond PLAN M32.1 and did not implement M32 workflow/UI.
 ```
 
-M31.10-A manual smoke evidence:
-
-```text
-smoke_run_id: SMOKE-M3110A-LOCAL-OLLAMA-001-RUN
-smoke_request_id: SMOKE-M3110A-LOCAL-OLLAMA-001
-provider_kind: local_ollama_runtime
-model_name: llama3.2:3b
-endpoint_url: http://localhost:11434/api/generate
-scenario_id: M3110A-S1-ADVISORY-DRAFT-SUPPORT
-result_status: bounded_ollama_adapter_smoke_evidence_captured
-limitation_summary: bounded_draft_support_response_captured_without_forbidden_claim_terms
-output_review_state: human_review_required_before_use
-forbidden_terms_detected: []
-api_key_required: false
-cloud_provider_call_allowed: false
-```
-
-Latest executable validation:
-
-```text
-python -m pytest tests/test_ai_ollama_adapter_smoke_contract.py -q — 7 passed in 0.05s
-python -m pytest -q — 1579 passed in 48.29s
-```
-
-Validation scope:
-
-Full test suite after M31.10-A bounded app-coupled Ollama adapter smoke contract and tests from PR #93. M31.11, M31.12, and this tracker alignment were docs/governance-only and did not require additional executable validation.
+---
 
 ## Exact Next Unfinished Work
 
-PLAN M32.1 — Full local workflow scope lock.
+```text
+PLAN M32.1 — Full local workflow scope lock
+```
 
 Current state:
 
@@ -259,6 +330,8 @@ Blocked until separately authorized:
 - commercialization launch planning;
 - pricing, sales, marketing, revenue, customer-acquisition, or business planning.
 
+---
+
 ## Latest Verified Validation / Review Evidence
 
 Latest executable validation:
@@ -273,55 +346,45 @@ Latest focused M31 validation:
 python -m pytest tests/test_ai_ollama_adapter_smoke_contract.py -q — 7 passed in 0.05s
 ```
 
-Latest closeout evidence:
+Latest roadmap/control review evidence:
 
 ```text
-PR #98 — docs: record M31.12 closeout readiness recommendation
+PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
-Latest M31 evidence:
+Validation scope:
 
-- PR #98 recorded M31.12 closeout and readiness recommendation.
-- PR #97 recorded M31.11 tracker alignment.
-- PR #96 recorded M31.11 AI assistance UAT / owner acceptance decision.
-- PR #95 recorded M31.10-A tracker alignment.
-- PR #94 recorded M31.10-A manual bounded local Ollama smoke evidence.
-- PR #93 recorded M31.10-A Ollama adapter smoke contract and tests.
-- PR #92 recorded M31.10 AI integration validation and gap assessment.
-- PR #91 recorded M31.9 tracker alignment.
-- PR #90 recorded M31.9-B local/offline human observation evidence.
-- PR #89 recorded M31.9-A human observation protocol and runtime path decision.
-- PR #88 recorded M31.8 tracker alignment.
-- PR #87 recorded M31.8 bounded runtime shakedown protocol scaffold and tests.
-- PR #85 recorded Roadmap Canonical v6 change control and replacement roadmap.
-- PR #83 recorded M31.7 evaluation and regression harness scaffolding and tests.
-- PR #81 recorded M31.6 output acceptance and review rule scaffolding and tests.
-- PR #79 recorded M31.5 refusal and limitation rule scaffolding and tests.
-- PR #77 recorded M31.4 context packet contract scaffolding and tests.
-- PR #75 recorded M31.3 provider adapter boundary scaffolding and tests.
-- PR #73 recorded M31.2 local AI model/provider strategy decision evidence.
-- PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
-- PR #70 accepted the M31.1 boundary confirmation plan.
+```text
+Roadmap v7 and this tracker alignment are docs-only control alignment. No additional executable validation is required because no code, tests, commands, imports, schemas, runtime behavior, CLI behavior, validators, loaders, or executable contracts changed.
+```
 
-This M31.12 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already accepted closeout evidence.
+---
 
 ## Milestone UAT Status
 
 Latest completed milestone UAT:
 
+```text
 M31.11 conditional owner acceptance of bounded local/offline AI assistance baseline.
+```
 
 Latest milestone closeout:
 
+```text
 M31.12 closed M31 with conditional local/offline AI assistance baseline.
+```
 
 Acceptance scope:
 
+```text
 Bounded local/offline AI assistance carry-forward for the local product path only, with strict limitations.
+```
 
 Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, cloud/provider API readiness, UI/API readiness, retrieval-backed compliance truth, standards-backed legal/regulatory authority, AI approval authority, release/certification authority, or full product/runtime AI readiness.
 
-Productization/release/deployment/SaaS readiness remain blocked until Roadmap v6 Phase 10 gates after local product-core evidence. Commercialization launch planning remains outside ASBP unless separately approved after a post-completion go/no-go decision.
+Productization/release/deployment/SaaS readiness remain blocked until Roadmap v7 Phase 10 gates after local product-core evidence. Commercialization launch planning remains outside ASBP unless separately approved after a post-completion go/no-go decision.
+
+---
 
 ## Repo Alignment Status
 
@@ -335,13 +398,19 @@ PR #40 through PR #69 completed M30 retrieval planning, bounded implementation, 
 
 PR #70 through PR #98 completed M31 planning, implementation, validation, UAT, closeout, and tracker alignment.
 
-This tracker update records M31 closeout and sets PLAN M32.1 as the next work. It does not start M32.1, does not authorize GO, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, UI/API behavior, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+PR #100 promoted `ROADMAP_CANONICAL.md` to v7 with explicit required-deliverable controls.
+
+This tracker update records Roadmap v7 alignment and keeps PLAN M32.1 as the next work. It does not start M32.1, does not authorize GO, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, UI/API behavior, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+
+---
 
 ## Repository Index Control Status
 
 Post-M29 full repository index before M30:
 
-COMPLETED.
+```text
+COMPLETED
+```
 
 Evidence:
 
@@ -354,11 +423,13 @@ The full repository index was generated from tracked repository files.
 
 The full repository index does not start retrieval, implement standards embedding, change runtime behavior, change source-library behavior, authorize productization, or close carried-forward DDR scope.
 
+---
+
 ## Relevant DDR Status
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, or M31.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, or Roadmap v7.
 
 DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32 work must not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
