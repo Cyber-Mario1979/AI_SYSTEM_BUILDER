@@ -12,13 +12,13 @@ Phase 9 — Roadmap Reset and Local Integrated CQV Product Core
 
 M31 — Governed AI Assistance Over Local Product Sources
 
-Status: READY FOR PLAN M31.7 ONLY.
+Status: READY FOR PLAN M31.8 ONLY.
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
 
 M30 closed with bounded retrieval boundary frozen and limitations carried forward.
 
-M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, context-packet, refusal/limitation, and output acceptance/review evidence:
+M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, context-packet, refusal/limitation, output acceptance/review, and evaluation/regression harness evidence:
 
 - M31.1 AI assistance boundary confirmation.
 - M31.2 Local AI model and provider strategy decision.
@@ -26,6 +26,7 @@ M31 has started through accepted boundary, strategy-decision, provider-adapter-b
 - M31.4 Context packet contract scaffolding.
 - M31.5 Refusal and limitation rule scaffolding.
 - M31.6 Output acceptance and review rule scaffolding.
+- M31.7 Evaluation and regression harness scaffolding.
 
 M31.1 completed as boundary confirmation evidence.
 
@@ -39,10 +40,12 @@ M31.5 completed as hybrid refusal/limitation rule evidence with local validation
 
 M31.6 completed as hybrid output acceptance/review rule evidence with local validation.
 
+M31.7 completed as hybrid evaluation/regression harness evidence with local validation.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M31.7 — Evaluation and regression harness
+PLAN M31.8 — Local AI heavy-use shakedown protocol
 ```
 
 This is PLAN only, not GO.
@@ -99,66 +102,65 @@ M31.5 completed refusal and limitation rule scaffolding and tests while keeping 
 
 M31.6 completed output acceptance and review rule scaffolding and tests while preserving M16.4 output acceptance behavior and keeping model/provider execution, prompt execution, AI approval authority, release/certification authority, model-owned state mutation, productization, and customer-ready output claims blocked.
 
+M31.7 completed evaluation and regression harness scaffolding and tests while adding disabled-by-default provider/local smoke scaffolding, keeping provider execution blocked unless explicitly enabled by later accepted smoke scope, and deferring app-coupled heavy-use shakedown to M31.8.
+
 The CAPA remains active through M31 because governed AI assistance has higher drift risk.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M31-007
+Gate ID: ASBP-AEG-M31-008
 
-Applies to: M31.7 — Evaluation and regression harness
+Applies to: M31.8 — Local AI heavy-use shakedown protocol
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M31.6 gate result:
+Prior M31.7 gate result:
 
 ```text
-M31.6 — Output acceptance and review rules completed as hybrid output acceptance/review rule evidence with local validation.
+M31.7 — Evaluation and regression harness completed as hybrid evaluation/regression harness evidence with local validation.
 ```
 
-M31.7 may proceed as PLAN only, not GO.
+M31.8 may proceed as PLAN only, not GO.
 
-Required M31.7 planning output:
+Required M31.8 planning output:
 
 ```text
-Controlled checkpoint plan for evaluation and regression harness.
+Controlled checkpoint plan for local AI heavy-use shakedown protocol.
 ```
 
-M31.7 planning must define or confirm:
+M31.8 planning must define or confirm:
 
 - execution mode;
-- whether M31.7 is governance-only, hybrid, or build/content;
-- required evaluation/regression harness artifact;
-- whether M31.7 includes first controlled real provider/local runtime smoke execution;
-- provider/local runtime smoke constraints, if approved;
-- disabled-by-default provider execution rule;
-- prompt/output contract regression tests;
-- source-grounding checks;
-- context packet regression checks;
-- refusal/limitation regression checks;
-- output acceptance/review regression checks;
-- provider-adapter boundary regression checks;
-- no heavy-use / app-coupled shakedown before M31.8 rule;
-- pass/fail metrics and evidence capture;
-- failure triage and rollback rules;
+- whether M31.8 is governance-only, hybrid, or build/content;
+- required local AI heavy-use shakedown artifact;
+- local/runtime/provider target and constraints;
+- app-coupled shakedown scope;
+- repeated-use scenario set;
+- smoke-to-heavy-use escalation rule;
+- prompt/context/output evidence capture;
+- refusal/limitation and output-acceptance regression checks during shakedown;
+- failure triage, rollback, and stop conditions;
+- performance/resource observations;
+- no productization or customer-ready claims;
 - DDR-005, DDR-006, and DDR-007 impact;
 - CAPA continuation controls;
 - tracker movement rule;
 - explicit non-productization claims.
 
-M31.7 planning may target the first real provider/local runtime smoke path only if explicitly scoped and bounded by M31.3 through M31.6 controls. M31.7 planning must preserve that M31.6 created output acceptance/review rule scaffolding only. It did not authorize real provider calls, local model inference, prompt execution, API key handling, provider SDK integration, app-coupled heavy-use testing, UI/API behavior, productization, or production AI behavior.
+M31.8 planning must preserve that M31.7 created evaluation/regression harness and disabled-by-default smoke scaffolding only. It did not authorize product/runtime AI behavior, UI/API behavior, productization, deployment, release, SaaS readiness, or customer-ready output.
 
-Tracker movement from M31.7 remains blocked until the accepted M31.7 plan and required evaluation/regression evidence exist.
+Tracker movement from M31.8 remains blocked until the accepted M31.8 plan and required shakedown evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M31.7 — Evaluation and regression harness.
+M31.8 — Local AI heavy-use shakedown protocol.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M31.7 — Evaluation and regression harness
+PLAN M31.8 — Local AI heavy-use shakedown protocol
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -166,16 +168,62 @@ PLAN M31.7 — Evaluation and regression harness
 Latest completed roadmap checkpoint:
 
 ```text
-M31.6 — Output acceptance and review rules
+M31.7 — Evaluation and regression harness
 ```
 
 Completion type:
 
 ```text
-Hybrid output acceptance/review rule scaffolding + validation evidence
+Hybrid evaluation/regression harness scaffolding + validation evidence
 ```
 
-M31.6 evidence:
+M31.7 evidence:
+
+```text
+docs/milestones/M31/M31_7_EVALUATION_REGRESSION_HARNESS_PLAN.md
+docs/milestones/M31/M31_7_EVALUATION_REGRESSION_HARNESS.md
+asbp/ai_runtime/evaluation_harness.py
+tests/test_ai_evaluation_regression_harness.py
+```
+
+M31.7 evaluation/regression harness status:
+
+```text
+EVALUATION AND REGRESSION HARNESS SCAFFOLDING COMPLETED; PROVIDER/LOCAL SMOKE IS DISABLED BY DEFAULT; APP-COUPLED HEAVY-USE SHAKEDOWN REMAINS DEFERRED TO M31.8; PRODUCTIZATION AND CUSTOMER-READY OUTPUT REMAIN BLOCKED.
+```
+
+M31.7 merge evidence:
+
+```text
+PR #83 — feat: add M31.7 evaluation regression harness
+```
+
+M31.7 local validation evidence:
+
+```text
+python -m pytest tests/test_ai_evaluation_regression_harness.py -q — 9 passed in 0.05s
+python -m pytest -q — 1560 passed in 46.45s
+```
+
+M31.7 carried-forward limits:
+
+```text
+No app-coupled heavy-use testing before M31.8.
+No UI/API behavior.
+No autonomous agentic execution.
+No unbounded prompt execution.
+No retrieval-backed source/compliance truth.
+No embeddings or vector store implementation.
+No live source lookup.
+No AI approval authority.
+No AI release/certification authority.
+No model-owned state mutation.
+No product-ready generated output.
+No tracker movement beyond this alignment.
+No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
+```
+
+Prior M31.6 evidence:
 
 ```text
 docs/milestones/M31/M31_6_OUTPUT_ACCEPTANCE_REVIEW_RULES_PLAN.md
@@ -202,25 +250,6 @@ M31.6 local validation evidence:
 python -m pytest tests/test_ai_runtime_output_acceptance.py -q — 12 passed in 0.05s
 python -m pytest tests/test_ai_output_acceptance_review_rules.py -q — 8 passed in 0.05s
 python -m pytest -q — 1551 passed in 45.18s
-```
-
-M31.6 carried-forward limits:
-
-```text
-No real provider calls.
-No local model inference.
-No prompt execution.
-No API key handling.
-No provider SDK integration.
-No automatic acceptance of AI output.
-No AI approval authority.
-No AI release/certification authority.
-No model-owned state mutation.
-No app-coupled heavy-use testing.
-No raw retrieval-to-model truth injection.
-No UI/API behavior.
-No tracker movement beyond this alignment.
-No productization, deployment, release, commercial launch, SaaS readiness, or customer-ready output.
 ```
 
 Prior M31.5 evidence:
@@ -387,16 +416,16 @@ CAPA — PARTIALLY SATISFIED; KEEP ACTIVE THROUGH M31 ENTRY
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1551 passed in 45.18s
+python -m pytest -q — 1560 passed in 46.45s
 ```
 
 Validation scope:
 
-Full test suite after M31.6 output acceptance and review rule scaffolding and tests from PR #81.
+Full test suite after M31.7 evaluation and regression harness scaffolding and tests from PR #83.
 
 ## Exact Next Unfinished Work
 
-PLAN M31.7 — Evaluation and regression harness.
+PLAN M31.8 — Local AI heavy-use shakedown protocol.
 
 Current state:
 
@@ -407,31 +436,26 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M31.7 only.
+PLAN M31.8 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M31.7;
-- evaluation/regression harness implementation beyond accepted M31.7 scope;
-- first real provider/local runtime smoke execution unless explicitly authorized by accepted M31.7 plan;
-- app-coupled heavy-use testing before M31.8;
-- real provider adapter implementation beyond accepted M31.7 smoke scope;
-- AI/model/provider calls beyond accepted M31.7 smoke scope;
-- local AI runtime integration beyond accepted M31.7 smoke scope;
-- prompt execution beyond accepted M31.7 smoke scope;
-- agentic execution;
-- autonomous repo mutation;
-- raw retrieval-to-model truth injection;
+- tracker advancement from M31.8;
+- local AI heavy-use shakedown implementation beyond accepted M31.8 scope;
+- app-coupled heavy-use execution before accepted M31.8 plan;
+- UI/API behavior;
+- autonomous agentic execution;
+- unbounded prompt execution;
+- retrieval-backed source/compliance truth;
 - embeddings implementation;
 - vector store implementation;
 - live source lookup;
-- retrieval-backed source authority;
-- generated output acceptance beyond accepted rules;
 - AI approval authority;
+- AI release/certification authority;
 - model-owned state mutation;
-- UI/API behavior;
+- product-ready generated output;
 - deployment, release, productization, commercial launch, SaaS readiness, or customer-ready output.
 
 ## Latest Verified Validation / Review Evidence
@@ -439,18 +463,18 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1551 passed in 45.18s
+python -m pytest -q — 1560 passed in 46.45s
 ```
 
 Latest focused M31 validation:
 
 ```text
-python -m pytest tests/test_ai_output_acceptance_review_rules.py -q — 8 passed in 0.05s
-python -m pytest tests/test_ai_runtime_output_acceptance.py -q — 12 passed in 0.05s
+python -m pytest tests/test_ai_evaluation_regression_harness.py -q — 9 passed in 0.05s
 ```
 
 Latest M31 evidence:
 
+- PR #83 recorded M31.7 evaluation and regression harness scaffolding and tests.
 - PR #81 recorded M31.6 output acceptance and review rule scaffolding and tests.
 - PR #79 recorded M31.5 refusal and limitation rule scaffolding and tests.
 - PR #77 recorded M31.4 context packet contract scaffolding and tests.
@@ -464,7 +488,7 @@ Latest closeout evidence:
 - PR #68 recorded M30.11 milestone closeout evidence.
 - PR #67 accepted the M30.11 milestone closeout plan.
 
-This M31.6 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already-accepted and locally validated M31.6 evidence.
+This M31.7 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already-accepted and locally validated M31.7 evidence.
 
 ## Milestone UAT Status
 
@@ -492,7 +516,9 @@ M31.5 completed refusal and limitation rule scaffolding only.
 
 M31.6 completed output acceptance and review rule scaffolding only.
 
-M31.7 is the next PLAN-only checkpoint.
+M31.7 completed evaluation/regression harness scaffolding only.
+
+M31.8 is the next PLAN-only checkpoint.
 
 Productization/release/deployment/SaaS readiness remain blocked until M34 / Phase 10 / M35-M38 gates.
 
@@ -520,7 +546,9 @@ PR #79 recorded M31.5 refusal and limitation rule scaffolding and tests.
 
 PR #81 recorded M31.6 output acceptance and review rule scaffolding and tests.
 
-This tracker update records M31.6 output acceptance and review rule completion and sets PLAN M31.7 as the next work. It does not start M31.7, does not authorize GO, and does not authorize real provider calls, local AI runtime, prompt execution, app-coupled heavy-use testing, generated output acceptance beyond accepted rules, UI/API, productization, or release behavior.
+PR #83 recorded M31.7 evaluation and regression harness scaffolding and tests.
+
+This tracker update records M31.7 evaluation/regression harness completion and sets PLAN M31.8 as the next work. It does not start M31.8, does not authorize GO, and does not authorize app-coupled heavy-use execution, UI/API, productization, or release behavior.
 
 ## Repository Index Control Status
 
@@ -543,10 +571,10 @@ The full repository index does not start retrieval, implement standards embeddin
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, M31.3, M31.4, M31.5, or M31.6.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, M31.3, M31.4, M31.5, M31.6, or M31.7.
 
-DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.4 added context packet controls that keep retrieval support-only and block raw retrieval dumps. M31.5 added refusal/limitation controls that require support-only retrieval to refuse, limit, or request source evidence instead of becoming source/compliance truth. M31.6 preserves that retrieval-supported output cannot become source truth or final/customer-ready authority.
+DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.4 added context packet controls that keep retrieval support-only and block raw retrieval dumps. M31.5 added refusal/limitation controls that require support-only retrieval to refuse, limit, or request source evidence instead of becoming source/compliance truth. M31.6 preserves that retrieval-supported output cannot become source truth or final/customer-ready authority. M31.7 evaluation/regression scaffolding preserves retrieval support-only checks and blocks retrieval-backed source/compliance truth.
 
-DDR-006 remains relevant for generated output. M31.6 adds output acceptance and review controls, including human review/acceptance requirements and no AI approval/release/certification authority, but it does not claim document factory readiness, product-ready generated output, customer-ready output, or productization.
+DDR-006 remains relevant for generated output. M31.6 added output acceptance and review controls, including human review/acceptance requirements and no AI approval/release/certification authority. M31.7 tests output acceptance/review dependencies but does not claim document factory readiness, product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, M31.4 created context packet scaffolding, M31.5 created refusal/limitation scaffolding, and M31.6 created output acceptance/review scaffolding, but none of these checkpoints close DDR-007 or authorize model/provider/runtime execution. M31.7 may plan the first controlled provider/local runtime smoke path only if explicitly scoped and bounded by M31.3 through M31.6 controls.
+DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, M31.4 created context packet scaffolding, M31.5 created refusal/limitation scaffolding, M31.6 created output acceptance/review scaffolding, and M31.7 created evaluation/regression harness plus disabled-by-default provider/local smoke scaffolding, but none of these checkpoints close DDR-007 or authorize product/runtime AI behavior. M31.8 may plan local AI heavy-use shakedown only if explicitly scoped and bounded by M31.3 through M31.7 controls.
