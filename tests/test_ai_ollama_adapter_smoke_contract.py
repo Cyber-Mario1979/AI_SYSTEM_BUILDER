@@ -32,7 +32,7 @@ def _safe_response() -> dict[str, object]:
     return {
         "response": (
             "Draft support only: verify installed HVAC equipment identification, "
-            "confirm component location against approved project documents, and "
+            "confirm component location against governed project documents, and "
             "record installation observations for human review. Limitation: this is "
             "simplified demonstration evidence only and requires human review before use."
         ),
