@@ -12,13 +12,13 @@ Phase 9 — Full Local Integrated CQV Product Core
 
 M31 — Governed AI Assistance, Runtime Shakedown, and Human Observation
 
-Status: READY FOR PLAN M31.9 ONLY.
+Status: READY FOR PLAN M31.10 ONLY.
 
 M30 — Governed Retrieval and Indexing for Authoritative Product Sources is closed.
 
 M30 closed with bounded retrieval boundary frozen and limitations carried forward.
 
-M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, context-packet, refusal/limitation, output acceptance/review, evaluation/regression harness, and bounded runtime shakedown protocol evidence:
+M31 has started through accepted boundary, strategy-decision, provider-adapter-boundary, context-packet, refusal/limitation, output acceptance/review, evaluation/regression harness, bounded runtime shakedown protocol, and real internal human local/offline observation evidence:
 
 - M31.1 AI assistance boundary confirmation.
 - M31.2 Local AI model and provider strategy decision.
@@ -28,6 +28,7 @@ M31 has started through accepted boundary, strategy-decision, provider-adapter-b
 - M31.6 Output acceptance and review rule scaffolding.
 - M31.7 Evaluation and regression harness scaffolding.
 - M31.8 Bounded local/provider AI runtime shakedown protocol scaffolding.
+- M31.9 Real internal human AI-use shakedown / owner observation.
 
 M31.1 completed as boundary confirmation evidence.
 
@@ -45,10 +46,12 @@ M31.7 completed as hybrid evaluation/regression harness evidence with local vali
 
 M31.8 completed as hybrid bounded runtime shakedown protocol scaffold evidence with local validation.
 
+M31.9 completed as UAT / hybrid real internal human local/offline AI-use observation evidence.
+
 Normal next roadmap checkpoint is:
 
 ```text
-PLAN M31.9 — Real internal human AI-use shakedown / owner observation
+PLAN M31.10 — AI integration validation checkpoint
 ```
 
 This is PLAN only, not GO.
@@ -111,65 +114,61 @@ M31.7 completed evaluation and regression harness scaffolding and tests while ad
 
 M31.8 completed bounded local/provider AI runtime shakedown protocol scaffolding and tests while keeping API keys, real provider calls by default, local model inference by default, raw provider payloads, raw model output storage, unbounded prompt execution, autonomous agentic execution, UI/API behavior, productization, release readiness, SaaS readiness, commercialization launch planning, customer-ready behavior, M31.9 human observation completion, and M31 closeout blocked.
 
+M31.9 completed real internal human local/offline AI-use observation using Ollama 0.30.0 + llama3.2:3b. The observation used no API key and no provider call. Scenario results were S1 PASS WITH LIMITATIONS, S2 PASS, and S3 PASS WITH MINOR FRICTION. M31.9 does not close DDR-007, does not prove provider/API behavior, and does not authorize product/runtime AI readiness, UI/API behavior, productization, release readiness, SaaS readiness, commercialization launch planning, or customer-ready output.
+
 The CAPA remains active through M31 because governed AI assistance has higher drift risk.
 
 ## Active Assistant Execution Gate
 
-Gate ID: ASBP-AEG-M31-009
+Gate ID: ASBP-AEG-M31-010
 
-Applies to: M31.9 — Real internal human AI-use shakedown / owner observation
+Applies to: M31.10 — AI integration validation checkpoint
 
 Gate status: READY FOR PLAN ONLY
 
-Prior M31.8 gate result:
+Prior M31.9 gate result:
 
 ```text
-M31.8 — Bounded local/provider AI runtime shakedown protocol completed as hybrid protocol/scaffold evidence with local validation.
+M31.9 — Real internal human AI-use shakedown / owner observation completed as local/offline UAT / hybrid observation evidence using Ollama 0.30.0 + llama3.2:3b, with no API key and no provider call.
 ```
 
-M31.9 may proceed as PLAN only, not GO.
+M31.10 may proceed as PLAN only, not GO.
 
-Required M31.9 planning output:
+Required M31.10 planning output:
 
 ```text
-Controlled checkpoint plan for real internal human AI-use shakedown / owner observation.
+Controlled checkpoint plan for AI integration validation after M31.9 local/offline human observation.
 ```
 
-M31.9 planning must define or confirm:
+M31.10 planning must define or confirm:
 
 - execution mode;
-- whether M31.9 is UAT, hybrid, or validation/UAT;
-- real internal human observation scope;
-- local/provider runtime target and constraints;
-- whether an API key or local model setup is required;
-- API key boundary and storage rule if a cloud/provider path is selected;
-- local/offline runtime setup rule if a local model path is selected;
-- bounded scenario set inherited from M31.8 or revised by accepted plan;
-- prompt/context/output evidence capture;
-- refusal/limitation and output-review checks during observation;
-- stop/fail-closed conditions;
-- human observation record structure;
-- owner notes / friction / failure capture;
-- no productization or customer-ready claims;
-- DDR-005, DDR-006, and DDR-007 impact;
+- validation scope after M31.9 local/offline observation;
+- whether validation is docs-only, tests-only, code-bearing, or hybrid;
+- how M31.3 through M31.9 evidence is validated together;
+- whether cloud/provider comparison remains deferred or is needed before M31.11;
+- API key boundary if any provider validation is proposed;
+- local/offline runtime boundary if any local model validation is proposed;
+- DDR-005, DDR-006, DDR-007, and DDR-009 impact;
 - CAPA continuation controls;
+- validation commands if code/tests change;
 - tracker movement rule;
-- explicit non-commercialization and non-release claims.
+- explicit non-productization, non-release, non-commercialization, and non-customer-ready claims.
 
-M31.9 planning must preserve that M31.8 created protocol/scaffold evidence only. M31.8 did not complete human observation, did not execute real provider calls by default, did not require or store an API key, did not authorize UI/API behavior, did not claim product/runtime AI readiness, did not claim productization, release readiness, SaaS readiness, commercialization launch readiness, or customer-ready output.
+M31.10 planning must preserve that M31.9 provided local/offline human observation evidence only. M31.9 did not use an API key, did not execute cloud/provider API comparison, did not prove provider/API behavior, did not close DDR-007, did not authorize UI/API behavior, did not claim product/runtime AI readiness, did not claim productization, release readiness, SaaS readiness, commercialization launch readiness, or customer-ready output.
 
-Tracker movement from M31.9 remains blocked until the accepted M31.9 plan and required real internal human observation evidence exist.
+Tracker movement from M31.10 remains blocked until the accepted M31.10 plan and required validation evidence exist.
 
 ## Current Approved Checkpoint Family
 
-M31.9 — Real internal human AI-use shakedown / owner observation.
+M31.10 — AI integration validation checkpoint.
 
 Status: READY FOR PLAN ONLY.
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M31.9 — Real internal human AI-use shakedown / owner observation
+PLAN M31.10 — AI integration validation checkpoint
 ```
 
 ## Latest Completed Checkpoint / Control Action
@@ -177,16 +176,89 @@ PLAN M31.9 — Real internal human AI-use shakedown / owner observation
 Latest completed roadmap checkpoint:
 
 ```text
-M31.8 — Bounded local/provider AI runtime shakedown protocol
+M31.9 — Real internal human AI-use shakedown / owner observation
 ```
 
 Completion type:
 
 ```text
-Hybrid bounded runtime shakedown protocol scaffold + validation evidence
+UAT / hybrid local/offline human observation evidence
 ```
 
-M31.8 evidence:
+M31.9 evidence:
+
+```text
+docs/milestones/M31/M31_9A_HUMAN_OBSERVATION_PROTOCOL_PLAN.md
+docs/milestones/M31/M31_9A_HUMAN_OBSERVATION_PROTOCOL_AND_RUNTIME_DECISION.md
+docs/milestones/M31/M31_9B_LOCAL_OFFLINE_HUMAN_OBSERVATION.md
+```
+
+M31.9 local/offline human observation status:
+
+```text
+REAL INTERNAL HUMAN LOCAL/OFFLINE AI-USE OBSERVATION COMPLETED USING OLLAMA 0.30.0 + LLAMA3.2:3B; API KEY NOT USED; PROVIDER CALL NOT USED; S1 PASS WITH LIMITATIONS; S2 PASS; S3 PASS WITH MINOR FRICTION; CLOUD/PROVIDER COMPARISON REMAINS OPTIONAL/PENDING SAFE API KEY SETUP; PRODUCTIZATION AND CUSTOMER-READY OUTPUT REMAIN BLOCKED.
+```
+
+M31.9 merge evidence:
+
+```text
+PR #89 — docs: add M31.9-A human observation protocol
+PR #90 — docs: record M31.9-B local offline human observation
+```
+
+M31.9 observation evidence:
+
+```text
+Runtime: Ollama 0.30.0 + llama3.2:3b
+Model ID: a80c4f17acd5
+Model size: 2.0 GB
+Processor observation: 100% GPU
+First measured request: approximately 2.49 seconds
+Warm measured request: approximately 0.35 seconds
+API key used: no
+Provider call used: no
+S1 — PASS WITH LIMITATIONS
+S2 — PASS
+S3 — PASS WITH MINOR FRICTION
+```
+
+M31.9 owner observation:
+
+```text
+Useful enough for bounded local shakedown? yes, with limitations.
+Main limitation: Responses can be generic and may use broad standards/compliance wording unless the prompt strongly constrains source authority.
+Unexpected behavior: none blocking.
+Next recommendation: Record M31.9-B local/offline human observation evidence, keep cloud/provider comparison pending API key setup, and proceed to M31.10 planning only after tracker alignment.
+```
+
+M31.9 carried-forward limits:
+
+```text
+No API key generation or storage in repo.
+No cloud/provider API comparison completed.
+No provider/API behavior proven.
+No DDR-007 closure.
+No raw provider payloads.
+No raw model output storage as product evidence.
+No unbounded prompt execution.
+No autonomous agentic execution.
+No model-owned state mutation.
+No AI approval authority.
+No AI release/certification authority.
+No UI/API behavior.
+No customer-facing AI behavior.
+No customer-ready output.
+No productization.
+No deployment.
+No release readiness.
+No SaaS readiness.
+No commercialization launch planning.
+No pricing, sales, marketing, revenue, customer-acquisition, or business planning.
+No M31 closeout.
+No tracker movement beyond this alignment.
+```
+
+Prior M31.8 evidence:
 
 ```text
 docs/milestones/M31/M31_8_BOUNDED_AI_RUNTIME_SHAKEDOWN_PROTOCOL_PLAN.md
@@ -214,33 +286,6 @@ python -m pytest tests/test_ai_runtime_shakedown_protocol.py -q — 12 passed in
 python -m pytest -q — 1572 passed in 48.64s
 ```
 
-M31.8 carried-forward limits:
-
-```text
-No API key generation or storage in repo.
-No real provider calls by default.
-No local model inference by default.
-No raw provider payloads.
-No raw model output storage.
-No unbounded prompt execution.
-No autonomous agentic execution.
-No model-owned state mutation.
-No AI approval authority.
-No AI release/certification authority.
-No UI/API behavior.
-No customer-facing AI behavior.
-No customer-ready output.
-No productization.
-No deployment.
-No release readiness.
-No SaaS readiness.
-No commercialization launch planning.
-No pricing, sales, marketing, revenue, customer-acquisition, or business planning.
-No M31.9 human observation completion.
-No M31 closeout.
-No tracker movement beyond this alignment.
-```
-
 Prior M31.7 evidence:
 
 ```text
@@ -250,213 +295,11 @@ asbp/ai_runtime/evaluation_harness.py
 tests/test_ai_evaluation_regression_harness.py
 ```
 
-M31.7 evaluation/regression harness status:
-
-```text
-EVALUATION AND REGRESSION HARNESS SCAFFOLDING COMPLETED; PROVIDER/LOCAL SMOKE IS DISABLED BY DEFAULT; PRODUCTIZATION AND CUSTOMER-READY OUTPUT REMAIN BLOCKED.
-```
-
-M31.7 merge evidence:
-
-```text
-PR #83 — feat: add M31.7 evaluation regression harness
-```
-
 M31.7 local validation evidence:
 
 ```text
 python -m pytest tests/test_ai_evaluation_regression_harness.py -q — 9 passed in 0.05s
 python -m pytest -q — 1560 passed in 46.45s
-```
-
-Prior M31.6 evidence:
-
-```text
-docs/milestones/M31/M31_6_OUTPUT_ACCEPTANCE_REVIEW_RULES_PLAN.md
-docs/milestones/M31/M31_6_OUTPUT_ACCEPTANCE_REVIEW_RULES.md
-asbp/ai_runtime/output_acceptance.py
-tests/test_ai_output_acceptance_review_rules.py
-```
-
-M31.6 output acceptance/review status:
-
-```text
-OUTPUT ACCEPTANCE AND REVIEW RULE SCAFFOLDING COMPLETED; M16.4 OUTPUT ACCEPTANCE BEHAVIOR PRESERVED; AI APPROVAL AUTHORITY, RELEASE/CERTIFICATION AUTHORITY, MODEL-OWNED STATE MUTATION, PRODUCTIZATION, AND PROVIDER/MODEL EXECUTION REMAIN BLOCKED.
-```
-
-M31.6 merge evidence:
-
-```text
-PR #81 — feat: add M31.6 output acceptance review rules
-```
-
-M31.6 local validation evidence:
-
-```text
-python -m pytest tests/test_ai_runtime_output_acceptance.py -q — 12 passed in 0.05s
-python -m pytest tests/test_ai_output_acceptance_review_rules.py -q — 8 passed in 0.05s
-python -m pytest -q — 1551 passed in 45.18s
-```
-
-Prior M31.5 evidence:
-
-```text
-docs/milestones/M31/M31_5_REFUSAL_LIMITATION_RULES_PLAN.md
-docs/milestones/M31/M31_5_REFUSAL_LIMITATION_RULES.md
-asbp/ai_runtime/refusal_rules.py
-tests/test_ai_refusal_limitation_rules.py
-```
-
-M31.5 refusal/limitation status:
-
-```text
-REFUSAL AND LIMITATION RULE SCAFFOLDING COMPLETED; PROVIDER/MODEL EXECUTION, PROMPT EXECUTION, GENERATED OUTPUT ACCEPTANCE, AI APPROVAL AUTHORITY, STATE MUTATION, AND PRODUCTIZATION REMAIN BLOCKED.
-```
-
-M31.5 merge evidence:
-
-```text
-PR #79 — feat: add M31.5 refusal limitation rule scaffolding
-```
-
-M31.5 local validation evidence:
-
-```text
-python -m pytest tests/test_ai_refusal_limitation_rules.py -q — 10 passed in 0.06s
-python -m pytest -q — 1543 passed in 45.15s
-```
-
-Prior M31.4 evidence:
-
-```text
-docs/milestones/M31/M31_4_CONTEXT_PACKET_CONTRACT_PLAN.md
-docs/milestones/M31/M31_4_CONTEXT_PACKET_CONTRACT.md
-asbp/ai_runtime/context_packets.py
-tests/test_ai_context_packet_contract.py
-```
-
-M31.4 context packet status:
-
-```text
-PROVIDER-FACING CONTEXT PACKET CONTRACT SCAFFOLDING COMPLETED; FREE-FORM PROMPT FACTS, RAW RETRIEVAL TRUTH INJECTION, AND PROVIDER/MODEL EXECUTION REMAIN BLOCKED.
-```
-
-M31.4 merge evidence:
-
-```text
-PR #77 — feat: add M31.4 context packet contract scaffolding
-```
-
-M31.4 local validation evidence:
-
-```text
-python -m pytest tests/test_ai_context_packet_contract.py -q — 8 passed in 0.04s
-python -m pytest -q — 1533 passed in 45.54s
-```
-
-Prior M31.3 evidence:
-
-```text
-docs/milestones/M31/M31_3_PROVIDER_ADAPTER_BOUNDARY_PLAN.md
-docs/milestones/M31/M31_3_PROVIDER_ADAPTER_BOUNDARY.md
-asbp/ai_runtime/provider_contracts.py
-asbp/ai_runtime/provider_adapter.py
-asbp/ai_runtime/provider_registry.py
-tests/test_ai_provider_adapter_boundary.py
-```
-
-M31.3 boundary status:
-
-```text
-PROVIDER-NEUTRAL ADAPTER BOUNDARY SCAFFOLDING COMPLETED; REAL PROVIDER/MODEL EXECUTION REMAINS BLOCKED.
-```
-
-M31.3 merge evidence:
-
-```text
-PR #75 — feat: add M31.3 provider adapter boundary scaffolding
-```
-
-M31.3 local validation evidence:
-
-```text
-python -m pytest tests/test_ai_provider_adapter_boundary.py -q — 8 passed in 0.07s
-python -m pytest -q — 1525 passed in 47.24s
-```
-
-Prior M31.2 evidence:
-
-```text
-docs/milestones/M31/M31_2_LOCAL_AI_MODEL_PROVIDER_STRATEGY_DECISION.md
-```
-
-M31.2 strategy status:
-
-```text
-STAGED LOCAL-FIRST / OFFLINE-PREFERRED HYBRID STRATEGY SELECTED FOR LATER GATED AI ASSISTANCE WORK.
-```
-
-M31.2 selected strategy:
-
-```text
-staged local-first / offline-preferred hybrid strategy
-```
-
-M31.2 merge evidence:
-
-```text
-PR #73 — docs: record M31.2 local AI model provider strategy decision
-```
-
-Prior M31.1 evidence:
-
-```text
-docs/milestones/M31/M31_1_AI_ASSISTANCE_BOUNDARY_CONFIRMATION_PLAN.md
-docs/milestones/M31/M31_1_AI_ASSISTANCE_BOUNDARY_CONFIRMATION.md
-```
-
-M31.1 boundary status:
-
-```text
-AI ASSISTANCE BOUNDARY CONFIRMED FOR M31 PLANNING AND LATER GATED EXECUTION.
-```
-
-M31.1 allowed candidate assistance modes:
-
-```text
-advisory Q&A
-document drafting support
-review support
-comparison support
-workflow guidance
-```
-
-M31.1 merge evidence:
-
-```text
-PR #70 — docs: plan M31.1 AI assistance boundary confirmation
-PR #71 — docs: record M31.1 AI assistance boundary confirmation
-```
-
-M30.11 closeout evidence:
-
-```text
-docs/milestones/M30/M30_11_MILESTONE_CLOSEOUT_PLAN.md
-docs/milestones/M30/M30_11_MILESTONE_CLOSEOUT.md
-```
-
-M30.11 closeout status:
-
-```text
-M30 CLOSED WITH BOUNDED RETRIEVAL BOUNDARY FROZEN AND LIMITATIONS CARRIED FORWARD.
-```
-
-M30.11 DDR / CAPA disposition:
-
-```text
-DDR-005 — PARTIALLY CLOSED
-DDR-007 — CARRIED FORWARD
-CAPA — PARTIALLY SATISFIED; KEEP ACTIVE THROUGH M31 ENTRY
 ```
 
 Latest executable validation:
@@ -467,11 +310,11 @@ python -m pytest -q — 1572 passed in 48.64s
 
 Validation scope:
 
-Full test suite after M31.8 bounded runtime shakedown protocol scaffold and tests from PR #87.
+Full test suite after M31.8 bounded runtime shakedown protocol scaffold and tests from PR #87. M31.9-A and M31.9-B were docs/governance/observation-only and did not require additional executable validation.
 
 ## Exact Next Unfinished Work
 
-PLAN M31.9 — Real internal human AI-use shakedown / owner observation.
+PLAN M31.10 — AI integration validation checkpoint.
 
 Current state:
 
@@ -482,18 +325,18 @@ READY FOR PLAN ONLY / GO BLOCKED
 Allowed current work:
 
 ```text
-PLAN M31.9 only.
+PLAN M31.10 only.
 ```
 
 Blocked until separately authorized:
 
 - GO;
-- tracker advancement from M31.9;
-- M31.9 real internal human observation execution before accepted M31.9 plan;
-- API key generation, storage, or use before accepted M31.9 plan if cloud/provider path is selected;
-- local model setup/execution before accepted M31.9 plan if local runtime path is selected;
-- real provider calls beyond accepted M31.9 scope;
-- local model inference beyond accepted M31.9 scope;
+- tracker advancement from M31.10;
+- M31.10 validation execution before accepted M31.10 plan;
+- API key generation, storage, or use before accepted plan if cloud/provider path is selected;
+- local model setup/execution before accepted plan if local runtime validation is selected;
+- real provider calls beyond accepted scope;
+- local model inference beyond accepted scope;
 - raw provider payload storage;
 - raw model output storage;
 - unbounded prompt execution;
@@ -526,8 +369,17 @@ Latest focused M31 validation:
 python -m pytest tests/test_ai_runtime_shakedown_protocol.py -q — 12 passed in 0.12s
 ```
 
+Latest human observation evidence:
+
+```text
+PR #90 — docs: record M31.9-B local offline human observation
+```
+
 Latest M31 evidence:
 
+- PR #90 recorded M31.9-B local/offline human observation evidence.
+- PR #89 recorded M31.9-A human observation protocol and runtime path decision.
+- PR #88 recorded M31.8 tracker alignment.
 - PR #87 recorded M31.8 bounded runtime shakedown protocol scaffold and tests.
 - PR #85 recorded Roadmap Canonical v6 change control and replacement roadmap.
 - PR #83 recorded M31.7 evaluation and regression harness scaffolding and tests.
@@ -539,12 +391,7 @@ Latest M31 evidence:
 - PR #71 recorded M31.1 AI assistance boundary confirmation evidence.
 - PR #70 accepted the M31.1 boundary confirmation plan.
 
-Latest closeout evidence:
-
-- PR #68 recorded M30.11 milestone closeout evidence.
-- PR #67 accepted the M30.11 milestone closeout plan.
-
-This M31.8 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already accepted and locally validated M31.8 evidence.
+This M31.9 tracker alignment does not require additional executable validation because it changes only tracker/governance state and records already accepted local/offline human observation evidence.
 
 ## Milestone UAT Status
 
@@ -552,31 +399,15 @@ Latest completed milestone UAT:
 
 M30.10 UAT / owner acceptance accepted with clarifications.
 
+Latest completed M31 human observation:
+
+M31.9-B local/offline real internal human AI-use observation accepted by the Project Owner.
+
 Acceptance scope:
 
-Retrieval-supported local workflow usefulness for M30 only.
+Bounded local/offline human observation for M31.9 only.
 
-Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, AI/model/provider readiness, UI/API readiness, retrieval-backed compliance truth, or standards-backed legal/regulatory authority.
-
-M30 is closed with bounded retrieval boundary frozen and limitations carried forward.
-
-M31.1 completed boundary confirmation evidence only.
-
-M31.2 completed strategy-decision evidence only.
-
-M31.3 completed provider-neutral adapter boundary scaffolding only.
-
-M31.4 completed provider-facing context packet contract scaffolding only.
-
-M31.5 completed refusal and limitation rule scaffolding only.
-
-M31.6 completed output acceptance and review rule scaffolding only.
-
-M31.7 completed evaluation/regression harness scaffolding only.
-
-M31.8 completed bounded runtime shakedown protocol scaffolding only.
-
-M31.9 is the next PLAN-only checkpoint.
+Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, provider/API readiness, UI/API readiness, retrieval-backed compliance truth, standards-backed legal/regulatory authority, AI approval authority, release/certification authority, or M31 closeout.
 
 Productization/release/deployment/SaaS readiness remain blocked until Roadmap v6 Phase 10 gates after local product-core evidence. Commercialization launch planning remains outside ASBP unless separately approved after a post-completion go/no-go decision.
 
@@ -610,7 +441,13 @@ PR #85 recorded Roadmap Canonical v6 change control and replacement roadmap.
 
 PR #87 recorded M31.8 bounded runtime shakedown protocol scaffold and tests.
 
-This tracker update records M31.8 bounded runtime shakedown protocol scaffold completion and sets PLAN M31.9 as the next work. It does not start M31.9, does not authorize GO, and does not authorize API key generation/storage/use, real provider calls, local model inference, UI/API behavior, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, or customer-ready output.
+PR #88 recorded M31.8 tracker alignment.
+
+PR #89 recorded M31.9-A human observation protocol and runtime path decision.
+
+PR #90 recorded M31.9-B local/offline human observation evidence.
+
+This tracker update records M31.9 local/offline human observation completion and sets PLAN M31.10 as the next work. It does not start M31.10, does not authorize GO, and does not authorize API key generation/storage/use, real provider calls, local model inference, UI/API behavior, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or M31 closeout.
 
 ## Repository Index Control Status
 
@@ -633,12 +470,12 @@ The full repository index does not start retrieval, implement standards embeddin
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31.1, M31.2, M31.3, M31.4, M31.5, M31.6, M31.7, or M31.8.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, or M31.
 
-DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.4 added context packet controls that keep retrieval support-only and block raw retrieval dumps. M31.5 added refusal/limitation controls that require support-only retrieval to refuse, limit, or request source evidence instead of becoming source/compliance truth. M31.6 preserves that retrieval-supported output cannot become source truth or final/customer-ready authority. M31.7 evaluation/regression scaffolding preserves retrieval support-only checks and blocks retrieval-backed source/compliance truth. M31.8 runtime shakedown protocol scaffolding rejects retrieval-as-source-truth behavior.
+DDR-005 remains partially closed from M30 for bounded deterministic retrieval controls only. M31 work must not treat retrieval as source authority, compliance truth, or raw untracked model context. M31.9-B demonstrated correct limitation behavior when no authoritative source or retrieval evidence was available.
 
-DDR-006 remains relevant for generated output. M31.6 added output acceptance and review controls, including human review/acceptance requirements and no AI approval/release/certification authority. M31.7 tests output acceptance/review dependencies. M31.8 adds bounded runtime shakedown protocol scaffolding but does not claim document factory readiness, product-ready generated output, customer-ready output, or productization.
+DDR-006 remains relevant for generated output. M31.6 added output acceptance and review controls. M31.9-B demonstrated correct human-review-required behavior. M31.9 does not claim document factory readiness, product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, M31.4 created context packet scaffolding, M31.5 created refusal/limitation scaffolding, M31.6 created output acceptance/review scaffolding, M31.7 created evaluation/regression harness plus disabled-by-default provider/local smoke scaffolding, and M31.8 created bounded runtime shakedown protocol scaffolding, but none of these checkpoints close DDR-007 or authorize product/runtime AI behavior. M31.9 may plan real internal human AI-use shakedown / owner observation only if explicitly scoped and bounded by M31.3 through M31.8 controls.
+DDR-007 remains closure-planned and active for model/provider/local runtime work. M31.2 selected a staged local-first / offline-preferred hybrid strategy, M31.3 created provider-neutral adapter boundary scaffolding, M31.4 created context packet scaffolding, M31.5 created refusal/limitation scaffolding, M31.6 created output acceptance/review scaffolding, M31.7 created evaluation/regression harness plus disabled-by-default provider/local smoke scaffolding, M31.8 created bounded runtime shakedown protocol scaffolding, and M31.9 created local/offline human observation evidence. DDR-007 remains active because cloud/provider API behavior is not proven and product/runtime AI readiness is not authorized.
 
-DDR-009 remains relevant to UI/API/external contract placeholder behavior. M31.8 does not authorize UI/API behavior.
+DDR-009 remains relevant to UI/API/external contract placeholder behavior. M31.9 does not authorize UI/API behavior.
