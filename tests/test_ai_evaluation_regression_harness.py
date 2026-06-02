@@ -36,10 +36,10 @@ from asbp.ai_runtime.evaluation_harness import (
     validate_ai_regression_case,
 )
 from asbp.ai_runtime.output_acceptance import (
-    HUMAN_ACCEPT_DECISION,
-    HUMAN_ACCEPTED_OUTPUT_STATE,
+    HUMAN_REVIEW_DECISION,
+    HUMAN_REVIEWED_OUTPUT_STATE,
     HUMAN_AUTHORED_REVIEW_OUTPUT_ORIGIN,
-    build_ai_output_artifact,
+    build_ai_output_review_artifact,
     build_ai_output_review_decision,
 )
 from asbp.ai_runtime.provider_contracts import (
@@ -113,21 +113,22 @@ def _refusal_decision() -> dict[str, object]:
 
 def _output_review_decision() -> dict[str, object]:
     refusal_decision = _refusal_decision()
-    artifact = build_ai_output_artifact(
-        output_artifact_id="OUT-M317-HUMAN-ACCEPTED",
+    artifact = build_ai_output_review_artifact(
+        output_artifact_id="OUT-M317-HUMAN-REVIEWED",
         output_origin=HUMAN_AUTHORED_REVIEW_OUTPUT_ORIGIN,
-        output_state=HUMAN_ACCEPTED_OUTPUT_STATE,
+        output_state=HUMAN_REVIEWED_OUTPUT_STATE,
         refusal_decision=refusal_decision,
-        limitation_summary="Human review accepted limited advisory output only.",
+        limitation_summary="Human reviewed limited advisory output only.",
         allowed_use="May be used as reviewed advisory evidence.",
         blocked_use="Must not approve, release, certify, or claim customer readiness.",
         output_ref="OUT-M317@v1",
         human_review_evidence_ref="HUMAN-REVIEW-M317@v1",
+        human_reviewer_ref="project-owner",
     )
     return build_ai_output_review_decision(
-        review_decision_id="REVIEW-M317-HUMAN-ACCEPT",
+        review_decision_id="REVIEW-M317-HUMAN-REVIEW",
         output_artifact=artifact,
-        review_decision=HUMAN_ACCEPT_DECISION,
+        review_decision=HUMAN_REVIEW_DECISION,
         reviewer_ref="project-owner",
         review_evidence_ref="HUMAN-REVIEW-M317@v1",
     )
