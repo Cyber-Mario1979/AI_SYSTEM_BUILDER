@@ -43,6 +43,7 @@ from asbp.ai_runtime.output_acceptance import (
     build_ai_output_review_decision,
 )
 from asbp.ai_runtime.provider_contracts import (
+    PROVIDER_ADAPTER_EXECUTION_BLOCKED_STATUS,
     build_ai_provider_adapter_boundary_request,
 )
 from asbp.ai_runtime.refusal_rules import (
@@ -234,7 +235,7 @@ def test_provider_smoke_ready_requires_two_explicit_opt_ins() -> None:
     )
 
     assert smoke["smoke_status"] == AI_PROVIDER_SMOKE_STATUS_READY
-    assert smoke["provider_execution_status"] == "provider_adapter_execution_blocked"
+    assert smoke["provider_execution_status"] == PROVIDER_ADAPTER_EXECUTION_BLOCKED_STATUS
     validate_ai_provider_smoke_request(smoke)
 
 
