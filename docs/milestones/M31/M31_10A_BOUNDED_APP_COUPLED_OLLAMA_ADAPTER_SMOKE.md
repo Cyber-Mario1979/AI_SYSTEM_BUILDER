@@ -3,33 +3,41 @@ doc_type: checkpoint_evidence
 canonical_name: M31_10A_BOUNDED_APP_COUPLED_OLLAMA_ADAPTER_SMOKE
 status: DRAFT_FOR_REVIEW
 governs_execution: false
-document_state_mode: ollama_adapter_smoke_contract_evidence
+document_state_mode: ollama_adapter_smoke_contract_and_manual_evidence
 milestone: M31
 checkpoint: M31.10-A
 checkpoint_title: Bounded app-coupled Ollama adapter smoke
 execution_mode: Hybrid
 repository: Cyber-Mario1979/AI_SYSTEM_BUILDER
-branch: vbuilder-m3110a-ollama-adapter-smoke
+branch: vbuilder-m3110a-manual-smoke-evidence
 created_date: 2026-06-02
-source_baseline_commit: 58ab5b5ff4ba3f24405a42882e27f768fd478b18
-live_repo_write: YES_CODE_AND_TEST_SCOPE
-normal_execution_state: GO_OLLAMA_ADAPTER_SMOKE_CONTRACT_ONLY
-project_owner_acceptance: PENDING
+source_baseline_commit: 64f7f8e12d4b07fde5f658d01d0669ecd1527050
+live_repo_write: YES_EVIDENCE_RECORD_ONLY
+normal_execution_state: GO_MANUAL_OLLAMA_SMOKE_EVIDENCE_ONLY
+project_owner_acceptance: MANUAL_SMOKE_PASSED
 ---
 
 # M31.10-A — Bounded App-Coupled Ollama Adapter Smoke Evidence
 
 ## 1. Purpose
 
-This document records M31.10-A bounded app-coupled Ollama adapter smoke contract evidence for review.
+This document records M31.10-A bounded app-coupled Ollama adapter smoke contract and manual local smoke evidence.
 
 The implementation creates a local/offline smoke contract and testable adapter-facing path for Ollama without making normal pytest depend on Ollama.
+
+The manual smoke proves the bounded ASBP adapter smoke contract can call local Ollama through the injected caller path and capture bounded evidence.
 
 ## 2. Implementation Added
 
 ```text
 asbp/ai_runtime/ollama_adapter.py
 tests/test_ai_ollama_adapter_smoke_contract.py
+```
+
+Implementation merge evidence:
+
+```text
+PR #93 — feat: add M31.10-A Ollama adapter smoke contract
 ```
 
 ## 3. Contract Behavior
@@ -94,28 +102,73 @@ Focused tests cover:
 - forbidden claim detection and fail-closed evidence;
 - productization/customer-ready/commercialization flag rejection.
 
-## 6. Validation Required
+## 6. Validation Evidence
 
-Because this PR changes code/tests, validation is required before merge:
+Validation was run locally by the Project Owner from branch `test-m3110a-ollama-adapter-smoke`.
+
+Focused validation:
 
 ```text
 python -m pytest tests/test_ai_ollama_adapter_smoke_contract.py -q
-python -m pytest -q
+7 passed in 0.05s
 ```
 
-Validation status at PR preparation time:
+Full validation:
 
 ```text
-NOT RUN in connector session.
+python -m pytest -q
+1579 passed in 48.29s
 ```
 
-## 7. Manual Smoke Requirement
+## 7. Manual Smoke Evidence
 
-After focused and full tests pass, the Project Owner should run a controlled manual local smoke against Ollama and record bounded evidence.
+Manual bounded local Ollama smoke was run by the Project Owner after PR #93 merge and local `main` sync.
 
-Manual smoke should not be hidden inside normal pytest.
+Bounded smoke output:
 
-Manual smoke evidence must not include:
+```text
+smoke_run_id: SMOKE-M3110A-LOCAL-OLLAMA-001-RUN
+smoke_request_id: SMOKE-M3110A-LOCAL-OLLAMA-001
+provider_kind: local_ollama_runtime
+model_name: llama3.2:3b
+endpoint_url: http://localhost:11434/api/generate
+scenario_id: M3110A-S1-ADVISORY-DRAFT-SUPPORT
+result_status: bounded_ollama_adapter_smoke_evidence_captured
+response_summary: Draft IQ Checklist Items: 1. Adapter Installation: * Verify adapter is securely fastened to the Ollama unit. * Confirm all necessary connections (e.g., power, data) are established and functioning properly. 2. Power Supply Verification:...
+limitation_summary: bounded_draft_support_response_captured_without_forbidden_claim_terms
+output_review_state: human_review_required_before_use
+forbidden_terms_detected: []
+api_key_required: false
+cloud_provider_call_allowed: false
+```
+
+Manual smoke disposition:
+
+```text
+PASS — bounded app-coupled local Ollama smoke evidence captured.
+```
+
+## 8. Manual Smoke Boundary Review
+
+The manual smoke evidence confirms:
+
+- app-coupled ASBP contract path was used;
+- local Ollama endpoint was used;
+- no API key was required;
+- no cloud/provider call was used;
+- no forbidden claim terms were detected;
+- output remained human-review-required before use;
+- bounded summary evidence was captured instead of raw provider payload evidence.
+
+Caution:
+
+```text
+The response summary shows the model interpreted “adapter” in a generic/technical way. This is not blocking for M31.10-A because the smoke objective was adapter-coupled execution and bounded evidence capture, not final domain answer quality. Prompt/context specificity may require refinement in later AI assistance acceptance work.
+```
+
+## 9. Manual Smoke Exclusions
+
+Manual smoke evidence does not include:
 
 - API keys;
 - raw provider payload dumps;
@@ -124,25 +177,41 @@ Manual smoke evidence must not include:
 - approval/release/certification claims;
 - productization claims.
 
-## 8. DDR Impact
+## 10. DDR Impact
 
 ### DDR-005
 
-Retrieval remains support-only. The M31.10-A smoke must not treat retrieval as source authority or compliance truth.
+Retrieval remains support-only. The M31.10-A smoke did not treat retrieval as source authority or compliance truth.
 
 ### DDR-006
 
-Generated output remains draft/review-bound. M31.10-A evidence must not claim product-ready generated output or customer-ready output.
+Generated output remains draft/review-bound. M31.10-A evidence did not claim product-ready generated output or customer-ready output.
 
 ### DDR-007
 
-DDR-007 remains active. M31.10-A creates local/offline app-coupled smoke evidence path, but cloud/provider API behavior remains unproven.
+DDR-007 remains active. M31.10-A creates local/offline app-coupled smoke evidence, but cloud/provider API behavior remains unproven and product/runtime AI readiness is not authorized.
 
 ### DDR-009
 
 M31.10-A does not authorize UI/API behavior.
 
-## 9. Explicit Non-Implementation Claims
+## 11. Tracker Movement Recommendation
+
+After this manual evidence PR is accepted and merged, tracker alignment may record M31.10-A as completed local/offline app-coupled Ollama smoke evidence.
+
+Recommended next tracker state:
+
+```text
+READY FOR PLAN M31.11 ONLY
+```
+
+Recommended next checkpoint:
+
+```text
+PLAN M31.11 — AI assistance UAT / owner acceptance
+```
+
+## 12. Explicit Non-Implementation Claims
 
 M31.10-A does not:
 
