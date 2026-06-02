@@ -10,8 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/></a>
-  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/ROADMAP_CANONICAL.md"><img src="https://img.shields.io/badge/Roadmap-Canonical-blueviolet" alt="Roadmap"/></a>
-  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/PROGRESS_TRACKER.md"><img src="https://img.shields.io/badge/Status-Progress%20Tracker-blue" alt="Progress Tracker"/></a>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/ROADMAP_CANONICAL.md"><img src="https://img.shields.io/badge/Roadmap-v7-blueviolet" alt="Roadmap v7"/></a>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/PROGRESS_TRACKER.md"><img src="https://img.shields.io/badge/Current-M32.1%20PLAN%20ONLY-blue" alt="Current checkpoint"/></a>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/README.md#quick-start"><img src="https://img.shields.io/badge/Quick%20Start-Guide-success" alt="Quick Start"/></a>
 </p>
 
@@ -21,16 +21,30 @@
 
 **AI_SYSTEM_BUILDER** is under active development.
 
-This README is the public front door for the project. It explains the purpose, operating model, repository layout, and how to get started.
+Current roadmap authority:
 
-For the current implementation state, validation status, latest completed checkpoint, and exact next checkpoint, use:
+```text
+ROADMAP_CANONICAL.md v7
+```
 
-- [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md) — current project position
-- [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md) — canonical roadmap direction
+Current execution position:
+
+```text
+Phase 9 — Full Local Integrated CQV Product Core
+M32 — Full Local Usable Product Workflow/UI
+PLAN M32.1 — Full local workflow scope lock
+```
+
+The current checkpoint is **PLAN only**, not GO. It does not authorize UI implementation, tracker movement, deployment, release, SaaS readiness, or commercialization.
+
+For exact live state, read:
+
+- [`PROGRESS_TRACKER.md`](PROGRESS_TRACKER.md) — current position, latest validation evidence, and next checkpoint
+- [`ROADMAP_CANONICAL.md`](ROADMAP_CANONICAL.md) — canonical roadmap direction and checkpoint deliverables
 - [`ARCHITECTURE_GUARDRAILS.md`](ARCHITECTURE_GUARDRAILS.md) — permanent architecture boundaries
 - [`docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md`](docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md) — deferred/productization-sensitive dependency gate memory
 
-The README intentionally avoids live milestone tables or manual test-count badges so it does not drift behind the repository.
+The README is a public front door. It summarizes the project without replacing the tracker or roadmap.
 
 ---
 
@@ -40,11 +54,35 @@ Most workflow systems are built fast and trusted late — if ever.
 
 **AI_SYSTEM_BUILDER** inverts that. It builds trust into every layer from day one:
 
-- **Deterministic before smart** — behavior is explicit and predictable before automation is layered on top
-- **Validated before convenient** — state mutations are controlled and persisted with evidence
-- **Governed before expanded** — progression is closed by acceptance, not by assumption
+- **Deterministic before smart** — behavior is explicit and predictable before automation is layered on top.
+- **Validated before convenient** — state mutations are controlled and persisted with evidence.
+- **Build-forward governance** — governance defines the boundary, but implementation and validation prove progress.
 
 The goal is a workflow engine that can be reasoned about, extended with confidence, and eventually connected to richer runtime layers because the foundation was designed to hold that weight.
+
+---
+
+## Current roadmap direction
+
+Roadmap v7 makes the remaining path explicit.
+
+The greater final goal is to finish a real local integrated CQV product before any deployment or hosted-path decision. The product must be usable locally, evidence-based, validated, accepted by the owner, and explicit about limitations.
+
+The forward path is:
+
+1. complete `PLAN M32.1` as a real local workflow scope lock;
+2. build the full local usable workflow/UI through M32 build/content checkpoints;
+3. run a realistic local product trial with defect capture, correction, regression, re-trial, and owner acceptance in M33;
+4. close the local product core only after evidence proves it is real, usable, validated, and accepted in M34;
+5. proceed to engineering readiness, packaging, installability, security/supportability, and deployment-path evaluation only after local product-core acceptance.
+
+Roadmap v7 uses the checkpoint column:
+
+```text
+Required deliverable / completion minimum
+```
+
+This is intentional. It prevents build/content and hybrid checkpoints from being closed by documentation alone.
 
 ---
 
@@ -52,24 +90,25 @@ The goal is a workflow engine that can be reasoned about, extended with confiden
 
 ### What it is
 
-**AI_SYSTEM_BUILDER** is a roadmap-driven Python system for modeling workflow entities, relationships, state transitions, validation rules, and controlled execution boundaries.
+**AI_SYSTEM_BUILDER** is a roadmap-driven Python system for modeling workflow entities, relationships, state transitions, validation rules, source boundaries, output controls, and controlled execution surfaces.
 
 It is also a build-in-public engineering experiment: a serious codebase being developed by a solo builder in structured cooperation with an AI platform, under strict execution discipline.
 
 The project is designed to prove three things:
 
 1. Deterministic behavior must be **designed**, not assumed.
-2. Milestone governance makes a codebase easier to review, extend, and maintain.
+2. Milestone governance is useful only when it protects real implementation and validation.
 3. Human + AI co-building can produce real engineering structure when constrained by explicit rules, tests, and acceptance gates.
 
 ### What it is not
 
 | Not this | Because |
 | --- | --- |
-| A general AI agent framework | AI/runtime expansion is downstream, not the starting point. |
-| A CQV-only application | CQV is the proving ground, not the product identity. |
-| A vibe-coded prototype | Checkpoints are validated before progression. |
+| A general AI agent framework | AI/runtime expansion is downstream and bounded, not the starting point. |
+| A CQV-only application | CQV is the pressure-test domain; the long-term system identity is broader. |
+| A vibe-coded prototype | Checkpoints require evidence before progression. |
 | A free-form automation sandbox | Mutation rules are explicit; nothing happens implicitly. |
+| A commercialization launch plan | Business/commercial launch work is outside ASBP unless separately approved later. |
 
 > **On CQV:** Pharmaceutical commissioning, qualification, and validation was chosen as a pressure-test domain because it is demanding, regulated, and unforgiving. The long-term system identity is broader than CQV.
 
@@ -79,19 +118,23 @@ The project is designed to prove three things:
 
 ### 1. Determinism is a first-class design rule
 
-Command behavior, failure behavior, state mutation rules, retrieval boundaries, and persistence validation are explicit by design.
+Command behavior, failure behavior, state mutation rules, retrieval boundaries, AI boundaries, output controls, and persistence validation are explicit by design.
 
-### 2. The CLI is an adapter, not the system
+### 2. The CLI, API, and UI are adapters, not the system
 
-Domain logic belongs in core modules. The CLI should expose behavior without becoming the place where business rules are hidden.
+Domain logic belongs in core modules and governed service boundaries. External surfaces should expose behavior without becoming the place where business rules are hidden.
 
 ### 3. Progression is governed, not improvised
 
 The repository uses a canonical roadmap, current-position tracker, architecture guardrails, validation evidence, closeout discipline, and deferred dependency gate memory to avoid drift.
 
-### 4. Code and tests remain implementation truth
+### 4. Code, source data, and tests remain implementation truth
 
-Documentation explains intent and operating context. The codebase and automated tests define what actually exists and what is currently enforced.
+Documentation explains intent and operating context. The codebase, source data, automated tests, validation evidence, and UAT evidence define what actually exists.
+
+### 5. Documentation alone does not prove product capability
+
+Roadmap v7 explicitly blocks `Build/content` and `Hybrid` checkpoints from being closed by documentation alone unless an approved deferral is recorded.
 
 ---
 
@@ -100,12 +143,14 @@ Documentation explains intent and operating context. The codebase and automated 
 ```text
 asbp/                         Application source
 tests/                        Automated validation suite
+data/source/                  Source data used by governed loaders and stores
 docs/                         UAT records, closeout notes, supporting artifacts
 docs/governance/              Governance registers and dependency gates
+docs/milestones/              Milestone plans, evidence, validation, UAT, and closeout records
+docs/repo_index/              Repository index evidence
 assets/                       Repository presentation assets
 audits/                       Filed audit observations, responses, and triage records
-ROADMAP_CANONICAL.md          Canonical roadmap direction and checkpoint ladder
-ROADMAP_ADDENDUM_*.md         Bounded roadmap overlays when active or retained for history
+ROADMAP_CANONICAL.md          Canonical roadmap direction and checkpoint deliverables
 PROGRESS_TRACKER.md           Current project position and validation status
 ARCHITECTURE_GUARDRAILS.md    Permanent architecture boundary rules
 CONTRIBUTING.md               Contribution expectations and review discipline
@@ -122,13 +167,12 @@ This repository separates public explanation, project control, and implementatio
 | --- | --- |
 | `README.md` | Public overview and onboarding |
 | `PROGRESS_TRACKER.md` | Current implementation position and validation status |
-| `ROADMAP_CANONICAL.md` | Roadmap direction and checkpoint sequence |
-| `ROADMAP_ADDENDUM_*.md` | Bounded overlays for controlled exceptions or transitions |
+| `ROADMAP_CANONICAL.md` | Roadmap direction, checkpoint sequence, and required deliverables |
 | `ARCHITECTURE_GUARDRAILS.md` | Permanent architectural boundaries |
 | `docs/governance/DEFERRED_DEPENDENCIES_REGISTER.md` | Persistent gate memory for deferred/productization-sensitive dependencies |
-| `asbp/` and `tests/` | Implementation truth and validation evidence |
+| `asbp/`, `data/source/`, and `tests/` | Implementation truth and validation evidence |
 
-This separation is intentional. It keeps the README stable while allowing the actual project state to evolve through controlled files.
+This separation is intentional. It keeps the README stable while allowing actual project state to evolve through controlled files.
 
 ---
 
@@ -143,13 +187,19 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 python --version
 ```
 
-### 2. Run validation
+### 2. Install dependencies
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+### 3. Run validation
 
 ```powershell
 python -m pytest -q
 ```
 
-### 3. Explore the CLI
+### 4. Explore the CLI
 
 ```powershell
 python -m asbp --help
@@ -159,7 +209,7 @@ python -m asbp wp -h
 python -m asbp collection -h
 ```
 
-### 4. Initialize local state
+### 5. Initialize local state
 
 ```powershell
 python -m asbp state init
@@ -184,7 +234,7 @@ For code changes, run the validation suite before opening a pull request:
 python -m pytest -q
 ```
 
-For public-surface documentation changes, keep the change narrow and avoid turning the README into a live project tracker.
+For documentation changes, keep the change narrow and avoid turning the README into the live tracker.
 
 ---
 
@@ -194,12 +244,12 @@ Contributions are welcome when they preserve the project’s operating model.
 
 Good contribution areas include:
 
-- documentation clarity
-- tests
-- focused bug fixes
-- narrow refactors that preserve behavior
-- public-surface improvements
-- implementation aligned with the current roadmap checkpoint
+- documentation clarity;
+- tests;
+- focused bug fixes;
+- narrow refactors that preserve behavior;
+- public-surface improvements;
+- implementation aligned with the current roadmap checkpoint.
 
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request.
 
