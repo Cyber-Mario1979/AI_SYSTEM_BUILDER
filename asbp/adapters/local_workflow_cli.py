@@ -10,6 +10,7 @@ from pydantic import ValidationError
 import asbp.state_store as state_store
 from asbp.local_workflow_input_logic import configure_local_workflow_inputs
 from asbp.local_workflow_logic import build_local_workflow_plan_payload
+from asbp.state_model import StateModel
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -79,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _load_state_or_report() -> object | None:
+def _load_state_or_report() -> StateModel | None:
     try:
         return state_store.load_validated_state(state_store.get_state_file_path())
     except FileNotFoundError:
