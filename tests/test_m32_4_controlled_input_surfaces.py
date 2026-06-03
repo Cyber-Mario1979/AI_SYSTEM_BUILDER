@@ -38,7 +38,7 @@ def write_state(payload: dict) -> None:
     STATE_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def base_state() -> dict:
+def base_state(title: str = "Cleanroom HVAC CQV workflow") -> dict:
     return {
         "project": "AI_SYSTEM_BUILDER",
         "version": "0.1.0",
@@ -46,7 +46,7 @@ def base_state() -> dict:
         "work_packages": [
             {
                 "wp_id": "WP-001",
-                "title": "Cleanroom HVAC CQV workflow",
+                "title": title,
                 "status": "open",
             }
         ],
@@ -84,6 +84,7 @@ def test_configure_applies_controlled_input_selection_and_persists_state(
         "scope_intent": "qualification-only",
         "standards_bundles": ["cqv-core", "cleanroom-hvac"],
     }
+    assert payload["input_warnings"] == []
     assert "No free-form user text is treated as source truth." in payload["limitations"]
 
     saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
@@ -95,8 +96,41 @@ def test_configure_applies_controlled_input_selection_and_persists_state(
     }
 
 
+def test_configure_warns_when_controlled_input_may_not_match_title(
+    restore_state_file,
+):
+    write_state(base_state(title="Tablet press qualification"))
+
+    result = run_local_workflow(
+        "configure",
+        "--wp-id",
+        "WP-001",
+        "--system-type",
+        "cleanroom-hvac",
+        "--preset-id",
+        "cqv-cleanroom-hvac-basic",
+        "--scope-intent",
+        "qualification-only",
+        "--standards-bundle",
+        "cleanroom-hvac",
+    )
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload["input_warnings"] == [
+        "Selected system_type cleanroom-hvac may not match work package title: "
+        "Tablet press qualification"
+    ]
+
+    plan_result = run_local_workflow("plan", "--wp-id", "WP-001")
+
+    assert plan_result.returncode == 0
+    plan_payload = json.loads(plan_result.stdout)
+    assert plan_payload["input_warnings"] == payload["input_warnings"]
+
+
 def test_configure_allows_baseline_only_standards_bundle(restore_state_file):
-    write_state(base_state())
+    write_state(base_state(title="Automation system CQV workflow"))
 
     result = run_local_workflow(
         "configure",
@@ -118,6 +152,7 @@ def test_configure_allows_baseline_only_standards_bundle(restore_state_file):
         "scope_intent": "end-to-end",
         "standards_bundles": ["cqv-core"],
     }
+    assert payload["input_warnings"] == []
 
 
 def test_configure_reports_missing_state_file(restore_state_file):
