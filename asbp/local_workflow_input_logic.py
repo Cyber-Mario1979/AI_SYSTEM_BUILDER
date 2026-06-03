@@ -86,6 +86,7 @@ def configure_local_workflow_inputs(
         "updated_work_package": planning_payload["selected_work_package"],
         "task_staging": planning_payload["task_staging"],
         "source_selection": planning_payload["source_selection"],
+        "input_warnings": planning_payload["input_warnings"],
         "readiness_gaps": planning_payload["readiness_gaps"],
         "limitations": list(CONTROLLED_INPUT_LIMITATIONS),
         "next_safe_actions": [
