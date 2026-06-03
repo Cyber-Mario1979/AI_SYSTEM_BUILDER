@@ -13,7 +13,7 @@ from asbp.core.work_packages import (
     build_work_package_task_ids,
     find_work_package_by_id,
 )
-from asbp.state_model import StateModel
+from asbp.state_model import StateModel, WorkPackageModel
 
 LOCAL_WORKFLOW_SURFACE = "cli-enhanced controlled local workflow"
 LOCAL_WORKFLOW_CHECKPOINT = "M32.3 — UI-to-core adapter implementation"
@@ -28,6 +28,25 @@ LOCAL_WORKFLOW_LIMITATIONS = [
     "This is not release, deployment, SaaS, commercial, or customer-ready evidence.",
 ]
 
+_SYSTEM_TITLE_HINTS: dict[str, tuple[str, ...]] = {
+    "cleanroom-hvac": (
+        "cleanroom",
+        "clean room",
+        "hvac",
+        "ahu",
+        "room",
+        "suite",
+    ),
+    "automation": (
+        "automation",
+        "plc",
+        "scada",
+        "control",
+        "controls",
+        "system",
+    ),
+}
+
 
 def _clean_selector_context(selector_context: Any) -> dict[str, Any] | None:
     if selector_context is None:
@@ -40,6 +59,35 @@ def _clean_selector_context(selector_context: Any) -> dict[str, Any] | None:
         if value is not None and value != []
     }
     return cleaned_payload or None
+
+
+def build_local_workflow_input_warnings(
+    work_package: WorkPackageModel,
+) -> list[str]:
+    """Build non-blocking controlled-input consistency warnings.
+
+    These warnings are intentionally simple title/profile alignment checks.
+    They do not classify CQV scope or block execution; they make mismatches
+    visible so a human can review them.
+    """
+
+    selector_context = work_package.selector_context
+    if selector_context is None or selector_context.system_type is None:
+        return []
+
+    expected_title_hints = _SYSTEM_TITLE_HINTS.get(selector_context.system_type)
+    if expected_title_hints is None:
+        return []
+
+    normalized_title = work_package.title.lower()
+    if any(hint in normalized_title for hint in expected_title_hints):
+        return []
+
+    return [
+        "Selected system_type "
+        f"{selector_context.system_type} may not match work package title: "
+        f"{work_package.title}"
+    ]
 
 
 def build_local_workflow_plan_payload(
@@ -99,6 +147,7 @@ def build_local_workflow_plan_payload(
             "Human review required before output acceptance.",
             "Limitations must remain visible before trial or UAT claims.",
         ],
+        "input_warnings": build_local_workflow_input_warnings(work_package),
         "readiness_gaps": readiness_gaps,
         "limitations": list(LOCAL_WORKFLOW_LIMITATIONS),
         "next_safe_actions": [
