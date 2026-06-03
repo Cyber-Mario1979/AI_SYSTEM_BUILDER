@@ -30,16 +30,16 @@ M32 — Full Local Usable Product Workflow/UI
 Status:
 
 ```text
-READY FOR PLAN M32.4 ONLY
+READY FOR PLAN M32.5 ONLY
 ```
 
 Normal next roadmap checkpoint:
 
 ```text
-PLAN M32.4 — Controlled input surfaces
+PLAN M32.5 — Workflow visibility surfaces
 ```
 
-M32.3 is complete on the implementation branch with validation evidence. M32.4 is planning only until separately authorized.
+M32.4 is complete on the implementation branch with validation evidence. M32.5 is planning only until separately authorized.
 
 ---
 
@@ -70,7 +70,7 @@ Roadmap v7 effect:
 - prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
 - keeps cleanup as a parallel support lane only, not M32 checkpoint progress;
 - preserves M32 as the active local workflow/UI milestone;
-- does not implement M32.4, run future validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
+- does not implement M32.5, run future validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
 
 ---
 
@@ -105,69 +105,70 @@ M32 must not rely on old bloated chat history as proof of live project state.
 Gate ID:
 
 ```text
-ASBP-AEG-M32-004
+ASBP-AEG-M32-005
 ```
 
 Applies to:
 
 ```text
-M32.4 — Controlled input surfaces
+M32.5 — Workflow visibility surfaces
 ```
 
 Gate status:
 
 ```text
-READY FOR PLAN M32.4 ONLY
+READY FOR PLAN M32.5 ONLY
 ```
 
-Prior M32.3 gate result:
+Prior M32.4 gate result:
 
 ```text
-M32.3 — minimal CLI-enhanced UI-to-core adapter implementation completed and validated.
+M32.4 — controlled local workflow input surfaces completed and validated.
 ```
 
-M32.4 may proceed as PLAN only until a controlled implementation plan is accepted.
+M32.5 may proceed as PLAN only until a controlled implementation plan is accepted.
 
-Required M32.4 planning output:
+Required M32.5 planning output:
 
 ```text
-Controlled input surface plan for DCF/minimal input/project/profile/source/standards choices in the CLI-enhanced local workflow.
+Workflow visibility surface plan for visible WP/task/schedule/document lifecycle/source/citation/AI limitation state where in scope.
 ```
 
-M32.4 planning must preserve:
+M32.5 planning must preserve:
 
 - CLI/UI surfaces as adapters only;
 - no domain logic inside the CLI surface;
 - no raw state writes or persistence-boundary bypass;
-- no free-form user text treated as truth;
 - visible limitations and safe failure behavior;
+- no misleading readiness indicators;
+- no hidden source, standards, retrieval, AI, validation, or output limitations;
 - no new AI/provider behavior unless separately scoped;
 - no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
 
-Tracker movement from M32.4 remains blocked until controlled input behavior exists and validates where applicable.
+Tracker movement from M32.5 remains blocked until workflow visibility behavior exists and validates where applicable.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M32.4 — Controlled input surfaces.
+M32.5 — Workflow visibility surfaces.
 
 Status:
 
 ```text
-READY FOR PLAN M32.4 ONLY
+READY FOR PLAN M32.5 ONLY
 ```
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M32.4 — Controlled input surfaces
+PLAN M32.5 — Workflow visibility surfaces
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Controlled DCF path, minimal input path, project/preset/profile/source selection, and standards/profile choices where in scope.
+Visible WP/task/schedule/document lifecycle/source/citation/AI limitation state where in scope.
 ```
 
 Validation / review requirement:
@@ -179,13 +180,13 @@ python -m pytest -q if code changed.
 Tracker movement rule:
 
 ```text
-May advance only after controlled input behavior exists.
+May advance only after visibility behavior is implemented or explicitly deferred.
 ```
 
 Not allowed:
 
 ```text
-Unvalidated free-form input as truth; document-only closure.
+Misleading readiness indicators; hidden limitations.
 ```
 
 ---
@@ -195,7 +196,7 @@ Unvalidated free-form input as truth; document-only closure.
 Latest completed roadmap checkpoint:
 
 ```text
-M32.3 — UI-to-core adapter implementation
+M32.4 — Controlled input surfaces
 ```
 
 Completion type:
@@ -204,44 +205,56 @@ Completion type:
 Build/content implementation with validation evidence
 ```
 
-M32.3 evidence:
+M32.4 evidence:
+
+```text
+asbp/local_workflow_input_logic.py
+asbp/adapters/local_workflow_cli.py
+asbp/local_workflow_logic.py
+tests/test_m32_4_controlled_input_surfaces.py
+docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
+```
+
+M32.4 validation evidence:
+
+```text
+python -m pytest tests/test_m32_4_controlled_input_surfaces.py -q — 6 passed in 1.28s
+python -m pytest -q — 1589 passed in 54.47s
+```
+
+M32.4 manual smoke evidence:
+
+```text
+python -m asbp.adapters.local_workflow_cli plan --wp-id WP-001 showed input_warnings for title/profile mismatch:
+Selected system_type cleanroom-hvac may not match work package title: Tablet press qualification
+```
+
+M32.4 implementation boundary:
+
+```text
+Controlled CLI-enhanced local workflow input surface. It applies project/work-package selector/profile/source choices through existing work-package core boundaries and saves through the approved state store helper. It surfaces non-blocking title/profile mismatch warnings. It does not treat free-form text as source truth, call AI/provider/Ollama, implement web/desktop/SaaS surfaces, or claim product/customer/release/deployment readiness.
+```
+
+M32.4 branch/write evidence:
+
+```text
+Branch m32-4-controlled-input-surface
+Commit d13ea6005b866c38d2c9e2ae5354111c5cfd5c34 — feat(m32.4): add controlled local workflow input logic
+Commit 90a31d55620c7c1d2f17fbfe8a8f3465922535be — feat(m32.4): add controlled input CLI command
+Commit 685065f4f5c33f7f04f9c26e899050c3f887f54e — test(m32.4): cover controlled input surfaces
+Commit e64a75ebc9308725b2e2e1df0d1b0a215505dfaf — fix(m32.4): add local workflow input warnings
+Commit 163a342e5ff43bdfe4575cdd2ec165785a988bb6 — fix(m32.4): surface input warnings in configure payload
+Commit 6052df4c984aed90f40578bad28f409b1e6c69ed — test(m32.4): cover controlled input mismatch warnings
+Commit 6cb79edc0dd8e671d231f2cfd5f38546d32c5423 — docs: record M32.4 validation evidence
+```
+
+Prior M32.3 evidence:
 
 ```text
 asbp/local_workflow_logic.py
 asbp/adapters/local_workflow_cli.py
 tests/test_m32_3_local_workflow_cli_adapter.py
 docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
-```
-
-M32.3 validation evidence:
-
-```text
-python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py -q — 4 passed in 0.73s
-python -m pytest -q — 1583 passed in 49.47s
-```
-
-M32.3 implementation boundary:
-
-```text
-Read-only CLI-enhanced local workflow adapter path. It reads validated state, uses core/service boundaries, shows local workflow planning payload, readiness gaps, review gates, and limitations. It does not mutate state, call AI/provider/Ollama, implement web/desktop/SaaS surfaces, or claim product/customer/release/deployment readiness.
-```
-
-M32.3 branch/write evidence:
-
-```text
-Branch m32-3-cli-workflow-adapter
-Commit 6e9ce06ddc96707a13c0a90890349ec4884c1b3c — feat(m32.3): add local workflow planning logic
-Commit 3f40a89c4fbd5821e76af1c1e717096f07684ca7 — feat(m32.3): add local workflow CLI adapter
-Commit b8c3a8e2728fb7639ac6e6c0cda0f031294d23d0 — test(m32.3): cover local workflow CLI adapter
-Commit d6591335a636274b50124d99e5c860f18a18e741 — fix(m32.3): run local workflow CLI module entrypoint
-Commit 00becfb10e824dc25a250521c420e8a8c9a11952 — docs: record M32.3 validation evidence
-```
-
-Prior M32.1/M32.2 evidence:
-
-```text
-docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
-docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
 ```
 
 ---
@@ -251,23 +264,24 @@ docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
 Latest control action:
 
 ```text
-M32.3 implementation, validation evidence, and tracker alignment
+M32.4 implementation, validation evidence, and tracker alignment
 ```
 
 Evidence:
 
 ```text
-asbp/local_workflow_logic.py
+asbp/local_workflow_input_logic.py
 asbp/adapters/local_workflow_cli.py
-tests/test_m32_3_local_workflow_cli_adapter.py
-docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
+asbp/local_workflow_logic.py
+tests/test_m32_4_controlled_input_surfaces.py
+docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M32.3 implemented and validated the minimal CLI-enhanced UI-to-core adapter path only. It did not implement M32.4 controlled input surfaces, M32.5 workflow visibility surfaces, M32.6 output review/download surfaces, M32.7 failure handling, M32.8 end-to-end scenario, UAT, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
+M32.4 implemented and validated controlled local workflow input surfaces only. It did not implement M32.5 workflow visibility surfaces, M32.6 output review/download surfaces, M32.7 failure handling, M32.8 end-to-end scenario, UAT, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -275,25 +289,25 @@ M32.3 implemented and validated the minimal CLI-enhanced UI-to-core adapter path
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M32.4 — Controlled input surfaces
+PLAN M32.5 — Workflow visibility surfaces
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN M32.4 ONLY / GO BLOCKED
+READY FOR PLAN M32.5 ONLY / GO BLOCKED
 ```
 
 Allowed current work:
 
 ```text
-PLAN M32.4 only.
+PLAN M32.5 only.
 ```
 
 Blocked until separately authorized:
 
-- GO M32.4 implementation;
-- M32.5 or later checkpoint work;
+- GO M32.5 implementation;
+- M32.6 or later checkpoint work;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
@@ -326,8 +340,14 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
+python -m pytest tests/test_m32_4_controlled_input_surfaces.py -q — 6 passed in 1.28s
+python -m pytest -q — 1589 passed in 54.47s
+```
+
+Latest focused M32.3 validation:
+
+```text
 python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py -q — 4 passed in 0.73s
-python -m pytest -q — 1583 passed in 49.47s
 ```
 
 Latest focused M31 validation:
@@ -342,18 +362,16 @@ Latest roadmap/control review evidence:
 PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
-Latest M32 docs-only alignment evidence:
+Latest M32.4 validation record:
 
 ```text
-M32.1 scope record created.
-M32.2 surface decision record created.
-PROGRESS_TRACKER.md aligned to GO M32.3.
+docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
 ```
 
 Validation scope:
 
 ```text
-M32.3 changed code and tests. Focused M32.3 tests and full pytest passed locally on the implementation branch.
+M32.4 changed code and tests. Focused M32.4 tests and full pytest passed locally on the implementation branch.
 ```
 
 ---
@@ -405,7 +423,7 @@ docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
 docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
 ```
 
-M32.3 implementation and validation are recorded on branch `m32-3-cli-workflow-adapter`:
+M32.3 implementation and validation are recorded in repo:
 
 ```text
 asbp/local_workflow_logic.py
@@ -414,7 +432,17 @@ tests/test_m32_3_local_workflow_cli_adapter.py
 docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
 ```
 
-This tracker update records M32.3 completion and keeps PLAN M32.4 as the next work. It does not start M32.4 implementation, does not authorize M32.5 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+M32.4 implementation and validation are recorded on branch `m32-4-controlled-input-surface`:
+
+```text
+asbp/local_workflow_input_logic.py
+asbp/adapters/local_workflow_cli.py
+asbp/local_workflow_logic.py
+tests/test_m32_4_controlled_input_surfaces.py
+docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
+```
+
+This tracker update records M32.4 completion and keeps PLAN M32.5 as the next work. It does not start M32.5 implementation, does not authorize M32.6 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
