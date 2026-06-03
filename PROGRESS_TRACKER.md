@@ -30,16 +30,16 @@ M32 — Full Local Usable Product Workflow/UI
 Status:
 
 ```text
-READY FOR GO M32.3 ONLY
+READY FOR PLAN M32.4 ONLY
 ```
 
 Normal next roadmap checkpoint:
 
 ```text
-GO M32.3 — UI-to-core adapter implementation
+PLAN M32.4 — Controlled input surfaces
 ```
 
-M32.1 and M32.2 are accepted owner-session planning/decision records. No M32 implementation has started.
+M32.3 is complete on the implementation branch with validation evidence. M32.4 is planning only until separately authorized.
 
 ---
 
@@ -70,7 +70,7 @@ Roadmap v7 effect:
 - prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
 - keeps cleanup as a parallel support lane only, not M32 checkpoint progress;
 - preserves M32 as the active local workflow/UI milestone;
-- does not implement M32, run validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
+- does not implement M32.4, run future validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
 
 ---
 
@@ -94,7 +94,7 @@ docs/governance/control_recovery/CONTROL_RECOVERY_002_CLOSURE_RECORD.md
 
 Carry into M32 execution as controlled-context discipline for UI/workflow and AI surfacing decisions.
 
-The old bloated ASBP Project workspace remains archive/reference only for execution. Future GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
+The old bloated ASBP Project workspace remains archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
 
 M32 must not rely on old bloated chat history as proof of live project state.
 
@@ -105,70 +105,69 @@ M32 must not rely on old bloated chat history as proof of live project state.
 Gate ID:
 
 ```text
-ASBP-AEG-M32-003
+ASBP-AEG-M32-004
 ```
 
 Applies to:
 
 ```text
-M32.3 — UI-to-core adapter implementation
+M32.4 — Controlled input surfaces
 ```
 
 Gate status:
 
 ```text
-READY FOR GO M32.3 ONLY
+READY FOR PLAN M32.4 ONLY
 ```
 
-Prior M32.1/M32.2 gate result:
+Prior M32.3 gate result:
 
 ```text
-M32.1 — simplified local workflow scope accepted and recorded.
-M32.2 — CLI-enhanced controlled local workflow surface decision accepted and recorded.
+M32.3 — minimal CLI-enhanced UI-to-core adapter implementation completed and validated.
 ```
 
-M32.3 may proceed as GO only for the minimal CLI-enhanced UI-to-core adapter implementation.
+M32.4 may proceed as PLAN only until a controlled implementation plan is accepted.
 
-Required M32.3 execution output:
+Required M32.4 planning output:
 
 ```text
-Minimal CLI-enhanced local workflow adapter path using approved core/service boundaries, with tests.
+Controlled input surface plan for DCF/minimal input/project/profile/source/standards choices in the CLI-enhanced local workflow.
 ```
 
-M32.3 execution must preserve:
+M32.4 planning must preserve:
 
 - CLI/UI surfaces as adapters only;
 - no domain logic inside the CLI surface;
 - no raw state writes or persistence-boundary bypass;
 - no free-form user text treated as truth;
 - visible limitations and safe failure behavior;
-- no new AI/provider behavior;
+- no new AI/provider behavior unless separately scoped;
 - no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
 
-Tracker movement from M32.3 remains blocked until implementation and validation evidence exist.
+Tracker movement from M32.4 remains blocked until controlled input behavior exists and validates where applicable.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M32.3 — UI-to-core adapter implementation.
+M32.4 — Controlled input surfaces.
 
 Status:
 
 ```text
-READY FOR GO M32.3 ONLY
+READY FOR PLAN M32.4 ONLY
 ```
 
 Normal roadmap checkpoint:
 
 ```text
-GO M32.3 — UI-to-core adapter implementation
+PLAN M32.4 — Controlled input surfaces
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Actual UI adapter contracts, routes, forms, or calls as applicable, using approved core/service boundaries.
+Controlled DCF path, minimal input path, project/preset/profile/source selection, and standards/profile choices where in scope.
 ```
 
 Validation / review requirement:
@@ -180,13 +179,13 @@ python -m pytest -q if code changed.
 Tracker movement rule:
 
 ```text
-May advance only after adapter behavior exists and validates where applicable.
+May advance only after controlled input behavior exists.
 ```
 
 Not allowed:
 
 ```text
-UI writes raw state/files directly; document-only closure.
+Unvalidated free-form input as truth; document-only closure.
 ```
 
 ---
@@ -196,45 +195,53 @@ UI writes raw state/files directly; document-only closure.
 Latest completed roadmap checkpoint:
 
 ```text
-M32.2 — Local UI/runtime surface decision
+M32.3 — UI-to-core adapter implementation
 ```
 
 Completion type:
 
 ```text
-Owner-accepted decision record / docs-only alignment
+Build/content implementation with validation evidence
 ```
 
-M32.1/M32.2 evidence:
+M32.3 evidence:
+
+```text
+asbp/local_workflow_logic.py
+asbp/adapters/local_workflow_cli.py
+tests/test_m32_3_local_workflow_cli_adapter.py
+docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
+```
+
+M32.3 validation evidence:
+
+```text
+python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py -q — 4 passed in 0.73s
+python -m pytest -q — 1583 passed in 49.47s
+```
+
+M32.3 implementation boundary:
+
+```text
+Read-only CLI-enhanced local workflow adapter path. It reads validated state, uses core/service boundaries, shows local workflow planning payload, readiness gaps, review gates, and limitations. It does not mutate state, call AI/provider/Ollama, implement web/desktop/SaaS surfaces, or claim product/customer/release/deployment readiness.
+```
+
+M32.3 branch/write evidence:
+
+```text
+Branch m32-3-cli-workflow-adapter
+Commit 6e9ce06ddc96707a13c0a90890349ec4884c1b3c — feat(m32.3): add local workflow planning logic
+Commit 3f40a89c4fbd5821e76af1c1e717096f07684ca7 — feat(m32.3): add local workflow CLI adapter
+Commit b8c3a8e2728fb7639ac6e6c0cda0f031294d23d0 — test(m32.3): cover local workflow CLI adapter
+Commit d6591335a636274b50124d99e5c860f18a18e741 — fix(m32.3): run local workflow CLI module entrypoint
+Commit 00becfb10e824dc25a250521c420e8a8c9a11952 — docs: record M32.3 validation evidence
+```
+
+Prior M32.1/M32.2 evidence:
 
 ```text
 docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
 docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
-```
-
-M32.1 decision:
-
-```text
-Simplified first local workflow scope accepted.
-```
-
-M32.2 decision:
-
-```text
-CLI-enhanced controlled local workflow selected as the first local surface.
-```
-
-Implementation status:
-
-```text
-No M32 UI/runtime implementation has started.
-```
-
-M32.1/M32.2 merge/write evidence:
-
-```text
-Commit e4e72b50011498660ec27bb576681a4c34b8b280 — docs: record M32.1 workflow scope lock
-Commit 8f32b8851ff7f471d634c9500d083db0f7bae0f6 — docs: record M32.2 local surface decision
 ```
 
 ---
@@ -244,21 +251,23 @@ Commit 8f32b8851ff7f471d634c9500d083db0f7bae0f6 — docs: record M32.2 local sur
 Latest control action:
 
 ```text
-M32.1-M32.2 docs-only repo alignment and tracker update
+M32.3 implementation, validation evidence, and tracker alignment
 ```
 
 Evidence:
 
 ```text
-docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
-docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
+asbp/local_workflow_logic.py
+asbp/adapters/local_workflow_cli.py
+tests/test_m32_3_local_workflow_cli_adapter.py
+docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M32.1 and M32.2 were recorded as accepted planning/decision records only. They did not implement M32 workflow/UI and did not authorize M32.4 or later work.
+M32.3 implemented and validated the minimal CLI-enhanced UI-to-core adapter path only. It did not implement M32.4 controlled input surfaces, M32.5 workflow visibility surfaces, M32.6 output review/download surfaces, M32.7 failure handling, M32.8 end-to-end scenario, UAT, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -266,24 +275,25 @@ M32.1 and M32.2 were recorded as accepted planning/decision records only. They d
 ## Exact Next Unfinished Work
 
 ```text
-GO M32.3 — UI-to-core adapter implementation
+PLAN M32.4 — Controlled input surfaces
 ```
 
 Current state:
 
 ```text
-READY FOR GO M32.3 ONLY / IMPLEMENTATION NOT STARTED
+READY FOR PLAN M32.4 ONLY / GO BLOCKED
 ```
 
 Allowed current work:
 
 ```text
-M32.3 minimal CLI-enhanced UI-to-core adapter implementation only.
+PLAN M32.4 only.
 ```
 
 Blocked until separately authorized:
 
-- M32.4 or later checkpoint work;
+- GO M32.4 implementation;
+- M32.5 or later checkpoint work;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
@@ -316,7 +326,8 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
-python -m pytest -q — 1579 passed in 48.29s
+python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py -q — 4 passed in 0.73s
+python -m pytest -q — 1583 passed in 49.47s
 ```
 
 Latest focused M31 validation:
@@ -342,7 +353,7 @@ PROGRESS_TRACKER.md aligned to GO M32.3.
 Validation scope:
 
 ```text
-M32.1, M32.2, and this tracker alignment are docs-only control alignment. No additional executable validation is required because no code, tests, commands, imports, schemas, runtime behavior, CLI behavior, validators, loaders, adapters, or executable contracts changed.
+M32.3 changed code and tests. Focused M32.3 tests and full pytest passed locally on the implementation branch.
 ```
 
 ---
@@ -387,14 +398,23 @@ PR #70 through PR #98 completed M31 planning, implementation, validation, UAT, c
 
 PR #100 promoted `ROADMAP_CANONICAL.md` to v7 with explicit required-deliverable controls.
 
-M32.1 and M32.2 accepted decisions are now recorded in repo as docs-only alignment records:
+M32.1 and M32.2 accepted decisions are recorded in repo as docs-only alignment records:
 
 ```text
 docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
 docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
 ```
 
-This tracker update records M32.1-M32.2 alignment and keeps GO M32.3 as the next work. It does not start M32.3 implementation, does not authorize M32.4 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+M32.3 implementation and validation are recorded on branch `m32-3-cli-workflow-adapter`:
+
+```text
+asbp/local_workflow_logic.py
+asbp/adapters/local_workflow_cli.py
+tests/test_m32_3_local_workflow_cli_adapter.py
+docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
+```
+
+This tracker update records M32.3 completion and keeps PLAN M32.4 as the next work. It does not start M32.4 implementation, does not authorize M32.5 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
