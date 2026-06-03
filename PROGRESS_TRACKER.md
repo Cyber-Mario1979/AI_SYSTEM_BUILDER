@@ -30,16 +30,16 @@ M32 — Full Local Usable Product Workflow/UI
 Status:
 
 ```text
-READY FOR PLAN M32.1 ONLY
+READY FOR GO M32.3 ONLY
 ```
 
 Normal next roadmap checkpoint:
 
 ```text
-PLAN M32.1 — Full local workflow scope lock
+GO M32.3 — UI-to-core adapter implementation
 ```
 
-This is PLAN only, not GO.
+M32.1 and M32.2 are accepted owner-session planning/decision records. No M32 implementation has started.
 
 ---
 
@@ -69,8 +69,8 @@ Roadmap v7 effect:
 - makes `Required deliverable / completion minimum` explicit inside remaining checkpoint tables;
 - prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
 - keeps cleanup as a parallel support lane only, not M32 checkpoint progress;
-- preserves `PLAN M32.1` as the next active action;
-- does not implement M32, move the tracker, run validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
+- preserves M32 as the active local workflow/UI milestone;
+- does not implement M32, run validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
 
 ---
 
@@ -92,9 +92,9 @@ docs/governance/control_recovery/CONTROL_RECOVERY_002_CLOSURE_RECORD.md
 
 ## Active Context Reset CAPA Status
 
-Carry into M32 entry planning as controlled-context discipline for UI/workflow and AI surfacing decisions.
+Carry into M32 execution as controlled-context discipline for UI/workflow and AI surfacing decisions.
 
-The old bloated ASBP Project workspace remains archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
+The old bloated ASBP Project workspace remains archive/reference only for execution. Future GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
 
 M32 must not rely on old bloated chat history as proof of live project state.
 
@@ -105,93 +105,88 @@ M32 must not rely on old bloated chat history as proof of live project state.
 Gate ID:
 
 ```text
-ASBP-AEG-M32-001
+ASBP-AEG-M32-003
 ```
 
 Applies to:
 
 ```text
-M32.1 — Full local workflow scope lock
+M32.3 — UI-to-core adapter implementation
 ```
 
 Gate status:
 
 ```text
-READY FOR PLAN ONLY
+READY FOR GO M32.3 ONLY
 ```
 
-Prior M31.12 gate result:
+Prior M32.1/M32.2 gate result:
 
 ```text
-M31.12 — M31 closeout and AI readiness recommendation completed. M31 closed with conditional local/offline AI assistance baseline.
+M32.1 — simplified local workflow scope accepted and recorded.
+M32.2 — CLI-enhanced controlled local workflow surface decision accepted and recorded.
 ```
 
-M32.1 may proceed as PLAN only, not GO.
+M32.3 may proceed as GO only for the minimal CLI-enhanced UI-to-core adapter implementation.
 
-Required M32.1 planning output:
+Required M32.3 execution output:
 
 ```text
-Controlled checkpoint plan for full local workflow scope lock.
+Minimal CLI-enhanced local workflow adapter path using approved core/service boundaries, with tests.
 ```
 
-M32.1 planning must define or confirm:
+M32.3 execution must preserve:
 
-- local product workflow scope;
-- intended user journey;
-- included product functions;
-- excluded product functions;
-- whether AI assistance is included in M32 local workflow;
-- if AI is included, how M31 bounded local/offline draft-support limits apply;
-- how UI/workflow surfaces prevent unvalidated free-form input as truth;
-- how generated output remains human-review-required;
-- boundaries for source selection, retrieval, document/output flow, review, and AI where included;
-- DDR-001, DDR-002, DDR-005, DDR-006, DDR-007, and DDR-009 carry-forward impact as applicable;
-- validation/review requirements;
-- tracker movement rule;
-- explicit non-SaaS, non-cloud-first, non-commercialization, non-release, non-deployment, and non-customer-ready claims.
+- CLI/UI surfaces as adapters only;
+- no domain logic inside the CLI surface;
+- no raw state writes or persistence-boundary bypass;
+- no free-form user text treated as truth;
+- visible limitations and safe failure behavior;
+- no new AI/provider behavior;
+- no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
 
-Tracker movement from M32.1 remains blocked until an accepted M32.1 plan exists.
+Tracker movement from M32.3 remains blocked until implementation and validation evidence exist.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M32.1 — Full local workflow scope lock.
+M32.3 — UI-to-core adapter implementation.
 
 Status:
 
 ```text
-READY FOR PLAN ONLY
+READY FOR GO M32.3 ONLY
 ```
 
 Normal roadmap checkpoint:
 
 ```text
-PLAN M32.1 — Full local workflow scope lock
+GO M32.3 — UI-to-core adapter implementation
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Scope record defining local user journey, included/excluded functions, project creation/selection, preset/profile binding, task staging, planning, document/output flow, review gates, source selection, AI inclusion decision, limitations, and acceptance criteria.
+Actual UI adapter contracts, routes, forms, or calls as applicable, using approved core/service boundaries.
 ```
 
 Validation / review requirement:
 
 ```text
-Document consistency review.
+python -m pytest -q if code changed.
 ```
 
 Tracker movement rule:
 
 ```text
-May advance only after accepted M32.1 scope record exists.
+May advance only after adapter behavior exists and validates where applicable.
 ```
 
 Not allowed:
 
 ```text
-Treating scope record as implemented UI/workflow; SaaS/admin/tenant scope.
+UI writes raw state/files directly; document-only closure.
 ```
 
 ---
@@ -201,63 +196,45 @@ Treating scope record as implemented UI/workflow; SaaS/admin/tenant scope.
 Latest completed roadmap checkpoint:
 
 ```text
-M31.12 — M31 closeout and AI readiness recommendation
+M32.2 — Local UI/runtime surface decision
 ```
 
 Completion type:
 
 ```text
-Closeout / readiness recommendation evidence
+Owner-accepted decision record / docs-only alignment
 ```
 
-M31.12 evidence:
+M32.1/M32.2 evidence:
 
 ```text
-docs/milestones/M31/M31_12_M31_CLOSEOUT_AI_READINESS_RECOMMENDATION_PLAN.md
-docs/milestones/M31/M31_12_M31_CLOSEOUT_AI_READINESS_RECOMMENDATION.md
+docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
+docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
 ```
 
-M31.12 merge evidence:
+M32.1 decision:
 
 ```text
-PR #98 — docs: record M31.12 closeout readiness recommendation
+Simplified first local workflow scope accepted.
 ```
 
-M31 closeout decision:
+M32.2 decision:
 
 ```text
-M31 CLOSED WITH CONDITIONAL LOCAL/OFFLINE AI ASSISTANCE BASELINE.
+CLI-enhanced controlled local workflow selected as the first local surface.
 ```
 
-Frozen M31 baseline:
+Implementation status:
 
 ```text
-Bounded local/offline draft-support behavior with human review required.
+No M32 UI/runtime implementation has started.
 ```
 
-M31 accepted technical references:
+M32.1/M32.2 merge/write evidence:
 
 ```text
-Ollama + llama3.2:3b local runtime evidence.
-App-coupled local Ollama smoke contract.
-No API key required for accepted local scope.
-No cloud/provider call required for accepted local scope.
-Normal pytest does not require Ollama.
-```
-
-M31 DDR positions at closeout:
-
-```text
-DDR-005 — partially closed for bounded retrieval controls.
-DDR-006 — carried forward for generated output review.
-DDR-007 — partially closed / carried forward.
-DDR-009 — carried forward for future UI/API scope.
-```
-
-M31 closeout boundary:
-
-```text
-M31 did not add new runtime behavior, provider behavior, UI/API behavior, deployment behavior, commercial-launch behavior, or customer-ready behavior.
+Commit e4e72b50011498660ec27bb576681a4c34b8b280 — docs: record M32.1 workflow scope lock
+Commit 8f32b8851ff7f471d634c9500d083db0f7bae0f6 — docs: record M32.2 local surface decision
 ```
 
 ---
@@ -267,19 +244,21 @@ M31 did not add new runtime behavior, provider behavior, UI/API behavior, deploy
 Latest control action:
 
 ```text
-Roadmap v7 required-deliverable control alignment
+M32.1-M32.2 docs-only repo alignment and tracker update
 ```
 
 Evidence:
 
 ```text
-PR #100 — docs: promote roadmap v7 deliverable controls
+docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
+docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
+PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-Roadmap v7 changed roadmap/control wording only. It did not move the project beyond PLAN M32.1 and did not implement M32 workflow/UI.
+M32.1 and M32.2 were recorded as accepted planning/decision records only. They did not implement M32 workflow/UI and did not authorize M32.4 or later work.
 ```
 
 ---
@@ -287,29 +266,29 @@ Roadmap v7 changed roadmap/control wording only. It did not move the project bey
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M32.1 — Full local workflow scope lock
+GO M32.3 — UI-to-core adapter implementation
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN ONLY / GO BLOCKED
+READY FOR GO M32.3 ONLY / IMPLEMENTATION NOT STARTED
 ```
 
 Allowed current work:
 
 ```text
-PLAN M32.1 only.
+M32.3 minimal CLI-enhanced UI-to-core adapter implementation only.
 ```
 
 Blocked until separately authorized:
 
-- GO;
-- tracker advancement from M32.1;
-- M32.1 implementation before accepted plan;
-- UI/runtime implementation before accepted plan;
-- API key generation, storage, or use before accepted plan if a provider path is selected;
-- cloud/provider API comparison before accepted plan;
+- M32.4 or later checkpoint work;
+- web UI;
+- desktop UI;
+- SaaS/admin/customer surfaces;
+- cloud-first workflow;
+- provider/API key use;
 - real provider calls beyond accepted scope;
 - local model inference beyond accepted scope;
 - raw provider payload storage;
@@ -352,10 +331,18 @@ Latest roadmap/control review evidence:
 PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
+Latest M32 docs-only alignment evidence:
+
+```text
+M32.1 scope record created.
+M32.2 surface decision record created.
+PROGRESS_TRACKER.md aligned to GO M32.3.
+```
+
 Validation scope:
 
 ```text
-Roadmap v7 and this tracker alignment are docs-only control alignment. No additional executable validation is required because no code, tests, commands, imports, schemas, runtime behavior, CLI behavior, validators, loaders, or executable contracts changed.
+M32.1, M32.2, and this tracker alignment are docs-only control alignment. No additional executable validation is required because no code, tests, commands, imports, schemas, runtime behavior, CLI behavior, validators, loaders, adapters, or executable contracts changed.
 ```
 
 ---
@@ -400,7 +387,14 @@ PR #70 through PR #98 completed M31 planning, implementation, validation, UAT, c
 
 PR #100 promoted `ROADMAP_CANONICAL.md` to v7 with explicit required-deliverable controls.
 
-This tracker update records Roadmap v7 alignment and keeps PLAN M32.1 as the next work. It does not start M32.1, does not authorize GO, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, UI/API behavior, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+M32.1 and M32.2 accepted decisions are now recorded in repo as docs-only alignment records:
+
+```text
+docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
+docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
+```
+
+This tracker update records M32.1-M32.2 alignment and keeps GO M32.3 as the next work. It does not start M32.3 implementation, does not authorize M32.4 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
