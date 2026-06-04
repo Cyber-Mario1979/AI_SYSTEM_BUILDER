@@ -1,4 +1,4 @@
-"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6/M32.7."""
+"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6/M32.7/M32.8."""
 
 from __future__ import annotations
 
@@ -17,6 +17,10 @@ from asbp.local_workflow_failure_logic import (
 from asbp.local_workflow_input_logic import configure_local_workflow_inputs
 from asbp.local_workflow_logic import build_local_workflow_plan_payload
 from asbp.local_workflow_output_logic import build_local_workflow_output_payload
+from asbp.local_workflow_scenario_logic import (
+    build_empty_local_workflow_scenario_state,
+    stage_local_workflow_scenario,
+)
 from asbp.local_workflow_visibility_logic import build_local_workflow_visibility_payload
 from asbp.state_model import StateModel
 
@@ -44,6 +48,18 @@ def build_parser() -> argparse.ArgumentParser:
         dest="command",
         parser_class=LocalWorkflowArgumentParser,
     )
+
+    scenario_parser = subparsers.add_parser(
+        "scenario",
+        help="Stage an approved end-to-end local workflow scenario",
+    )
+    scenario_parser.add_argument(
+        "--scenario-id",
+        required=True,
+        choices=["cleanroom-hvac-qualification-basic"],
+        help="Approved local workflow scenario ID to stage",
+    )
+    scenario_parser.set_defaults(func=handle_scenario)
 
     plan_parser = subparsers.add_parser(
         "plan",
@@ -170,6 +186,52 @@ def _load_state_or_report(command: str) -> StateModel | None:
             )
         )
         return None
+
+
+def _load_or_initialize_state_for_scenario() -> StateModel:
+    try:
+        return state_store.load_validated_state(state_store.get_state_file_path())
+    except FileNotFoundError:
+        return build_empty_local_workflow_scenario_state()
+
+
+def handle_scenario(args: argparse.Namespace) -> int:
+    try:
+        state = _load_or_initialize_state_for_scenario()
+        payload = stage_local_workflow_scenario(
+            state,
+            scenario_id=args.scenario_id,
+        )
+    except ValidationError as exc:
+        _print_payload(
+            build_invalid_state_failure_payload(
+                command=args.command,
+                message="State validation failed.",
+                detail=str(exc),
+            )
+        )
+        return 1
+    except json.JSONDecodeError as exc:
+        _print_payload(
+            build_invalid_state_failure_payload(
+                command=args.command,
+                message=f"Invalid JSON in state file: {exc}",
+                detail="State file must contain valid JSON before local workflow scenario staging can continue.",
+            )
+        )
+        return 1
+    except ValueError as exc:
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
+
+    state_store.save_validated_state_to_path(state, state_store.get_state_file_path())
+    _print_payload(payload)
+    return 0
 
 
 def handle_plan(args: argparse.Namespace) -> int:
