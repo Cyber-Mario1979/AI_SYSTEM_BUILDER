@@ -1,4 +1,4 @@
-"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5."""
+"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ from pydantic import ValidationError
 import asbp.state_store as state_store
 from asbp.local_workflow_input_logic import configure_local_workflow_inputs
 from asbp.local_workflow_logic import build_local_workflow_plan_payload
+from asbp.local_workflow_output_logic import build_local_workflow_output_payload
 from asbp.local_workflow_visibility_logic import build_local_workflow_visibility_payload
 from asbp.state_model import StateModel
 
@@ -89,6 +90,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     status_parser.set_defaults(func=handle_status)
 
+    outputs_parser = subparsers.add_parser(
+        "outputs",
+        help="Show read-only output review/access state and limitations",
+    )
+    outputs_parser.add_argument(
+        "--wp-id",
+        required=True,
+        help="Work Package ID to use as the local output review anchor",
+    )
+    outputs_parser.set_defaults(func=handle_outputs)
+
     return parser
 
 
@@ -162,11 +174,25 @@ def handle_status(args: argparse.Namespace) -> None:
     print(json.dumps(payload, indent=2))
 
 
+def handle_outputs(args: argparse.Namespace) -> None:
+    state = _load_state_or_report()
+    if state is None:
+        return
+
+    try:
+        payload = build_local_workflow_output_payload(state, wp_id=args.wp_id)
+    except ValueError as exc:
+        print(str(exc))
+        return
+
+    print(json.dumps(payload, indent=2))
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.command in {"plan", "configure", "status"}:
+    if args.command in {"plan", "configure", "status", "outputs"}:
         args.func(args)
         return
 
