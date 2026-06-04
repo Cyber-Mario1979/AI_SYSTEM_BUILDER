@@ -216,8 +216,8 @@ def test_status_outputs_schedule_lifecycle_when_plan_exists(restore_state_file):
                 "workmonth_mode": "calendar_month",
             },
             "generated_task_plan_count": 2,
-            "generated_schedule_start_at": "2026-06-08T08:00:00+00:00",
-            "generated_schedule_finish_at": "2026-06-10T16:00:00+00:00",
+            "generated_schedule_start_at": "2026-06-08T08:00:00Z",
+            "generated_schedule_finish_at": "2026-06-10T16:00:00Z",
         }
     ]
     assert "No generated schedule is visible for this work package." not in payload[
