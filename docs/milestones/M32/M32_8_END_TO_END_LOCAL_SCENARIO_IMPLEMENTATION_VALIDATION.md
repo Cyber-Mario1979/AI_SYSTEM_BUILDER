@@ -1,6 +1,6 @@
 # M32.8 — End-to-End Local Scenario Implementation Validation
 
-Status: Implementation branch prepared; validation pending owner/local run  
+Status: Completed on implementation branch  
 Checkpoint: M32.8  
 Mode: Build/content  
 Branch: `m32-8-end-to-end-local-scenario`  
@@ -8,7 +8,7 @@ Validation date: 2026-06-04
 
 ## Purpose
 
-Record M32.8 implementation scope and required validation for one approved local CQV workflow scenario that can be exercised through the local workflow surface.
+Record M32.8 implementation and validation evidence for one approved local CQV workflow scenario that can be exercised through the local workflow surface.
 
 ## Scenario
 
@@ -63,6 +63,12 @@ The scenario command stages:
 - visible limitations and human-review-required evidence;
 - no approval, release, product-ready, UAT, deployment, SaaS, commercial, or customer-ready claim.
 
+The focused M32.8 test suite exercises the scenario path through:
+
+```text
+scenario -> configure -> plan -> status -> outputs
+```
+
 ## Boundary statement
 
 The implementation is intentionally limited.
@@ -80,35 +86,36 @@ It:
 - does not generate documents, exports, reports, rendered artifacts, downloads, signatures, approval records, release records, or product-ready output;
 - does not call AI, Ollama, provider APIs, cloud services, web UI, desktop UI, SaaS/admin/customer surfaces, deployment, release, or commercialization behavior.
 
-## Required validation
+## Validation evidence
 
 Focused M32.8 validation:
 
 ```text
 python -m pytest tests/test_m32_8_end_to_end_local_scenario.py -q
+5 passed in 2.00s
 ```
 
 M32 local workflow adapter regression validation:
 
 ```text
 python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py tests/test_m32_7_local_workflow_failure_handling.py tests/test_m32_8_end_to_end_local_scenario.py -q
+36 passed in 7.32s
 ```
 
 Full validation:
 
 ```text
 python -m pytest -q
+1615 passed in 53.98s
 ```
 
-## Validation evidence
-
-Validation has not been run by the assistant in this connector-only session. The project owner must run the validation commands locally on branch `m32-8-end-to-end-local-scenario` before merge or tracker advancement.
+Validation was run locally by the project owner in the checked-out feature branch.
 
 ## Scope limits
 
 This record does not claim:
 
-- M32.8 completion on `main`;
+- M32.8 completion on `main` until PR merge;
 - M32.9 validation checkpoint completion;
 - M32.10 UAT / owner acceptance;
 - M32.11 closeout;
@@ -122,12 +129,12 @@ This record does not claim:
 
 ## Tracker movement
 
-M32.8 may be recorded as complete only after focused M32.8 validation, M32 local workflow regression validation, full validation, and scenario evidence pass.
+M32.8 may be recorded as complete on the implementation branch because the scenario exists, can be exercised through the local workflow surface, and focused M32.8 validation, M32 local workflow regression validation, and full validation passed.
 
-The next checkpoint after validated M32.8 completion would be:
+The next checkpoint after M32.8 merge is:
 
 ```text
 PLAN M32.9 — Validation checkpoint
 ```
 
-M32.9 implementation/validation remains blocked until M32.8 is validated, reviewed, merged, and separately authorized.
+M32.9 implementation/validation remains blocked until M32.8 is merged and separately authorized.
