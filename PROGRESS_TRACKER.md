@@ -30,16 +30,16 @@ M32 — Full Local Usable Product Workflow/UI
 Status:
 
 ```text
-READY FOR PLAN M32.7 ONLY
+READY FOR PLAN M32.8 ONLY AFTER M32.7 MERGE
 ```
 
-Normal next roadmap checkpoint:
+Normal next roadmap checkpoint after M32.7 merge:
 
 ```text
-PLAN M32.7 — Local workflow error/failure handling
+PLAN M32.8 — End-to-end local scenario implementation
 ```
 
-M32.6 is complete on the implementation branch with validation evidence. M32.7 is planning only until separately authorized.
+M32.7 is complete on the implementation branch with validation evidence. M32.8 is planning only after M32.7 is merged and separately authorized.
 
 ---
 
@@ -105,88 +105,88 @@ M32 must not rely on old bloated chat history as proof of live project state.
 Gate ID:
 
 ```text
-ASBP-AEG-M32-007
+ASBP-AEG-M32-008
 ```
 
 Applies to:
 
 ```text
-M32.7 — Local workflow error/failure handling
+M32.8 — End-to-end local scenario implementation
 ```
 
 Gate status:
 
 ```text
-READY FOR PLAN M32.7 ONLY
+READY FOR PLAN M32.8 ONLY AFTER M32.7 MERGE
 ```
 
-Prior M32.6 gate result:
+Prior M32.7 gate result:
 
 ```text
-M32.6 — output review/download surfaces completed and validated.
+M32.7 — local workflow error/failure handling completed and validated on implementation branch.
 ```
 
-M32.7 may proceed as PLAN only until a controlled implementation plan is accepted.
+M32.8 may proceed as PLAN only after M32.7 is merged, unless the project owner explicitly redirects.
 
-Required M32.7 planning output:
+Required M32.8 planning output:
 
 ```text
-Local workflow error/failure handling plan for missing input, invalid references, source limitations, validation errors, and provider/AI failures where in scope.
+End-to-end local scenario implementation plan for one approved local CQV workflow scenario that can actually be exercised through the local UI/workflow.
 ```
 
-M32.7 planning must preserve:
+M32.8 planning must preserve:
 
 - CLI/UI surfaces as adapters only;
 - no domain logic inside the CLI surface;
 - no raw state writes or persistence-boundary bypass;
-- visible and safe error/failure handling;
+- visible and safe limitations from M32.5, M32.6, and M32.7;
 - no false success states;
 - no masked validation, artifact, source, standards, retrieval, AI, or output limitations;
 - no new AI/provider behavior unless separately scoped;
 - no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
 
-Tracker movement from M32.7 remains blocked until failure behavior exists and validates where applicable.
+Tracker movement from M32.8 remains blocked until an end-to-end local scenario can actually be exercised through the local UI/workflow with evidence.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M32.7 — Local workflow error/failure handling.
+M32.8 — End-to-end local scenario implementation.
 
 Status:
 
 ```text
-READY FOR PLAN M32.7 ONLY
+READY FOR PLAN M32.8 ONLY AFTER M32.7 MERGE
 ```
 
-Normal roadmap checkpoint:
+Normal roadmap checkpoint after M32.7 merge:
 
 ```text
-PLAN M32.7 — Local workflow error/failure handling
+PLAN M32.8 — End-to-end local scenario implementation
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Visible and safe handling for missing input, invalid references, source limitations, validation errors, and provider/AI failures where in scope.
+One approved local CQV workflow scenario that can actually be exercised through the local UI/workflow, with executable/local-use instructions and evidence.
 ```
 
 Validation / review requirement:
 
 ```text
-python -m pytest -q if code changed.
+python -m pytest -q if code changed; scenario evidence required.
 ```
 
 Tracker movement rule:
 
 ```text
-May advance only after failure behavior exists.
+May advance only after a local scenario can be exercised.
 ```
 
 Not allowed:
 
 ```text
-UI masks failures; false success state.
+Calling it product-ready before trial; document-only closure.
 ```
 
 ---
@@ -196,7 +196,7 @@ UI masks failures; false success state.
 Latest completed roadmap checkpoint:
 
 ```text
-M32.6 — Output review/download surfaces
+M32.7 — Local workflow error/failure handling
 ```
 
 Completion type:
@@ -205,37 +205,43 @@ Completion type:
 Build/content implementation with validation evidence
 ```
 
-M32.6 evidence:
+M32.7 evidence:
+
+```text
+asbp/local_workflow_failure_logic.py
+asbp/adapters/local_workflow_cli.py
+tests/test_m32_7_local_workflow_failure_handling.py
+docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
+```
+
+M32.7 validation evidence:
+
+```text
+python -m pytest tests/test_m32_7_local_workflow_failure_handling.py -q — 8 passed in 1.22s
+python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py tests/test_m32_7_local_workflow_failure_handling.py -q — 31 passed in 5.64s
+python -m pytest -q — 1610 passed in 53.65s
+```
+
+M32.7 implementation boundary:
+
+```text
+Structured visible and safe local workflow error/failure handling for missing command/input, missing state, invalid JSON/state validation, invalid work-package references, source/citation limitations, output validation errors/limitations, and provider/AI failure visibility where in scope. It keeps the CLI surface as an adapter, returns non-success status for blocking failures, preserves approved state boundaries, and does not mutate state for failure handling, call AI/provider/Ollama, generate outputs, approve/sign/release/certify artifacts, implement web/desktop/SaaS surfaces, or claim product/customer/release/deployment readiness.
+```
+
+M32.7 branch/write evidence:
+
+```text
+Branch m32-7-local-workflow-failure-handling
+PR #107 — M32.7: add local workflow error/failure handling
+```
+
+Prior M32.6 evidence:
 
 ```text
 asbp/local_workflow_output_logic.py
 asbp/adapters/local_workflow_cli.py
 tests/test_m32_6_output_review_download_surfaces.py
 docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
-```
-
-M32.6 validation evidence:
-
-```text
-python -m pytest tests/test_m32_6_output_review_download_surfaces.py -q — 7 passed in 1.33s
-python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py -q — 23 passed in 4.47s
-python -m pytest -q — 1602 passed in 50.91s
-```
-
-M32.6 implementation boundary:
-
-```text
-Read-only CLI-enhanced local workflow output review/download surface. It exposes document/export/report output status, artifact metadata, output validation state, validation limitations, review/acceptance status, and safe artifact access state. It does not mutate state, place domain logic in the CLI adapter, generate documents/exports/reports/artifacts, silently accept output, approve/sign/release/certify output, expose raw paths, call AI/provider/Ollama, implement web/desktop/SaaS surfaces, or claim product/customer/release/deployment readiness.
-```
-
-M32.6 branch/write evidence:
-
-```text
-Branch m32-6-output-review-download-surfaces
-Commit 43d12290a634398b2bc65e4db167ccaba950ef39 — feat(m32.6): add local workflow output review logic
-Commit be6a0352f965705c9d1a902d9ffaf820fc73393b — feat(m32.6): add local workflow outputs command
-Commit 41c11c1e9a7ee3b1ac6f0dbffd136adc4e3487dc — test(m32.6): cover output review download surfaces
-Commit c962fe12d8b1be98c616ef86700fe5dc98264273 — docs: record M32.6 validation evidence
 ```
 
 Prior M32.5 evidence:
@@ -273,23 +279,23 @@ docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
 Latest control action:
 
 ```text
-M32.6 implementation, validation evidence, and tracker alignment
+M32.7 implementation, validation evidence, and tracker alignment on implementation branch
 ```
 
 Evidence:
 
 ```text
-asbp/local_workflow_output_logic.py
+asbp/local_workflow_failure_logic.py
 asbp/adapters/local_workflow_cli.py
-tests/test_m32_6_output_review_download_surfaces.py
-docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
+tests/test_m32_7_local_workflow_failure_handling.py
+docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M32.6 implemented and validated read-only output review/download surfaces only. It did not implement M32.7 failure handling, M32.8 end-to-end scenario, UAT, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
+M32.7 implemented and validated visible and safe local workflow error/failure handling only. It did not implement M32.8 end-to-end scenario, UAT, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -297,25 +303,25 @@ M32.6 implemented and validated read-only output review/download surfaces only. 
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M32.7 — Local workflow error/failure handling
+PLAN M32.8 — End-to-end local scenario implementation
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN M32.7 ONLY / GO BLOCKED
+READY FOR PLAN M32.8 ONLY AFTER M32.7 MERGE / GO BLOCKED
 ```
 
-Allowed current work:
+Allowed current work after M32.7 merge:
 
 ```text
-PLAN M32.7 only.
+PLAN M32.8 only.
 ```
 
 Blocked until separately authorized:
 
-- GO M32.7 implementation;
-- M32.8 or later checkpoint work;
+- GO M32.8 implementation;
+- M32.9 or later checkpoint work;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
@@ -348,9 +354,15 @@ Blocked until separately authorized:
 Latest executable validation:
 
 ```text
+python -m pytest tests/test_m32_7_local_workflow_failure_handling.py -q — 8 passed in 1.22s
+python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py tests/test_m32_7_local_workflow_failure_handling.py -q — 31 passed in 5.64s
+python -m pytest -q — 1610 passed in 53.65s
+```
+
+Latest focused M32.6 validation:
+
+```text
 python -m pytest tests/test_m32_6_output_review_download_surfaces.py -q — 7 passed in 1.33s
-python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py -q — 23 passed in 4.47s
-python -m pytest -q — 1602 passed in 50.91s
 ```
 
 Latest focused M32.5 validation:
@@ -377,16 +389,16 @@ Latest roadmap/control review evidence:
 PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
-Latest M32.6 validation record:
+Latest M32.7 validation record:
 
 ```text
-docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
+docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
 ```
 
 Validation scope:
 
 ```text
-M32.6 changed code and tests. Focused M32.6 tests, M32 local workflow regression tests, and full pytest passed locally on the implementation branch.
+M32.7 changed code and tests. Focused M32.7 tests, M32 local workflow regression tests, and full pytest passed locally on the implementation branch.
 ```
 
 ---
@@ -466,7 +478,7 @@ tests/test_m32_5_workflow_visibility_surfaces.py
 docs/milestones/M32/M32_5_WORKFLOW_VISIBILITY_SURFACES_VALIDATION.md
 ```
 
-M32.6 implementation and validation are recorded on branch `m32-6-output-review-download-surfaces`:
+M32.6 implementation and validation are recorded in repo:
 
 ```text
 asbp/local_workflow_output_logic.py
@@ -476,7 +488,17 @@ docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
 PROGRESS_TRACKER.md
 ```
 
-This tracker update records M32.6 completion and keeps PLAN M32.7 as the next work. It does not start M32.7 implementation, does not authorize M32.8 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+M32.7 implementation and validation are recorded on branch `m32-7-local-workflow-failure-handling`:
+
+```text
+asbp/local_workflow_failure_logic.py
+asbp/adapters/local_workflow_cli.py
+tests/test_m32_7_local_workflow_failure_handling.py
+docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
+PROGRESS_TRACKER.md
+```
+
+This tracker update records M32.7 completion on the implementation branch and keeps PLAN M32.8 as the next work after M32.7 merge. It does not start M32.8 implementation, does not authorize M32.9 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
