@@ -266,9 +266,13 @@ def test_status_reports_missing_state_file(restore_state_file):
 
     result = run_local_workflow("status", "--wp-id", "WP-001")
 
-    assert result.returncode == 0
-    assert "State file not found:" in result.stdout
-    assert "No state file found. Run 'state init' first." in result.stdout
+    assert result.returncode != 0
+    payload = json.loads(result.stdout)
+    assert payload["status"] == "failed"
+    assert payload["success"] is False
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_STATE_MISSING"
+    assert payload["failure_state"]["blocking"] is True
+    assert payload["failure_state"]["safe_to_continue"] is False
 
 
 def test_status_reports_missing_work_package(restore_state_file):
@@ -276,5 +280,8 @@ def test_status_reports_missing_work_package(restore_state_file):
 
     result = run_local_workflow("status", "--wp-id", "WP-999")
 
-    assert result.returncode == 0
-    assert "Work Package not found: WP-999" in result.stdout
+    assert result.returncode != 0
+    payload = json.loads(result.stdout)
+    assert payload["status"] == "failed"
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_INVALID_REFERENCE"
+    assert payload["failure_state"]["message"] == "Work Package not found: WP-999"

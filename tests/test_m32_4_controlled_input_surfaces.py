@@ -171,9 +171,13 @@ def test_configure_reports_missing_state_file(restore_state_file):
         "qualification-only",
     )
 
-    assert result.returncode == 0
-    assert "State file not found:" in result.stdout
-    assert "No state file found. Run 'state init' first." in result.stdout
+    assert result.returncode != 0
+    payload = json.loads(result.stdout)
+    assert payload["status"] == "failed"
+    assert payload["success"] is False
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_STATE_MISSING"
+    assert payload["failure_state"]["blocking"] is True
+    assert payload["failure_state"]["safe_to_continue"] is False
 
 
 def test_configure_reports_missing_work_package_without_mutating_state(
@@ -194,8 +198,10 @@ def test_configure_reports_missing_work_package_without_mutating_state(
         "qualification-only",
     )
 
-    assert result.returncode == 0
-    assert "Work Package not found: WP-999" in result.stdout
+    assert result.returncode != 0
+    payload = json.loads(result.stdout)
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_INVALID_REFERENCE"
+    assert payload["failure_state"]["message"] == "Work Package not found: WP-999"
     saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     assert saved == state_payload
 
@@ -219,6 +225,8 @@ def test_configure_rejects_uncontrolled_system_type_before_state_mutation(
     )
 
     assert result.returncode != 0
-    assert "invalid choice: 'uncontrolled-system'" in result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_MISSING_INPUT"
+    assert "invalid choice: 'uncontrolled-system'" in payload["failure_state"]["message"]
     saved = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     assert saved == state_payload

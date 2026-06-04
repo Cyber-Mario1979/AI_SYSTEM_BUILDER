@@ -1,4 +1,4 @@
-"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6."""
+"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6/M32.7."""
 
 from __future__ import annotations
 
@@ -8,6 +8,12 @@ import json
 from pydantic import ValidationError
 
 import asbp.state_store as state_store
+from asbp.local_workflow_failure_logic import (
+    build_invalid_reference_failure_payload,
+    build_invalid_state_failure_payload,
+    build_missing_input_failure_payload,
+    build_missing_state_failure_payload,
+)
 from asbp.local_workflow_input_logic import configure_local_workflow_inputs
 from asbp.local_workflow_logic import build_local_workflow_plan_payload
 from asbp.local_workflow_output_logic import build_local_workflow_output_payload
@@ -15,9 +21,29 @@ from asbp.local_workflow_visibility_logic import build_local_workflow_visibility
 from asbp.state_model import StateModel
 
 
+def _print_payload(payload: dict) -> None:
+    print(json.dumps(payload, indent=2))
+
+
+class LocalWorkflowArgumentParser(argparse.ArgumentParser):
+    """Argument parser that reports local workflow input failures safely."""
+
+    def error(self, message: str) -> None:
+        _print_payload(
+            build_missing_input_failure_payload(
+                command=self.prog,
+                message=message,
+            )
+        )
+        raise SystemExit(2)
+
+
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="asbp-local-workflow")
-    subparsers = parser.add_subparsers(dest="command")
+    parser = LocalWorkflowArgumentParser(prog="asbp-local-workflow")
+    subparsers = parser.add_subparsers(
+        dest="command",
+        parser_class=LocalWorkflowArgumentParser,
+    )
 
     plan_parser = subparsers.add_parser(
         "plan",
@@ -104,44 +130,72 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _load_state_or_report() -> StateModel | None:
+def _load_state_or_report(command: str) -> StateModel | None:
+    state_file_path = state_store.get_state_file_path()
+
     try:
-        return state_store.load_validated_state(state_store.get_state_file_path())
+        return state_store.load_validated_state(state_file_path)
     except FileNotFoundError:
-        print(f"State file not found: {state_store.get_state_file_path()}")
-        print("No state file found. Run 'state init' first.")
+        _print_payload(
+            build_missing_state_failure_payload(
+                command=command,
+                state_file_path=state_file_path,
+            )
+        )
         return None
     except ValidationError as exc:
-        print("State validation failed:")
-        print(exc)
+        _print_payload(
+            build_invalid_state_failure_payload(
+                command=command,
+                message="State validation failed.",
+                detail=str(exc),
+            )
+        )
         return None
     except json.JSONDecodeError as exc:
-        print(f"Invalid JSON in state file: {exc}")
+        _print_payload(
+            build_invalid_state_failure_payload(
+                command=command,
+                message=f"Invalid JSON in state file: {exc}",
+                detail="State file must contain valid JSON before local workflow commands can continue.",
+            )
+        )
         return None
     except ValueError as exc:
-        print("State validation failed:")
-        print(exc)
+        _print_payload(
+            build_invalid_state_failure_payload(
+                command=command,
+                message="State validation failed.",
+                detail=str(exc),
+            )
+        )
         return None
 
 
-def handle_plan(args: argparse.Namespace) -> None:
-    state = _load_state_or_report()
+def handle_plan(args: argparse.Namespace) -> int:
+    state = _load_state_or_report(args.command)
     if state is None:
-        return
+        return 1
 
     try:
         payload = build_local_workflow_plan_payload(state, wp_id=args.wp_id)
     except ValueError as exc:
-        print(str(exc))
-        return
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
 
-    print(json.dumps(payload, indent=2))
+    _print_payload(payload)
+    return 0
 
 
-def handle_configure(args: argparse.Namespace) -> None:
-    state = _load_state_or_report()
+def handle_configure(args: argparse.Namespace) -> int:
+    state = _load_state_or_report(args.command)
     if state is None:
-        return
+        return 1
 
     try:
         payload = configure_local_workflow_inputs(
@@ -153,51 +207,75 @@ def handle_configure(args: argparse.Namespace) -> None:
             standards_bundle_ids=args.standards_bundle,
         )
     except ValueError as exc:
-        print(str(exc))
-        return
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
 
     state_store.save_validated_state_to_path(state, state_store.get_state_file_path())
-    print(json.dumps(payload, indent=2))
+    _print_payload(payload)
+    return 0
 
 
-def handle_status(args: argparse.Namespace) -> None:
-    state = _load_state_or_report()
+def handle_status(args: argparse.Namespace) -> int:
+    state = _load_state_or_report(args.command)
     if state is None:
-        return
+        return 1
 
     try:
         payload = build_local_workflow_visibility_payload(state, wp_id=args.wp_id)
     except ValueError as exc:
-        print(str(exc))
-        return
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
 
-    print(json.dumps(payload, indent=2))
+    _print_payload(payload)
+    return 0
 
 
-def handle_outputs(args: argparse.Namespace) -> None:
-    state = _load_state_or_report()
+def handle_outputs(args: argparse.Namespace) -> int:
+    state = _load_state_or_report(args.command)
     if state is None:
-        return
+        return 1
 
     try:
         payload = build_local_workflow_output_payload(state, wp_id=args.wp_id)
     except ValueError as exc:
-        print(str(exc))
-        return
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
 
-    print(json.dumps(payload, indent=2))
+    _print_payload(payload)
+    return 0
 
 
-def main() -> None:
+def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.command in {"plan", "configure", "status", "outputs"}:
-        args.func(args)
-        return
+    handler = getattr(args, "func", None)
+    if handler is None:
+        _print_payload(
+            build_missing_input_failure_payload(
+                command=args.command,
+                message="No local workflow command supplied.",
+            )
+        )
+        return 2
 
-    parser.print_help()
+    return handler(args)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
