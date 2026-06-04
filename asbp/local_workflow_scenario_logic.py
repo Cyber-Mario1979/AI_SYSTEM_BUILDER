@@ -212,6 +212,25 @@ def _build_scenario_payload(state: StateModel) -> dict[str, Any]:
     }
 
 
+def _revalidate_scenario_state(state: StateModel) -> StateModel:
+    """Revalidate scenario state without dropping fields excluded from dumps.
+
+    Some state fields are intentionally marked exclude=True for compact persisted
+    JSON. Revalidating from model_dump would drop those runtime links before the
+    approved state-store writer can persist them safely.
+    """
+
+    return StateModel(
+        project=state.project,
+        version=state.version,
+        status=state.status,
+        tasks=state.tasks,
+        work_packages=state.work_packages,
+        task_collections=state.task_collections,
+        plans=state.plans,
+    )
+
+
 def stage_local_workflow_scenario(
     state: StateModel,
     *,
@@ -240,7 +259,7 @@ def stage_local_workflow_scenario(
     if scenario_plan is None:
         raise ValueError(f"Scenario plan not found: {CLEANROOM_HVAC_PLAN_ID}")
 
-    validated_state = StateModel(**state.model_dump(mode="json"))
+    validated_state = _revalidate_scenario_state(state)
     state.status = validated_state.status
     state.work_packages = validated_state.work_packages
     state.tasks = validated_state.tasks
