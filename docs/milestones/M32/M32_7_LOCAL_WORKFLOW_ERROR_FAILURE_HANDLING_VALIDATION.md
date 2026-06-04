@@ -1,6 +1,6 @@
 # M32.7 — Local Workflow Error/Failure Handling Validation
 
-Status: Implementation branch prepared; validation pending owner/local run  
+Status: Completed on implementation branch  
 Checkpoint: M32.7  
 Mode: Build/content  
 Branch: `m32-7-local-workflow-failure-handling`  
@@ -8,7 +8,7 @@ Validation date: 2026-06-04
 
 ## Purpose
 
-Record M32.7 implementation scope and required validation for visible and safe local workflow error/failure handling.
+Record M32.7 implementation and validation evidence for visible and safe local workflow error/failure handling.
 
 ## Implementation summary
 
@@ -31,6 +31,16 @@ tests/test_m32_5_workflow_visibility_surfaces.py
 tests/test_m32_6_output_review_download_surfaces.py
 ```
 
+The implementation covers visible and safe handling for:
+
+- missing command/input;
+- missing state file;
+- invalid JSON/state validation;
+- invalid work-package references;
+- source/citation limitations;
+- output validation errors/limitations;
+- provider/AI failure visibility where in scope.
+
 ## Boundary statement
 
 The implementation is intentionally limited.
@@ -47,35 +57,36 @@ It:
 - does not generate documents, exports, reports, artifacts, downloads, signatures, approval records, release records, or product-ready output;
 - does not call AI, Ollama, provider APIs, cloud services, web UI, desktop UI, SaaS/admin/customer surfaces, deployment, release, or commercialization behavior.
 
-## Required validation
+## Validation evidence
 
 Focused M32.7 validation:
 
 ```text
 python -m pytest tests/test_m32_7_local_workflow_failure_handling.py -q
+8 passed in 1.22s
 ```
 
 M32 local workflow adapter regression validation:
 
 ```text
 python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py tests/test_m32_7_local_workflow_failure_handling.py -q
+31 passed in 5.64s
 ```
 
 Full validation:
 
 ```text
 python -m pytest -q
+1610 passed in 53.65s
 ```
 
-## Validation evidence
-
-Validation has not been run by the assistant in this connector-only session. The project owner must run the validation commands locally on branch `m32-7-local-workflow-failure-handling` before merge or tracker advancement.
+Validation was run locally by the project owner in the checked-out feature branch.
 
 ## Scope limits
 
 This record does not claim:
 
-- M32.7 completion on `main`;
+- M32.7 completion on `main` until PR merge;
 - M32.8 end-to-end local scenario implementation;
 - M32 milestone UAT;
 - product readiness;
@@ -88,12 +99,12 @@ This record does not claim:
 
 ## Tracker movement
 
-M32.7 may be recorded as complete only after focused M32.7 validation, M32 local workflow regression validation, and full validation pass.
+M32.7 may be recorded as complete on the implementation branch because failure behavior exists and focused M32.7 validation, M32 local workflow regression validation, and full validation passed.
 
-The next checkpoint after validated M32.7 completion would be:
+The next checkpoint after M32.7 merge is:
 
 ```text
 PLAN M32.8 — End-to-end local scenario implementation
 ```
 
-M32.8 implementation remains blocked until M32.7 is validated, reviewed, merged, and separately authorized.
+M32.8 implementation remains blocked until M32.7 is merged and separately authorized.
