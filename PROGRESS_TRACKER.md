@@ -30,16 +30,16 @@ M33 — Full Local Product Trial, Defect Loop, and UAT
 Status:
 
 ```text
-READY FOR PLAN M33.4 ONLY AFTER M33.3 MERGE
+READY FOR PLAN M33.5 ONLY AFTER M33.4 MERGE
 ```
 
-Normal next roadmap checkpoint after M33.3 merge:
+Normal next roadmap checkpoint after M33.4 merge:
 
 ```text
-PLAN M33.4 — Trial execution round 1
+PLAN M33.5 — Issue triage and correction plan
 ```
 
-M33.3 is complete on the feature branch with integrated validation suite and full-suite pytest evidence. M33.4 is planning only after M33.3 is reviewed, merged, and separately authorized.
+M33.4 is complete on the feature branch with Lane A real trial evidence and Lane B bounded optional observation evidence. M33.5 is planning only after M33.4 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -82,42 +82,42 @@ M33 must not rely on old bloated chat history as proof of live project state.
 
 ## Current Approved Checkpoint Family
 
-M33.4 — Trial execution round 1.
+M33.5 — Issue triage and correction plan.
 
 Status:
 
 ```text
-READY FOR PLAN M33.4 ONLY AFTER M33.3 MERGE / GO BLOCKED
+READY FOR PLAN M33.5 ONLY AFTER M33.4 MERGE / GO BLOCKED
 ```
 
-Normal roadmap checkpoint after M33.3 merge:
+Normal roadmap checkpoint after M33.4 merge:
 
 ```text
-PLAN M33.4 — Trial execution round 1
+PLAN M33.5 — Issue triage and correction plan
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Real trial record capturing issues, errors, friction, wrong outputs, AI behavior where in scope, and user observations.
+Classified issue list with severity and disposition: bug, fix, refactor, doc, library, standards, UI, AI, or no action.
 ```
 
 Validation / review requirement:
 
 ```text
-Real trial evidence required.
+Review evidence required.
 ```
 
 Tracker movement rule:
 
 ```text
-May advance only after trial evidence exists.
+May advance only after triage exists.
 ```
 
 Not allowed:
 
 ```text
-Ignore observed failures; use synthetic tests as trial.
+Patch randomly outside roadmap.
 ```
 
 ---
@@ -127,16 +127,32 @@ Ignore observed failures; use synthetic tests as trial.
 Latest completed roadmap checkpoint:
 
 ```text
-M33.3 — Integrated validation suite
+M33.4 — Trial execution round 1
 ```
 
 Completion type:
 
 ```text
-Build/content integrated validation suite with full-suite pytest evidence
+UAT / Hybrid real trial evidence with bounded optional local-model observation
 ```
 
-M33.3 evidence:
+M33.4 evidence:
+
+```text
+docs/milestones/M33/M33_4_TRIAL_EXECUTION_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_TRIAL_RECORD_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_OPTIONAL_OLLAMA_OBSERVATION.md
+```
+
+M33.4 trial result:
+
+```text
+PASS — M33.4 trial execution round 1 evidence recorded.
+Lane A PASS — manual local workflow trial evidence recorded for scenario -> configure -> plan -> status -> outputs.
+Lane B PASS — bounded Ollama/local-model observation evidence recorded as supporting-only trial evidence.
+```
+
+Prior M33.3 evidence:
 
 ```text
 docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md
@@ -149,13 +165,6 @@ M33.3 integrated validation result:
 ```text
 PASS — integrated validation suite complete for M33.3.
 python -m pytest -q — 1623 passed in 57.98s
-```
-
-Prior M33.2 evidence:
-
-```text
-docs/milestones/M33/M33_2_TEST_DATASET_SCENARIO_PACK.md
-data/scenarios/m33/cleanroom_hvac_trial_pack/
 ```
 
 Frozen M32 baseline remains trial-entry baseline:
@@ -177,22 +186,22 @@ Optional local/offline LLM draft support is accepted only as optional supporting
 Latest control action:
 
 ```text
-M33.3 integrated validation suite evidence and tracker alignment on feature branch
+M33.4 trial execution round 1 evidence and tracker alignment on feature branch
 ```
 
 Evidence:
 
 ```text
-docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md
-asbp/m33_scenario_pack_validation.py
-tests/test_m33_3_integrated_validation_suite.py
+docs/milestones/M33/M33_4_TRIAL_EXECUTION_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_TRIAL_RECORD_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_OPTIONAL_OLLAMA_OBSERVATION.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M33.3 validates the integrated pre-trial path through deterministic test-suite evidence. It does not start M33.4 trial execution, M33.5 defect-loop triage, M33.6 corrective implementation, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
+M33.4 records real trial evidence. It does not start M33.5 issue triage, M33.6 corrective implementation, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -200,34 +209,32 @@ M33.3 validates the integrated pre-trial path through deterministic test-suite e
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M33.4 — Trial execution round 1
+PLAN M33.5 — Issue triage and correction plan
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN M33.4 ONLY AFTER M33.3 MERGE / GO BLOCKED
+READY FOR PLAN M33.5 ONLY AFTER M33.4 MERGE / GO BLOCKED
 ```
 
-Allowed current work after M33.3 merge:
+Allowed current work after M33.4 merge:
 
 ```text
-PLAN M33.4 only, after separate owner authorization.
+PLAN M33.5 only, after separate owner authorization.
 ```
 
 Blocked until separately authorized:
 
-- GO M33.4 trial execution work;
-- M33.5 or later checkpoint work;
-- defect-loop triage;
-- corrective implementation;
+- GO M33.5 issue triage work;
+- M33.6 corrective implementation;
+- patching or correcting observed trial findings;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
 - cloud-first workflow;
 - provider/API key use;
 - real provider calls beyond accepted scope;
-- local model inference beyond accepted optional evidence unless M33.4 explicitly scopes it;
 - raw provider payload storage;
 - raw model output storage as product evidence;
 - unbounded prompt execution;
@@ -249,23 +256,18 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
-Latest M33.3 validation evidence:
+Latest M33.4 trial evidence:
 
 ```text
-docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md — PASS integrated validation.
-python -m pytest -q — 1623 passed in 57.98s
+docs/milestones/M33/M33_4_TRIAL_EXECUTION_ROUND_1.md — PASS M33.4 trial execution round 1 evidence recorded.
+docs/milestones/M33/trial_records/M33_4_TRIAL_RECORD_ROUND_1.md — Lane A PASS.
+docs/milestones/M33/trial_records/M33_4_OPTIONAL_OLLAMA_OBSERVATION.md — Lane B PASS.
 ```
 
 Latest executable validation:
 
 ```text
 python -m pytest -q — 1623 passed in 57.98s
-```
-
-Prior M33.2 review evidence:
-
-```text
-docs/milestones/M33/M33_2_TEST_DATASET_SCENARIO_PACK.md — PASS source/data consistency review.
 ```
 
 ---
@@ -275,7 +277,7 @@ docs/milestones/M33/M33_2_TEST_DATASET_SCENARIO_PACK.md — PASS source/data con
 Latest completed milestone UAT:
 
 ```text
-M32.10 conditional owner acceptance of local workflow/UI as trial-ready with limitations.
+M33.4 trial execution round 1 completed on feature branch with Lane A manual workflow trial and Lane B bounded optional local-model observation.
 ```
 
 Latest milestone closeout:
@@ -287,23 +289,23 @@ M32.11 closed M32 with trial-ready local workflow/UI baseline and limitations re
 Current M33 status:
 
 ```text
-M33.3 integrated validation suite completed on feature branch; M33 trial execution has not started.
+M33.4 trial execution round 1 completed on feature branch; M33.5 issue triage has not started.
 ```
 
 ---
 
 ## Repo Alignment Status
 
-M33.3 is recorded on feature branch `m33-3-integrated-validation-suite`:
+M33.4 is recorded on feature branch `m33-4-trial-execution-round-1`:
 
 ```text
-docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md
-asbp/m33_scenario_pack_validation.py
-tests/test_m33_3_integrated_validation_suite.py
+docs/milestones/M33/M33_4_TRIAL_EXECUTION_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_TRIAL_RECORD_ROUND_1.md
+docs/milestones/M33/trial_records/M33_4_OPTIONAL_OLLAMA_OBSERVATION.md
 PROGRESS_TRACKER.md
 ```
 
-This tracker update records M33.3 integrated validation completion on the feature branch and keeps PLAN M33.4 as the next work after M33.3 merge and separate authorization. It does not start M33.4 trial execution, defect-loop triage, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+This tracker update records M33.4 trial execution completion on the feature branch and keeps PLAN M33.5 as the next work after M33.4 merge and separate authorization. It does not start M33.5 issue triage, M33.6 corrective implementation, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -330,12 +332,12 @@ The full repository index was generated from tracked repository files.
 
 DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, M32, M33.1, M33.2, M33.3, or Roadmap v7.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, M32, M33.1, M33.2, M33.3, M33.4, or Roadmap v7.
 
-DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32, M33.1, M33.2, and M33.3 do not treat retrieval as source authority, compliance truth, or raw untracked model context.
+DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32, M33.1, M33.2, M33.3, and M33.4 do not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
 DDR-006 remains relevant to generated output. Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations. It is not product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. M33.2 prepares synthetic scenario-pack data only. M33.3 validates the integrated pre-trial path only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
+DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. M33.2 prepares synthetic scenario-pack data only. M33.3 validates the integrated pre-trial path only. M33.4 records the first trial execution round only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
 
-DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, and M33.3 do not authorize web/desktop/customer UI/API behavior.
+DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, M33.3, and M33.4 do not authorize web/desktop/customer UI/API behavior.
