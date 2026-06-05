@@ -1,4 +1,4 @@
-"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6/M32.7/M32.8."""
+"""CLI-enhanced local workflow adapter for M32.3/M32.4/M32.5/M32.6/M32.7/M32.8/M33.6."""
 
 from __future__ import annotations
 
@@ -20,6 +20,9 @@ from asbp.local_workflow_output_logic import build_local_workflow_output_payload
 from asbp.local_workflow_scenario_logic import (
     build_empty_local_workflow_scenario_state,
     stage_local_workflow_scenario,
+)
+from asbp.local_workflow_trial_summary_logic import (
+    build_local_workflow_trial_summary_payload,
 )
 from asbp.local_workflow_visibility_logic import build_local_workflow_visibility_payload
 from asbp.state_model import StateModel
@@ -142,6 +145,17 @@ def build_parser() -> argparse.ArgumentParser:
         help="Work Package ID to use as the local output review anchor",
     )
     outputs_parser.set_defaults(func=handle_outputs)
+
+    trial_summary_parser = subparsers.add_parser(
+        "trial-summary",
+        help="Show a compact read-only local workflow trial summary",
+    )
+    trial_summary_parser.add_argument(
+        "--wp-id",
+        required=True,
+        help="Work Package ID to use as the local trial summary anchor",
+    )
+    trial_summary_parser.set_defaults(func=handle_trial_summary)
 
     return parser
 
@@ -309,6 +323,26 @@ def handle_outputs(args: argparse.Namespace) -> int:
 
     try:
         payload = build_local_workflow_output_payload(state, wp_id=args.wp_id)
+    except ValueError as exc:
+        _print_payload(
+            build_invalid_reference_failure_payload(
+                command=args.command,
+                message=str(exc),
+            )
+        )
+        return 1
+
+    _print_payload(payload)
+    return 0
+
+
+def handle_trial_summary(args: argparse.Namespace) -> int:
+    state = _load_state_or_report(args.command)
+    if state is None:
+        return 1
+
+    try:
+        payload = build_local_workflow_trial_summary_payload(state, wp_id=args.wp_id)
     except ValueError as exc:
         _print_payload(
             build_invalid_reference_failure_payload(
