@@ -1,0 +1,94 @@
+{
+  "checkpoint": "M33.2 — Test dataset / scenario pack",
+  "scenario_pack_id": "cleanroom_hvac_trial_pack",
+  "scenario_id": "cleanroom-hvac-qualification-basic",
+  "data_classification": "synthetic_non_confidential_local_trial_data",
+  "system_type": "cleanroom-hvac",
+  "scope_intent": "qualification-only",
+  "preset_id": "cqv-cleanroom-hvac-basic",
+  "work_package": {
+    "wp_id": "WP-032",
+    "title": "M33 synthetic cleanroom HVAC qualification trial pack",
+    "status": "trial_pack_ready"
+  },
+  "task_collection": {
+    "collection_id": "TC-032",
+    "collection_state": "scenario_pack_prepared",
+    "task_ids": [
+      "TASK-M33-2-001",
+      "TASK-M33-2-002",
+      "TASK-M33-2-003",
+      "TASK-M33-2-004",
+      "TASK-M33-2-005"
+    ]
+  },
+  "plan": {
+    "plan_id": "PLAN-032",
+    "planning_basis": "synthetic M33 cleanroom HVAC qualification trial dataset",
+    "planned_start_at": "2026-06-08T08:00:00+00:00",
+    "working_days": [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday"
+    ],
+    "workday_hours": 8
+  },
+  "facility_context": {
+    "site_id": "SYNTH-SITE-032",
+    "area_id": "SYNTH-CLN-ROOM-032",
+    "area_name": "Synthetic Grade C filling preparation suite",
+    "room_ids": [
+      "SYN-RM-032-A",
+      "SYN-RM-032-B",
+      "SYN-RM-032-C"
+    ],
+    "confidentiality_note": "All identifiers are fictional placeholders."
+  },
+  "equipment_context": {
+    "hvac_system_id": "SYN-HVAC-032",
+    "air_handling_unit_id": "SYN-AHU-032",
+    "terminal_hepa_filter_ids": [
+      "SYN-HEPA-032-01",
+      "SYN-HEPA-032-02",
+      "SYN-HEPA-032-03"
+    ],
+    "monitoring_points": [
+      "SYN-DP-032-01",
+      "SYN-TEMP-032-01",
+      "SYN-RH-032-01"
+    ]
+  },
+  "qualification_scope": {
+    "included_checks": [
+      "installation readiness review",
+      "airflow and pressure cascade verification planning",
+      "temperature and humidity monitoring review",
+      "HEPA filter integrity evidence check",
+      "human review of generated or assembled output metadata"
+    ],
+    "excluded_checks": [
+      "live GMP batch release",
+      "regulatory submission",
+      "customer acceptance",
+      "automated AI approval",
+      "provider or cloud API execution"
+    ]
+  },
+  "workflow_path": [
+    "scenario",
+    "configure",
+    "plan",
+    "status",
+    "outputs"
+  ],
+  "limitations": [
+    "Scenario pack is synthetic and non-confidential.",
+    "Output review remains metadata and visibility only.",
+    "Human review remains required.",
+    "Source and standards visibility does not create clause-level authority.",
+    "No trial execution is performed by this scenario pack.",
+    "No product, release, deployment, SaaS, commercial, customer-ready, or full AI readiness is claimed."
+  ]
+}
