@@ -1,6 +1,6 @@
 # M33.3 — Integrated Validation Suite
 
-Status: Validation pending on feature branch  
+Status: Completed on feature branch  
 Checkpoint: M33.3  
 Mode: Build/content  
 Branch: `m33-3-integrated-validation-suite`  
@@ -78,43 +78,45 @@ test_m33_3_integrated_scenario_pack_validation_passes
 test_m33_3_cli_path_exercises_cleanroom_hvac_scenario
 ```
 
-## Validation status
+## Validation result
 
-Validation command required before checkpoint closure:
+Validation command:
 
 ```text
 python -m pytest -q
 ```
 
-Current validation state:
+Local validation result recorded from owner terminal:
 
 ```text
-PENDING — executable validation must be run locally before tracker movement and checkpoint closure.
+1623 passed in 57.98s
 ```
 
-Reason:
+Result:
 
 ```text
-M33.3 adds executable code and tests. The full test suite must pass before M33.3 can be recorded as complete.
+PASS — integrated validation suite complete for M33.3.
 ```
+
+## Validation interpretation
+
+The full test suite passed after adding M33.3 executable validation code and tests.
+
+This validates the integrated M33 pre-trial path at the test-suite level. It does not replace M33.4 trial execution, and it does not create real UAT/trial evidence.
 
 ## Tracker movement status
 
-Tracker movement is blocked until integrated validation passes.
+Tracker movement is now allowed because integrated validation exists and the full suite passed.
 
-Do not update `PROGRESS_TRACKER.md` to M33.3 complete until the following is available:
-
-```text
-python -m pytest -q — PASS
-```
-
-After validation passes, update this document and the tracker to record:
+The tracker may record:
 
 ```text
 Latest completed roadmap checkpoint: M33.3 — Integrated validation suite
 Exact next unfinished work: PLAN M33.4 — Trial execution round 1
-Latest validation / review evidence: docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md — PASS integrated validation
+Latest validation / review evidence: docs/milestones/M33/M33_3_INTEGRATED_VALIDATION_SUITE.md — PASS integrated validation; python -m pytest -q — 1623 passed in 57.98s
 ```
+
+M33.4 remains blocked until separately authorized.
 
 ## Explicit non-claims
 
@@ -138,12 +140,12 @@ This checkpoint does not claim or authorize:
 - SaaS readiness;
 - commercialization planning.
 
-## Next action
+## Next roadmap checkpoint
 
-Run from repo root after pulling this branch locally:
+After M33.3 is reviewed and merged, the next normal roadmap checkpoint is:
 
 ```text
-python -m pytest -q
+PLAN M33.4 — Trial execution round 1
 ```
 
-Then update this evidence document and tracker only if the full suite passes.
+Do not start M33.4 without separate owner authorization.
