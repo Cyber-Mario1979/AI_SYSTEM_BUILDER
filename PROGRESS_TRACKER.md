@@ -30,16 +30,16 @@ M33 — Full Local Product Trial, Defect Loop, and UAT
 Status:
 
 ```text
-READY FOR PLAN M33.1 ONLY AFTER M32.11 MERGE
+READY FOR PLAN M33.2 ONLY AFTER M33.1 MERGE
 ```
 
-Normal next roadmap checkpoint after M32.11 merge:
+Normal next roadmap checkpoint after M33.1 merge:
 
 ```text
-PLAN M33.1 — Trial scope and protocol
+PLAN M33.2 — Test dataset / scenario pack
 ```
 
-M32.11 is complete on the closeout branch with milestone closeout evidence. M33.1 is planning only after M32.11 is merged and separately authorized.
+M33.1 is complete on the feature branch with trial scope/protocol evidence. M33.2 is planning only after M33.1 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -57,18 +57,10 @@ Roadmap v7 status:
 ACTIVE_AFTER_MERGE
 ```
 
-Roadmap v7 merge evidence:
-
-```text
-PR #100 — docs: promote roadmap v7 deliverable controls
-Merge commit: 9e5d54c01c43c8c11f1013882aa581912bc9542c
-```
-
 Roadmap v7 effect:
 
 - makes `Required deliverable / completion minimum` explicit inside remaining checkpoint tables;
 - prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
-- keeps cleanup as a parallel support lane only, not M32 checkpoint progress;
 - preserves M33 as the next local trial milestone after M32 closeout;
 - does not implement future checkpoints, run future validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
 
@@ -78,116 +70,54 @@ Roadmap v7 effect:
 
 None active.
 
-CONTROL-RECOVERY-001 is archived / closed as an active execution gate. Historical evidence remains in the repository.
-
-CONTROL-RECOVERY-002 is closed with re-entry conditions. Historical evidence remains in the repository.
-
-CONTROL-RECOVERY-002 closure file:
-
-```text
-docs/governance/control_recovery/CONTROL_RECOVERY_002_CLOSURE_RECORD.md
-```
-
 ---
 
 ## Active Context Reset CAPA Status
 
 Carry into M33 execution as controlled-context discipline for trial, defect loop, UAT, and AI surfacing decisions.
 
-The old bloated ASBP Project workspace remains archive/reference only for execution. Future PLAN, GO, tracker movement, checkpoint closure, PR preparation, issue preparation, and implementation claims require a clean bounded execution context or a repo-driven connector session that explicitly treats old Project chat history as non-authoritative reference.
-
 M33 must not rely on old bloated chat history as proof of live project state.
-
----
-
-## Active Assistant Execution Gate
-
-Gate ID:
-
-```text
-ASBP-AEG-M33-001
-```
-
-Applies to:
-
-```text
-M33.1 — Trial scope and protocol
-```
-
-Gate status:
-
-```text
-READY FOR PLAN M33.1 ONLY AFTER M32.11 MERGE
-```
-
-Prior M32.11 gate result:
-
-```text
-M32.11 — milestone closeout completed on closeout branch; local workflow/UI MVP baseline frozen with remaining trial blockers and limitations recorded.
-```
-
-M33.1 may proceed as PLAN only after M32.11 is merged, unless the project owner explicitly redirects.
-
-Required M33.1 planning output:
-
-```text
-Trial protocol with scenario(s), system type, user role, acceptance criteria, data sensitivity, limitations, and trial boundaries.
-```
-
-M33.1 planning must preserve:
-
-- M32 frozen baseline as the accepted trial-entry baseline;
-- CLI/UI surfaces as adapters only;
-- no domain logic inside the CLI surface;
-- no raw state writes or persistence-boundary bypass;
-- source, standards, output, validation, and AI limitations remain visible;
-- optional local/offline LLM draft support remains optional supporting evidence only unless M33 explicitly scopes it;
-- no false readiness states;
-- no hidden trial blockers;
-- no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
-
-Tracker movement from M33.1 remains blocked until trial protocol exists.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M33.1 — Trial scope and protocol.
+M33.2 — Test dataset / scenario pack.
 
 Status:
 
 ```text
-READY FOR PLAN M33.1 ONLY AFTER M32.11 MERGE
+READY FOR PLAN M33.2 ONLY AFTER M33.1 MERGE / GO BLOCKED
 ```
 
-Normal roadmap checkpoint after M32.11 merge:
+Normal roadmap checkpoint after M33.1 merge:
 
 ```text
-PLAN M33.1 — Trial scope and protocol
+PLAN M33.2 — Test dataset / scenario pack
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Trial protocol with scenario(s), system type, user role, acceptance criteria, data sensitivity, limitations, and trial boundaries.
+Realistic cleanroom/HVAC/equipment/computerized-system scenario data as approved, with confidentiality controls.
 ```
 
 Validation / review requirement:
 
 ```text
-Document consistency review.
+Source/data consistency review; tests if executable validators change.
 ```
 
 Tracker movement rule:
 
 ```text
-May advance only after protocol exists.
+May advance only after scenario pack exists.
 ```
 
 Not allowed:
 
 ```text
-Trial without scope; treating protocol as trial execution.
+Real confidential data without control; document-only closure.
 ```
 
 ---
@@ -197,28 +127,34 @@ Trial without scope; treating protocol as trial execution.
 Latest completed roadmap checkpoint:
 
 ```text
-M32.11 — Milestone closeout
+M33.1 — Trial scope and protocol
 ```
 
 Completion type:
 
 ```text
-Closeout with frozen local workflow/UI MVP baseline and remaining trial blockers recorded
+Governance-only trial protocol with document consistency review
 ```
 
-M32.11 evidence:
+M33.1 evidence:
+
+```text
+docs/milestones/M33/M33_1_TRIAL_SCOPE_AND_PROTOCOL.md
+```
+
+M33.1 document consistency review:
+
+```text
+PASS — document consistency review complete for M33.1 trial scope and protocol.
+```
+
+Prior M32.11 evidence:
 
 ```text
 docs/milestones/M32/M32_11_MILESTONE_CLOSEOUT.md
 ```
 
-M32.11 closeout decision:
-
-```text
-M32 CLOSED WITH TRIAL-READY LOCAL WORKFLOW/UI BASELINE AND LIMITATIONS RECORDED
-```
-
-Frozen M32 baseline:
+Frozen M32 baseline remains trial-entry baseline:
 
 ```text
 CLI-enhanced local workflow only.
@@ -230,107 +166,27 @@ Human review remains required.
 Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations.
 ```
 
-M32.11 document consistency review:
-
-```text
-PASS — document consistency review complete for M32.11 closeout.
-```
-
-M32.11 branch/write evidence:
-
-```text
-Branch m32-11-milestone-closeout
-PR #113 — M32.11: close M32 local workflow/UI milestone
-```
-
-Prior M32.10 evidence:
-
-```text
-docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md
-```
-
-Prior M32.9 evidence:
-
-```text
-docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
-```
-
-Prior M32.8 evidence:
-
-```text
-asbp/local_workflow_scenario_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_8_end_to_end_local_scenario.py
-docs/milestones/M32/M32_8_END_TO_END_LOCAL_SCENARIO_IMPLEMENTATION_VALIDATION.md
-```
-
-Prior M32.7 evidence:
-
-```text
-asbp/local_workflow_failure_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_7_local_workflow_failure_handling.py
-docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
-```
-
-Prior M32.6 evidence:
-
-```text
-asbp/local_workflow_output_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_6_output_review_download_surfaces.py
-docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
-```
-
-Prior M32.5 evidence:
-
-```text
-asbp/local_workflow_visibility_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_5_workflow_visibility_surfaces.py
-docs/milestones/M32/M32_5_WORKFLOW_VISIBILITY_SURFACES_VALIDATION.md
-```
-
-Prior M32.4 evidence:
-
-```text
-asbp/local_workflow_input_logic.py
-asbp/adapters/local_workflow_cli.py
-asbp/local_workflow_logic.py
-tests/test_m32_4_controlled_input_surfaces.py
-docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
-```
-
-Prior M32.3 evidence:
-
-```text
-asbp/local_workflow_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_3_local_workflow_cli_adapter.py
-docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
-```
-
 ---
 
-## Latest Control Action After M31 Closeout
+## Latest Control Action
 
 Latest control action:
 
 ```text
-M32.11 milestone closeout evidence and tracker alignment on closeout branch
+M33.1 trial scope and protocol evidence and tracker alignment on feature branch
 ```
 
 Evidence:
 
 ```text
-docs/milestones/M32/M32_11_MILESTONE_CLOSEOUT.md
+docs/milestones/M33/M33_1_TRIAL_SCOPE_AND_PROTOCOL.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M32.11 closes M32 as a trial-ready local workflow/UI MVP baseline with limitations. It did not start M33 trial scope/protocol, trial execution, productization, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
+M33.1 defines trial scope and protocol only. It does not start M33 trial execution, M33.2 scenario pack creation, integrated validation, defect-loop execution, corrective implementation, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -338,36 +194,37 @@ M32.11 closes M32 as a trial-ready local workflow/UI MVP baseline with limitatio
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M33.1 — Trial scope and protocol
+PLAN M33.2 — Test dataset / scenario pack
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN M33.1 ONLY AFTER M32.11 MERGE / GO BLOCKED
+READY FOR PLAN M33.2 ONLY AFTER M33.1 MERGE / GO BLOCKED
 ```
 
-Allowed current work after M32.11 merge:
+Allowed current work after M33.1 merge:
 
 ```text
-PLAN M33.1 only.
+PLAN M33.2 only, after separate owner authorization.
 ```
 
 Blocked until separately authorized:
 
-- GO M33.1 trial protocol work;
-- M33.2 or later checkpoint work;
+- GO M33.2 scenario pack work;
+- M33.3 or later checkpoint work;
 - trial execution;
 - defect-loop execution;
+- corrective implementation;
+- new executable validators or data loaders beyond approved M33.2 scope;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
 - cloud-first workflow;
 - provider/API key use;
 - real provider calls beyond accepted scope;
-- local model inference beyond accepted optional smoke evidence unless M33 explicitly scopes it;
+- local model inference beyond accepted optional evidence unless M33 explicitly scopes it;
 - raw provider payload storage;
-- raw Ollama response dumps;
 - raw model output storage as product evidence;
 - unbounded prompt execution;
 - autonomous agentic execution;
@@ -388,7 +245,13 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
-Latest executable validation:
+Latest M33.1 review evidence:
+
+```text
+docs/milestones/M33/M33_1_TRIAL_SCOPE_AND_PROTOCOL.md — PASS document consistency review.
+```
+
+Latest executable validation remains the M32 baseline validation:
 
 ```text
 python -m pytest tests/test_m32_8_end_to_end_local_scenario.py -q — 5 passed in 1.97s
@@ -396,35 +259,7 @@ python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4
 python -m pytest -q — 1615 passed in 54.03s
 ```
 
-Latest manual scenario validation evidence:
-
-```text
-scenario -> configure -> plan -> status -> outputs completed for WP-032 / TC-032 / PLAN-032; runtime state restored; working tree clean.
-```
-
-Latest optional local/offline LLM smoke evidence:
-
-```text
-docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_EVIDENCE.md — PASS as optional supporting evidence only.
-```
-
-Latest UAT/owner acceptance evidence:
-
-```text
-docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md — accepted with limitations.
-```
-
-Latest closeout evidence:
-
-```text
-docs/milestones/M32/M32_11_MILESTONE_CLOSEOUT.md — M32 closed with trial-ready local workflow/UI baseline and limitations recorded.
-```
-
-Validation / review scope:
-
-```text
-M32.11 performed document consistency review and froze the M32 local workflow/UI MVP baseline for M33 trial planning only. No M33 trial execution has started.
-```
+M33.1 was docs-only governance work and did not change executable behavior. No pytest run was required for M33.1.
 
 ---
 
@@ -442,126 +277,24 @@ Latest milestone closeout:
 M32.11 closed M32 with trial-ready local workflow/UI baseline and limitations recorded.
 ```
 
-Acceptance scope:
+Current M33 status:
 
 ```text
-Bounded M32 local workflow/UI for cleanroom HVAC qualification-only scenario, with optional local/offline LLM draft support accepted only as optional supporting trial evidence with limitations.
+M33.1 trial scope and protocol completed on feature branch; M33 trial execution has not started.
 ```
-
-Acceptance and closeout do not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, cloud/provider API readiness, web/desktop/customer UI readiness, retrieval-backed compliance truth, standards-backed legal/regulatory authority, AI approval authority, release/certification authority, or full product/runtime AI readiness.
-
-Productization/release/deployment/SaaS readiness remain blocked until Roadmap v7 Phase 10 gates after local product-core evidence. Commercialization launch planning remains outside ASBP unless separately approved after a post-completion go/no-go decision.
 
 ---
 
 ## Repo Alignment Status
 
-PR #29 was squash merged into main and brought the M28 standards-authority and M29 document/output baseline into main.
-
-PR #30 was squash merged into main and brought the full repository index control package into main.
-
-PR #32 through PR #39 completed CONTROL-RECOVERY-002 and returned the project to controlled M30 entry.
-
-PR #40 through PR #69 completed M30 retrieval planning, bounded implementation, validation, UAT, closeout, and tracker alignment.
-
-PR #70 through PR #98 completed M31 planning, implementation, validation, UAT, closeout, and tracker alignment.
-
-PR #100 promoted `ROADMAP_CANONICAL.md` to v7 with explicit required-deliverable controls.
-
-M32.1 and M32.2 accepted decisions are recorded in repo as docs-only alignment records:
+M33.1 is recorded on feature branch `m33-1-trial-scope-and-protocol`:
 
 ```text
-docs/milestones/M32/M32_1_FULL_LOCAL_WORKFLOW_SCOPE_LOCK.md
-docs/milestones/M32/M32_2_LOCAL_UI_RUNTIME_SURFACE_DECISION.md
-```
-
-M32.3 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_3_local_workflow_cli_adapter.py
-docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
-```
-
-M32.4 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_input_logic.py
-asbp/adapters/local_workflow_cli.py
-asbp/local_workflow_logic.py
-tests/test_m32_4_controlled_input_surfaces.py
-docs/milestones/M32/M32_4_CONTROLLED_INPUT_SURFACES_VALIDATION.md
-```
-
-M32.5 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_visibility_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_5_workflow_visibility_surfaces.py
-docs/milestones/M32/M32_5_WORKFLOW_VISIBILITY_SURFACES_VALIDATION.md
-```
-
-M32.6 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_output_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_6_output_review_download_surfaces.py
-docs/milestones/M32/M32_6_OUTPUT_REVIEW_DOWNLOAD_SURFACES_VALIDATION.md
+docs/milestones/M33/M33_1_TRIAL_SCOPE_AND_PROTOCOL.md
 PROGRESS_TRACKER.md
 ```
 
-M32.7 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_failure_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_7_local_workflow_failure_handling.py
-docs/milestones/M32/M32_7_LOCAL_WORKFLOW_ERROR_FAILURE_HANDLING_VALIDATION.md
-PROGRESS_TRACKER.md
-```
-
-M32.8 implementation and validation are recorded in repo:
-
-```text
-asbp/local_workflow_scenario_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m32_8_end_to_end_local_scenario.py
-docs/milestones/M32/M32_8_END_TO_END_LOCAL_SCENARIO_IMPLEMENTATION_VALIDATION.md
-PROGRESS_TRACKER.md
-```
-
-M32.9 validation is recorded in repo:
-
-```text
-docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
-PROGRESS_TRACKER.md
-```
-
-Optional M32 local/offline LLM smoke-test protocol/evidence is recorded in repo:
-
-```text
-docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_PROTOCOL.md
-docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_EVIDENCE.md
-```
-
-M32.10 owner acceptance is recorded in repo:
-
-```text
-docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md
-PROGRESS_TRACKER.md
-```
-
-M32.11 closeout is recorded on branch `m32-11-milestone-closeout`:
-
-```text
-docs/milestones/M32/M32_11_MILESTONE_CLOSEOUT.md
-PROGRESS_TRACKER.md
-```
-
-This tracker update records M32.11 closeout on the closeout branch and keeps PLAN M33.1 as the next work after M32.11 merge. It does not start M33 trial scope/protocol, trial execution, defect-loop execution, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+This tracker update records M33.1 protocol completion on the feature branch and keeps PLAN M33.2 as the next work after M33.1 merge and separate authorization. It does not start M33.2 scenario pack creation, trial execution, defect-loop execution, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -582,8 +315,6 @@ Evidence:
 
 The full repository index was generated from tracked repository files.
 
-The full repository index does not start retrieval, implement standards embedding, change runtime behavior, change source-library behavior, authorize productization, or close carried-forward DDR scope.
-
 ---
 
 ## Relevant DDR Status
@@ -592,10 +323,10 @@ DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It r
 
 DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, M32, or Roadmap v7.
 
-DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32 does not treat retrieval as source authority, compliance truth, or raw untracked model context.
+DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32 and M33.1 do not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
-DDR-006 remains relevant to generated output. Optional M32 local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations. It is not product-ready generated output, customer-ready output, or productization.
+DDR-006 remains relevant to generated output. Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations. It is not product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
+DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
 
-DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32 does not authorize web/desktop/customer UI/API behavior.
+DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32 and M33.1 do not authorize web/desktop/customer UI/API behavior.
