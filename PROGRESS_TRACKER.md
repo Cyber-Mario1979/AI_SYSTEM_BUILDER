@@ -30,16 +30,16 @@ M32 — Full Local Usable Product Workflow/UI
 Status:
 
 ```text
-READY FOR PLAN M32.10 ONLY AFTER M32.9 MERGE
+READY FOR PLAN M32.11 ONLY AFTER M32.10 MERGE
 ```
 
-Normal next roadmap checkpoint after M32.9 merge:
+Normal next roadmap checkpoint after M32.10 merge:
 
 ```text
-PLAN M32.10 — Milestone UAT / owner acceptance
+PLAN M32.11 — Milestone closeout
 ```
 
-M32.9 is complete on the validation branch with full validation and scenario evidence. M32.10 is planning only after M32.9 is merged and separately authorized.
+M32.10 is complete on the UAT branch with explicit owner acceptance. M32.11 is planning only after M32.10 is merged and separately authorized.
 
 ---
 
@@ -105,88 +105,89 @@ M32 must not rely on old bloated chat history as proof of live project state.
 Gate ID:
 
 ```text
-ASBP-AEG-M32-010
+ASBP-AEG-M32-011
 ```
 
 Applies to:
 
 ```text
-M32.10 — Milestone UAT / owner acceptance
+M32.11 — Milestone closeout
 ```
 
 Gate status:
 
 ```text
-READY FOR PLAN M32.10 ONLY AFTER M32.9 MERGE
+READY FOR PLAN M32.11 ONLY AFTER M32.10 MERGE
 ```
 
-Prior M32.9 gate result:
+Prior M32.10 gate result:
 
 ```text
-M32.9 — validation checkpoint completed on validation branch with full tests and scenario validation evidence.
+M32.10 — milestone UAT / owner acceptance completed on UAT branch with explicit owner acceptance.
 ```
 
-M32.10 may proceed as PLAN only after M32.9 is merged, unless the project owner explicitly redirects.
+M32.11 may proceed as PLAN only after M32.10 is merged, unless the project owner explicitly redirects.
 
-Required M32.10 planning output:
+Required M32.11 planning output:
 
 ```text
-Milestone UAT / owner acceptance plan for accepting the local workflow as trial-ready with limitations recorded.
+Milestone closeout plan for freezing the local workflow/UI MVP baseline and identifying remaining trial blockers.
 ```
 
-M32.10 planning must preserve:
+M32.11 planning must preserve:
 
 - CLI/UI surfaces as adapters only;
 - no domain logic inside the CLI surface;
 - no raw state writes or persistence-boundary bypass;
-- visible and safe limitations from M32.5, M32.6, M32.7, M32.8, and M32.9;
+- visible and safe limitations from M32.5 through M32.10;
 - no false success states;
 - no masked validation, artifact, source, standards, retrieval, AI, or output limitations;
+- optional local/offline LLM draft support remains optional supporting evidence only;
 - no new AI/provider behavior unless separately scoped;
 - no web UI, desktop UI, SaaS/admin/customer surface, deployment, release, productization, commercialization, or customer-ready claim.
 
-Tracker movement from M32.10 remains blocked until UAT/owner acceptance evidence exists.
+Tracker movement from M32.11 remains blocked until closeout evidence exists and evidence references are complete.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M32.10 — Milestone UAT / owner acceptance.
+M32.11 — Milestone closeout.
 
 Status:
 
 ```text
-READY FOR PLAN M32.10 ONLY AFTER M32.9 MERGE
+READY FOR PLAN M32.11 ONLY AFTER M32.10 MERGE
 ```
 
-Normal roadmap checkpoint after M32.9 merge:
+Normal roadmap checkpoint after M32.10 merge:
 
 ```text
-PLAN M32.10 — Milestone UAT / owner acceptance
+PLAN M32.11 — Milestone closeout
 ```
 
 Required deliverable / completion minimum from Roadmap v7:
 
 ```text
-Owner acceptance that the local workflow is trial-ready, with limitations recorded.
+Closeout record freezing local workflow/UI MVP baseline and identifying remaining trial blockers.
 ```
 
 Validation / review requirement:
 
 ```text
-UAT/owner acceptance required.
+Document consistency review.
 ```
 
 Tracker movement rule:
 
 ```text
-May advance only after owner acceptance exists.
+May advance only after closeout exists and evidence references are complete.
 ```
 
 Not allowed:
 
 ```text
-Treat as commercial readiness; treat conditional acceptance as full readiness.
+Proceed to trial with hidden gaps.
 ```
 
 ---
@@ -196,52 +197,70 @@ Treat as commercial readiness; treat conditional acceptance as full readiness.
 Latest completed roadmap checkpoint:
 
 ```text
-M32.9 — Validation checkpoint
+M32.10 — Milestone UAT / owner acceptance
 ```
 
 Completion type:
 
 ```text
-Validation checkpoint with full tests and scenario validation evidence
+UAT / owner acceptance with limitations recorded
 ```
 
-M32.9 evidence:
+M32.10 evidence:
+
+```text
+docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md
+```
+
+M32.10 owner acceptance evidence:
+
+```text
+The project owner stated: "I accept M32.10 with the proposed conditional owner acceptance statement."
+```
+
+M32.10 accepted trial scope:
+
+```text
+CLI-enhanced local workflow only.
+Scenario path: scenario -> configure -> plan -> status -> outputs.
+Scenario identifiers: WP-032, TC-032, PLAN-032.
+Output review remains metadata/visibility only.
+Human review remains required.
+Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations.
+```
+
+M32.10 not accepted scope:
+
+```text
+Product readiness; commercial readiness; SaaS readiness; deployment readiness; release readiness; customer-ready output; AI approval authority; AI release/certification authority; provider/cloud API readiness; web UI readiness; desktop UI readiness; customer surface readiness; full product/runtime AI readiness.
+```
+
+M32.10 validation/evidence basis:
+
+```text
+M32.9 validation checkpoint evidence: docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
+M32.9 executable validation: focused M32.8 tests, M32 local workflow regression, and full pytest passed.
+M32.9 manual scenario evidence: scenario -> configure -> plan -> status -> outputs completed for WP-032 / TC-032 / PLAN-032; runtime state restored clean.
+Optional local/offline LLM smoke evidence: docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_EVIDENCE.md; PASS as optional supporting evidence only.
+```
+
+M32.10 boundary:
+
+```text
+Owner acceptance that the local workflow/UI is trial-ready for the bounded local cleanroom HVAC qualification-only scenario with limitations recorded. It does not implement M32.11 closeout, product readiness, release readiness, deployment readiness, SaaS readiness, commercial readiness, customer-ready output, full product/runtime AI readiness, AI approval authority, AI release/certification authority, provider/cloud API readiness, web UI readiness, desktop UI readiness, or customer surface readiness.
+```
+
+M32.10 branch/write evidence:
+
+```text
+Branch m32-10-uat-owner-acceptance
+PR #112 — M32.10: prepare UAT owner acceptance record
+```
+
+Prior M32.9 evidence:
 
 ```text
 docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
-```
-
-M32.9 validation evidence:
-
-```text
-python -m pytest tests/test_m32_8_end_to_end_local_scenario.py -q — 5 passed in 1.97s
-python -m pytest tests/test_m32_3_local_workflow_cli_adapter.py tests/test_m32_4_controlled_input_surfaces.py tests/test_m32_5_workflow_visibility_surfaces.py tests/test_m32_6_output_review_download_surfaces.py tests/test_m32_7_local_workflow_failure_handling.py tests/test_m32_8_end_to_end_local_scenario.py -q — 36 passed in 7.47s
-python -m pytest -q — 1615 passed in 54.03s
-```
-
-M32.9 manual scenario evidence:
-
-```text
-Scenario path: scenario -> configure -> plan -> status -> outputs
-Scenario command: scenario_id cleanroom-hvac-qualification-basic; scenario_status staged; state_status in_flight; selected_work_package.wp_id WP-032; can_be_exercised_through_local_workflow true.
-Configure command: updated_work_package.wp_id WP-032; selector_context cleanroom-hvac / cqv-cleanroom-hvac-basic / qualification-only / [cqv-core, cleanroom-hvac]; limitations present.
-Plan command: selected_work_package.wp_id WP-032; task_count 3; task_ids TASK-M32-8-001, TASK-M32-8-002, TASK-M32-8-003; source_selection.collection_ids TC-032; readiness_gaps empty; limitations present.
-Status command: workflow_state.selected_work_package.wp_id WP-032; task_lifecycle.task_count 3; status_counts planned=3; generated_schedule_present true; plan_id PLAN-032; generated_task_plan_count 3; source_and_citation_state.collection_ids TC-032; standards_bundles cqv-core and cleanroom-hvac; AI/provider/Ollama calls false; human_review_required true; readiness_gaps empty; limitations present.
-Outputs command: selected_work_package.wp_id WP-032; document/export/report statuses not_available; artifact_available false; output_validation_state.validation_available false; human_review_required true; accepted false; approval_claimed false; release_claimed false; download_allowed false; download_performed false; path_exposed false; limitations present.
-Runtime state restoration: data/state/state.json restored; git status reported nothing to commit, working tree clean.
-```
-
-M32.9 validation boundary:
-
-```text
-Validation-only checkpoint for the merged local workflow/UI path. It validates full tests plus manual scenario evidence for scenario -> configure -> plan -> status -> outputs. It does not add product features, call AI/provider/Ollama, implement web/desktop/SaaS surfaces, approve/sign/release/certify output, claim product/customer/release/deployment readiness, or complete M32.10 UAT / owner acceptance.
-```
-
-M32.9 branch/write evidence:
-
-```text
-Branch m32-9-validation-checkpoint
-PR #109 — M32.9: add validation checkpoint record
 ```
 
 Prior M32.8 evidence:
@@ -306,20 +325,20 @@ docs/milestones/M32/M32_3_UI_TO_CORE_ADAPTER_IMPLEMENTATION_VALIDATION.md
 Latest control action:
 
 ```text
-M32.9 validation evidence, scenario evidence, and tracker alignment on validation branch
+M32.10 owner acceptance evidence and tracker alignment on UAT branch
 ```
 
 Evidence:
 
 ```text
-docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
+docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md
 PROGRESS_TRACKER.md
 ```
 
 Interpretation:
 
 ```text
-M32.9 validated the merged local workflow/UI behavior only. It did not implement M32.10 UAT, M32.11 closeout, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
+M32.10 conditionally accepted the bounded M32 local workflow/UI as trial-ready with limitations recorded. It did not implement M32.11 closeout, release, deployment, SaaS, commercialization, customer-ready output, or full product/runtime AI readiness.
 ```
 
 ---
@@ -327,32 +346,32 @@ M32.9 validated the merged local workflow/UI behavior only. It did not implement
 ## Exact Next Unfinished Work
 
 ```text
-PLAN M32.10 — Milestone UAT / owner acceptance
+PLAN M32.11 — Milestone closeout
 ```
 
 Current state:
 
 ```text
-READY FOR PLAN M32.10 ONLY AFTER M32.9 MERGE / GO BLOCKED
+READY FOR PLAN M32.11 ONLY AFTER M32.10 MERGE / GO BLOCKED
 ```
 
-Allowed current work after M32.9 merge:
+Allowed current work after M32.10 merge:
 
 ```text
-PLAN M32.10 only.
+PLAN M32.11 only.
 ```
 
 Blocked until separately authorized:
 
-- GO M32.10 UAT / owner acceptance work;
-- M32.11 or later checkpoint work;
+- GO M32.11 closeout work;
+- M33 or later checkpoint work;
 - web UI;
 - desktop UI;
 - SaaS/admin/customer surfaces;
 - cloud-first workflow;
 - provider/API key use;
 - real provider calls beyond accepted scope;
-- local model inference beyond accepted scope;
+- local model inference beyond accepted optional smoke evidence;
 - raw provider payload storage;
 - raw Ollama response dumps;
 - raw model output storage as product evidence;
@@ -387,6 +406,18 @@ Latest manual scenario validation evidence:
 
 ```text
 scenario -> configure -> plan -> status -> outputs completed for WP-032 / TC-032 / PLAN-032; runtime state restored; working tree clean.
+```
+
+Latest optional local/offline LLM smoke evidence:
+
+```text
+docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_EVIDENCE.md — PASS as optional supporting evidence only.
+```
+
+Latest UAT/owner acceptance evidence:
+
+```text
+docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md — accepted with limitations.
 ```
 
 Latest focused M32.8 validation:
@@ -431,16 +462,10 @@ Latest roadmap/control review evidence:
 PR #100 — docs: promote roadmap v7 deliverable controls
 ```
 
-Latest M32.9 validation record:
+Validation / review scope:
 
 ```text
-docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
-```
-
-Validation scope:
-
-```text
-M32.9 validated the local workflow/UI behavior with full tests plus scenario validation evidence. Scenario path was exercised manually and recorded as scenario -> configure -> plan -> status -> outputs.
+M32.10 recorded owner acceptance that the local workflow/UI is trial-ready with limitations for the bounded cleanroom HVAC qualification-only scenario. Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations.
 ```
 
 ---
@@ -450,7 +475,7 @@ M32.9 validated the local workflow/UI behavior with full tests plus scenario val
 Latest completed milestone UAT:
 
 ```text
-M31.11 conditional owner acceptance of bounded local/offline AI assistance baseline.
+M32.10 conditional owner acceptance of local workflow/UI as trial-ready with limitations.
 ```
 
 Latest milestone closeout:
@@ -462,10 +487,10 @@ M31.12 closed M31 with conditional local/offline AI assistance baseline.
 Acceptance scope:
 
 ```text
-Bounded local/offline AI assistance carry-forward for the local product path only, with strict limitations.
+Bounded M32 local workflow/UI for cleanroom HVAC qualification-only scenario, with optional local/offline LLM draft support accepted only as optional supporting trial evidence with limitations.
 ```
 
-Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, cloud/provider API readiness, UI/API readiness, retrieval-backed compliance truth, standards-backed legal/regulatory authority, AI approval authority, release/certification authority, or full product/runtime AI readiness.
+Acceptance does not claim productization, deployment, release, commercial readiness, SaaS readiness, customer-ready output, cloud/provider API readiness, web/desktop/customer UI readiness, retrieval-backed compliance truth, standards-backed legal/regulatory authority, AI approval authority, release/certification authority, or full product/runtime AI readiness.
 
 Productization/release/deployment/SaaS readiness remain blocked until Roadmap v7 Phase 10 gates after local product-core evidence. Commercialization launch planning remains outside ASBP unless separately approved after a post-completion go/no-go decision.
 
@@ -550,14 +575,28 @@ docs/milestones/M32/M32_8_END_TO_END_LOCAL_SCENARIO_IMPLEMENTATION_VALIDATION.md
 PROGRESS_TRACKER.md
 ```
 
-M32.9 validation is recorded on branch `m32-9-validation-checkpoint`:
+M32.9 validation is recorded in repo:
 
 ```text
 docs/milestones/M32/M32_9_VALIDATION_CHECKPOINT.md
 PROGRESS_TRACKER.md
 ```
 
-This tracker update records M32.9 completion on the validation branch and keeps PLAN M32.10 as the next work after M32.9 merge. It does not start M32.10 UAT/owner acceptance, does not authorize M32.11 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+Optional M32 local/offline LLM smoke-test protocol/evidence is recorded in repo:
+
+```text
+docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_PROTOCOL.md
+docs/milestones/M32/M32_OPTIONAL_LOCAL_LLM_SMOKE_TEST_EVIDENCE.md
+```
+
+M32.10 owner acceptance is recorded on branch `m32-10-uat-owner-acceptance`:
+
+```text
+docs/milestones/M32/M32_10_UAT_OWNER_ACCEPTANCE.md
+PROGRESS_TRACKER.md
+```
+
+This tracker update records M32.10 owner acceptance on the UAT branch and keeps PLAN M32.11 as the next work after M32.10 merge. It does not start M32.11 closeout, does not authorize M33 or later work, and does not authorize API key generation/storage/use, cloud/provider API comparison, real provider calls, web UI, desktop UI, SaaS/admin/customer surfaces, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -590,8 +629,8 @@ DDR-004 remains closed only for the approved standards source/citation authority
 
 DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32 work must not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
-DDR-006 remains relevant for generated output. M31 accepts generated AI output only as draft/support and human-review-required. M31 does not claim document factory readiness, product-ready generated output, customer-ready output, or productization.
+DDR-006 remains relevant to generated output. Optional M32 local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations. It is not product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains partially closed / carried forward. M31 proved the local/offline app-coupled path only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
+DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
 
-DDR-009 remains relevant to UI/API/external contract placeholder behavior. M31 does not authorize UI/API behavior. M32 must handle UI/API scope explicitly.
+DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32 does not authorize web/desktop/customer UI/API behavior.
