@@ -1,6 +1,6 @@
 # M32.10 — Milestone UAT / Owner Acceptance
 
-Status: Owner acceptance record prepared; owner acceptance pending  
+Status: Owner accepted on UAT branch  
 Checkpoint: M32.10  
 Mode: UAT  
 Branch: `m32-10-uat-owner-acceptance`  
@@ -17,10 +17,10 @@ M32.10 is an owner acceptance checkpoint. It does not implement new product feat
 Current owner acceptance status:
 
 ```text
-PENDING OWNER ACCEPTANCE
+ACCEPTED WITH LIMITATIONS
 ```
 
-This record is prepared for review. M32.10 may be recorded as complete only after the project owner explicitly accepts the local workflow as trial-ready with limitations recorded.
+M32.10 may be recorded as complete on this branch because the project owner explicitly accepted the local workflow as trial-ready with limitations recorded.
 
 ## Acceptance target
 
@@ -100,9 +100,15 @@ Deployment-ready claimed: false
 Normal pytest dependency on Ollama/live model: false
 ```
 
-## Proposed owner acceptance statement
+## Owner acceptance statement
 
-The project owner may accept M32.10 using this statement, with or without edits:
+The project owner explicitly accepted M32.10 with the proposed conditional owner acceptance statement:
+
+```text
+I accept M32.10 with the proposed conditional owner acceptance statement.
+```
+
+Accepted statement:
 
 ```text
 The project owner conditionally accepts the M32 local workflow/UI as trial-ready for a bounded local cleanroom HVAC qualification-only scenario, with limitations recorded.
@@ -133,15 +139,7 @@ Not accepted:
 
 ## Optional local/offline LLM treatment
 
-For M32.10 acceptance, optional local/offline LLM draft support must be classified as one of:
-
-```text
-accepted as optional trial limitation,
-deferred,
-or excluded from trial acceptance.
-```
-
-Prepared recommendation:
+For M32.10 acceptance, optional local/offline LLM draft support is classified as:
 
 ```text
 accepted as optional trial limitation
@@ -151,7 +149,7 @@ This means the optional local/offline LLM smoke-test evidence may support trial 
 
 ## Required limitations
 
-M32.10 acceptance must preserve these limitations:
+M32.10 acceptance preserves these limitations:
 
 - CLI/local workflow surfaces remain adapters only;
 - no CQV domain logic is added to the CLI surface;
@@ -169,19 +167,19 @@ M32.10 acceptance must preserve these limitations:
 Owner decision:
 
 ```text
-PENDING
+ACCEPTED WITH LIMITATIONS
 ```
 
 Decision date:
 
 ```text
-PENDING
+2026-06-05
 ```
 
 Owner acceptance evidence:
 
 ```text
-PENDING
+The project owner stated: "I accept M32.10 with the proposed conditional owner acceptance statement."
 ```
 
 ## Scope limits
@@ -206,7 +204,7 @@ This UAT record does not claim:
 
 ## Tracker movement
 
-M32.10 may be recorded as complete only after explicit owner acceptance exists.
+M32.10 may be recorded as complete on this branch because explicit owner acceptance exists.
 
 The next checkpoint after accepted M32.10 merge is:
 
