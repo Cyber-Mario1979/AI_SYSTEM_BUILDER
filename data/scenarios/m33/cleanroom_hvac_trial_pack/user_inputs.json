@@ -1,0 +1,88 @@
+{
+  "checkpoint": "M33.2 — Test dataset / scenario pack",
+  "scenario_pack_id": "cleanroom_hvac_trial_pack",
+  "input_set_id": "M33-2-SYNTH-INPUTS-001",
+  "data_classification": "synthetic_non_confidential_local_trial_data",
+  "operator_role": "local CQV reviewer / project owner",
+  "workflow_inputs": {
+    "scenario_id": "cleanroom-hvac-qualification-basic",
+    "wp_id": "WP-032",
+    "system_type": "cleanroom-hvac",
+    "preset_id": "cqv-cleanroom-hvac-basic",
+    "scope_intent": "qualification-only",
+    "standards_bundles": [
+      "cqv-core",
+      "cleanroom-hvac"
+    ]
+  },
+  "synthetic_task_inputs": [
+    {
+      "task_id": "TASK-M33-2-001",
+      "order": 1,
+      "title": "Confirm synthetic cleanroom HVAC qualification boundary",
+      "description": "Review the fictional system scope, room identifiers, and qualification-only boundary before local trial execution.",
+      "owner": "local-user",
+      "duration_days": 1,
+      "dependencies": []
+    },
+    {
+      "task_id": "TASK-M33-2-002",
+      "order": 2,
+      "title": "Prepare synthetic HVAC readiness evidence checklist",
+      "description": "Prepare a local checklist for synthetic AHU, HEPA, pressure cascade, temperature, and humidity evidence visibility.",
+      "owner": "local-user",
+      "duration_days": 1,
+      "dependencies": [
+        "TASK-M33-2-001"
+      ]
+    },
+    {
+      "task_id": "TASK-M33-2-003",
+      "order": 3,
+      "title": "Stage synthetic local workflow planning inputs",
+      "description": "Use controlled local inputs to exercise the configure and plan workflow path in later authorized trial work.",
+      "owner": "local-user",
+      "duration_days": 1,
+      "dependencies": [
+        "TASK-M33-2-002"
+      ]
+    },
+    {
+      "task_id": "TASK-M33-2-004",
+      "order": 4,
+      "title": "Review synthetic workflow visibility states",
+      "description": "Check that status, source, standards, output, validation, and AI limitations remain visible in later authorized trial work.",
+      "owner": "local-user",
+      "duration_days": 1,
+      "dependencies": [
+        "TASK-M33-2-003"
+      ]
+    },
+    {
+      "task_id": "TASK-M33-2-005",
+      "order": 5,
+      "title": "Record synthetic trial observations for later triage",
+      "description": "Capture issues, friction, and missing visibility as observations only, without triage or correction in M33.2.",
+      "owner": "local-user",
+      "duration_days": 1,
+      "dependencies": [
+        "TASK-M33-2-004"
+      ]
+    }
+  ],
+  "operator_prompts_for_later_trial": [
+    "Can the local workflow be exercised without real confidential data?",
+    "Are source and standards limitations visible?",
+    "Are output review and human-review-required states visible?",
+    "Are AI limitations visible and bounded?",
+    "Are defects and friction capturable without starting correction work?"
+  ],
+  "data_controls": {
+    "real_customer_data_used": false,
+    "real_facility_data_used": false,
+    "personal_data_used": false,
+    "production_gmp_records_used": false,
+    "confidential_vendor_documents_used": false,
+    "raw_model_output_used_as_product_evidence": false
+  }
+}

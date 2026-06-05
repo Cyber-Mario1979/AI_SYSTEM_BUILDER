@@ -1,0 +1,62 @@
+{
+  "checkpoint": "M33.2 — Test dataset / scenario pack",
+  "scenario_pack_id": "cleanroom_hvac_trial_pack",
+  "inventory_id": "M33-2-SOURCE-INVENTORY-001",
+  "data_classification": "synthetic_non_confidential_local_trial_data",
+  "source_authority_statement": "This inventory provides scenario visibility only. It does not upgrade source, retrieval, standards, citation, legal, regulatory, or compliance authority.",
+  "scenario_sources": [
+    {
+      "source_id": "SRC-M33-2-001",
+      "source_type": "synthetic_user_input",
+      "title": "Synthetic cleanroom HVAC qualification scope summary",
+      "confidentiality": "synthetic_non_confidential",
+      "use_in_trial": "Provides fictional scope context for local workflow exercise."
+    },
+    {
+      "source_id": "SRC-M33-2-002",
+      "source_type": "synthetic_equipment_context",
+      "title": "Synthetic AHU and HEPA terminal inventory",
+      "confidentiality": "synthetic_non_confidential",
+      "use_in_trial": "Provides fictional equipment identifiers and visibility prompts."
+    },
+    {
+      "source_id": "SRC-M33-2-003",
+      "source_type": "synthetic_monitoring_context",
+      "title": "Synthetic pressure, temperature, and humidity monitoring points",
+      "confidentiality": "synthetic_non_confidential",
+      "use_in_trial": "Provides fictional monitoring context for observation capture."
+    }
+  ],
+  "standards_visibility": [
+    {
+      "bundle_id": "cqv-core",
+      "role": "Core CQV workflow visibility bundle",
+      "authority_limit": "Visibility only; does not create clause-level authority."
+    },
+    {
+      "bundle_id": "cleanroom-hvac",
+      "role": "Cleanroom HVAC scenario visibility bundle",
+      "authority_limit": "Visibility only; does not create legal or regulatory authority."
+    }
+  ],
+  "retrieval_boundary": {
+    "retrieval_required_for_m33_2": false,
+    "retrieval_upgraded_to_source_authority": false,
+    "external_documents_ingested": false
+  },
+  "ai_boundary": {
+    "ai_required_for_m33_2": false,
+    "provider_call_required": false,
+    "local_model_call_required": false,
+    "raw_model_output_product_evidence": false,
+    "human_review_required": true
+  },
+  "confidentiality_controls": [
+    "All site, room, equipment, task, and source identifiers are fictional.",
+    "No real customer data is included.",
+    "No real facility data is included.",
+    "No personal data is included.",
+    "No production GMP records are included.",
+    "No confidential vendor or customer documents are included."
+  ]
+}
