@@ -1,6 +1,6 @@
 # M33.4 — Trial Record Round 1
 
-Status: Lane A evidence recorded; Lane B pending  
+Status: Evidence recorded  
 Checkpoint: M33.4  
 Lane: A — Manual local workflow trial  
 Branch: `m33-4-trial-execution-round-1`  
@@ -36,7 +36,7 @@ M33.3 integrated validation passed before this trial checkpoint:
 python -m pytest -q — 1623 passed in 57.98s
 ```
 
-Before the Lane A run, `data/state/state.json` showed a line-ending-only diff warning and was restored to start from clean repo state. After the Lane A run, `data/state/state.json` was modified again as expected by scenario staging/state persistence.
+Before the Lane A run, `data/state/state.json` showed a line-ending-only diff warning and was restored to start from clean repo state. After the Lane A run, `data/state/state.json` was modified again as expected by scenario staging/state persistence. The runtime state file was later restored and not committed.
 
 ## Command log
 
@@ -199,7 +199,11 @@ Safe artifact access was unavailable and download_allowed = false.
 LANE A PASS — manual local workflow trial evidence recorded for scenario -> configure -> plan -> status -> outputs.
 ```
 
-M33.4 remains incomplete until Lane B bounded Ollama/local-model observation is recorded, because the authorized GO scope includes Lane B.
+Lane B evidence is recorded separately in:
+
+```text
+docs/milestones/M33/trial_records/M33_4_OPTIONAL_OLLAMA_OBSERVATION.md
+```
 
 ## Boundary
 
