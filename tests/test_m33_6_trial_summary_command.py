@@ -140,5 +140,5 @@ def test_trial_summary_reports_missing_state_without_mutation(restore_state_file
 
     assert result.returncode == 1
     payload = json.loads(result.stdout)
-    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_MISSING_STATE"
+    assert payload["failure_state"]["error_code"] == "LOCAL_WORKFLOW_STATE_MISSING"
     assert not STATE_FILE.exists()
