@@ -25,17 +25,17 @@ Phase 9 - Full Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M33 - Full Local Product Trial, Defect Loop, and UAT
+M34 - Local Product-Core Closeout and Local Release-Candidate Gate
 
 Status:
 
-READY FOR PLAN M33.11 ONLY AFTER M33.10 MERGE / GO BLOCKED
+READY FOR PLAN M34.1 ONLY AFTER M33.11 MERGE / GO BLOCKED
 
-Normal next roadmap checkpoint after M33.10 merge:
+Normal next roadmap checkpoint after M33.11 merge:
 
-PLAN M33.11 - Milestone closeout
+PLAN M34.1 - Product-core completeness assessment
 
-M33.10 is complete on the feature branch with owner acceptance gate evidence. M33.11 is planning only after M33.10 is reviewed, merged, and separately authorized.
+M33.11 is complete on the feature branch with milestone closeout evidence. M34.1 is planning only after M33.11 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -70,27 +70,27 @@ None active.
 
 ## Active Context Reset CAPA Status
 
-Carry into M33 execution as controlled-context discipline for trial, defect loop, UAT, and AI surfacing decisions.
+Carry forward into M34 planning as controlled-context discipline for product-core completeness, limitations, DDR review, and readiness decisions.
 
-M33 must not rely on old bloated chat history as proof of live project state.
+M34 must not rely on old bloated chat history as proof of live project state.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M33.11 - Milestone closeout.
+M34.1 - Product-core completeness assessment.
 
 Status:
 
-READY FOR PLAN M33.11 ONLY AFTER M33.10 MERGE / GO BLOCKED
+READY FOR PLAN M34.1 ONLY AFTER M33.11 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M33.10 merge:
+Normal roadmap checkpoint after M33.11 merge:
 
-PLAN M33.11 - Milestone closeout
+PLAN M34.1 - Product-core completeness assessment
 
 Required deliverable / completion minimum from Roadmap v7:
 
-Closeout record defining remaining gaps and next gate.
+Evidence-based assessment covering libraries, standards, document/output, retrieval, AI, UI, validation, UAT, install/run needs, and limitations.
 
 Validation / review requirement:
 
@@ -98,11 +98,11 @@ Document consistency review.
 
 Tracker movement rule:
 
-May advance only after closeout exists.
+May advance only after assessment exists.
 
 Not allowed:
 
-Re-enter readiness automatically.
+Assume readiness from one scenario only.
 
 ---
 
@@ -110,28 +110,27 @@ Re-enter readiness automatically.
 
 Latest completed roadmap checkpoint:
 
-M33.10 - Owner acceptance gate
+M33.11 - Milestone closeout
 
 Completion type:
 
-Owner acceptance decision with rationale and limitations.
+Closeout record defining remaining gaps and next gate.
 
-M33.10 evidence:
+M33.11 evidence:
 
-docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md
+docs/milestones/M33/M33_11_MILESTONE_CLOSEOUT.md
 
-M33.10 owner decision:
+M33 closeout decision:
 
-CONDITIONAL PASS - bounded M33 local product core evidence accepted for progression to M33.11 closeout, with limitations carried forward.
+CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD
 
 Decision boundary:
 
-Conditional pass applies only to bounded M33 local product core evidence. It is not productization readiness, release readiness, deployment readiness, SaaS readiness, commercialization readiness, customer-ready output, or full product/runtime AI readiness.
+M33 is closed with limitations carried forward. This does not start M34, productization, deployment, release readiness, SaaS readiness, commercialization readiness, customer-ready output, or full product/runtime AI readiness.
 
-Prior M33.9 evidence:
+Prior M33.10 evidence:
 
-docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md
-docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
+docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md
 
 Latest executable validation:
 
@@ -143,35 +142,35 @@ python -m pytest -q - 1627 passed in 57.63s
 
 Latest control action:
 
-M33.10 owner acceptance gate evidence on feature branch
+M33.11 milestone closeout evidence on feature branch
 
 Evidence:
 
-docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md
+docs/milestones/M33/M33_11_MILESTONE_CLOSEOUT.md
 PROGRESS_TRACKER.md
 
 Interpretation:
 
-M33.10 records owner acceptance gate evidence only. It does not start M33.11 closeout, M34, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
+M33.11 closes M33 with conditional pass and limitations carried forward. It does not start M34.1, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
 ## Exact Next Unfinished Work
 
-PLAN M33.11 - Milestone closeout
+PLAN M34.1 - Product-core completeness assessment
 
 Current state:
 
-READY FOR PLAN M33.11 ONLY AFTER M33.10 MERGE / GO BLOCKED
+READY FOR PLAN M34.1 ONLY AFTER M33.11 MERGE / GO BLOCKED
 
-Allowed current work after M33.10 merge:
+Allowed current work after M33.11 merge:
 
-PLAN M33.11 only, after separate owner authorization.
+PLAN M34.1 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M33.11 milestone closeout work;
-- M34 or later checkpoint work;
+- GO M34.1 product-core completeness assessment work;
+- M34.2 or later checkpoint work;
 - productization;
 - deployment;
 - release readiness;
@@ -184,9 +183,9 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
-Latest M33.10 owner acceptance evidence:
+Latest M33.11 closeout evidence:
 
-docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md - CONDITIONAL PASS owner acceptance gate evidence.
+docs/milestones/M33/M33_11_MILESTONE_CLOSEOUT.md - CLOSED / CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD.
 
 Latest executable validation remains M33.9:
 
@@ -200,17 +199,13 @@ docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
 
 ## Milestone UAT Status
 
-Latest completed milestone UAT:
+Latest completed milestone closeout:
+
+M33.11 milestone closeout completed with CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD.
+
+Latest owner acceptance gate:
 
 M33.10 owner acceptance gate completed with CONDITIONAL PASS for bounded M33 local product core evidence.
-
-Latest milestone governance checkpoint:
-
-M33.5 issue triage and correction plan completed.
-
-Latest corrective implementation checkpoint:
-
-M33.6 corrective implementation package completed.
 
 Latest validation checkpoint:
 
@@ -218,20 +213,24 @@ M33.9 final validation checkpoint completed.
 
 Current M33 status:
 
-M33.10 owner acceptance gate completed on feature branch; M33.11 milestone closeout has not started.
+M33 closed with conditional pass and limitations carried forward.
+
+Current M34 status:
+
+M34.1 product-core completeness assessment has not started.
 
 ---
 
 ## Repo Alignment Status
 
-M33.10 is recorded on feature branch m33-10-owner-acceptance-gate:
+M33.11 is recorded on feature branch m33-11-milestone-closeout:
 
-docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md
+docs/milestones/M33/M33_11_MILESTONE_CLOSEOUT.md
 PROGRESS_TRACKER.md
 
-This tracker update records M33.10 owner acceptance gate completion on the feature branch and keeps PLAN M33.11 as the next work after M33.10 merge and separate authorization.
+This tracker update records M33.11 milestone closeout completion on the feature branch and keeps PLAN M34.1 as the next work after M33.11 merge and separate authorization.
 
-It does not start M33.11, M34 or later checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+It does not start M34.1, M34.2 or later checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -256,39 +255,39 @@ The full repository index was generated from tracked repository files.
 
 ## Relevant DDR Status
 
-DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond that scope.
+DDR-003 is accepted for the M29 milestone UAT baseline with clarifications. It remains a downstream productization concern beyond M33 closeout.
 
-DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, M33.10, or Roadmap v7.
+DDR-004 remains closed only for the approved standards source/citation authority model scope. It is not upgraded into clause-level, mandatory-use, or standards-backed product authority by M29, the repository index, CONTROL-RECOVERY-002, M30, M31, M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, M33.10, M33.11, or Roadmap v7.
 
-DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, and M33.10 do not treat retrieval as source authority, compliance truth, or raw untracked model context.
+DDR-005 remains partially closed for bounded deterministic retrieval controls only. M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, M33.10, and M33.11 do not treat retrieval as source authority, compliance truth, or raw untracked model context.
 
 DDR-006 remains relevant to generated output. Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations. It is not product-ready generated output, customer-ready output, or productization.
 
-DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. M33.2 prepares synthetic scenario-pack data only. M33.3 validates the integrated pre-trial path only. M33.4 records the first trial execution round only. M33.5 classifies findings only. M33.6 applies the approved M33.5-001 correction only. M33.7 rechecks the corrected path only. M33.8 reports UAT evidence only. M33.9 validates the bounded path only. M33.10 records conditional owner acceptance only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
+DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. M33.2 prepares synthetic scenario-pack data only. M33.3 validates the integrated pre-trial path only. M33.4 records the first trial execution round only. M33.5 classifies findings only. M33.6 applies the approved M33.5-001 correction only. M33.7 rechecks the corrected path only. M33.8 reports UAT evidence only. M33.9 validates the bounded path only. M33.10 records conditional owner acceptance only. M33.11 closes the milestone with limitations carried forward only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
 
-DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, and M33.10 do not authorize web/desktop/customer UI/API behavior.
+DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, M33.8, M33.9, M33.10, and M33.11 do not authorize web/desktop/customer UI/API behavior.
 ---
 
-## M33.10 Completion Update
+## M33.11 Completion Update
 
 Latest completed roadmap checkpoint:
 
-M33.10 - Owner acceptance gate
+M33.11 - Milestone closeout
 
 Completion type:
 
-Owner acceptance decision with rationale and limitations.
+Closeout record defining remaining gaps and next gate.
 
-M33.10 evidence:
+M33.11 evidence:
 
-docs/milestones/M33/M33_10_OWNER_ACCEPTANCE_GATE.md
+docs/milestones/M33/M33_11_MILESTONE_CLOSEOUT.md
 
-M33.10 owner decision:
+M33 closeout decision:
 
-CONDITIONAL PASS - bounded M33 local product core evidence accepted for progression to M33.11 closeout, with limitations carried forward.
+CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD
 
 Exact next unfinished work:
 
-PLAN M33.11 - Milestone closeout
+PLAN M34.1 - Product-core completeness assessment
 
-M33.11 remains blocked until separately planned and authorized.
+M34.1 remains blocked until separately planned and authorized.
