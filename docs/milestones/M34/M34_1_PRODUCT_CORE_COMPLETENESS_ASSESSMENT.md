@@ -52,7 +52,7 @@ Assume readiness from one scenario only.
 
 ## Source basis
 
-This assessment is based on repo-persistent evidence on `main` after PR #124 merge:
+This assessment is based on repo-persistent evidence on `main` after PR #124 merge plus README alignment completed on this M34.1 feature branch:
 
 ```text
 ROADMAP_CANONICAL.md
@@ -107,7 +107,7 @@ The evidence is not sufficient to claim complete product-core readiness because 
 | UI / CLI surface | M32 closeout freezes CLI-enhanced local workflow baseline; M33.4-M33.9 exercise scenario -> configure -> plan -> status -> outputs -> trial-summary. | Supported for bounded CLI-enhanced local workflow only. | No web UI, desktop UI, customer/admin surface, API product surface, hosted surface, or SaaS/customer-facing workflow is accepted. CLI remains an adapter only. |
 | Validation evidence | M33.9 records integrated scenario validation and full pytest; validation records include PASS and `1627 passed in 57.63s`. | Supported for the bounded M33 local product-trial baseline. | Validation is based on one scenario and does not prove product-core completeness across all categories or future readiness gates. |
 | UAT / owner acceptance evidence | M33.8 records conditional UAT report; M33.10 records owner conditional pass; M33.11 records closeout as CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD. | Supported for bounded M33 progression into M34 planning. | Conditional acceptance must not be treated as full readiness or product-core completeness. |
-| Install / run needs | README documents virtual environment creation, dependency installation, pytest validation, CLI exploration, and state initialization. | Partially supported / needs later verification and cleanup. | M34.1 did not verify install/run commands. README public status is stale against tracker state and still shows M32.1-era current position; exact live state remains tracker/roadmap governed. |
+| Install / run needs | README documents virtual environment creation, dependency installation, pytest validation, CLI exploration, state initialization, and has been aligned to the M34.1/M34.2 public status on this feature branch. | Partially supported / needs later verification. | M34.1 did not verify install/run commands. Exact live state remains tracker/roadmap governed. No packaging/installability or release-candidate install readiness is accepted. |
 | Limitations and carry-forward gaps | M33.11 lists remaining gaps and carry-forward limitations; DDR and guardrails keep readiness boundaries active. | Supported as explicit limitation record. | M34.2+ must review DDRs, limitation register, local RC boundary, owner acceptance, and Phase 10 entry decision before any readiness progression. |
 
 ## Category findings
@@ -276,17 +276,19 @@ Carry-forward UAT limitations:
 Finding:
 
 ```text
-PARTIALLY SUPPORTED / REQUIRES LATER VERIFICATION AND DOC CLEANUP
+PARTIALLY SUPPORTED / REQUIRES LATER VERIFICATION
 ```
 
 README provides a quick-start path for virtual environment creation, dependency installation, pytest validation, CLI exploration, and state initialization.
+
+README public current-position wording has been aligned in this PR to the M34.1/M34.2 branch state without making README authoritative over tracker or roadmap.
 
 M34.1 did not execute install/run verification because this checkpoint is governance-only and no executable behavior changed.
 
 Carry-forward install/run limitations:
 
 - install/run commands require later verification before release-candidate, packaging, or Phase 10 readiness claims;
-- README public current-position/status content is stale relative to `PROGRESS_TRACKER.md` and should be corrected in a later authorized documentation or packaging/readiness checkpoint;
+- exact live state remains tracker/roadmap governed;
 - no packaging/installability readiness is accepted by M34.1;
 - no release artifact or supported distribution boundary is accepted.
 
@@ -363,7 +365,6 @@ The following remain blocked or carried forward:
 - owner acceptance for product-core closeout;
 - Phase 9 closeout;
 - packaging/installability verification;
-- README/current-public-status cleanup;
 - customer-ready output;
 - web, desktop, API, customer/admin, hosted, cloud, or SaaS surfaces;
 - provider/API/cloud behavior;
@@ -377,7 +378,7 @@ The following remain blocked or carried forward:
 Review result:
 
 ```text
-PASS WITH LIMITATIONS RECORDED - M34.1 product-core completeness assessment exists and is consistent with roadmap, tracker, DDR, architecture guardrails, and M33 closeout boundaries.
+PASS WITH LIMITATIONS RECORDED - M34.1 product-core completeness assessment exists and is consistent with roadmap, tracker, DDR, architecture guardrails, README public-status alignment, and M33 closeout boundaries.
 ```
 
 Review checks:
@@ -392,7 +393,7 @@ Review checks:
 | Architecture guardrails preserved | PASS |
 | Productization/release/deployment/SaaS/commercial claims avoided | PASS |
 | Install/run needs assessed without claiming verification | PASS |
-| README stale current-position limitation recorded instead of silently corrected | PASS |
+| README public current-position wording aligned while preserving tracker/roadmap authority | PASS |
 
 ## Tracker movement recommendation
 
