@@ -1,0 +1,1 @@
+﻿python -m asbp.adapters.local_workflow_cli scenario --scenario-id cleanroom-hvac-qualification-basic

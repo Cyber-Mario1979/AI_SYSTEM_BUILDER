@@ -1,0 +1,1 @@
+﻿python -m asbp.adapters.local_workflow_cli outputs --wp-id WP-032
