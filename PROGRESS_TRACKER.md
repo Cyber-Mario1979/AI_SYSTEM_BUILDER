@@ -25,21 +25,17 @@ Phase 9 — Full Local Integrated CQV Product Core
 
 ## Current Milestone
 
-M33 — Full Local Product Trial, Defect Loop, and UAT
+M33 - Full Local Product Trial, Defect Loop, and UAT
 
 Status:
 
-```text
-READY FOR PLAN M33.9 ONLY AFTER M33.8 MERGE / GO BLOCKED
-```
+READY FOR PLAN M33.10 ONLY AFTER M33.9 MERGE / GO BLOCKED
 
-Normal next roadmap checkpoint after M33.8 merge:
+Normal next roadmap checkpoint after M33.9 merge:
 
-```text
-PLAN M33.9 — Final validation checkpoint
-```
+PLAN M33.10 - Owner acceptance gate
 
-M33.8 is complete on the feature branch with local product UAT report evidence. M33.9 is planning only after M33.8 is reviewed, merged, and separately authorized.
+M33.9 is complete on the feature branch with final validation evidence. M33.10 is planning only after M33.9 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -82,31 +78,31 @@ M33 must not rely on old bloated chat history as proof of live project state.
 
 ## Current Approved Checkpoint Family
 
-M33.9 — Final validation checkpoint.
+M33.10 - Owner acceptance gate.
 
 Status:
 
-READY FOR PLAN M33.9 ONLY AFTER M33.8 MERGE / GO BLOCKED
+READY FOR PLAN M33.10 ONLY AFTER M33.9 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M33.8 merge:
+Normal roadmap checkpoint after M33.9 merge:
 
-PLAN M33.9 — Final validation checkpoint
+PLAN M33.10 - Owner acceptance gate
 
 Required deliverable / completion minimum from Roadmap v7:
 
-Full tests plus integrated scenario validation.
+Pass, conditional pass, or fail decision with rationale and limitations.
 
 Validation / review requirement:
 
-Validation evidence required.
+Owner decision required.
 
 Tracker movement rule:
 
-May advance only after validation evidence exists.
+May advance only after owner decision exists.
 
 Not allowed:
 
-Claim validation by memory.
+Treat conditional pass as full readiness.
 
 ---
 
@@ -114,38 +110,36 @@ Claim validation by memory.
 
 Latest completed roadmap checkpoint:
 
-M33.8 — Local product UAT report
+M33.9 - Final validation checkpoint
 
 Completion type:
 
-UAT report with scope, results, limitations, acceptance decision, and owner/reviewer field
+Validation evidence with full tests plus integrated scenario validation.
 
-M33.8 evidence:
+M33.9 evidence:
+
+docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md
+docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
+
+M33.9 validation result:
+
+PASS - M33.9 final validation checkpoint evidence completed.
+python -m pytest -q - 1627 passed in 57.63s
+
+Integrated scenario validation:
+
+scenario -> configure -> plan -> status -> outputs -> trial-summary
+
+Boundary confirmation:
+
+Human review boundary remains visible.
+Output remains metadata/visibility only.
+No unscoped AI, provider, or Ollama behavior was introduced.
+Trial-summary command remained read-only by state hash comparison.
+
+Prior M33.8 evidence:
 
 docs/milestones/M33/M33_8_LOCAL_PRODUCT_UAT_REPORT.md
-
-M33.8 validation / review result:
-
-CONDITIONAL PASS — M33.8 local product UAT report evidence prepared for owner/reviewer acceptance by PR review and merge.
-
-Acceptance boundary:
-
-M33.8 report evidence is accepted for checkpoint progression only after PR review and merge. M33.9 final validation, M33.10 owner acceptance gate, and M33.11 milestone closeout remain required.
-
-Prior M33.7 evidence:
-
-docs/milestones/M33/M33_7_REGRESSION_AND_RETRIAL.md
-docs/milestones/M33/trial_records/M33_7_REGRESSION_AND_RETRIAL/
-
-Frozen M32 baseline remains trial-entry baseline:
-
-CLI-enhanced local workflow only.
-Scenario path: scenario -> configure -> plan -> status -> outputs.
-Scenario: cleanroom-hvac-qualification-basic.
-Scenario identifiers: WP-032, TC-032, PLAN-032.
-Output review remains metadata/visibility only.
-Human review remains required.
-Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations.
 
 ---
 
@@ -153,41 +147,36 @@ Optional local/offline LLM draft support is accepted only as optional supporting
 
 Latest control action:
 
-```text
-M33.8 local product UAT report and tracker hygiene cleanup on feature branch
-```
+M33.9 final validation checkpoint evidence on feature branch
 
 Evidence:
 
-```text
-docs/milestones/M33/M33_8_LOCAL_PRODUCT_UAT_REPORT.md
+docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md
+docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
 PROGRESS_TRACKER.md
-```
 
 Interpretation:
 
-```text
-M33.8 records local product UAT report evidence only. It does not start M33.9 final validation, M33.10 owner acceptance, M33.11 closeout, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
-```
+M33.9 records final validation evidence only. It does not start M33.10 owner acceptance, M33.11 closeout, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
 ## Exact Next Unfinished Work
 
-PLAN M33.9 — Final validation checkpoint
+PLAN M33.10 - Owner acceptance gate
 
 Current state:
 
-READY FOR PLAN M33.9 ONLY AFTER M33.8 MERGE / GO BLOCKED
+READY FOR PLAN M33.10 ONLY AFTER M33.9 MERGE / GO BLOCKED
 
-Allowed current work after M33.8 merge:
+Allowed current work after M33.9 merge:
 
-PLAN M33.9 only, after separate owner authorization.
+PLAN M33.10 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M33.9 final validation checkpoint work;
-- M33.10 or later checkpoint work;
+- GO M33.10 owner acceptance gate work;
+- M33.11 or later checkpoint work;
 - productization;
 - deployment;
 - release readiness;
@@ -200,15 +189,17 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
-Latest M33.8 review evidence:
+Latest M33.9 validation evidence:
 
-docs/milestones/M33/M33_8_LOCAL_PRODUCT_UAT_REPORT.md — CONDITIONAL PASS UAT report evidence prepared for PR review.
+docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md - PASS final validation evidence.
 
-Latest executable validation remains M33.7:
+Latest executable validation:
 
-python -m pytest -q — 1627 passed in 62.26s
+python -m pytest -q - 1627 passed in 57.63s
 
-No executable behavior changed in M33.8; pytest is not required for this documentation/UAT report checkpoint unless review requests executable changes.
+Integrated scenario validation evidence:
+
+docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
 
 ---
 
@@ -216,40 +207,37 @@ No executable behavior changed in M33.8; pytest is not required for this documen
 
 Latest completed milestone UAT:
 
-```text
 M33.8 local product UAT report prepared from M33.4 trial evidence, M33.5 triage, M33.6 correction, and M33.7 regression/re-trial evidence.
-```
 
 Latest milestone governance checkpoint:
 
-```text
 M33.5 issue triage and correction plan completed.
-```
 
 Latest corrective implementation checkpoint:
 
-```text
 M33.6 corrective implementation package completed.
-```
+
+Latest validation checkpoint:
+
+M33.9 final validation checkpoint completed on feature branch.
 
 Current M33 status:
 
-```text
-M33.8 local product UAT report completed on feature branch; M33.9 final validation checkpoint has not started.
-```
+M33.9 final validation checkpoint completed on feature branch; M33.10 owner acceptance gate has not started.
 
 ---
 
 ## Repo Alignment Status
 
-M33.8 is recorded on feature branch m33-8-local-product-uat-report:
+M33.9 is recorded on feature branch m33-9-final-validation-checkpoint:
 
-docs/milestones/M33/M33_8_LOCAL_PRODUCT_UAT_REPORT.md
+docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md
+docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
 PROGRESS_TRACKER.md
 
-This tracker update records M33.8 local product UAT report completion on the feature branch and keeps PLAN M33.9 as the next work after M33.8 merge and separate authorization.
+This tracker update records M33.9 final validation checkpoint completion on the feature branch and keeps PLAN M33.10 as the next work after M33.9 merge and separate authorization.
 
-It does not start M33.9, M33.10 or later checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+It does not start M33.10, M33.11 or later checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -287,26 +275,28 @@ DDR-007 remains partially closed / carried forward. M32 accepts the local/offlin
 DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, M33.3, M33.4, M33.5, M33.6, M33.7, and M33.8 do not authorize web/desktop/customer UI/API behavior.
 ---
 
-## M33.8 Completion Update
+## M33.9 Completion Update
 
 Latest completed roadmap checkpoint:
 
-M33.8 — Local product UAT report
+M33.9 - Final validation checkpoint
 
 Completion type:
 
-UAT report with scope, results, limitations, acceptance decision, and owner/reviewer field
+Validation evidence with full tests plus integrated scenario validation.
 
-M33.8 evidence:
+M33.9 evidence:
 
-docs/milestones/M33/M33_8_LOCAL_PRODUCT_UAT_REPORT.md
+docs/milestones/M33/M33_9_FINAL_VALIDATION_CHECKPOINT.md
+docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
 
-M33.8 validation / review result:
+M33.9 validation result:
 
-CONDITIONAL PASS — M33.8 local product UAT report evidence prepared for owner/reviewer acceptance by PR review and merge.
+PASS - M33.9 final validation checkpoint evidence completed.
+python -m pytest -q - 1627 passed in 57.63s
 
 Exact next unfinished work:
 
-PLAN M33.9 — Final validation checkpoint
+PLAN M33.10 - Owner acceptance gate
 
-M33.9 remains blocked until separately planned and authorized.
+M33.10 remains blocked until separately planned and authorized.

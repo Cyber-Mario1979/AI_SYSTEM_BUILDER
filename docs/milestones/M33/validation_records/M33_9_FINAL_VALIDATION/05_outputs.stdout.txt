@@ -1,0 +1,161 @@
+{
+  "checkpoint": "M32.6 \u2014 Output review/download surfaces",
+  "surface": "cli-enhanced controlled local workflow",
+  "adapter_boundary": "CLI adapter reads validated state and approved output visibility boundaries only.",
+  "selected_work_package": {
+    "wp_id": "WP-032",
+    "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+    "status": "open"
+  },
+  "document_export_view": {
+    "output_target_status": "not_available",
+    "document_output_status": "not_available",
+    "export_output_status": "not_available",
+    "reporting_output_status": "not_available",
+    "visibility_payloads": [
+      {
+        "surface_name": "output_target_status",
+        "interaction_flow": "document_output_visibility",
+        "mode": "display_only",
+        "source_boundary": "output_target_metadata",
+        "output_kind": "output_target",
+        "output_status": "not_available",
+        "display_payload": {
+          "output_status": "not_available",
+          "artifact_available": false
+        },
+        "metadata": {
+          "visibility_only": true,
+          "generation_allowed": false,
+          "approval_claimed": false,
+          "release_claimed": false
+        },
+        "generation_allowed": false,
+        "renderer_allowed": false,
+        "ui_owns_output": false
+      },
+      {
+        "surface_name": "document_output_status",
+        "interaction_flow": "document_output_visibility",
+        "mode": "display_only",
+        "source_boundary": "approved_output_boundary",
+        "output_kind": "document",
+        "output_status": "not_available",
+        "display_payload": {
+          "output_status": "not_available",
+          "artifact_available": false
+        },
+        "metadata": {
+          "visibility_only": true,
+          "generation_allowed": false,
+          "approval_claimed": false,
+          "release_claimed": false
+        },
+        "generation_allowed": false,
+        "renderer_allowed": false,
+        "ui_owns_output": false
+      },
+      {
+        "surface_name": "export_output_status",
+        "interaction_flow": "document_output_visibility",
+        "mode": "display_only",
+        "source_boundary": "approved_output_boundary",
+        "output_kind": "export",
+        "output_status": "not_available",
+        "display_payload": {
+          "output_status": "not_available",
+          "artifact_available": false
+        },
+        "metadata": {
+          "visibility_only": true,
+          "generation_allowed": false,
+          "approval_claimed": false,
+          "release_claimed": false
+        },
+        "generation_allowed": false,
+        "renderer_allowed": false,
+        "ui_owns_output": false
+      },
+      {
+        "surface_name": "reporting_output_status",
+        "interaction_flow": "document_output_visibility",
+        "mode": "display_only",
+        "source_boundary": "approved_output_boundary",
+        "output_kind": "report",
+        "output_status": "not_available",
+        "display_payload": {
+          "output_status": "not_available",
+          "artifact_available": false
+        },
+        "metadata": {
+          "visibility_only": true,
+          "generation_allowed": false,
+          "approval_claimed": false,
+          "release_claimed": false
+        },
+        "generation_allowed": false,
+        "renderer_allowed": false,
+        "ui_owns_output": false
+      }
+    ]
+  },
+  "artifact_metadata": {
+    "artifact_available": false,
+    "artifact_id": null,
+    "artifact_filename": null,
+    "output_format": null,
+    "media_type": null,
+    "source_draft_id": null,
+    "template_id": null,
+    "schema_id": null,
+    "standards_control_packet_id": null,
+    "placeholder_present": null,
+    "limitation_present": null,
+    "standards_warning_present": null,
+    "non_product_ready": true
+  },
+  "output_validation_state": {
+    "validation_available": false,
+    "validation_id": null,
+    "status": "not_available",
+    "checks_performed": [],
+    "issues": []
+  },
+  "validation_limitations": [
+    "No output artifact metadata is available for this work package.",
+    "No output validation result is available for this work package.",
+    "Output review surface does not approve, sign, release, or certify artifacts.",
+    "Download/access remains metadata-reference-only unless a separately scoped safe artifact access path exists."
+  ],
+  "review_acceptance_status": {
+    "lifecycle_record_available": false,
+    "lifecycle_record_id": null,
+    "lifecycle_state": "not_available",
+    "human_review_required": true,
+    "accepted": false,
+    "approval_claimed": false,
+    "release_claimed": false
+  },
+  "safe_artifact_access": {
+    "access_available": false,
+    "access_mode": "not_available",
+    "artifact_reference": null,
+    "download_allowed": false,
+    "download_performed": false,
+    "path_exposed": false
+  },
+  "limitations": [
+    "CLI/local workflow surface is an adapter only.",
+    "This outputs command is read-only and does not mutate state.",
+    "No document, export, report, or rendered artifact is generated by this surface.",
+    "Artifact access is metadata/reference-only unless separately scoped.",
+    "No output is silently accepted, approved, signed, released, or certified.",
+    "Generated or assembled output remains human-review-required.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ],
+  "next_safe_actions": [
+    "Keep output review human-controlled before acceptance claims.",
+    "Use later M32 checkpoints for failure handling and end-to-end scenario evidence.",
+    "Do not treat metadata visibility as product-ready output or release evidence."
+  ]
+}

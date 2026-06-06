@@ -1,0 +1,107 @@
+{
+  "checkpoint": "M33.6 \u2014 Corrective implementation package",
+  "surface": "cli-enhanced controlled local workflow",
+  "correction_id": "M33.5-001",
+  "correction_summary": "Compact trial-summary command for repeated manual local workflow trial output capture.",
+  "adapter_boundary": "Read-only summary assembled from existing local workflow payload builders.",
+  "selected_work_package": {
+    "wp_id": "WP-032",
+    "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+    "status": "open",
+    "selector_context": {
+      "system_type": "cleanroom-hvac",
+      "preset_id": "cqv-cleanroom-hvac-basic",
+      "scope_intent": "qualification-only",
+      "standards_bundles": [
+        "cqv-core",
+        "cleanroom-hvac"
+      ]
+    }
+  },
+  "trial_summary": {
+    "workflow_path": [
+      "scenario",
+      "configure",
+      "plan",
+      "status",
+      "outputs"
+    ],
+    "summarized_commands": [
+      "plan",
+      "status",
+      "outputs"
+    ],
+    "task_count": 3,
+    "task_ids": [
+      "TASK-M32-8-001",
+      "TASK-M32-8-002",
+      "TASK-M32-8-003"
+    ],
+    "source_collection_ids": [
+      "TC-032"
+    ],
+    "standards_bundles": [
+      "cqv-core",
+      "cleanroom-hvac"
+    ],
+    "plan_count": 1,
+    "generated_schedule_present": true,
+    "artifact_available": false,
+    "output_validation_available": false
+  },
+  "command_results": [
+    {
+      "command": "plan",
+      "result": "summarized",
+      "key_observation": "Planning payload available from existing validated state."
+    },
+    {
+      "command": "status",
+      "result": "summarized",
+      "key_observation": "Workflow visibility payload available from existing validated state."
+    },
+    {
+      "command": "outputs",
+      "result": "summarized",
+      "key_observation": "Output review payload available from existing validated state."
+    }
+  ],
+  "boundary_checks": {
+    "human_review_required": true,
+    "accepted": false,
+    "approval_claimed": false,
+    "release_claimed": false,
+    "download_allowed": false,
+    "ai_call_performed": false,
+    "provider_call_performed": false,
+    "ollama_call_performed": false
+  },
+  "source_and_standards_boundary": {
+    "collection_ids": [
+      "TC-032"
+    ],
+    "authority_limit": "Existing repo state only; no retrieval or standards authority is upgraded."
+  },
+  "ai_boundary": {
+    "ai_call_performed": false,
+    "provider_call_performed": false,
+    "ollama_call_performed": false,
+    "human_review_required": true,
+    "limitation": "No AI, provider, Ollama, or live model call is performed."
+  },
+  "output_review_boundary": {
+    "human_review_required": true,
+    "accepted": false,
+    "approval_claimed": false,
+    "release_claimed": false,
+    "download_allowed": false
+  },
+  "issues_observed": [],
+  "limitations": [
+    "Trial summary is read-only and does not mutate workflow state.",
+    "Trial summary reduces evidence-capture friction but does not replace detailed command evidence when required.",
+    "No AI, provider, Ollama, or live model call is performed by this command.",
+    "Generated or assembled output remains human-review-required.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ]
+}
