@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-lightgrey" alt="GPLv3"/></a>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/ROADMAP_CANONICAL.md"><img src="https://img.shields.io/badge/Roadmap-v7-blueviolet" alt="Roadmap v7"/></a>
-  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/PROGRESS_TRACKER.md"><img src="https://img.shields.io/badge/Current-M32.1%20PLAN%20ONLY-blue" alt="Current checkpoint"/></a>
+  <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/PROGRESS_TRACKER.md"><img src="https://img.shields.io/badge/Current-M34.2%20PLAN%20ONLY-blue" alt="Current checkpoint"/></a>
   <a href="https://github.com/Cyber-Mario1979/AI_SYSTEM_BUILDER/blob/main/README.md#quick-start"><img src="https://img.shields.io/badge/Quick%20Start-Guide-success" alt="Quick Start"/></a>
 </p>
 
@@ -27,15 +27,15 @@ Current roadmap authority:
 ROADMAP_CANONICAL.md v7
 ```
 
-Current execution position:
+Current execution position after the M34.1 assessment PR is accepted and merged:
 
 ```text
 Phase 9 — Full Local Integrated CQV Product Core
-M32 — Full Local Usable Product Workflow/UI
-PLAN M32.1 — Full local workflow scope lock
+M34 — Local Product-Core Closeout and Local Release-Candidate Gate
+PLAN M34.2 — DDR closure/reclassification review
 ```
 
-The current checkpoint is **PLAN only**, not GO. It does not authorize UI implementation, tracker movement, deployment, release, SaaS readiness, or commercialization.
+The current checkpoint is **PLAN only**, not GO. It does not authorize DDR closure/reclassification, local release-candidate approval, engineering readiness entry, deployment, release, SaaS readiness, commercialization, customer-ready output, or full product/runtime AI readiness.
 
 For exact live state, read:
 
@@ -70,10 +70,10 @@ The greater final goal is to finish a real local integrated CQV product before a
 
 The forward path is:
 
-1. complete `PLAN M32.1` as a real local workflow scope lock;
-2. build the full local usable workflow/UI through M32 build/content checkpoints;
-3. run a realistic local product trial with defect capture, correction, regression, re-trial, and owner acceptance in M33;
-4. close the local product core only after evidence proves it is real, usable, validated, and accepted in M34;
+1. complete the M34 local product-core closeout gates, starting with `PLAN M34.2` after M34.1 is accepted and merged;
+2. review DDR closure/reclassification evidence in M34.2;
+3. record product-core limitations and local release-candidate boundary decisions through M34.3-M34.5;
+4. complete validation, owner acceptance, and Phase 9 closeout through M34.6-M34.8;
 5. proceed to engineering readiness, packaging, installability, security/supportability, and deployment-path evaluation only after local product-core acceptance.
 
 Roadmap v7 uses the checkpoint column:
