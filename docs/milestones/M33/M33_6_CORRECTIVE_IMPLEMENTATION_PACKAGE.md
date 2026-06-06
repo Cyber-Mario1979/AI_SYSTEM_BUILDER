@@ -1,6 +1,6 @@
 # M33.6 — Corrective Implementation Package
 
-Status: Validation pending on feature branch  
+Status: Completed on feature branch  
 Checkpoint: M33.6  
 Mode: Build/content  
 Branch: `m33-6-corrective-implementation-package`  
@@ -60,48 +60,50 @@ test_trial_summary_is_read_only_after_state_exists
 test_trial_summary_reports_missing_state_without_mutation
 ```
 
-## Validation status
+## Validation result
 
-Validation command required before checkpoint closure:
+Validation command:
 
 ```text
 python -m pytest -q
 ```
 
-Current validation state:
+Owner local validation result:
 
 ```text
-PENDING — executable validation must be run locally before tracker movement and checkpoint closure.
+1627 passed in 57.78s
 ```
 
-Reason:
+Result:
 
 ```text
-M33.6 changes executable CLI behavior and adds tests.
+PASS — M33.6 corrective implementation package validated.
 ```
 
 ## Tracker movement status
 
-Do not update `PROGRESS_TRACKER.md` to M33.6 complete until the full test suite passes.
+Tracker movement is now allowed because the approved correction exists and the full suite passed.
 
-After validation passes, update this document and the tracker to record:
+The tracker may record:
 
 ```text
 Latest completed roadmap checkpoint: M33.6 — Corrective implementation package
-Latest validation: python -m pytest -q — PASS
-Exact next unfinished work: next Roadmap v7 checkpoint after M33.6
+Latest validation: python -m pytest -q — 1627 passed in 57.78s
+Exact next unfinished work: PLAN M33.7 — Regression and re-trial
 ```
+
+M33.7 remains blocked until separately authorized.
 
 ## Explicit non-claims
 
 M33.6 does not claim product, release, deployment, SaaS, commercial, or full runtime readiness.
 
-## Next action
+## Next roadmap checkpoint
 
-Run from repo root after pulling this branch locally:
+After M33.6 is reviewed and merged, the next normal roadmap checkpoint is:
 
 ```text
-python -m pytest -q
+PLAN M33.7 — Regression and re-trial
 ```
 
-Then update this evidence document and tracker only if the full suite passes.
+Do not start M33.7 without separate owner authorization.
