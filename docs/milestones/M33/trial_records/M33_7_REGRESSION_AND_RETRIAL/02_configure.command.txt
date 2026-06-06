@@ -1,0 +1,1 @@
+﻿python -m asbp.adapters.local_workflow_cli configure --wp-id WP-032 --system-type cleanroom-hvac --preset-id cqv-cleanroom-hvac-basic --scope-intent qualification-only --standards-bundle cleanroom-hvac

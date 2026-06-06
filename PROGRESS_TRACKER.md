@@ -1,4 +1,4 @@
-# PROGRESS_TRACKER
+﻿# PROGRESS_TRACKER
 
 ## Project
 
@@ -30,16 +30,16 @@ M33 — Full Local Product Trial, Defect Loop, and UAT
 Status:
 
 ```text
-READY FOR PLAN M33.7 ONLY AFTER M33.6 MERGE
+READY FOR PLAN M33.8 ONLY AFTER M33.7 MERGE / GO BLOCKED
 ```
 
 Normal next roadmap checkpoint after M33.6 merge:
 
 ```text
-PLAN M33.7 — Regression and re-trial
+PLAN M33.8 — Local product UAT report
 ```
 
-M33.6 is complete on the feature branch with approved correction and full-suite pytest evidence. M33.7 is planning only after M33.6 is reviewed, merged, and separately authorized.
+M33.7 is complete on the feature branch with regression/re-trial evidence and full-suite pytest evidence. M33.8 is planning only after M33.7 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -82,43 +82,31 @@ M33 must not rely on old bloated chat history as proof of live project state.
 
 ## Current Approved Checkpoint Family
 
-M33.7 — Regression and re-trial.
+M33.8 — Local product UAT report.
 
 Status:
 
-```text
-READY FOR PLAN M33.7 ONLY AFTER M33.6 MERGE / GO BLOCKED
-```
+READY FOR PLAN M33.8 ONLY AFTER M33.7 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M33.6 merge:
+Normal roadmap checkpoint after M33.7 merge:
 
-```text
-PLAN M33.7 — Regression and re-trial
-```
+PLAN M33.8 — Local product UAT report
 
 Required deliverable / completion minimum from Roadmap v7:
 
-```text
-Regression evidence and re-trial notes for corrected paths.
-```
+UAT report with scope, results, limitations, acceptance decision, and owner/reviewer field.
 
 Validation / review requirement:
 
-```text
-Validation and re-trial evidence required.
-```
+UAT report required.
 
 Tracker movement rule:
 
-```text
-May advance only after affected paths are rechecked.
-```
+May advance only after UAT report exists.
 
 Not allowed:
 
-```text
-Close without re-check.
-```
+Productization claim without UAT.
 
 ---
 
@@ -126,54 +114,38 @@ Close without re-check.
 
 Latest completed roadmap checkpoint:
 
-```text
-M33.6 — Corrective implementation package
-```
+M33.7 — Regression and re-trial
 
 Completion type:
 
-```text
-Build/content corrective implementation with full-suite pytest evidence
-```
+Validation / UAT regression and re-trial with affected-path evidence
 
-M33.6 evidence:
+M33.7 evidence:
 
-```text
+docs/milestones/M33/M33_7_REGRESSION_AND_RETRIAL.md
+docs/milestones/M33/trial_records/M33_7_REGRESSION_AND_RETRIAL/
+
+M33.7 validation / re-trial result:
+
+PASS — M33.7 regression and re-trial evidence completed.
+python -m pytest -q — 1627 passed in 62.26s
+
+Boundary confirmation:
+
+Human review boundary remains visible.
+Output remains metadata/visibility only.
+No unscoped AI, provider, or Ollama behavior was introduced.
+Trial-summary command remained read-only by state hash comparison.
+
+Prior M33.6 evidence:
+
 docs/milestones/M33/M33_6_CORRECTIVE_IMPLEMENTATION_PACKAGE.md
 asbp/local_workflow_trial_summary_logic.py
 asbp/adapters/local_workflow_cli.py
 tests/test_m33_6_trial_summary_command.py
-```
-
-M33.6 correction implemented:
-
-```text
-M33.5-001 — Verbose JSON capture — compact trial-summary command implemented.
-python -m asbp.adapters.local_workflow_cli trial-summary --wp-id WP-032
-```
-
-M33.6 validation result:
-
-```text
-PASS — M33.6 corrective implementation package validated.
-python -m pytest -q — 1627 passed in 57.78s
-```
-
-Prior M33.5 evidence:
-
-```text
-docs/milestones/M33/M33_5_ISSUE_TRIAGE_AND_CORRECTION_PLAN.md
-```
-
-M33.5 review result:
-
-```text
-PASS — M33.5 issue triage and correction plan review complete.
-```
 
 Frozen M32 baseline remains trial-entry baseline:
 
-```text
 CLI-enhanced local workflow only.
 Scenario path: scenario -> configure -> plan -> status -> outputs.
 Scenario: cleanroom-hvac-qualification-basic.
@@ -181,7 +153,6 @@ Scenario identifiers: WP-032, TC-032, PLAN-032.
 Output review remains metadata/visibility only.
 Human review remains required.
 Optional local/offline LLM draft support is accepted only as optional supporting trial evidence with limitations.
-```
 
 ---
 
@@ -213,26 +184,20 @@ M33.6 applies the approved M33.5-001 correction only. It does not start M33.7 re
 
 ## Exact Next Unfinished Work
 
-```text
-PLAN M33.7 — Regression and re-trial
-```
+PLAN M33.8 — Local product UAT report
 
 Current state:
 
-```text
-READY FOR PLAN M33.7 ONLY AFTER M33.6 MERGE / GO BLOCKED
-```
+READY FOR PLAN M33.8 ONLY AFTER M33.7 MERGE / GO BLOCKED
 
-Allowed current work after M33.6 merge:
+Allowed current work after M33.7 merge:
 
-```text
-PLAN M33.7 only, after separate owner authorization.
-```
+PLAN M33.8 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M33.7 regression and re-trial work;
-- M33.8 or later checkpoint work;
+- GO M33.8 local product UAT report work;
+- M33.9 or later checkpoint work;
 - productization;
 - deployment;
 - release readiness;
@@ -245,18 +210,13 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
-Latest M33.6 validation evidence:
+Latest M33.7 validation and re-trial evidence:
 
-```text
-docs/milestones/M33/M33_6_CORRECTIVE_IMPLEMENTATION_PACKAGE.md — PASS validation evidence.
-python -m pytest -q — 1627 passed in 57.78s
-```
+docs/milestones/M33/M33_7_REGRESSION_AND_RETRIAL.md — PASS regression and re-trial evidence.
 
 Latest executable validation:
 
-```text
-python -m pytest -q — 1627 passed in 57.78s
-```
+python -m pytest -q — 1627 passed in 62.26s
 
 ---
 
@@ -283,24 +243,22 @@ M33.6 corrective implementation package completed on feature branch.
 Current M33 status:
 
 ```text
-M33.6 corrective implementation completed on feature branch; M33.7 regression and re-trial has not started.
+M33.7 regression and re-trial completed on feature branch; M33.8 local product UAT report has not started.
 ```
 
 ---
 
 ## Repo Alignment Status
 
-M33.6 is recorded on feature branch `m33-6-corrective-implementation-package`:
+M33.7 is recorded on feature branch m33-7-regression-and-retrial:
 
-```text
-docs/milestones/M33/M33_6_CORRECTIVE_IMPLEMENTATION_PACKAGE.md
-asbp/local_workflow_trial_summary_logic.py
-asbp/adapters/local_workflow_cli.py
-tests/test_m33_6_trial_summary_command.py
+docs/milestones/M33/M33_7_REGRESSION_AND_RETRIAL.md
+docs/milestones/M33/trial_records/M33_7_REGRESSION_AND_RETRIAL/
 PROGRESS_TRACKER.md
-```
 
-This tracker update records M33.6 correction completion on the feature branch and keeps PLAN M33.7 as the next work after M33.6 merge and separate authorization. It does not start M33.7 regression/re-trial, M33.8 UAT report, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+This tracker update records M33.7 regression and re-trial completion on the feature branch and keeps PLAN M33.8 as the next work after M33.7 merge and separate authorization.
+
+It does not start M33.8, M33.9 or later checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -336,3 +294,38 @@ DDR-006 remains relevant to generated output. Optional local/offline LLM draft s
 DDR-007 remains partially closed / carried forward. M32 accepts the local/offline app-coupled path only as trial-ready with limitations. M33.1 scopes trial boundaries only. M33.2 prepares synthetic scenario-pack data only. M33.3 validates the integrated pre-trial path only. M33.4 records the first trial execution round only. M33.5 classifies findings only. M33.6 applies the approved M33.5-001 correction only. Cloud/provider behavior, UI/API surfacing, and broader product use remain future scoped work.
 
 DDR-009 remains relevant to UI/API/external contract placeholder behavior. M32, M33.1, M33.2, M33.3, M33.4, M33.5, and M33.6 do not authorize web/desktop/customer UI/API behavior.
+---
+
+## M33.7 Completion Update
+
+Latest completed roadmap checkpoint:
+
+M33.7 — Regression and re-trial
+
+Completion type:
+
+Validation / UAT regression and re-trial with affected-path evidence
+
+M33.7 evidence:
+
+docs/milestones/M33/M33_7_REGRESSION_AND_RETRIAL.md
+docs/milestones/M33/trial_records/M33_7_REGRESSION_AND_RETRIAL/
+
+M33.7 validation / re-trial result:
+
+PASS — M33.7 regression and re-trial evidence completed.
+python -m pytest -q — 1627 passed in 62.26s
+
+Boundary confirmation:
+
+Human review boundary remains visible.
+Output remains metadata/visibility only.
+No unscoped AI, provider, or Ollama behavior was introduced.
+Trial-summary command remained read-only by state hash comparison.
+
+Exact next unfinished work:
+
+PLAN M33.8 — Local product UAT report
+
+M33.8 remains blocked until separately planned and authorized.
+
