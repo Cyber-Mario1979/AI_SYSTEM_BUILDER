@@ -1,0 +1,49 @@
+{
+  "checkpoint": "M32.4 \u2014 Controlled input surfaces",
+  "surface": "cli-enhanced controlled local workflow",
+  "adapter_boundary": "CLI adapter collects controlled arguments and saves validated state through approved helpers.",
+  "updated_work_package": {
+    "wp_id": "WP-032",
+    "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+    "status": "open",
+    "selector_context": {
+      "system_type": "cleanroom-hvac",
+      "preset_id": "cqv-cleanroom-hvac-basic",
+      "scope_intent": "qualification-only",
+      "standards_bundles": [
+        "cqv-core",
+        "cleanroom-hvac"
+      ]
+    }
+  },
+  "task_staging": {
+    "task_count": 3,
+    "task_ids": [
+      "TASK-M32-8-001",
+      "TASK-M32-8-002",
+      "TASK-M32-8-003"
+    ]
+  },
+  "source_selection": {
+    "collection_count": 1,
+    "collection_ids": [
+      "TC-032"
+    ],
+    "authority_limit": "Existing repo state only; no retrieval or standards authority is upgraded."
+  },
+  "input_warnings": [],
+  "readiness_gaps": [],
+  "limitations": [
+    "Controlled input surface updates only approved selector/profile/source fields.",
+    "CLI/local workflow surface remains an adapter only.",
+    "Inputs are constrained by explicit command options and parser choices.",
+    "No free-form user text is treated as source truth.",
+    "No AI, provider, Ollama, or live model call is performed.",
+    "Generated or assembled output remains human-review-required.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ],
+  "next_safe_actions": [
+    "Run the local workflow plan command to review the configured payload.",
+    "Continue to later M32 checkpoints for workflow visibility, output review, and failure handling."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "checkpoint": "M32.8 \u2014 End-to-end local scenario implementation",
+  "surface": "cli-enhanced controlled local workflow",
+  "adapter_boundary": "CLI adapter stages an approved scenario through validated local workflow boundaries only.",
+  "scenario_id": "cleanroom-hvac-qualification-basic",
+  "scenario_status": "staged",
+  "state_status": "in_flight",
+  "selected_work_package": {
+    "wp_id": "WP-032",
+    "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+    "system_type": "cleanroom-hvac",
+    "preset_id": "cqv-cleanroom-hvac-basic",
+    "scope_intent": "qualification-only",
+    "standards_bundles": [
+      "cqv-core",
+      "cleanroom-hvac"
+    ]
+  },
+  "scenario_assets": {
+    "task_ids": [
+      "TASK-M32-8-001",
+      "TASK-M32-8-002",
+      "TASK-M32-8-003"
+    ],
+    "task_count": 3,
+    "collection_id": "TC-032",
+    "collection_state": "committed",
+    "plan_id": "PLAN-032",
+    "generated_task_plan_count": 3
+  },
+  "executable_local_use_steps": [
+    "python -m asbp.adapters.local_workflow_cli configure --wp-id WP-032 --system-type cleanroom-hvac --preset-id cqv-cleanroom-hvac-basic --scope-intent qualification-only --standards-bundle cleanroom-hvac",
+    "python -m asbp.adapters.local_workflow_cli plan --wp-id WP-032",
+    "python -m asbp.adapters.local_workflow_cli status --wp-id WP-032",
+    "python -m asbp.adapters.local_workflow_cli outputs --wp-id WP-032"
+  ],
+  "scenario_evidence": {
+    "can_be_exercised_through_local_workflow": true,
+    "commands_to_exercise": [
+      "configure",
+      "plan",
+      "status",
+      "outputs"
+    ],
+    "human_review_required": true,
+    "approval_claimed": false,
+    "release_claimed": false,
+    "product_ready_claimed": false
+  },
+  "limitations": [
+    "CLI/local workflow surface is an adapter only.",
+    "Scenario staging uses validated local state models and approved state-store persistence only.",
+    "Scenario evidence proves local exerciseability only, not product readiness or UAT acceptance.",
+    "Outputs remain review metadata/visibility only unless separately scoped.",
+    "No output is silently accepted, approved, signed, released, or certified.",
+    "No AI, provider, Ollama, or live model call is performed.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ],
+  "next_safe_actions": [
+    "Run the listed local workflow commands to exercise the staged scenario.",
+    "Record scenario command output as M32.8 evidence before tracker movement.",
+    "Do not treat this scenario as UAT, release, deployment, SaaS, commercial, or customer-ready evidence."
+  ]
+}

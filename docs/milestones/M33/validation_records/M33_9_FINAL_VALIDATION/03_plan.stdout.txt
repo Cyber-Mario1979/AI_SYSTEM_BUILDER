@@ -1,0 +1,55 @@
+{
+  "checkpoint": "M32.3 \u2014 UI-to-core adapter implementation",
+  "surface": "cli-enhanced controlled local workflow",
+  "adapter_boundary": "CLI adapter reads validated state and calls service/core boundaries only.",
+  "project": "AI_SYSTEM_BUILDER",
+  "state_status": "in_flight",
+  "selected_work_package": {
+    "wp_id": "WP-032",
+    "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+    "status": "open",
+    "selector_context": {
+      "system_type": "cleanroom-hvac",
+      "preset_id": "cqv-cleanroom-hvac-basic",
+      "scope_intent": "qualification-only",
+      "standards_bundles": [
+        "cqv-core",
+        "cleanroom-hvac"
+      ]
+    }
+  },
+  "task_staging": {
+    "task_count": 3,
+    "task_ids": [
+      "TASK-M32-8-001",
+      "TASK-M32-8-002",
+      "TASK-M32-8-003"
+    ]
+  },
+  "source_selection": {
+    "collection_count": 1,
+    "collection_ids": [
+      "TC-032"
+    ],
+    "authority_limit": "Existing repo state only; no retrieval or standards authority is upgraded."
+  },
+  "review_gates": [
+    "Human review required before output acceptance.",
+    "Limitations must remain visible before trial or UAT claims."
+  ],
+  "input_warnings": [],
+  "readiness_gaps": [],
+  "limitations": [
+    "CLI/local workflow surface is an adapter only.",
+    "No domain logic is implemented in the CLI surface.",
+    "No state mutation is performed by this planning command.",
+    "No AI, provider, Ollama, or live model call is performed.",
+    "Generated or assembled output remains human-review-required.",
+    "Retrieval, where later included, remains helper-only and non-authoritative.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ],
+  "next_safe_actions": [
+    "Resolve readiness gaps before calling the workflow trial-ready.",
+    "Use later M32 checkpoints for controlled inputs, visibility, output review, and failure handling."
+  ]
+}

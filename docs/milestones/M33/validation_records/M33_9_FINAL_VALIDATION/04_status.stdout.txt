@@ -1,0 +1,147 @@
+{
+  "checkpoint": "M32.5 \u2014 Workflow visibility surfaces",
+  "surface": "cli-enhanced controlled local workflow",
+  "adapter_boundary": "CLI adapter reads validated state and calls service/core boundaries only.",
+  "workflow_state": {
+    "project": "AI_SYSTEM_BUILDER",
+    "state_status": "in_flight",
+    "selected_work_package": {
+      "wp_id": "WP-032",
+      "title": "M32.8 Cleanroom HVAC qualification-only local scenario",
+      "status": "open",
+      "selector_context": {
+        "system_type": "cleanroom-hvac",
+        "preset_id": "cqv-cleanroom-hvac-basic",
+        "scope_intent": "qualification-only",
+        "standards_bundles": [
+          "cqv-core",
+          "cleanroom-hvac"
+        ]
+      }
+    }
+  },
+  "task_lifecycle": {
+    "task_count": 3,
+    "status_counts": {
+      "planned": 3
+    },
+    "tasks": [
+      {
+        "task_id": "TASK-M32-8-001",
+        "order": 1,
+        "title": "Prepare cleanroom HVAC qualification plan",
+        "status": "planned",
+        "duration": 2,
+        "start_date": null,
+        "end_date": null,
+        "dependencies": []
+      },
+      {
+        "task_id": "TASK-M32-8-002",
+        "order": 2,
+        "title": "Execute cleanroom HVAC field checks",
+        "status": "planned",
+        "duration": 1,
+        "start_date": null,
+        "end_date": null,
+        "dependencies": [
+          "TASK-M32-8-001"
+        ]
+      },
+      {
+        "task_id": "TASK-M32-8-003",
+        "order": 3,
+        "title": "Review cleanroom HVAC qualification output",
+        "status": "planned",
+        "duration": 1,
+        "start_date": null,
+        "end_date": null,
+        "dependencies": [
+          "TASK-M32-8-002"
+        ]
+      }
+    ]
+  },
+  "schedule_lifecycle": {
+    "plan_count": 1,
+    "generated_schedule_present": true,
+    "plans": [
+      {
+        "plan_id": "PLAN-032",
+        "plan_state": "draft",
+        "planning_basis": {
+          "duration_source": "task_duration",
+          "basis_label": "M32.8 cleanroom HVAC scenario task durations"
+        },
+        "planned_start_at": "2026-06-08T08:00:00+00:00",
+        "planning_calendar": {
+          "working_days": [
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday"
+          ],
+          "workday_hours": 8,
+          "workmonth_mode": "calendar_month"
+        },
+        "generated_task_plan_count": 3,
+        "generated_schedule_start_at": "2026-06-08T08:00:00Z",
+        "generated_schedule_finish_at": "2026-06-11T16:00:00Z"
+      }
+    ]
+  },
+  "document_lifecycle": {
+    "status": "not_implemented_in_current_surface",
+    "limitation": "Document review/download behavior belongs to M32.6 unless separately scoped."
+  },
+  "source_and_citation_state": {
+    "collection_count": 1,
+    "collection_ids": [
+      "TC-032"
+    ],
+    "collections": [
+      {
+        "collection_id": "TC-032",
+        "title": "M32.8 cleanroom HVAC local scenario source/task collection",
+        "collection_state": "committed",
+        "task_ids": [
+          "TASK-M32-8-001",
+          "TASK-M32-8-002",
+          "TASK-M32-8-003"
+        ]
+      }
+    ],
+    "standards_bundles": [
+      "cqv-core",
+      "cleanroom-hvac"
+    ],
+    "citation_state": "Source collection and standards bundle identifiers are visible only; clause-level citation authority is not upgraded.",
+    "authority_limit": "Existing repo state only; no retrieval or standards authority is upgraded."
+  },
+  "ai_limitation_state": {
+    "ai_call_performed": false,
+    "provider_call_performed": false,
+    "ollama_call_performed": false,
+    "human_review_required": true,
+    "limitation": "No AI, provider, Ollama, or live model call is performed."
+  },
+  "input_warnings": [],
+  "readiness_gaps": [],
+  "limitations": [
+    "CLI/local workflow surface is an adapter only.",
+    "This status command is read-only and does not mutate state.",
+    "No domain logic is implemented in the CLI surface.",
+    "Document review/download behavior belongs to M32.6 unless separately scoped.",
+    "Failure-handling completion belongs to M32.7 unless separately scoped.",
+    "No AI, provider, Ollama, or live model call is performed.",
+    "Generated or assembled output remains human-review-required.",
+    "Retrieval, where later included, remains helper-only and non-authoritative.",
+    "This is not release, deployment, SaaS, commercial, or customer-ready evidence."
+  ],
+  "next_safe_actions": [
+    "Resolve readiness gaps before calling the workflow trial-ready.",
+    "Use M32.6 for controlled output review/download behavior.",
+    "Use M32.7 for local workflow error/failure-handling completion."
+  ]
+}
