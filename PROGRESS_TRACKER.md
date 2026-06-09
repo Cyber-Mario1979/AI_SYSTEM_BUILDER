@@ -29,13 +29,13 @@ M34 - Local Product-Core Closeout and Local Release-Candidate Gate
 
 Status:
 
-READY FOR PLAN M34.7 ONLY AFTER M34.6 MERGE / GO BLOCKED
+READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
 
-Normal next roadmap checkpoint after M34.6 merge:
+Normal next roadmap checkpoint after M34.7 merge:
 
-PLAN M34.7 - Product-core UAT/owner acceptance
+PLAN M34.8 - Phase 9 closeout
 
-M34.6 is complete on the feature branch with validation evidence. M34.7 is planning only after M34.6 is reviewed, merged, and separately authorized.
+M34.7 is complete on the feature branch with product-core UAT/owner acceptance evidence. M34.8 is planning only after M34.7 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -78,31 +78,31 @@ M34 must not rely on old bloated chat history as proof of live project state.
 
 ## Current Approved Checkpoint Family
 
-M34.7 - Product-core UAT/owner acceptance.
+M34.8 - Phase 9 closeout.
 
 Status:
 
-READY FOR PLAN M34.7 ONLY AFTER M34.6 MERGE / GO BLOCKED
+READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M34.6 merge:
+Normal roadmap checkpoint after M34.7 merge:
 
-PLAN M34.7 - Product-core UAT/owner acceptance
+PLAN M34.8 - Phase 9 closeout
 
 Required deliverable / completion minimum from Roadmap v7:
 
-Owner decision with rationale.
+Phase 9 closeout record pointing to Phase 10 only if approved.
 
 Validation / review requirement:
 
-Owner acceptance required.
+Document consistency review.
 
 Tracker movement rule:
 
-May advance only after acceptance exists.
+May advance only after closeout exists.
 
 Not allowed:
 
-Treat as launch approval.
+Skip re-entry gate.
 
 ---
 
@@ -110,28 +110,28 @@ Treat as launch approval.
 
 Latest completed roadmap checkpoint:
 
-M34.6 - Validation checkpoint
+M34.7 - Product-core UAT/owner acceptance
 
 Completion type:
 
-Validation checkpoint with local clean-state evidence, changed-file evidence, and full pytest evidence.
+Product-core UAT / owner acceptance with limitations.
 
-M34.6 evidence:
+M34.7 evidence:
 
-docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
-docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
 
-M34.6 validation result:
+M34.7 UAT result:
 
-PASS - NO EXECUTABLE CHANGES / PYTEST PASS
+ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS
 
 Decision boundary:
 
-M34.6 records validation evidence only. It does not start M34.7, close Phase 9, start Phase 10 execution, approve productization, approve deployment, authorize release readiness, authorize SaaS readiness, approve commercialization, claim customer-ready output, or claim full product/runtime AI readiness.
+M34.7 records bounded product-core UAT/owner acceptance only. It does not close Phase 9, start Phase 10 execution, approve productization, approve deployment, authorize release readiness, authorize SaaS readiness, approve commercialization, claim launch approval, claim customer-ready output, or claim full product/runtime AI readiness.
 
-Prior M34.5 evidence:
+Prior M34.6 evidence:
 
-docs/milestones/M34/M34_5_ENGINEERING_READINESS_ENTRY_DECISION.md
+docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
+docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
 
 Latest executable validation:
 
@@ -143,48 +143,51 @@ python -m pytest -q - 1627 passed in 59.82s
 
 Latest control action:
 
-M34.6 validation checkpoint evidence on feature branch
+M34.7 product-core UAT / owner acceptance evidence on feature branch
 
 Evidence:
 
-docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
-docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
 PROGRESS_TRACKER.md
 
 Interpretation:
 
-M34.6 records fresh validation evidence after M34.5. It does not start M34.7, M34.8, Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization planning, customer-ready output, or full product/runtime AI readiness.
+M34.7 records bounded owner acceptance after validation evidence. It does not start M34.8, close Phase 9, start Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization planning, launch approval, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
 ## Exact Next Unfinished Work
 
-PLAN M34.7 - Product-core UAT/owner acceptance
+PLAN M34.8 - Phase 9 closeout
 
 Current state:
 
-READY FOR PLAN M34.7 ONLY AFTER M34.6 MERGE / GO BLOCKED
+READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
 
-Allowed current work after M34.6 merge:
+Allowed current work after M34.7 merge:
 
-PLAN M34.7 only, after separate owner authorization.
+PLAN M34.8 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M34.7 product-core UAT/owner acceptance work;
-- M34.8 or later checkpoint work;
+- GO M34.8 Phase 9 closeout work;
 - Phase 10 execution;
 - productization;
 - deployment;
 - release readiness;
 - SaaS readiness;
 - commercialization launch planning;
+- launch approval;
 - customer-ready output;
 - full product/runtime AI readiness.
 
 ---
 
 ## Latest Verified Validation / Review Evidence
+
+Latest M34.7 product-core UAT/owner acceptance evidence:
+
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md - ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS.
 
 Latest M34.6 validation checkpoint evidence:
 
@@ -196,13 +199,13 @@ Latest executable validation:
 
 python -m pytest -q - 1627 passed in 59.82s
 
-M33.9 integrated scenario validation evidence remains available at:
-
-docs/milestones/M33/validation_records/M33_9_FINAL_VALIDATION/
-
 ---
 
 ## Milestone UAT Status
+
+Latest completed product-core UAT/owner acceptance:
+
+M34.7 product-core UAT/owner acceptance completed with ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS.
 
 Latest completed validation checkpoint:
 
@@ -232,27 +235,22 @@ Latest completed milestone closeout:
 
 M33.11 milestone closeout completed with CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD.
 
-Latest owner acceptance gate:
-
-M33.10 owner acceptance gate completed with CONDITIONAL PASS for bounded M33 local product core evidence.
-
 Current M34 status:
 
-M34.6 validation checkpoint completed on feature branch. M34.7 product-core UAT/owner acceptance has not started.
+M34.7 product-core UAT/owner acceptance completed on feature branch. M34.8 Phase 9 closeout has not started.
 
 ---
 
 ## Repo Alignment Status
 
-M34.6 is recorded on feature branch m34-6-validation-checkpoint:
+M34.7 is recorded on feature branch m34-7-product-core-uat-owner-acceptance:
 
-docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
-docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
 PROGRESS_TRACKER.md
 
-This tracker update records M34.6 validation checkpoint completion on the feature branch and keeps PLAN M34.7 as the next work after M34.6 merge and separate authorization.
+This tracker update records M34.7 product-core UAT/owner acceptance completion on the feature branch and keeps PLAN M34.8 as the next work after M34.7 merge and separate authorization.
 
-It does not start M34.7, M34.8 or later checkpoint work, Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, customer-ready output, or full product/runtime AI readiness.
+It does not start M34.8, Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, launch approval, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -277,9 +275,9 @@ The full repository index was generated from tracked repository files.
 
 ## Relevant DDR Status
 
-M34.6 completed validation checkpoint only. Formal product-core UAT/owner acceptance remains the exact next unfinished checkpoint, M34.7.
+M34.7 completed product-core UAT/owner acceptance only. Formal Phase 9 closeout remains the exact next unfinished checkpoint, M34.8.
 
-M34.6 preserves M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
+M34.7 preserves M34.6 validation checkpoint, M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
 
 DDR-001 and DDR-002 remain limited-scope closures for approved governed/source-library scope only. Productized runtime-authoritative library behavior and deployment-compiled lookup remain outside readiness claims.
 
@@ -293,33 +291,32 @@ DDR-006 remains carried forward as productization-sensitive with limited M29 bas
 
 DDR-007 remains partially closed for bounded local/offline supporting evidence only. Cloud/provider API behavior, live model/provider integration, customer-facing AI, full product/runtime AI readiness, autonomous agent behavior, model-owned state mutation, AI approval authority, and app-coupled heavy-use/pre-go-live readiness remain outside readiness claims.
 
-DDR-008 remains limited to gate-control closure only. Productization readiness, SaaS readiness, Phase 9 closeout, and downstream dependency closure remain outside M34.6 and carried forward to later gates.
+DDR-008 remains limited to gate-control closure only. Productization readiness, SaaS readiness, Phase 9 closeout, and downstream dependency closure remain outside M34.7 and carried forward to later gates.
 
 DDR-009 remains limited to placeholder compatibility only. Productized placeholder-backed behavior, web/desktop/customer UI, API behavior, and external contracts relying on unresolved library/template/standards/output dependencies remain outside readiness claims.
 
 ---
 
-## M34.6 Completion Update
+## M34.7 Completion Update
 
 Latest completed roadmap checkpoint:
 
-M34.6 - Validation checkpoint
+M34.7 - Product-core UAT/owner acceptance
 
 Completion type:
 
-Validation checkpoint with local clean-state evidence, changed-file evidence, and full pytest evidence.
+Product-core UAT / owner acceptance with limitations.
 
-M34.6 evidence:
+M34.7 evidence:
 
-docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
-docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
 
-M34.6 validation result:
+M34.7 UAT result:
 
-PASS - NO EXECUTABLE CHANGES / PYTEST PASS
+ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS
 
 Exact next unfinished work:
 
-PLAN M34.7 - Product-core UAT/owner acceptance
+PLAN M34.8 - Phase 9 closeout
 
-M34.7 remains blocked until separately planned and authorized.
+M34.8 remains blocked until separately planned and authorized.
