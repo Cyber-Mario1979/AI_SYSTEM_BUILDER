@@ -21,21 +21,21 @@ If this tracker conflicts with the canonical roadmap, architecture guardrails, D
 
 ## Current Phase
 
-Phase 9 - Full Local Integrated CQV Product Core
+Phase 10 - Engineering Product Readiness and Deployment-Readiness Evaluation
 
 ## Current Milestone
 
-M34 - Local Product-Core Closeout and Local Release-Candidate Gate
+M35 - Product Boundary, License, Repository, and Engineering Release Direction
 
 Status:
 
-READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
+READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
 
-Normal next roadmap checkpoint after M34.7 merge:
+Normal next roadmap checkpoint after M34.8 merge:
 
-PLAN M34.8 - Phase 9 closeout
+PLAN M35.1 - Product identity and boundary assessment
 
-M34.7 is complete on the feature branch with product-core UAT/owner acceptance evidence. M34.8 is planning only after M34.7 is reviewed, merged, and separately authorized.
+M34.8 is complete on the feature branch with Phase 9 closeout evidence. M35.1 is planning only after M34.8 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -70,39 +70,39 @@ None active.
 
 ## Active Context Reset CAPA Status
 
-Carry forward into M34 planning as controlled-context discipline for product-core completeness, limitations, DDR review, and readiness decisions.
+Carry forward into Phase 10 planning as controlled-context discipline for engineering product-readiness evaluation, limitations, DDR review, and readiness decisions.
 
-M34 must not rely on old bloated chat history as proof of live project state.
+Phase 10 must not rely on old bloated chat history as proof of live project state.
 
 ---
 
 ## Current Approved Checkpoint Family
 
-M34.8 - Phase 9 closeout.
+M35.1 - Product identity and boundary assessment.
 
 Status:
 
-READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
+READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M34.7 merge:
+Normal roadmap checkpoint after M34.8 merge:
 
-PLAN M34.8 - Phase 9 closeout
+PLAN M35.1 - Product identity and boundary assessment
 
 Required deliverable / completion minimum from Roadmap v7:
 
-Phase 9 closeout record pointing to Phase 10 only if approved.
+Product name, audience/use context, supported scope, excluded scope, and enterprise-grade quality target.
 
 Validation / review requirement:
 
-Document consistency review.
+Owner review required.
 
 Tracker movement rule:
 
-May advance only after closeout exists.
+May advance only after boundary assessment exists.
 
 Not allowed:
 
-Skip re-entry gate.
+Commercial launch claim.
 
 ---
 
@@ -110,28 +110,27 @@ Skip re-entry gate.
 
 Latest completed roadmap checkpoint:
 
-M34.7 - Product-core UAT/owner acceptance
+M34.8 - Phase 9 closeout
 
 Completion type:
 
-Product-core UAT / owner acceptance with limitations.
+Phase 9 closeout with conditional Phase 10 engineering-readiness evaluation entry.
 
-M34.7 evidence:
+M34.8 evidence:
 
-docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
 
-M34.7 UAT result:
+M34.8 closeout decision:
 
-ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS
+CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS
 
 Decision boundary:
 
-M34.7 records bounded product-core UAT/owner acceptance only. It does not close Phase 9, start Phase 10 execution, approve productization, approve deployment, authorize release readiness, authorize SaaS readiness, approve commercialization, claim launch approval, claim customer-ready output, or claim full product/runtime AI readiness.
+M34.8 closes Phase 9 and conditionally approves Phase 10 planning for engineering product-readiness evaluation only. It does not complete M35.1, start Phase 10 execution beyond planning authorization, approve productization readiness, approve deployment, authorize release readiness, authorize SaaS readiness, approve commercialization, claim launch approval, claim customer-ready output, or claim full product/runtime AI readiness.
 
-Prior M34.6 evidence:
+Prior M34.7 evidence:
 
-docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md
-docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/
+docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
 
 Latest executable validation:
 
@@ -143,35 +142,36 @@ python -m pytest -q - 1627 passed in 59.82s
 
 Latest control action:
 
-M34.7 product-core UAT / owner acceptance evidence on feature branch
+M34.8 Phase 9 closeout evidence on feature branch
 
 Evidence:
 
-docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
 PROGRESS_TRACKER.md
 
 Interpretation:
 
-M34.7 records bounded owner acceptance after validation evidence. It does not start M34.8, close Phase 9, start Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization planning, launch approval, customer-ready output, or full product/runtime AI readiness.
+M34.8 records Phase 9 closeout and conditionally approves Phase 10 planning at M35.1. It does not start M35.1, Phase 10 execution beyond planning authorization, productization, deployment, release readiness, SaaS readiness, commercialization planning, launch approval, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
 ## Exact Next Unfinished Work
 
-PLAN M34.8 - Phase 9 closeout
+PLAN M35.1 - Product identity and boundary assessment
 
 Current state:
 
-READY FOR PLAN M34.8 ONLY AFTER M34.7 MERGE / GO BLOCKED
+READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
 
-Allowed current work after M34.7 merge:
+Allowed current work after M34.8 merge:
 
-PLAN M34.8 only, after separate owner authorization.
+PLAN M35.1 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M34.8 Phase 9 closeout work;
-- Phase 10 execution;
+- GO M35.1 product identity and boundary assessment work;
+- M35.2 or later checkpoint work;
+- Phase 10 execution beyond authorized planning checkpoint work;
 - productization;
 - deployment;
 - release readiness;
@@ -184,6 +184,10 @@ Blocked until separately authorized:
 ---
 
 ## Latest Verified Validation / Review Evidence
+
+Latest M34.8 Phase 9 closeout evidence:
+
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md - CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS.
 
 Latest M34.7 product-core UAT/owner acceptance evidence:
 
@@ -202,6 +206,10 @@ python -m pytest -q - 1627 passed in 59.82s
 ---
 
 ## Milestone UAT Status
+
+Latest completed Phase 9 closeout:
+
+M34.8 Phase 9 closeout completed with CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS.
 
 Latest completed product-core UAT/owner acceptance:
 
@@ -231,26 +239,22 @@ Latest completed product-core assessment:
 
 M34.1 product-core completeness assessment completed with PARTIAL PRODUCT-CORE COMPLETENESS / LIMITATIONS CARRIED FORWARD.
 
-Latest completed milestone closeout:
+Current Phase 10 status:
 
-M33.11 milestone closeout completed with CLOSED - CONDITIONAL PASS / LIMITATIONS CARRIED FORWARD.
-
-Current M34 status:
-
-M34.7 product-core UAT/owner acceptance completed on feature branch. M34.8 Phase 9 closeout has not started.
+Phase 10 is conditionally open for engineering product-readiness and deployment-readiness evaluation planning only after M34.8 merge. M35.1 product identity and boundary assessment has not started.
 
 ---
 
 ## Repo Alignment Status
 
-M34.7 is recorded on feature branch m34-7-product-core-uat-owner-acceptance:
+M34.8 is recorded on feature branch m34-8-phase-9-closeout:
 
-docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
 PROGRESS_TRACKER.md
 
-This tracker update records M34.7 product-core UAT/owner acceptance completion on the feature branch and keeps PLAN M34.8 as the next work after M34.7 merge and separate authorization.
+This tracker update records M34.8 Phase 9 closeout completion on the feature branch and keeps PLAN M35.1 as the next work after M34.8 merge and separate authorization.
 
-It does not start M34.8, Phase 10 execution, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, launch approval, customer-ready output, or full product/runtime AI readiness.
+It does not start M35.1, M35.2 or later checkpoint work, Phase 10 execution beyond authorized planning checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, launch approval, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -275,48 +279,34 @@ The full repository index was generated from tracked repository files.
 
 ## Relevant DDR Status
 
-M34.7 completed product-core UAT/owner acceptance only. Formal Phase 9 closeout remains the exact next unfinished checkpoint, M34.8.
+M34.8 completed Phase 9 closeout only. Formal Phase 10 product identity and boundary assessment remains the exact next unfinished checkpoint, M35.1.
 
-M34.7 preserves M34.6 validation checkpoint, M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
+M34.8 preserves M34.7 product-core UAT/owner acceptance, M34.6 validation checkpoint, M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
 
-DDR-001 and DDR-002 remain limited-scope closures for approved governed/source-library scope only. Productized runtime-authoritative library behavior and deployment-compiled lookup remain outside readiness claims.
-
-DDR-003 remains limited to the accepted M29 baseline with clarifications. Product-ready template behavior and downstream productization-sensitive document/template behavior remain outside readiness claims.
-
-DDR-004 remains limited to the approved standards source/citation authority model scope. Clause-level legal/regulatory authority, mandatory-use product claims, unsupported source verification claims, and standards-backed product authority beyond evidence remain outside readiness claims.
-
-DDR-005 remains partially closed for bounded deterministic retrieval controls only. Embeddings, vector store, live source lookup, external search, productized standards-backed retrieval, retrieval-backed source/compliance authority, production retrieval operations, and UI/API retrieval integration remain outside readiness claims.
-
-DDR-006 remains carried forward as productization-sensitive with limited M29 baseline evidence. Customer-ready output, final generated/assembled output approval, product-ready export/report rendering in local workflow, and release-ready output lifecycle remain outside readiness claims.
-
-DDR-007 remains partially closed for bounded local/offline supporting evidence only. Cloud/provider API behavior, live model/provider integration, customer-facing AI, full product/runtime AI readiness, autonomous agent behavior, model-owned state mutation, AI approval authority, and app-coupled heavy-use/pre-go-live readiness remain outside readiness claims.
-
-DDR-008 remains limited to gate-control closure only. Productization readiness, SaaS readiness, Phase 9 closeout, and downstream dependency closure remain outside M34.7 and carried forward to later gates.
-
-DDR-009 remains limited to placeholder compatibility only. Productized placeholder-backed behavior, web/desktop/customer UI, API behavior, and external contracts relying on unresolved library/template/standards/output dependencies remain outside readiness claims.
+DDR-001 through DDR-009 carry-forwards remain active as summarized in the M34.8 closeout record and prior M34 records.
 
 ---
 
-## M34.7 Completion Update
+## M34.8 Completion Update
 
 Latest completed roadmap checkpoint:
 
-M34.7 - Product-core UAT/owner acceptance
+M34.8 - Phase 9 closeout
 
 Completion type:
 
-Product-core UAT / owner acceptance with limitations.
+Phase 9 closeout with conditional Phase 10 engineering-readiness evaluation entry.
 
-M34.7 evidence:
+M34.8 evidence:
 
-docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
 
-M34.7 UAT result:
+M34.8 closeout decision:
 
-ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS
+CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS
 
 Exact next unfinished work:
 
-PLAN M34.8 - Phase 9 closeout
+PLAN M35.1 - Product identity and boundary assessment
 
-M34.8 remains blocked until separately planned and authorized.
+M35.1 remains blocked until separately planned and authorized.
