@@ -29,13 +29,13 @@ M35 - Product Boundary, License, Repository, and Engineering Release Direction
 
 Status:
 
-READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
+READY FOR PLAN M35.2 ONLY AFTER M35.1 MERGE / GO BLOCKED
 
-Normal next roadmap checkpoint after M34.8 merge:
+Normal next roadmap checkpoint after M35.1 merge:
 
-PLAN M35.1 - Product identity and boundary assessment
+PLAN M35.2 - License strategy assessment
 
-M34.8 is complete on the feature branch with Phase 9 closeout evidence. M35.1 is planning only after M34.8 is reviewed, merged, and separately authorized.
+M35.1 is complete on the feature branch with product identity and boundary assessment evidence. M35.2 is planning only after M35.1 is reviewed, merged, and separately authorized.
 
 ---
 
@@ -57,8 +57,8 @@ Roadmap v7 effect:
 
 - makes `Required deliverable / completion minimum` explicit inside remaining checkpoint tables;
 - prevents `Build/content` and `Hybrid` checkpoints from being closed by documentation alone;
-- preserves M33 as the next local trial milestone after M32 closeout;
-- does not implement future checkpoints, run future validation, perform cleanup, authorize release, authorize deployment, or authorize commercialization.
+- preserves Phase 10 as engineering product-readiness and deployment-readiness evaluation, not commercial launch;
+- does not implement future checkpoints, run future validation, perform cleanup, authorize release, authorize deployment, authorize SaaS, or authorize commercialization.
 
 ---
 
@@ -70,7 +70,7 @@ None active.
 
 ## Active Context Reset CAPA Status
 
-Carry forward into Phase 10 planning as controlled-context discipline for engineering product-readiness evaluation, limitations, DDR review, and readiness decisions.
+Carry forward as controlled-context discipline for Phase 10 engineering product-readiness evaluation, limitations, DDR review, and readiness decisions.
 
 Phase 10 must not rely on old bloated chat history as proof of live project state.
 
@@ -78,31 +78,39 @@ Phase 10 must not rely on old bloated chat history as proof of live project stat
 
 ## Current Approved Checkpoint Family
 
-M35.1 - Product identity and boundary assessment.
+M35.2 - License strategy assessment.
 
 Status:
 
-READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
+READY FOR PLAN M35.2 ONLY AFTER M35.1 MERGE / GO BLOCKED
 
-Normal roadmap checkpoint after M34.8 merge:
+Normal roadmap checkpoint after M35.1 merge:
 
-PLAN M35.1 - Product identity and boundary assessment
+PLAN M35.2 - License strategy assessment
 
 Required deliverable / completion minimum from Roadmap v7:
 
-Product name, audience/use context, supported scope, excluded scope, and enterprise-grade quality target.
+```text
+GPLv3 continuation, dual license, proprietary future repo, open-core, or legal review need.
+```
 
 Validation / review requirement:
 
-Owner review required.
+```text
+Owner/legal review decision where applicable.
+```
 
 Tracker movement rule:
 
-May advance only after boundary assessment exists.
+```text
+May advance only after license path is explicit.
+```
 
 Not allowed:
 
-Commercial launch claim.
+```text
+Legal/license change without approval.
+```
 
 ---
 
@@ -110,31 +118,39 @@ Commercial launch claim.
 
 Latest completed roadmap checkpoint:
 
-M34.8 - Phase 9 closeout
+M35.1 - Product identity and boundary assessment
 
 Completion type:
 
-Phase 9 closeout with conditional Phase 10 engineering-readiness evaluation entry.
+Governance-only product identity and boundary assessment with limitations carried forward.
 
-M34.8 evidence:
+M35.1 evidence:
 
-docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
+```text
+docs/milestones/M35/M35_1_PRODUCT_IDENTITY_AND_BOUNDARY_ASSESSMENT.md
+```
 
-M34.8 closeout decision:
+M35.1 assessment result:
 
-CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS
+```text
+PRODUCT IDENTITY AND BOUNDARY DEFINED / LIMITATIONS CARRIED FORWARD
+```
 
 Decision boundary:
 
-M34.8 closes Phase 9 and conditionally approves Phase 10 planning for engineering product-readiness evaluation only. It does not complete M35.1, start Phase 10 execution beyond planning authorization, approve productization readiness, approve deployment, authorize release readiness, authorize SaaS readiness, approve commercialization, claim launch approval, claim customer-ready output, or claim full product/runtime AI readiness.
+M35.1 defines `AI_SYSTEM_BUILDER` as the current local engineering product artifact name and defines the product boundary as local-only, CLI-enhanced, evidence-based, human-review-required, and limitation-visible. It does not approve commercial launch, productization, deployment, release readiness, SaaS readiness, customer-ready output, or full product/runtime AI readiness.
 
-Prior M34.7 evidence:
+Prior M34.8 evidence:
 
-docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md
+```text
+docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
+```
 
 Latest executable validation:
 
+```text
 python -m pytest -q - 1627 passed in 59.82s
+```
 
 ---
 
@@ -142,36 +158,41 @@ python -m pytest -q - 1627 passed in 59.82s
 
 Latest control action:
 
-M34.8 Phase 9 closeout evidence on feature branch
+M35.1 product identity and boundary assessment evidence on feature branch
 
 Evidence:
 
-docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
+```text
+docs/milestones/M35/M35_1_PRODUCT_IDENTITY_AND_BOUNDARY_ASSESSMENT.md
 PROGRESS_TRACKER.md
+```
 
 Interpretation:
 
-M34.8 records Phase 9 closeout and conditionally approves Phase 10 planning at M35.1. It does not start M35.1, Phase 10 execution beyond planning authorization, productization, deployment, release readiness, SaaS readiness, commercialization planning, launch approval, customer-ready output, or full product/runtime AI readiness.
+M35.1 records product identity and boundary assessment for Phase 10 engineering-readiness evaluation. It does not start M35.2, decide license strategy, decide repository split, approve distribution, authorize packaging, authorize release readiness, authorize deployment, authorize SaaS readiness, approve commercialization planning, approve launch, claim customer-ready output, or claim full product/runtime AI readiness.
 
 ---
 
 ## Exact Next Unfinished Work
 
-PLAN M35.1 - Product identity and boundary assessment
+PLAN M35.2 - License strategy assessment
 
 Current state:
 
-READY FOR PLAN M35.1 ONLY AFTER M34.8 MERGE / GO BLOCKED
+READY FOR PLAN M35.2 ONLY AFTER M35.1 MERGE / GO BLOCKED
 
-Allowed current work after M34.8 merge:
+Allowed current work after M35.1 merge:
 
-PLAN M35.1 only, after separate owner authorization.
+PLAN M35.2 only, after separate owner authorization.
 
 Blocked until separately authorized:
 
-- GO M35.1 product identity and boundary assessment work;
-- M35.2 or later checkpoint work;
+- GO M35.2 license strategy assessment work;
+- M35.3 or later checkpoint work;
 - Phase 10 execution beyond authorized planning checkpoint work;
+- license change approval;
+- repository visibility change;
+- repository split approval;
 - productization;
 - deployment;
 - release readiness;
@@ -185,27 +206,44 @@ Blocked until separately authorized:
 
 ## Latest Verified Validation / Review Evidence
 
+Latest M35.1 product identity and boundary assessment evidence:
+
+```text
+docs/milestones/M35/M35_1_PRODUCT_IDENTITY_AND_BOUNDARY_ASSESSMENT.md - PASS WITH LIMITATIONS RECORDED - product name, audience/use context, supported scope, excluded scope, and enterprise-grade quality target are defined; commercial launch and readiness claims are excluded.
+```
+
 Latest M34.8 Phase 9 closeout evidence:
 
+```text
 docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md - CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS.
+```
 
 Latest M34.7 product-core UAT/owner acceptance evidence:
 
+```text
 docs/milestones/M34/M34_7_PRODUCT_CORE_UAT_OWNER_ACCEPTANCE.md - ACCEPTED - PRODUCT-CORE UAT / OWNER ACCEPTANCE WITH LIMITATIONS.
+```
 
 Latest M34.6 validation checkpoint evidence:
 
+```text
 docs/milestones/M34/M34_6_VALIDATION_CHECKPOINT.md - PASS - NO EXECUTABLE CHANGES / PYTEST PASS.
-
 docs/milestones/M34/validation_records/M34_6_VALIDATION_CHECKPOINT/ - local clean-state, latest commit, changed-file, pytest, and validation result evidence.
+```
 
 Latest executable validation:
 
+```text
 python -m pytest -q - 1627 passed in 59.82s
+```
 
 ---
 
 ## Milestone UAT Status
+
+Latest completed M35 assessment:
+
+M35.1 product identity and boundary assessment completed with PRODUCT IDENTITY AND BOUNDARY DEFINED / LIMITATIONS CARRIED FORWARD.
 
 Latest completed Phase 9 closeout:
 
@@ -219,42 +257,24 @@ Latest completed validation checkpoint:
 
 M34.6 validation checkpoint completed with PASS - NO EXECUTABLE CHANGES / PYTEST PASS.
 
-Latest completed engineering readiness entry decision:
-
-M34.5 engineering readiness entry decision completed with CONDITIONAL PASS TO PHASE 10 ENGINEERING READINESS EVALUATION / LIMITATIONS CARRIED FORWARD.
-
-Latest completed local RC boundary decision:
-
-M34.4 local release-candidate boundary decision completed with CONDITIONAL LOCAL RC BOUNDARY / LIMITATIONS CARRIED FORWARD.
-
-Latest completed limitation register:
-
-M34.3 product-core limitation register completed with PASS WITH LIMITATIONS RECORDED.
-
-Latest completed DDR review:
-
-M34.2 DDR closure/reclassification review completed with PASS WITH LIMITATIONS RECORDED.
-
-Latest completed product-core assessment:
-
-M34.1 product-core completeness assessment completed with PARTIAL PRODUCT-CORE COMPLETENESS / LIMITATIONS CARRIED FORWARD.
-
 Current Phase 10 status:
 
-Phase 10 is conditionally open for engineering product-readiness and deployment-readiness evaluation planning only after M34.8 merge. M35.1 product identity and boundary assessment has not started.
+Phase 10 is open for engineering product-readiness and deployment-readiness evaluation under roadmap governance only. M35.1 has defined product identity and boundary. M35.2 license strategy assessment has not started.
 
 ---
 
 ## Repo Alignment Status
 
-M34.8 is recorded on feature branch m34-8-phase-9-closeout:
+M35.1 is recorded on feature branch m35-1-product-identity-boundary-assessment:
 
-docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
+```text
+docs/milestones/M35/M35_1_PRODUCT_IDENTITY_AND_BOUNDARY_ASSESSMENT.md
 PROGRESS_TRACKER.md
+```
 
-This tracker update records M34.8 Phase 9 closeout completion on the feature branch and keeps PLAN M35.1 as the next work after M34.8 merge and separate authorization.
+This tracker update records M35.1 product identity and boundary assessment completion on the feature branch and keeps PLAN M35.2 as the next work after M35.1 merge and separate authorization.
 
-It does not start M35.1, M35.2 or later checkpoint work, Phase 10 execution beyond authorized planning checkpoint work, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, launch approval, customer-ready output, or full product/runtime AI readiness.
+It does not start M35.2, M35.3 or later checkpoint work, license change approval, repository visibility change, repository split approval, productization, deployment, release readiness, SaaS readiness, commercialization launch planning, launch approval, customer-ready output, or full product/runtime AI readiness.
 
 ---
 
@@ -279,34 +299,38 @@ The full repository index was generated from tracked repository files.
 
 ## Relevant DDR Status
 
-M34.8 completed Phase 9 closeout only. Formal Phase 10 product identity and boundary assessment remains the exact next unfinished checkpoint, M35.1.
+M35.1 completed product identity and boundary assessment only. Formal Phase 10 license strategy assessment remains the exact next unfinished checkpoint, M35.2.
 
-M34.8 preserves M34.7 product-core UAT/owner acceptance, M34.6 validation checkpoint, M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
+M35.1 preserves M34.8 Phase 9 closeout, M34.7 product-core UAT/owner acceptance, M34.6 validation checkpoint, M34.5 engineering-readiness entry decision, M34.4 conditional local RC boundary, M34.3 limitation register, and M34.2 DDR conclusions.
 
-DDR-001 through DDR-009 carry-forwards remain active as summarized in the M34.8 closeout record and prior M34 records.
+DDR-001 through DDR-009 carry-forwards remain active as summarized in the M35.1 assessment and prior M34 records.
 
 ---
 
-## M34.8 Completion Update
+## M35.1 Completion Update
 
 Latest completed roadmap checkpoint:
 
-M34.8 - Phase 9 closeout
+M35.1 - Product identity and boundary assessment
 
 Completion type:
 
-Phase 9 closeout with conditional Phase 10 engineering-readiness evaluation entry.
+Governance-only product identity and boundary assessment with limitations carried forward.
 
-M34.8 evidence:
+M35.1 evidence:
 
-docs/milestones/M34/M34_8_PHASE_9_CLOSEOUT.md
+```text
+docs/milestones/M35/M35_1_PRODUCT_IDENTITY_AND_BOUNDARY_ASSESSMENT.md
+```
 
-M34.8 closeout decision:
+M35.1 assessment result:
 
-CLOSED - CONDITIONAL PASS / PHASE 10 ENGINEERING READINESS EVALUATION ENTRY APPROVED WITH LIMITATIONS
+```text
+PRODUCT IDENTITY AND BOUNDARY DEFINED / LIMITATIONS CARRIED FORWARD
+```
 
 Exact next unfinished work:
 
-PLAN M35.1 - Product identity and boundary assessment
+PLAN M35.2 - License strategy assessment
 
-M35.1 remains blocked until separately planned and authorized.
+M35.2 remains blocked until separately planned and authorized.
