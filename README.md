@@ -17,6 +17,14 @@
 
 ---
 
+# Important Note:
+
+This repository content has been deprecated on the 15-06-2026 becuase of a massive scope drift.
+
+`PUBLIC ARCHIVE`
+
+---
+
 ## Project status
 
 **AI_SYSTEM_BUILDER** is under active development.
